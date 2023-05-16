@@ -2,6 +2,7 @@ const fileCache = require('think-cache-file');
 const nunjucks = require('think-view-nunjucks');
 const fileSession = require('think-session-file');
 const mysql = require('think-model-mysql');
+const sqlite = require('think-model-sqlite');
 const {Console, File, DateFile} = require('think-logger3');
 const path = require('path');
 const isDev = think.env === 'development';
@@ -28,7 +29,7 @@ exports.cache = {
  * @type {Object}
  */
 exports.model = {
-  type: 'mysql',
+  type: 'sqlite',
   common: {
     logConnect: isDev,
     logSql: isDev,
@@ -36,15 +37,21 @@ exports.model = {
   },
   mysql: {
     handle: mysql,
-    database: '',
-    prefix: 'think_',
+    database: 'nidemall',
+    prefix: 'nidemall_',
     encoding: 'utf8',
     host: '127.0.0.1',
-    port: '',
+    port: 3306,
     user: 'root',
     password: 'root',
     dateStrings: true
-  }
+  },
+  sqlite: {
+    handle: sqlite,
+    path: path.join(think.ROOT_PATH, 'runtime/sqlite'),
+    database: 'nidemall',
+    prefix: 'nidemall_',
+  },
 };
 
 /**
