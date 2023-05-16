@@ -1,0 +1,15 @@
+{
+  "apps": [{
+    "name": "nidemall-server",
+    "script": "production.js",
+    "cwd": "/home/charly/Apps/nidemall/nidemall-server",
+    "exec_mode": "fork",
+    "max_memory_restart": "1G",
+    "autorestart": true,
+    "node_args": [],
+    "args": [],
+    "env": {
+      
+    }
+  }]
+}
