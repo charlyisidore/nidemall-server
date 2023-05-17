@@ -1,22 +1,43 @@
 module.exports = class extends think.Service {
+  static CHANNEL_FIELDS = [
+    'id',
+    'name',
+    'iconUrl',
+  ].join(',');
+
   constructor() {
     super();
   }
 
   /**
    * 
-   * @param {number} offset 
+   * @param {number} page 
    * @param {number} limit 
-   * @returns 
    */
-  queryL1(offset, limit) {
+  queryL1WithoutRecommend(page, limit) {
+    return this.model('category')
+      .where({
+        level: 'L1',
+        name: ['!=', '推荐'],
+        deleted: false,
+      })
+      .page(page, limit)
+      .select();
+  }
+
+  /**
+   * 
+   * @param {number?} page 
+   * @param {number?} limit 
+   */
+  queryL1(page, limit) {
     const model = this.model('category')
       .where({
         level: 'L1',
         deleted: false,
       });
-    if (undefined !== offset || undefined !== limit) {
-      model.limit(offset, limit);
+    if (undefined !== page) {
+      model.page(page, limit);
     }
     return model.select();
   }
@@ -24,7 +45,6 @@ module.exports = class extends think.Service {
   /**
    * 
    * @param {number} pid 
-   * @returns 
    */
   queryByPid(pid) {
     return this.model('category')
@@ -38,7 +58,6 @@ module.exports = class extends think.Service {
   /**
    * 
    * @param {number} id 
-   * @returns 
    */
   findById(id) {
     return this.model('category')
@@ -47,5 +66,18 @@ module.exports = class extends think.Service {
         deleted: false,
       })
       .find();
+  }
+
+  /**
+   * 
+   */
+  queryChannel() {
+    return this.model('category')
+      .field(this.constructor.CHANNEL_FIELDS)
+      .where({
+        level: 'L1',
+        deleted: false,
+      })
+      .select();
   }
 }
