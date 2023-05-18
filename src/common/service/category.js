@@ -57,6 +57,20 @@ module.exports = class extends think.Service {
 
   /**
    * 
+   * @param {number[]} ids 
+   */
+  queryL2ByIds(ids) {
+    return this.model('category')
+      .where({
+        id: ['IN', ids],
+        level: 'L2',
+        deleted: false,
+      })
+      .select();
+  }
+
+  /**
+   * 
    * @param {number} id 
    */
   findById(id) {

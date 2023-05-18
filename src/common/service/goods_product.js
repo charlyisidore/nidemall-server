@@ -14,8 +14,12 @@ module.exports = class extends think.Service {
         deleted: false,
       })
       .select())
-      .map((item) => Object.assign(item, {
-        specifications: JSON.parse(item.specifications),
-      }));
+      .map((item) => this._parse(item));
+  }
+
+  _parse(item) {
+    return item ? Object.assign(item, {
+      specifications: JSON.parse(item.specifications),
+    }) : item;
   }
 }

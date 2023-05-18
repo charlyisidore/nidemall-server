@@ -58,19 +58,105 @@ module.exports = class extends Base {
   }
 
   async categoryAction() {
-    return this.success('todo');
+    const id = this.get('id');
+    const categoryService = this.service('category');
+
+    let current = await categoryService.findById(id);
+    let parent = null;
+    let children = null;
+
+    if (current.pid == 0) {
+      parent = current;
+      children = await categoryService.queryByPid(current.id);
+      current = (children.length > 0) ? children[0] : current;
+    } else {
+      parent = await categoryService.findById(current.pid);
+      children = await categoryService.queryByPid(current.pid);
+    }
+
+    return this.success({
+      currentCategory: current,
+      brotherCategory: children,
+      parentCategory: parent,
+    })
   }
 
   async listAction() {
-    return this.success('todo');
+    const categoryId = this.get('categoryId');
+    const brandId = this.get('brandId');
+    const keyword = this.get('keyword');
+    const isNew = this.get('isNew');
+    const isHot = this.get('isHot');
+    const page = this.get('page') || 1;
+    const limit = this.get('limit') || 10;
+    const sort = this.get('sort') || 'addTime';
+    const order = this.get('order') || 'DESC';
+    const userId = this.ctx.state.userId;
+
+    const categoryService = this.service('category');
+    const goodsService = this.service('goods');
+    const searchHistoryService = this.service('search_history');
+
+    if (userId && keyword != '') {
+      await searchHistoryService.save({
+        keyword,
+        userId,
+        from: 'wx',
+      });
+    }
+
+    const goodsList = await goodsService.querySelectiveCategory(
+      categoryId,
+      brandId,
+      keyword,
+      isHot,
+      isNew,
+      page,
+      limit,
+      sort,
+      order
+    );
+
+    const goodsCatIds = await goodsService.getCatIds(brandId, keyword, isHot, isNew);
+
+    const categoryList = (goodsCatIds.length > 0) ?
+      (await categoryService.queryL2ByIds(goodsCatIds)) :
+      [];
+
+    return this.success({
+      total: goodsList.count,
+      pages: goodsList.totalPages,
+      limit: goodsList.pageSize,
+      page: goodsList.currentPage,
+      list: goodsList.data,
+      fieldCategoryList: categoryList,
+    });
   }
 
   async relatedAction() {
-    return this.success('todo');
+    const id = this.get('id');
+    const goodsService = this.service('goods');
+
+    const goods = await goodsService.findById(id);
+    if (!goods) {
+      return this.badArgumentValue();
+    }
+
+    const goodsList = goodsService.queryByCategory(goods.categoryId, 0, 6);
+
+    return this.success({
+      total: goodsList.count,
+      pages: goodsList.totalPages,
+      limit: goodsList.pageSize,
+      page: goodsList.currentPage,
+      list: goodsList.data,
+    });
   }
 
   async countAction() {
-    return this.success('todo');
+    const goodsService = this.service('goods');
+
+    return this.success(await goodsService.queryOnSale());
   }
 
   /**

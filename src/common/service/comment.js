@@ -21,10 +21,13 @@ module.exports = class extends think.Service {
       .page(page, limit)
       .countSelect();
 
-    result.data.forEach((item) => Object.assign(item, {
-      picUrls: JSON.parse(item.picUrls),
-    }));
-
+    result.data.forEach((item) => this._parse(item));
     return result;
+  }
+
+  _parse(item) {
+    return item ? Object.assign(item, {
+      picUrls: JSON.parse(item.picUrls),
+    }) : item;
   }
 }

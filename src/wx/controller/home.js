@@ -81,7 +81,7 @@ module.exports = class extends Base {
       if (l2List.length == 0) {
         categoryGoods = [];
       } else {
-        categoryGoods = await goodsService.queryByCategory(l2List, 0, catlogMoreLimit);
+        categoryGoods = await goodsService.queryByCategory(l2List, 0, catlogMoreLimit).data;
       }
 
       categoryList.push({

@@ -68,7 +68,79 @@ module.exports = class extends think.Service {
       })
       .order({ 'addTime': 'DESC' })
       .page(page, limit)
-      .select();
+      .countSelect();
+  }
+
+  /**
+   * 
+   * @param {number?} categoryId 
+   * @param {number?} brandId 
+   * @param {string?} keywords 
+   * @param {boolean?} isHot 
+   * @param {boolean?} isNew 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string} sort 
+   * @param {string} order 
+   */
+  querySelectiveCategory(categoryId, brandId, keywords, isHot, isNew, page, limit, sort, order) {
+    const model = this.model('goods')
+      .field(this.constructor.FIELDS);
+
+    const where = {
+      isOnSale: true,
+      deleted: false,
+    };
+
+    if (categoryId) {
+      Object.assign(where, { categoryId });
+    }
+
+    if (brandId) {
+      Object.assign(where, { brandId });
+    }
+
+    if (isNew) {
+      Object.assign(where, { isNew });
+    }
+
+    if (isHot) {
+      Object.assign(where, { isHot });
+    }
+
+    if (keywords && '' != keywords) {
+      Object.assign(where, {
+        _complex: {
+          _logic: 'OR',
+          keywords: ['LIKE', `%${keywords}%`],
+          name: ['LIKE', `%${keywords}%`],
+        },
+      });
+    }
+
+    model.where(where);
+
+    if (sort && order) {
+      model.order({ [sort]: order });
+    }
+
+    return model
+      .page(page, limit)
+      .countSelect();
+  }
+
+  /**
+   * 
+   * @param {number} goodsId 
+   * @param {string} goodsSn 
+   * @param {string} name 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string} sort 
+   * @param {string} order 
+   */
+  querySelectiveGoods(goodsId, goodsSn, name, page, limit, sort, order) {
+    // TODO
   }
 
   /**
@@ -76,15 +148,76 @@ module.exports = class extends think.Service {
    * @param {number} id 
    */
   async findById(id) {
-    const item = await this.model('goods')
+    return this._parse(
+      await this.model('goods')
+        .where({
+          id,
+          deleted: false,
+        })
+        .find()
+    );
+  }
+
+  /**
+   * 
+   */
+  queryOnSale() {
+    return this.model('goods')
       .where({
-        id,
+        isOnSale: true,
         deleted: false,
       })
-      .find();
+      .count();
+  }
 
-    return Object.assign(item, {
+  /**
+   * 
+   * @param {number?} brandId 
+   * @param {string?} keywords 
+   * @param {boolean?} isHot 
+   * @param {boolean?} isNew 
+   * @returns 
+   */
+  async getCatIds(brandId, keywords, isHot, isNew) {
+    const model = this.model('goods')
+      .field('categoryId');
+
+    const where = {
+      isOnSale: true,
+      deleted: false,
+    };
+
+    if (brandId) {
+      Object.assign(where, { brandId });
+    }
+
+    if (isNew) {
+      Object.assign(where, { isNew });
+    }
+
+    if (isHot) {
+      Object.assign(where, { isHot });
+    }
+
+    if (keywords && '' != keywords) {
+      Object.assign(where, {
+        _complex: {
+          _logic: 'OR',
+          keywords: ['LIKE', `%${keywords}%`],
+          name: ['LIKE', `%${keywords}%`],
+        },
+      });
+    }
+
+    model.where(where);
+
+    return (await model.select())
+      .map((item) => item.categoryId);
+  }
+
+  _parse(item) {
+    return item ? Object.assign(item, {
       gallery: JSON.parse(item.gallery),
-    });
+    }) : item;
   }
 }
