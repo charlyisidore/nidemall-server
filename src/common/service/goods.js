@@ -75,12 +75,16 @@ module.exports = class extends think.Service {
    * 
    * @param {number} id 
    */
-  findById(id) {
-    return this.model('goods')
+  async findById(id) {
+    const item = await this.model('goods')
       .where({
         id,
         deleted: false,
       })
       .find();
+
+    return Object.assign(item, {
+      gallery: JSON.parse(item.gallery),
+    });
   }
 }

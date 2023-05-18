@@ -25,7 +25,7 @@ module.exports = class extends Base {
       attribute: goodsAttributeService.queryByGid(id),
       brand: (info.brandId == 0) ? {} : brandService.findById(info.brandId),
       groupon: grouponRulesService.queryByGoodsId(id),
-      share: ('true' == systemService.isAutoCreateShareImage()),
+      share: systemService.isAutoCreateShareImage(),
     };
 
     let userHasCollect = 0;
@@ -43,9 +43,17 @@ module.exports = class extends Base {
     );
 
     return this.success({
-      info,
+      specificationList: data.specificationList,
+      groupon: data.groupon,
+      issue: data.issue,
       userHasCollect,
-      ...data,
+      shareImage: info.shareUrl,
+      comment: data.comment,
+      share: ('true' == data.share),
+      attribute: data.attribute,
+      brand: data.brand,
+      productList: data.productList,
+      info,
     });
   }
 
@@ -73,24 +81,27 @@ module.exports = class extends Base {
     const commentService = this.service('comment');
     const userService = this.service('user');
 
-    const comments = (await commentService.queryGoodsByGid(id, 0, 2))
-      .map((comment) => {
-        // TODO: cache users to avoid redundant queries
-        const user = userService.findById(comment.userId);
-        return {
-          id: comment.id,
-          addTime: comment.addTime,
-          content: comment.content,
-          adminContent: comment.adminContent,
-          nickname: (user ? user.nickname : ''),
-          avatar: (user ? user.avatar : ''),
-          picList: comment.picUrls,
-        };
-      });
+    const comments = await commentService.queryGoodsByGid(id, 0, 2);
+
+    const commentList = await Promise.all(
+      comments.data
+        .map(async (comment) => {
+          const user = await userService.findById(comment.userId);
+          return {
+            id: comment.id,
+            addTime: comment.addTime,
+            content: comment.content,
+            adminContent: comment.adminContent,
+            nickname: (user ? user.nickname : ''),
+            avatar: (user ? user.avatar : ''),
+            picList: comment.picUrls,
+          };
+        })
+    );
 
     return {
-      count: comments.length,
-      data: comments,
+      data: commentList,
+      count: comments.count,
     }
   }
 };

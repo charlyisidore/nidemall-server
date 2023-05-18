@@ -7,12 +7,15 @@ module.exports = class extends think.Service {
    * 
    * @param {number} id 
    */
-  queryByGid(id) {
-    return this.model('goods_product')
+  async queryByGid(id) {
+    return (await this.model('goods_product')
       .where({
         goodsId: id,
         deleted: false,
       })
-      .select();
+      .select())
+      .map((item) => Object.assign(item, {
+        specifications: JSON.parse(item.specifications),
+      }));
   }
 }

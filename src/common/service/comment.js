@@ -10,8 +10,8 @@ module.exports = class extends think.Service {
    * @param {number} limit 
    * @returns 
    */
-  queryGoodsByGid(id, page, limit) {
-    return this.model('comment')
+  async queryGoodsByGid(id, page, limit) {
+    const result = await this.model('comment')
       .where({
         valueId: id,
         type: 0,
@@ -19,6 +19,12 @@ module.exports = class extends think.Service {
       })
       .order({ addTime: 'DESC' })
       .page(page, limit)
-      .select();
+      .countSelect();
+
+    result.data.forEach((item) => Object.assign(item, {
+      picUrls: JSON.parse(item.picUrls),
+    }));
+
+    return result;
   }
 }
