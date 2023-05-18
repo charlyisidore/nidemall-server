@@ -22,8 +22,8 @@ module.exports = class extends Base {
     }
 
     return this.success({
-      categoryList: l1CatList,
       currentCategory,
+      categoryList: l1CatList,
       currentSubCategory,
     });
   }
@@ -46,9 +46,9 @@ module.exports = class extends Base {
     }
 
     return this.success({
-      categoryList: l1CatList,
       allList,
       currentCategory,
+      categoryList: l1CatList,
       currentSubCategory,
     });
   }
