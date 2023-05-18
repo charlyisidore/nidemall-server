@@ -54,6 +54,9 @@ module.exports = class extends Base {
     });
   }
 
+  /**
+   * 
+   */
   async getCategoryList() {
     const categoryService = this.service('category');
     const goodsService = this.service('goods');
