@@ -2,7 +2,7 @@
 
 ## Database
 
-### MySQL in Docker
+### MySQL with Docker
 
 Pull [Docker image](https://hub.docker.com/r/mysql/mysql-server/):
 
