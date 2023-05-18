@@ -27,7 +27,7 @@ exports.cache = {
  * @type {Object}
  */
 exports.model = {
-  type: 'sqlite',
+  type: 'mysql',
   common: {
     logConnect: isDev,
     logSql: isDev,
