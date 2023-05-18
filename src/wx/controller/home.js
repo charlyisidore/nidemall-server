@@ -18,7 +18,7 @@ module.exports = class extends Base {
     const topicService = this.service('topic');
     const grouponService = this.service('groupon_rules');
 
-    const data = {
+    const promises = {
       newGoodsList: goodsService.queryByNew(0, newLimit),
       couponList: (userId ?
         couponService.queryAvailableList(userId, 0, 3) :
@@ -32,13 +32,22 @@ module.exports = class extends Base {
       floorGoodsList: this.getCategoryList(),
     };
 
-    const values = await Promise.all(Object.values(data));
-
-    return this.success(
-      Object.fromEntries(
-        Object.keys(data).map((k, i) => [k, values[i]])
-      )
+    const values = await Promise.all(Object.values(promises));
+    const data = Object.fromEntries(
+      Object.keys(promises).map((k, i) => [k, values[i]])
     );
+
+    return this.success({
+      newGoodsList: data.newGoodsList,
+      couponList: data.couponList,
+      channel: data.channel,
+      grouponList: data.grouponList,
+      banner: data.banner,
+      brandList: data.brandList.data,
+      hotGoodsList: data.hotGoodsList,
+      topicList: data.topicList,
+      floorGoodsList: data.floorGoodsList,
+    });
   }
 
   async aboutAction() {

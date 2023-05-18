@@ -26,11 +26,11 @@ module.exports = class extends think.Service {
       })
       .page(page, limit);
 
-    if (undefined !== sort && undefined !== order) {
+    if (sort && order) {
       model.order({ [sort]: order })
     }
 
-    return model.select();
+    return model.countSelect();
   }
 
   /**
