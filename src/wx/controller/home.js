@@ -19,16 +19,16 @@ module.exports = class extends Base {
     const grouponService = this.service('groupon_rules');
 
     const data = {
-      banner: adService.queryIndex(),
-      channel: categoryService.queryChannel(),
+      newGoodsList: goodsService.queryByNew(0, newLimit),
       couponList: (userId ?
         couponService.queryAvailableList(userId, 0, 3) :
         couponService.queryList(0, 3)),
-      newGoodsList: goodsService.queryByNew(0, newLimit),
-      hotGoodsList: goodsService.queryByHot(0, hotLimit),
-      brandList: brandService.query(0, brandLimit),
-      topicList: topicService.queryList(0, topicLimit),
+      channel: categoryService.queryChannel(),
       grouponList: grouponService.queryRulesList(0, 5),
+      banner: adService.queryIndex(),
+      brandList: brandService.query(0, brandLimit),
+      hotGoodsList: goodsService.queryByHot(0, hotLimit),
+      topicList: topicService.queryList(0, topicLimit),
       floorGoodsList: this.getCategoryList(),
     };
 
@@ -45,12 +45,12 @@ module.exports = class extends Base {
     const systemService = this.service('system');
 
     return this.success({
-      name: await systemService.getMallName(),
+      qq: await systemService.getMallQq(),
       address: await systemService.getMallAddress(),
       phone: await systemService.getMallPhone(),
-      qq: await systemService.getMallQq(),
-      longitude: await systemService.getMallLongitude(),
       latitude: await systemService.getMallLatitude(),
+      name: await systemService.getMallName(),
+      longitude: await systemService.getMallLongitude(),
     });
   }
 
