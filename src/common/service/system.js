@@ -1,5 +1,19 @@
 module.exports = class extends think.Service {
-  config = {};
+  config = {
+    nidemall_wx_index_new: '6',
+    nidemall_wx_index_hot: '6',
+    nidemall_wx_index_brand: '4',
+    nidemall_wx_index_topic: '4',
+    nidemall_wx_catlog_list: '4',
+    nidemall_wx_catlog_goods: '4',
+    nidemall_wx_share: 'false',
+    nidemall_mall_name: 'nidemall',
+    nidemall_mall_address: '上海',
+    nidemall_mall_latitude: '31.201900',
+    nidemall_mall_longitude: '121.587839',
+    nidemall_mall_phone: '021-xxxx-xxxx',
+    nidemall_mall_qq: '705144434',
+  };
 
   constructor() {
     super();
@@ -59,14 +73,14 @@ module.exports = class extends think.Service {
    * 
    */
   getCatlogListLimit() {
-    return this.getConfig('nidemall_wx_index_catlog_list');
+    return this.getConfig('nidemall_wx_catlog_list');
   }
 
   /**
    * 
    */
   getCatlogMoreLimit() {
-    return this.getConfig('nidemall_wx_index_catlog_more');
+    return this.getConfig('nidemall_wx_catlog_goods');
   }
 
   /**
