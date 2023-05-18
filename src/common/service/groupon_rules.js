@@ -18,6 +18,20 @@ module.exports = class extends think.Service {
 
   /**
    * 
+   * @param {number} goodsId 
+   */
+  queryByGoodsId(goodsId) {
+    return this.model('groupon_rules')
+      .where({
+        goodsId,
+        status: this.constructor.RULE_STATUS.ON,
+        deleted: false,
+      })
+      .select();
+  }
+
+  /**
+   * 
    * @param {number} page 
    * @param {number} limit 
    * @param {string?} sort 

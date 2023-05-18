@@ -32,4 +32,14 @@ module.exports = class extends think.Service {
 
     return model.select();
   }
+
+  /**
+   * 
+   * @param {number} id 
+   */
+  findById(id) {
+    return this.model('brand')
+      .where({ id })
+      .find();
+  }
 }
