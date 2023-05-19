@@ -8,17 +8,9 @@ function renameKeys(data, rename) {
   );
 }
 
-function toSnakeCase(data) {
-  return renameKeys(data, (key) => key.replace(/([A-Z])/g, '_$1').toLowerCase());
-}
-
-function toCamelCase(data) {
-  return renameKeys(data, (key) => key.replace(/_([a-z])/g, (_, s) => s.toUpperCase()));
-}
-
 module.exports = class extends think.Model {
   afterFind(data) {
-    return toCamelCase(data);
+    return renameKeys(data, think.camelCase);
   }
 
   afterSelect(data) {
