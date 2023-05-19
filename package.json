@@ -1,6 +1,6 @@
 {
   "name": "nidemall-server",
-  "description": "application created by thinkjs",
+  "description": "ecommerce platform",
   "version": "1.0.0",
   "author": "Charly Lersteau <charly.lersteau@gmx.fr>",
   "scripts": {
@@ -10,6 +10,7 @@
     "lint-fix": "eslint --fix src/"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "jsonwebtoken": "^9.0.0",
     "think-cache": "^1.1.2",
     "think-cache-file": "^1.1.2",
@@ -29,19 +30,18 @@
   "repository": "",
   "license": "MIT",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.0.0"
   },
   "readmeFilename": "README.md",
   "thinkjs": {
     "metadata": {
       "name": "nidemall-server",
-      "description": "application created by thinkjs",
+      "description": "ecommerce platform",
       "author": "Charly Lersteau <charly.lersteau@gmx.fr>",
       "babel": false
     },
     "projectName": "nidemall-server",
-    "template": "/home/charly/.npm-global/lib/node_modules/think-cli/default_template",
     "clone": false,
-    "isMultiModule": false
+    "isMultiModule": true
   }
 }
