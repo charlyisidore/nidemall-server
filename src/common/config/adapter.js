@@ -1,7 +1,8 @@
 const fileCache = require('think-cache-file');
 const mysql = require('think-model-mysql');
+const postgresql = require('think-model-postgresql');
 const sqlite = require('think-model-sqlite');
-const {Console, File, DateFile} = require('think-logger3');
+const { Console, File, DateFile } = require('think-logger3');
 const path = require('path');
 const isDev = think.env === 'development';
 
@@ -42,7 +43,16 @@ exports.model = {
     port: 3306,
     user: 'nidemall',
     password: '88888888',
-    dateStrings: true
+    dateStrings: true,
+  },
+  postgresql: {
+    handle: postgresql,
+    database: 'nidemall',
+    prefix: 'nidemall_',
+    host: '127.0.0.1',
+    port: 5432,
+    user: 'nidemall',
+    password: '88888888',
   },
   sqlite: {
     handle: sqlite,
