@@ -575,7 +575,7 @@ CREATE TABLE `nidemall_role` (
   `updateTime` datetime DEFAULT NULL, -- 更新时间
   `deleted` tinyint(1) DEFAULT '0' -- 逻辑删除
 ); -- 角色表
-CREATE UNIQUE INDEX `nidemall_role_name_UNIQUE` ON `nidemall_role` (`name`);
+CREATE UNIQUE INDEX `nidemall_role_name` ON `nidemall_role` (`name`);
 
 --
 -- Table structure for table `nidemall_search_history`
