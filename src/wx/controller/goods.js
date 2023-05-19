@@ -78,7 +78,7 @@ module.exports = class extends Base {
       currentCategory: current,
       brotherCategory: children,
       parentCategory: parent,
-    })
+    });
   }
 
   async listAction() {
