@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 module.exports = class extends think.Service {
@@ -10,7 +11,7 @@ module.exports = class extends think.Service {
    * @param {number} userId 
    */
   createToken(userId) {
-    const config = this.config('auth');
+    const config = think.config('auth');
 
     const options = {
       algorithm: config.algorithm,
@@ -23,6 +24,7 @@ module.exports = class extends think.Service {
     try {
       return jwt.sign({ userId }, config.secret, options);
     } catch (e) {
+      console.log(e);
       return null;
     }
   }
@@ -32,7 +34,7 @@ module.exports = class extends think.Service {
    * @param {string} token 
    */
   verifyToken(token) {
-    const config = this.config('auth');
+    const config = think.config('auth');
 
     if (!token) {
       return null;
@@ -43,5 +45,14 @@ module.exports = class extends think.Service {
     } catch (e) {
       return null;
     }
+  }
+
+  /**
+   * 
+   * @param {string} password 
+   * @param {string} hash 
+   */
+  comparePassword(password, hash) {
+    return bcrypt.compare(password, hash);
   }
 }
