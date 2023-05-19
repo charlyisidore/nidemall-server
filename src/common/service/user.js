@@ -15,12 +15,41 @@ module.exports = class extends think.Service {
 
   /**
    * 
+   * @param {string} openId 
+   */
+  queryByOid(openId) {
+    return this.model('user')
+      .where({
+        weixinOpenId: openId,
+        deleted: false,
+      })
+      .find();
+  }
+
+  /**
+   * 
+   * @param {object} user 
+   */
+  add(user) {
+    const now = new Date();
+    return this.model('user')
+      .add(Object.assign(user, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
    * @param {object} user 
    */
   updateById(user) {
+    const now = new Date();
     return this.model('user')
       .where({ id: user.id })
-      .update(user);
+      .update(Object.assign(user, {
+        updateTime: now,
+      }));
   }
 
   /**

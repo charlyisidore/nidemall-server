@@ -95,4 +95,57 @@ module.exports = class extends think.Service {
       .page(page, limit)
       .select();
   }
+
+  /**
+   * 
+   */
+  queryRegister() {
+    return this.model('coupon')
+      .where({
+        type: this.constructor.TYPE.REGISTER,
+        status: this.constructor.STATUS.NORMAL,
+        deleted: false,
+      })
+      .select();
+  }
+
+  /**
+   * 
+   * @param {number} userId 
+   */
+  async assignForRegister(userId) {
+    const couponList = await this.queryRegister();
+
+    for (const coupon of couponList) {
+      const count = await couponUserService.countUserAndCoupon(userId, coupon.id);
+
+      if (count > 0) {
+        continue;
+      }
+
+      for (let limit = coupon.limit; limit > 0; --limit) {
+        const couponUser = {
+          couponId,
+          userId,
+        };
+
+        if (this.constructor.TIME_TYPE.TIME == coupon.timeType) {
+          Object.assign(couponUser, {
+            startTime: coupon.startTime,
+            endTime: coupon.endTime,
+          });
+        } else {
+          const startTime = new Date();
+          const endTime = (new Date(startTime)).setDate(startTime.getDate() + days);
+
+          Object.assign(couponUser, {
+            startTime,
+            endTime,
+          });
+        }
+
+        await couponUserService.add(couponUser);
+      }
+    }
+  }
 }
