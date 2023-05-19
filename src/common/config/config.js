@@ -10,4 +10,12 @@ module.exports = {
     issuer: 'nidemall',
     subject: 'nidemall auth token',
   },
+  weixin: {
+    // 小程序 appId
+    // The AppId of the Mini Program
+    appid: '',
+    // 小程序 appSecret
+    // The appSecret of the Mini Program
+    secret: '',
+  }
 };
