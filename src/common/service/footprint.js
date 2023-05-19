@@ -8,7 +8,7 @@ module.exports = class extends think.Service {
    * @param {object} footprint 
    */
   add(footprint) {
-    const now = Date.now();
+    const now = new Date();
     return this.model('footprint')
       .add({
         addTime: now,

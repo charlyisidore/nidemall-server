@@ -8,7 +8,7 @@ module.exports = class extends think.Service {
    * @param {object} searchHistory 
    */
   save(searchHistory) {
-    const now = Date.now();
+    const now = new Date();
     return this.model('search_history')
       .add({
         addTime: now,
