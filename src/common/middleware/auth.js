@@ -3,7 +3,7 @@ module.exports = () => {
     const service = think.service('auth');
 
     return (ctx, next) => {
-        const token = ctx.header[config.header];
+        const token = ctx.header[config.header.toLowerCase()];
         if (token) {
             try {
                 const data = service.verifyToken(token);
