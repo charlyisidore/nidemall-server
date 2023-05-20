@@ -55,4 +55,13 @@ module.exports = class extends think.Service {
   comparePassword(password, hash) {
     return bcrypt.compare(password, hash);
   }
+
+  /**
+   * 
+   * @param {string} password 
+   */
+  hashPassword(password) {
+    const salt = bcrypt.genSaltSync();
+    return bcrypt.hashSync(password, salt);
+  }
 }

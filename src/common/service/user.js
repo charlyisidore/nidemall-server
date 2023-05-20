@@ -15,12 +15,12 @@ module.exports = class extends think.Service {
 
   /**
    * 
-   * @param {string} openId 
+   * @param {string} openid 
    */
-  queryByOid(openId) {
+  queryByOid(openid) {
     return this.model('user')
       .where({
-        weixinOpenId: openId,
+        weixinOpenid: openid,
         deleted: false,
       })
       .find();
@@ -60,6 +60,19 @@ module.exports = class extends think.Service {
     return this.model('user')
       .where({
         username,
+        deleted: false,
+      })
+      .select();
+  }
+
+  /**
+   * 
+   * @param {string} openid 
+   */
+  queryByOpenid(openId) {
+    return this.model('user')
+      .where({
+        weixinOpenid: openid,
         deleted: false,
       })
       .select();
