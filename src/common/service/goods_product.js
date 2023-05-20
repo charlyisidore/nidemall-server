@@ -7,6 +7,18 @@ module.exports = class extends think.Service {
    * 
    * @param {number} id 
    */
+  async findById(id) {
+    return this._parse(
+      await this.model('goods_product')
+        .where({ id })
+        .find()
+    );
+  }
+
+  /**
+   * 
+   * @param {number} id 
+   */
   async queryByGid(id) {
     return (await this.model('goods_product')
       .where({
