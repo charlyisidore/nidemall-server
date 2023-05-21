@@ -29,11 +29,11 @@ CREATE TABLE `nidemall_ad` (
   `url` varchar(255) NOT NULL COMMENT '广告宣传图片',
   `position` tinyint(3) DEFAULT '1' COMMENT '广告位置：1则是首页',
   `content` varchar(255) DEFAULT '' COMMENT '活动内容',
-  `startTime` datetime DEFAULT NULL COMMENT '广告开始时间',
-  `endTime` datetime DEFAULT NULL COMMENT '广告结束时间',
+  `start_time` datetime DEFAULT NULL COMMENT '广告开始时间',
+  `end_time` datetime DEFAULT NULL COMMENT '广告结束时间',
   `enabled` tinyint(1) DEFAULT '0' COMMENT '是否启动',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `enabled` (`enabled`)
@@ -50,20 +50,20 @@ DROP TABLE IF EXISTS `nidemall_address`;
 CREATE TABLE `nidemall_address` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(63) NOT NULL DEFAULT '' COMMENT '收货人名称',
-  `userId` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
   `province` varchar(63) NOT NULL COMMENT '行政区域表的省ID',
   `city` varchar(63) NOT NULL COMMENT '行政区域表的市ID',
   `county` varchar(63) NOT NULL COMMENT '行政区域表的区县ID',
-  `addressDetail` varchar(127) NOT NULL DEFAULT '' COMMENT '详细收货地址',
-  `areaCode` char(6) DEFAULT NULL COMMENT '地区编码',
-  `postalCode` char(6) DEFAULT NULL COMMENT '邮政编码',
+  `address_detail` varchar(127) NOT NULL DEFAULT '' COMMENT '详细收货地址',
+  `area_code` char(6) DEFAULT NULL COMMENT '地区编码',
+  `postal_code` char(6) DEFAULT NULL COMMENT '邮政编码',
   `tel` varchar(20) NOT NULL DEFAULT '' COMMENT '手机号码',
-  `isDefault` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否默认地址',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `is_default` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否默认地址',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
-  KEY `user_id` (`userId`)
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='收货地址表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -78,13 +78,13 @@ CREATE TABLE `nidemall_admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(63) NOT NULL DEFAULT '' COMMENT '管理员名称',
   `password` varchar(63) NOT NULL DEFAULT '' COMMENT '管理员密码',
-  `lastLoginIp` varchar(63) DEFAULT '' COMMENT '最近一次登录IP地址',
-  `lastLoginTime` datetime DEFAULT NULL COMMENT '最近一次登录时间',
+  `last_login_ip` varchar(63) DEFAULT '' COMMENT '最近一次登录IP地址',
+  `last_login_time` datetime DEFAULT NULL COMMENT '最近一次登录时间',
   `avatar` varchar(255) DEFAULT '''' COMMENT '头像图片',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
-  `roleIds` varchar(127) DEFAULT '[]' COMMENT '角色列表',
+  `role_ids` varchar(127) DEFAULT '[]' COMMENT '角色列表',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='管理员表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -98,18 +98,18 @@ DROP TABLE IF EXISTS `nidemall_aftersale`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_aftersale` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `aftersaleSn` varchar(63) DEFAULT NULL COMMENT '售后编号',
-  `orderId` int(11) NOT NULL COMMENT '订单ID',
-  `userId` int(11) NOT NULL COMMENT '用户ID',
+  `aftersale_sn` varchar(63) DEFAULT NULL COMMENT '售后编号',
+  `order_id` int(11) NOT NULL COMMENT '订单ID',
+  `user_id` int(11) NOT NULL COMMENT '用户ID',
   `type` smallint(6) DEFAULT '0' COMMENT '售后类型，0是未收货退款，1是已收货（无需退货）退款，2用户退货退款',
   `reason` varchar(31) DEFAULT '' COMMENT '退款原因',
   `amount` decimal(10,2) DEFAULT '0.00' COMMENT '退款金额',
   `pictures` varchar(1023) DEFAULT '[]' COMMENT '退款凭证图片链接数组',
   `comment` varchar(511) DEFAULT '' COMMENT '退款说明',
   `status` smallint(6) DEFAULT '0' COMMENT '售后状态，0是可申请，1是用户已申请，2是管理员审核通过，3是管理员退款成功，4是管理员审核拒绝，5是用户已取消',
-  `handleTime` datetime DEFAULT NULL COMMENT '管理员操作时间',
-  `addTime` datetime DEFAULT NULL COMMENT '添加时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `handle_time` datetime DEFAULT NULL COMMENT '管理员操作时间',
+  `add_time` datetime DEFAULT NULL COMMENT '添加时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='售后表';
@@ -126,11 +126,11 @@ CREATE TABLE `nidemall_brand` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT '品牌商名称',
   `desc` varchar(255) NOT NULL DEFAULT '' COMMENT '品牌商简介',
-  `picUrl` varchar(255) NOT NULL DEFAULT '' COMMENT '品牌商页的品牌商图片',
-  `sortOrder` tinyint(3) DEFAULT '50',
-  `floorPrice` decimal(10,2) DEFAULT '0.00' COMMENT '品牌商的商品低价，仅用于页面展示',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `pic_url` varchar(255) NOT NULL DEFAULT '' COMMENT '品牌商页的品牌商图片',
+  `sort_order` tinyint(3) DEFAULT '50',
+  `floor_price` decimal(10,2) DEFAULT '0.00' COMMENT '品牌商的商品低价，仅用于页面展示',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1046003 DEFAULT CHARSET=utf8mb4 COMMENT='品牌商表';
@@ -145,18 +145,18 @@ DROP TABLE IF EXISTS `nidemall_cart`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_cart` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) DEFAULT NULL COMMENT '用户表的用户ID',
-  `goodsId` int(11) DEFAULT NULL COMMENT '商品表的商品ID',
-  `goodsSn` varchar(63) DEFAULT NULL COMMENT '商品编号',
-  `goodsName` varchar(127) DEFAULT NULL COMMENT '商品名称',
-  `productId` int(11) DEFAULT NULL COMMENT '商品货品表的货品ID',
+  `user_id` int(11) DEFAULT NULL COMMENT '用户表的用户ID',
+  `goods_id` int(11) DEFAULT NULL COMMENT '商品表的商品ID',
+  `goods_sn` varchar(63) DEFAULT NULL COMMENT '商品编号',
+  `goods_name` varchar(127) DEFAULT NULL COMMENT '商品名称',
+  `product_id` int(11) DEFAULT NULL COMMENT '商品货品表的货品ID',
   `price` decimal(10,2) DEFAULT '0.00' COMMENT '商品货品的价格',
   `number` smallint(5) DEFAULT '0' COMMENT '商品货品的数量',
   `specifications` varchar(1023) DEFAULT NULL COMMENT '商品规格值列表，采用JSON数组格式',
   `checked` tinyint(1) DEFAULT '1' COMMENT '购物车中商品是否选择状态',
-  `picUrl` varchar(255) DEFAULT NULL COMMENT '商品图片或者商品货品图片',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `pic_url` varchar(255) DEFAULT NULL COMMENT '商品图片或者商品货品图片',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='购物车商品表';
@@ -175,12 +175,12 @@ CREATE TABLE `nidemall_category` (
   `keywords` varchar(1023) NOT NULL DEFAULT '' COMMENT '类目关键字，以JSON数组格式',
   `desc` varchar(255) DEFAULT '' COMMENT '类目广告语介绍',
   `pid` int(11) NOT NULL DEFAULT '0' COMMENT '父类目ID',
-  `iconUrl` varchar(255) DEFAULT '' COMMENT '类目图标',
-  `picUrl` varchar(255) DEFAULT '' COMMENT '类目图片',
+  `icon_url` varchar(255) DEFAULT '' COMMENT '类目图标',
+  `pic_url` varchar(255) DEFAULT '' COMMENT '类目图片',
   `level` varchar(255) DEFAULT 'L1',
-  `sortOrder` tinyint(3) DEFAULT '50' COMMENT '排序',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `sort_order` tinyint(3) DEFAULT '50' COMMENT '排序',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `parent_id` (`pid`)
@@ -196,15 +196,15 @@ DROP TABLE IF EXISTS `nidemall_collect`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_collect` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
-  `valueId` int(11) NOT NULL DEFAULT '0' COMMENT '如果type=0，则是商品ID；如果type=1，则是专题ID',
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
+  `value_id` int(11) NOT NULL DEFAULT '0' COMMENT '如果type=0，则是商品ID；如果type=1，则是专题ID',
   `type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '收藏类型，如果type=0，则是商品ID；如果type=1，则是专题ID',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
-  KEY `user_id` (`userId`),
-  KEY `goods_id` (`valueId`)
+  KEY `user_id` (`user_id`),
+  KEY `goods_id` (`value_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='收藏表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -217,19 +217,19 @@ DROP TABLE IF EXISTS `nidemall_comment`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `valueId` int(11) NOT NULL DEFAULT '0' COMMENT '如果type=0，则是商品评论；如果是type=1，则是专题评论。',
+  `value_id` int(11) NOT NULL DEFAULT '0' COMMENT '如果type=0，则是商品评论；如果是type=1，则是专题评论。',
   `type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '评论类型，如果type=0，则是商品评论；如果是type=1，则是专题评论；',
   `content` varchar(1023) DEFAULT '' COMMENT '评论内容',
-  `adminContent` varchar(511) DEFAULT '' COMMENT '管理员回复内容',
-  `userId` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
-  `hasPicture` tinyint(1) DEFAULT '0' COMMENT '是否含有图片',
-  `picUrls` varchar(1023) DEFAULT NULL COMMENT '图片地址列表，采用JSON数组格式',
+  `admin_content` varchar(511) DEFAULT '' COMMENT '管理员回复内容',
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
+  `has_picture` tinyint(1) DEFAULT '0' COMMENT '是否含有图片',
+  `pic_urls` varchar(1023) DEFAULT NULL COMMENT '图片地址列表，采用JSON数组格式',
   `star` smallint(6) DEFAULT '1' COMMENT '评分， 1-5',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
-  KEY `id_value` (`valueId`)
+  KEY `id_value` (`value_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1012 DEFAULT CHARSET=utf8mb4 COMMENT='评论表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -251,15 +251,15 @@ CREATE TABLE `nidemall_coupon` (
   `limit` smallint(6) DEFAULT '1' COMMENT '用户领券限制数量，如果是0，则是不限制；默认是1，限领一张.',
   `type` smallint(6) DEFAULT '0' COMMENT '优惠券赠送类型，如果是0则通用券，用户领取；如果是1，则是注册赠券；如果是2，则是优惠券码兑换；',
   `status` smallint(6) DEFAULT '0' COMMENT '优惠券状态，如果是0则是正常可用；如果是1则是过期; 如果是2则是下架。',
-  `goodsType` smallint(6) DEFAULT '0' COMMENT '商品限制类型，如果0则全商品，如果是1则是类目限制，如果是2则是商品限制。',
-  `goodsValue` varchar(1023) DEFAULT '[]' COMMENT '商品限制值，goodsType如果是0则空集合，如果是1则是类目集合，如果是2则是商品集合。',
+  `goods_type` smallint(6) DEFAULT '0' COMMENT '商品限制类型，如果0则全商品，如果是1则是类目限制，如果是2则是商品限制。',
+  `goods_value` varchar(1023) DEFAULT '[]' COMMENT '商品限制值，goods_type如果是0则空集合，如果是1则是类目集合，如果是2则是商品集合。',
   `code` varchar(63) DEFAULT NULL COMMENT '优惠券兑换码',
-  `timeType` smallint(6) DEFAULT '0' COMMENT '有效时间限制，如果是0，则基于领取时间的有效天数days；如果是1，则startTime和endTime是优惠券有效期；',
+  `time_type` smallint(6) DEFAULT '0' COMMENT '有效时间限制，如果是0，则基于领取时间的有效天数days；如果是1，则start_time和end_time是优惠券有效期；',
   `days` smallint(6) DEFAULT '0' COMMENT '基于领取时间的有效天数days。',
-  `startTime` datetime DEFAULT NULL COMMENT '使用券开始时间',
-  `endTime` datetime DEFAULT NULL COMMENT '使用券截至时间',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `start_time` datetime DEFAULT NULL COMMENT '使用券开始时间',
+  `end_time` datetime DEFAULT NULL COMMENT '使用券截至时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `code` (`code`)
@@ -275,15 +275,15 @@ DROP TABLE IF EXISTS `nidemall_coupon_user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_coupon_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) NOT NULL COMMENT '用户ID',
-  `couponId` int(11) NOT NULL COMMENT '优惠券ID',
+  `user_id` int(11) NOT NULL COMMENT '用户ID',
+  `coupon_id` int(11) NOT NULL COMMENT '优惠券ID',
   `status` smallint(6) DEFAULT '0' COMMENT '使用状态, 如果是0则未使用；如果是1则已使用；如果是2则已过期；如果是3则已经下架；',
-  `usedTime` datetime DEFAULT NULL COMMENT '使用时间',
-  `startTime` datetime DEFAULT NULL COMMENT '有效期开始时间',
-  `endTime` datetime DEFAULT NULL COMMENT '有效期截至时间',
-  `orderId` int(11) DEFAULT NULL COMMENT '订单ID',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `used_time` datetime DEFAULT NULL COMMENT '使用时间',
+  `start_time` datetime DEFAULT NULL COMMENT '有效期开始时间',
+  `end_time` datetime DEFAULT NULL COMMENT '有效期截至时间',
+  `order_id` int(11) DEFAULT NULL COMMENT '订单ID',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='优惠券用户使用表';
@@ -298,16 +298,16 @@ DROP TABLE IF EXISTS `nidemall_feedback`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_feedback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
   `username` varchar(63) NOT NULL DEFAULT '' COMMENT '用户名称',
   `mobile` varchar(20) NOT NULL DEFAULT '' COMMENT '手机号',
-  `feedType` varchar(63) NOT NULL DEFAULT '' COMMENT '反馈类型',
+  `feed_type` varchar(63) NOT NULL DEFAULT '' COMMENT '反馈类型',
   `content` varchar(1023) NOT NULL COMMENT '反馈内容',
   `status` int(3) NOT NULL DEFAULT '0' COMMENT '状态',
-  `hasPicture` tinyint(1) DEFAULT '0' COMMENT '是否含有图片',
-  `picUrls` varchar(1023) DEFAULT NULL COMMENT '图片地址列表，采用JSON数组格式',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `has_picture` tinyint(1) DEFAULT '0' COMMENT '是否含有图片',
+  `pic_urls` varchar(1023) DEFAULT NULL COMMENT '图片地址列表，采用JSON数组格式',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `id_value` (`status`)
@@ -323,10 +323,10 @@ DROP TABLE IF EXISTS `nidemall_footprint`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_footprint` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
-  `goodsId` int(11) NOT NULL DEFAULT '0' COMMENT '浏览商品ID',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
+  `goods_id` int(11) NOT NULL DEFAULT '0' COMMENT '浏览商品ID',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户浏览足迹表';
@@ -341,31 +341,31 @@ DROP TABLE IF EXISTS `nidemall_goods`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_goods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `goodsSn` varchar(63) NOT NULL DEFAULT '' COMMENT '商品编号',
+  `goods_sn` varchar(63) NOT NULL DEFAULT '' COMMENT '商品编号',
   `name` varchar(127) NOT NULL DEFAULT '' COMMENT '商品名称',
-  `categoryId` int(11) DEFAULT '0' COMMENT '商品所属类目ID',
-  `brandId` int(11) DEFAULT '0',
+  `category_id` int(11) DEFAULT '0' COMMENT '商品所属类目ID',
+  `brand_id` int(11) DEFAULT '0',
   `gallery` varchar(1023) DEFAULT NULL COMMENT '商品宣传图片列表，采用JSON数组格式',
   `keywords` varchar(255) DEFAULT '' COMMENT '商品关键字，采用逗号间隔',
   `brief` varchar(255) DEFAULT '' COMMENT '商品简介',
-  `isOnSale` tinyint(1) DEFAULT '1' COMMENT '是否上架',
-  `sortOrder` smallint(4) DEFAULT '100',
-  `picUrl` varchar(255) DEFAULT NULL COMMENT '商品页面商品图片',
-  `shareUrl` varchar(255) DEFAULT NULL COMMENT '商品分享海报',
-  `isNew` tinyint(1) DEFAULT '0' COMMENT '是否新品首发，如果设置则可以在新品首发页面展示',
-  `isHot` tinyint(1) DEFAULT '0' COMMENT '是否人气推荐，如果设置则可以在人气推荐页面展示',
+  `is_on_sale` tinyint(1) DEFAULT '1' COMMENT '是否上架',
+  `sort_order` smallint(4) DEFAULT '100',
+  `pic_url` varchar(255) DEFAULT NULL COMMENT '商品页面商品图片',
+  `share_url` varchar(255) DEFAULT NULL COMMENT '商品分享海报',
+  `is_new` tinyint(1) DEFAULT '0' COMMENT '是否新品首发，如果设置则可以在新品首发页面展示',
+  `is_hot` tinyint(1) DEFAULT '0' COMMENT '是否人气推荐，如果设置则可以在人气推荐页面展示',
   `unit` varchar(31) DEFAULT '’件‘' COMMENT '商品单位，例如件、盒',
-  `counterPrice` decimal(10,2) DEFAULT '0.00' COMMENT '专柜价格',
-  `retailPrice` decimal(10,2) DEFAULT '100000.00' COMMENT '零售价格',
+  `counter_price` decimal(10,2) DEFAULT '0.00' COMMENT '专柜价格',
+  `retail_price` decimal(10,2) DEFAULT '100000.00' COMMENT '零售价格',
   `detail` text COMMENT '商品详细介绍，是富文本格式',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
-  KEY `goods_sn` (`goodsSn`),
-  KEY `cat_id` (`categoryId`),
-  KEY `brand_id` (`brandId`),
-  KEY `sort_order` (`sortOrder`)
+  KEY `goods_sn` (`goods_sn`),
+  KEY `cat_id` (`category_id`),
+  KEY `brand_id` (`brand_id`),
+  KEY `sort_order` (`sort_order`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1181004 DEFAULT CHARSET=utf8mb4 COMMENT='商品基本信息表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -378,14 +378,14 @@ DROP TABLE IF EXISTS `nidemall_goods_attribute`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_goods_attribute` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `goodsId` int(11) NOT NULL DEFAULT '0' COMMENT '商品表的商品ID',
+  `goods_id` int(11) NOT NULL DEFAULT '0' COMMENT '商品表的商品ID',
   `attribute` varchar(255) NOT NULL COMMENT '商品参数名称',
   `value` varchar(255) NOT NULL COMMENT '商品参数值',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
-  KEY `goods_id` (`goodsId`)
+  KEY `goods_id` (`goods_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=877 DEFAULT CHARSET=utf8mb4 COMMENT='商品参数表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -398,16 +398,16 @@ DROP TABLE IF EXISTS `nidemall_goods_product`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_goods_product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `goodsId` int(11) NOT NULL DEFAULT '0' COMMENT '商品表的商品ID',
+  `goods_id` int(11) NOT NULL DEFAULT '0' COMMENT '商品表的商品ID',
   `specifications` varchar(1023) NOT NULL COMMENT '商品规格值列表，采用JSON数组格式',
   `price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '商品货品价格',
   `number` int(11) NOT NULL DEFAULT '0' COMMENT '商品货品数量',
   `url` varchar(125) DEFAULT NULL COMMENT '商品货品图片',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
-  KEY `goods_id` (`goodsId`)
+  KEY `goods_id` (`goods_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=utf8mb4 COMMENT='商品货品表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -420,15 +420,15 @@ DROP TABLE IF EXISTS `nidemall_goods_specification`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_goods_specification` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `goodsId` int(11) NOT NULL DEFAULT '0' COMMENT '商品表的商品ID',
+  `goods_id` int(11) NOT NULL DEFAULT '0' COMMENT '商品表的商品ID',
   `specification` varchar(255) NOT NULL DEFAULT '' COMMENT '商品规格名称',
   `value` varchar(255) NOT NULL DEFAULT '' COMMENT '商品规格值',
-  `picUrl` varchar(255) NOT NULL DEFAULT '' COMMENT '商品规格图片',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `pic_url` varchar(255) NOT NULL DEFAULT '' COMMENT '商品规格图片',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
-  KEY `goods_id` (`goodsId`)
+  KEY `goods_id` (`goods_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=250 DEFAULT CHARSET=utf8mb4 COMMENT='商品规格表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -441,16 +441,16 @@ DROP TABLE IF EXISTS `nidemall_groupon`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_groupon` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `orderId` int(11) NOT NULL COMMENT '关联的订单ID',
-  `grouponId` int(11) DEFAULT '0' COMMENT '如果是开团用户，则grouponId是0；如果是参团用户，则grouponId是团购活动ID',
-  `rulesId` int(11) NOT NULL COMMENT '团购规则ID，关联nidemall_groupon_rules表ID字段',
-  `userId` int(11) NOT NULL COMMENT '用户ID',
-  `shareUrl` varchar(255) DEFAULT NULL COMMENT '团购分享图片地址',
-  `creatorUserId` int(11) NOT NULL COMMENT '开团用户ID',
-  `creatorUserTime` datetime DEFAULT NULL COMMENT '开团时间',
+  `order_id` int(11) NOT NULL COMMENT '关联的订单ID',
+  `groupon_id` int(11) DEFAULT '0' COMMENT '如果是开团用户，则groupon_id是0；如果是参团用户，则groupon_id是团购活动ID',
+  `rules_id` int(11) NOT NULL COMMENT '团购规则ID，关联nidemall_groupon_rules表ID字段',
+  `user_id` int(11) NOT NULL COMMENT '用户ID',
+  `share_url` varchar(255) DEFAULT NULL COMMENT '团购分享图片地址',
+  `creator_user_id` int(11) NOT NULL COMMENT '开团用户ID',
+  `creator_user_time` datetime DEFAULT NULL COMMENT '开团时间',
   `status` smallint(6) DEFAULT '0' COMMENT '团购活动状态，开团未支付则0，开团中则1，开团失败则2',
-  `addTime` datetime NOT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='团购活动表';
@@ -465,18 +465,18 @@ DROP TABLE IF EXISTS `nidemall_groupon_rules`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_groupon_rules` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `goodsId` int(11) NOT NULL COMMENT '商品表的商品ID',
-  `goodsName` varchar(127) NOT NULL COMMENT '商品名称',
-  `picUrl` varchar(255) DEFAULT NULL COMMENT '商品图片或者商品货品图片',
+  `goods_id` int(11) NOT NULL COMMENT '商品表的商品ID',
+  `goods_name` varchar(127) NOT NULL COMMENT '商品名称',
+  `pic_url` varchar(255) DEFAULT NULL COMMENT '商品图片或者商品货品图片',
   `discount` decimal(63,0) NOT NULL COMMENT '优惠金额',
-  `discountMember` int(11) NOT NULL COMMENT '达到优惠条件的人数',
-  `expireTime` datetime DEFAULT NULL COMMENT '团购过期时间',
+  `discount_member` int(11) NOT NULL COMMENT '达到优惠条件的人数',
+  `expire_time` datetime DEFAULT NULL COMMENT '团购过期时间',
   `status` smallint(6) DEFAULT '0' COMMENT '团购规则状态，正常上线则0，到期自动下线则1，管理手动下线则2',
-  `addTime` datetime NOT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `goods_id` (`goodsId`)
+  KEY `goods_id` (`goods_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='团购规则表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -491,8 +491,8 @@ CREATE TABLE `nidemall_issue` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `question` varchar(255) DEFAULT NULL COMMENT '问题标题',
   `answer` varchar(255) DEFAULT NULL COMMENT '问题答案',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='常见问题表';
@@ -509,11 +509,11 @@ CREATE TABLE `nidemall_keyword` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `keyword` varchar(127) NOT NULL DEFAULT '' COMMENT '关键字',
   `url` varchar(255) NOT NULL DEFAULT '' COMMENT '关键字的跳转链接',
-  `isHot` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否是热门关键字',
-  `isDefault` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否是默认关键字',
-  `sortOrder` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `is_hot` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否是热门关键字',
+  `is_default` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否是默认关键字',
+  `sort_order` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='关键字表';
@@ -535,8 +535,8 @@ CREATE TABLE `nidemall_log` (
   `status` tinyint(1) DEFAULT NULL COMMENT '操作状态',
   `result` varchar(127) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '操作结果，或者成功消息，或者失败消息',
   `comment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '补充信息',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='操作日志表';
@@ -553,9 +553,9 @@ CREATE TABLE `nidemall_notice` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(63) DEFAULT NULL COMMENT '通知标题',
   `content` varchar(511) DEFAULT NULL COMMENT '通知内容',
-  `adminId` int(11) DEFAULT '0' COMMENT '创建通知的管理员ID，如果是系统内置通知则是0.',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `admin_id` int(11) DEFAULT '0' COMMENT '创建通知的管理员ID，如果是系统内置通知则是0.',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='通知表';
@@ -570,12 +570,12 @@ DROP TABLE IF EXISTS `nidemall_notice_admin`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_notice_admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `noticeId` int(11) DEFAULT NULL COMMENT '通知ID',
-  `noticeTitle` varchar(63) DEFAULT NULL COMMENT '通知标题',
-  `adminId` int(11) DEFAULT NULL COMMENT '接收通知的管理员ID',
-  `readTime` datetime DEFAULT NULL COMMENT '阅读时间，如果是NULL则是未读状态',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `notice_id` int(11) DEFAULT NULL COMMENT '通知ID',
+  `notice_title` varchar(63) DEFAULT NULL COMMENT '通知标题',
+  `admin_id` int(11) DEFAULT NULL COMMENT '接收通知的管理员ID',
+  `read_time` datetime DEFAULT NULL COMMENT '阅读时间，如果是NULL则是未读状态',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COMMENT='通知管理员表';
@@ -590,35 +590,35 @@ DROP TABLE IF EXISTS `nidemall_order`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) NOT NULL COMMENT '用户表的用户ID',
-  `orderSn` varchar(63) NOT NULL COMMENT '订单编号',
-  `orderStatus` smallint(6) NOT NULL COMMENT '订单状态',
-  `aftersaleStatus` smallint(6) DEFAULT '0' COMMENT '售后状态，0是可申请，1是用户已申请，2是管理员审核通过，3是管理员退款成功，4是管理员审核拒绝，5是用户已取消',
+  `user_id` int(11) NOT NULL COMMENT '用户表的用户ID',
+  `order_sn` varchar(63) NOT NULL COMMENT '订单编号',
+  `order_status` smallint(6) NOT NULL COMMENT '订单状态',
+  `aftersale_status` smallint(6) DEFAULT '0' COMMENT '售后状态，0是可申请，1是用户已申请，2是管理员审核通过，3是管理员退款成功，4是管理员审核拒绝，5是用户已取消',
   `consignee` varchar(63) NOT NULL COMMENT '收货人名称',
   `mobile` varchar(63) NOT NULL COMMENT '收货人手机号',
   `address` varchar(127) NOT NULL COMMENT '收货具体地址',
   `message` varchar(512) NOT NULL DEFAULT '' COMMENT '用户订单留言',
-  `goodsPrice` decimal(10,2) NOT NULL COMMENT '商品总费用',
-  `freightPrice` decimal(10,2) NOT NULL COMMENT '配送费用',
-  `couponPrice` decimal(10,2) NOT NULL COMMENT '优惠券减免',
-  `integralPrice` decimal(10,2) NOT NULL COMMENT '用户积分减免',
-  `grouponPrice` decimal(10,2) NOT NULL COMMENT '团购优惠价减免',
-  `orderPrice` decimal(10,2) NOT NULL COMMENT '订单费用， = goodsPrice + freightPrice - couponPrice',
-  `actualPrice` decimal(10,2) NOT NULL COMMENT '实付费用， = orderPrice - integralPrice',
-  `payId` varchar(63) DEFAULT NULL COMMENT '微信付款编号',
-  `payTime` datetime DEFAULT NULL COMMENT '微信付款时间',
-  `shipSn` varchar(63) DEFAULT NULL COMMENT '发货编号',
-  `shipChannel` varchar(63) DEFAULT NULL COMMENT '发货快递公司',
-  `shipTime` datetime DEFAULT NULL COMMENT '发货开始时间',
-  `refundAmount` decimal(10,2) DEFAULT NULL COMMENT '实际退款金额，（有可能退款金额小于实际支付金额）',
-  `refundType` varchar(63) DEFAULT NULL COMMENT '退款方式',
-  `refundContent` varchar(127) DEFAULT NULL COMMENT '退款备注',
-  `refundTime` datetime DEFAULT NULL COMMENT '退款时间',
-  `confirmTime` datetime DEFAULT NULL COMMENT '用户确认收货时间',
+  `goods_price` decimal(10,2) NOT NULL COMMENT '商品总费用',
+  `freight_price` decimal(10,2) NOT NULL COMMENT '配送费用',
+  `coupon_price` decimal(10,2) NOT NULL COMMENT '优惠券减免',
+  `integral_price` decimal(10,2) NOT NULL COMMENT '用户积分减免',
+  `groupon_price` decimal(10,2) NOT NULL COMMENT '团购优惠价减免',
+  `order_price` decimal(10,2) NOT NULL COMMENT '订单费用， = goods_price + freight_price - coupon_price',
+  `actual_price` decimal(10,2) NOT NULL COMMENT '实付费用， = order_price - integral_price',
+  `pay_id` varchar(63) DEFAULT NULL COMMENT '微信付款编号',
+  `pay_time` datetime DEFAULT NULL COMMENT '微信付款时间',
+  `ship_sn` varchar(63) DEFAULT NULL COMMENT '发货编号',
+  `ship_channel` varchar(63) DEFAULT NULL COMMENT '发货快递公司',
+  `ship_time` datetime DEFAULT NULL COMMENT '发货开始时间',
+  `refund_amount` decimal(10,2) DEFAULT NULL COMMENT '实际退款金额，（有可能退款金额小于实际支付金额）',
+  `refund_type` varchar(63) DEFAULT NULL COMMENT '退款方式',
+  `refund_content` varchar(127) DEFAULT NULL COMMENT '退款备注',
+  `refund_time` datetime DEFAULT NULL COMMENT '退款时间',
+  `confirm_time` datetime DEFAULT NULL COMMENT '用户确认收货时间',
   `comments` smallint(6) DEFAULT '0' COMMENT '待评价订单商品数量',
-  `endTime` datetime DEFAULT NULL COMMENT '订单关闭时间',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `end_time` datetime DEFAULT NULL COMMENT '订单关闭时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单表';
@@ -633,22 +633,22 @@ DROP TABLE IF EXISTS `nidemall_order_goods`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_order_goods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `orderId` int(11) NOT NULL DEFAULT '0' COMMENT '订单表的订单ID',
-  `goodsId` int(11) NOT NULL DEFAULT '0' COMMENT '商品表的商品ID',
-  `goodsName` varchar(127) NOT NULL DEFAULT '' COMMENT '商品名称',
-  `goodsSn` varchar(63) NOT NULL DEFAULT '' COMMENT '商品编号',
-  `productId` int(11) NOT NULL DEFAULT '0' COMMENT '商品货品表的货品ID',
+  `order_id` int(11) NOT NULL DEFAULT '0' COMMENT '订单表的订单ID',
+  `goods_id` int(11) NOT NULL DEFAULT '0' COMMENT '商品表的商品ID',
+  `goods_name` varchar(127) NOT NULL DEFAULT '' COMMENT '商品名称',
+  `goods_sn` varchar(63) NOT NULL DEFAULT '' COMMENT '商品编号',
+  `product_id` int(11) NOT NULL DEFAULT '0' COMMENT '商品货品表的货品ID',
   `number` smallint(5) NOT NULL DEFAULT '0' COMMENT '商品货品的购买数量',
   `price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '商品货品的售价',
   `specifications` varchar(1023) NOT NULL COMMENT '商品货品的规格列表',
-  `picUrl` varchar(255) NOT NULL DEFAULT '' COMMENT '商品货品图片或者商品图片',
+  `pic_url` varchar(255) NOT NULL DEFAULT '' COMMENT '商品货品图片或者商品图片',
   `comment` int(11) DEFAULT '0' COMMENT '订单商品评论，如果是-1，则超期不能评价；如果是0，则可以评价；如果其他值，则是comment表里面的评论ID。',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
-  KEY `order_id` (`orderId`),
-  KEY `goods_id` (`goodsId`)
+  KEY `order_id` (`order_id`),
+  KEY `goods_id` (`goods_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单商品表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -661,10 +661,10 @@ DROP TABLE IF EXISTS `nidemall_permission`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_permission` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `roleId` int(11) DEFAULT NULL COMMENT '角色ID',
+  `role_id` int(11) DEFAULT NULL COMMENT '角色ID',
   `permission` varchar(63) DEFAULT NULL COMMENT '权限',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COMMENT='权限表';
@@ -702,8 +702,8 @@ CREATE TABLE `nidemall_role` (
   `name` varchar(63) NOT NULL COMMENT '角色名称',
   `desc` varchar(1023) DEFAULT NULL COMMENT '角色描述',
   `enabled` tinyint(1) DEFAULT '1' COMMENT '是否启用',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
@@ -719,11 +719,11 @@ DROP TABLE IF EXISTS `nidemall_search_history`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_search_history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) NOT NULL COMMENT '用户表的用户ID',
+  `user_id` int(11) NOT NULL COMMENT '用户表的用户ID',
   `keyword` varchar(63) NOT NULL COMMENT '搜索关键字',
   `from` varchar(63) NOT NULL DEFAULT '' COMMENT '搜索来源，如pc、wx、app',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='搜索历史表';
@@ -743,8 +743,8 @@ CREATE TABLE `nidemall_storage` (
   `type` varchar(20) NOT NULL COMMENT '文件类型',
   `size` int(11) NOT NULL COMMENT '文件大小',
   `url` varchar(255) DEFAULT NULL COMMENT '文件访问链接',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `key` (`key`)
@@ -760,10 +760,10 @@ DROP TABLE IF EXISTS `nidemall_system`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nidemall_system` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `keyName` varchar(255) NOT NULL COMMENT '系统配置名',
-  `keyValue` varchar(255) NOT NULL COMMENT '系统配置值',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `key_name` varchar(255) NOT NULL COMMENT '系统配置名',
+  `key_value` varchar(255) NOT NULL COMMENT '系统配置值',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='系统配置表';
@@ -782,12 +782,12 @@ CREATE TABLE `nidemall_topic` (
   `subtitle` varchar(255) DEFAULT '''' COMMENT '专题子标题',
   `content` text COMMENT '专题内容，富文本格式',
   `price` decimal(10,2) DEFAULT '0.00' COMMENT '专题相关商品最低价',
-  `readCount` varchar(255) DEFAULT '1k' COMMENT '专题阅读量',
-  `picUrl` varchar(255) DEFAULT '' COMMENT '专题图片',
-  `sortOrder` int(11) DEFAULT '100' COMMENT '排序',
+  `read_count` varchar(255) DEFAULT '1k' COMMENT '专题阅读量',
+  `pic_url` varchar(255) DEFAULT '' COMMENT '专题图片',
+  `sort_order` int(11) DEFAULT '100' COMMENT '排序',
   `goods` varchar(1023) DEFAULT '' COMMENT '专题相关商品，采用JSON数组格式',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `topic_id` (`id`)
@@ -807,17 +807,17 @@ CREATE TABLE `nidemall_user` (
   `password` varchar(63) NOT NULL DEFAULT '' COMMENT '用户密码',
   `gender` tinyint(3) NOT NULL DEFAULT '0' COMMENT '性别：0 未知， 1男， 1 女',
   `birthday` date DEFAULT NULL COMMENT '生日',
-  `lastLoginTime` datetime DEFAULT NULL COMMENT '最近一次登录时间',
-  `lastLoginIp` varchar(63) NOT NULL DEFAULT '' COMMENT '最近一次登录IP地址',
-  `userLevel` tinyint(3) DEFAULT '0' COMMENT '0 普通用户，1 VIP用户，2 高级VIP用户',
+  `last_login_time` datetime DEFAULT NULL COMMENT '最近一次登录时间',
+  `last_login_ip` varchar(63) NOT NULL DEFAULT '' COMMENT '最近一次登录IP地址',
+  `user_level` tinyint(3) DEFAULT '0' COMMENT '0 普通用户，1 VIP用户，2 高级VIP用户',
   `nickname` varchar(63) NOT NULL DEFAULT '' COMMENT '用户昵称或网络名称',
   `mobile` varchar(20) NOT NULL DEFAULT '' COMMENT '用户手机号码',
   `avatar` varchar(255) NOT NULL DEFAULT '' COMMENT '用户头像图片',
-  `weixinOpenid` varchar(63) NOT NULL DEFAULT '' COMMENT '微信登录openid',
-  `sessionKey` varchar(100) NOT NULL DEFAULT '' COMMENT '微信登录会话KEY',
+  `weixin_openid` varchar(63) NOT NULL DEFAULT '' COMMENT '微信登录openid',
+  `session_key` varchar(100) NOT NULL DEFAULT '' COMMENT '微信登录会话KEY',
   `status` tinyint(3) NOT NULL DEFAULT '0' COMMENT '0 可用, 1 禁用, 2 注销',
-  `addTime` datetime DEFAULT NULL COMMENT '创建时间',
-  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_name` (`username`)
