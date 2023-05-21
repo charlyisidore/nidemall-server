@@ -27,7 +27,7 @@ module.exports = class extends think.Service {
         isOnSale: true,
         deleted: false,
       })
-      .order({ 'addTime': 'DESC' })
+      .order({ addTime: 'DESC' })
       .page(page, limit)
       .select();
   }
@@ -45,7 +45,7 @@ module.exports = class extends think.Service {
         isOnSale: true,
         deleted: false,
       })
-      .order({ 'addTime': 'DESC' })
+      .order({ addTime: 'DESC' })
       .page(page, limit)
       .select();
   }
@@ -66,7 +66,7 @@ module.exports = class extends think.Service {
         isOnSale: true,
         deleted: false,
       })
-      .order({ 'addTime': 'DESC' })
+      .order({ addTime: 'DESC' })
       .page(page, limit)
       .countSelect();
   }

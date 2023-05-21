@@ -91,7 +91,7 @@ module.exports = class extends think.Service {
     return model
       .field(this.constructor.FIELDS)
       .where(where)
-      .order({ 'addTime': 'DESC' })
+      .order({ addTime: 'DESC' })
       .page(page, limit)
       .select();
   }
