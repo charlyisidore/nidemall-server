@@ -48,7 +48,7 @@ module.exports = class extends Base {
     return this.success({
       token,
       userInfo: {
-        nickname: username,
+        nickName: username,
         avatarUrl: user.avatar,
       },
     });
