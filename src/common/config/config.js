@@ -2,7 +2,7 @@
 module.exports = {
   workers: 1,
   auth: {
-    header: 'X-Nidemall-Token',
+    header: 'X-Litemall-Token',
     secret: 'yFHYEORzoiaUZvnVY32yTlkN',
     algorithm: 'HS256',
     expiresIn: '2h',
