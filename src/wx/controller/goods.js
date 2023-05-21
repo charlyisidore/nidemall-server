@@ -129,7 +129,7 @@ module.exports = class extends Base {
       limit: goodsList.pageSize,
       page: goodsList.currentPage,
       list: goodsList.data,
-      fieldCategoryList: categoryList,
+      filterCategoryList: categoryList,
     });
   }
 
@@ -142,7 +142,7 @@ module.exports = class extends Base {
       return this.badArgumentValue();
     }
 
-    const goodsList = goodsService.queryByCategory(goods.categoryId, 0, 6);
+    const goodsList = await goodsService.queryByCategory(goods.categoryId, 0, 6);
 
     return this.success({
       total: goodsList.count,
