@@ -27,6 +27,19 @@ module.exports = class extends think.Service {
       })
       .order({ [sort]: order })
       .page(page, limit)
-      .select();
+      .countSelect();
+  }
+
+  /**
+   * 
+   * @param {number} id 
+   */
+  findById(id) {
+    return this.model('topic')
+      .where({
+        id,
+        deleted: false,
+      })
+      .find();
   }
 }

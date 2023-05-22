@@ -45,7 +45,7 @@ module.exports = class extends Base {
       banner: data.banner,
       brandList: data.brandList.data,
       hotGoodsList: data.hotGoodsList,
-      topicList: data.topicList,
+      topicList: data.topicList.data,
       floorGoodsList: data.floorGoodsList,
     });
   }
