@@ -43,7 +43,7 @@ module.exports = class extends Base {
       return this.updatedDataFailed();
     }
 
-    const token = authService.createToken(user.id);
+    const token = await authService.createToken(user.id);
 
     return this.success({
       token,
@@ -116,7 +116,7 @@ module.exports = class extends Base {
       }
     }
 
-    const token = authService.createToken(user.id);
+    const token = await authService.createToken(user.id);
 
     return this.success({
       token,
@@ -193,7 +193,7 @@ module.exports = class extends Base {
 
     const user = {
       username,
-      password: authService.hashPassword(password),
+      password: await authService.hashPassword(password),
       mobile,
       weixinOpenid: openid,
       avatar: this.constructor.DEFAULT_AVATAR,
@@ -213,7 +213,7 @@ module.exports = class extends Base {
       avatarUrl: user.avatar,
     };
 
-    const token = authService.createToken(user.id);
+    const token = await authService.createToken(user.id);
 
     return this.success({
       token,

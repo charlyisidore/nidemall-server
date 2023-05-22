@@ -11,22 +11,25 @@ module.exports = class extends think.Service {
    * @param {number} userId 
    */
   createToken(userId) {
-    const config = think.config('auth');
+    return new Promise((resolve) => {
+      const config = think.config('auth');
 
-    const options = {
-      algorithm: config.algorithm,
-      expiresIn: config.expiresIn,
-      audience: config.audience,
-      issuer: config.issuer,
-      subject: config.subject,
-    };
+      const options = {
+        algorithm: config.algorithm,
+        expiresIn: config.expiresIn,
+        audience: config.audience,
+        issuer: config.issuer,
+        subject: config.subject,
+      };
 
-    try {
-      return jwt.sign({ userId }, config.secret, options);
-    } catch (e) {
-      console.log(e);
-      return null;
-    }
+      jwt.sign({ userId }, config.secret, options, (err, token) => {
+        if (err) {
+          console.error(e);
+          return resolve(null);
+        }
+        resolve(token);
+      });
+    });
   }
 
   /**
@@ -34,17 +37,21 @@ module.exports = class extends think.Service {
    * @param {string} token 
    */
   verifyToken(token) {
-    const config = think.config('auth');
+    return new Promise((resolve) => {
+      const config = think.config('auth');
 
-    if (!token) {
-      return null;
-    }
+      if (!token) {
+        return resolve(null);
+      }
 
-    try {
-      return jwt.verify(token, config.secret);
-    } catch (e) {
-      return null;
-    }
+      jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+          console.error(e);
+          return resolve(null);
+        }
+        resolve(decoded);
+      });
+    });
   }
 
   /**
@@ -60,8 +67,8 @@ module.exports = class extends think.Service {
    * 
    * @param {string} password 
    */
-  hashPassword(password) {
-    const salt = bcrypt.genSaltSync();
-    return bcrypt.hashSync(password, salt);
+  async hashPassword(password) {
+    const salt = await bcrypt.genSalt();
+    return bcrypt.hash(password, salt);
   }
 }
