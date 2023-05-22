@@ -26,6 +26,7 @@ module.exports = class extends Base {
       },
       pic_urls: {
         type: 'varchar(1023)',
+        dataType: 'json',
       },
       star: {
         type: 'smallint(6)',

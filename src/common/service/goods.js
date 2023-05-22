@@ -147,15 +147,13 @@ module.exports = class extends think.Service {
    * 
    * @param {number} id 
    */
-  async findById(id) {
-    return this._parse(
-      await this.model('goods')
-        .where({
-          id,
-          deleted: false,
-        })
-        .find()
-    );
+  findById(id) {
+    return this.model('goods')
+      .where({
+        id,
+        deleted: false,
+      })
+      .find();
   }
 
   /**
@@ -213,11 +211,5 @@ module.exports = class extends think.Service {
 
     return (await model.select())
       .map((item) => item.categoryId);
-  }
-
-  _parse(item) {
-    return item ? Object.assign(item, {
-      gallery: JSON.parse(item.gallery),
-    }) : item;
   }
 }

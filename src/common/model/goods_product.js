@@ -11,6 +11,7 @@ module.exports = class extends Base {
       },
       specifications: {
         type: 'varchar(1023)',
+        dataType: 'json',
       },
       price: {
         type: 'decimal(10,2)',

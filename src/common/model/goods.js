@@ -20,6 +20,7 @@ module.exports = class extends Base {
       },
       gallery: {
         type: 'varchar(1023)',
+        dataType: 'json',
       },
       keywords: {
         type: 'varchar(255)',

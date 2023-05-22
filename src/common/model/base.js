@@ -9,19 +9,11 @@ module.exports = class extends think.Model {
   }
 
   where(where) {
-    return super.where(
-      think.isObject(where) ?
-        this._toSnakeCase(where) :
-        where
-    );
+    return super.where(this._toSnakeCase(where));
   }
 
   order(value) {
-    return super.order(
-      think.isObject(value) ?
-        this._toSnakeCase(value) :
-        value
-    );
+    return super.order(this._toSnakeCase(value));
   }
 
   beforeAdd(data) {
@@ -74,29 +66,37 @@ module.exports = class extends think.Model {
   }
 
   _beforeValue(value, key) {
-    const type = this.schema?.[key]?.type;
+    const dataType = this.schema?.[key]?.dataType;
 
-    if (['bool', 'boolean', 'tinyint(1)'].includes(type)) {
-      return value ? 1 : 0;
+    switch (dataType) {
+      case 'boolean':
+        return value ? 1 : 0;
+      case 'json':
+        return JSON.stringify(value);
     }
 
     return value;
   }
 
   _afterValue(value, key) {
-    const type = this.schema?.[key]?.type;
+    const dataType = this.schema?.[key]?.dataType;
 
-    if (['bool', 'boolean', 'tinyint(1)'].includes(type)) {
-      return !!value;
+    switch (dataType) {
+      case 'boolean':
+        return !!value;
+      case 'json':
+        return JSON.parse(value);
     }
 
     return value;
   }
 
   _toSnakeCase(data) {
-    return Object.fromEntries(
-      Object.entries(data)
-        .map(([k, v]) => [think.snakeCase(k), v])
-    );
+    return think.isObject(data) ?
+      Object.fromEntries(
+        Object.entries(data)
+          .map(([k, v]) => [think.snakeCase(k), v])
+      ) :
+      data;
   }
 };
