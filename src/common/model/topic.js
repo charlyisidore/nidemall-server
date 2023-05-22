@@ -29,6 +29,7 @@ module.exports = class extends Base {
       },
       goods: {
         type: 'varchar(1023)',
+        dataType: 'json',
       },
       add_time: {
         type: 'datetime',
