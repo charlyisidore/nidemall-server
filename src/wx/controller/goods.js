@@ -3,7 +3,7 @@ const Base = require('./base.js');
 module.exports = class extends Base {
   async detailAction() {
     const id = this.get('id');
-    const userId = this.ctx.state.userId;
+    const userId = this.getUserId();
 
     const brandService = this.service('brand');
     const collectService = this.service('collect');
@@ -91,7 +91,7 @@ module.exports = class extends Base {
     const limit = this.get('limit') || 10;
     const sort = think.camelCase(this.get('sort') || 'add_time');
     const order = this.get('order') || 'DESC';
-    const userId = this.ctx.state.userId;
+    const userId = this.getUserId();
 
     const categoryService = this.service('category');
     const goodsService = this.service('goods');

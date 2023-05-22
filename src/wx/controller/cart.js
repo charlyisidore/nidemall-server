@@ -5,7 +5,7 @@ module.exports = class extends Base {
   static GOODS_NO_STOCK = 711;
 
   async indexAction() {
-    const userId = this.ctx.state.userId;
+    const userId = this.getUserId();
     const cartService = this.service('cart');
     const goodsService = this.service('goods');
 
@@ -56,7 +56,7 @@ module.exports = class extends Base {
   }
 
   async addAction() {
-    const userId = this.ctx.state.userId;
+    const userId = this.getUserId();
     const goodsId = parseInt(this.post('goodsId'));
     const productId = parseInt(this.post('productId'));
     const number = parseInt(this.post('number'));
@@ -130,7 +130,7 @@ module.exports = class extends Base {
   }
 
   async goodscountAction() {
-    const userId = this.ctx.state.userId;
+    const userId = this.getUserId();
     return this.success(await this.goodsCount(userId));
   }
 

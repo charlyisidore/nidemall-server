@@ -2,7 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   async indexAction() {
-    const userId = this.ctx.state.userId;
+    const userId = this.getUserId();
 
     const systemService = this.service('system');
     const newLimit = parseInt(await systemService.getNewLimit());

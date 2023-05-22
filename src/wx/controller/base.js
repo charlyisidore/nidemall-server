@@ -3,6 +3,10 @@ module.exports = class extends think.Controller {
 
   }
 
+  getUserId() {
+    return this.ctx.state.userId;
+  }
+
   badArgument() {
     return this.fail(401, '参数不对');
   }

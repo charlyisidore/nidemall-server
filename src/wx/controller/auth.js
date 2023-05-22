@@ -230,7 +230,7 @@ module.exports = class extends Base {
   }
 
   async logoutAction() {
-    if (!this.ctx.state.userId) {
+    if (!this.getUserId()) {
       return this.unlogin();
     }
 
