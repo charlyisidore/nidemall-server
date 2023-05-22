@@ -110,7 +110,7 @@ module.exports = class extends Base {
       }
     }
 
-    return this.success(await this.goodsCount());
+    return this.success(await this.goodsCount(userId));
   }
 
   async fastaddAction() {
@@ -130,15 +130,15 @@ module.exports = class extends Base {
   }
 
   async goodscountAction() {
-    return this.success(await this.goodsCount());
+    const userId = this.ctx.state.userId;
+    return this.success(await this.goodsCount(userId));
   }
 
   async checkoutAction() {
     return this.success('todo');
   }
 
-  async goodsCount() {
-    const userId = this.ctx.state.userId;
+  async goodsCount(userId) {
     const cartService = this.service('cart');
 
     if (!userId) {
