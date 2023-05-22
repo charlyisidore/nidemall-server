@@ -2,8 +2,8 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   async listAction() {
-    const page = this.get('page') || 1;
-    const limit = this.get('limit') || 10;
+    const page = parseInt(this.get('page') || '1');
+    const limit = parseInt(this.get('limit') || '10');
     const sort = think.camelCase(this.get('sort') || 'add_time');
     const order = this.get('order') || 'DESC';
 
