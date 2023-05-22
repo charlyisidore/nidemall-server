@@ -1,3 +1,5 @@
+const assert = require('node:assert');
+
 module.exports = class extends think.Service {
   constructor() {
     super();
@@ -69,12 +71,27 @@ module.exports = class extends think.Service {
    * 
    * @param {string} openid 
    */
-  queryByOpenid(openId) {
+  queryByOpenid(openid) {
     return this.model('user')
       .where({
         weixinOpenid: openid,
         deleted: false,
       })
       .select();
+  }
+
+  /**
+   * 
+   * @param {number} userId 
+   */
+  async getInfo(userId) {
+    const user = await this.findById(userId);
+
+    assert.ok(user, '用户不存在');
+
+    return {
+      nickName: user.nickname,
+      avatarUrl: user.avatar,
+    };
   }
 }
