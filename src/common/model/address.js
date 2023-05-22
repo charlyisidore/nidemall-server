@@ -35,6 +35,7 @@ module.exports = class extends Base {
       },
       is_default: {
         type: 'tinyint(1)',
+        dataType: 'boolean',
       },
       add_time: {
         type: 'datetime',
@@ -44,6 +45,7 @@ module.exports = class extends Base {
       },
       deleted: {
         type: 'tinyint(1)',
+        dataType: 'boolean',
       },
     }
   }

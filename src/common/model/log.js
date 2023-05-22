@@ -20,6 +20,7 @@ module.exports = class extends Base {
       },
       status: {
         type: 'tinyint(1)',
+        dataType: 'boolean',
       },
       result: {
         type: 'varchar(127)',
@@ -35,6 +36,7 @@ module.exports = class extends Base {
       },
       deleted: {
         type: 'tinyint(1)',
+        dataType: 'boolean',
       },
     }
   }

@@ -44,6 +44,7 @@ module.exports = class extends Base {
       },
       deleted: {
         type: 'tinyint(1)',
+        dataType: 'boolean',
       },
     }
   }

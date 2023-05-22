@@ -14,9 +14,11 @@ module.exports = class extends Base {
       },
       is_hot: {
         type: 'tinyint(1)',
+        dataType: 'boolean',
       },
       is_default: {
         type: 'tinyint(1)',
+        dataType: 'boolean',
       },
       sort_order: {
         type: 'int(11)',
@@ -29,6 +31,7 @@ module.exports = class extends Base {
       },
       deleted: {
         type: 'tinyint(1)',
+        dataType: 'boolean',
       },
     }
   }

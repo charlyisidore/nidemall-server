@@ -30,6 +30,7 @@ module.exports = class extends Base {
       },
       is_on_sale: {
         type: 'tinyint(1)',
+        dataType: 'boolean',
       },
       sort_order: {
         type: 'smallint(4)',
@@ -42,9 +43,11 @@ module.exports = class extends Base {
       },
       is_new: {
         type: 'tinyint(1)',
+        dataType: 'boolean',
       },
       is_hot: {
         type: 'tinyint(1)',
+        dataType: 'boolean',
       },
       unit: {
         type: 'varchar(31)',
@@ -66,6 +69,7 @@ module.exports = class extends Base {
       },
       deleted: {
         type: 'tinyint(1)',
+        dataType: 'boolean',
       },
     }
   }

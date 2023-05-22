@@ -32,6 +32,7 @@ module.exports = class extends Base {
       },
       checked: {
         type: 'tinyint(1)',
+        dataType: 'boolean',
       },
       pic_url: {
         type: 'varchar(255)',
@@ -44,6 +45,7 @@ module.exports = class extends Base {
       },
       deleted: {
         type: 'tinyint(1)',
+        dataType: 'boolean',
       },
     }
   }
