@@ -18,6 +18,16 @@ module.exports = class extends think.Service {
 
   /**
    * 
+   * @param {number} id 
+   */
+  findById(id) {
+    return this.model('groupon_rules')
+      .where({ id })
+      .find();
+  }
+
+  /**
+   * 
    * @param {number} goodsId 
    */
   queryByGoodsId(goodsId) {

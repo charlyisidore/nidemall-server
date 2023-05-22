@@ -1,29 +1,38 @@
 module.exports = class extends think.Service {
+  static PREFIX = 'nidemall_';
+
   config = {
-    nidemall_wx_index_new: '6',
-    nidemall_wx_index_hot: '6',
-    nidemall_wx_index_brand: '4',
-    nidemall_wx_index_topic: '4',
-    nidemall_wx_catlog_list: '4',
-    nidemall_wx_catlog_goods: '4',
-    nidemall_wx_share: 'false',
-    nidemall_mall_name: 'nidemall',
-    nidemall_mall_address: '上海',
-    nidemall_mall_latitude: '31.201900',
-    nidemall_mall_longitude: '121.587839',
-    nidemall_mall_phone: '021-xxxx-xxxx',
-    nidemall_mall_qq: '705144434',
+    wx_index_new: '6',
+    wx_index_hot: '6',
+    wx_index_brand: '4',
+    wx_index_topic: '4',
+    wx_catlog_list: '4',
+    wx_catlog_goods: '4',
+    wx_share: 'false',
+    express_freight_value: '8',
+    express_freight_min: '88',
+    order_unpaid: '30',
+    order_unconfirm: '7',
+    order_comment: '7',
+    mall_name: 'nidemall',
+    mall_address: '上海',
+    mall_latitude: '31.201900',
+    mall_longitude: '121.587839',
+    mall_phone: '021-xxxx-xxxx',
+    mall_qq: '705144434',
   };
 
   constructor() {
     super();
+
+    const re = new RegExp(`^${this.constructor.PREFIX}`);
 
     this.config = this.model('system')
       .select()
       .then((result) => {
         return result.reduce(
           (config, { keyName, keyValue }) => Object.assign(config, {
-            [keyName]: keyValue,
+            [keyName.replace(re, '')]: keyValue,
           }),
           {}
         );
@@ -45,90 +54,126 @@ module.exports = class extends think.Service {
    * 
    */
   getNewLimit() {
-    return this.getConfig('nidemall_wx_index_new');
+    return this.getConfig('wx_index_new');
   }
 
   /**
    * 
    */
   getHotLimit() {
-    return this.getConfig('nidemall_wx_index_hot');
+    return this.getConfig('wx_index_hot');
   }
 
   /**
    * 
    */
   getBrandLimit() {
-    return this.getConfig('nidemall_wx_index_brand');
+    return this.getConfig('wx_index_brand');
   }
 
   /**
    * 
    */
   getTopicLimit() {
-    return this.getConfig('nidemall_wx_index_topic');
+    return this.getConfig('wx_index_topic');
   }
 
   /**
    * 
    */
   getCatlogListLimit() {
-    return this.getConfig('nidemall_wx_catlog_list');
+    return this.getConfig('wx_catlog_list');
   }
 
   /**
    * 
    */
   getCatlogMoreLimit() {
-    return this.getConfig('nidemall_wx_catlog_goods');
-  }
-
-  /**
-   * 
-   */
-  getMallName() {
-    return this.getConfig('nidemall_mall_name');
-  }
-
-  /**
-   * 
-   */
-  getMallAddress() {
-    return this.getConfig('nidemall_mall_address');
-  }
-
-  /**
-   * 
-   */
-  getMallPhone() {
-    return this.getConfig('nidemall_mall_phone');
-  }
-
-  /**
-   * 
-   */
-  getMallQq() {
-    return this.getConfig('nidemall_mall_qq');
-  }
-
-  /**
-   * 
-   */
-  getMallLongitude() {
-    return this.getConfig('nidemall_mall_longitude');
-  }
-
-  /**
-   * 
-   */
-  getMallLatitude() {
-    return this.getConfig('nidemall_mall_latitude');
+    return this.getConfig('wx_catlog_goods');
   }
 
   /**
    * 
    */
   isAutoCreateShareImage() {
-    return this.getConfig('nidemall_wx_share');
+    return this.getConfig('wx_share');
+  }
+
+  /**
+   * 
+   */
+  getFreight() {
+    return this.getConfig('express_freight_value');
+  }
+
+  /**
+   * 
+   */
+  getFreightLimit() {
+    return this.getConfig('express_freight_min');
+  }
+
+  /**
+   * 
+   */
+  getOrderUnpaid() {
+    return this.getConfig('order_unpaid');
+  }
+
+  /**
+   * 
+   */
+  getOrderUnconfirm() {
+    return this.getConfig('order_unconfirm');
+  }
+
+  /**
+   * 
+   */
+  getOrderComment() {
+    return this.getConfig('order_comment');
+  }
+
+
+  /**
+   * 
+   */
+  getMallName() {
+    return this.getConfig('mall_name');
+  }
+
+  /**
+   * 
+   */
+  getMallAddress() {
+    return this.getConfig('mall_address');
+  }
+
+  /**
+   * 
+   */
+  getMallPhone() {
+    return this.getConfig('mall_phone');
+  }
+
+  /**
+   * 
+   */
+  getMallQq() {
+    return this.getConfig('mall_qq');
+  }
+
+  /**
+   * 
+   */
+  getMallLongitude() {
+    return this.getConfig('mall_longitude');
+  }
+
+  /**
+   * 
+   */
+  getMallLatitude() {
+    return this.getConfig('mall_latitude');
   }
 }

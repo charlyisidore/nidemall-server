@@ -61,6 +61,68 @@ module.exports = class extends think.Service {
 
   /**
    * 
+   * @param {number} userId 
+   */
+  queryByUidAndChecked(userId) {
+    return this.model('cart')
+      .where({
+        userId,
+        checked: true,
+        deleted: true,
+      })
+      .select();
+  }
+
+  /**
+   * 
+   * @param {number[]} productIdList 
+   * @param {number} userId 
+   * @returns 
+   */
+  delete(productIdList, userId) {
+    return this.model('cart')
+      .where({
+        userId,
+        productId: ['IN', productIdList],
+      })
+      .update({
+        deleted: true,
+      });
+  }
+
+  /**
+   * 
+   * @param {number} id 
+   * @param {number?} userId 
+   */
+  findById(id, userId) {
+    return this.model('cart')
+      .where({ id, userId })
+      .find();
+  }
+
+  /**
+   * 
+   * @param {number} userId 
+   * @param {number[]} idsList 
+   * @param {boolean} checked 
+   */
+  updateCheck(userId, idsList, checked) {
+    const now = new Date();
+    return this.model('cart')
+      .where({
+        userId,
+        productId: ['IN', idsList],
+        deleted: false,
+      })
+      .update({
+        checked,
+        updateTime: now,
+      });
+  }
+
+  /**
+   * 
    * @param {number} id 
    */
   deleteById(id) {
@@ -68,6 +130,8 @@ module.exports = class extends think.Service {
       .where({
         id,
       })
-      .delete();
+      .update({
+        deleted: true,
+      });
   }
 }

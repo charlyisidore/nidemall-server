@@ -98,6 +98,16 @@ module.exports = class extends think.Service {
 
   /**
    * 
+   * @param {number} id 
+   */
+  findById(id) {
+    return this.model('coupon')
+      .where({ id })
+      .find();
+  }
+
+  /**
+   * 
    */
   queryRegister() {
     return this.model('coupon')
@@ -147,5 +157,98 @@ module.exports = class extends think.Service {
         await couponUserService.add(couponUser);
       }
     }
+  }
+
+  /**
+   * 
+   * @param {number} userId 
+   * @param {number} couponId 
+   * @param {number} userCouponId 
+   * @param {number} checkedGoodsPrice 
+   * @param {object[]} cartList 
+   */
+  async checkCoupon(userId, couponId, userCouponId, checkedGoodsPrice, cartList) {
+    const couponUserService = think.service('coupon_user');
+    const goodsService = think.service('goods');
+
+    const coupon = await this.findById(couponId);
+    if (!coupon || coupon.deleted) {
+      return null;
+    }
+
+    let couponUser = await couponUserService.findById(userCouponId);
+    if (!couponUser) {
+      couponUser = await couponUserService.queryOne(userId, couponId);
+    } else if (couponId != couponUser.couponId) {
+      return null;
+    }
+
+    if (!couponUser) {
+      return null;
+    }
+
+    const timeType = coupon.timeType;
+    const days = coupon.days;
+    const now = new Date();
+
+    if (this.constructor.TIME_TYPE.TIME == timeType) {
+      if (now < coupon.startTime || now > coupon.endTime) {
+        return null;
+      }
+    } else if (this.constructor.TIME_TYPE.DAYS == timeType) {
+      const addTime = couponUser.addTime;
+      const expired = (new Date(addTime)).setDate(addTime.getDate() + days);
+      if (now > expired) {
+        return null;
+      }
+    } else {
+      return null;
+    }
+
+    const cartMap = {};
+    let goodsValueList = [...coupon.goodsValue];
+    const goodsType = coupon.goodsType;
+
+    if ([
+      this.constructor.GOODS_TYPE.CATEGORY,
+      this.constructor.GOODS_TYPE.ARRAY,
+    ].includes(goodsType)) {
+      for (const cart of cartList) {
+        const key = (this.constructor.GOODS_TYPE.ARRAY == goodsType) ?
+          cart.goodsId :
+          (await goodsService.findById(cart.goodsId)).categoryId;
+
+        const carts = (key in cartMap) ? cartMap[key] : [];
+        carts.push(cart);
+        cartMap[key] = carts;
+      }
+
+      goodsValueList = goodsValueList
+        .filter((id) => Object.keys(cartMap).includes(id));
+
+      let total = 0.;
+
+      for (const goodsId of goodsValueList) {
+        const carts = cartMap[goodsId];
+
+        for (const cart of carts) {
+          total += cart.price * cart.number;
+        }
+      }
+
+      if (total < coupon.min) {
+        return null;
+      }
+    }
+
+    if (this.constructor.STATUS.NORMAL != coupon.status) {
+      return null;
+    }
+
+    if (checkedGoodsPrice < coupon.min) {
+      return null;
+    }
+
+    return coupon;
   }
 }

@@ -1,4 +1,11 @@
 module.exports = class extends think.Service {
+  static STATUS = {
+    USABLE: 0,
+    USED: 1,
+    EXPIRED: 2,
+    OUT: 3,
+  };
+
   constructor() {
     super();
   }
@@ -29,5 +36,65 @@ module.exports = class extends think.Service {
         addTime: now,
         updateTime: now,
       }));
+  }
+
+  /**
+   * 
+   * @param {number?} userId 
+   * @param {number?} couponId 
+   * @param {number?} status 
+   * @param {number?} page 
+   * @param {number?} limit 
+   * @param {string?} sort 
+   * @param {string?} order 
+   * @returns 
+   */
+  queryList(userId, couponId, status, page, limit, sort, order) {
+    const model = this.model('coupon_user');
+
+    const where = {
+      deleted: false,
+    };
+
+    if (userId) {
+      Object.assign(where, { userId });
+    }
+
+    if (couponId) {
+      Object.assign(where, { couponId });
+    }
+
+    if (undefined !== status && null !== status) {
+      Object.assign(where, { status });
+    }
+
+    model.where(where);
+
+    if (sort && order) {
+      model.order({ [sort]: order });
+    }
+
+    if (page && limit) {
+      model.page(page, limit);
+    }
+
+    return model.select();
+  }
+
+  /**
+   * 
+   * @param {number} userId 
+   * @param {number?} couponId 
+   */
+  queryAll(userId, couponId) {
+    return this.queryList(
+      userId,
+      couponId,
+      this.constructor.STATUS.USABLE,
+      null,
+      null,
+      'addTime',
+      'DESC'
+    );
   }
 }
