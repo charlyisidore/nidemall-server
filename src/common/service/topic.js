@@ -42,4 +42,39 @@ module.exports = class extends think.Service {
       })
       .find();
   }
+
+  /**
+   * 
+   * @param {number} id 
+   * @param {number} page 
+   * @param {number} limit 
+   */
+  async queryRelatedList(id, page, limit) {
+    const topics = await this.model('topic')
+      .where({
+        id,
+        deleted: false,
+      })
+      .select();
+
+    if (topics.length == 0) {
+      return this.queryList(page, limit, 'addTime', 'DESC');
+    }
+
+    const topic = topics[0];
+
+    const relateds = await this.model('topic')
+      .where({
+        id: ['!=', topic.id],
+        deleted: false,
+      })
+      .page(page, limit)
+      .countSelect();
+
+    if (relateds.length != 0) {
+      return relateds;
+    }
+
+    return this.queryList(page, limit, 'addTime', 'DESC');
+  }
 }

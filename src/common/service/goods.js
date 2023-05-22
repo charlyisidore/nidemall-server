@@ -158,6 +158,21 @@ module.exports = class extends think.Service {
 
   /**
    * 
+   * @param {number} id 
+   */
+  findByIdVo(id) {
+    return this.model('goods')
+      .field(this.constructor.FIELDS)
+      .where({
+        id,
+        isOnSale: true,
+        deleted: false,
+      })
+      .find();
+  }
+
+  /**
+   * 
    */
   queryOnSale() {
     return this.model('goods')
