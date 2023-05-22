@@ -8,12 +8,20 @@ module.exports = class extends think.Model {
     );
   }
 
-  where(data) {
-    return super.where(this._toSnakeCase(data));
+  where(where) {
+    return super.where(
+      think.isObject(where) ?
+        this._toSnakeCase(where) :
+        where
+    );
   }
 
-  order(data) {
-    return super.order(this._toSnakeCase(data));
+  order(value) {
+    return super.order(
+      think.isObject(value) ?
+        this._toSnakeCase(value) :
+        value
+    );
   }
 
   beforeAdd(data) {
@@ -44,13 +52,6 @@ module.exports = class extends think.Model {
     return data.map((item) => this._after(item));
   }
 
-  _toSnakeCase(data) {
-    return Object.fromEntries(
-      Object.entries(data)
-        .map(([k, v]) => [think.snakeCase(k), v])
-    );
-  }
-
   _before(data) {
     return Object.fromEntries(
       Object.entries(data)
@@ -75,8 +76,7 @@ module.exports = class extends think.Model {
   _beforeValue(value, key) {
     const type = this.schema?.[key]?.type;
 
-    // boolean
-    if ('tinyint(1)' === type) {
+    if (['bool', 'boolean', 'tinyint(1)'].includes(type)) {
       return value ? 1 : 0;
     }
 
@@ -86,11 +86,17 @@ module.exports = class extends think.Model {
   _afterValue(value, key) {
     const type = this.schema?.[key]?.type;
 
-    // boolean
-    if ('tinyint(1)' === type) {
+    if (['bool', 'boolean', 'tinyint(1)'].includes(type)) {
       return !!value;
     }
 
     return value;
+  }
+
+  _toSnakeCase(data) {
+    return Object.fromEntries(
+      Object.entries(data)
+        .map(([k, v]) => [think.snakeCase(k), v])
+    );
   }
 };
