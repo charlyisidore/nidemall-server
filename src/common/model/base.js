@@ -16,12 +16,8 @@ module.exports = class extends think.Model {
     return super.order(this._toSnakeCase(value));
   }
 
-  beforeAdd(data) {
-    return this._before(data);
-  }
-
-  afterAdd(data) {
-    return this._after(data);
+  add(data, options) {
+    return super.add(this._toSnakeCase(data), options);
   }
 
   afterDelete(data) {
