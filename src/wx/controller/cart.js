@@ -326,10 +326,10 @@ module.exports = class extends Base {
     let availableCouponLength = tmpCouponLength;
     let couponPrice = 0.;
 
-    if (!couponId || -1 == couponId) {
+    if (null === couponId || -1 === couponId) {
       couponId = -1;
       userCouponId = -1;
-    } else if (!couponId) {
+    } else if (0 === couponId) {
       couponPrice = tmpCouponPrice;
       couponId = tmpCouponId;
       userCouponId = tmpUserCouponId;
