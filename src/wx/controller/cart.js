@@ -13,9 +13,9 @@ module.exports = class extends Base {
     const userId = this.getUserId();
 
     // Cart
-    const goodsId = parseInt(this.post('goodsId'));
-    const productId = parseInt(this.post('productId'));
-    const number = parseInt(this.post('number'));
+    const goodsId = this.postInt('goodsId');
+    const productId = this.postInt('productId');
+    const number = this.postInt('number');
 
     const cartService = this.service('cart');
     const goodsService = this.service('goods');
@@ -74,9 +74,9 @@ module.exports = class extends Base {
     const userId = this.getUserId();
 
     // Cart
-    const goodsId = parseInt(this.post('goodsId'));
-    const productId = parseInt(this.post('productId'));
-    const number = parseInt(this.post('number'));
+    const goodsId = this.postInt('goodsId');
+    const productId = this.postInt('productId');
+    const number = this.postInt('number');
 
     const cartService = this.service('cart');
     const goodsService = this.service('goods');
@@ -137,10 +137,10 @@ module.exports = class extends Base {
     const userId = this.getUserId();
 
     // Cart
-    const id = parseInt(this.post('id'));
-    const goodsId = parseInt(this.post('goodsId'));
-    const productId = parseInt(this.post('productId'));
-    const number = parseInt(this.post('number'));
+    const id = this.postInt('id');
+    const goodsId = this.postInt('goodsId');
+    const productId = this.postInt('productId');
+    const number = this.postInt('number');
 
     const cartService = this.service('cart');
     const goodsService = this.service('goods');
@@ -186,8 +186,8 @@ module.exports = class extends Base {
     const userId = this.getUserId();
 
     // Cart
-    let productIds = this.post('productIds');
-    const checkValue = parseInt(this.post('isChecked'));
+    const productIds = this.postJson('productIds');
+    const checkValue = this.postInt('isChecked');
 
     const cartService = this.service('cart');
 
@@ -199,8 +199,6 @@ module.exports = class extends Base {
       return this.badArgument();
     }
 
-    productIds = JSON.parse(productIds);
-
     await cartService.updateCheck(userId, productIds, (checkValue == 1));
 
     return this.index(userId);
@@ -210,7 +208,7 @@ module.exports = class extends Base {
     const userId = this.getUserId();
 
     // Cart
-    let productIds = this.post('productIds');
+    const productIds = this.postJson('productIds');
 
     const cartService = this.service('cart');
 
@@ -218,13 +216,7 @@ module.exports = class extends Base {
       return this.unlogin();
     }
 
-    if (!productIds) {
-      return this.badArgument();
-    }
-
-    productIds = JSON.parse(productIds);
-
-    if (productIds.length == 0) {
+    if (!productIds || productIds.length == 0) {
       return this.badArgument();
     }
 
@@ -242,11 +234,11 @@ module.exports = class extends Base {
     const userId = this.getUserId();
 
     // Cart
-    const cartId = this.post('cartId');
-    let addressId = this.post('addressId');
-    let couponId = this.post('couponId');
-    let userCouponId = this.post('userCouponId');
-    const grouponRulesId = this.post('grouponRulesId');
+    const cartId = this.postInt('cartId');
+    let addressId = this.postInt('addressId');
+    let couponId = this.postInt('couponId');
+    let userCouponId = this.postInt('userCouponId');
+    const grouponRulesId = this.postInt('grouponRulesId');
 
     const addressService = this.service('address');
     const cartService = this.service('cart');

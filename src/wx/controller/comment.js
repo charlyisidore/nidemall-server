@@ -4,12 +4,12 @@ module.exports = class extends Base {
   async postAction() {
     const userId = this.getUserId();
 
-    const valueId = parseInt(this.post('valueId'));
-    const type = parseInt(this.post('type'));
-    const content = this.post('content');
-    const hasPicture = parseInt(this.post('hasPicture'));
-    const star = parseInt(this.post('star'));
-    let picUrls = JSON.parse(this.post('picUrls') || '[]');
+    const valueId = this.postInt('valueId');
+    const type = this.postInt('type');
+    const content = this.postString('content');
+    const hasPicture = this.postBoolean('hasPicture');
+    const star = this.postInt('star');
+    let picUrls = this.postJson('picUrls', []);
 
     const commentService = this.service('comment');
     const goodsService = this.service('goods');
@@ -64,8 +64,8 @@ module.exports = class extends Base {
   }
 
   async countAction() {
-    const type = parseInt(this.get('type'));
-    const valueId = parseInt(this.get('valueId'));
+    const type = this.getInt('type');
+    const valueId = this.getInt('valueId');
 
     const commentService = this.service('comment');
 
@@ -79,11 +79,11 @@ module.exports = class extends Base {
   }
 
   async listAction() {
-    const type = parseInt(this.get('type'));
-    const valueId = parseInt(this.get('valueId'));
-    const showType = parseInt(this.get('showType'));
-    const page = parseInt(this.get('page') || '1');
-    const limit = parseInt(this.get('limit') || '10');
+    const type = this.getInt('type');
+    const valueId = this.getInt('valueId');
+    const showType = this.getInt('showType');
+    const page = this.getInt('page', 1);
+    const limit = this.getInt('limit', 10);
 
     const commentService = this.service('comment');
     const userService = this.service('user');

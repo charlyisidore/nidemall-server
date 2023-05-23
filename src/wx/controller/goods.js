@@ -2,7 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   async detailAction() {
-    const id = parseInt(this.get('id'));
+    const id = this.getInt('id');
     const userId = this.getUserId();
 
     const brandService = this.service('brand');
@@ -59,7 +59,7 @@ module.exports = class extends Base {
   }
 
   async categoryAction() {
-    const id = parseInt(this.get('id'));
+    const id = this.getInt('id');
     const categoryService = this.service('category');
 
     let current = await categoryService.findById(id);
@@ -83,15 +83,15 @@ module.exports = class extends Base {
   }
 
   async listAction() {
-    const categoryId = parseInt(this.get('categoryId'));
-    const brandId = parseInt(this.get('brandId'));
-    const keyword = this.get('keyword');
-    const isNew = this.get('isNew');
-    const isHot = this.get('isHot');
-    const page = parseInt(this.get('page') || '1');
-    const limit = parseInt(this.get('limit') || '10');
-    const sort = think.camelCase(this.get('sort') || 'add_time');
-    const order = this.get('order') || 'DESC';
+    const categoryId = this.getInt('categoryId');
+    const brandId = this.getInt('brandId');
+    const keyword = this.getString('keyword');
+    const isNew = this.getBoolean('isNew');
+    const isHot = this.getBoolean('isHot');
+    const page = this.getInt('page', 1);
+    const limit = this.getInt('limit', 10);
+    const sort = think.camelCase(this.getString('sort', 'add_time'));
+    const order = this.getString('order', 'DESC');
     const userId = this.getUserId();
 
     const categoryService = this.service('category');
@@ -135,7 +135,7 @@ module.exports = class extends Base {
   }
 
   async relatedAction() {
-    const id = this.get('id');
+    const id = this.getInt('id');
     const goodsService = this.service('goods');
 
     const goods = await goodsService.findById(id);

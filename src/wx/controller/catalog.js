@@ -2,13 +2,13 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   async indexAction() {
-    const id = this.get('id');
+    const id = this.getInt('id');
     const categoryService = this.service('category');
 
     const l1CatList = await categoryService.queryL1();
 
     let currentCategory = null;
-    if (null != id) {
+    if (id) {
       currentCategory = await categoryService.findById(id);
     } else {
       if (l1CatList.length > 0) {
@@ -17,7 +17,7 @@ module.exports = class extends Base {
     }
 
     let currentSubCategory = null;
-    if (null != currentCategory) {
+    if (currentCategory) {
       currentSubCategory = await categoryService.queryByPid(currentCategory.id);
     }
 
@@ -54,7 +54,7 @@ module.exports = class extends Base {
   }
 
   async currentAction() {
-    const id = this.get('id');
+    const id = this.getInt('id');
     const categoryService = this.service('category');
 
     const currentCategory = await categoryService.findById(id);
