@@ -20,15 +20,11 @@ module.exports = class extends think.Model {
     return super.add(this._before(data), options);
   }
 
+  update(data, options) {
+    return super.update(this._before(data), options);
+  }
+
   afterDelete(data) {
-    return this._after(data);
-  }
-
-  beforeUpdate(data) {
-    return this._before(data);
-  }
-
-  afterUpdate(data) {
     return this._after(data);
   }
 
