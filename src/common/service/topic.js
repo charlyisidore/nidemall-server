@@ -25,7 +25,10 @@ module.exports = class extends think.Service {
       .where({
         deleted: false,
       })
-      .order({ [sort]: order })
+      .order({
+        [sort]: order,
+        id: 'ASC',
+      })
       .page(page, limit)
       .countSelect();
   }

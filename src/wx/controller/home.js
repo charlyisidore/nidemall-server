@@ -16,7 +16,7 @@ module.exports = class extends Base {
     const goodsService = this.service('goods');
     const brandService = this.service('brand');
     const topicService = this.service('topic');
-    const grouponService = this.service('groupon_rules');
+    const grouponRulesService = this.service('groupon_rules');
 
     const promises = {
       newGoodsList: goodsService.queryByNew(0, newLimit),
@@ -24,7 +24,7 @@ module.exports = class extends Base {
         couponService.queryAvailableList(userId, 0, 3) :
         couponService.queryList(0, 3)),
       channel: categoryService.queryChannel(),
-      grouponList: grouponService.queryRulesList(0, 5),
+      grouponList: grouponRulesService.wxQueryList(0, 5),
       banner: adService.queryIndex(),
       brandList: brandService.query(0, brandLimit),
       hotGoodsList: goodsService.queryByHot(0, hotLimit),
