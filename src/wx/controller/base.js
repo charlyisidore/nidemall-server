@@ -70,4 +70,8 @@ module.exports = class extends think.Controller {
   unauthz() {
     return this.fail(506, '无操作权限');
   }
+
+  success(data, message = '成功') {
+    return super.success(data, message);
+  }
 };
