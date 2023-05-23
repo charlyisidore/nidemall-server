@@ -4,27 +4,27 @@ module.exports = class extends think.Controller {
   }
 
   getBoolean(name, defaultValue = null) {
-    return parseInt(this.get(name)) ?? defaultValue;
+    return this._parseBoolean(this.get(name), defaultValue);
   }
 
   getInt(name, defaultValue = null) {
-    return parseInt(this.get(name)) ?? defaultValue;
+    return this._parseInt(this.get(name), defaultValue);
   }
 
   getString(name, defaultValue = null) {
-    return this.get(name) ?? defaultValue;
+    return this._parseString(this.get(name), defaultValue);
   }
 
   postBoolean(name, defaultValue = null) {
-    return parseInt(this.post(name)) ?? defaultValue;
+    return this._parseBoolean(this.post(name), defaultValue);
   }
 
   postInt(name, defaultValue = null) {
-    return parseInt(this.post(name)) ?? defaultValue;
+    return this._parseInt(this.post(name), defaultValue);
   }
 
   postString(name, defaultValue = null) {
-    return this.post(name) ?? defaultValue;
+    return this._parseString(this.post(name), defaultValue);
   }
 
   postJson(name, defaultValue = null) {
@@ -73,5 +73,25 @@ module.exports = class extends think.Controller {
 
   success(data, message = '成功') {
     return super.success(data, message);
+  }
+
+  _parseBoolean(value, defaultValue) {
+    if (undefined === value) {
+      return defaultValue;
+    } else if ('true' === value) {
+      return true;
+    } else if ('false' === value) {
+      return false;
+    } else {
+      return !!parseInt(value);
+    }
+  }
+
+  _parseInt(value, defaultValue) {
+    return (undefined === value) ? defaultValue : parseInt(value);
+  }
+
+  _parseString(value, defaultValue) {
+    return (undefined === value) ? defaultValue : value;
   }
 };
