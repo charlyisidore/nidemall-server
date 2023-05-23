@@ -10,6 +10,9 @@ module.exports = {
     issuer: 'nidemall',
     subject: 'nidemall auth token',
   },
+  system: {
+    prefix: 'litemall_',
+  },
   weixin: {
     // 小程序 appId
     // The AppId of the Mini Program

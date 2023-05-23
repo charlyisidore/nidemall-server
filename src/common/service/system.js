@@ -1,5 +1,5 @@
 module.exports = class extends think.Service {
-  static PREFIX = 'nidemall_';
+  prefix = '';
 
   config = {
     wx_index_new: '6',
@@ -25,7 +25,9 @@ module.exports = class extends think.Service {
   constructor() {
     super();
 
-    const re = new RegExp(`^${this.constructor.PREFIX}`);
+    this.prefix = think.config('system')?.prefix || '';
+
+    const re = new RegExp(`^${this.prefix}`);
 
     this.config = this.model('system')
       .select()
