@@ -78,9 +78,9 @@ module.exports = class extends think.Controller {
   _parseBoolean(value, defaultValue) {
     if (undefined === value) {
       return defaultValue;
-    } else if ('true' === value) {
+    } else if ('true' === value.toLowerCase()) {
       return true;
-    } else if ('false' === value) {
+    } else if ('false' === value.toLowerCase()) {
       return false;
     } else {
       return !!parseInt(value);
