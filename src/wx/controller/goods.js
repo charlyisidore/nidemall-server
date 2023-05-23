@@ -58,7 +58,7 @@ module.exports = class extends Base {
   }
 
   async categoryAction() {
-    const id = this.get('id');
+    const id = parseInt(this.get('id'));
     const categoryService = this.service('category');
 
     let current = await categoryService.findById(id);
@@ -82,8 +82,8 @@ module.exports = class extends Base {
   }
 
   async listAction() {
-    const categoryId = this.get('categoryId');
-    const brandId = this.get('brandId');
+    const categoryId = parseInt(this.get('categoryId'));
+    const brandId = parseInt(this.get('brandId'));
     const keyword = this.get('keyword');
     const isNew = this.get('isNew');
     const isHot = this.get('isHot');
@@ -97,7 +97,7 @@ module.exports = class extends Base {
     const goodsService = this.service('goods');
     const searchHistoryService = this.service('search_history');
 
-    if (userId && keyword != '') {
+    if (userId && keyword) {
       await searchHistoryService.save({
         keyword,
         userId,

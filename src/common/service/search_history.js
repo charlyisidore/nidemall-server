@@ -10,10 +10,9 @@ module.exports = class extends think.Service {
   save(searchHistory) {
     const now = new Date();
     return this.model('search_history')
-      .add({
+      .add(Object.assign(searchHistory, {
         addTime: now,
         updateTime: now,
-        ...searchHistory,
-      });
+      }));
   }
 }

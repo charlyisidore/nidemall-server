@@ -121,7 +121,10 @@ module.exports = class extends think.Service {
     model.where(where);
 
     if (sort && order) {
-      model.order({ [sort]: order });
+      model.order({
+        [sort]: order,
+        id: 'ASC',
+      });
     }
 
     return model
