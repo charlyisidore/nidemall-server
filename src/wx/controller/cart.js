@@ -234,18 +234,24 @@ module.exports = class extends Base {
     const userId = this.getUserId();
 
     // Cart
-    const cartId = this.postInt('cartId');
-    let addressId = this.postInt('addressId');
-    let couponId = this.postInt('couponId');
-    let userCouponId = this.postInt('userCouponId');
-    const grouponRulesId = this.postInt('grouponRulesId');
+    const cartId = this.getInt('cartId');
+    let addressId = this.getInt('addressId');
+    let couponId = this.getInt('couponId');
+    let userCouponId = this.getInt('userCouponId');
+    const grouponRulesId = this.getInt('grouponRulesId');
 
     const addressService = this.service('address');
     const cartService = this.service('cart');
+    const couponUserService = this.service('coupon_user');
+    const grouponRulesService = this.service('groupon_rules');
     const systemService = this.service('system');
 
     const freight = await systemService.getFreight();
     const freightLimit = await systemService.getFreightLimit();
+
+    if (!userId) {
+      return this.unlogin();
+    }
 
     let checkedAddress = null;
 
@@ -256,7 +262,7 @@ module.exports = class extends Base {
     if (!checkedAddress) {
       checkedAddress = await addressService.findDefault(userId);
 
-      if (!checkedAddress) {
+      if (think.isEmpty(checkedAddress)) {
         checkedAddress = { id: 0 };
       }
 
@@ -265,7 +271,7 @@ module.exports = class extends Base {
 
     let grouponPrice = 0.;
     const grouponRules = await grouponRulesService.findById(grouponRulesId);
-    if (grouponRules) {
+    if (!think.isEmpty(grouponRules)) {
       grouponPrice = grouponRules.discount;
     }
 
@@ -274,7 +280,7 @@ module.exports = class extends Base {
       checkedGoodsList = await cartService.queryByUidAndChecked(userId);
     } else {
       const cart = await cartService.findById(cartId, userId);
-      if (!cart) {
+      if (think.isEmpty(cart)) {
         return this.badArgumentValue();
       }
       checkedGoodsList = [cart];
@@ -282,7 +288,7 @@ module.exports = class extends Base {
 
     let checkedGoodsPrice = 0.;
     for (const cart of checkedGoodsList) {
-      if (grouponRules && grouponRules.goodsId == cart.goodsId) {
+      if (!think.isEmpty(grouponRules) && grouponRules.goodsId == cart.goodsId) {
         checkedGoodsPrice += (cart.price - grouponPrice) * cart.number;
       } else {
         checkedGoodsPrice += cart.price * cart.number;
@@ -304,7 +310,7 @@ module.exports = class extends Base {
         checkedGoodsList
       );
 
-      if (!coupon) {
+      if (think.isEmpty(coupon)) {
         continue;
       }
 
@@ -320,7 +326,7 @@ module.exports = class extends Base {
     let availableCouponLength = tmpCouponLength;
     let couponPrice = 0.;
 
-    if (!couponId || couponId == -1) {
+    if (!couponId || -1 == couponId) {
       couponId = -1;
       userCouponId = -1;
     } else if (!couponId) {
@@ -336,12 +342,12 @@ module.exports = class extends Base {
         checkedGoodsList
       );
 
-      if (coupon) {
-        couponPrice = coupon.discount;
-      } else {
+      if (think.isEmpty(coupon)) {
         couponPrice = tmpCouponPrice;
         couponId = tmpCouponId;
         userCouponId = tmpUserCouponId;
+      } else {
+        couponPrice = coupon.discount;
       }
     }
 
@@ -351,7 +357,7 @@ module.exports = class extends Base {
     }
 
     const integralPrice = 0.;
-    const orderTotalPrice = checkedGoodsPrice + freightPrice - couponPrice;
+    const orderTotalPrice = Math.max(0., checkedGoodsPrice + freightPrice - couponPrice);
     const actualPrice = orderTotalPrice - integralPrice;
 
     return this.success({
@@ -363,7 +369,7 @@ module.exports = class extends Base {
       grouponPrice,
       checkedAddress,
       availableCouponLength,
-      goodsTotalPrice,
+      goodsTotalPrice: checkedGoodsPrice,
       freightPrice,
       couponPrice,
       orderTotalPrice,
