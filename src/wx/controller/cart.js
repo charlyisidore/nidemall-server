@@ -388,7 +388,7 @@ module.exports = class extends Base {
     const cartList = [];
 
     for (const cart of list) {
-      const goods = goodsService.findById(cart.goodsId);
+      const goods = await goodsService.findById(cart.goodsId);
       if (!goods || !goods.isOnSale) {
         await cartService.deleteById(cart.id);
         think.logger.debug(`系统自动删除失效购物车商品 goodsId=${cart.goodsId} productId=${cart.productId}`);
@@ -410,7 +410,7 @@ module.exports = class extends Base {
       goodsAmount += amount;
 
       if (cart.checked) {
-        checkedGoogsCount += count;
+        checkedGoodsCount += count;
         checkedGoodsAmount += amount;
       }
     }
