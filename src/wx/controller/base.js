@@ -3,6 +3,38 @@ module.exports = class extends think.Controller {
 
   }
 
+  getBoolean(name, defaultValue = null) {
+    return parseInt(this.get(name)) ?? defaultValue;
+  }
+
+  getInt(name, defaultValue = null) {
+    return parseInt(this.get(name)) ?? defaultValue;
+  }
+
+  getString(name, defaultValue = null) {
+    return this.get(name) ?? defaultValue;
+  }
+
+  postBoolean(name, defaultValue = null) {
+    return parseInt(this.post(name)) ?? defaultValue;
+  }
+
+  postInt(name, defaultValue = null) {
+    return parseInt(this.post(name)) ?? defaultValue;
+  }
+
+  postString(name, defaultValue = null) {
+    return this.post(name) ?? defaultValue;
+  }
+
+  postJson(name, defaultValue = null) {
+    try {
+      return JSON.parse(this.post(name));
+    } catch (e) {
+      return defaultValue;
+    }
+  }
+
   getUserId() {
     return this.ctx.state.userId;
   }
