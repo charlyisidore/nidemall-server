@@ -49,7 +49,10 @@ module.exports = class extends think.Service {
 
     return this.model('comment')
       .where(where)
-      .order({ addTime: 'DESC' })
+      .order({
+        addTime: 'DESC',
+        id: 'ASC',
+      })
       .page(page, limit)
       .countSelect();
   }
