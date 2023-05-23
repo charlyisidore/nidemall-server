@@ -26,7 +26,7 @@ module.exports = class extends think.Service {
     return this.model('address')
       .where({
         userId,
-        default: true,
+        isDefault: true,
         deleted: false,
       })
       .find();
