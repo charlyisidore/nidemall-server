@@ -10,10 +10,9 @@ module.exports = class extends think.Service {
   add(footprint) {
     const now = new Date();
     return this.model('footprint')
-      .add({
+      .add(Object.assign(footprint, {
         addTime: now,
         updateTime: now,
-        ...footprint,
-      });
+      }));
   }
 }

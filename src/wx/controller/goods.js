@@ -2,11 +2,12 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   async detailAction() {
-    const id = this.get('id');
+    const id = parseInt(this.get('id'));
     const userId = this.getUserId();
 
     const brandService = this.service('brand');
     const collectService = this.service('collect');
+    const footprintService = this.service('footprint');
     const goodsService = this.service('goods');
     const goodsAttributeService = this.service('goods_attribute');
     const goodsSpecificationService = this.service('goods_specification');
