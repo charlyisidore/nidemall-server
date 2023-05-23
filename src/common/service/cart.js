@@ -68,7 +68,7 @@ module.exports = class extends think.Service {
       .where({
         userId,
         checked: true,
-        deleted: true,
+        deleted: false,
       })
       .select();
   }
