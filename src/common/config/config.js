@@ -1,6 +1,7 @@
 // default config
 module.exports = {
   workers: 1,
+  validateDefaultErrno: 402,
   auth: {
     header: 'X-Litemall-Token',
     secret: 'yFHYEORzoiaUZvnVY32yTlkN',
