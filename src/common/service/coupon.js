@@ -146,7 +146,7 @@ module.exports = class extends think.Service {
           });
         } else {
           const startTime = new Date();
-          const endTime = (new Date(startTime)).setDate(startTime.getDate() + days);
+          const endTime = (new Date(startTime)).setDate(startTime.getDate() + coupon.days);
 
           Object.assign(couponUser, {
             startTime,

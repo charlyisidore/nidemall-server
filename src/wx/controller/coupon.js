@@ -1,6 +1,12 @@
 const Base = require('./base.js');
 
 module.exports = class WxCouponController extends Base {
+  static COUPON = {
+    EXCEED_LIMIT: 740,
+    RECEIVE_FAIL: 741,
+    CODE_INVALID: 742,
+  };
+
   async listAction() {
     const page = this.get('page');
     const limit = this.get('limit');
@@ -121,11 +127,136 @@ module.exports = class WxCouponController extends Base {
   }
 
   async receiveAction() {
-    return this.success('todo');
+    const userId = this.getUserId();
+    const couponId = this.post('couponId');
+
+    const couponService = this.service('coupon');
+    const couponUserService = this.service('coupon_user');
+
+    const { STATUS, TIME_TYPE, TYPE } = couponService.constructor;
+    const { COUPON } = this.constructor;
+
+    if (think.isNullOrUndefined(userId)) {
+      return this.unlogin();
+    }
+
+    const coupon = await couponService.findById(couponId);
+    if (think.isEmpty(coupon)) {
+      return this.badArgumentValue();
+    }
+
+    const totalCoupons = await couponUserService.countCoupon(couponId);
+    if (0 != coupon.total && totalCoupons >= coupon.total) {
+      return this.fail(COUPON.EXCEED_LIMIT, '优惠券已领完');
+    }
+
+    const userCoupons = await couponUserService.countUserAndCoupon(userId, couponId);
+    if (0 != coupon.limit && userCoupons >= coupon.limit) {
+      return this.fail(COUPON.EXCEED_LIMIT, '优惠券已经领取过');
+    }
+
+    if (TYPE.REGISTER == coupon.type) {
+      return this.fail(COUPON.RECEIVE_FAIL, '新用户优惠券自动发送');
+    } else if (TYPE.CODE == coupon.type) {
+      return this.fail(COUPON.RECEIVE_FAIL, '优惠券只能兑换');
+    } else if (TYPE.COMMON != coupon.type) {
+      return this.fail(COUPON.RECEIVE_FAIL, '优惠券类型不支持');
+    }
+
+    switch (coupon.status) {
+      case STATUS.OUT:
+        return this.fail(COUPON.EXCEED_LIMIT, '优惠券已领完');
+      case STATUS.EXPIRED:
+        return this.fail(COUPON.RECEIVE_FAIL, '优惠券已经过期');
+    }
+
+    const couponUser = {
+      couponId,
+      userId,
+    };
+
+    if (TIME_TYPE.TIME == coupon.timeType) {
+      Object.assign(couponUser, {
+        startTime: coupon.startTime,
+        endTime: coupon.endTime,
+      });
+    } else {
+      const startTime = new Date();
+      const endTime = (new Date(startTime)).setDate(startTime.getDate() + coupon.days);
+
+      Object.assign(couponUser, {
+        startTime,
+        endTime,
+      });
+    }
+
+    await couponUserService.add(couponUser);
+
+    return this.success();
   }
 
   async exchangeAction() {
-    return this.success('todo');
+    const userId = this.getUserId();
+    const code = this.post('code');
+
+    const couponService = this.service('coupon');
+    const couponUserService = this.service('coupon_user');
+
+    const { COUPON } = this.constructor;
+
+    const coupon = await couponService.findByCode(code);
+    if (think.isEmpty(coupon)) {
+      return this.fail(COUPON.CODE_INVALID, '优惠券不正确');
+    }
+
+    const totalCoupons = await couponUserService.countCoupon(coupon.id);
+    if (0 != coupon.total && totalCoupons >= coupon.total) {
+      return this.fail(COUPON.EXCEED_LIMIT, '优惠券已兑换');
+    }
+
+    const userCoupons = await couponUserService.countUserAndCoupon(userId, coupon.id);
+    if (0 != coupon.limit && userCoupons >= coupon.limit) {
+      return this.fail(COUPON.EXCEED_LIMIT, '优惠券已兑换');
+    }
+
+    if (TYPE.REGISTER == coupon.type) {
+      return this.fail(COUPON.RECEIVE_FAIL, '新用户优惠券自动发送');
+    } else if (TYPE.COMMON == coupon.type) {
+      return this.fail(COUPON.RECEIVE_FAIL, '优惠券只能领取，不能兑换');
+    } else if (TYPE.CODE != coupon.type) {
+      return this.fail(COUPON.RECEIVE_FAIL, '优惠券类型不支持');
+    }
+
+    switch (coupon.status) {
+      case STATUS.OUT:
+        return this.fail(COUPON.EXCEED_LIMIT, '优惠券已兑换');
+      case STATUS.EXPIRED:
+        return this.fail(COUPON.RECEIVE_FAIL, '优惠券已经过期');
+    }
+
+    const couponUser = {
+      couponId: coupon.id,
+      userId,
+    };
+
+    if (TIME_TYPE.TIME == coupon.timeType) {
+      Object.assign(couponUser, {
+        startTime: coupon.startTime,
+        endTime: coupon.endTime,
+      });
+    } else {
+      const startTime = new Date();
+      const endTime = (new Date(startTime)).setDate(startTime.getDate() + coupon.days);
+
+      Object.assign(couponUser, {
+        startTime,
+        endTime,
+      });
+    }
+
+    await couponUserService.add(couponUser);
+
+    return this.success();
   }
 
   async change(couponList) {
