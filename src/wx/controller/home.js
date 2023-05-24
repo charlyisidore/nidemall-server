@@ -4,12 +4,6 @@ module.exports = class extends Base {
   async indexAction() {
     const userId = this.getUserId();
 
-    const systemService = this.service('system');
-    const newLimit = parseInt(await systemService.getNewLimit());
-    const hotLimit = parseInt(await systemService.getHotLimit());
-    const brandLimit = parseInt(await systemService.getBrandLimit());
-    const topicLimit = parseInt(await systemService.getTopicLimit());
-
     const adService = this.service('ad');
     const categoryService = this.service('category');
     const couponService = this.service('coupon');
@@ -17,12 +11,18 @@ module.exports = class extends Base {
     const brandService = this.service('brand');
     const topicService = this.service('topic');
     const grouponRulesService = this.service('groupon_rules');
+    const systemService = this.service('system');
+
+    const newLimit = parseInt(await systemService.getNewLimit());
+    const hotLimit = parseInt(await systemService.getHotLimit());
+    const brandLimit = parseInt(await systemService.getBrandLimit());
+    const topicLimit = parseInt(await systemService.getTopicLimit());
 
     const promises = {
       newGoodsList: goodsService.queryByNew(0, newLimit),
-      couponList: (userId ?
-        couponService.queryAvailableList(userId, 0, 3) :
-        couponService.queryList(0, 3)),
+      couponList: (think.isNullOrUndefined(userId) ?
+        couponService.queryList(0, 3) :
+        couponService.queryAvailableList(userId, 0, 3)),
       channel: categoryService.queryChannel(),
       grouponList: grouponRulesService.wxQueryList(0, 5),
       banner: adService.queryIndex(),
@@ -85,13 +85,9 @@ module.exports = class extends Base {
         l2List.push(catL2.id);
       }
 
-      let categoryGoods;
-
-      if (l2List.length == 0) {
-        categoryGoods = [];
-      } else {
-        categoryGoods = (await goodsService.queryByCategory(l2List, 0, catlogMoreLimit)).data;
-      }
+      const categoryGoods = think.isEmpty(l2List) ?
+        [] :
+        (await goodsService.queryByCategory(l2List, 0, catlogMoreLimit)).data;
 
       categoryList.push({
         id: catL1.id,
