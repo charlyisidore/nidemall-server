@@ -2,8 +2,8 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   async detailAction() {
-    const id = this.getInt('id');
     const userId = this.getUserId();
+    const id = this.get('id');
 
     const brandService = this.service('brand');
     const collectService = this.service('collect');
@@ -18,25 +18,25 @@ module.exports = class extends Base {
 
     const info = await goodsService.findById(id);
 
-    const promises = {
-      issue: issueService.querySelective('', 1, 4),
-      comment: this.getComments(id),
-      specificationList: goodsSpecificationService.getSpecificationVoList(id),
-      productList: goodsProductService.queryByGid(id),
-      attribute: goodsAttributeService.queryByGid(id),
-      brand: (info.brandId == 0) ? {} : brandService.findById(info.brandId),
-      groupon: grouponRulesService.queryByGoodsId(id),
-      share: systemService.isAutoCreateShareImage(),
-    };
-
     let userHasCollect = 0;
-    if (userId) {
+    if (!think.isNullOrUndefined(userId)) {
       userHasCollect = await collectService.count(userId, 0, id);
       await footprintService.add({
         userId,
         goodsId: id,
       });
     }
+
+    const promises = {
+      issue: issueService.querySelective('', 1, 4),
+      comment: this.getComments(id),
+      specificationList: goodsSpecificationService.getSpecificationVoList(id),
+      productList: goodsProductService.queryByGid(id),
+      attribute: goodsAttributeService.queryByGid(id),
+      brand: think.isEmpty(info.brandId) ? {} : brandService.findById(info.brandId),
+      groupon: grouponRulesService.queryByGoodsId(id),
+      share: systemService.isAutoCreateShareImage(),
+    };
 
     const values = await Promise.all(Object.values(promises));
     const data = Object.fromEntries(
@@ -59,14 +59,14 @@ module.exports = class extends Base {
   }
 
   async categoryAction() {
-    const id = this.getInt('id');
+    const id = this.get('id');
     const categoryService = this.service('category');
 
     let current = await categoryService.findById(id);
     let parent = null;
     let children = null;
 
-    if (current.pid == 0) {
+    if (0 == current.pid) {
       parent = current;
       children = await categoryService.queryByPid(current.id);
       current = (children.length > 0) ? children[0] : current;
@@ -83,22 +83,22 @@ module.exports = class extends Base {
   }
 
   async listAction() {
-    const categoryId = this.getInt('categoryId');
-    const brandId = this.getInt('brandId');
-    const keyword = this.getString('keyword');
-    const isNew = this.getBoolean('isNew');
-    const isHot = this.getBoolean('isHot');
-    const page = this.getInt('page', 1);
-    const limit = this.getInt('limit', 10);
-    const sort = think.camelCase(this.getString('sort', 'add_time'));
-    const order = this.getString('order', 'DESC');
     const userId = this.getUserId();
+    const categoryId = this.get('categoryId');
+    const brandId = this.get('brandId');
+    const keyword = this.get('keyword');
+    const isNew = this.get('isNew');
+    const isHot = this.get('isHot');
+    const page = this.get('page');
+    const limit = this.get('limit');
+    const sort = think.camelCase(this.get('sort'));
+    const order = this.get('order');
 
     const categoryService = this.service('category');
     const goodsService = this.service('goods');
     const searchHistoryService = this.service('search_history');
 
-    if (userId && keyword) {
+    if (!think.isNullOrUndefined(userId) && !think.isTrueEmpty(keyword)) {
       await searchHistoryService.save({
         keyword,
         userId,
@@ -120,9 +120,9 @@ module.exports = class extends Base {
 
     const goodsCatIds = await goodsService.getCatIds(brandId, keyword, isHot, isNew);
 
-    const categoryList = (goodsCatIds.length > 0) ?
-      (await categoryService.queryL2ByIds(goodsCatIds)) :
-      [];
+    const categoryList = think.isEmpty(goodsCatIds) ?
+      [] :
+      (await categoryService.queryL2ByIds(goodsCatIds));
 
     return this.success({
       total: goodsList.count,
@@ -135,11 +135,11 @@ module.exports = class extends Base {
   }
 
   async relatedAction() {
-    const id = this.getInt('id');
+    const id = this.get('id');
     const goodsService = this.service('goods');
 
     const goods = await goodsService.findById(id);
-    if (!goods) {
+    if (think.isEmpty(goods)) {
       return this.badArgumentValue();
     }
 
@@ -179,8 +179,8 @@ module.exports = class extends Base {
             addTime: comment.addTime,
             content: comment.content,
             adminContent: comment.adminContent,
-            nickname: (user ? user.nickname : ''),
-            avatar: (user ? user.avatar : ''),
+            nickname: think.isEmpty(user) ? '' : user.nickname,
+            avatar: think.isEmpty(user) ? '' : user.avatar,
             picList: comment.picUrls,
           };
         })
