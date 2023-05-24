@@ -1,4 +1,4 @@
-module.exports = class extends think.Service {
+module.exports = class SystemService extends think.Service {
   prefix = '';
 
   config = {

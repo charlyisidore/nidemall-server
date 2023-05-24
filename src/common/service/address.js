@@ -1,4 +1,4 @@
-module.exports = class extends think.Service {
+module.exports = class AddressService extends think.Service {
   constructor() {
     super();
   }

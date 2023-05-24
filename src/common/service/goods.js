@@ -1,4 +1,4 @@
-module.exports = class extends think.Service {
+module.exports = class GoodsService extends think.Service {
   static FIELDS = [
     'id',
     'name',

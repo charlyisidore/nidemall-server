@@ -1,4 +1,4 @@
-module.exports = class extends think.Service {
+module.exports = class OrderService extends think.Service {
   static STATUS = {
     CREATE: 101,
     PAY: 201,

@@ -1,4 +1,4 @@
-module.exports = class extends think.Service {
+module.exports = class CategoryService extends think.Service {
   static CHANNEL_FIELDS = [
     'id',
     'name',

@@ -1,4 +1,4 @@
-module.exports = class extends think.Service {
+module.exports = class CouponService extends think.Service {
   static TYPE = {
     COMMON: 0,
     REGISTER: 1,

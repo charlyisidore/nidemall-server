@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-module.exports = class extends think.Service {
+module.exports = class AuthService extends think.Service {
   constructor() {
     super();
   }

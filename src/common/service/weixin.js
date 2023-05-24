@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-module.exports = class extends think.Service {
+module.exports = class WeixinService extends think.Service {
   constructor() {
     super();
   }

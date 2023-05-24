@@ -1,6 +1,6 @@
 const assert = require('node:assert');
 
-module.exports = class extends think.Service {
+module.exports = class UserService extends think.Service {
   constructor() {
     super();
   }

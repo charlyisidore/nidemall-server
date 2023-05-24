@@ -1,4 +1,4 @@
-module.exports = class extends think.Service {
+module.exports = class GrouponRulesService extends think.Service {
   static RULE_STATUS = {
     ON: 0,
     DOWN_EXPIRE: 1,
