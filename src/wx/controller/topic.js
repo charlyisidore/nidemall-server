@@ -2,10 +2,10 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   async listAction() {
-    const page = this.getInt('page', 1);
-    const limit = this.getInt('limit', 10);
-    const sort = think.camelCase(this.getString('sort', 'add_time'));
-    const order = this.getString('order', 'DESC');
+    const page = this.get('page');
+    const limit = this.get('limit');
+    const sort = think.camelCase(this.get('sort'));
+    const order = this.get('order');
 
     const topicService = this.service('topic');
     const topicList = await topicService.queryList(page, limit, sort, order);
@@ -21,24 +21,30 @@ module.exports = class extends Base {
 
   async detailAction() {
     const userId = this.getUserId();
-    const id = this.getInt('id');
+    const id = this.get('id');
 
     const collectService = this.service('collect');
     const goodsService = this.service('goods');
     const topicService = this.service('topic');
 
     const topic = await topicService.findById(id);
+
+    if (think.isEmpty(topic)) {
+      return this.badArgument();
+    }
+
     const goodsList = [];
     for (const goodsId of topic.goods) {
       const goods = await goodsService.findByIdVo(goodsId);
-      if (goods) {
+
+      if (!think.isEmpty(goods)) {
         goodsList.push(goods);
       }
     }
 
-    const userHasCollect = userId ?
-      await collectService.count(userId, 1, id) :
-      0;
+    const userHasCollect = think.isNullOrUndefined(userId) ?
+      0 :
+      (await collectService.count(userId, 1, id));
 
     return this.success({
       topic,
@@ -48,7 +54,7 @@ module.exports = class extends Base {
   }
 
   async relatedAction() {
-    const id = this.getInt('id');
+    const id = this.get('id');
     const topicService = this.service('topic');
 
     const topicRelatedList = await topicService.queryRelatedList(id, 0, 4);
