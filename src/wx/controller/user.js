@@ -5,7 +5,7 @@ module.exports = class extends Base {
     const userId = this.getUserId();
     const orderService = this.service('order');
 
-    if (!userId) {
+    if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
     }
 
