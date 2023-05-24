@@ -59,7 +59,7 @@ module.exports = class extends think.Service {
       model.order({ [sort]: order })
     }
 
-    return model.select();
+    return model.countSelect();
   }
 
   /**
@@ -93,7 +93,7 @@ module.exports = class extends think.Service {
       .where(where)
       .order({ addTime: 'DESC' })
       .page(page, limit)
-      .select();
+      .countSelect();
   }
 
   /**
@@ -172,18 +172,18 @@ module.exports = class extends think.Service {
     const goodsService = think.service('goods');
 
     const coupon = await this.findById(couponId);
-    if (!coupon || coupon.deleted) {
+    if (think.isEmpty(coupon) || coupon.deleted) {
       return null;
     }
 
     let couponUser = await couponUserService.findById(userCouponId);
-    if (!couponUser) {
+    if (think.isEmpty(couponUser)) {
       couponUser = await couponUserService.queryOne(userId, couponId);
     } else if (couponId != couponUser.couponId) {
       return null;
     }
 
-    if (!couponUser) {
+    if (think.isEmpty(couponUser)) {
       return null;
     }
 
@@ -198,6 +198,7 @@ module.exports = class extends think.Service {
     } else if (this.constructor.TIME_TYPE.DAYS == timeType) {
       const addTime = couponUser.addTime;
       const expired = (new Date(addTime)).setDate(addTime.getDate() + days);
+
       if (now > expired) {
         return null;
       }

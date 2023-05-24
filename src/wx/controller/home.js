@@ -39,7 +39,7 @@ module.exports = class WxHomeController extends Base {
 
     return this.success({
       newGoodsList: data.newGoodsList,
-      couponList: data.couponList,
+      couponList: data.couponList.data,
       channel: data.channel,
       grouponList: data.grouponList,
       banner: data.banner,
