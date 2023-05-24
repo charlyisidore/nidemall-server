@@ -12,22 +12,24 @@ module.exports = class WxAuthController extends Base {
   static DEFAULT_AVATAR = 'https://yanxuan.nosdn.127.net/80841d741d7fa3073e0ae27bf487339f.jpg?imageView&quality=90&thumbnail=64x64';
 
   async loginAction() {
-    const authService = this.service('auth');
-    const userService = this.service('user');
-
     const username = this.post('username');
     const password = this.post('password');
 
-    if (undefined === username || undefined === password) {
+    const authService = this.service('auth');
+    const userService = this.service('user');
+
+    if (think.isTrueEmpty(username) || think.isTrueEmpty(password)) {
       return this.badArgument();
     }
 
     const userList = await userService.queryByUsername(username);
 
+    if (think.isEmpty(userList)) {
+      return this.fail(this.constructor.AUTH_INVALID_ACCOUNT, '账号不存在');
+    }
+
     if (userList.length > 1) {
       return this.serious();
-    } else if (userList.length == 0) {
-      return this.fail(this.constructor.AUTH_INVALID_ACCOUNT, '账号不存在');
     }
 
     const [user] = userList;
@@ -55,15 +57,15 @@ module.exports = class WxAuthController extends Base {
   }
 
   async login_by_weixinAction() {
+    const code = this.post('code');
+    const userInfo = this.post('userInfo');
+
     const authService = this.service('auth');
     const couponService = this.service('coupon');
     const userService = this.service('user');
     const weixinService = this.service('weixin');
 
-    const code = this.post('code');
-    const userInfo = this.post('userInfo');
-
-    if (undefined === code || undefined === userInfo) {
+    if (think.isNullOrUndefined(code) || think.isEmpty(userInfo)) {
       return this.badArgument();
     }
 
@@ -80,20 +82,20 @@ module.exports = class WxAuthController extends Base {
       think.logger.error(e.toString());
     }
 
-    if (!sessionKey || !openid) {
+    if (think.isNullOrUndefined(sessionKey) || think.isNullOrUndefined(openid)) {
       return this.fail();
     }
 
     const now = new Date();
     let user = await userService.queryByOid(openid);
 
-    if (!user) {
+    if (think.isEmpty(user)) {
       user = {
         username: openid,
         password: openid,
         weixinOpenid: openid,
         avatar: userInfo.avatarUrl,
-        nickname: userInfo.nickname,
+        nickname: userInfo.nickName,
         gender: userInfo.gender,
         userLevel: 0,
         status: 0,
@@ -102,7 +104,7 @@ module.exports = class WxAuthController extends Base {
         sessionKey,
       };
 
-      await userService.add(user);
+      user.id = await userService.add(user);
       await couponService.assignForRegister(user.id);
     } else {
       Object.assign(user, {
@@ -111,7 +113,7 @@ module.exports = class WxAuthController extends Base {
         sessionKey,
       });
 
-      if (!(await userService.updateById(user))) {
+      if (!await userService.updateById(user)) {
         return this.updatedDataFailed();
       }
     }
@@ -129,43 +131,47 @@ module.exports = class WxAuthController extends Base {
   }
 
   async registerAction() {
-    const authService = this.service('auth');
-    const userService = this.service('user');
-    const weixinService = this.service('weixin');
-
     const username = this.post('username');
     const password = this.post('password');
     const mobile = this.post('mobile');
     const code = this.post('code');
     const wxCode = this.post('wxCode');
 
-    if (!username || !password || !mobile || !code) {
+    const authService = this.service('auth');
+    const userService = this.service('user');
+    const weixinService = this.service('weixin');
+
+    if (think.isTrueEmpty(username) ||
+      think.isTrueEmpty(password) ||
+      think.isTrueEmpty(mobile) ||
+      think.isTrueEmpty(code)) {
       return this.badArgument();
     }
 
     let userList = await userService.queryByUsername(username);
-    if (userList.length > 0) {
+    if (!think.isEmpty(userList)) {
       return this.fail(this.constructor.AUTH_NAME_REGISTERED, '用户名已注册');
     }
 
     userList = await userService.queryByMobile(mobile);
-    if (userList.length > 0) {
+    if (!think.isEmpty(userList)) {
       return this.fail(this.constructor.AUTH_MOBILE_REGISTERED, '手机号已注册');
     }
 
-    if (!this.isMobileSimple(mobile)) {
+    if (!/^[1]\d{10}$/.test(mobile)) {
       return this.fail(this.constructor.AUTH_INVALID_MOBILE, '手机号格式不正确');
     }
 
+    // TODO
     const cacheCode = CaptchaCodeManager.getCachedCaptcha(mobile);
 
-    if (!cacheCode || cacheCode != code) {
+    if (think.isEmpty(cacheCode) || cacheCode != code) {
       return this.fail(this.constructor.AUTH_CAPTCHA_UNMATCH, '验证码错误');
     }
 
     let openid = '';
 
-    if (!wxCode) {
+    if (!think.isTrueEmpty(wxCode)) {
       try {
         const response = await weixinService.login(code, userInfo);
 
@@ -205,7 +211,7 @@ module.exports = class WxAuthController extends Base {
       lastLoginIp: this.ip,
     };
 
-    await userService.add(user);
+    user.id = await userService.add(user);
     await couponService.assignForRegister(user.id);
 
     const userInfo = {
@@ -230,14 +236,12 @@ module.exports = class WxAuthController extends Base {
   }
 
   async logoutAction() {
-    if (!this.getUserId()) {
+    const userId = this.getUserId();
+
+    if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
     }
 
     return this.success();
-  }
-
-  isMobileSimple(input) {
-    return /^[1]\d{10}$/.test(input);
   }
 };
