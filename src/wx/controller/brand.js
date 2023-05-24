@@ -2,10 +2,10 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   async listAction() {
-    const page = this.getInt('page', 1);
-    const limit = this.getInt('limit', 10);
-    const sort = think.camelCase(this.getString('sort', 'add_time'));
-    const order = this.getString('order', 'DESC');
+    const page = this.get('page');
+    const limit = this.get('limit');
+    const sort = think.camelCase(this.get('sort'));
+    const order = this.get('order');
 
     const brandService = this.service('brand');
     const brandList = await brandService.query(page, limit, sort, order);
@@ -20,11 +20,11 @@ module.exports = class extends Base {
   }
 
   async detailAction() {
-    const id = this.getInt('id');
+    const id = this.get('id');
     const brandService = this.service('brand');
 
     const entity = await brandService.findById(id);
-    if (!entity) {
+    if (think.isEmpty(entity)) {
       return this.badArgumentValue();
     }
 
