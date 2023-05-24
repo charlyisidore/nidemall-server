@@ -3,6 +3,7 @@ const Base = require('./base.js');
 module.exports = class WxCatalogController extends Base {
   async indexAction() {
     const id = this.get('id');
+    /** @type {CategoryService} */
     const categoryService = this.service('category');
 
     const l1CatList = await categoryService.queryL1();
@@ -29,6 +30,7 @@ module.exports = class WxCatalogController extends Base {
   }
 
   async allAction() {
+    /** @type {CategoryService} */
     const categoryService = this.service('category');
 
     const l1CatList = await categoryService.queryL1();
@@ -55,6 +57,7 @@ module.exports = class WxCatalogController extends Base {
 
   async currentAction() {
     const id = this.get('id');
+    /** @type {CategoryService} */
     const categoryService = this.service('category');
 
     const currentCategory = await categoryService.findById(id);

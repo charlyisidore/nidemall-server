@@ -13,6 +13,7 @@ module.exports = class WxCouponController extends Base {
     const sort = think.camelCase(this.get('sort'));
     const order = this.get('order');
 
+    /** @type {CouponService} */
     const couponService = this.service('coupon');
 
     const couponList = await couponService.queryList(page, limit, sort, order);
@@ -34,6 +35,7 @@ module.exports = class WxCouponController extends Base {
     const sort = think.camelCase(this.get('sort'));
     const order = this.get('order');
 
+    /** @type {CouponUserService} */
     const couponUserService = this.service('coupon_user');
 
     if (think.isNullOrUndefined(userId)) {
@@ -66,9 +68,13 @@ module.exports = class WxCouponController extends Base {
     const cartId = this.get('cartId');
     const grouponRulesId = this.get('grouponRulesId');
 
+    /** @type {CartService} */
     const cartService = this.service('cart');
+    /** @type {CouponService} */
     const couponService = this.service('coupon');
+    /** @type {CouponUserService} */
     const couponUserService = this.service('coupon_user');
+    /** @type {GrouponRulesService} */
     const grouponRulesService = this.service('groupon_rules');
 
     if (think.isNullOrUndefined(userId)) {
@@ -130,7 +136,9 @@ module.exports = class WxCouponController extends Base {
     const userId = this.getUserId();
     const couponId = this.post('couponId');
 
+    /** @type {CouponService} */
     const couponService = this.service('coupon');
+    /** @type {CouponUserService} */
     const couponUserService = this.service('coupon_user');
 
     const { STATUS, TIME_TYPE, TYPE } = couponService.constructor;
@@ -199,7 +207,9 @@ module.exports = class WxCouponController extends Base {
     const userId = this.getUserId();
     const code = this.post('code');
 
+    /** @type {CouponService} */
     const couponService = this.service('coupon');
+    /** @type {CouponUserService} */
     const couponUserService = this.service('coupon_user');
 
     const { COUPON } = this.constructor;
@@ -260,6 +270,7 @@ module.exports = class WxCouponController extends Base {
   }
 
   async change(couponList) {
+    /** @type {CouponService} */
     const couponService = this.service('coupon');
 
     return await Promise.all(

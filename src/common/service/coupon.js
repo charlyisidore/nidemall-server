@@ -168,7 +168,9 @@ module.exports = class CouponService extends think.Service {
    * @param {object[]} cartList 
    */
   async checkCoupon(userId, couponId, userCouponId, checkedGoodsPrice, cartList) {
+    /** @type {CouponUserService} */
     const couponUserService = think.service('coupon_user');
+    /** @type {GoodsService} */
     const goodsService = think.service('goods');
 
     const coupon = await this.findById(couponId);

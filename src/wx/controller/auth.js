@@ -17,7 +17,9 @@ module.exports = class WxAuthController extends Base {
     const username = this.post('username');
     const password = this.post('password');
 
+    /** @type {AuthService} */
     const authService = this.service('auth');
+    /** @type {UserService} */
     const userService = this.service('user');
 
     const { AUTH } = this.constructor;
@@ -64,9 +66,13 @@ module.exports = class WxAuthController extends Base {
     const code = this.post('code');
     const userInfo = this.post('userInfo');
 
+    /** @type {AuthService} */
     const authService = this.service('auth');
+    /** @type {CouponService} */
     const couponService = this.service('coupon');
+    /** @type {UserService} */
     const userService = this.service('user');
+    /** @type {WeixinService} */
     const weixinService = this.service('weixin');
 
     if (think.isNullOrUndefined(code) || think.isEmpty(userInfo)) {
@@ -141,8 +147,11 @@ module.exports = class WxAuthController extends Base {
     const code = this.post('code');
     const wxCode = this.post('wxCode');
 
+    /** @type {AuthService} */
     const authService = this.service('auth');
+    /** @type {UserService} */
     const userService = this.service('user');
+    /** @type {WeixinService} */
     const weixinService = this.service('weixin');
 
     const { AUTH } = this.constructor;

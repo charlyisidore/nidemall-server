@@ -18,8 +18,11 @@ module.exports = class WxCartController extends Base {
       'number',
     ].join(','));
 
+    /** @type {CartService} */
     const cartService = this.service('cart');
+    /** @type {GoodsService} */
     const goodsService = this.service('goods');
+    /** @type {GoodsProductService} */
     const goodsProductService = this.service('goods_product');
 
     const { GOODS } = this.constructor;
@@ -83,8 +86,11 @@ module.exports = class WxCartController extends Base {
       'number',
     ].join(','));
 
+    /** @type {CartService} */
     const cartService = this.service('cart');
+    /** @type {GoodsService} */
     const goodsService = this.service('goods');
+    /** @type {GoodsProductService} */
     const goodsProductService = this.service('goods_product');
 
     const { GOODS } = this.constructor;
@@ -153,8 +159,11 @@ module.exports = class WxCartController extends Base {
       'number',
     ].join(','));
 
+    /** @type {CartService} */
     const cartService = this.service('cart');
+    /** @type {GoodsService} */
     const goodsService = this.service('goods');
+    /** @type {GoodsProductService} */
     const goodsProductService = this.service('goods_product');
 
     const { GOODS } = this.constructor;
@@ -201,6 +210,7 @@ module.exports = class WxCartController extends Base {
     const productIds = this.post('productIds');
     const isChecked = this.post('isChecked');
 
+    /** @type {CartService} */
     const cartService = this.service('cart');
 
     if (think.isNullOrUndefined(userId)) {
@@ -220,6 +230,7 @@ module.exports = class WxCartController extends Base {
     const userId = this.getUserId();
     const productIds = this.post('productIds');
 
+    /** @type {CartService} */
     const cartService = this.service('cart');
 
     if (think.isNullOrUndefined(userId)) {
@@ -247,10 +258,15 @@ module.exports = class WxCartController extends Base {
     let userCouponId = this.get('userCouponId');
     const grouponRulesId = this.get('grouponRulesId');
 
+    /** @type {AddressService} */
     const addressService = this.service('address');
+    /** @type {CartService} */
     const cartService = this.service('cart');
+    /** @type {CouponUserService} */
     const couponUserService = this.service('coupon_user');
+    /** @type {GrouponRulesService} */
     const grouponRulesService = this.service('groupon_rules');
+    /** @type {SystemService} */
     const systemService = this.service('system');
 
     const freight = await systemService.getFreight();
@@ -388,7 +404,9 @@ module.exports = class WxCartController extends Base {
    * @param {number?} userId 
    */
   async index(userId) {
+    /** @type {CartService} */
     const cartService = this.service('cart');
+    /** @type {GoodsService} */
     const goodsService = this.service('goods');
 
     if (think.isNullOrUndefined(userId)) {
@@ -442,6 +460,7 @@ module.exports = class WxCartController extends Base {
    * @param {number?} userId 
    */
   async goodsCount(userId) {
+    /** @type {CartService} */
     const cartService = this.service('cart');
 
     if (think.isNullOrUndefined(userId)) {

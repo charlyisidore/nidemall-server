@@ -3,6 +3,7 @@ const Base = require('./base.js');
 module.exports = class WxAddressController extends Base {
   async listAction() {
     const userId = this.getUserId();
+    /** @type {AddressService} */
     const addressService = this.service('address');
 
     if (think.isNullOrUndefined(userId)) {
@@ -24,6 +25,7 @@ module.exports = class WxAddressController extends Base {
     const userId = this.getUserId();
     const id = this.get('id');
 
+    /** @type {AddressService} */
     const addressService = this.service('address');
 
     if (think.isNullOrUndefined(userId)) {
@@ -53,6 +55,7 @@ module.exports = class WxAddressController extends Base {
       'isDefault',
     ].join(','));
 
+    /** @type {AddressService} */
     const addressService = this.service('address');
 
     if (think.isNullOrUndefined(userId)) {
@@ -95,6 +98,7 @@ module.exports = class WxAddressController extends Base {
     const userId = this.getUserId();
     const id = this.post('id');
 
+    /** @type {AddressService} */
     const addressService = this.service('address');
 
     if (think.isNullOrUndefined(userId)) {

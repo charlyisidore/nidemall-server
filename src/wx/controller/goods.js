@@ -5,15 +5,25 @@ module.exports = class WxGoodsController extends Base {
     const userId = this.getUserId();
     const id = this.get('id');
 
+    /** @type {BrandService} */
     const brandService = this.service('brand');
+    /** @type {CollectService} */
     const collectService = this.service('collect');
+    /** @type {FootprintService} */
     const footprintService = this.service('footprint');
+    /** @type {GoodsService} */
     const goodsService = this.service('goods');
+    /** @type {GoodsAttributeService} */
     const goodsAttributeService = this.service('goods_attribute');
+    /** @type {GoodsSpecificationService} */
     const goodsSpecificationService = this.service('goods_specification');
+    /** @type {GoodsProductService} */
     const goodsProductService = this.service('goods_product');
+    /** @type {GrouponRulesService} */
     const grouponRulesService = this.service('groupon_rules');
+    /** @type {IssueService} */
     const issueService = this.service('issue');
+    /** @type {SystemService} */
     const systemService = this.service('system');
 
     const info = await goodsService.findById(id);
@@ -60,6 +70,7 @@ module.exports = class WxGoodsController extends Base {
 
   async categoryAction() {
     const id = this.get('id');
+    /** @type {CategoryService} */
     const categoryService = this.service('category');
 
     let current = await categoryService.findById(id);
@@ -94,8 +105,11 @@ module.exports = class WxGoodsController extends Base {
     const sort = think.camelCase(this.get('sort'));
     const order = this.get('order');
 
+    /** @type {CategoryService} */
     const categoryService = this.service('category');
+    /** @type {GoodsService} */
     const goodsService = this.service('goods');
+    /** @type {SearchHistoryService} */
     const searchHistoryService = this.service('search_history');
 
     if (!think.isNullOrUndefined(userId) && !think.isTrueEmpty(keyword)) {
@@ -136,6 +150,7 @@ module.exports = class WxGoodsController extends Base {
 
   async relatedAction() {
     const id = this.get('id');
+    /** @type {GoodsService} */
     const goodsService = this.service('goods');
 
     const goods = await goodsService.findById(id);
@@ -155,6 +170,7 @@ module.exports = class WxGoodsController extends Base {
   }
 
   async countAction() {
+    /** @type {GoodsService} */
     const goodsService = this.service('goods');
 
     return this.success(await goodsService.queryOnSale());
@@ -165,7 +181,9 @@ module.exports = class WxGoodsController extends Base {
    * @param {number} id 
    */
   async getComments(id) {
+    /** @type {CommentService} */
     const commentService = this.service('comment');
+    /** @type {UserService} */
     const userService = this.service('user');
 
     const comments = await commentService.queryGoodsByGid(id, 0, 2);

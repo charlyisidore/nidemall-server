@@ -12,8 +12,11 @@ module.exports = class WxCommentController extends Base {
       'picUrls',
     ].join(','));
 
+    /** @type {CommentService} */
     const commentService = this.service('comment');
+    /** @type {GoodsService} */
     const goodsService = this.service('goods');
+    /** @type {TopicService} */
     const topicService = this.service('topic');
 
     if (think.isNullOrUndefined(userId)) {
@@ -58,6 +61,7 @@ module.exports = class WxCommentController extends Base {
     const type = this.get('type');
     const valueId = this.get('valueId');
 
+    /** @type {CommentService} */
     const commentService = this.service('comment');
 
     const allCount = await commentService.count(type, valueId, 0);
@@ -76,7 +80,9 @@ module.exports = class WxCommentController extends Base {
     const page = this.get('page');
     const limit = this.get('limit');
 
+    /** @type {CommentService} */
     const commentService = this.service('comment');
+    /** @type {UserService} */
     const userService = this.service('user');
 
     const commentList = await commentService.query(type, valueId, showType, page, limit);

@@ -4,13 +4,21 @@ module.exports = class WxHomeController extends Base {
   async indexAction() {
     const userId = this.getUserId();
 
+    /** @type {AdService} */
     const adService = this.service('ad');
+    /** @type {CategoryService} */
     const categoryService = this.service('category');
+    /** @type {CouponService} */
     const couponService = this.service('coupon');
+    /** @type {GoodsService} */
     const goodsService = this.service('goods');
+    /** @type {BrandService} */
     const brandService = this.service('brand');
+    /** @type {TopicService} */
     const topicService = this.service('topic');
+    /** @type {GrouponRulesService} */
     const grouponRulesService = this.service('groupon_rules');
+    /** @type {SystemService} */
     const systemService = this.service('system');
 
     const newLimit = parseInt(await systemService.getNewLimit());
@@ -51,6 +59,7 @@ module.exports = class WxHomeController extends Base {
   }
 
   async aboutAction() {
+    /** @type {SystemService} */
     const systemService = this.service('system');
 
     return this.success({
@@ -67,8 +76,11 @@ module.exports = class WxHomeController extends Base {
    * 
    */
   async getCategoryList() {
+    /** @type {CategoryService} */
     const categoryService = this.service('category');
+    /** @type {GoodsService} */
     const goodsService = this.service('goods');
+    /** @type {SystemService} */
     const systemService = this.service('system');
 
     const catlogListLimit = parseInt(await systemService.getCatlogListLimit());

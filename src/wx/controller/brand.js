@@ -7,6 +7,7 @@ module.exports = class WxBrandController extends Base {
     const sort = think.camelCase(this.get('sort'));
     const order = this.get('order');
 
+    /** @type {BrandService} */
     const brandService = this.service('brand');
     const brandList = await brandService.query(page, limit, sort, order);
 
@@ -21,6 +22,7 @@ module.exports = class WxBrandController extends Base {
 
   async detailAction() {
     const id = this.get('id');
+    /** @type {BrandService} */
     const brandService = this.service('brand');
 
     const entity = await brandService.findById(id);

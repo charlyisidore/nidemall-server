@@ -7,6 +7,7 @@ module.exports = class WxTopicController extends Base {
     const sort = think.camelCase(this.get('sort'));
     const order = this.get('order');
 
+    /** @type {TopicService} */
     const topicService = this.service('topic');
     const topicList = await topicService.queryList(page, limit, sort, order);
 
@@ -23,8 +24,11 @@ module.exports = class WxTopicController extends Base {
     const userId = this.getUserId();
     const id = this.get('id');
 
+    /** @type {CollectService} */
     const collectService = this.service('collect');
+    /** @type {GoodsService} */
     const goodsService = this.service('goods');
+    /** @type {TopicService} */
     const topicService = this.service('topic');
 
     const topic = await topicService.findById(id);
@@ -55,6 +59,7 @@ module.exports = class WxTopicController extends Base {
 
   async relatedAction() {
     const id = this.get('id');
+    /** @type {TopicService} */
     const topicService = this.service('topic');
 
     const topicRelatedList = await topicService.queryRelatedList(id, 0, 4);

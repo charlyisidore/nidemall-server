@@ -66,6 +66,7 @@ module.exports = class GrouponRulesService extends think.Service {
    * @param {string?} order 
    */
   async wxQueryList(page, limit, sort, order) {
+    /** @type {GoodsService} */
     const goodsService = think.service('goods');
 
     const grouponRulesList = await this.queryList(page, limit, sort, order);
