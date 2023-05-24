@@ -3,60 +3,51 @@ const Base = require('./base.js');
 module.exports = class extends Base {
   async postAction() {
     const userId = this.getUserId();
-
-    const valueId = this.postInt('valueId');
-    const type = this.postInt('type');
-    const content = this.postString('content');
-    const hasPicture = this.postBoolean('hasPicture');
-    const star = this.postInt('star');
-    let picUrls = this.postJson('picUrls', []);
+    const comment = this.post([
+      'content',
+      'star',
+      'type',
+      'valueId',
+      'hasPicture',
+      'picUrls',
+    ].join(','));
 
     const commentService = this.service('comment');
     const goodsService = this.service('goods');
     const topicService = this.service('topic');
 
-    if (!userId) {
+    if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
     }
 
-    if (!content || !star) {
-      return this.badArgument();
-    }
-
-    if (star < 0 || star > 5) {
+    if (comment.star < 0 || comment.star > 5) {
       return this.badArgumentValue();
     }
 
-    if (undefined === type || null === type || !valueId) {
-      return this.badArgument();
-    }
-
-    if (0 == type) {
-      if (!await goodsService.findById(valueId)) {
+    switch (comment.type) {
+      case 0:
+        if (think.isEmpty(await goodsService.findById(comment.valueId))) {
+          return this.badArgumentValue();
+        }
+        break;
+      case 1:
+        if (think.isEmpty(await topicService.findById(comment.valueId))) {
+          return this.badArgumentValue();
+        }
+        break;
+      default:
         return this.badArgumentValue();
-      }
-    } else if (1 == type) {
-      if (!await topicService.findById(valueId)) {
-        return this.badArgumentValue();
-      }
-    } else {
-      return this.badArgumentValue();
     }
 
-    if (!hasPicture) {
-      picUrls = [];
+    if (!comment.hasPicture) {
+      Object.assign(comment, {
+        picUrls: [],
+      });
     }
 
-    const comment = {
-      valueId,
-      type,
-      content,
+    Object.assign(comment, {
       userId,
-      hasPicture,
-      picUrls,
-      star,
-      deleted: false,
-    };
+    });
 
     await commentService.save(comment);
 
@@ -64,8 +55,8 @@ module.exports = class extends Base {
   }
 
   async countAction() {
-    const type = this.getInt('type');
-    const valueId = this.getInt('valueId');
+    const type = this.get('type');
+    const valueId = this.get('valueId');
 
     const commentService = this.service('comment');
 
@@ -79,11 +70,11 @@ module.exports = class extends Base {
   }
 
   async listAction() {
-    const type = this.getInt('type');
-    const valueId = this.getInt('valueId');
-    const showType = this.getInt('showType');
-    const page = this.getInt('page', 1);
-    const limit = this.getInt('limit', 10);
+    const type = this.get('type');
+    const valueId = this.get('valueId');
+    const showType = this.get('showType');
+    const page = this.get('page');
+    const limit = this.get('limit');
 
     const commentService = this.service('comment');
     const userService = this.service('user');
