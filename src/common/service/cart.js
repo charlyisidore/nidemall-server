@@ -97,7 +97,10 @@ module.exports = class extends think.Service {
    */
   findById(id, userId) {
     return this.model('cart')
-      .where({ id, userId })
+      .where({
+        id,
+        userId,
+      })
       .find();
   }
 
