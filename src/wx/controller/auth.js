@@ -1,13 +1,15 @@
 const Base = require('./base.js');
 
 module.exports = class WxAuthController extends Base {
-  static AUTH_INVALID_ACCOUNT = 700;
-  static AUTH_CAPTCHA_UNMATCH = 703;
-  static AUTH_NAME_REGISTERED = 704;
-  static AUTH_MOBILE_REGISTERED = 705;
-  static AUTH_INVALID_MOBILE = 707;
-  static AUTH_OPENID_UNACCESS = 708;
-  static AUTH_OPENID_BINDED = 709;
+  static AUTH = {
+    INVALID_ACCOUNT: 700,
+    CAPTCHA_UNMATCH: 703,
+    NAME_REGISTERED: 704,
+    MOBILE_REGISTERED: 705,
+    INVALID_MOBILE: 707,
+    OPENID_UNACCESS: 708,
+    OPENID_BINDED: 709,
+  };
 
   static DEFAULT_AVATAR = 'https://yanxuan.nosdn.127.net/80841d741d7fa3073e0ae27bf487339f.jpg?imageView&quality=90&thumbnail=64x64';
 
@@ -18,6 +20,8 @@ module.exports = class WxAuthController extends Base {
     const authService = this.service('auth');
     const userService = this.service('user');
 
+    const { AUTH } = this.constructor;
+
     if (think.isTrueEmpty(username) || think.isTrueEmpty(password)) {
       return this.badArgument();
     }
@@ -25,7 +29,7 @@ module.exports = class WxAuthController extends Base {
     const userList = await userService.queryByUsername(username);
 
     if (think.isEmpty(userList)) {
-      return this.fail(this.constructor.AUTH_INVALID_ACCOUNT, '账号不存在');
+      return this.fail(AUTH.INVALID_ACCOUNT, '账号不存在');
     }
 
     if (userList.length > 1) {
@@ -35,7 +39,7 @@ module.exports = class WxAuthController extends Base {
     const [user] = userList;
 
     if (!await authService.comparePassword(password, user.password)) {
-      return this.fail(this.constructor.AUTH_INVALID_ACCOUNT, '账号密码不对');
+      return this.fail(AUTH.INVALID_ACCOUNT, '账号密码不对');
     }
 
     user.lastLoginTime = new Date();
@@ -141,6 +145,8 @@ module.exports = class WxAuthController extends Base {
     const userService = this.service('user');
     const weixinService = this.service('weixin');
 
+    const { AUTH } = this.constructor;
+
     if (think.isTrueEmpty(username) ||
       think.isTrueEmpty(password) ||
       think.isTrueEmpty(mobile) ||
@@ -150,23 +156,23 @@ module.exports = class WxAuthController extends Base {
 
     let userList = await userService.queryByUsername(username);
     if (!think.isEmpty(userList)) {
-      return this.fail(this.constructor.AUTH_NAME_REGISTERED, '用户名已注册');
+      return this.fail(AUTH.NAME_REGISTERED, '用户名已注册');
     }
 
     userList = await userService.queryByMobile(mobile);
     if (!think.isEmpty(userList)) {
-      return this.fail(this.constructor.AUTH_MOBILE_REGISTERED, '手机号已注册');
+      return this.fail(AUTH.MOBILE_REGISTERED, '手机号已注册');
     }
 
     if (!/^[1]\d{10}$/.test(mobile)) {
-      return this.fail(this.constructor.AUTH_INVALID_MOBILE, '手机号格式不正确');
+      return this.fail(AUTH.INVALID_MOBILE, '手机号格式不正确');
     }
 
     // TODO
     const cacheCode = CaptchaCodeManager.getCachedCaptcha(mobile);
 
     if (think.isEmpty(cacheCode) || cacheCode != code) {
-      return this.fail(this.constructor.AUTH_CAPTCHA_UNMATCH, '验证码错误');
+      return this.fail(AUTH.CAPTCHA_UNMATCH, '验证码错误');
     }
 
     let openid = '';
@@ -179,7 +185,7 @@ module.exports = class WxAuthController extends Base {
       } catch (e) {
         console.error(e);
         think.logger.error(e.toString());
-        return this.fail(this.constructor.AUTH_OPENID_UNACCESS, 'openid 获取失败');
+        return this.fail(AUTH.OPENID_UNACCESS, 'openid 获取失败');
       }
 
       userList = await userService.queryByOpenid(openid);
@@ -192,7 +198,7 @@ module.exports = class WxAuthController extends Base {
         const [checkUser] = userList;
 
         if (checkUser.username != openid || checkUser.password != openid) {
-          return this.fail(this.constructor.AUTH_OPENID_BINDED, 'openid已绑定账号');
+          return this.fail(AUTH.OPENID_BINDED, 'openid已绑定账号');
         }
       }
     }
