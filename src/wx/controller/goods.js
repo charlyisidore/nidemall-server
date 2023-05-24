@@ -1,6 +1,6 @@
 const Base = require('./base.js');
 
-module.exports = class extends Base {
+module.exports = class WxGoodsController extends Base {
   async detailAction() {
     const userId = this.getUserId();
     const id = this.get('id');

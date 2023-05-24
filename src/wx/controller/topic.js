@@ -1,6 +1,6 @@
 const Base = require('./base.js');
 
-module.exports = class extends Base {
+module.exports = class WxTopicController extends Base {
   async listAction() {
     const page = this.get('page');
     const limit = this.get('limit');

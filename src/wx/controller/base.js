@@ -1,4 +1,4 @@
-module.exports = class extends think.Controller {
+module.exports = class WxBaseController extends think.Controller {
   __before() {
 
   }

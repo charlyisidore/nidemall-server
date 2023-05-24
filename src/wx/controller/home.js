@@ -1,6 +1,6 @@
 const Base = require('./base.js');
 
-module.exports = class extends Base {
+module.exports = class WxHomeController extends Base {
   async indexAction() {
     const userId = this.getUserId();
 

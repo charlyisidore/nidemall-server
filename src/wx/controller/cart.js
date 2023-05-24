@@ -1,6 +1,6 @@
 const Base = require('./base.js');
 
-module.exports = class extends Base {
+module.exports = class WxCartController extends Base {
   static GOODS_UNSHELVE = 710;
   static GOODS_NO_STOCK = 711;
 

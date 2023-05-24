@@ -1,6 +1,6 @@
 const Base = require('./base.js');
 
-module.exports = class extends Base {
+module.exports = class WxAuthController extends Base {
   static AUTH_INVALID_ACCOUNT = 700;
   static AUTH_CAPTCHA_UNMATCH = 703;
   static AUTH_NAME_REGISTERED = 704;

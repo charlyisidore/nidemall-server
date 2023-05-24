@@ -1,6 +1,6 @@
 const Base = require('./base.js');
 
-module.exports = class extends Base {
+module.exports = class WxCommentController extends Base {
   async postAction() {
     const userId = this.getUserId();
     const comment = this.post([

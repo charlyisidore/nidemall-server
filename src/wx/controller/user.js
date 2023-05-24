@@ -1,6 +1,6 @@
 const Base = require('./base.js');
 
-module.exports = class extends Base {
+module.exports = class WxUserController extends Base {
   async indexAction() {
     const userId = this.getUserId();
     const orderService = this.service('order');
