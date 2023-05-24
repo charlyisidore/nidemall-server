@@ -26,7 +26,7 @@ module.exports = class extends think.Service {
       })
       .page(page, limit);
 
-    if (sort && order) {
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
       model.order({ [sort]: order })
     }
 

@@ -74,7 +74,7 @@ module.exports = class extends think.Service {
     for (const rule of grouponRulesList) {
       const goods = await goodsService.findById(rule.goodsId);
 
-      if (!goods) {
+      if (think.isEmpty(goods)) {
         continue;
       }
 

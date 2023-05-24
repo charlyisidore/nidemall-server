@@ -55,7 +55,7 @@ module.exports = class extends think.Service {
       })
       .page(page, limit);
 
-    if (undefined !== sort && undefined !== order) {
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
       model.order({ [sort]: order })
     }
 
@@ -82,7 +82,7 @@ module.exports = class extends think.Service {
       deleted: false,
     };
 
-    if (used && used.length > 0) {
+    if (!think.isEmpty(used)) {
       Object.assign(where, {
         id: ['NOTIN', used.map((v) => v.couponId)],
       });

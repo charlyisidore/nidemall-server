@@ -92,23 +92,23 @@ module.exports = class extends think.Service {
       deleted: false,
     };
 
-    if (categoryId) {
+    if (!think.isNullOrUndefined(categoryId)) {
       Object.assign(where, { categoryId });
     }
 
-    if (brandId) {
+    if (!think.isNullOrUndefined(brandId)) {
       Object.assign(where, { brandId });
     }
 
-    if (isNew) {
+    if (!think.isNullOrUndefined(isNew)) {
       Object.assign(where, { isNew });
     }
 
-    if (isHot) {
+    if (!think.isNullOrUndefined(isHot)) {
       Object.assign(where, { isHot });
     }
 
-    if (keywords && '' != keywords) {
+    if (!think.isTrueEmpty(keywords)) {
       Object.assign(where, {
         _complex: {
           _logic: 'OR',
@@ -120,7 +120,7 @@ module.exports = class extends think.Service {
 
     model.where(where);
 
-    if (sort && order) {
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
       model.order({
         [sort]: order,
         id: 'ASC',
@@ -203,19 +203,19 @@ module.exports = class extends think.Service {
       deleted: false,
     };
 
-    if (brandId) {
+    if (!think.isNullOrUndefined(brandId)) {
       Object.assign(where, { brandId });
     }
 
-    if (isNew) {
+    if (!think.isNullOrUndefined(isNew)) {
       Object.assign(where, { isNew });
     }
 
-    if (isHot) {
+    if (!think.isNullOrUndefined(isHot)) {
       Object.assign(where, { isHot });
     }
 
-    if (keywords && '' != keywords) {
+    if (!think.isTrueEmpty(keywords)) {
       Object.assign(where, {
         _complex: {
           _logic: 'OR',

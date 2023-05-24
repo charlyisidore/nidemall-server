@@ -5,7 +5,7 @@ module.exports = class extends think.Service {
 
   /**
    * 
-   * @param {string} question 
+   * @param {string?} question 
    * @param {number} page 
    * @param {number} limit 
    * @param {string?} sort 
@@ -17,13 +17,13 @@ module.exports = class extends think.Service {
       deleted: false,
     };
 
-    if (question == '') {
+    if (!think.isTrueEmpty(question)) {
       Object.assign(where, {
         question: ['LIKE', `%${question}%`],
       })
     }
 
-    if (undefined !== sort && undefined !== order) {
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
       model.order({ [sort]: order });
     }
 

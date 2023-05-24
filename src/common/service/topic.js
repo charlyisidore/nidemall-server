@@ -60,7 +60,7 @@ module.exports = class extends think.Service {
       })
       .select();
 
-    if (topics.length == 0) {
+    if (think.isEmpty(topics)) {
       return this.queryList(page, limit, 'addTime', 'DESC');
     }
 
@@ -74,7 +74,7 @@ module.exports = class extends think.Service {
       .page(page, limit)
       .countSelect();
 
-    if (relateds.length != 0) {
+    if (!think.isEmpty(relateds)) {
       return relateds;
     }
 

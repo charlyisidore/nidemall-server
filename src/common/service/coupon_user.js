@@ -56,25 +56,25 @@ module.exports = class extends think.Service {
       deleted: false,
     };
 
-    if (userId) {
+    if (!think.isNullOrUndefined(userId)) {
       Object.assign(where, { userId });
     }
 
-    if (couponId) {
+    if (!think.isNullOrUndefined(couponId)) {
       Object.assign(where, { couponId });
     }
 
-    if (undefined !== status && null !== status) {
+    if (!think.isNullOrUndefined(status)) {
       Object.assign(where, { status });
     }
 
     model.where(where);
 
-    if (sort && order) {
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
       model.order({ [sort]: order });
     }
 
-    if (page && limit) {
+    if (!think.isNullOrUndefined(page) && !think.isNullOrUndefined(limit)) {
       model.page(page, limit);
     }
 
