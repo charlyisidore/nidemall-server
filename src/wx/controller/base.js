@@ -3,38 +3,6 @@ module.exports = class WxBaseController extends think.Controller {
 
   }
 
-  getBoolean(name, defaultValue = null) {
-    return this._parseBoolean(this.get(name), defaultValue);
-  }
-
-  getInt(name, defaultValue = null) {
-    return this._parseInt(this.get(name), defaultValue);
-  }
-
-  getString(name, defaultValue = null) {
-    return this._parseString(this.get(name), defaultValue);
-  }
-
-  postBoolean(name, defaultValue = null) {
-    return this._parseBoolean(this.post(name), defaultValue);
-  }
-
-  postInt(name, defaultValue = null) {
-    return this._parseInt(this.post(name), defaultValue);
-  }
-
-  postString(name, defaultValue = null) {
-    return this._parseString(this.post(name), defaultValue);
-  }
-
-  postJson(name, defaultValue = null) {
-    try {
-      return JSON.parse(this.post(name));
-    } catch (e) {
-      return defaultValue;
-    }
-  }
-
   getUserId() {
     return this.ctx.state.userId;
   }
@@ -73,25 +41,5 @@ module.exports = class WxBaseController extends think.Controller {
 
   success(data, message = '成功') {
     return super.success(data, message);
-  }
-
-  _parseBoolean(value, defaultValue) {
-    if (undefined === value) {
-      return defaultValue;
-    } else if ('true' === value.toLowerCase()) {
-      return true;
-    } else if ('false' === value.toLowerCase()) {
-      return false;
-    } else {
-      return !!parseInt(value);
-    }
-  }
-
-  _parseInt(value, defaultValue) {
-    return (undefined === value) ? defaultValue : parseInt(value);
-  }
-
-  _parseString(value, defaultValue) {
-    return (undefined === value) ? defaultValue : value;
   }
 };

@@ -93,7 +93,7 @@ module.exports = class WxAddressController extends Base {
 
   async deleteAction() {
     const userId = this.getUserId();
-    const id = this.postInt('id');
+    const id = this.post('id');
 
     const addressService = this.service('address');
 
