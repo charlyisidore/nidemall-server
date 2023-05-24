@@ -22,7 +22,7 @@ module.exports = class WxAddressController extends Base {
 
   async detailAction() {
     const userId = this.getUserId();
-    const id = this.postInt('id');
+    const id = this.get('id');
 
     const addressService = this.service('address');
 
@@ -41,16 +41,22 @@ module.exports = class WxAddressController extends Base {
 
   async saveAction() {
     const userId = this.getUserId();
-    const address = this.postAddress();
+    const address = this.post([
+      'id',
+      'name',
+      'tel',
+      'province',
+      'city',
+      'county',
+      'areaCode',
+      'addressDetail',
+      'isDefault',
+    ].join(','));
 
     const addressService = this.service('address');
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
-    }
-
-    if (!this.validate(address)) {
-      return this.badArgument();
     }
 
     if (!address.id) {
@@ -63,7 +69,7 @@ module.exports = class WxAddressController extends Base {
         userId,
       });
 
-      await addressService.add(address);
+      address.id = await addressService.add(address);
     } else {
       const addr = await addressService.query(userId, address.id);
 
@@ -106,37 +112,5 @@ module.exports = class WxAddressController extends Base {
 
     await addressService.delete(id);
     return this.success();
-  }
-
-  postAddress() {
-    return {
-      id: this.postInt('id'),
-      name: this.postString('name'),
-      userId: this.postInt('userId'),
-      province: this.postString('province'),
-      city: this.postString('city'),
-      county: this.postString('county'),
-      addressDetail: this.postString('addressDetail'),
-      areaCode: this.postString('areaCode'),
-      postalCode: this.postString('postalCode'),
-      tel: this.postString('tel'),
-      isDefault: this.postBoolean('isDefault'),
-    };
-  }
-
-  validate(address) {
-    return !think.isTrueEmpty(address.name) &&
-      !think.isTrueEmpty(address.mobile) &&
-      this.isMobileSimple(address.mobile) &&
-      !think.isTrueEmpty(address.province) &&
-      !think.isTrueEmpty(address.city) &&
-      !think.isTrueEmpty(address.county) &&
-      !think.isTrueEmpty(address.areaCode) &&
-      !think.isTrueEmpty(address.addressDetail) &&
-      !think.isNullOrUndefined(address.isDefault);
-  }
-
-  isMobileSimple(input) {
-    return /^[1]\d{10}$/.test(input);
   }
 };
