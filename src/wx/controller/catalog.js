@@ -2,13 +2,13 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   async indexAction() {
-    const id = this.getInt('id');
+    const id = this.get('id');
     const categoryService = this.service('category');
 
     const l1CatList = await categoryService.queryL1();
 
     let currentCategory = null;
-    if (id) {
+    if (!think.isNullOrUndefined(id)) {
       currentCategory = await categoryService.findById(id);
     } else {
       if (l1CatList.length > 0) {
@@ -17,7 +17,7 @@ module.exports = class extends Base {
     }
 
     let currentSubCategory = null;
-    if (currentCategory) {
+    if (!think.isEmpty(currentCategory)) {
       currentSubCategory = await categoryService.queryByPid(currentCategory.id);
     }
 
@@ -41,7 +41,7 @@ module.exports = class extends Base {
     const currentCategory = l1CatList[0];
 
     let currentSubCategory = null;
-    if (null !== currentCategory) {
+    if (!think.isEmpty(currentCategory)) {
       currentSubCategory = await categoryService.queryByPid(currentCategory.id);
     }
 
@@ -54,11 +54,12 @@ module.exports = class extends Base {
   }
 
   async currentAction() {
-    const id = this.getInt('id');
+    const id = this.get('id');
     const categoryService = this.service('category');
 
     const currentCategory = await categoryService.findById(id);
-    if (null === currentCategory) {
+
+    if (think.isEmpty(currentCategory)) {
       return this.badArgumentValue();
     }
 
