@@ -6,6 +6,19 @@ module.exports = class extends think.Service {
   /**
    * 
    * @param {number} userId 
+   */
+  queryByUid(userId) {
+    return this.model('address')
+      .where({
+        userId,
+        deleted: false,
+      })
+      .select();
+  }
+
+  /**
+   * 
+   * @param {number} userId 
    * @param {number} id 
    */
   query(userId, id) {
@@ -20,6 +33,44 @@ module.exports = class extends think.Service {
 
   /**
    * 
+   * @param {object} address 
+   */
+  add(address) {
+    const now = new Date();
+    return this.model('address')
+      .add(Object.assign(address, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
+   * @param {object} address 
+   */
+  update(address) {
+    const now = new Date();
+    return this.model('address')
+      .where({ id: address.id })
+      .update(Object.assign(address, {
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
+   * @param {number} id 
+   */
+  delete(id) {
+    return this.model('address')
+      .where({ id })
+      .update({
+        deleted: true,
+      });
+  }
+
+  /**
+   * 
    * @param {number} userId 
    */
   findDefault(userId) {
@@ -30,5 +81,22 @@ module.exports = class extends think.Service {
         deleted: false,
       })
       .find();
+  }
+
+  /**
+   * 
+   * @param {number} userId 
+   */
+  resetDefault(userId) {
+    const now = new Date();
+    return this.model('address')
+      .where({
+        userId,
+        deleted: false,
+      })
+      .update({
+        isDefault: false,
+        updateTime: now,
+      });
   }
 }
