@@ -5,27 +5,28 @@ module.exports = class extends Base {
   static GOODS_NO_STOCK = 711;
 
   indexAction() {
-    const userId = this.getUserId();
-    return this.index(userId);
+    return this.index(this.getUserId());
   }
 
   async addAction() {
     const userId = this.getUserId();
-
-    // Cart
-    const goodsId = this.postInt('goodsId');
-    const productId = this.postInt('productId');
-    const number = this.postInt('number');
+    const cart = this.post([
+      'goodsId',
+      'productId',
+      'number',
+    ].join(','));
 
     const cartService = this.service('cart');
     const goodsService = this.service('goods');
     const goodsProductService = this.service('goods_product');
 
-    if (!userId) {
+    if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
     }
 
-    if (!goodsId || !productId || !number || number <= 0) {
+    const { goodsId, productId, number } = cart;
+
+    if (number <= 0) {
       return this.badArgument();
     }
 
@@ -39,22 +40,22 @@ module.exports = class extends Base {
     const existCart = await cartService.queryExist(goodsId, productId, userId);
 
     if (think.isEmpty(existCart)) {
-      if (!product || number > product.number) {
+      if (think.isEmpty(product) || number > product.number) {
         return this.fail(this.constructor.GOODS_NO_STOCK, '库存不足');
       }
 
-      await cartService.add({
-        goodsId,
-        productId,
-        number,
-        userId,
+      Object.assign(cart, {
+        id: null,
         goodsSn: goods.goodsSn,
         goodsName: goods.name,
-        picUrl: product.url ? product.url : goods.picUrl,
+        picUrl: think.isTrueEmpty(product.url) ? goods.picUrl : product.url,
         price: product.price,
         specifications: product.specifications,
+        userId,
         checked: true,
       });
+
+      await cartService.add(cart);
     } else {
       const num = existCart.number + number;
       if (num > product.number) {
@@ -72,52 +73,52 @@ module.exports = class extends Base {
 
   async fastaddAction() {
     const userId = this.getUserId();
-
-    // Cart
-    const goodsId = this.postInt('goodsId');
-    const productId = this.postInt('productId');
-    const number = this.postInt('number');
+    const cart = this.post([
+      'goodsId',
+      'productId',
+      'number',
+    ].join(','));
 
     const cartService = this.service('cart');
     const goodsService = this.service('goods');
     const goodsProductService = this.service('goods_product');
 
-    if (!userId) {
+    if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
     }
 
-    if (!productId || !number || !goodsId || number <= 0) {
+    const { goodsId, productId, number } = cart;
+
+    if (number <= 0) {
       return this.badArgument();
     }
 
     const goods = await goodsService.findById(goodsId);
 
-    if (!goods || !goods.isOnSale) {
-      return this.fail(this.constructor.GOODS_UNSHELVE, '商品已下架');
+    if (think.isEmpty(goods) || !goods.isOnSale) {
+      return this.fail(this.constructor.GOODS_UNSHELVE, '商品已下架')
     }
 
     const product = await goodsProductService.findById(productId);
-    const existCart = await cartService.findById(id, userId);
+    const existCart = await cartService.queryExist(goodsId, productId, userId);
 
-    if (!existCart) {
-      if (!product || number > product.number) {
+    if (think.isEmpty(existCart)) {
+      if (think.isEmpty(product) || number > product.number) {
         return this.fail(this.constructor.GOODS_NO_STOCK, '库存不足');
       }
 
-      const cart = await cartService.add({
-        productId,
-        number,
-        goodsId,
+      Object.assign(cart, {
+        id: null,
         goodsSn: goods.goodsSn,
         goodsName: goods.name,
-        picUrl: product.url ? product.url : goods.picUrl,
+        picUrl: think.isTrueEmpty(product.url) ? product.url : goods.picUrl,
         price: product.price,
         specifications: product.specifications,
         userId,
         checked: true,
       });
 
-      return this.success(cart.id);
+      cart.id = await cartService.add(cart);
     } else {
       if (number > product.number) {
         return this.fail(this.constructor.GOODS_NO_STOCK, '库存不足');
@@ -129,52 +130,57 @@ module.exports = class extends Base {
         return this.updatedDataFailed();
       }
 
-      return this.success(existCart.id);
+      return this.success(
+        think.isEmpty(existCart) ?
+          cart.id :
+          existCart.id
+      );
     }
   }
 
   async updateAction() {
     const userId = this.getUserId();
-
-    // Cart
-    const id = this.postInt('id');
-    const goodsId = this.postInt('goodsId');
-    const productId = this.postInt('productId');
-    const number = this.postInt('number');
+    const cart = this.post([
+      'id',
+      'goodsId',
+      'productId',
+      'number',
+    ].join(','));
 
     const cartService = this.service('cart');
     const goodsService = this.service('goods');
     const goodsProductService = this.service('goods_product');
 
-    if (!userId) {
+    if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
     }
 
-    if (!id || !productId || !number || !goodsId || number <= 0) {
+    const { id, goodsId, productId, number } = cart;
+
+    if (number <= 0) {
       return this.badArgument();
     }
 
     const existCart = await cartService.findById(id, userId);
 
-    if (!existCart) {
-      return this.badArgumentValue();
-    }
-
-    if (existCart.goodsId != goodsId || existCart.productId != productId) {
+    if (think.isEmpty(existCart) || existCart.goodsId != goodsId || existCart.productId != productId) {
       return this.badArgumentValue();
     }
 
     const goods = await goodsService.findById(goodsId);
-    if (!goods || !goods.isOnSale) {
+    if (think.isEmpty(goods) || !goods.isOnSale) {
       return this.fail(this.constructor.GOODS_UNSHELVE, '商品已下架');
     }
 
     const product = await goodsProductService.findById(productId);
-    if (!product || product.number < number) {
+    if (think.isEmpty(product) || product.number < number) {
       return this.fail(this.constructor.GOODS_UNSHELVE, '库存不足');
     }
 
-    existCart.number = number;
+    Object.assign(existCart, {
+      number,
+    });
+
     if (!await cartService.updateById(existCart)) {
       return this.updatedDataFailed();
     }
@@ -184,39 +190,35 @@ module.exports = class extends Base {
 
   async checkedAction() {
     const userId = this.getUserId();
-
-    // Cart
-    const productIds = this.postJson('productIds');
-    const checkValue = this.postInt('isChecked');
+    const productIds = this.post('productIds');
+    const isChecked = this.post('isChecked');
 
     const cartService = this.service('cart');
 
-    if (!userId) {
+    if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
     }
 
-    if (!productIds || !checkValue) {
+    if (think.isEmpty(productIds)) {
       return this.badArgument();
     }
 
-    await cartService.updateCheck(userId, productIds, (checkValue == 1));
+    await cartService.updateCheck(userId, productIds, isChecked);
 
     return this.index(userId);
   }
 
   async deleteAction() {
     const userId = this.getUserId();
-
-    // Cart
-    const productIds = this.postJson('productIds');
+    const productIds = this.post('productIds');
 
     const cartService = this.service('cart');
 
-    if (!userId) {
+    if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
     }
 
-    if (!productIds || productIds.length == 0) {
+    if (think.isEmpty(productIds)) {
       return this.badArgument();
     }
 
@@ -226,19 +228,16 @@ module.exports = class extends Base {
   }
 
   goodscountAction() {
-    const userId = this.getUserId();
-    return this.goodsCount(userId);
+    return this.goodsCount(this.getUserId());
   }
 
   async checkoutAction() {
     const userId = this.getUserId();
-
-    // Cart
-    const cartId = this.getInt('cartId');
-    let addressId = this.getInt('addressId');
-    let couponId = this.getInt('couponId');
-    let userCouponId = this.getInt('userCouponId');
-    const grouponRulesId = this.getInt('grouponRulesId');
+    const cartId = this.get('cartId');
+    let addressId = this.get('addressId');
+    let couponId = this.get('couponId');
+    let userCouponId = this.get('userCouponId');
+    const grouponRulesId = this.get('grouponRulesId');
 
     const addressService = this.service('address');
     const cartService = this.service('cart');
@@ -249,7 +248,7 @@ module.exports = class extends Base {
     const freight = await systemService.getFreight();
     const freightLimit = await systemService.getFreightLimit();
 
-    if (!userId) {
+    if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
     }
 
@@ -259,13 +258,11 @@ module.exports = class extends Base {
       checkedAddress = await addressService.query(userId, addressId);
     }
 
-    if (!checkedAddress) {
+    if (think.isEmpty(checkedAddress)) {
       checkedAddress = await addressService.findDefault(userId);
-
       if (think.isEmpty(checkedAddress)) {
         checkedAddress = { id: 0 };
       }
-
       addressId = checkedAddress.id;
     }
 
@@ -326,7 +323,7 @@ module.exports = class extends Base {
     let availableCouponLength = tmpCouponLength;
     let couponPrice = 0.;
 
-    if (null === couponId || -1 === couponId) {
+    if (think.isNullOrUndefined(couponId) || -1 === couponId) {
       couponId = -1;
       userCouponId = -1;
     } else if (0 === couponId) {
@@ -386,7 +383,7 @@ module.exports = class extends Base {
     const cartService = this.service('cart');
     const goodsService = this.service('goods');
 
-    if (!userId) {
+    if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
     }
 
@@ -395,7 +392,7 @@ module.exports = class extends Base {
 
     for (const cart of list) {
       const goods = await goodsService.findById(cart.goodsId);
-      if (!goods || !goods.isOnSale) {
+      if (think.isEmpty(goods) || !goods.isOnSale) {
         await cartService.deleteById(cart.id);
         think.logger.debug(`系统自动删除失效购物车商品 goodsId=${cart.goodsId} productId=${cart.productId}`);
       } else {
@@ -439,7 +436,7 @@ module.exports = class extends Base {
   async goodsCount(userId) {
     const cartService = this.service('cart');
 
-    if (!userId) {
+    if (think.isNullOrUndefined(userId)) {
       return this.success(0);
     }
 
