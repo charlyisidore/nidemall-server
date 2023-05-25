@@ -26,6 +26,7 @@ module.exports = {
     enable: true,
     appid: '',
     appkey: '',
+    url: 'http://api.kdniao.com/Ebusiness/EbusinessOrderHandle.aspx',
     vendors: [],
   },
 };
