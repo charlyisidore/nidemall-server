@@ -1,8 +1,8 @@
 module.exports = class WxBaseController extends think.Controller {
-  __before() {
-
-  }
-
+  /**
+   * 
+   * @returns {number?} User ID
+   */
   getUserId() {
     return this.ctx.state.userId;
   }
