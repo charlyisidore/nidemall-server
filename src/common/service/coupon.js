@@ -108,6 +108,7 @@ module.exports = class CouponService extends think.Service {
 
   /**
    * 
+   * @returns {Promise<Coupon[]>} 
    */
   queryRegister() {
     return this.model('coupon')

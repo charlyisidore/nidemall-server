@@ -5,6 +5,7 @@ module.exports = class AdService extends think.Service {
 
   /**
    * 
+   * @returns {Promise<Ad[]>} 
    */
   queryIndex() {
     return this.model('ad')

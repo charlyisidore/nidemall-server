@@ -6,6 +6,7 @@ module.exports = class GoodsAttributeService extends think.Service {
   /**
    * 
    * @param {number} id 
+   * @returns {Promise<GoodsAttribute[]>} 
    */
   queryByGid(id) {
     return this.model('goods_attribute')

@@ -18,6 +18,7 @@ module.exports = class GoodsService extends think.Service {
    * 
    * @param {number} page 
    * @param {number} limit 
+   * @returns {Promise<Goods[]>} 
    */
   queryByHot(page, limit) {
     return this.model('goods')
@@ -36,6 +37,7 @@ module.exports = class GoodsService extends think.Service {
    * 
    * @param {number} page 
    * @param {number} limit 
+   * @returns {Promise<Goods[]>} 
    */
   queryByNew(page, limit) {
     return this.model('goods')
@@ -192,7 +194,7 @@ module.exports = class GoodsService extends think.Service {
    * @param {string?} keywords 
    * @param {boolean?} isHot 
    * @param {boolean?} isNew 
-   * @returns 
+   * @returns {Promise<number[]>}
    */
   async getCatIds(brandId, keywords, isHot, isNew) {
     const model = this.model('goods')

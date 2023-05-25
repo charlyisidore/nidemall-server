@@ -10,6 +10,7 @@ module.exports = class IssueService extends think.Service {
    * @param {number} limit 
    * @param {string?} sort 
    * @param {string?} order 
+   * @returns {Promise<Issue[]>} 
    */
   querySelective(question, page, limit, sort, order) {
     const model = this.model('issue');

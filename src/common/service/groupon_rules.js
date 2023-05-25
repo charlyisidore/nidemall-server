@@ -29,6 +29,7 @@ module.exports = class GrouponRulesService extends think.Service {
   /**
    * 
    * @param {number} goodsId 
+   * @returns {Promise<GrouponRules[]>} 
    */
   queryByGoodsId(goodsId) {
     return this.model('groupon_rules')
@@ -46,6 +47,7 @@ module.exports = class GrouponRulesService extends think.Service {
    * @param {number} limit 
    * @param {string?} sort 
    * @param {string?} order 
+   * @returns {Promise<GrouponRules[]>} 
    */
   queryList(page, limit, sort = 'addTime', order = 'DESC') {
     return this.model('groupon_rules')

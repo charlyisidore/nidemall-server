@@ -57,6 +57,7 @@ module.exports = class UserService extends think.Service {
   /**
    * 
    * @param {string} username 
+   * @returns {Promise<User[]>} 
    */
   queryByUsername(username) {
     return this.model('user')
@@ -70,6 +71,7 @@ module.exports = class UserService extends think.Service {
   /**
    * 
    * @param {string} openid 
+   * @returns {Promise<User[]>} 
    */
   queryByOpenid(openid) {
     return this.model('user')

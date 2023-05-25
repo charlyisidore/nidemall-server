@@ -6,6 +6,7 @@ module.exports = class AddressService extends think.Service {
   /**
    * 
    * @param {number} userId 
+   * @returns {Promise<Address[]>} 
    */
   queryByUid(userId) {
     return this.model('address')

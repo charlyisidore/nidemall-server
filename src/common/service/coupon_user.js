@@ -47,7 +47,7 @@ module.exports = class CouponUserService extends think.Service {
    * @param {number?} limit 
    * @param {string?} sort 
    * @param {string?} order 
-   * @returns 
+   * @returns {Promise<CouponUser[]>} 
    */
   queryList(userId, couponId, status, page, limit, sort, order) {
     const model = this.model('coupon_user');

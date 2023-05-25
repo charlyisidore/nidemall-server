@@ -49,6 +49,7 @@ module.exports = class CartService extends think.Service {
   /**
    * 
    * @param {number} userId 
+   * @returns {Promise<Cart[]>} 
    */
   queryByUid(userId) {
     return this.model('cart')
@@ -62,6 +63,7 @@ module.exports = class CartService extends think.Service {
   /**
    * 
    * @param {number} userId 
+   * @returns {Promise<Cart[]>} 
    */
   queryByUidAndChecked(userId) {
     return this.model('cart')

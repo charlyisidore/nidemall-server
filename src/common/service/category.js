@@ -13,6 +13,7 @@ module.exports = class CategoryService extends think.Service {
    * 
    * @param {number} page 
    * @param {number} limit 
+   * @returns {Promise<Category[]>} 
    */
   queryL1WithoutRecommend(page, limit) {
     return this.model('category')
@@ -29,6 +30,7 @@ module.exports = class CategoryService extends think.Service {
    * 
    * @param {number?} page 
    * @param {number?} limit 
+   * @returns {Promise<Category[]>} 
    */
   queryL1(page, limit) {
     const model = this.model('category')
@@ -45,6 +47,7 @@ module.exports = class CategoryService extends think.Service {
   /**
    * 
    * @param {number} pid 
+   * @returns {Promise<Category[]>} 
    */
   queryByPid(pid) {
     return this.model('category')
@@ -58,6 +61,7 @@ module.exports = class CategoryService extends think.Service {
   /**
    * 
    * @param {number[]} ids 
+   * @returns {Promise<Category[]>} 
    */
   queryL2ByIds(ids) {
     return this.model('category')
@@ -84,6 +88,7 @@ module.exports = class CategoryService extends think.Service {
 
   /**
    * 
+   * @returns {Promise<Category[]>} 
    */
   queryChannel() {
     return this.model('category')
