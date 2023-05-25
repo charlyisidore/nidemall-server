@@ -99,4 +99,20 @@ module.exports = class CouponUserService extends think.Service {
       'DESC'
     );
   }
+
+  /**
+   * 
+   * @param {CouponUser} couponUser 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  update(couponUser) {
+    const now = new Date();
+    return this.model('coupon_user')
+      .where({
+        id: couponUser.id,
+      })
+      .update(Object.assign(couponUser, {
+        updateTime: now,
+      }));
+  }
 }
