@@ -21,5 +21,12 @@ module.exports = {
     // 小程序 appSecret
     // The appSecret of the Mini Program
     secret: '',
-  }
+  },
+  express: {
+    enable: true,
+    appid: '',
+    appkey: '',
+    vendors: {
+    },
+  },
 };
