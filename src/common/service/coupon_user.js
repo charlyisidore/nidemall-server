@@ -102,6 +102,17 @@ module.exports = class CouponUserService extends think.Service {
 
   /**
    * 
+   * @param {number} id 
+   * @returns {Promise<CouponUser|Record<string, never>>}
+   */
+  findById(id) {
+    return this.model('coupon_user')
+      .where({ id })
+      .find();
+  }
+
+  /**
+   * 
    * @param {CouponUser} couponUser 
    * @returns {Promise<number>} The number of rows affected
    */
