@@ -5,7 +5,7 @@ module.exports = class SearchHistoryService extends think.Service {
 
   /**
    * 
-   * @param {object} searchHistory 
+   * @param {SearchHistory} searchHistory 
    * @returns {Promise<number>} The ID inserted
    */
   save(searchHistory) {

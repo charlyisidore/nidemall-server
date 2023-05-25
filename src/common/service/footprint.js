@@ -5,7 +5,7 @@ module.exports = class FootprintService extends think.Service {
 
   /**
    * 
-   * @param {object} footprint 
+   * @param {Footprint} footprint 
    * @returns {Promise<number>} The ID inserted
    */
   add(footprint) {

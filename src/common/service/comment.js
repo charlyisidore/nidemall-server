@@ -89,7 +89,7 @@ module.exports = class CommentService extends think.Service {
 
   /**
    * 
-   * @param {object} comment 
+   * @param {Comment} comment 
    * @returns {Promise<number>} The ID inserted
    */
   save(comment) {

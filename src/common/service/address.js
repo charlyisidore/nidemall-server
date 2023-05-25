@@ -35,7 +35,7 @@ module.exports = class AddressService extends think.Service {
 
   /**
    * 
-   * @param {object} address 
+   * @param {Address} address 
    * @returns {Promise<number>} The ID inserted
    */
   add(address) {
@@ -49,7 +49,7 @@ module.exports = class AddressService extends think.Service {
 
   /**
    * 
-   * @param {object} address 
+   * @param {Address} address 
    * @returns {Promise<number>} The number of rows affected
    */
   update(address) {

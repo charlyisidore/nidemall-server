@@ -23,7 +23,7 @@ module.exports = class CartService extends think.Service {
 
   /**
    * 
-   * @param {object} cart 
+   * @param {Cart} cart 
    * @returns {Promise<number>} The ID inserted
    */
   add(cart) {
@@ -37,7 +37,7 @@ module.exports = class CartService extends think.Service {
 
   /**
    * 
-   * @param {object} cart 
+   * @param {Cart} cart 
    * @returns {Promise<number>} The number of rows affected
    */
   updateById(cart) {

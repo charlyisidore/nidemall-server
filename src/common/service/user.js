@@ -32,7 +32,7 @@ module.exports = class UserService extends think.Service {
 
   /**
    * 
-   * @param {object} user 
+   * @param {User} user 
    * @returns {Promise<number>} The ID inserted
    */
   add(user) {
@@ -46,7 +46,7 @@ module.exports = class UserService extends think.Service {
 
   /**
    * 
-   * @param {object} user 
+   * @param {User} user 
    * @returns {Promise<number>} The number of rows affected
    */
   updateById(user) {
