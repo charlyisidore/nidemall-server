@@ -177,6 +177,8 @@ module.exports = class CouponService extends think.Service {
     /** @type {GoodsService} */
     const goodsService = think.service('goods');
 
+    const { GOODS_TYPE, TIME_TYPE, STATUS } = this.constructor;
+
     const coupon = await this.findById(couponId);
     if (think.isEmpty(coupon) || coupon.deleted) {
       return null;
@@ -197,11 +199,11 @@ module.exports = class CouponService extends think.Service {
     const days = coupon.days;
     const now = new Date();
 
-    if (this.constructor.TIME_TYPE.TIME == timeType) {
+    if (TIME_TYPE.TIME == timeType) {
       if (now < coupon.startTime || now > coupon.endTime) {
         return null;
       }
-    } else if (this.constructor.TIME_TYPE.DAYS == timeType) {
+    } else if (TIME_TYPE.DAYS == timeType) {
       const addTime = couponUser.addTime;
       const expired = (new Date(addTime)).setDate(addTime.getDate() + days);
 
@@ -216,12 +218,9 @@ module.exports = class CouponService extends think.Service {
     let goodsValueList = [...coupon.goodsValue];
     const goodsType = coupon.goodsType;
 
-    if ([
-      this.constructor.GOODS_TYPE.CATEGORY,
-      this.constructor.GOODS_TYPE.ARRAY,
-    ].includes(goodsType)) {
+    if ([GOODS_TYPE.CATEGORY, GOODS_TYPE.ARRAY].includes(goodsType)) {
       for (const cart of cartList) {
-        const key = (this.constructor.GOODS_TYPE.ARRAY == goodsType) ?
+        const key = (GOODS_TYPE.ARRAY == goodsType) ?
           cart.goodsId :
           (await goodsService.findById(cart.goodsId)).categoryId;
 
@@ -248,7 +247,7 @@ module.exports = class CouponService extends think.Service {
       }
     }
 
-    if (this.constructor.STATUS.NORMAL != coupon.status) {
+    if (STATUS.NORMAL != coupon.status) {
       return null;
     }
 
