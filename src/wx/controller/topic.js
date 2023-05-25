@@ -2,9 +2,13 @@ const Base = require('./base.js');
 
 module.exports = class WxTopicController extends Base {
   async listAction() {
+    /** @type {number} */
     const page = this.get('page');
+    /** @type {number} */
     const limit = this.get('limit');
+    /** @type {string} */
     const sort = think.camelCase(this.get('sort'));
+    /** @type {string} */
     const order = this.get('order');
 
     /** @type {TopicService} */
@@ -22,6 +26,7 @@ module.exports = class WxTopicController extends Base {
 
   async detailAction() {
     const userId = this.getUserId();
+    /** @type {number} */
     const id = this.get('id');
 
     /** @type {CollectService} */
@@ -58,6 +63,7 @@ module.exports = class WxTopicController extends Base {
   }
 
   async relatedAction() {
+    /** @type {number} */
     const id = this.get('id');
     /** @type {TopicService} */
     const topicService = this.service('topic');

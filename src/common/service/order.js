@@ -19,6 +19,7 @@ module.exports = class OrderService extends think.Service {
   /**
    * 
    * @param {number} userId 
+   * @returns {{unpaid: number, unship: number, unrecv: number, uncomment: number}}
    */
   async orderInfo(userId) {
     const orders = await this.model('order')
