@@ -38,6 +38,7 @@ module.exports = class CartService extends think.Service {
   /**
    * 
    * @param {object} cart 
+   * @returns {Promise<number>} The number of rows affected
    */
   updateById(cart) {
     const now = new Date();
@@ -81,7 +82,7 @@ module.exports = class CartService extends think.Service {
    * 
    * @param {number[]} productIdList 
    * @param {number} userId 
-   * @returns 
+   * @returns {Promise<number>} The number of rows affected
    */
   delete(productIdList, userId) {
     return this.model('cart')
@@ -114,6 +115,7 @@ module.exports = class CartService extends think.Service {
    * @param {number} userId 
    * @param {number[]} idsList 
    * @param {boolean} checked 
+   * @returns {Promise<number>} The number of rows affected
    */
   updateCheck(userId, idsList, checked) {
     const now = new Date();
@@ -132,6 +134,7 @@ module.exports = class CartService extends think.Service {
   /**
    * 
    * @param {number} id 
+   * @returns {Promise<number>} The number of rows affected
    */
   deleteById(id) {
     return this.model('cart')

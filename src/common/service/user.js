@@ -47,6 +47,7 @@ module.exports = class UserService extends think.Service {
   /**
    * 
    * @param {object} user 
+   * @returns {Promise<number>} The number of rows affected
    */
   updateById(user) {
     const now = new Date();

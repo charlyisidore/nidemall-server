@@ -50,6 +50,7 @@ module.exports = class AddressService extends think.Service {
   /**
    * 
    * @param {object} address 
+   * @returns {Promise<number>} The number of rows affected
    */
   update(address) {
     const now = new Date();
@@ -63,6 +64,7 @@ module.exports = class AddressService extends think.Service {
   /**
    * 
    * @param {number} id 
+   * @returns {Promise<number>} The number of rows affected
    */
   delete(id) {
     return this.model('address')
@@ -90,6 +92,7 @@ module.exports = class AddressService extends think.Service {
   /**
    * 
    * @param {number} userId 
+   * @returns {Promise<number>} The number of rows affected
    */
   resetDefault(userId) {
     const now = new Date();
