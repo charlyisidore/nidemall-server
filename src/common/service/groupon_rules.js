@@ -75,26 +75,28 @@ module.exports = class GrouponRulesService extends think.Service {
 
     const grouponRulesList = await this.queryList(page, limit, sort, order);
 
-    return (await Promise.all(grouponRulesList.map(async (rule) => {
-      const goods = await goodsService.findById(rule.goodsId);
+    return (await Promise.all(
+      grouponRulesList.map(async (rule) => {
+        const goods = await goodsService.findById(rule.goodsId);
 
-      if (think.isEmpty(goods)) {
-        return null;
-      }
+        if (think.isEmpty(goods)) {
+          return null;
+        }
 
-      return {
-        id: goods.id,
-        name: goods.name,
-        brief: goods.brief,
-        picUrl: goods.picUrl,
-        counterPrice: goods.counterPrice,
-        retailPrice: goods.retailPrice,
-        grouponPrice: (goods.retailPrice - rule.discount),
-        grouponDiscount: rule.discount,
-        grouponMember: rule.discountMember,
-        expireTime: rule.expireTime,
-      };
-    })))
-      .filter((groupon) => (null !== groupon));
+        return {
+          id: goods.id,
+          name: goods.name,
+          brief: goods.brief,
+          picUrl: goods.picUrl,
+          counterPrice: goods.counterPrice,
+          retailPrice: goods.retailPrice,
+          grouponPrice: (goods.retailPrice - rule.discount),
+          grouponDiscount: rule.discount,
+          grouponMember: rule.discountMember,
+          expireTime: rule.expireTime,
+        };
+      })
+    ))
+      .filter((grouponRules) => (null !== grouponRules));
   }
 }
