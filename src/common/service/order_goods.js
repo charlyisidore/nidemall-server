@@ -5,6 +5,20 @@ module.exports = class OrderGoodsService extends think.Service {
 
   /**
    * 
+   * @param {OrderGoods} orderGoods 
+   * @returns {Promise<number>} The ID inserted
+   */
+  add(orderGoods) {
+    const now = new Date();
+    return this.model('order_goods')
+      .add(Object.assign(orderGoods, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
    * @param {number} orderId 
    * @returns {Promise<OrderGoods[]>}
    */
