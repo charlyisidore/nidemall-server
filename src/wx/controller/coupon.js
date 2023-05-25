@@ -22,13 +22,7 @@ module.exports = class WxCouponController extends Base {
 
     const couponList = await couponService.queryList(page, limit, sort, order);
 
-    return this.success({
-      total: couponList.count,
-      pages: couponList.totalPages,
-      limit: couponList.pageSize,
-      page: couponList.currentPage,
-      list: couponList.data,
-    });
+    return this.successList(couponList);
   }
 
   async mylistAction() {
@@ -63,13 +57,7 @@ module.exports = class WxCouponController extends Base {
 
     const couponVoList = await this.change(couponUserList.data);
 
-    return this.success({
-      total: couponUserList.count,
-      pages: couponUserList.totalPages,
-      limit: couponUserList.pageSize,
-      page: couponUserList.currentPage,
-      list: couponVoList,
-    });
+    return this.successList(couponVoList, couponUserList);
   }
 
   async selectlistAction() {
@@ -134,13 +122,7 @@ module.exports = class WxCouponController extends Base {
       couponVo.available = !think.isEmpty(coupon);
     }
 
-    return this.success({
-      total: couponVoList.length,
-      pages: 1,
-      limit: 0,
-      page: 1,
-      list: couponVoList,
-    });
+    return this.successList(couponVoList);
   }
 
   async receiveAction() {

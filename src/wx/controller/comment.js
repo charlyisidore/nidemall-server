@@ -102,12 +102,6 @@ module.exports = class WxCommentController extends Base {
       })
     );
 
-    return this.success({
-      total: commentList.count,
-      pages: commentList.totalPages,
-      limit: commentList.pageSize,
-      page: commentList.currentPage,
-      list: commentVoList,
-    });
+    return this.successList(commentVoList, commentList);
   }
 };

@@ -15,13 +15,7 @@ module.exports = class WxBrandController extends Base {
     const brandService = this.service('brand');
     const brandList = await brandService.query(page, limit, sort, order);
 
-    return this.success({
-      total: brandList.count,
-      pages: brandList.totalPages,
-      limit: brandList.pageSize,
-      page: brandList.currentPage,
-      list: brandList.data,
-    });
+    return this.successList(brandList);
   }
 
   async detailAction() {

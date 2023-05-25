@@ -12,13 +12,7 @@ module.exports = class WxAddressController extends Base {
 
     const addressList = await addressService.queryByUid(userId);
 
-    return this.success({
-      total: addressList.length,
-      pages: 1,
-      limit: 0,
-      page: 1,
-      list: addressList,
-    });
+    return this.successList(addressList);
   }
 
   async detailAction() {

@@ -15,13 +15,7 @@ module.exports = class WxTopicController extends Base {
     const topicService = this.service('topic');
     const topicList = await topicService.queryList(page, limit, sort, order);
 
-    return this.success({
-      total: topicList.count,
-      pages: topicList.totalPages,
-      limit: topicList.pageSize,
-      page: topicList.currentPage,
-      list: topicList.data,
-    });
+    return this.successList(topicList);
   }
 
   async detailAction() {
@@ -70,12 +64,6 @@ module.exports = class WxTopicController extends Base {
 
     const topicRelatedList = await topicService.queryRelatedList(id, 0, 4);
 
-    return this.success({
-      total: topicRelatedList.count,
-      pages: topicRelatedList.totalPages,
-      limit: topicRelatedList.pageSize,
-      page: topicRelatedList.currentPage,
-      list: topicRelatedList.data,
-    });
+    return this.successList(topicRelatedList);
   }
 };

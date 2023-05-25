@@ -172,13 +172,7 @@ module.exports = class WxGoodsController extends Base {
 
     const goodsList = await goodsService.queryByCategory(goods.categoryId, 0, 6);
 
-    return this.success({
-      total: goodsList.count,
-      pages: goodsList.totalPages,
-      limit: goodsList.pageSize,
-      page: goodsList.currentPage,
-      list: goodsList.data,
-    });
+    return this.successList(goodsList);
   }
 
   async countAction() {
