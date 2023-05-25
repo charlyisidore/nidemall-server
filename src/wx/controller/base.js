@@ -71,4 +71,39 @@ module.exports = class WxBaseController extends think.Controller {
   success(data, message = '成功') {
     return super.success(data, message);
   }
+
+  /**
+   * Convert lists obtained with `Model.countSelect()` to success responses
+   * @param {{ pageSize: number, currentPage: number, count: number, totalPages: number, data: any[] }|any[]} list 
+   * @param {{ pageSize: number, currentPage: number, count: number, totalPages: number, data: any[] }|any[]|undefined} pagedList 
+   */
+  successList(list, pagedList) {
+    const data = {};
+
+    if (think.isNullOrUndefined(pagedList)) {
+      pagedList = list;
+    }
+
+    if (Array.isArray(pagedList)) {
+      Object.assign(data, {
+        total: pagedList.length,
+        pages: 1,
+        limit: pagedList.length,
+        page: 1,
+      });
+    } else {
+      Object.assign(data, {
+        total: pagedList.count,
+        pages: pagedList.totalPages,
+        limit: pagedList.pageSize,
+        page: pagedList.totalPages > 0 ? pagedList.currentPage : 0,
+      });
+    }
+
+    Object.assign(data, {
+      list: Array.isArray(list) ? list : list.data,
+    })
+
+    return this.success(data);
+  }
 };
