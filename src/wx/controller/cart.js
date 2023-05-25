@@ -12,6 +12,7 @@ module.exports = class WxCartController extends Base {
 
   async addAction() {
     const userId = this.getUserId();
+    /** @type {{ goodsId: number, productId: number, number: number }} */
     const cart = this.post([
       'goodsId',
       'productId',
@@ -80,6 +81,7 @@ module.exports = class WxCartController extends Base {
 
   async fastaddAction() {
     const userId = this.getUserId();
+    /** @type {{ goodsId: number, productId: number, number: number }} */
     const cart = this.post([
       'goodsId',
       'productId',
@@ -152,6 +154,7 @@ module.exports = class WxCartController extends Base {
 
   async updateAction() {
     const userId = this.getUserId();
+    /** @type {{ id: number, goodsId: number, productId: number, number: number }} */
     const cart = this.post([
       'id',
       'goodsId',
@@ -207,7 +210,9 @@ module.exports = class WxCartController extends Base {
 
   async checkedAction() {
     const userId = this.getUserId();
+    /** @type {number[]} */
     const productIds = this.post('productIds');
+    /** @type {boolean} */
     const isChecked = this.post('isChecked');
 
     /** @type {CartService} */
@@ -228,6 +233,7 @@ module.exports = class WxCartController extends Base {
 
   async deleteAction() {
     const userId = this.getUserId();
+    /** @type {number[]} */
     const productIds = this.post('productIds');
 
     /** @type {CartService} */
@@ -252,10 +258,15 @@ module.exports = class WxCartController extends Base {
 
   async checkoutAction() {
     const userId = this.getUserId();
+    /** @type {number?} */
     const cartId = this.get('cartId');
+    /** @type {number?} */
     let addressId = this.get('addressId');
+    /** @type {number?} */
     let couponId = this.get('couponId');
+    /** @type {number?} */
     let userCouponId = this.get('userCouponId');
+    /** @type {number?} */
     const grouponRulesId = this.get('grouponRulesId');
 
     /** @type {AddressService} */

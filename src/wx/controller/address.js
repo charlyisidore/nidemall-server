@@ -23,6 +23,7 @@ module.exports = class WxAddressController extends Base {
 
   async detailAction() {
     const userId = this.getUserId();
+    /** @type {number} */
     const id = this.get('id');
 
     /** @type {AddressService} */
@@ -43,6 +44,7 @@ module.exports = class WxAddressController extends Base {
 
   async saveAction() {
     const userId = this.getUserId();
+    /** @type {{ id: number?, name: string, tel: string, province: string, city: string, county: string, areaCode: string, addressDetail: string, isDefault: boolean }} */
     const address = this.post([
       'id',
       'name',
@@ -96,6 +98,7 @@ module.exports = class WxAddressController extends Base {
 
   async deleteAction() {
     const userId = this.getUserId();
+    /** @type {number} */
     const id = this.post('id');
 
     /** @type {AddressService} */

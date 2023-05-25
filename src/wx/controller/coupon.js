@@ -8,9 +8,13 @@ module.exports = class WxCouponController extends Base {
   };
 
   async listAction() {
+    /** @type {number} */
     const page = this.get('page');
+    /** @type {number} */
     const limit = this.get('limit');
+    /** @type {string} */
     const sort = think.camelCase(this.get('sort'));
+    /** @type {string} */
     const order = this.get('order');
 
     /** @type {CouponService} */
@@ -29,10 +33,15 @@ module.exports = class WxCouponController extends Base {
 
   async mylistAction() {
     const userId = this.getUserId();
+    /** @type {number?} */
     const status = this.get('status');
+    /** @type {number} */
     const page = this.get('page');
+    /** @type {number} */
     const limit = this.get('limit');
+    /** @type {string} */
     const sort = think.camelCase(this.get('sort'));
+    /** @type {string} */
     const order = this.get('order');
 
     /** @type {CouponUserService} */
@@ -65,7 +74,9 @@ module.exports = class WxCouponController extends Base {
 
   async selectlistAction() {
     const userId = this.getUserId();
+    /** @type {number?} */
     const cartId = this.get('cartId');
+    /** @type {number?} */
     const grouponRulesId = this.get('grouponRulesId');
 
     /** @type {CartService} */
@@ -134,6 +145,7 @@ module.exports = class WxCouponController extends Base {
 
   async receiveAction() {
     const userId = this.getUserId();
+    /** @type {number} */
     const couponId = this.post('couponId');
 
     /** @type {CouponService} */
@@ -205,6 +217,7 @@ module.exports = class WxCouponController extends Base {
 
   async exchangeAction() {
     const userId = this.getUserId();
+    /** @type {string} */
     const code = this.post('code');
 
     /** @type {CouponService} */

@@ -26,6 +26,9 @@ module.exports = class extends think.Logic {
       picUrls: {
         array: true,
         default: [],
+        children: {
+          string: true,
+        },
       },
     };
   }

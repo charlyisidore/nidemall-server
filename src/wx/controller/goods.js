@@ -3,6 +3,7 @@ const Base = require('./base.js');
 module.exports = class WxGoodsController extends Base {
   async detailAction() {
     const userId = this.getUserId();
+    /** @type {number} */
     const id = this.get('id');
 
     /** @type {BrandService} */
@@ -69,6 +70,7 @@ module.exports = class WxGoodsController extends Base {
   }
 
   async categoryAction() {
+    /** @type {number} */
     const id = this.get('id');
     /** @type {CategoryService} */
     const categoryService = this.service('category');
@@ -95,14 +97,23 @@ module.exports = class WxGoodsController extends Base {
 
   async listAction() {
     const userId = this.getUserId();
+    /** @type {number?} */
     const categoryId = this.get('categoryId');
+    /** @type {number?} */
     const brandId = this.get('brandId');
+    /** @type {string?} */
     const keyword = this.get('keyword');
+    /** @type {boolean?} */
     const isNew = this.get('isNew');
+    /** @type {boolean?} */
     const isHot = this.get('isHot');
+    /** @type {number} */
     const page = this.get('page');
+    /** @type {number} */
     const limit = this.get('limit');
+    /** @type {string} */
     const sort = think.camelCase(this.get('sort'));
+    /** @type {string} */
     const order = this.get('order');
 
     /** @type {CategoryService} */
@@ -149,6 +160,7 @@ module.exports = class WxGoodsController extends Base {
   }
 
   async relatedAction() {
+    /** @type {number} */
     const id = this.get('id');
     /** @type {GoodsService} */
     const goodsService = this.service('goods');

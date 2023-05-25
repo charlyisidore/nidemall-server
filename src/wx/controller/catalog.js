@@ -2,6 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class WxCatalogController extends Base {
   async indexAction() {
+    /** @type {number?} */
     const id = this.get('id');
     /** @type {CategoryService} */
     const categoryService = this.service('category');
@@ -56,6 +57,7 @@ module.exports = class WxCatalogController extends Base {
   }
 
   async currentAction() {
+    /** @type {number} */
     const id = this.get('id');
     /** @type {CategoryService} */
     const categoryService = this.service('category');

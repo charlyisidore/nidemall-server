@@ -2,9 +2,13 @@ const Base = require('./base.js');
 
 module.exports = class WxBrandController extends Base {
   async listAction() {
+    /** @type {number} */
     const page = this.get('page');
+    /** @type {number} */
     const limit = this.get('limit');
+    /** @type {string} */
     const sort = think.camelCase(this.get('sort'));
+    /** @type {string} */
     const order = this.get('order');
 
     /** @type {BrandService} */
@@ -21,6 +25,7 @@ module.exports = class WxBrandController extends Base {
   }
 
   async detailAction() {
+    /** @type {number} */
     const id = this.get('id');
     /** @type {BrandService} */
     const brandService = this.service('brand');

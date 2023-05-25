@@ -3,6 +3,7 @@ const Base = require('./base.js');
 module.exports = class WxCommentController extends Base {
   async postAction() {
     const userId = this.getUserId();
+    /** @type {{ content: string, star: number, type: number, valueId: number, hasPicture: boolean, picUrls: string[] }} */
     const comment = this.post([
       'content',
       'star',
