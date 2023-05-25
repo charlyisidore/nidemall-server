@@ -290,7 +290,7 @@ module.exports = class WxCartController extends Base {
     let checkedAddress = null;
 
     if (addressId) {
-      checkedAddress = await addressService.query(userId, addressId);
+      checkedAddress = await addressService.query(addressId, userId);
     }
 
     if (think.isEmpty(checkedAddress)) {

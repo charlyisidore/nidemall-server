@@ -19,11 +19,11 @@ module.exports = class AddressService extends think.Service {
 
   /**
    * 
-   * @param {number} userId 
    * @param {number} id 
+   * @param {number} userId 
    * @returns {Promise<Address|Record<string, never>>} 
    */
-  query(userId, id) {
+  query(id, userId) {
     return this.model('address')
       .where({
         id,
