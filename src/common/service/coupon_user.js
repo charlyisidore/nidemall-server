@@ -28,7 +28,7 @@ module.exports = class CouponUserService extends think.Service {
   /**
    * 
    * @param {object} couponUser 
-   * @returns {Promise<number>} 
+   * @returns {Promise<number>} The ID inserted
    */
   add(couponUser) {
     const now = new Date();

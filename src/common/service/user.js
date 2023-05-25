@@ -33,7 +33,7 @@ module.exports = class UserService extends think.Service {
   /**
    * 
    * @param {object} user 
-   * @returns {Promise<number>} 
+   * @returns {Promise<number>} The ID inserted
    */
   add(user) {
     const now = new Date();

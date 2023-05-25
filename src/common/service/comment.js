@@ -87,7 +87,7 @@ module.exports = class CommentService extends think.Service {
   /**
    * 
    * @param {object} comment 
-   * @returns {Promise<number>} 
+   * @returns {Promise<number>} The ID inserted
    */
   save(comment) {
     const now = new Date();
