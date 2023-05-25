@@ -14,9 +14,11 @@
  * @typedef {import('./service/goods_attribute.js')} GoodsAttributeService
  * @typedef {import('./service/goods_product.js')} GoodsProductService
  * @typedef {import('./service/goods_specification.js')} GoodsSpecificationService
+ * @typedef {import('./service/groupon.js')} GrouponService
  * @typedef {import('./service/groupon_rules.js')} GrouponRulesService
  * @typedef {import('./service/issue.js')} IssueService
  * @typedef {import('./service/order.js')} OrderService
+ * @typedef {import('./service/order_goods.js')} OrderGoodsService
  * @typedef {import('./service/search_history.js')} SearchHistoryService
  * @typedef {import('./service/system.js')} SystemService
  * @typedef {import('./service/topic.js')} TopicService
