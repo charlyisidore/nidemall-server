@@ -26,7 +26,6 @@ module.exports = {
     enable: true,
     appid: '',
     appkey: '',
-    vendors: {
-    },
+    vendors: [],
   },
 };
