@@ -57,6 +57,7 @@ module.exports = class GoodsService extends think.Service {
    * @param {number|number[]} catIdOrList 
    * @param {number} page 
    * @param {number} limit 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Goods[]}>}
    */
   queryByCategory(catIdOrList, page, limit) {
     return this.model('goods')
@@ -84,6 +85,7 @@ module.exports = class GoodsService extends think.Service {
    * @param {number} limit 
    * @param {string} sort 
    * @param {string} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Goods[]}>}
    */
   querySelectiveCategory(categoryId, brandId, keywords, isHot, isNew, page, limit, sort, order) {
     const model = this.model('goods')

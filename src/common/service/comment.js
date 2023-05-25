@@ -8,6 +8,7 @@ module.exports = class CommentService extends think.Service {
    * @param {number} id 
    * @param {number} page 
    * @param {number} limit 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Comment[]}>}
    */
   queryGoodsByGid(id, page, limit) {
     return this.model('comment')
@@ -28,6 +29,7 @@ module.exports = class CommentService extends think.Service {
    * @param {number} showType 
    * @param {number} page 
    * @param {number} limit 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Comment[]}>}
    */
   query(type, valueId, showType, page, limit) {
     if (![0, 1].includes(showType)) {

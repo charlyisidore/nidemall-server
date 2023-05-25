@@ -44,6 +44,7 @@ module.exports = class CouponService extends think.Service {
    * @param {number} limit 
    * @param {string?} sort 
    * @param {string?} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Coupon[]}>}
    */
   queryList(page, limit, sort, order) {
     const model = this.model('coupon')
@@ -67,6 +68,7 @@ module.exports = class CouponService extends think.Service {
    * @param {number} userId 
    * @param {number} page 
    * @param {number} limit 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Coupon[]}>}
    */
   async queryAvailableList(userId, page, limit) {
     const model = this.model('coupon');

@@ -17,6 +17,7 @@ module.exports = class BrandService extends think.Service {
    * @param {number} limit 
    * @param {string?} sort 
    * @param {string?} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Brand[]}>}
    */
   query(page, limit, sort, order) {
     const model = this.model('brand')
