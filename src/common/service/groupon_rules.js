@@ -67,22 +67,22 @@ module.exports = class GrouponRulesService extends think.Service {
    * @param {number} limit 
    * @param {string?} sort 
    * @param {string?} order 
+   * @returns {Promise<object[]>}
    */
   async wxQueryList(page, limit, sort, order) {
     /** @type {GoodsService} */
     const goodsService = think.service('goods');
 
     const grouponRulesList = await this.queryList(page, limit, sort, order);
-    const grouponList = [];
 
-    for (const rule of grouponRulesList) {
+    return (await Promise.all(grouponRulesList.map(async (rule) => {
       const goods = await goodsService.findById(rule.goodsId);
 
       if (think.isEmpty(goods)) {
-        continue;
+        return null;
       }
 
-      grouponList.push({
+      return {
         id: goods.id,
         name: goods.name,
         brief: goods.brief,
@@ -93,9 +93,8 @@ module.exports = class GrouponRulesService extends think.Service {
         grouponDiscount: rule.discount,
         grouponMember: rule.discountMember,
         expireTime: rule.expireTime,
-      });
-    }
-
-    return grouponList;
+      };
+    })))
+      .filter((groupon) => (null !== groupon));
   }
 }
