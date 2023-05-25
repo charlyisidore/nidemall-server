@@ -14,6 +14,7 @@ module.exports = class CouponUserService extends think.Service {
    * 
    * @param {number} userId 
    * @param {number} couponId 
+   * @returns {Promise<number>} The total number
    */
   countUserAndCoupon(userId, couponId) {
     return this.model('coupon_user')

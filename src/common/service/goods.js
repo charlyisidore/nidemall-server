@@ -180,6 +180,7 @@ module.exports = class GoodsService extends think.Service {
 
   /**
    * 
+   * @returns {Promise<number>} The total number
    */
   queryOnSale() {
     return this.model('goods')

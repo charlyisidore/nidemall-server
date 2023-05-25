@@ -61,6 +61,7 @@ module.exports = class CommentService extends think.Service {
    * @param {number} type 
    * @param {number} valueId 
    * @param {number} showType 
+   * @returns {Promise<number>} The total number
    */
   count(type, valueId, showType) {
     if (![0, 1].includes(showType)) {
