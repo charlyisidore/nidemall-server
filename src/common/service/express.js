@@ -45,7 +45,7 @@ module.exports = class ExpressService extends think.Service {
    * @param {string} shipperCode 
    * @param {string} logisticCode 
    * @param {string} orderCode 
-   * @returns {ExpressInfo?}
+   * @returns {Promise<ExpressInfo?>}
    */
   async getExpressInfo(shipperCode, logisticCode, orderCode = '') {
     const config = this.config('express');
@@ -73,7 +73,7 @@ module.exports = class ExpressService extends think.Service {
    * @param {string} shipperCode 
    * @param {string} logisticCode 
    * @param {string} orderCode 
-   * @returns {ExpressInfo}
+   * @returns {Promise<ExpressInfo>}
    */
   getOrderTracesByJson(shipperCode, logisticCode, orderCode = '') {
     const config = this.config('express');
