@@ -6,6 +6,7 @@ module.exports = class FootprintService extends think.Service {
   /**
    * 
    * @param {object} footprint 
+   * @returns {Promise<number>} 
    */
   add(footprint) {
     const now = new Date();

@@ -36,6 +36,7 @@ module.exports = class AddressService extends think.Service {
   /**
    * 
    * @param {object} address 
+   * @returns {Promise<number>} 
    */
   add(address) {
     const now = new Date();

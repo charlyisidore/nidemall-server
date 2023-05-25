@@ -6,6 +6,7 @@ module.exports = class SearchHistoryService extends think.Service {
   /**
    * 
    * @param {object} searchHistory 
+   * @returns {Promise<number>} 
    */
   save(searchHistory) {
     const now = new Date();

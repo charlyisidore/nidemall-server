@@ -24,6 +24,7 @@ module.exports = class CartService extends think.Service {
   /**
    * 
    * @param {object} cart 
+   * @returns {Promise<number>} 
    */
   add(cart) {
     const now = new Date();

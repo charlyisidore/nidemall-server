@@ -28,6 +28,7 @@ module.exports = class CouponUserService extends think.Service {
   /**
    * 
    * @param {object} couponUser 
+   * @returns {Promise<number>} 
    */
   add(couponUser) {
     const now = new Date();
