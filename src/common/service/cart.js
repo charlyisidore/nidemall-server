@@ -102,11 +102,16 @@ module.exports = class CartService extends think.Service {
    * @returns {Promise<Cart|Record<string, never>>} 
    */
   findById(id, userId) {
-    return this.model('cart')
-      .where({
-        id,
+    const where = { id };
+
+    if (!think.isNullOrUndefined(userId)) {
+      Object.assign(where, {
         userId,
-      })
+      });
+    }
+
+    return this.model('cart')
+      .where(where)
       .find();
   }
 
@@ -128,6 +133,22 @@ module.exports = class CartService extends think.Service {
       .update({
         checked,
         updateTime: now,
+      });
+  }
+
+  /**
+   * 
+   * @param {number} userId 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  clearGoods(userId) {
+    return this.model('cart')
+      .where({
+        userId,
+        checked: true,
+      })
+      .update({
+        deleted: true,
       });
   }
 
