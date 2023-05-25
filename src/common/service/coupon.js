@@ -99,6 +99,7 @@ module.exports = class CouponService extends think.Service {
   /**
    * 
    * @param {number} id 
+   * @returns {Promise<Coupon|Record<string, never>>} 
    */
   findById(id) {
     return this.model('coupon')

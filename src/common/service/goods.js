@@ -151,6 +151,7 @@ module.exports = class GoodsService extends think.Service {
   /**
    * 
    * @param {number} id 
+   * @returns {Promise<Goods|Record<string, never>>} 
    */
   findById(id) {
     return this.model('goods')
@@ -164,6 +165,7 @@ module.exports = class GoodsService extends think.Service {
   /**
    * 
    * @param {number} id 
+   * @returns {Promise<Goods|Record<string, never>>} 
    */
   findByIdVo(id) {
     return this.model('goods')

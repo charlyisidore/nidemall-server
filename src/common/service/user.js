@@ -8,6 +8,7 @@ module.exports = class UserService extends think.Service {
   /**
    * 
    * @param {number} id 
+   * @returns {Promise<User|Record<string, never>>} 
    */
   findById(id) {
     return this.model('user')
@@ -18,6 +19,7 @@ module.exports = class UserService extends think.Service {
   /**
    * 
    * @param {string} openid 
+   * @returns {Promise<User|Record<string, never>>} 
    */
   queryByOid(openid) {
     return this.model('user')

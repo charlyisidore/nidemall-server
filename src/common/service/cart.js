@@ -8,6 +8,7 @@ module.exports = class CartService extends think.Service {
    * @param {number} goodsId 
    * @param {number} productId 
    * @param {number} userId 
+   * @returns {Promise<Cart|Record<string, never>>} 
    */
   queryExist(goodsId, productId, userId) {
     return this.model('cart')
@@ -96,6 +97,7 @@ module.exports = class CartService extends think.Service {
    * 
    * @param {number} id 
    * @param {number?} userId 
+   * @returns {Promise<Cart|Record<string, never>>} 
    */
   findById(id, userId) {
     return this.model('cart')

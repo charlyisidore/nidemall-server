@@ -8,7 +8,6 @@ module.exports = class CommentService extends think.Service {
    * @param {number} id 
    * @param {number} page 
    * @param {number} limit 
-   * @returns 
    */
   queryGoodsByGid(id, page, limit) {
     return this.model('comment')

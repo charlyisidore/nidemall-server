@@ -36,6 +36,7 @@ module.exports = class TopicService extends think.Service {
   /**
    * 
    * @param {number} id 
+   * @returns {Promise<Topic|Record<string, never>>} 
    */
   findById(id) {
     return this.model('topic')

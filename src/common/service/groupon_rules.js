@@ -19,6 +19,7 @@ module.exports = class GrouponRulesService extends think.Service {
   /**
    * 
    * @param {number} id 
+   * @returns {Promise<GrouponRules|Record<string, never>>} 
    */
   findById(id) {
     return this.model('groupon_rules')
