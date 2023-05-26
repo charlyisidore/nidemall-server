@@ -76,6 +76,7 @@ module.exports = class WxBaseController extends think.Controller {
    * Convert lists obtained with `Model.countSelect()` to success responses
    * @param {{ pageSize: number, currentPage: number, count: number, totalPages: number, data: any[] }|any[]} list 
    * @param {{ pageSize: number, currentPage: number, count: number, totalPages: number, data: any[] }|any[]|undefined} pagedList 
+   * @returns {{ total: number, pages: number, limit: number, page: number, list: any[] }}
    */
   successList(list, pagedList) {
     const data = {};
