@@ -67,13 +67,10 @@ paths:
                               properties:
                                 id:
                                   type: integer
-                                  example: 1005000
                                 name:
                                   type: string
-                                  example: '居家'
                                 iconUrl:
                                   type: string
-                                  example: 'http://yanxuan.nosdn.127.net/a45c2c262a476fea0b9fc684fed91ef5.png'
                           grouponList:
                             type: array
                             items:
@@ -81,35 +78,25 @@ paths:
                               properties:
                                 id:
                                   type: integer
-                                  example: 1110016
                                 name:
                                   type: string
-                                  example: '天然硅胶宠物除毛按摩刷'
                                 brief:
                                   type: string
-                                  example: '顺滑平面，猫狗通用，去除死毛'
                                 picUrl:
                                   type: string
-                                  example: 'http://yanxuan.nosdn.127.net/3bd73b7279a83d1cbb50c0e45778e6d6.png'
                                 counterPrice:
                                   type: number
-                                  example: 59
                                 retailPrice:
                                   type: number
-                                  example: 39
                                 grouponPrice:
                                   type: number
-                                  example: 0
                                 grouponDiscount:
                                   type: number
-                                  example: 39
                                 grouponMember:
                                   type: number
-                                  example: 2
                                 expireTime:
                                   type: string
                                   format: date-time
-                                  example: '2020-12-31 00:00:00'
                           banner:
                             type: array
                             items:
@@ -133,10 +120,8 @@ paths:
                               properties:
                                 id:
                                   type: integer
-                                  example: 1006002
                                 name:
                                   type: string
-                                  example: '居家'
                                 goodsList:
                                   type: array
                                   items:
@@ -211,7 +196,6 @@ paths:
           required: true
           schema:
             type: integer
-            example: 1005000
       responses:
         '200':
           description: Successful operation
@@ -248,7 +232,6 @@ paths:
                     properties:
                       data:
                         type: integer
-                        example: 238
   /goods/list:
     get:
       tags:
@@ -320,7 +303,6 @@ paths:
           required: true
           schema:
             type: integer
-            example: 1005000
       responses:
         '200':
           description: Successful operation
@@ -354,7 +336,6 @@ paths:
           required: true
           schema:
             type: integer
-            example: 1005000
       responses:
         '200':
           description: Successful operation
@@ -389,10 +370,8 @@ paths:
                               $ref: '#/components/schemas/Issue'
                           userHasCollect:
                             type: integer
-                            example: 0
                           shareImage:
                             type: string
-                            example: ''
                           comment:
                             type: object
                             properties:
@@ -419,10 +398,8 @@ paths:
                                         type: string
                               count:
                                 type: integer
-                                example: 0
                           share:
                             type: boolean
-                            example: false
                           attribute:
                             type: array
                             items:
@@ -443,11 +420,9 @@ components:
         errno:
           type: integer
           description: Error code
-          example: 0
         errmsg:
           type: string
           description: Error message
-          example: '成功'
         data:
           description: Output data
     List:
@@ -455,101 +430,74 @@ components:
       properties:
         total:
           type: integer
-          example: 238
         pages:
           type: integer
-          example: 24
         limit:
           type: integer
-          example: 10
         page:
           type: integer
-          example: 1
         list:
           type: array
     DateTime:
       type: string
       format: date-time
-      example: '2018-02-01 00:00:00'
     Ad:
       type: object
       properties:
         id:
           type: integer
-          example: 1
         name:
           type: string
-          example: '合作 谁是你的菜'
         link:
           type: string
-          example: ''
         url:
           type: string
-          example: 'http://yanxuan.nosdn.127.net/65091eebc48899298171c2eb6696fe27.jpg'
         position:
           type: integer
-          example: 1
         content:
           type: string
-          example: '合作 谁是你的菜'
         enabled:
           type: boolean
-          example: true
         addTime:
           $ref: '#/components/schemas/DateTime'
         updateTime:
           $ref: '#/components/schemas/DateTime'
         deleted:
           type: boolean
-          example: false
     Brand:
       type: object
       properties:
         id:
           type: integer
-          example: 1001000
         name:
           type: string
-          example: 'MUJI制造商'
         desc:
           type: string
-          example: "严选精选了MUJI制造商和生产原料，\n用几乎零利润的价格，剔除品牌溢价，\n让用户享受原品牌的品质生活。"
         picUrl:
           type: string
-          example: 'http://yanxuan.nosdn.127.net/1541445967645114dd75f6b0edc4762d.png'
         floorPrice:
           type: number
-          example: 12.90
     Category:
       type: object
       properties:
         id:
           type: integer
-          example: 1005000
         name:
           type: string
-          example: '居家'
         keywords:
           type: string
-          example: ''
         desc:
           type: string
-          example: '回家，放松身心'
         pid:
           type: number
-          example: 0
         iconUrl:
           type: string
-          example: 'http://yanxuan.nosdn.127.net/a45c2c262a476fea0b9fc684fed91ef5.png'
         picUrl:
           type: string
-          example: 'http://yanxuan.nosdn.127.net/e8bf0cf08cf7eda21606ab191762e35c.png'
         level:
           type: string
-          example: 'L1'
         sortOrder:
           type: integer
-          example: 2
         addTime:
           $ref: '#/components/schemas/DateTime'
         updateTime:
@@ -559,137 +507,99 @@ components:
       properties:
         id:
           type: integer
-          example: 1
         name:
           type: string
-          example: '限时满减券'
         desc:
           type: string
-          example: '全场通用'
         tag:
           type: string
-          example: '无限制'
         discount:
           type: number
-          example: 5.00
         min:
           type: number
-          example: 99.00
         days:
           type: integer
-          example: 10
     Issue:
       type: object
       properties:
         id:
           type: integer
-          example: 1
         question:
           type: string
-          example: '购买运费如何收取？'
         answer:
           type: string
-          example: '单笔订单金额（不含运费）满88元免邮费；不满88元，每单收取10元运费。\n(港澳台地区需满'
         addTime:
           $ref: '#/components/schemas/DateTime'
         updateTime:
           $ref: '#/components/schemas/DateTime'
         deleted:
           type: boolean
-          example: false
     Goods:
       type: object
       properties:
         id:
           type: integer
-          example: 1116011
         goodsSn:
           type: string
-          example: '1116011'
         name:
           type: string
-          example: '蔓越莓曲奇 200克'
         categoryId:
           type: integer
-          example: 1008015
         brandId:
           type: integer
-          example: 0
         gallery:
           type: array
           items:
             type: string
-            example: 'http://yanxuan.nosdn.127.net/1900349493220bfebcc67b2b6466e9f5.jpg'
         keywords:
           type: string
-          example: ''
         brief:
           type: string
-          example: '酥脆奶香，甜酸回味'
         isOnSale:
           type: boolean
-          example: true
         sortOrder:
           type: integer
-          example: 5
         picUrl:
           type: string
-          example: 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png'
         shareUrl:
           type: string
-          example: ''
         isNew:
           type: boolean
-          example: true
         isHot:
           type: boolean
-          example: true
         unit:
           type: string
-          example: '件'
         counterPrice:
           type: number
-          example: 56.00
         retailPrice:
           type: number
-          example: 36.00
         addTime:
           $ref: '#/components/schemas/DateTime'
         updateTime:
           $ref: '#/components/schemas/DateTime'
         deleted:
           type: boolean
-          example: false
         detail:
           type: string
-          example: ''
     Goods_Item:
       type: object
       properties:
         id:
           type: integer
-          example: 1116011
         name:
           type: string
-          example: '蔓越莓曲奇 200克'
         brief:
           type: string
-          example: '酥脆奶香，甜酸回味'
         picUrl:
           type: string
-          example: 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png'
         isHot:
           type: boolean
-          example: true
         isNew:
           type: boolean
-          example: true
         counterPrice:
           type: number
-          example: 56.00
         retailPrice:
           type: number
-          example: 36.00
     GoodsAttribute:
       type: object
       properties:
@@ -707,7 +617,6 @@ components:
           $ref: '#/components/schemas/DateTime'
         deleted:
           type: boolean
-          example: false
     GoodsProduct:
       type: object
       properties:
@@ -731,32 +640,25 @@ components:
           $ref: '#/components/schemas/DateTime'
         deleted:
           type: boolean
-          example: false
     GoodsSpecification:
       type: object
       properties:
         id:
           type: integer
-          example: 166
         goodsId:
           type: integer
-          example: 1116011
         specification:
           type: string
-          example: '规格'
         value:
           type: string
-          example: '标准'
         picUrl:
           value: string
-          example: ''
         addTime:
           $ref: '#/components/schemas/DateTime'
         updateTime:
           $ref: '#/components/schemas/DateTime'
         deleted:
           type: boolean
-          example: false
     GrouponRules:
       type: object
       properties:
@@ -782,28 +684,21 @@ components:
           $ref: '#/components/schemas/DateTime'
         deleted:
           type: boolean
-          example: false
     Topic:
       type: object
       properties:
         id:
           type: integer
-          example: 264
         title:
           type: string
-          example: '设计师们推荐的应季好物'
         subtitle:
           type: string
-          example: '原创设计春款系列上新'
         price:
           type: number
-          example: 29.90
         picUrl:
           type: string
-          example: 'https://yanxuan.nosdn.127.net/14918201901050274.jpg'
         readCount:
           type: string
-          example: '77.7k'
   parameters:
     page:
       name: page
