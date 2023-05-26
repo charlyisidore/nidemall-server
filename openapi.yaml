@@ -255,7 +255,6 @@ paths:
         - goods
       summary: Goods list
       parameters:
-        - $ref: '#/components/parameters/pageParam'
         - name: categoryId
           in: query
           description: Category ID
@@ -286,10 +285,10 @@ paths:
           required: false
           schema:
             type: boolean
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/limitParam'
-        - $ref: '#/components/parameters/sortParam'
-        - $ref: '#/components/parameters/orderParam'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sort'
+        - $ref: '#/components/parameters/order'
       responses:
         '200':
           description: Successful operation
@@ -806,7 +805,7 @@ components:
           type: string
           example: '77.7k'
   parameters:
-    pageParam:
+    page:
       name: page
       in: query
       description: Page number
@@ -814,7 +813,7 @@ components:
       schema:
         type: integer
         default: 1
-    limitParam:
+    limit:
       name: limit
       in: query
       description: Items per page
@@ -822,7 +821,7 @@ components:
       schema:
         type: integer
         default: 10
-    sortParam:
+    sort:
       name: sort
       in: query
       description: Sort field
@@ -830,7 +829,7 @@ components:
       schema:
         type: string
         default: add_time
-    orderParam:
+    order:
       name: order
       in: query
       description: Sort direction
