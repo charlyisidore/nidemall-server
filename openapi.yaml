@@ -366,24 +366,7 @@ paths:
                               data:
                                 type: array
                                 items:
-                                  type: object
-                                  properties:
-                                    id:
-                                      type: integer
-                                    addTime:
-                                      $ref: '#/components/schemas/DateTime'
-                                    content:
-                                      type: string
-                                    adminContent:
-                                      type: string
-                                    nickname:
-                                      type: string
-                                    avatar:
-                                      type: string
-                                    picList:
-                                      type: array
-                                      items:
-                                        type: string
+                                  $ref: '#/components/schemas/Comment'
                               count:
                                 type: integer
                           share:
@@ -465,6 +448,25 @@ components:
           type: string
         floorPrice:
           type: number
+    Comment:
+      type: object
+      properties:
+        addTime:
+          $ref: '#/components/schemas/DateTime'
+        picList:
+          type: array
+          items:
+            type: string
+        adminContent:
+          type: string
+        nickname:
+          type: string
+        id:
+          type: integer
+        avatar:
+          type: string
+        content:
+          type: string
     Category:
       type: object
       properties:
@@ -477,7 +479,7 @@ components:
         desc:
           type: string
         pid:
-          type: number
+          type: integer
         iconUrl:
           type: string
         picUrl:
@@ -490,6 +492,8 @@ components:
           $ref: '#/components/schemas/DateTime'
         updateTime:
           $ref: '#/components/schemas/DateTime'
+        deleted:
+          type: boolean
     CategoryChannel:
       type: object
       properties:
