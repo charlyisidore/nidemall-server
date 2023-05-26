@@ -4,12 +4,13 @@ info:
   description: |-
     `nidemall` server API based on the OpenAPI 3.1 specification.
   version: '1.0'
+  contact: {}
 externalDocs:
   description: GitHub repository
   url: https://github.com/charlyisidore/nidemall-server
 servers:
-  - url: http://localhost:8360/wx
   - url: http://localhost:8080/wx
+  - url: http://localhost:8360/wx
 tags:
   - name: home
   - name: catalog
@@ -38,7 +39,9 @@ paths:
     get:
       tags:
         - home
-      summary: Homepage data
+      summary: Homepage index
+      description: Homepage index
+      operationId: wxHomeIndex
       responses:
         '200':
           description: Successful operation
@@ -63,40 +66,11 @@ paths:
                           channel:
                             type: array
                             items:
-                              type: object
-                              properties:
-                                id:
-                                  type: integer
-                                name:
-                                  type: string
-                                iconUrl:
-                                  type: string
+                              $ref: '#/components/schemas/CategoryChannel'
                           grouponList:
                             type: array
                             items:
-                              type: object
-                              properties:
-                                id:
-                                  type: integer
-                                name:
-                                  type: string
-                                brief:
-                                  type: string
-                                picUrl:
-                                  type: string
-                                counterPrice:
-                                  type: number
-                                retailPrice:
-                                  type: number
-                                grouponPrice:
-                                  type: number
-                                grouponDiscount:
-                                  type: number
-                                grouponMember:
-                                  type: number
-                                expireTime:
-                                  type: string
-                                  format: date-time
+                              $ref: '#/components/schemas/Groupon'
                           banner:
                             type: array
                             items:
@@ -118,19 +92,21 @@ paths:
                             items:
                               type: object
                               properties:
-                                id:
-                                  type: integer
                                 name:
                                   type: string
                                 goodsList:
                                   type: array
                                   items:
                                     $ref: '#/components/schemas/Goods'
+                                id:
+                                  type: integer
   /home/about:
     get:
       tags:
         - home
       summary: Homepage about
+      description: Homepage about
+      operationId: wxHomeAbout
       responses:
         '200':
           description: Successful operation
@@ -161,6 +137,8 @@ paths:
       tags:
         - catalog
       summary: Catalog index
+      description: Catalog index
+      operationId: wxCatalogIndex
       responses:
         '200':
           description: Successful operation
@@ -189,6 +167,8 @@ paths:
       tags:
         - catalog
       summary: Catalog current
+      description: Catalog current
+      operationId: wxCatalogCurrent
       parameters:
         - name: id
           in: query
@@ -220,6 +200,8 @@ paths:
       tags:
         - goods
       summary: Goods count
+      description: Goods count
+      operationId: wxGoodsCount
       responses:
         '200':
           description: Successful operation
@@ -237,6 +219,8 @@ paths:
       tags:
         - goods
       summary: Goods list
+      description: Goods list
+      operationId: wxGoodsList
       parameters:
         - name: categoryId
           in: query
@@ -296,6 +280,8 @@ paths:
       tags:
         - goods
       summary: Goods category
+      description: Goods category
+      operationId: wxGoodsCategory
       parameters:
         - name: id
           in: query
@@ -329,6 +315,8 @@ paths:
       tags:
         - goods
       summary: Goods detail
+      description: Goods detail
+      operationId: wxGoodsDetail
       parameters:
         - name: id
           in: query
@@ -502,6 +490,15 @@ components:
           $ref: '#/components/schemas/DateTime'
         updateTime:
           $ref: '#/components/schemas/DateTime'
+    CategoryChannel:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        iconUrl:
+          type: string
     Coupon:
       type: object
       properties:
@@ -545,9 +542,9 @@ components:
           type: string
         picUrl:
           type: string
-        isHot:
-          type: boolean
         isNew:
+          type: boolean
+        isHot:
           type: boolean
         counterPrice:
           type: number
@@ -659,6 +656,30 @@ components:
           $ref: '#/components/schemas/DateTime'
         deleted:
           type: boolean
+    Groupon:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        brief:
+          type: string
+        picUrl:
+          type: string
+        counterPrice:
+          type: number
+        retailPrice:
+          type: number
+        grouponPrice:
+          type: number
+        grouponDiscount:
+          type: number
+        grouponMember:
+          type: number
+        expireTime:
+          type: string
+          format: date-time
     GrouponRules:
       type: object
       properties:
@@ -695,9 +716,9 @@ components:
           type: string
         price:
           type: number
-        picUrl:
-          type: string
         readCount:
+          type: string
+        picUrl:
           type: string
   parameters:
     page:
@@ -733,7 +754,7 @@ components:
         type: string
         default: 'desc'
   securitySchemes:
-    api_key:
+    ApiKey:
       type: apiKey
       in: header
       name: 'X-Litemall-Token'
