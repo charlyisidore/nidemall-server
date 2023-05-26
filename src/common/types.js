@@ -116,7 +116,7 @@
  * @property {number?} productId - 商品货品表的货品ID
  * @property {number?} price - 商品货品的价格
  * @property {number?} number - 商品货品的数量
- * @property {string?} specifications - 商品规格值列表，采用JSON数组格式
+ * @property {string[]?} specifications - 商品规格值列表，采用JSON数组格式
  * @property {number?} checked - 购物车中商品是否选择状态
  * @property {string?} picUrl - 商品图片或者商品货品图片
  * @property {Date?} addTime - 创建时间
@@ -160,7 +160,7 @@
  * @property {string?} adminContent - 管理员回复内容
  * @property {number?} userId - 用户表的用户ID
  * @property {number?} hasPicture - 是否含有图片
- * @property {string?} picUrls - 图片地址列表，采用JSON数组格式
+ * @property {string[]?} picUrls - 图片地址列表，采用JSON数组格式
  * @property {number?} star - 评分， 1-5
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
@@ -216,7 +216,7 @@
  * @property {string} content - 反馈内容
  * @property {number?} status - 状态
  * @property {number?} hasPicture - 是否含有图片
- * @property {string?} picUrls - 图片地址列表，采用JSON数组格式
+ * @property {string[]?} picUrls - 图片地址列表，采用JSON数组格式
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
  * @property {number?} deleted - 逻辑删除
@@ -239,7 +239,7 @@
  * @property {string?} name - 商品名称
  * @property {number?} categoryId - 商品所属类目ID
  * @property {number?} brandId
- * @property {string?} gallery - 商品宣传图片列表，采用JSON数组格式
+ * @property {string[]?} gallery - 商品宣传图片列表，采用JSON数组格式
  * @property {string?} keywords - 商品关键字，采用逗号间隔
  * @property {string?} brief - 商品简介
  * @property {number?} isOnSale - 是否上架
@@ -272,7 +272,7 @@
  * @typedef {object} GoodsProduct
  * @property {number?} id - ID
  * @property {number?} goodsId - 商品表的商品ID
- * @property {string} specifications - 商品规格值列表，采用JSON数组格式
+ * @property {string[]} specifications - 商品规格值列表，采用JSON数组格式
  * @property {number?} price - 商品货品价格
  * @property {number?} number - 商品货品数量
  * @property {string?} url - 商品货品图片
