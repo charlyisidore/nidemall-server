@@ -55,7 +55,7 @@ paths:
                           newGoodsList:
                             type: array
                             items:
-                              $ref: '#/components/schemas/Goods'
+                              $ref: '#/components/schemas/Goods_Item'
                           couponList:
                             type: array
                             items:
@@ -121,7 +121,7 @@ paths:
                           hotGoodsList:
                             type: array
                             items:
-                              $ref: '#/components/schemas/Goods'
+                              $ref: '#/components/schemas/Goods_Item'
                           topicList:
                             type: array
                             items:
@@ -140,7 +140,7 @@ paths:
                                 goodsList:
                                   type: array
                                   items:
-                                    $ref: '#/components/schemas/Goods'
+                                    $ref: '#/components/schemas/Goods_Item'
   /home/about:
     get:
       tags:
@@ -231,6 +231,211 @@ paths:
                             type: array
                             items:
                               $ref: '#/components/schemas/Category'
+  /goods/count:
+    get:
+      tags:
+        - goods
+      summary: Goods count
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: integer
+                        example: 238
+  /goods/list:
+    get:
+      tags:
+        - goods
+      summary: Goods list
+      parameters:
+        - $ref: '#/components/parameters/pageParam'
+        - name: categoryId
+          in: query
+          description: Category ID
+          required: false
+          schema:
+            type: integer
+        - name: brandId
+          in: query
+          description: Brand ID
+          required: false
+          schema:
+            type: integer
+        - name: keyword
+          in: query
+          description: Search by keywords
+          required: false
+          schema:
+            type: string
+        - name: isNew
+          in: query
+          description: Only new goods
+          required: false
+          schema:
+            type: boolean
+        - name: isHot
+          in: query
+          description: Only hot goods
+          required: false
+          schema:
+            type: boolean
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/orderParam'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: '#/components/schemas/List'
+                          - type: object
+                            properties:
+                              list:
+                                type: array
+                                items:
+                                  $ref: '#/components/schemas/Goods_Item'
+  /goods/category:
+    get:
+      tags:
+        - goods
+      summary: Goods category
+      parameters:
+        - name: id
+          in: query
+          description: Category ID
+          required: true
+          schema:
+            type: integer
+            example: 1005000
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          currentCategory:
+                            $ref: '#/components/schemas/Category'
+                          brotherCategory:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Category'
+                          parentCategory:
+                            $ref: '#/components/schemas/Category'
+  /goods/detail:
+    get:
+      tags:
+        - goods
+      summary: Goods detail
+      parameters:
+        - name: id
+          in: query
+          description: Goods ID
+          required: true
+          schema:
+            type: integer
+            example: 1005000
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          specificationList:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                valueList:
+                                  type: array
+                                  items:
+                                    $ref: '#/components/schemas/GoodsSpecification'
+                          groupon:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/GrouponRules'
+                          issue:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Issue'
+                          userHasCollect:
+                            type: integer
+                            example: 0
+                          shareImage:
+                            type: string
+                            example: ''
+                          comment:
+                            type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    addTime:
+                                      $ref: '#/components/schemas/DateTime'
+                                    content:
+                                      type: string
+                                    adminContent:
+                                      type: string
+                                    nickname:
+                                      type: string
+                                    avatar:
+                                      type: string
+                                    picList:
+                                      type: array
+                                      items:
+                                        type: string
+                              count:
+                                type: integer
+                                example: 0
+                          share:
+                            type: boolean
+                            example: false
+                          attribute:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/GoodsAttribute'
+                          brand:
+                            $ref: '#/components/schemas/Brand'
+                          productList:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/GoodsProduct'
+                          info:
+                            $ref: '#/components/schemas/Goods'
 components:
   schemas:
     ApiResponse:
@@ -246,6 +451,27 @@ components:
           example: '成功'
         data:
           description: Output data
+    List:
+      type: object
+      properties:
+        total:
+          type: integer
+          example: 238
+        pages:
+          type: integer
+          example: 24
+        limit:
+          type: integer
+          example: 10
+        page:
+          type: integer
+          example: 1
+        list:
+          type: array
+    DateTime:
+      type: string
+      format: date-time
+      example: '2018-02-01 00:00:00'
     Ad:
       type: object
       properties:
@@ -271,13 +497,9 @@ components:
           type: boolean
           example: true
         addTime:
-          type: string
-          format: date-time
-          example: '2018-02-01 00:00:00'
+          $ref: '#/components/schemas/DateTime'
         updateTime:
-          type: string
-          format: date-time
-          example: '2018-02-01 00:00:00'
+          $ref: '#/components/schemas/DateTime'
         deleted:
           type: boolean
           example: false
@@ -298,7 +520,7 @@ components:
           example: 'http://yanxuan.nosdn.127.net/1541445967645114dd75f6b0edc4762d.png'
         floorPrice:
           type: number
-          example: 12.9
+          example: 12.90
     Category:
       type: object
       properties:
@@ -330,13 +552,9 @@ components:
           type: integer
           example: 2
         addTime:
-          type: string
-          format: date-time
-          example: '2018-02-01 00:00:00'
+          $ref: '#/components/schemas/DateTime'
         updateTime:
-          type: string
-          format: date-time
-          example: '2018-02-01 00:00:00'
+          $ref: '#/components/schemas/DateTime'
     Coupon:
       type: object
       properties:
@@ -352,16 +570,101 @@ components:
         tag:
           type: string
           example: '无限制'
+        discount:
+          type: number
+          example: 5.00
+        min:
+          type: number
+          example: 99.00
         days:
           type: integer
           example: 10
-        discount:
-          type: number
-          example: 5
-        min:
-          type: number
-          example: 99
+    Issue:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        question:
+          type: string
+          example: '购买运费如何收取？'
+        answer:
+          type: string
+          example: '单笔订单金额（不含运费）满88元免邮费；不满88元，每单收取10元运费。\n(港澳台地区需满'
+        addTime:
+          $ref: '#/components/schemas/DateTime'
+        updateTime:
+          $ref: '#/components/schemas/DateTime'
+        deleted:
+          type: boolean
+          example: false
     Goods:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1116011
+        goodsSn:
+          type: string
+          example: '1116011'
+        name:
+          type: string
+          example: '蔓越莓曲奇 200克'
+        categoryId:
+          type: integer
+          example: 1008015
+        brandId:
+          type: integer
+          example: 0
+        gallery:
+          type: array
+          items:
+            type: string
+            example: 'http://yanxuan.nosdn.127.net/1900349493220bfebcc67b2b6466e9f5.jpg'
+        keywords:
+          type: string
+          example: ''
+        brief:
+          type: string
+          example: '酥脆奶香，甜酸回味'
+        isOnSale:
+          type: boolean
+          example: true
+        sortOrder:
+          type: integer
+          example: 5
+        picUrl:
+          type: string
+          example: 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png'
+        shareUrl:
+          type: string
+          example: ''
+        isNew:
+          type: boolean
+          example: true
+        isHot:
+          type: boolean
+          example: true
+        unit:
+          type: string
+          example: '件'
+        counterPrice:
+          type: number
+          example: 56.00
+        retailPrice:
+          type: number
+          example: 36.00
+        addTime:
+          $ref: '#/components/schemas/DateTime'
+        updateTime:
+          $ref: '#/components/schemas/DateTime'
+        deleted:
+          type: boolean
+          example: false
+        detail:
+          type: string
+          example: ''
+    Goods_Item:
       type: object
       properties:
         id:
@@ -384,10 +687,103 @@ components:
           example: true
         counterPrice:
           type: number
-          example: 56
+          example: 56.00
         retailPrice:
           type: number
-          example: 36
+          example: 36.00
+    GoodsAttribute:
+      type: object
+      properties:
+        id:
+          type: integer
+        goodsId:
+          type: integer
+        attribute:
+          type: string
+        value:
+          type: string
+        addTime:
+          $ref: '#/components/schemas/DateTime'
+        updateTime:
+          $ref: '#/components/schemas/DateTime'
+        deleted:
+          type: boolean
+          example: false
+    GoodsProduct:
+      type: object
+      properties:
+        id:
+          type: integer
+        goodsId:
+          type: integer
+        specifications:
+          type: array
+          items:
+            type: string
+        price:
+          type: number
+        number:
+          type: number
+        url:
+          type: string
+        addTime:
+          $ref: '#/components/schemas/DateTime'
+        updateTime:
+          $ref: '#/components/schemas/DateTime'
+        deleted:
+          type: boolean
+          example: false
+    GoodsSpecification:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 166
+        goodsId:
+          type: integer
+          example: 1116011
+        specification:
+          type: string
+          example: '规格'
+        value:
+          type: string
+          example: '标准'
+        picUrl:
+          value: string
+          example: ''
+        addTime:
+          $ref: '#/components/schemas/DateTime'
+        updateTime:
+          $ref: '#/components/schemas/DateTime'
+        deleted:
+          type: boolean
+          example: false
+    GrouponRules:
+      type: object
+      properties:
+        id:
+          type: integer
+        goodsId:
+          type: integer
+        goodsName:
+          type: string
+        picUrl:
+          type: string
+        discount:
+          type: number
+        discountMember:
+          type: integer
+        expireTime:
+          $ref: '#/components/schemas/DateTime'
+        status:
+          type: string
+        addTime:
+          $ref: '#/components/schemas/DateTime'
+        updateTime:
+          $ref: '#/components/schemas/DateTime'
+        deleted:
+          type: boolean
+          example: false
     Topic:
       type: object
       properties:
@@ -402,13 +798,46 @@ components:
           example: '原创设计春款系列上新'
         price:
           type: number
-          example: 29.9
+          example: 29.90
         picUrl:
           type: string
           example: 'https://yanxuan.nosdn.127.net/14918201901050274.jpg'
         readCount:
           type: string
           example: '77.7k'
+  parameters:
+    pageParam:
+      name: page
+      in: query
+      description: Page number
+      required: false
+      schema:
+        type: integer
+        default: 1
+    limitParam:
+      name: limit
+      in: query
+      description: Items per page
+      required: false
+      schema:
+        type: integer
+        default: 10
+    sortParam:
+      name: sort
+      in: query
+      description: Sort field
+      required: false
+      schema:
+        type: string
+        default: add_time
+    orderParam:
+      name: order
+      in: query
+      description: Sort direction
+      required: false
+      schema:
+        type: string
+        default: desc
   securitySchemes:
     api_key:
       type: apiKey
