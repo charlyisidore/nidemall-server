@@ -20,6 +20,7 @@ module.exports = class GoodsSpecificationService extends think.Service {
   /**
    * 
    * @param {number} id 
+   * @returns {Promise<{ name: string, valueList: GoodsSpecification[] }[]>}
    */
   async getSpecificationVoList(id) {
     const goodsSpecificationList = await this.queryByGid(id);
