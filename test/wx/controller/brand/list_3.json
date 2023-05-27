@@ -1,0 +1,82 @@
+{
+  "errno": 0,
+  "data": {
+    "total": 49,
+    "pages": 5,
+    "limit": 10,
+    "page": 3,
+    "list": [
+      {
+        "id": 1039000,
+        "name": "TEFAL制造商",
+        "desc": "严选对标国际品质，致力于高品质生活好物，\n执着寻求优质厨房电器供应商，\n携手WMF、Tefal制造商，打造高品质厨具。",
+        "picUrl": "http://yanxuan.nosdn.127.net/2b7a07e25a3f3be886a7fb90ba975bb7.png",
+        "floorPrice": 259
+      },
+      {
+        "id": 1039001,
+        "name": "京瓷制造商",
+        "desc": "严选想为你的厨房生活，带来新鲜感和活力，\n深入全国各地，选择日本京瓷等品牌代工厂，\n打造钻石系列厨具，颜值与品质兼具。",
+        "picUrl": "http://yanxuan.nosdn.127.net/3dda530605e3ab1c82d5ed30f2489473.png",
+        "floorPrice": 89
+      },
+      {
+        "id": 1040000,
+        "name": "Tescom制造商",
+        "desc": "严选为打造时尚健康的个护电器，\n选择Tescom品牌制造商，全球最大个护电器工厂之一，\n拥有20年经验，出口180多个国家，品质有保障。",
+        "picUrl": "http://yanxuan.nosdn.127.net/c17cd65971189fdc28f5bd6b78f657a7.png",
+        "floorPrice": 59
+      },
+      {
+        "id": 1041000,
+        "name": "BCBG制造商",
+        "desc": "严选从产品源头开始，每道工序质量把关，\n选择美国知名品牌BCBG的制造商合作，\n严谨匠心，致力于优质柔滑的睡衣穿搭产品。",
+        "picUrl": "http://yanxuan.nosdn.127.net/b9072023afd3621714fd5c49f140fca8.png",
+        "floorPrice": 99
+      },
+      {
+        "id": 1046000,
+        "name": "Police制造商",
+        "desc": "严选团队选定Police品牌制造商合作，\n有11年眼镜生产资质，兼顾品质与品味，\n为你带来专业时尚的墨镜。",
+        "picUrl": "http://yanxuan.nosdn.127.net/66e2cb956a9dd1efc7732bea278e901e.png",
+        "floorPrice": 109
+      },
+      {
+        "id": 1001038,
+        "name": "Coach制造商",
+        "desc": "严选为制作高品质高颜值皮具配件，\n由Coach、MK等品牌制造商生产，\n由严选360度全程监制，给你带来优质皮具。",
+        "picUrl": "http://yanxuan.nosdn.127.net/1b1cc16135fd8467d40983f75f644127.png",
+        "floorPrice": 49
+      },
+      {
+        "id": 1001002,
+        "name": "内野制造商",
+        "desc": "严选从世界各地挑选毛巾，最终选择了为日本内野代工的工厂，追求毛巾的柔软度与功能性。品质比肩商场几百元的毛巾。",
+        "picUrl": "http://yanxuan.nosdn.127.net/8ca3ce091504f8aa1fba3fdbb7a6e351.png",
+        "floorPrice": 29
+      },
+      {
+        "id": 1001003,
+        "name": "Adidas制造商",
+        "desc": "严选找到为Adidas等品牌制造商，\n选取优质原材料，与厂方一起设计，\n为你提供好的理想的运动装备。",
+        "picUrl": "http://yanxuan.nosdn.127.net/335334d0deaff6dc3376334822ab3a2f.png",
+        "floorPrice": 49
+      },
+      {
+        "id": 1001007,
+        "name": "优衣库制造商",
+        "desc": "严选找到日本知名服装UNIQLO的制造商，\n选取优质长绒棉和精梳工艺，\n与厂方一起设计，为你提供理想的棉袜。",
+        "picUrl": "http://yanxuan.nosdn.127.net/0d72832e37e7e3ea391b519abbbc95a3.png",
+        "floorPrice": 29
+      },
+      {
+        "id": 1001008,
+        "name": "膳魔师制造商",
+        "desc": "严选深入保温行业内部，\n找到德国膳魔师制造商的代工厂。\n同样的品质，却有更优的价格。",
+        "picUrl": "http://yanxuan.nosdn.127.net/5fd51e29b9459dae7df8040c8219f241.png",
+        "floorPrice": 45
+      }
+    ]
+  },
+  "errmsg": "成功"
+}

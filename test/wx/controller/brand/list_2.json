@@ -1,0 +1,82 @@
+{
+  "errno": 0,
+  "data": {
+    "total": 49,
+    "pages": 5,
+    "limit": 10,
+    "page": 2,
+    "list": [
+      {
+        "id": 1028003,
+        "name": "Burberry制造商",
+        "desc": "为打造时尚舒适的童装系列，\n严选选择Burberry制造商，优化版型配色\n英伦风情融入经典格纹，百搭优雅气质款。",
+        "picUrl": "http://yanxuan.nosdn.127.net/07af01e281c7e0b912d162d611e22c32.jpg",
+        "floorPrice": 99
+      },
+      {
+        "id": 1025001,
+        "name": "Kenneth Cole制造商",
+        "desc": "为出品优质格调的商务鞋靴，\n严选团队选择Kenneth Cole品牌合作的制造商，\n一切努力，只为打造高品质鞋靴。",
+        "picUrl": "http://yanxuan.nosdn.127.net/236322546c6860e1662ab147d6b0ba2f.jpg",
+        "floorPrice": 349
+      },
+      {
+        "id": 1025000,
+        "name": "Timberland制造商",
+        "desc": "为制作优质时尚的工装鞋靴，\n严选团队深入探访国内外制靴大厂，选择Timberland制造商，\n工厂拥有15年制鞋历史，专业品质有保证。",
+        "picUrl": "http://yanxuan.nosdn.127.net/6dcadb0791b33aa9fd00380b44fa6645.png",
+        "floorPrice": 359
+      },
+      {
+        "id": 1024006,
+        "name": "KitchenAid制造商",
+        "desc": "严选寻访KitchenAid品牌的制造商，\n采用德国LFGB认证食品级专用不锈钢，\n欧式简约设计，可靠安心，尽享下厨乐趣。",
+        "picUrl": "http://yanxuan.nosdn.127.net/e11385bf29d1b3949435b80fcd000948.png",
+        "floorPrice": 98
+      },
+      {
+        "id": 1024003,
+        "name": "Stoneline制造商",
+        "desc": "严选找寻德国经典品牌Stoneline的制造商，\n追踪工艺，考量细节，亲自试用，\n为你甄选出最合心意的锅具和陶瓷刀，下厨如神。",
+        "picUrl": "http://yanxuan.nosdn.127.net/3a44ae7db86f3f9b6e542720c54cc349.png",
+        "floorPrice": 9.9
+      },
+      {
+        "id": 1024001,
+        "name": "OBH制造商",
+        "desc": "严选寻找OBH品牌的制造商，打造精致厨具，\n韩国独资工厂制造，严格质检，品质雕琢\n力求为消费者带来全新的烹饪体验。",
+        "picUrl": "http://yanxuan.nosdn.127.net/bf3499ac17a11ffb9bb7caa47ebef2dd.png",
+        "floorPrice": 39
+      },
+      {
+        "id": 1024000,
+        "name": "WMF制造商",
+        "desc": "严选找寻德国百年高端厨具WMF的制造商，\n选择拥有14年经验的不锈钢生产工厂，\n为你甄选事半功倍的优质厨具。",
+        "picUrl": "http://yanxuan.nosdn.127.net/2018e9ac91ec37d9aaf437a1fd5d7070.png",
+        "floorPrice": 9.9
+      },
+      {
+        "id": 1023000,
+        "name": "PetitBateau小帆船制造商",
+        "desc": "为打造适合宝宝的婴童服装，\n严选团队寻找PetitBateau小帆船的品牌制造商，\n无荧光剂，国家A类标准，让宝宝穿的放心。",
+        "picUrl": "http://yanxuan.nosdn.127.net/1a11438598f1bb52b1741e123b523cb5.jpg",
+        "floorPrice": 36
+      },
+      {
+        "id": 1022001,
+        "name": "Palladium制造商",
+        "desc": "严选探访多个制鞋大厂，选定Palladium制造商，\n对比工艺选材，找到传承多年的制鞋配方，\n只为制作一款高品质休闲鞋。",
+        "picUrl": "http://yanxuan.nosdn.127.net/3480f2a4026c60eb4921f0aa3facbde8.png",
+        "floorPrice": 249
+      },
+      {
+        "id": 1022000,
+        "name": "UGG制造商",
+        "desc": "为寻找优质的皮毛一体雪地靴，\n严选走访多家雪地靴制造商，对比工艺，\n甄选UGG认可的代工厂，只为足下的优雅舒适。",
+        "picUrl": "http://yanxuan.nosdn.127.net/4d2a3dea7e0172ae48e8161f04cfa045.jpg",
+        "floorPrice": 59
+      }
+    ]
+  },
+  "errmsg": "成功"
+}
