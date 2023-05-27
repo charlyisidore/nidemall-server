@@ -3,6 +3,7 @@
   "description": "ecommerce platform",
   "version": "1.0.0",
   "author": "Charly Lersteau <charly.lersteau@gmx.fr>",
+  "type": "commonjs",
   "scripts": {
     "start": "node development.js",
     "test": "THINK_UNIT_TEST=1 nyc ava test/ && nyc report --reporter=html",
