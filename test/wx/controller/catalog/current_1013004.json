@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1013004,
+      "name": "香薰",
+      "keywords": "",
+      "desc": "爱马仕集团制造商出品",
+      "pid": 1013001,
+      "iconUrl": "http://yanxuan.nosdn.127.net/d43e7af0a6a9385d88be2ca1df679158.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/fc7764ff8e12d18f6c5881a32318ed16.png",
+      "level": "L2",
+      "sortOrder": 2,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

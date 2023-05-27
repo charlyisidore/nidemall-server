@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1020007,
+      "name": "喂养",
+      "keywords": "",
+      "desc": "宝宝吃得香，妈妈才放心",
+      "pid": 1011000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/5db40a5bf84c177515610471d4d08687.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/6b6f1672fe041594245fe56a5dd80871.png",
+      "level": "L2",
+      "sortOrder": 6,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

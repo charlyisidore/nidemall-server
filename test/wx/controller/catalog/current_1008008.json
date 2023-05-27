@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1008008,
+      "name": "被枕",
+      "keywords": "",
+      "desc": "守护你的睡眠时光",
+      "pid": 1005000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/927bc33f7ae2895dd6c11cf91f5e3228.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/b43ef7cececebe6292d2f7f590522e05.png",
+      "level": "L2",
+      "sortOrder": 2,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

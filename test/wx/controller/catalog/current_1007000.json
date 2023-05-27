@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1007000,
+      "name": "杯壶",
+      "keywords": "",
+      "desc": "精工生产制作，匠人手艺",
+      "pid": 1005001,
+      "iconUrl": "http://yanxuan.nosdn.127.net/0b244d3575b737c8f0ed7e84c5c4abd2.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/ec53828a3814171079178a59fb2593da.png",
+      "level": "L2",
+      "sortOrder": 2,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

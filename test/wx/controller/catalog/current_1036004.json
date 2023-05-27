@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1036004,
+      "name": "大话西游",
+      "keywords": "",
+      "desc": "大话西游正版周边",
+      "pid": 1019000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/b60618db213322bdc2c5b1208655bd7e.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/470a017f508e9a18f3068be7b315e14b.png",
+      "level": "L2",
+      "sortOrder": 9,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

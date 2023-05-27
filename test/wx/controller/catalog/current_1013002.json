@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1013002,
+      "name": "美妆",
+      "keywords": "",
+      "desc": "为你的面容添色",
+      "pid": 1013001,
+      "iconUrl": "http://yanxuan.nosdn.127.net/aa49c088f74a1c318f1765cc2703495a.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/d6a7b9a2eb6af92d709429798a4ca3ea.png",
+      "level": "L2",
+      "sortOrder": 3,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

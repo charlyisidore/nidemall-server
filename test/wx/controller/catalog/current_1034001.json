@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1034001,
+      "name": "童车童椅",
+      "keywords": "",
+      "desc": "安全舒适，给宝宝一个快乐童年",
+      "pid": 1011000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/06bbfb293b6194b27ebdb3350203a1f7.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/4d16871eb80dac59d1796c7d806a5cea.png",
+      "level": "L2",
+      "sortOrder": 7,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

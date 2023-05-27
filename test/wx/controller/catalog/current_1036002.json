@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1036002,
+      "name": "汽车用品",
+      "keywords": "",
+      "desc": "给你的爱车添装备",
+      "pid": 1012000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/382cda1ef9cca77d99bcef05070d7db0.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/552e943e585a999169fdbc57b59524d6.png",
+      "level": "L2",
+      "sortOrder": 10,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

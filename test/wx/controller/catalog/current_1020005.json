@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1020005,
+      "name": "寝居",
+      "keywords": "",
+      "desc": "无荧光剂，婴幼儿A类标准",
+      "pid": 1011000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/0f3c5ad63139096fd0760219e12149af.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/476995896abea91d3f2e9ec20d56bd8d.png",
+      "level": "L2",
+      "sortOrder": 3,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

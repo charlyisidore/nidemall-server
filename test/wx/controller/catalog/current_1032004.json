@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1032004,
+      "name": "星际争霸II",
+      "keywords": "",
+      "desc": "记录科普卢星区的战斗时光",
+      "pid": 1019000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/433ff879a3686625535ca0304be22ab2.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/7394ce778791ae8242013d6c974f47e0.png",
+      "level": "L2",
+      "sortOrder": 5,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1020009,
+      "name": "外衣",
+      "keywords": "",
+      "desc": "穿出时尚感",
+      "pid": 1010000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/883d89e54a9287569a201eca388a7cda.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/647f7c39eb7c353958274a59fd821d03.png",
+      "level": "L2",
+      "sortOrder": 10,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

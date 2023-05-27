@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1034000,
+      "name": "丝袜",
+      "keywords": "",
+      "desc": "厚木制造商，专利冰丝",
+      "pid": 1010000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/d82d0bacfd7243c2ad09dbf2513cfcf9.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/4f8f86dfd1d4b46a9cf783b4980db47f.png",
+      "level": "L2",
+      "sortOrder": 5,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

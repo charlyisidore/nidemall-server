@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1011001,
+      "name": "妈咪",
+      "keywords": "",
+      "desc": "犬印、Harvest Hills制造商",
+      "pid": 1011000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/720aebaa529df9391b95a078dfb2fd5c.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/844e2f4dce94f71283840c141d4ca71b.png",
+      "level": "L2",
+      "sortOrder": 2,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

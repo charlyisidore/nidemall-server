@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1035002,
+      "name": "裤装",
+      "keywords": "",
+      "desc": "高质感面料，休闲商务两相宜",
+      "pid": 1010000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/a3906045b1367d70f658ce9de03e8193.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/1728b4eeaa7a3928f5416884f0e75b1c.png",
+      "level": "L2",
+      "sortOrder": 11,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1032005,
+      "name": "风暴英雄",
+      "keywords": "",
+      "desc": "时空枢纽，是个充满惊喜的地方",
+      "pid": 1019000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/e091aae0c8cafc5ab48dfabcc52c79b6.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/ff1e28fb7151008f8dc46bbf8b357f63.png",
+      "level": "L2",
+      "sortOrder": 6,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

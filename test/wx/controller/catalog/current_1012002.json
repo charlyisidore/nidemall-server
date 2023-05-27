@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1012002,
+      "name": "雨具",
+      "keywords": "",
+      "desc": "WPC制作商出品",
+      "pid": 1012000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/4e929a21baebdb1200361d8097e35e45.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/589da0f02917b8393197a43175764381.png",
+      "level": "L2",
+      "sortOrder": 4,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

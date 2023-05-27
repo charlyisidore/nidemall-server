@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1020010,
+      "name": "衬衫",
+      "keywords": "",
+      "desc": "细节讲究，合身剪裁",
+      "pid": 1010000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/94aa4a4814e2a7a97639438f1d52dcee.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/7927f8422c341f7353041a30d01045a2.png",
+      "level": "L2",
+      "sortOrder": 7,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

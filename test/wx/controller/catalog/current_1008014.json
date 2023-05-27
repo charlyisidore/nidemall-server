@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1008014,
+      "name": "糖巧",
+      "keywords": "",
+      "desc": "糖心蜜意，甜而不腻",
+      "pid": 1005002,
+      "iconUrl": "http://yanxuan.nosdn.127.net/db48a1db4daab74233656caaea4a06f3.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/c12cf29b574c7e9d1fcff6a57a12eea2.png",
+      "level": "L2",
+      "sortOrder": 3,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

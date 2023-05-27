@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1036001,
+      "name": "眼镜",
+      "keywords": "",
+      "desc": "实用加时尚，造型百搭单品",
+      "pid": 1012000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/97f5f75ea1209dfbb85e91932d26c3ed.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/c25fb420ccb6f692a2d16f1740b60d21.png",
+      "level": "L2",
+      "sortOrder": 9,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

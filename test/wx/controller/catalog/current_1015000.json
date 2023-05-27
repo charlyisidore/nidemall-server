@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1015000,
+      "name": "家具",
+      "keywords": "",
+      "desc": "大师级工艺",
+      "pid": 1005000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/4f00675caefd0d4177892ad18bfc2df6.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/d5d41841136182bf49c1f99f5c452dd6.png",
+      "level": "L2",
+      "sortOrder": 7,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

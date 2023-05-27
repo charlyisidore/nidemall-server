@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1008009,
+      "name": "床品件套",
+      "keywords": "",
+      "desc": "MUJI等品牌制造商出品",
+      "pid": 1005000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/243e5bf327a87217ad1f54592f0176ec.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/81f671bd36bce05d5f57827e5c88dd1b.png",
+      "level": "L2",
+      "sortOrder": 4,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

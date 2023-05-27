@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1013005,
+      "name": "刀剪砧板",
+      "keywords": "",
+      "desc": "传统工艺 源自中国刀城",
+      "pid": 1005001,
+      "iconUrl": "http://yanxuan.nosdn.127.net/9d481ea4c2e9e6eda35aa720d407332e.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/555afbfe05dab48c1a3b90dcaf89b4f2.png",
+      "level": "L2",
+      "sortOrder": 7,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

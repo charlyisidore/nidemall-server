@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1008010,
+      "name": "拖鞋",
+      "keywords": "",
+      "desc": "穿上拖鞋，回到自我",
+      "pid": 1008000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/1121696544ed9b0c2a70e82f1088fa0e.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/984ddb9671aab41651784ba55b2cbdcf.png",
+      "level": "L2",
+      "sortOrder": 6,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

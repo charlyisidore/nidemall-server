@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1011002,
+      "name": "海外",
+      "keywords": "",
+      "desc": "来自海外制造商的好物",
+      "pid": 1012000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/da884ff3b9e9d5276986c99e85722461.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/fd1de05d274222f1e56d057d2f2c20c6.png",
+      "level": "L2",
+      "sortOrder": 5,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

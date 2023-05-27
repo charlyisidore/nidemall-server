@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1008005,
+      "name": "户外",
+      "keywords": "",
+      "desc": "MUJI、Nike等制造商出品",
+      "pid": 1012000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/83d22ca3d1c8f94ee23ca96de489864c.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/833476fc3ecc30a7446279b787328775.png",
+      "level": "L2",
+      "sortOrder": 7,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

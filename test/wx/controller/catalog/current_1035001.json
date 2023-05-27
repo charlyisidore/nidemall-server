@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1035001,
+      "name": "毛衣",
+      "keywords": "",
+      "desc": "温暖柔软，品质之选",
+      "pid": 1010000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/cc886f16c8b9893305f1b3b6ad4eb0b1.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/b610b058cfd73a9211dc890b7b0cbc66.png",
+      "level": "L2",
+      "sortOrder": 8,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1032000,
+      "name": "魔兽世界",
+      "keywords": "",
+      "desc": "艾泽拉斯的冒险，才刚刚开始",
+      "pid": 1019000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/336f0186a9920eb0f93a3912f3662ffe.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/becfba90e8a5c95d403b8a6b9bb77825.png",
+      "level": "L2",
+      "sortOrder": 1,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

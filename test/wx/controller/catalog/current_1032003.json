@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1032003,
+      "name": "暗黑破坏神III",
+      "keywords": "",
+      "desc": "奈非天们，停下脚步整理下行囊",
+      "pid": 1019000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/8fe4eb999f748236228a73e09878e277.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/1e19e948de63a1d0895a8620250c441f.png",
+      "level": "L2",
+      "sortOrder": 4,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

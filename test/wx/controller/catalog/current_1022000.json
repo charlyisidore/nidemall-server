@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1022000,
+      "name": "数码",
+      "keywords": "",
+      "desc": "智能硬件，匠心出品",
+      "pid": 1008000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/3ec003761d346bc866de2ec249d7ff19.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/c33b13875a86da535c935e3d454a6fd2.png",
+      "level": "L2",
+      "sortOrder": 9,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

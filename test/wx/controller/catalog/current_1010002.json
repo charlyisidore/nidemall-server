@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1010002,
+      "name": "内裤",
+      "keywords": "",
+      "desc": "来自李维斯、爱慕等制造商",
+      "pid": 1010000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/364269344ed69adafe1b70ab7998fc50.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/0a7fe0a08c195ca2cf55d12cd3c30f09.png",
+      "level": "L2",
+      "sortOrder": 1,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

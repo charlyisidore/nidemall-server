@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1020006,
+      "name": "玩具",
+      "keywords": "",
+      "desc": "萌宝童趣必备",
+      "pid": 1011000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/7aac7c5819f71345a52a4b9df23d6239.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/34b3267efcddad09cd652f181d87aab0.png",
+      "level": "L2",
+      "sortOrder": 4,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

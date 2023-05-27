@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1010001,
+      "name": "内衣",
+      "keywords": "",
+      "desc": "给你贴身的关怀",
+      "pid": 1010000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/20279e1753e4eedc6e347857acda9681.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/02fede55aba1bc6c9d7f7c01682f9e2d.png",
+      "level": "L2",
+      "sortOrder": 2,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

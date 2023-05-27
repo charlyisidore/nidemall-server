@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1008001,
+      "name": "毛巾",
+      "keywords": "",
+      "desc": "日本皇室专供，内野制造商出品",
+      "pid": 1013001,
+      "iconUrl": "http://yanxuan.nosdn.127.net/44ad9a739380aa6b7cf956fb2a06e7a7.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/c53d2dd5ba6b1cfb55bd42ea0783f051.png",
+      "level": "L2",
+      "sortOrder": 1,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

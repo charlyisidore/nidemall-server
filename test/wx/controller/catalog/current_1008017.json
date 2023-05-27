@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1008017,
+      "name": "收纳",
+      "keywords": "",
+      "desc": "选自古驰竹柄原料供应商",
+      "pid": 1012000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/fdc048e1bf4f04d1c20b32eda5d1dc6e.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/2a62f6c53f4ff089fa6a210c7a0c2e63.png",
+      "level": "L2",
+      "sortOrder": 2,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

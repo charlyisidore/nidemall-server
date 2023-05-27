@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1005008,
+      "name": "餐具",
+      "keywords": "",
+      "desc": "餐桌上的舞蹈",
+      "pid": 1005001,
+      "iconUrl": "http://yanxuan.nosdn.127.net/f109afbb7e7a00c243c1da29991a5aa3.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/695ed861a63d8c0fc51a51f42a5a993b.png",
+      "level": "L2",
+      "sortOrder": 4,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

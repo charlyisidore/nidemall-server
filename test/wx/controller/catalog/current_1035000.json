@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1035000,
+      "name": "卫衣",
+      "keywords": "",
+      "desc": "舒适百搭，时尚选择",
+      "pid": 1010000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/97bb55280b8ffa40390f2ee36486314a.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/0282a81bbcae6c39918808fe7c4e1b93.png",
+      "level": "L2",
+      "sortOrder": 9,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

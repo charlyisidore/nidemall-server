@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1033000,
+      "name": "梦幻西游",
+      "keywords": "",
+      "desc": "梦幻西游精品周边",
+      "pid": 1019000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/f0698297aaac41b778c1ea65eefb8b34.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/36711325781ca50fdfe234489fca973e.png",
+      "level": "L2",
+      "sortOrder": 7,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}

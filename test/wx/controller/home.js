@@ -11,13 +11,13 @@ function omit(obj, keys) {
   );
 }
 
-test.serial('/wx/home/index', async (t) => {
-  const res = await request(think.app.listen())
+test.serial('index', async (t) => {
+  const response = await request(think.app.listen())
     .get('/wx/home/index')
     .expect('Content-Type', /json/)
     .expect(200);
 
-  const actual = res.body;
+  const actual = response.body;
   const expected = require('./home/index.json');
   const ignoreKeys = ['grouponList', 'topicList'];
 
@@ -29,17 +29,15 @@ test.serial('/wx/home/index', async (t) => {
   );
 });
 
-test.serial('/wx/home/about', async (t) => {
-  const res = await request(think.app.listen())
+test.serial('about', async (t) => {
+  const response = await request(think.app.listen())
     .get('/wx/home/about')
     .expect('Content-Type', /json/)
     .expect(200);
 
-  const actual = res.body;
+  const actual = response.body;
   const expected = require('./home/about.json');
 
   t.is(actual.errno, expected.errno);
-
   t.deepEqual(actual.data, expected.data);
 });
-

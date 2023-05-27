@@ -1,0 +1,21 @@
+{
+  "errno": 0,
+  "data": {
+    "currentCategory": {
+      "id": 1011003,
+      "name": "床垫",
+      "keywords": "",
+      "desc": "承托你的好时光",
+      "pid": 1005000,
+      "iconUrl": "http://yanxuan.nosdn.127.net/316afeb3948b295dfe073e4c51f77a42.png",
+      "picUrl": "http://yanxuan.nosdn.127.net/d6e0e84961032fc70fd52a8d4d0fb514.png",
+      "level": "L2",
+      "sortOrder": 3,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "currentSubCategory": []
+  },
+  "errmsg": "成功"
+}
