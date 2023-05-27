@@ -23,6 +23,7 @@ const CATEGORY_ID = [
 ];
 
 test.serial('index', async (t) => {
+  // Without `id`
   {
     const response = await request(think.app.listen())
       .get('/wx/catalog/index')
@@ -36,6 +37,7 @@ test.serial('index', async (t) => {
     t.deepEqual(actual.data, expected.data);
   }
 
+  // With `id`
   await Promise.all(
     CATEGORY_ID
       .map(async (id) => {
@@ -55,18 +57,17 @@ test.serial('index', async (t) => {
 });
 
 test.serial('current', async (t) => {
+  // Missing `id`
   {
     const response = await request(think.app.listen())
       .get('/wx/catalog/current')
       .expect('Content-Type', /json/)
       .expect(200);
 
-    const actual = response.body;
-    const expected = require('./catalog/current.json');
-
-    t.is(actual.errno, expected.errno);
+    t.is(response.body.errno, 402);
   }
 
+  // Not found `id`
   {
     const response = await request(think.app.listen())
       .get('/wx/catalog/current')
@@ -74,12 +75,10 @@ test.serial('current', async (t) => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-    const actual = response.body;
-    const expected = require('./catalog/current_0.json');
-
-    t.is(actual.errno, expected.errno);
+      t.is(response.body.errno, 402);
   }
 
+  // With `id`
   await Promise.all(
     CATEGORY_ID
       .map(async (id) => {
