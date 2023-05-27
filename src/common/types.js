@@ -72,7 +72,7 @@
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
  * @property {number?} deleted - 逻辑删除
- * @property {string?} roleIds - 角色列表
+ * @property {number[]?} roleIds - 角色列表
  */
 
 /**
@@ -84,7 +84,7 @@
  * @property {number?} type - 售后类型，0是未收货退款，1是已收货（无需退货）退款，2用户退货退款
  * @property {string?} reason - 退款原因
  * @property {number?} amount - 退款金额
- * @property {string?} pictures - 退款凭证图片链接数组
+ * @property {string[]?} pictures - 退款凭证图片链接数组
  * @property {string?} comment - 退款说明
  * @property {number?} status - 售后状态，0是可申请，1是用户已申请，2是管理员审核通过，3是管理员退款成功，4是管理员审核拒绝，5是用户已取消
  * @property {Date?} handleTime - 管理员操作时间
@@ -180,7 +180,7 @@
  * @property {number?} type - 优惠券赠送类型，如果是0则通用券，用户领取；如果是1，则是注册赠券；如果是2，则是优惠券码兑换；
  * @property {number?} status - 优惠券状态，如果是0则是正常可用；如果是1则是过期; 如果是2则是下架。
  * @property {number?} goodsType - 商品限制类型，如果0则全商品，如果是1则是类目限制，如果是2则是商品限制。
- * @property {string?} goodsValue - 商品限制值，goodsType如果是0则空集合，如果是1则是类目集合，如果是2则是商品集合。
+ * @property {number[]?} goodsValue - 商品限制值，goodsType如果是0则空集合，如果是1则是类目集合，如果是2则是商品集合。
  * @property {string?} code - 优惠券兑换码
  * @property {number?} timeType - 有效时间限制，如果是0，则基于领取时间的有效天数days；如果是1，则startTime和endTime是优惠券有效期；
  * @property {number?} days - 基于领取时间的有效天数days。
@@ -430,7 +430,7 @@
  * @property {number?} productId - 商品货品表的货品ID
  * @property {number?} number - 商品货品的购买数量
  * @property {number?} price - 商品货品的售价
- * @property {string} specifications - 商品货品的规格列表
+ * @property {string[]} specifications - 商品货品的规格列表
  * @property {string?} picUrl - 商品货品图片或者商品图片
  * @property {number?} comment - 订单商品评论，如果是-1，则超期不能评价；如果是0，则可以评价；如果其他值，则是comment表里面的评论ID。
  * @property {Date?} addTime - 创建时间
@@ -512,7 +512,7 @@
  * @property {string?} readCount - 专题阅读量
  * @property {string?} picUrl - 专题图片
  * @property {number?} sortOrder - 排序
- * @property {string?} goods - 专题相关商品，采用JSON数组格式
+ * @property {number[]?} goods - 专题相关商品，采用JSON数组格式
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
  * @property {number?} deleted - 逻辑删除

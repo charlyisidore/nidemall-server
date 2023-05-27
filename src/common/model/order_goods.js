@@ -29,6 +29,7 @@ module.exports = class extends Base {
       },
       specifications: {
         type: 'varchar(1023)',
+        dataType: 'json',
       },
       pic_url: {
         type: 'varchar(255)',

@@ -38,6 +38,7 @@ module.exports = class extends Base {
       },
       goods_value: {
         type: 'varchar(1023)',
+        dataType: 'json',
       },
       code: {
         type: 'varchar(63)',

@@ -30,6 +30,7 @@ module.exports = class extends Base {
       },
       pic_urls: {
         type: 'varchar(1023)',
+        dataType: 'json',
       },
       add_time: {
         type: 'datetime',

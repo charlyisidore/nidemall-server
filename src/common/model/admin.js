@@ -33,6 +33,7 @@ module.exports = class extends Base {
       },
       role_ids: {
         type: 'varchar(127)',
+        dataType: 'json',
       },
     }
   }
