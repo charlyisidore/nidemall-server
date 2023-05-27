@@ -23,10 +23,12 @@ const CATEGORY_ID = [
 ];
 
 test.serial('index', async (t) => {
+  const url = '/wx/catalog/index';
+
   // Without `id`
   {
     const response = await request(think.app.listen())
-      .get('/wx/catalog/index')
+      .get(url)
       .expect('Content-Type', /json/)
       .expect(200);
 
@@ -42,7 +44,7 @@ test.serial('index', async (t) => {
     CATEGORY_ID
       .map(async (id) => {
         const response = await request(think.app.listen())
-          .get('/wx/catalog/index')
+          .get(url)
           .query({ id })
           .expect('Content-Type', /json/)
           .expect(200);
@@ -57,10 +59,12 @@ test.serial('index', async (t) => {
 });
 
 test.serial('current', async (t) => {
+  const url = '/wx/catalog/current';
+
   // Missing `id`
   {
     const response = await request(think.app.listen())
-      .get('/wx/catalog/current')
+      .get(url)
       .expect('Content-Type', /json/)
       .expect(200);
 
@@ -70,12 +74,12 @@ test.serial('current', async (t) => {
   // Not found `id`
   {
     const response = await request(think.app.listen())
-      .get('/wx/catalog/current')
+      .get(url)
       .query({ id: 99999999 })
       .expect('Content-Type', /json/)
       .expect(200);
 
-      t.is(response.body.errno, 402);
+    t.is(response.body.errno, 402);
   }
 
   // With `id`
@@ -83,7 +87,7 @@ test.serial('current', async (t) => {
     CATEGORY_ID
       .map(async (id) => {
         const response = await request(think.app.listen())
-          .get('/wx/catalog/current')
+          .get(url)
           .query({ id })
           .expect('Content-Type', /json/)
           .expect(200);
