@@ -28,7 +28,6 @@ module.exports = class TopicService extends think.Service {
       })
       .order({
         [sort]: order,
-        id: 'ASC',
       })
       .page(page, limit)
       .countSelect();

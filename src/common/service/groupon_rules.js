@@ -56,7 +56,9 @@ module.exports = class GrouponRulesService extends think.Service {
         status: this.constructor.RULE_STATUS.ON,
         deleted: false,
       })
-      .order({ [sort]: order })
+      .order({
+        [sort]: order,
+      })
       .page(page, limit)
       .select();
   }
@@ -97,6 +99,6 @@ module.exports = class GrouponRulesService extends think.Service {
         };
       })
     ))
-      .filter((grouponRules) => (null !== grouponRules));
+      .filter((grouponRules) => !think.isEmpty(grouponRules));
   }
 }
