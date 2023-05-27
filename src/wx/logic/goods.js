@@ -50,10 +50,12 @@ module.exports = class extends think.Logic {
       },
       sort: {
         string: true,
+        in: ['add_time', 'id'],
         default: 'add_time',
       },
       order: {
         string: true,
+        in: ['asc', 'desc'],
         default: 'desc',
       },
     };
