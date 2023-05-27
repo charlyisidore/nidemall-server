@@ -28,7 +28,7 @@ module.exports = class BrandService extends think.Service {
       .page(page, limit);
 
     if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
-      model.order({ [sort]: order })
+      model.order({ [sort]: order });
     }
 
     return model.countSelect();
