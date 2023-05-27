@@ -37,7 +37,7 @@ config.development.js
 adapter.development.js
 
 # https://github.com/istanbuljs/nyc
-.nyc_output
+.nyc_output/
 
 # https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 .pnp.*
