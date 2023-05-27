@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1018000,
+    "name": "Sperry制造商",
+    "desc": "严选团队对比多家硫化鞋制造商产品质量，\n走访多个制鞋工厂，最终选定Sperry品牌制造商，\n为你提供一双舒适有型的高品质帆布鞋。",
+    "picUrl": "http://yanxuan.nosdn.127.net/2eb12d84037346441088267432da31c4.png",
+    "sortOrder": 32,
+    "floorPrice": 199,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

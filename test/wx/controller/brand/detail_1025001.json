@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1025001,
+    "name": "Kenneth Cole制造商",
+    "desc": "为出品优质格调的商务鞋靴，\n严选团队选择Kenneth Cole品牌合作的制造商，\n一切努力，只为打造高品质鞋靴。",
+    "picUrl": "http://yanxuan.nosdn.127.net/236322546c6860e1662ab147d6b0ba2f.jpg",
+    "sortOrder": 7,
+    "floorPrice": 349,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

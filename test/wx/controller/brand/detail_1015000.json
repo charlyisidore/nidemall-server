@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1015000,
+    "name": "NITORI制造商",
+    "desc": "宠物是人类最温情的陪伴，\n严选找寻日本最大家居品牌NITORI制造商，\n每一个脚印，都是为了更好地关怀你的TA",
+    "picUrl": "http://yanxuan.nosdn.127.net/6f3d310601b18610553c675e0e14d107.png",
+    "sortOrder": 43,
+    "floorPrice": 69,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

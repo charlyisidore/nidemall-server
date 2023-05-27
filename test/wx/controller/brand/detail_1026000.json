@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1026000,
+    "name": "CK制造商",
+    "desc": "严选寻访Calvin Klein品牌的制造商，\n深入世界领带第一生产地，设计与品质并重，\n致力于给消费者带来优质典雅的服饰用品。",
+    "picUrl": "http://yanxuan.nosdn.127.net/658f09b7ec522d31742b47b914d64338.png",
+    "sortOrder": 1,
+    "floorPrice": 39,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

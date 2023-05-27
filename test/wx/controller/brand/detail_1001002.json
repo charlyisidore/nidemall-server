@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1001002,
+    "name": "内野制造商",
+    "desc": "严选从世界各地挑选毛巾，最终选择了为日本内野代工的工厂，追求毛巾的柔软度与功能性。品质比肩商场几百元的毛巾。",
+    "picUrl": "http://yanxuan.nosdn.127.net/8ca3ce091504f8aa1fba3fdbb7a6e351.png",
+    "sortOrder": 10,
+    "floorPrice": 29,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1023000,
+    "name": "PetitBateau小帆船制造商",
+    "desc": "为打造适合宝宝的婴童服装，\n严选团队寻找PetitBateau小帆船的品牌制造商，\n无荧光剂，国家A类标准，让宝宝穿的放心。",
+    "picUrl": "http://yanxuan.nosdn.127.net/1a11438598f1bb52b1741e123b523cb5.jpg",
+    "sortOrder": 25,
+    "floorPrice": 36,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

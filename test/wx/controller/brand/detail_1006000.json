@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1006000,
+    "name": "范思哲制造商",
+    "desc": "严选找寻意大利奢侈品牌范思哲Versace的制造商，\n致力于为用户带来精致、优雅、时尚的皮包，\n传承独特美感，体验品质生活。",
+    "picUrl": "http://yanxuan.nosdn.127.net/c80ae035387495a61a4515906205efff.png",
+    "sortOrder": 18,
+    "floorPrice": 99,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

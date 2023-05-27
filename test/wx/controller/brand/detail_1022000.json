@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1022000,
+    "name": "UGG制造商",
+    "desc": "为寻找优质的皮毛一体雪地靴，\n严选走访多家雪地靴制造商，对比工艺，\n甄选UGG认可的代工厂，只为足下的优雅舒适。",
+    "picUrl": "http://yanxuan.nosdn.127.net/4d2a3dea7e0172ae48e8161f04cfa045.jpg",
+    "sortOrder": 29,
+    "floorPrice": 59,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

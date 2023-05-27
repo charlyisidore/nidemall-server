@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1024001,
+    "name": "OBH制造商",
+    "desc": "严选寻找OBH品牌的制造商，打造精致厨具，\n韩国独资工厂制造，严格质检，品质雕琢\n力求为消费者带来全新的烹饪体验。",
+    "picUrl": "http://yanxuan.nosdn.127.net/bf3499ac17a11ffb9bb7caa47ebef2dd.png",
+    "sortOrder": 42,
+    "floorPrice": 39,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

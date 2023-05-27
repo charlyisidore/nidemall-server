@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1005001,
+    "name": "Goody制造商",
+    "desc": "严选深入美国百年发饰品牌Goody制造商，\n确保每把梳子做工精湛，养护头皮。\n戴安娜王妃的最爱，你也能拥有。",
+    "picUrl": "http://yanxuan.nosdn.127.net/7c918f37de108f3687d69b39daab34eb.png",
+    "sortOrder": 48,
+    "floorPrice": 39,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

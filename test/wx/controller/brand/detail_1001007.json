@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1001007,
+    "name": "优衣库制造商",
+    "desc": "严选找到日本知名服装UNIQLO的制造商，\n选取优质长绒棉和精梳工艺，\n与厂方一起设计，为你提供理想的棉袜。",
+    "picUrl": "http://yanxuan.nosdn.127.net/0d72832e37e7e3ea391b519abbbc95a3.png",
+    "sortOrder": 12,
+    "floorPrice": 29,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

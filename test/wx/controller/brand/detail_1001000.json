@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1001000,
+    "name": "MUJI制造商",
+    "desc": "严选精选了MUJI制造商和生产原料，\n用几乎零利润的价格，剔除品牌溢价，\n让用户享受原品牌的品质生活。",
+    "picUrl": "http://yanxuan.nosdn.127.net/1541445967645114dd75f6b0edc4762d.png",
+    "sortOrder": 2,
+    "floorPrice": 12.9,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

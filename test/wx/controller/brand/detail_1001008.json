@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1001008,
+    "name": "膳魔师制造商",
+    "desc": "严选深入保温行业内部，\n找到德国膳魔师制造商的代工厂。\n同样的品质，却有更优的价格。",
+    "picUrl": "http://yanxuan.nosdn.127.net/5fd51e29b9459dae7df8040c8219f241.png",
+    "sortOrder": 40,
+    "floorPrice": 45,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

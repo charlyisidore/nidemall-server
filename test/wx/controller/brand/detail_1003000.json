@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1003000,
+    "name": "Carters制造商",
+    "desc": "来自Carters大牌代工厂生产，\n严选纯天然材料，无荧光不添加，\nITS安心标志权威检测，安全护航。",
+    "picUrl": "http://yanxuan.nosdn.127.net/efe9131599ced0297213e6ec67eb2174.png",
+    "sortOrder": 41,
+    "floorPrice": 19.9,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1022001,
+    "name": "Palladium制造商",
+    "desc": "严选探访多个制鞋大厂，选定Palladium制造商，\n对比工艺选材，找到传承多年的制鞋配方，\n只为制作一款高品质休闲鞋。",
+    "picUrl": "http://yanxuan.nosdn.127.net/3480f2a4026c60eb4921f0aa3facbde8.png",
+    "sortOrder": 31,
+    "floorPrice": 249,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

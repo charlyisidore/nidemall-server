@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1001013,
+    "name": "Royal Doulton制造商",
+    "desc": "严选深入英国最大骨瓷品牌Royal Doulton制造商， \n顶级英国瓷器的代名词，广受世界皇室喜爱。\n每件瓷器，都有自己的故事。",
+    "picUrl": "http://yanxuan.nosdn.127.net/0de643a02043fd9680b11e21c452adaa.png",
+    "sortOrder": 47,
+    "floorPrice": 24.9,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

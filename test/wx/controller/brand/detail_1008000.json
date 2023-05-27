@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1008000,
+    "name": "WPC制造商",
+    "desc": "严选寻找日本雨伞品牌W.P.C制造商，\n采用严谨工艺以及环保材料，\n沉淀15年行业经验，打造精致雨具。",
+    "picUrl": "http://yanxuan.nosdn.127.net/c4e97cc87186ce17f9316f3ba39e220c.png",
+    "sortOrder": 22,
+    "floorPrice": 59,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

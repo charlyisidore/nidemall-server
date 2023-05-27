@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1021000,
+    "name": "Marc Jacobs制造商",
+    "desc": "严选寻访独立设计品牌Marc Jacobs的制造商，\n严格选材，细究纺织与生产的细节，多次打磨，\n初心不忘，为你带来优雅高档的服饰配件。",
+    "picUrl": "http://yanxuan.nosdn.127.net/c8dac4eb1a458d778420ba520edab3d0.png",
+    "sortOrder": 24,
+    "floorPrice": 69,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

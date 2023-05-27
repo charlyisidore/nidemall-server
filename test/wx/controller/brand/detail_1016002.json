@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1016002,
+    "name": "HUGO BOSS制造商",
+    "desc": "严选深入德国知名奢侈品HUGO BOSS的制造商，\n开发睡衣、睡袍、休闲裤等轻奢品质家居服，\n希望你在家的每一天都优雅精致。",
+    "picUrl": "http://yanxuan.nosdn.127.net/70ada9877b2efa82227437af3231fe50.png",
+    "sortOrder": 11,
+    "floorPrice": 45,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

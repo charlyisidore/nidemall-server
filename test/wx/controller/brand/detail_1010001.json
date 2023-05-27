@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1010001,
+    "name": "竹宝堂制造商",
+    "desc": "严选走访河北、安徽等制刷基地，\n选定竹宝堂、丝芙兰等品牌的制造商，\n严格把关生产与质检，与您一同追求美的生活。",
+    "picUrl": "http://yanxuan.nosdn.127.net/61b0b7ae4f0163422009defbceaa41ad.jpg",
+    "sortOrder": 39,
+    "floorPrice": 29,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

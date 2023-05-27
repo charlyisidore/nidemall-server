@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1001016,
+    "name": "爱慕制造商",
+    "desc": "150家样品比对筛选，20家工厂深入走访，\n严选最终选定高端内衣爱慕制造商，\n20年品质保证，为你打造天然舒适的衣物。",
+    "picUrl": "http://yanxuan.nosdn.127.net/5104f84110eac111968c63c18ebd62c0.png",
+    "sortOrder": 9,
+    "floorPrice": 35,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

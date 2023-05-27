@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1033003,
+    "name": "Armani制造商",
+    "desc": "严选团队携手国际标准化专业生产厂家，\n厂家长期为Armani、Alexander wang等知名品牌代工，\n专业进口设备，精密质量把控，精于品质居家体验。",
+    "picUrl": "http://yanxuan.nosdn.127.net/981e06f0f46f5f1f041d7de3dd3202e6.jpg",
+    "sortOrder": 26,
+    "floorPrice": 199,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

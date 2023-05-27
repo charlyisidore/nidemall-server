@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1033004,
+    "name": "爱马仕集团制造商",
+    "desc": "严选采用欧洲一线品牌爱马仕的御用香料供应商，\n经过反复配比改良、试香调香、选品定样，\n为你带来独特馥郁的散香体验。",
+    "picUrl": "http://yanxuan.nosdn.127.net/d98470dd728fb5a91f7aceade07572b5.png",
+    "sortOrder": 33,
+    "floorPrice": 19,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

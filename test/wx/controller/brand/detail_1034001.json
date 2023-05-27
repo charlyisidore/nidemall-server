@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1034001,
+    "name": "Alexander McQueen制造商",
+    "desc": "为制造精致实用的高品质包包，\n严选团队选择Alexander McQueen制造商，\n严格筛选，带来轻奢优雅体验。",
+    "picUrl": "http://yanxuan.nosdn.127.net/db7ee9667d84cbce573688297586699c.jpg",
+    "sortOrder": 16,
+    "floorPrice": 69,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

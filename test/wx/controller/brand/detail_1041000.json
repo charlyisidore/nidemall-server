@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1041000,
+    "name": "BCBG制造商",
+    "desc": "严选从产品源头开始，每道工序质量把关，\n选择美国知名品牌BCBG的制造商合作，\n严谨匠心，致力于优质柔滑的睡衣穿搭产品。",
+    "picUrl": "http://yanxuan.nosdn.127.net/b9072023afd3621714fd5c49f140fca8.png",
+    "sortOrder": 36,
+    "floorPrice": 99,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

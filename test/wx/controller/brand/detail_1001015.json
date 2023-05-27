@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1001015,
+    "name": "日本KEYUCA制造商",
+    "desc": "KEYUCA是日本餐具及料理用具品牌，\n遵循极简原木风，高端餐具体验。\n严选的餐具正是来自这一品牌制造商。",
+    "picUrl": "http://yanxuan.nosdn.127.net/9b85b45f23da558be101dbcc273b1d6d.png",
+    "sortOrder": 49,
+    "floorPrice": 14.9,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

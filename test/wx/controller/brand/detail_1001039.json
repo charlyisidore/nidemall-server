@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1001039,
+    "name": "MK制造商",
+    "desc": "严选为制造高品质的皮具，\n选择Michael Kors品牌合作的制造工厂，\n18年专业皮具生产经验，手工至美，品质保证。",
+    "picUrl": "http://yanxuan.nosdn.127.net/fc9cd1309374f7707855de80522fb310.jpg",
+    "sortOrder": 17,
+    "floorPrice": 79,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

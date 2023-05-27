@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1001045,
+    "name": "罗莱制造商",
+    "desc": "严选团队为打造吸湿透气柔软的蚕丝被，\n从蚕茧原材到温感性能，多次甄选测试\n选择罗莱制造商工厂，手工处理，优质舒适。",
+    "picUrl": "http://yanxuan.nosdn.127.net/14122a41a4985d23e1a172302ee818e9.png",
+    "sortOrder": 45,
+    "floorPrice": 699,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}

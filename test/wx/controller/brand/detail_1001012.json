@@ -1,0 +1,15 @@
+{
+  "errno": 0,
+  "data": {
+    "id": 1001012,
+    "name": "Wedgwood制造商",
+    "desc": "严选寻访英国皇室御用陶瓷Wedgwood制造商，\n制模到成品，历经25道工序、7次检验、3次烧制，\n你看不见的地方，我们也在坚持。",
+    "picUrl": "http://yanxuan.nosdn.127.net/68940e8e23f96dbeb3548d943d83d5e4.png",
+    "sortOrder": 21,
+    "floorPrice": 39,
+    "addTime": "2018-02-01 00:00:00",
+    "updateTime": "2018-02-01 00:00:00",
+    "deleted": false
+  },
+  "errmsg": "成功"
+}
