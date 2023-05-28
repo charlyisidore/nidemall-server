@@ -127,7 +127,6 @@ module.exports = class GoodsService extends think.Service {
     if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
       model.order({
         [sort]: order,
-        id: 'ASC',
       });
     }
 

@@ -29,6 +29,10 @@ module.exports = class WxGoodsController extends Base {
 
     const info = await goodsService.findById(id);
 
+    if (think.isEmpty(info)) {
+      return this.badArgumentValue();
+    }
+
     let userHasCollect = 0;
     if (!think.isNullOrUndefined(userId)) {
       userHasCollect = await collectService.count(userId, 0, id);
