@@ -83,6 +83,10 @@ module.exports = class WxGoodsController extends Base {
     let parent = null;
     let children = null;
 
+    if (think.isEmpty(current)) {
+      return this.badArgumentValue();
+    }
+
     if (0 == current.pid) {
       parent = current;
       children = await categoryService.queryByPid(current.id);
