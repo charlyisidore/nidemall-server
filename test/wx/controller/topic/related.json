@@ -1,0 +1,44 @@
+{
+  "errno": 0,
+  "data": {
+    "total": 20,
+    "pages": 5,
+    "limit": 4,
+    "page": 1,
+    "list": [
+      {
+        "id": 289,
+        "title": "专业运动袜也可以高性价比",
+        "subtitle": "越来越多运动人士意识到，运动鞋要购置好的，鞋里的运动袜也不可忽视。专业运动袜帮助...",
+        "price": 0.0,
+        "readCount": "11.9k",
+        "picUrl": "https://yanxuan.nosdn.127.net/14932840600970609.jpg"
+      },
+      {
+        "id": 294,
+        "title": "这只锅，可以从祖母用到孙辈",
+        "subtitle": "买100年传世珐琅锅送迷你马卡龙色小锅",
+        "price": 149.0,
+        "readCount": "108.1k",
+        "picUrl": "https://yanxuan.nosdn.127.net/14937214454750141.jpg"
+      },
+      {
+        "id": 291,
+        "title": "舒适新主张",
+        "subtitle": "如何挑选适合自己的好物？",
+        "price": 29.0,
+        "readCount": "67.8k",
+        "picUrl": "https://yanxuan.nosdn.127.net/14939496197300723.jpg"
+      },
+      {
+        "id": 295,
+        "title": "他们在严选遇见的新生活",
+        "subtitle": "多款商品直减中，最高直减400元",
+        "price": 35.8,
+        "readCount": "36.6k",
+        "picUrl": "https://yanxuan.nosdn.127.net/14938092956370380.jpg"
+      }
+    ]
+  },
+  "errmsg": "成功"
+}

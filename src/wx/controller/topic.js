@@ -33,7 +33,7 @@ module.exports = class WxTopicController extends Base {
     const topic = await topicService.findById(id);
 
     if (think.isEmpty(topic)) {
-      return this.badArgument();
+      return this.badArgumentValue();
     }
 
     const goodsList = [];
