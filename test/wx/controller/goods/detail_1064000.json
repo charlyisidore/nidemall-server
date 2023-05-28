@@ -1,0 +1,157 @@
+{
+  "errno": 0,
+  "data": {
+    "specificationList": [
+      {
+        "name": "规格",
+        "valueList": [
+          {
+            "id": 71,
+            "goodsId": 1064000,
+            "specification": "规格",
+            "value": "标准",
+            "picUrl": "",
+            "addTime": "2018-02-01 00:00:00",
+            "updateTime": "2018-02-01 00:00:00",
+            "deleted": false
+          }
+        ]
+      }
+    ],
+    "groupon": [],
+    "issue": [
+      {
+        "id": 1,
+        "question": "购买运费如何收取？",
+        "answer": "单笔订单金额（不含运费）满88元免邮费；不满88元，每单收取10元运费。\n(港澳台地区需满",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 2,
+        "question": "使用什么快递发货？",
+        "answer": "严选默认使用顺丰快递发货（个别商品使用其他快递），配送范围覆盖全国大部分地区（港澳台地区除",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 3,
+        "question": "如何申请退货？",
+        "answer": "1.自收到商品之日起30日内，顾客可申请无忧退货，退款将原路返还，不同的银行处理时间不同，",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 4,
+        "question": "如何开具发票？",
+        "answer": "1.如需开具普通发票，请在下单时选择“我要开发票”并填写相关信息（APP仅限2.4.0及以",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "userHasCollect": 0,
+    "shareImage": "",
+    "comment": {
+      "data": [],
+      "count": 0
+    },
+    "share": false,
+    "attribute": [
+      {
+        "id": 266,
+        "goodsId": 1064000,
+        "attribute": "尺寸",
+        "value": "38*38*30cm/60*55*20cm",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 267,
+        "goodsId": 1064000,
+        "attribute": "产品标准",
+        "value": "FZ/T 62011.3-2008",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 268,
+        "goodsId": 1064000,
+        "attribute": "安全类别",
+        "value": "GB 18401-2010 B类",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 269,
+        "goodsId": 1064000,
+        "attribute": "颜色",
+        "value": "米色",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "brand": {
+      "id": 1015000,
+      "name": "NITORI制造商",
+      "desc": "宠物是人类最温情的陪伴，\n严选找寻日本最大家居品牌NITORI制造商，\n每一个脚印，都是为了更好地关怀你的TA",
+      "picUrl": "http://yanxuan.nosdn.127.net/6f3d310601b18610553c675e0e14d107.png",
+      "sortOrder": 43,
+      "floorPrice": 69,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "productList": [
+      {
+        "id": 72,
+        "goodsId": 1064000,
+        "specifications": [
+          "标准"
+        ],
+        "price": 79,
+        "number": 100,
+        "url": "http://yanxuan.nosdn.127.net/ebe118f94ddafe82c4a8cd51da6ff183.png",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "info": {
+      "id": 1064000,
+      "goodsSn": "1064000",
+      "name": "清新条纹开放式宠物窝",
+      "categoryId": 1017000,
+      "brandId": 1015000,
+      "gallery": [
+        "http://yanxuan.nosdn.127.net/d37918aa7193ac6b593f312b521468f0.jpg",
+        "http://yanxuan.nosdn.127.net/31b03320d8a2d98ba118af4bb9d95c27.jpg",
+        "http://yanxuan.nosdn.127.net/cdf49298d942c0326b544bb4cbe68fef.jpg",
+        "http://yanxuan.nosdn.127.net/4a33476bcd469d4e94d2d400c738de04.jpg"
+      ],
+      "keywords": "",
+      "brief": "清凉触感，耐抓耐磨",
+      "isOnSale": true,
+      "sortOrder": 5,
+      "picUrl": "http://yanxuan.nosdn.127.net/ebe118f94ddafe82c4a8cd51da6ff183.png",
+      "shareUrl": "",
+      "isNew": false,
+      "isHot": false,
+      "unit": "件",
+      "counterPrice": 99,
+      "retailPrice": 79,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false,
+      "detail": "<p><img src=\"http://yanxuan.nosdn.127.net/8c548cb27c126404efe2450f2d27b499.jpg\" _src=\"http://yanxuan.nosdn.127.net/8c548cb27c126404efe2450f2d27b499.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/67c38eb5939bfe33d13b4b336633df66.jpg\" _src=\"http://yanxuan.nosdn.127.net/67c38eb5939bfe33d13b4b336633df66.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/1593939bfdc309df4faeda6cc13795ce.jpg\" _src=\"http://yanxuan.nosdn.127.net/1593939bfdc309df4faeda6cc13795ce.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/19adc7cd503aa53cadbcb5719cfee8e6.jpg\" _src=\"http://yanxuan.nosdn.127.net/19adc7cd503aa53cadbcb5719cfee8e6.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/bb5ca4e6f1cd024a10b9bc37b2db396b.jpg\" _src=\"http://yanxuan.nosdn.127.net/bb5ca4e6f1cd024a10b9bc37b2db396b.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a5329ce259b9749db939845280eb2443.jpg\" _src=\"http://yanxuan.nosdn.127.net/a5329ce259b9749db939845280eb2443.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/dcbd4101079f3e86ace47f581c52d12d.jpg\" _src=\"http://yanxuan.nosdn.127.net/dcbd4101079f3e86ace47f581c52d12d.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/4cd95e21492d1197182ceeacdb3a9973.jpg\" _src=\"http://yanxuan.nosdn.127.net/4cd95e21492d1197182ceeacdb3a9973.jpg\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/681b12dba20b3ec4cc8220907453411b.jpg\" _src=\"http://yanxuan.nosdn.127.net/681b12dba20b3ec4cc8220907453411b.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/d2d4d84fd984e16caf44b2a0418f8427.jpg\" _src=\"http://yanxuan.nosdn.127.net/d2d4d84fd984e16caf44b2a0418f8427.jpg\" style=\"\"/></p><p><br/></p>"
+    }
+  },
+  "errmsg": "成功"
+}

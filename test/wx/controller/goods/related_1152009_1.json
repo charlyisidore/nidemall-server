@@ -1,0 +1,72 @@
+{
+  "errno": 0,
+  "data": {
+    "total": 8,
+    "pages": 2,
+    "limit": 6,
+    "page": 1,
+    "list": [
+      {
+        "id": 1152004,
+        "name": "魔兽世界 蛋盾包 双肩包",
+        "brief": "伊利丹掉落，挤地铁神器",
+        "picUrl": "http://yanxuan.nosdn.127.net/8c93cef435d888bd79833777df1cd0c2.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 419,
+        "retailPrice": 399
+      },
+      {
+        "id": 1152008,
+        "name": "魔兽世界 部落 护腕 一只",
+        "brief": "吸汗、舒适、弹性、防护、耐用",
+        "picUrl": "http://yanxuan.nosdn.127.net/203cb83d93606865e3ddde57b69b9e9a.png",
+        "isNew": false,
+        "isHot": true,
+        "counterPrice": 49,
+        "retailPrice": 29
+      },
+      {
+        "id": 1152009,
+        "name": "魔兽世界 联盟 护腕 一只",
+        "brief": "吸汗、舒适、弹性、防护、耐用",
+        "picUrl": "http://yanxuan.nosdn.127.net/ae6d41117717387b82dcaf1dfce0cd97.png",
+        "isNew": false,
+        "isHot": true,
+        "counterPrice": 49,
+        "retailPrice": 29
+      },
+      {
+        "id": 1152031,
+        "name": "魔兽世界-伊利丹颈枕眼罩套装",
+        "brief": "差旅好伴侣",
+        "picUrl": "http://yanxuan.nosdn.127.net/fd6e78a397bd9e9804116a36f0270b0a.png",
+        "isNew": false,
+        "isHot": true,
+        "counterPrice": 119,
+        "retailPrice": 99
+      },
+      {
+        "id": 1152095,
+        "name": "魔兽世界 联盟·暴风城 堡垒收纳盒",
+        "brief": "桌面整理神器",
+        "picUrl": "http://yanxuan.nosdn.127.net/c86b49f635fa141decebabbd0966a6ef.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 519,
+        "retailPrice": 499
+      },
+      {
+        "id": 1152097,
+        "name": "魔兽世界 雷霆之怒逐风者的祝福之剑 雨伞",
+        "brief": "炫酷装备，可以背的雨伞",
+        "picUrl": "http://yanxuan.nosdn.127.net/532836444ae5eaec40b5810ca4f9b1e6.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 419,
+        "retailPrice": 399
+      }
+    ]
+  },
+  "errmsg": "成功"
+}

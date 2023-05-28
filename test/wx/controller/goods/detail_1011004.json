@@ -1,0 +1,210 @@
+{
+  "errno": 0,
+  "data": {
+    "specificationList": [
+      {
+        "name": "规格",
+        "valueList": [
+          {
+            "id": 19,
+            "goodsId": 1011004,
+            "specification": "规格",
+            "value": "标准",
+            "picUrl": "",
+            "addTime": "2018-02-01 00:00:00",
+            "updateTime": "2018-02-01 00:00:00",
+            "deleted": false
+          }
+        ]
+      }
+    ],
+    "groupon": [],
+    "issue": [
+      {
+        "id": 1,
+        "question": "购买运费如何收取？",
+        "answer": "单笔订单金额（不含运费）满88元免邮费；不满88元，每单收取10元运费。\n(港澳台地区需满",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 2,
+        "question": "使用什么快递发货？",
+        "answer": "严选默认使用顺丰快递发货（个别商品使用其他快递），配送范围覆盖全国大部分地区（港澳台地区除",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 3,
+        "question": "如何申请退货？",
+        "answer": "1.自收到商品之日起30日内，顾客可申请无忧退货，退款将原路返还，不同的银行处理时间不同，",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 4,
+        "question": "如何开具发票？",
+        "answer": "1.如需开具普通发票，请在下单时选择“我要开发票”并填写相关信息（APP仅限2.4.0及以",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "userHasCollect": 0,
+    "shareImage": "",
+    "comment": {
+      "data": [
+        {
+          "addTime": "2018-02-01 00:00:00",
+          "picList": [
+            "https://yanxuan.nosdn.127.net/635170b308fb7488adcc916c50513998.jpg",
+            "https://yanxuan.nosdn.127.net/f53167e6e44205599d358e88fc1d0b27.jpg",
+            "https://yanxuan.nosdn.127.net/e7b57b47db189cc8b9dba730953048f0.jpg"
+          ],
+          "adminContent": "",
+          "nickname": "user123",
+          "id": 331,
+          "avatar": "",
+          "content": "这款毛巾被特别厚实，做工非常精致，质地柔软挺妥，能满足春季和夏天空调间使用，适合我用来午睡✌"
+        },
+        {
+          "addTime": "2018-02-01 00:00:00",
+          "picList": [
+            "https://yanxuan.nosdn.127.net/a4930439358a64cd1ae391ac021a1267.jpg",
+            "https://yanxuan.nosdn.127.net/6bfc27e44113c231c809ecbbe8fc30b0.jpg"
+          ],
+          "adminContent": "",
+          "nickname": "user123",
+          "id": 332,
+          "avatar": "",
+          "content": "厚实，舒适，洗水的时候正常掉绒，洗过后不掉毛，不缩水，不掉色。值！又买了床红色寄给家人用。"
+        }
+      ],
+      "count": 30
+    },
+    "share": false,
+    "attribute": [
+      {
+        "id": 56,
+        "goodsId": 1011004,
+        "attribute": "面料成分",
+        "value": "100% 棉",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 57,
+        "goodsId": 1011004,
+        "attribute": "安全技术",
+        "value": "GB18401-2010 B类",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 58,
+        "goodsId": 1011004,
+        "attribute": "规格",
+        "value": "150×200cm",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 59,
+        "goodsId": 1011004,
+        "attribute": "产品等级",
+        "value": "一等品",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 60,
+        "goodsId": 1011004,
+        "attribute": "产地",
+        "value": "中国",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 61,
+        "goodsId": 1011004,
+        "attribute": "重量",
+        "value": "1800g",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 62,
+        "goodsId": 1011004,
+        "attribute": "温馨提示",
+        "value": "1.深色纯棉毛巾被在织造染色过程中，巾面更易产生微细的纤维浮绒，使用前建议用清水漂洗1-2次，即可去掉产品上的浮绒。\n2.在洗涤时一定要注意不要与衣服混在一起机洗，强力的搓洗会引起掉毛或勾线现象。\n3.纺织品经历印染、织造等多道环节，产品初次拿到可能有些许味道，清水漂洗、晾干后味道即可散去。严选面料全部经过国标检测认证，选用环保活性染料，请放心使用。",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "brand": {
+      "id": 1001000,
+      "name": "MUJI制造商",
+      "desc": "严选精选了MUJI制造商和生产原料，\n用几乎零利润的价格，剔除品牌溢价，\n让用户享受原品牌的品质生活。",
+      "picUrl": "http://yanxuan.nosdn.127.net/1541445967645114dd75f6b0edc4762d.png",
+      "sortOrder": 2,
+      "floorPrice": 12.9,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "productList": [
+      {
+        "id": 20,
+        "goodsId": 1011004,
+        "specifications": [
+          "标准"
+        ],
+        "price": 199,
+        "number": 100,
+        "url": "http://yanxuan.nosdn.127.net/0984c9388a2c3fd2335779da904be393.png",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "info": {
+      "id": 1011004,
+      "goodsSn": "1011004",
+      "name": "色织精梳AB纱格纹空调被",
+      "categoryId": 1036000,
+      "brandId": 1001000,
+      "gallery": [
+        "http://yanxuan.nosdn.127.net/f7e77331229098060bbacf2fc6c1708b.jpg",
+        "http://yanxuan.nosdn.127.net/2720383ea168872acc8d492de9573cc6.jpg",
+        "http://yanxuan.nosdn.127.net/45e4c14029626178419c82f2837f51ca.jpg",
+        "http://yanxuan.nosdn.127.net/bb6c28d502704d5c1645d066f79bf61d.jpg"
+      ],
+      "keywords": "",
+      "brief": "加大加厚，双色精彩",
+      "isOnSale": true,
+      "sortOrder": 2,
+      "picUrl": "http://yanxuan.nosdn.127.net/0984c9388a2c3fd2335779da904be393.png",
+      "shareUrl": "",
+      "isNew": false,
+      "isHot": true,
+      "unit": "件",
+      "counterPrice": 219,
+      "retailPrice": 199,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false,
+      "detail": "<p><img src=\"http://yanxuan.nosdn.127.net/28680639193b939b5d93cd77b3272a1e.jpg\" _src=\"http://yanxuan.nosdn.127.net/28680639193b939b5d93cd77b3272a1e.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/990c9a7781a8ae2b2a08c65c9af7afc7.jpg\" _src=\"http://yanxuan.nosdn.127.net/990c9a7781a8ae2b2a08c65c9af7afc7.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b7ccc07b50f491e94b6187bf49b48820.jpg\" _src=\"http://yanxuan.nosdn.127.net/b7ccc07b50f491e94b6187bf49b48820.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/69eb85fd08c9ebce511d13d899d96659.jpg\" _src=\"http://yanxuan.nosdn.127.net/69eb85fd08c9ebce511d13d899d96659.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a96f2f48217b913dc012671ed511d223.jpg\" _src=\"http://yanxuan.nosdn.127.net/a96f2f48217b913dc012671ed511d223.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/c94a22b8644fafec3ff27f87dd12771b.jpg\" _src=\"http://yanxuan.nosdn.127.net/c94a22b8644fafec3ff27f87dd12771b.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/721b4749caada515bb5e616f41a410d1.jpg\" _src=\"http://yanxuan.nosdn.127.net/721b4749caada515bb5e616f41a410d1.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/1215d6badb5a922efaeadd36911a4a3e.jpg\" _src=\"http://yanxuan.nosdn.127.net/1215d6badb5a922efaeadd36911a4a3e.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/749a3c6e9228d304806a06e478644ca1.jpg\" _src=\"http://yanxuan.nosdn.127.net/749a3c6e9228d304806a06e478644ca1.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/2cc7fd2eadbef5ab061fdf3550962d4e.jpg\" _src=\"http://yanxuan.nosdn.127.net/2cc7fd2eadbef5ab061fdf3550962d4e.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/710b9318f02863fe79209e7e6c822a5a.jpg\" _src=\"http://yanxuan.nosdn.127.net/710b9318f02863fe79209e7e6c822a5a.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/aaf8500212ec5bf783cb2bc63afbf7f8.jpg\" _src=\"http://yanxuan.nosdn.127.net/aaf8500212ec5bf783cb2bc63afbf7f8.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/f9e03dfb8cacda0f8fbbcf0ef20f8a62.jpg\" _src=\"http://yanxuan.nosdn.127.net/f9e03dfb8cacda0f8fbbcf0ef20f8a62.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3fa109d21bda840ac7040b196c13a871.jpg\" _src=\"http://yanxuan.nosdn.127.net/3fa109d21bda840ac7040b196c13a871.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/76bfa90446c129fa3eb9f05104e9e778.jpg\" _src=\"http://yanxuan.nosdn.127.net/76bfa90446c129fa3eb9f05104e9e778.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a3b94053478ceb6912a28597c51a3bcb.jpg\" _src=\"http://yanxuan.nosdn.127.net/a3b94053478ceb6912a28597c51a3bcb.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a25bca01f9ad835cd79b1c11ffdb400e.jpg\" _src=\"http://yanxuan.nosdn.127.net/a25bca01f9ad835cd79b1c11ffdb400e.jpg\" style=\"\"/></p><p><br/></p>"
+    }
+  },
+  "errmsg": "成功"
+}

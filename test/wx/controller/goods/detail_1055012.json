@@ -1,0 +1,156 @@
+{
+  "errno": 0,
+  "data": {
+    "specificationList": [
+      {
+        "name": "规格",
+        "valueList": [
+          {
+            "id": 66,
+            "goodsId": 1055012,
+            "specification": "规格",
+            "value": "标准",
+            "picUrl": "",
+            "addTime": "2018-02-01 00:00:00",
+            "updateTime": "2018-02-01 00:00:00",
+            "deleted": false
+          }
+        ]
+      }
+    ],
+    "groupon": [],
+    "issue": [
+      {
+        "id": 1,
+        "question": "购买运费如何收取？",
+        "answer": "单笔订单金额（不含运费）满88元免邮费；不满88元，每单收取10元运费。\n(港澳台地区需满",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 2,
+        "question": "使用什么快递发货？",
+        "answer": "严选默认使用顺丰快递发货（个别商品使用其他快递），配送范围覆盖全国大部分地区（港澳台地区除",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 3,
+        "question": "如何申请退货？",
+        "answer": "1.自收到商品之日起30日内，顾客可申请无忧退货，退款将原路返还，不同的银行处理时间不同，",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 4,
+        "question": "如何开具发票？",
+        "answer": "1.如需开具普通发票，请在下单时选择“我要开发票”并填写相关信息（APP仅限2.4.0及以",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "userHasCollect": 0,
+    "shareImage": "",
+    "comment": {
+      "data": [],
+      "count": 0
+    },
+    "share": false,
+    "attribute": [
+      {
+        "id": 248,
+        "goodsId": 1055012,
+        "attribute": "材质",
+        "value": "外壳：100% 纯棉  内充：100% 聚酯纤维",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 249,
+        "goodsId": 1055012,
+        "attribute": "克重",
+        "value": "600G/ 1400G",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 250,
+        "goodsId": 1055012,
+        "attribute": "尺寸",
+        "value": "45*45cm / 66*66cm",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 251,
+        "goodsId": 1055012,
+        "attribute": "产地",
+        "value": "中国江苏",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 252,
+        "goodsId": 1055012,
+        "attribute": "执行标准",
+        "value": "GB/T 22843-2009",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "brand": {},
+    "productList": [
+      {
+        "id": 67,
+        "goodsId": 1055012,
+        "specifications": [
+          "标准"
+        ],
+        "price": 39,
+        "number": 100,
+        "url": "http://yanxuan.nosdn.127.net/3d437c8d68e2ec3f3dd61001bf98f16e.png",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "info": {
+      "id": 1055012,
+      "goodsSn": "1055012",
+      "name": "300根全棉羽丝绒抱枕芯",
+      "categoryId": 1008002,
+      "brandId": 0,
+      "gallery": [
+        "http://yanxuan.nosdn.127.net/55d2d990f71f618146238f5bbf36d650.jpg",
+        "http://yanxuan.nosdn.127.net/4663facadd6c50f7ff11cd92b3cd8e7a.jpg",
+        "http://yanxuan.nosdn.127.net/1c8123fb59473106eb829b6001c59701.jpg",
+        "http://yanxuan.nosdn.127.net/0eeb46f412322fe591fcf134b877c74f.jpg"
+      ],
+      "keywords": "",
+      "brief": "仪征3D填充，充实的满足感",
+      "isOnSale": true,
+      "sortOrder": 10,
+      "picUrl": "http://yanxuan.nosdn.127.net/3d437c8d68e2ec3f3dd61001bf98f16e.png",
+      "shareUrl": "",
+      "isNew": false,
+      "isHot": false,
+      "unit": "件",
+      "counterPrice": 59,
+      "retailPrice": 39,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false,
+      "detail": "<p><img src=\"http://yanxuan.nosdn.127.net/07f2717762df73a6a697bb5399da6376.jpg\" _src=\"http://yanxuan.nosdn.127.net/07f2717762df73a6a697bb5399da6376.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/e202bdb4be8f36bda118cf7265d00f65.jpg\" _src=\"http://yanxuan.nosdn.127.net/e202bdb4be8f36bda118cf7265d00f65.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/4b5766cf268d327a3518ee5429c4c4e7.jpg\" _src=\"http://yanxuan.nosdn.127.net/4b5766cf268d327a3518ee5429c4c4e7.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/4f4e4356d070dbca22cf19a60a2447ed.jpg\" _src=\"http://yanxuan.nosdn.127.net/4f4e4356d070dbca22cf19a60a2447ed.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/da3a3e22d355ccf82235603507f3a083.jpg\" _src=\"http://yanxuan.nosdn.127.net/da3a3e22d355ccf82235603507f3a083.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/be789777e5e1381bb7b62d26fcfb619e.jpg\" _src=\"http://yanxuan.nosdn.127.net/be789777e5e1381bb7b62d26fcfb619e.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/c48e78aa87b8e81eab6a60de74d1c19c.jpg\" _src=\"http://yanxuan.nosdn.127.net/c48e78aa87b8e81eab6a60de74d1c19c.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/4f772f4990d8ae0acac660acf25be2d7.jpg\" _src=\"http://yanxuan.nosdn.127.net/4f772f4990d8ae0acac660acf25be2d7.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/9f1bd930fcb57e79a4ce2a1c4a0f2f4c.jpg\" _src=\"http://yanxuan.nosdn.127.net/9f1bd930fcb57e79a4ce2a1c4a0f2f4c.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/f481e1e9b8c4e728f4f7225af52a335e.jpg\" _src=\"http://yanxuan.nosdn.127.net/f481e1e9b8c4e728f4f7225af52a335e.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/4fca69439b053b510724cf6834856a2c.jpg\" _src=\"http://yanxuan.nosdn.127.net/4fca69439b053b510724cf6834856a2c.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a285ec5ac9c84a6616feca7301f515c3.jpg\" _src=\"http://yanxuan.nosdn.127.net/a285ec5ac9c84a6616feca7301f515c3.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/52435458ac1c48fb45f4a9888052b5b6.jpg\" _src=\"http://yanxuan.nosdn.127.net/52435458ac1c48fb45f4a9888052b5b6.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/01301675d00e13d21588d0bbb72e1745.jpg\" _src=\"http://yanxuan.nosdn.127.net/01301675d00e13d21588d0bbb72e1745.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/63627106753f764733cf47047e887d1e.jpg\" _src=\"http://yanxuan.nosdn.127.net/63627106753f764733cf47047e887d1e.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/15ecf40c8045513fe6a1303fe7d4383f.jpg\" _src=\"http://yanxuan.nosdn.127.net/15ecf40c8045513fe6a1303fe7d4383f.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/e8ef113464ff066662e639868e6eda28.jpg\" _src=\"http://yanxuan.nosdn.127.net/e8ef113464ff066662e639868e6eda28.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/0de1977400dfda99d0601e1c12fdbf1e.jpg\" _src=\"http://yanxuan.nosdn.127.net/0de1977400dfda99d0601e1c12fdbf1e.jpg\" style=\"\"/></p><p><br/></p>"
+    }
+  },
+  "errmsg": "成功"
+}

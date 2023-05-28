@@ -1,0 +1,72 @@
+{
+  "errno": 0,
+  "data": {
+    "total": 27,
+    "pages": 5,
+    "limit": 6,
+    "page": 1,
+    "list": [
+      {
+        "id": 1064000,
+        "name": "清新条纹开放式宠物窝",
+        "brief": "清凉触感，耐抓耐磨",
+        "picUrl": "http://yanxuan.nosdn.127.net/ebe118f94ddafe82c4a8cd51da6ff183.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 99,
+        "retailPrice": 79
+      },
+      {
+        "id": 1064002,
+        "name": "秋冬加厚条纹宠物窝",
+        "brief": "时尚牛仔，加厚温暖",
+        "picUrl": "http://yanxuan.nosdn.127.net/48dbfe207b2203ef45055dcc9cedbe60.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 89,
+        "retailPrice": 69
+      },
+      {
+        "id": 1064003,
+        "name": "六边形南瓜式宠物窝",
+        "brief": "给萌宠柔软包裹的归家感",
+        "picUrl": "http://yanxuan.nosdn.127.net/58ed94b63b39339e7814f1339013793c.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 109,
+        "retailPrice": 89
+      },
+      {
+        "id": 1064004,
+        "name": "方形封闭式宠物窝",
+        "brief": "封闭式设计猫咪独享",
+        "picUrl": "http://yanxuan.nosdn.127.net/337da7094c1df295ca0f0b8baa55b2d5.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 119,
+        "retailPrice": 99
+      },
+      {
+        "id": 1071004,
+        "name": "日式圆形宠物盆猫砂盆",
+        "brief": "日式配色，圆滑细腻",
+        "picUrl": "http://yanxuan.nosdn.127.net/f0abf2bf11c8d303212e4a0c1106bb73.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 109,
+        "retailPrice": 89
+      },
+      {
+        "id": 1071005,
+        "name": "便携多功能宠物拾便器",
+        "brief": "方便携带，环保卫生",
+        "picUrl": "http://yanxuan.nosdn.127.net/07a47d73e2eb53b1a7939219a4e63618.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 59,
+        "retailPrice": 39
+      }
+    ]
+  },
+  "errmsg": "成功"
+}

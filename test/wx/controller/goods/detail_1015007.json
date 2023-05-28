@@ -1,0 +1,188 @@
+{
+  "errno": 0,
+  "data": {
+    "specificationList": [
+      {
+        "name": "规格",
+        "valueList": [
+          {
+            "id": 20,
+            "goodsId": 1015007,
+            "specification": "规格",
+            "value": "标准",
+            "picUrl": "",
+            "addTime": "2018-02-01 00:00:00",
+            "updateTime": "2018-02-01 00:00:00",
+            "deleted": false
+          }
+        ]
+      }
+    ],
+    "groupon": [],
+    "issue": [
+      {
+        "id": 1,
+        "question": "购买运费如何收取？",
+        "answer": "单笔订单金额（不含运费）满88元免邮费；不满88元，每单收取10元运费。\n(港澳台地区需满",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 2,
+        "question": "使用什么快递发货？",
+        "answer": "严选默认使用顺丰快递发货（个别商品使用其他快递），配送范围覆盖全国大部分地区（港澳台地区除",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 3,
+        "question": "如何申请退货？",
+        "answer": "1.自收到商品之日起30日内，顾客可申请无忧退货，退款将原路返还，不同的银行处理时间不同，",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 4,
+        "question": "如何开具发票？",
+        "answer": "1.如需开具普通发票，请在下单时选择“我要开发票”并填写相关信息（APP仅限2.4.0及以",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "userHasCollect": 0,
+    "shareImage": "",
+    "comment": {
+      "data": [
+        {
+          "addTime": "2018-02-01 00:00:00",
+          "picList": [
+            "https://yanxuan.nosdn.127.net/4c3d137c1e299e5502fd0537281e5d04.jpg"
+          ],
+          "adminContent": "",
+          "nickname": "user123",
+          "id": 361,
+          "avatar": "",
+          "content": "严选的商品不论是发货，物流，到品质都是无可挑剔的！从心里说确实好令人满意！"
+        },
+        {
+          "addTime": "2018-02-01 00:00:00",
+          "picList": [
+            "https://yanxuan.nosdn.127.net/b54ed26bd3fa54e53e7b7c50ae514751.jpg"
+          ],
+          "adminContent": "",
+          "nickname": "user123",
+          "id": 362,
+          "avatar": "",
+          "content": "一见钟情的抱枕，铃兰的图案美得不行，质量超好的，性价比高。"
+        }
+      ],
+      "count": 30
+    },
+    "share": false,
+    "attribute": [
+      {
+        "id": 63,
+        "goodsId": 1015007,
+        "attribute": "尺寸",
+        "value": "45cm*45cm",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 64,
+        "goodsId": 1015007,
+        "attribute": "面料成份",
+        "value": "100%全棉",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 65,
+        "goodsId": 1015007,
+        "attribute": "内芯面料",
+        "value": "100%全棉",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 66,
+        "goodsId": 1015007,
+        "attribute": "填充物",
+        "value": "100%聚酯纤维",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 67,
+        "goodsId": 1015007,
+        "attribute": "重量",
+        "value": "470g（内芯）",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 68,
+        "goodsId": 1015007,
+        "attribute": "产地",
+        "value": "中国",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "brand": {},
+    "productList": [
+      {
+        "id": 21,
+        "goodsId": 1015007,
+        "specifications": [
+          "标准"
+        ],
+        "price": 59,
+        "number": 100,
+        "url": "http://yanxuan.nosdn.127.net/a2045004de8a6225289376ad54317fc8.png",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "info": {
+      "id": 1015007,
+      "goodsSn": "1015007",
+      "name": "典雅美式全棉刺绣抱枕",
+      "categoryId": 1008002,
+      "brandId": 0,
+      "gallery": [
+        "http://yanxuan.nosdn.127.net/013657a5a5faf8a9a7e3f39b5bba4eac.jpg",
+        "http://yanxuan.nosdn.127.net/d46ba997e163430e43735e4ad1caeff0.jpg",
+        "http://yanxuan.nosdn.127.net/a90e545295d22de031b10aee631e48fe.jpg",
+        "http://yanxuan.nosdn.127.net/f7188ec871d1f721f64cbe04860a4fe2.jpg"
+      ],
+      "keywords": "",
+      "brief": "典雅毛线绣，精致工艺",
+      "isOnSale": true,
+      "sortOrder": 4,
+      "picUrl": "http://yanxuan.nosdn.127.net/a2045004de8a6225289376ad54317fc8.png",
+      "shareUrl": "",
+      "isNew": false,
+      "isHot": false,
+      "unit": "件",
+      "counterPrice": 79,
+      "retailPrice": 59,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false,
+      "detail": "<p><img src=\"http://yanxuan.nosdn.127.net/66640f55aeb668ac9df6e26b6b30adb5.jpg\" _src=\"http://yanxuan.nosdn.127.net/66640f55aeb668ac9df6e26b6b30adb5.jpg\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/42852faba5623c6dc5be451d80e5df03.jpg\" _src=\"http://yanxuan.nosdn.127.net/42852faba5623c6dc5be451d80e5df03.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/48ce93c6f6a731778c505442f163b09e.jpg\" _src=\"http://yanxuan.nosdn.127.net/48ce93c6f6a731778c505442f163b09e.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/02a3abee9bb3e22f27781ced8774d1ab.jpg\" _src=\"http://yanxuan.nosdn.127.net/02a3abee9bb3e22f27781ced8774d1ab.jpg\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/c62a27145e1045879e3f2b97b9f86b4d.jpg\" _src=\"http://yanxuan.nosdn.127.net/c62a27145e1045879e3f2b97b9f86b4d.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/48baaafe4ea4c32242c57e58ce8e139f.jpg\" _src=\"http://yanxuan.nosdn.127.net/48baaafe4ea4c32242c57e58ce8e139f.jpg\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/99549f0375b108240866a09a0a2527d7.jpg\" _src=\"http://yanxuan.nosdn.127.net/99549f0375b108240866a09a0a2527d7.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/341529ba80d91c5304680be8f524a626.jpg\" _src=\"http://yanxuan.nosdn.127.net/341529ba80d91c5304680be8f524a626.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b15e35e9d8c04288dfb7546b1f743c17.jpg\" _src=\"http://yanxuan.nosdn.127.net/b15e35e9d8c04288dfb7546b1f743c17.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/2c0ebf7949133cb382b6bf18c8a5a1c0.jpg\" _src=\"http://yanxuan.nosdn.127.net/2c0ebf7949133cb382b6bf18c8a5a1c0.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/bfd25d0fa6dc13a335877360e3dab8d1.jpg\" _src=\"http://yanxuan.nosdn.127.net/bfd25d0fa6dc13a335877360e3dab8d1.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/dbcc420cef18e4a43589198ebfcc4fd1.jpg\" _src=\"http://yanxuan.nosdn.127.net/dbcc420cef18e4a43589198ebfcc4fd1.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/15aa3e3ed45714d29ca062499db930ea.jpg\" _src=\"http://yanxuan.nosdn.127.net/15aa3e3ed45714d29ca062499db930ea.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/ab6963b4e529810577f3e428c9d10af6.jpg\" _src=\"http://yanxuan.nosdn.127.net/ab6963b4e529810577f3e428c9d10af6.jpg\" style=\"\"/></p><p><br/></p>"
+    }
+  },
+  "errmsg": "成功"
+}

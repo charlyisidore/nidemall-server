@@ -1,0 +1,72 @@
+{
+  "errno": 0,
+  "data": {
+    "total": 9,
+    "pages": 2,
+    "limit": 6,
+    "page": 1,
+    "list": [
+      {
+        "id": 1039056,
+        "name": "金属亚光钢笔",
+        "brief": "铱金暗尖，超顺书写",
+        "picUrl": "http://yanxuan.nosdn.127.net/3e14e82a44c3a250af63df4c29c572d0.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 99,
+        "retailPrice": 79
+      },
+      {
+        "id": 1046001,
+        "name": "按动式三角中油笔",
+        "brief": "进口笔尖，无毒油墨",
+        "picUrl": "http://yanxuan.nosdn.127.net/74583e585825ecacb11f7c53d2021e00.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 28.9,
+        "retailPrice": 8.9
+      },
+      {
+        "id": 1046002,
+        "name": "直杆三角中性笔",
+        "brief": "合金笔尖，高强度笔身",
+        "picUrl": "http://yanxuan.nosdn.127.net/eb486cfe807c4fe5696aa59cbcf1f96a.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 29.9,
+        "retailPrice": 9.9
+      },
+      {
+        "id": 1055022,
+        "name": "磨砂杆直杆中性笔",
+        "brief": "高韧笔杆，书写不疲惫",
+        "picUrl": "http://yanxuan.nosdn.127.net/c7c74a96eacb29455dbf557b840eaaf5.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 24.9,
+        "retailPrice": 4.9
+      },
+      {
+        "id": 1075022,
+        "name": "暗格简约钢笔",
+        "brief": "铱金暗尖，300超长书写",
+        "picUrl": "http://yanxuan.nosdn.127.net/97ad483a94ed88216a989df83e39cbf0.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 59,
+        "retailPrice": 39
+      },
+      {
+        "id": 1092001,
+        "name": "星空原色水晶笔",
+        "brief": "140颗原色水晶，璀璨如星",
+        "picUrl": "http://yanxuan.nosdn.127.net/8e35b003ce7895c39eeb073b1f61b1d7.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 49,
+        "retailPrice": 29
+      }
+    ]
+  },
+  "errmsg": "成功"
+}

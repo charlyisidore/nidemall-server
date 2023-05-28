@@ -1,0 +1,72 @@
+{
+  "errno": 0,
+  "data": {
+    "total": 9,
+    "pages": 2,
+    "limit": 6,
+    "page": 1,
+    "list": [
+      {
+        "id": 1023003,
+        "name": "100年传世珐琅锅 全家系列",
+        "brief": "特质铸铁，大容量全家共享",
+        "picUrl": "http://yanxuan.nosdn.127.net/c39d54c06a71b4b61b6092a0d31f2335.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 418,
+        "retailPrice": 398
+      },
+      {
+        "id": 1025005,
+        "name": "100年传世珐琅锅",
+        "brief": "特质铸铁，锁热节能",
+        "picUrl": "http://yanxuan.nosdn.127.net/49e26f00ca4d0ce00f9960d22c936738.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 288,
+        "retailPrice": 268
+      },
+      {
+        "id": 1038004,
+        "name": "100年传世珐琅锅 马卡龙系列",
+        "brief": "均匀导热，释放美味",
+        "picUrl": "http://yanxuan.nosdn.127.net/4d3d3eaeb872860539d7faa59f9f84e9.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 379,
+        "retailPrice": 359
+      },
+      {
+        "id": 1051000,
+        "name": "Carat钻石炒锅30cm",
+        "brief": "安全涂层，轻便无烟",
+        "picUrl": "http://yanxuan.nosdn.127.net/e564410546a11ddceb5a82bfce8da43d.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 200,
+        "retailPrice": 180
+      },
+      {
+        "id": 1051001,
+        "name": "Carat钻石煎锅28cm",
+        "brief": "耐磨涂层，导热迅速",
+        "picUrl": "http://yanxuan.nosdn.127.net/f53ed57d9e23fda7e24dfd0e0a50c5d1.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 179,
+        "retailPrice": 159
+      },
+      {
+        "id": 1051002,
+        "name": "Carat钻石汤锅24cm",
+        "brief": "安全涂层，锁热保温",
+        "picUrl": "http://yanxuan.nosdn.127.net/56f4b4753392d27c0c2ccceeb579ed6f.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 248,
+        "retailPrice": 228
+      }
+    ]
+  },
+  "errmsg": "成功"
+}

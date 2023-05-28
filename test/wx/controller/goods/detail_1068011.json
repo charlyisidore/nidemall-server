@@ -1,0 +1,147 @@
+{
+  "errno": 0,
+  "data": {
+    "specificationList": [
+      {
+        "name": "规格",
+        "valueList": [
+          {
+            "id": 82,
+            "goodsId": 1068011,
+            "specification": "规格",
+            "value": "标准",
+            "picUrl": "",
+            "addTime": "2018-02-01 00:00:00",
+            "updateTime": "2018-02-01 00:00:00",
+            "deleted": false
+          }
+        ]
+      }
+    ],
+    "groupon": [],
+    "issue": [
+      {
+        "id": 1,
+        "question": "购买运费如何收取？",
+        "answer": "单笔订单金额（不含运费）满88元免邮费；不满88元，每单收取10元运费。\n(港澳台地区需满",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 2,
+        "question": "使用什么快递发货？",
+        "answer": "严选默认使用顺丰快递发货（个别商品使用其他快递），配送范围覆盖全国大部分地区（港澳台地区除",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 3,
+        "question": "如何申请退货？",
+        "answer": "1.自收到商品之日起30日内，顾客可申请无忧退货，退款将原路返还，不同的银行处理时间不同，",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 4,
+        "question": "如何开具发票？",
+        "answer": "1.如需开具普通发票，请在下单时选择“我要开发票”并填写相关信息（APP仅限2.4.0及以",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "userHasCollect": 0,
+    "shareImage": "",
+    "comment": {
+      "data": [],
+      "count": 0
+    },
+    "share": false,
+    "attribute": [
+      {
+        "id": 321,
+        "goodsId": 1068011,
+        "attribute": "填充物",
+        "value": "60%、90%驼绒/40%、10%驼毛",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 322,
+        "goodsId": 1068011,
+        "attribute": "面料",
+        "value": "100%棉",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 323,
+        "goodsId": 1068011,
+        "attribute": "尺寸",
+        "value": "200*230cm",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 324,
+        "goodsId": 1068011,
+        "attribute": "填充物重量",
+        "value": "2000g",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "brand": {},
+    "productList": [
+      {
+        "id": 83,
+        "goodsId": 1068011,
+        "specifications": [
+          "标准"
+        ],
+        "price": 399,
+        "number": 100,
+        "url": "http://yanxuan.nosdn.127.net/0e4ba6ed44fef8803c243e585b621ab7.png",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "info": {
+      "id": 1068011,
+      "goodsSn": "1068011",
+      "name": "全棉丝光骆驼绒秋冬被",
+      "categoryId": 1008008,
+      "brandId": 0,
+      "gallery": [
+        "http://yanxuan.nosdn.127.net/ccd6d04356b4b8fa00659b7c287a742f.jpg",
+        "http://yanxuan.nosdn.127.net/a3fddd5ba2d029c8adc22f4346d15be2.jpg",
+        "http://yanxuan.nosdn.127.net/afe43ecb0839d0f1d91551a357db65a9.jpg",
+        "http://yanxuan.nosdn.127.net/85dcb0a492eefb8a64c963400fac48a8.jpg"
+      ],
+      "keywords": "",
+      "brief": "精细驼绒填充，加厚温暖",
+      "isOnSale": true,
+      "sortOrder": 18,
+      "picUrl": "http://yanxuan.nosdn.127.net/0e4ba6ed44fef8803c243e585b621ab7.png",
+      "shareUrl": "",
+      "isNew": false,
+      "isHot": false,
+      "unit": "件",
+      "counterPrice": 419,
+      "retailPrice": 399,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false,
+      "detail": "<p><img src=\"http://yanxuan.nosdn.127.net/513bb53138abc91136a185451db84124.jpg\" _src=\"http://yanxuan.nosdn.127.net/513bb53138abc91136a185451db84124.jpg\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/892c546f668cda7061312c927d6b8706.jpg\" _src=\"http://yanxuan.nosdn.127.net/892c546f668cda7061312c927d6b8706.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a47d06b195c64a165b82e797ac6d0f74.jpg\" _src=\"http://yanxuan.nosdn.127.net/a47d06b195c64a165b82e797ac6d0f74.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/2518d05fed8e33f2b61fd06a2711f7bc.jpg\" _src=\"http://yanxuan.nosdn.127.net/2518d05fed8e33f2b61fd06a2711f7bc.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/104bfe84e2f4625c4cdf66c3e511b9cd.jpg\" _src=\"http://yanxuan.nosdn.127.net/104bfe84e2f4625c4cdf66c3e511b9cd.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/1c69525ee67d15f619a4c33d5570e732.jpg\" _src=\"http://yanxuan.nosdn.127.net/1c69525ee67d15f619a4c33d5570e732.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/79b82500961b6385b852633961ce5c6c.jpg\" _src=\"http://yanxuan.nosdn.127.net/79b82500961b6385b852633961ce5c6c.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/ea190f56ac369eaef45159412675bb49.jpg\" _src=\"http://yanxuan.nosdn.127.net/ea190f56ac369eaef45159412675bb49.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/ae33c22489785820a608a6508dda713b.jpg\" _src=\"http://yanxuan.nosdn.127.net/ae33c22489785820a608a6508dda713b.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/dcd357ecf585630bf3e11364e7beef51.jpg\" _src=\"http://yanxuan.nosdn.127.net/dcd357ecf585630bf3e11364e7beef51.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/c77e5ed4dbd4ca1834cc1d65fb6fb978.jpg\" _src=\"http://yanxuan.nosdn.127.net/c77e5ed4dbd4ca1834cc1d65fb6fb978.jpg\" style=\"\"/></p><p><br/></p>"
+    }
+  },
+  "errmsg": "成功"
+}

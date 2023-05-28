@@ -1,0 +1,184 @@
+{
+  "errno": 0,
+  "data": {
+    "specificationList": [
+      {
+        "name": "规格",
+        "valueList": [
+          {
+            "id": 55,
+            "goodsId": 1043005,
+            "specification": "规格",
+            "value": "标准",
+            "picUrl": "",
+            "addTime": "2018-02-01 00:00:00",
+            "updateTime": "2018-02-01 00:00:00",
+            "deleted": false
+          }
+        ]
+      }
+    ],
+    "groupon": [],
+    "issue": [
+      {
+        "id": 1,
+        "question": "购买运费如何收取？",
+        "answer": "单笔订单金额（不含运费）满88元免邮费；不满88元，每单收取10元运费。\n(港澳台地区需满",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 2,
+        "question": "使用什么快递发货？",
+        "answer": "严选默认使用顺丰快递发货（个别商品使用其他快递），配送范围覆盖全国大部分地区（港澳台地区除",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 3,
+        "question": "如何申请退货？",
+        "answer": "1.自收到商品之日起30日内，顾客可申请无忧退货，退款将原路返还，不同的银行处理时间不同，",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 4,
+        "question": "如何开具发票？",
+        "answer": "1.如需开具普通发票，请在下单时选择“我要开发票”并填写相关信息（APP仅限2.4.0及以",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "userHasCollect": 0,
+    "shareImage": "",
+    "comment": {
+      "data": [],
+      "count": 0
+    },
+    "share": false,
+    "attribute": [
+      {
+        "id": 225,
+        "goodsId": 1043005,
+        "attribute": "坐垫外层面料",
+        "value": "100%聚酯纤维",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 226,
+        "goodsId": 1043005,
+        "attribute": "坐垫内芯材料",
+        "value": "聚氨酯",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 227,
+        "goodsId": 1043005,
+        "attribute": "执行标准",
+        "value": "GB/T22843-2009",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 228,
+        "goodsId": 1043005,
+        "attribute": "方形尺寸",
+        "value": "36*36*3cm",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 229,
+        "goodsId": 1043005,
+        "attribute": "圆形尺寸",
+        "value": "Φ34*3cm",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 230,
+        "goodsId": 1043005,
+        "attribute": "坐垫套面料",
+        "value": "100%棉",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 231,
+        "goodsId": 1043005,
+        "attribute": "*温馨提示",
+        "value": "1,水洗时请将外套取下，用冷水洗涤后置于阴凉处阴干或烘干。不能同褪色衣物同洗，以防沾污、沾色。\n2,外套洗后稍有缩水是正常现象，因是弹性织物，仅需四周拉一下长度即可。\n3,记忆棉不可水洗，请经常保持产品干燥，每隔一段时间用吸尘器清理内芯落尘或用手轻轻拍打内芯，放在通风阴凉处适当晾晒即可。。若不慎打湿，立即用干毛巾将水分吸干，置于通风处阴干或用冷吹风吹干即可。",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "brand": {
+      "id": 1001000,
+      "name": "MUJI制造商",
+      "desc": "严选精选了MUJI制造商和生产原料，\n用几乎零利润的价格，剔除品牌溢价，\n让用户享受原品牌的品质生活。",
+      "picUrl": "http://yanxuan.nosdn.127.net/1541445967645114dd75f6b0edc4762d.png",
+      "sortOrder": 2,
+      "floorPrice": 12.9,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "productList": [
+      {
+        "id": 56,
+        "goodsId": 1043005,
+        "specifications": [
+          "标准"
+        ],
+        "price": 59,
+        "number": 100,
+        "url": "http://yanxuan.nosdn.127.net/2a95b16f5b147cab4845641bee738a2e.png",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "info": {
+      "id": 1043005,
+      "goodsSn": "1043005",
+      "name": "日式记忆绵坐垫",
+      "categoryId": 1008002,
+      "brandId": 1001000,
+      "gallery": [
+        "http://yanxuan.nosdn.127.net/e48d2eb849c4426894fad347e9b8691a.jpg",
+        "http://yanxuan.nosdn.127.net/b19866dcc87474faed9e1dbc46f65bcc.jpg",
+        "http://yanxuan.nosdn.127.net/1a63d1f3785071edcc40e98440950f7c.jpg",
+        "http://yanxuan.nosdn.127.net/ba5890ed54ea33c387e9773ab3f5523c.jpg"
+      ],
+      "keywords": "",
+      "brief": "活性炭记忆绵，缓解压力",
+      "isOnSale": true,
+      "sortOrder": 11,
+      "picUrl": "http://yanxuan.nosdn.127.net/2a95b16f5b147cab4845641bee738a2e.png",
+      "shareUrl": "",
+      "isNew": false,
+      "isHot": false,
+      "unit": "件",
+      "counterPrice": 79,
+      "retailPrice": 59,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false,
+      "detail": "<p><img src=\"http://yanxuan.nosdn.127.net/7239e35762ea2937549f53f4482124fa.jpg\" _src=\"http://yanxuan.nosdn.127.net/7239e35762ea2937549f53f4482124fa.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/c23c022ad6737aa351140d7ce97a4a43.jpg\" _src=\"http://yanxuan.nosdn.127.net/c23c022ad6737aa351140d7ce97a4a43.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b6fe3f499101077e6ee595a9145172c0.jpg\" _src=\"http://yanxuan.nosdn.127.net/b6fe3f499101077e6ee595a9145172c0.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/0fdc843045b99838abd8ce3fcbec2890.jpg\" _src=\"http://yanxuan.nosdn.127.net/0fdc843045b99838abd8ce3fcbec2890.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/14d3e1c384f5bc66e85b4dfff61f49ab.jpg\" _src=\"http://yanxuan.nosdn.127.net/14d3e1c384f5bc66e85b4dfff61f49ab.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/14eed3d4524fe441a54b604f37cfd299.jpg\" _src=\"http://yanxuan.nosdn.127.net/14eed3d4524fe441a54b604f37cfd299.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b1b3a30c34e6fecf8105bf430e6d547f.jpg\" _src=\"http://yanxuan.nosdn.127.net/b1b3a30c34e6fecf8105bf430e6d547f.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/cb5411b150ce5a69c0f88ef3af918061.jpg\" _src=\"http://yanxuan.nosdn.127.net/cb5411b150ce5a69c0f88ef3af918061.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/aebe8243acfa28a42d300d985c6e7036.jpg\" _src=\"http://yanxuan.nosdn.127.net/aebe8243acfa28a42d300d985c6e7036.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/1371f124f86fc38c195f49e4bf26ddc5.jpg\" _src=\"http://yanxuan.nosdn.127.net/1371f124f86fc38c195f49e4bf26ddc5.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/bd05471ebf5529464c85eace3e7c5c7a.jpg\" _src=\"http://yanxuan.nosdn.127.net/bd05471ebf5529464c85eace3e7c5c7a.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/9c607e963758e4ad3f3bc749098fdcec.jpg\" _src=\"http://yanxuan.nosdn.127.net/9c607e963758e4ad3f3bc749098fdcec.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/dd472e779f1748937d269b87464722b5.jpg\" _src=\"http://yanxuan.nosdn.127.net/dd472e779f1748937d269b87464722b5.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/d19ec3e68922cdae4da8c0ab174bf5eb.jpg\" _src=\"http://yanxuan.nosdn.127.net/d19ec3e68922cdae4da8c0ab174bf5eb.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/44003fe38ab817003cb441ed5e518c41.jpg\" _src=\"http://yanxuan.nosdn.127.net/44003fe38ab817003cb441ed5e518c41.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/5f3a7c45c70930950e60ddac979953d5.jpg\" _src=\"http://yanxuan.nosdn.127.net/5f3a7c45c70930950e60ddac979953d5.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/77fc74a83c328dddf610a045277f094e.jpg\" _src=\"http://yanxuan.nosdn.127.net/77fc74a83c328dddf610a045277f094e.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/14056056c8e8cf3f77a479de696d18ea.jpg\" _src=\"http://yanxuan.nosdn.127.net/14056056c8e8cf3f77a479de696d18ea.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3ec2764b8b29c67af332cc1fde825b70.jpg\" _src=\"http://yanxuan.nosdn.127.net/3ec2764b8b29c67af332cc1fde825b70.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/494504fdb2d59d924de16cf79629dee9.jpg\" _src=\"http://yanxuan.nosdn.127.net/494504fdb2d59d924de16cf79629dee9.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/ddf59afdada25b6b7aad72aaf8f0af20.jpg\" _src=\"http://yanxuan.nosdn.127.net/ddf59afdada25b6b7aad72aaf8f0af20.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/1b8ad80c319aac920f3409bcd4376e17.jpg\" _src=\"http://yanxuan.nosdn.127.net/1b8ad80c319aac920f3409bcd4376e17.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/8571525a4f280d09926a1b388d06fe8d.jpg\" _src=\"http://yanxuan.nosdn.127.net/8571525a4f280d09926a1b388d06fe8d.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/23c8bb2834f9ec05adb69e4df8354224.jpg\" _src=\"http://yanxuan.nosdn.127.net/23c8bb2834f9ec05adb69e4df8354224.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b9c44aea67b0392547fdb3ba7f24c5fc.jpg\" _src=\"http://yanxuan.nosdn.127.net/b9c44aea67b0392547fdb3ba7f24c5fc.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/f5045464902396b85ea12724ed962d7a.jpg\" _src=\"http://yanxuan.nosdn.127.net/f5045464902396b85ea12724ed962d7a.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/f484b21d07738839d1e199d8ba1031f1.jpg\" _src=\"http://yanxuan.nosdn.127.net/f484b21d07738839d1e199d8ba1031f1.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/21718c637256576c66876aa30653e29d.jpg\" _src=\"http://yanxuan.nosdn.127.net/21718c637256576c66876aa30653e29d.jpg\" style=\"\"/></p><p><br/></p>"
+    }
+  },
+  "errmsg": "成功"
+}

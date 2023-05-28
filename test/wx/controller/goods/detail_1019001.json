@@ -1,0 +1,184 @@
+{
+  "errno": 0,
+  "data": {
+    "specificationList": [
+      {
+        "name": "规格",
+        "valueList": [
+          {
+            "id": 22,
+            "goodsId": 1019001,
+            "specification": "规格",
+            "value": "标准",
+            "picUrl": "",
+            "addTime": "2018-02-01 00:00:00",
+            "updateTime": "2018-02-01 00:00:00",
+            "deleted": false
+          }
+        ]
+      }
+    ],
+    "groupon": [],
+    "issue": [
+      {
+        "id": 1,
+        "question": "购买运费如何收取？",
+        "answer": "单笔订单金额（不含运费）满88元免邮费；不满88元，每单收取10元运费。\n(港澳台地区需满",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 2,
+        "question": "使用什么快递发货？",
+        "answer": "严选默认使用顺丰快递发货（个别商品使用其他快递），配送范围覆盖全国大部分地区（港澳台地区除",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 3,
+        "question": "如何申请退货？",
+        "answer": "1.自收到商品之日起30日内，顾客可申请无忧退货，退款将原路返还，不同的银行处理时间不同，",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 4,
+        "question": "如何开具发票？",
+        "answer": "1.如需开具普通发票，请在下单时选择“我要开发票”并填写相关信息（APP仅限2.4.0及以",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "userHasCollect": 0,
+    "shareImage": "",
+    "comment": {
+      "data": [
+        {
+          "addTime": "2018-02-01 00:00:00",
+          "picList": [],
+          "adminContent": "",
+          "nickname": "user123",
+          "id": 421,
+          "avatar": "",
+          "content": "特意用了很长时间才来评价的，枕头不错，刚开始不太习惯，用了一段时间，感觉挺不错，再也没有落枕过，脖子也挺舒服的。"
+        },
+        {
+          "addTime": "2018-02-01 00:00:00",
+          "picList": [],
+          "adminContent": "",
+          "nickname": "user123",
+          "id": 422,
+          "avatar": "",
+          "content": "不错，很舒服，昨天晚上开始试用，睡的挺好的"
+        }
+      ],
+      "count": 30
+    },
+    "share": false,
+    "attribute": [
+      {
+        "id": 75,
+        "goodsId": 1019001,
+        "attribute": "填充成分",
+        "value": "聚醚型聚氨酯",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 76,
+        "goodsId": 1019001,
+        "attribute": "面料成分",
+        "value": "100%聚酯纤维",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 77,
+        "goodsId": 1019001,
+        "attribute": "尺寸",
+        "value": "50cm×30cm×10cm-6cm",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 78,
+        "goodsId": 1019001,
+        "attribute": "颜色",
+        "value": "白色",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 79,
+        "goodsId": 1019001,
+        "attribute": "适用人数",
+        "value": "单人",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 80,
+        "goodsId": 1019001,
+        "attribute": "温馨提示",
+        "value": "1.记忆绵产品为进口环保化学材质聚氨酯发泡而成，刚打开包装会有少量聚氨酯气体产生，拆除外套通风除味3-5天即可。 2.枕芯类商品受身高、体型、睡眠习惯不同，产生不同的使用体验，建议多试睡几款枕头，挑选最适合的进行使用。",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "brand": {},
+    "productList": [
+      {
+        "id": 23,
+        "goodsId": 1019001,
+        "specifications": [
+          "标准"
+        ],
+        "price": 109,
+        "number": 100,
+        "url": "http://yanxuan.nosdn.127.net/7644803ab19b3e398456aa5a54229363.png",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "info": {
+      "id": 1019001,
+      "goodsSn": "1019001",
+      "name": "升级款护颈加翼记忆枕",
+      "categoryId": 1008008,
+      "brandId": 0,
+      "gallery": [
+        "http://yanxuan.nosdn.127.net/35634c85786bb56314df11c0dbea1b57.jpg",
+        "http://yanxuan.nosdn.127.net/cdcdee30c0d89fd4defb57539dfab468.jpg",
+        "http://yanxuan.nosdn.127.net/9bbfbeead2e0b038f6ee002a2f556281.jpg",
+        "http://yanxuan.nosdn.127.net/e86e34c26d2b6d6caa02cd6cf4039cf5.jpg"
+      ],
+      "keywords": "",
+      "brief": "仰睡优质装备",
+      "isOnSale": true,
+      "sortOrder": 9,
+      "picUrl": "http://yanxuan.nosdn.127.net/7644803ab19b3e398456aa5a54229363.png",
+      "shareUrl": "",
+      "isNew": false,
+      "isHot": false,
+      "unit": "件",
+      "counterPrice": 129,
+      "retailPrice": 109,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false,
+      "detail": "<p><img src=\"http://yanxuan.nosdn.127.net/c6eb7df0cb54b1efd167d8c9fb499d4d.jpg\" _src=\"http://yanxuan.nosdn.127.net/c6eb7df0cb54b1efd167d8c9fb499d4d.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/c6df32e9289c2e47966c3b117268698a.jpg\" _src=\"http://yanxuan.nosdn.127.net/c6df32e9289c2e47966c3b117268698a.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/92adf10bf5bb25403f449ec1e8612223.jpg\" _src=\"http://yanxuan.nosdn.127.net/92adf10bf5bb25403f449ec1e8612223.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/8f4b631f23c4d86aa3c6882258f1ed61.jpg\" _src=\"http://yanxuan.nosdn.127.net/8f4b631f23c4d86aa3c6882258f1ed61.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/484044307538426c6c79d88891a44573.jpg\" _src=\"http://yanxuan.nosdn.127.net/484044307538426c6c79d88891a44573.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3340218a14eb10f023410cb7b14ff5c7.jpg\" _src=\"http://yanxuan.nosdn.127.net/3340218a14eb10f023410cb7b14ff5c7.jpg\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/12f8e836b270f459bb9a7d0fd043f840.jpg\" _src=\"http://yanxuan.nosdn.127.net/12f8e836b270f459bb9a7d0fd043f840.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/234a40d515b4ef5283a4b307aa694880.jpg\" _src=\"http://yanxuan.nosdn.127.net/234a40d515b4ef5283a4b307aa694880.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b999f414bab88eb61dc8c7c19e43784b.jpg\" _src=\"http://yanxuan.nosdn.127.net/b999f414bab88eb61dc8c7c19e43784b.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/729907923ec1d1c987b4fc9a3aab75da.jpg\" _src=\"http://yanxuan.nosdn.127.net/729907923ec1d1c987b4fc9a3aab75da.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/86c4cfbca9b18f1931fd6424d504f58c.jpg\" _src=\"http://yanxuan.nosdn.127.net/86c4cfbca9b18f1931fd6424d504f58c.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/11cd2b57e9430b77019c1148ffc98e00.jpg\" _src=\"http://yanxuan.nosdn.127.net/11cd2b57e9430b77019c1148ffc98e00.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a9025355615221491eeb0028f52c1190.jpg\" _src=\"http://yanxuan.nosdn.127.net/a9025355615221491eeb0028f52c1190.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/6541688751bf78732def7b1e7b80acde.jpg\" _src=\"http://yanxuan.nosdn.127.net/6541688751bf78732def7b1e7b80acde.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a307a08fe871cda58d345c3d27aec637.jpg\" _src=\"http://yanxuan.nosdn.127.net/a307a08fe871cda58d345c3d27aec637.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/9d0c08ea2cce7fa09cd20463687fde2b.jpg\" _src=\"http://yanxuan.nosdn.127.net/9d0c08ea2cce7fa09cd20463687fde2b.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a141d9a027680a921b70adabb9e822f6.jpg\" _src=\"http://yanxuan.nosdn.127.net/a141d9a027680a921b70adabb9e822f6.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/8eb750a2ce2373be40b852aaf0494edf.jpg\" _src=\"http://yanxuan.nosdn.127.net/8eb750a2ce2373be40b852aaf0494edf.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/2275f3636c0719ab83d7391993da903a.jpg\" _src=\"http://yanxuan.nosdn.127.net/2275f3636c0719ab83d7391993da903a.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/0d05c90aa86f19886e94e402305dada1.jpg\" _src=\"http://yanxuan.nosdn.127.net/0d05c90aa86f19886e94e402305dada1.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/0acbac29252596be257c86a590eb567a.jpg\" _src=\"http://yanxuan.nosdn.127.net/0acbac29252596be257c86a590eb567a.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/c99b1fd6b0b812a289b5887233453646.jpg\" _src=\"http://yanxuan.nosdn.127.net/c99b1fd6b0b812a289b5887233453646.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/e45ab89e057c3f73c0b06464115ea357.jpg\" _src=\"http://yanxuan.nosdn.127.net/e45ab89e057c3f73c0b06464115ea357.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/08f026762e2459f85f66766e4ea3e195.jpg\" _src=\"http://yanxuan.nosdn.127.net/08f026762e2459f85f66766e4ea3e195.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3365604b1b01c7a99d31a5307991bbb8.jpg\" _src=\"http://yanxuan.nosdn.127.net/3365604b1b01c7a99d31a5307991bbb8.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/2406859dfe2befe93927346fe1317c22.jpg\" _src=\"http://yanxuan.nosdn.127.net/2406859dfe2befe93927346fe1317c22.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/0121587794b92e2a5bba41460984f091.jpg\" _src=\"http://yanxuan.nosdn.127.net/0121587794b92e2a5bba41460984f091.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/5187cfe2da36ce4c3946aa6d6ce23461.jpg\" _src=\"http://yanxuan.nosdn.127.net/5187cfe2da36ce4c3946aa6d6ce23461.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/07447d11bdb3db402bd06a991f765052.jpg\" _src=\"http://yanxuan.nosdn.127.net/07447d11bdb3db402bd06a991f765052.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a5219f74a5884e3bd4dc2a44c40ac521.jpg\" _src=\"http://yanxuan.nosdn.127.net/a5219f74a5884e3bd4dc2a44c40ac521.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/ca006cc5c87ccde67019c28e7627d0fc.jpg\" _src=\"http://yanxuan.nosdn.127.net/ca006cc5c87ccde67019c28e7627d0fc.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3260e27582b77978faee526a2a3c9d68.jpg\" _src=\"http://yanxuan.nosdn.127.net/3260e27582b77978faee526a2a3c9d68.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/95093aa9450eb598e110bfa7903dce7f.jpg\" _src=\"http://yanxuan.nosdn.127.net/95093aa9450eb598e110bfa7903dce7f.jpg\" style=\"\"/></p><p><br/></p>"
+    }
+  },
+  "errmsg": "成功"
+}

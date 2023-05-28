@@ -1,0 +1,156 @@
+{
+  "errno": 0,
+  "data": {
+    "specificationList": [
+      {
+        "name": "规格",
+        "valueList": [
+          {
+            "id": 117,
+            "goodsId": 1093001,
+            "specification": "规格",
+            "value": "标准",
+            "picUrl": "",
+            "addTime": "2018-02-01 00:00:00",
+            "updateTime": "2018-02-01 00:00:00",
+            "deleted": false
+          }
+        ]
+      }
+    ],
+    "groupon": [],
+    "issue": [
+      {
+        "id": 1,
+        "question": "购买运费如何收取？",
+        "answer": "单笔订单金额（不含运费）满88元免邮费；不满88元，每单收取10元运费。\n(港澳台地区需满",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 2,
+        "question": "使用什么快递发货？",
+        "answer": "严选默认使用顺丰快递发货（个别商品使用其他快递），配送范围覆盖全国大部分地区（港澳台地区除",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 3,
+        "question": "如何申请退货？",
+        "answer": "1.自收到商品之日起30日内，顾客可申请无忧退货，退款将原路返还，不同的银行处理时间不同，",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 4,
+        "question": "如何开具发票？",
+        "answer": "1.如需开具普通发票，请在下单时选择“我要开发票”并填写相关信息（APP仅限2.4.0及以",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "userHasCollect": 0,
+    "shareImage": "",
+    "comment": {
+      "data": [],
+      "count": 0
+    },
+    "share": false,
+    "attribute": [
+      {
+        "id": 443,
+        "goodsId": 1093001,
+        "attribute": "材质",
+        "value": "PU+PE（枝干）",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 444,
+        "goodsId": 1093001,
+        "attribute": "颜色",
+        "value": "白色",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 445,
+        "goodsId": 1093001,
+        "attribute": "长度",
+        "value": "35cm",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 446,
+        "goodsId": 1093001,
+        "attribute": "花草种类",
+        "value": "马蹄莲",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 447,
+        "goodsId": 1093001,
+        "attribute": "数量",
+        "value": "一束（9朵）",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "brand": {},
+    "productList": [
+      {
+        "id": 118,
+        "goodsId": 1093001,
+        "specifications": [
+          "标准"
+        ],
+        "price": 29,
+        "number": 100,
+        "url": "http://yanxuan.nosdn.127.net/71fede861c3641d570a89a65ccf4525f.png",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "info": {
+      "id": 1093001,
+      "goodsSn": "1093001",
+      "name": "月光曲·马蹄莲",
+      "categoryId": 1011004,
+      "brandId": 0,
+      "gallery": [
+        "http://yanxuan.nosdn.127.net/1bfba99384357392f90cd06a63d1f152.jpg",
+        "http://yanxuan.nosdn.127.net/9d9b14c89edd8ebfeb886b7aed80e79c.jpg",
+        "http://yanxuan.nosdn.127.net/3aff9a88b67003e08ebe2f75c3e71aed.jpg",
+        "http://yanxuan.nosdn.127.net/eee4ccfba75b991d6fc4b3a25ee253bd.jpg"
+      ],
+      "keywords": "",
+      "brief": "仿真PU，定格典雅",
+      "isOnSale": true,
+      "sortOrder": 8,
+      "picUrl": "http://yanxuan.nosdn.127.net/71fede861c3641d570a89a65ccf4525f.png",
+      "shareUrl": "",
+      "isNew": false,
+      "isHot": false,
+      "unit": "件",
+      "counterPrice": 49,
+      "retailPrice": 29,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false,
+      "detail": "<p>*温馨提示：若马蹄莲有些褶皱，可将白色花朵部分放入60-70℃的水中热10秒立刻拿出，可恢复原状。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （注意：只针对马蹄莲白色花朵部分）</p><p><img src=\"http://yanxuan.nosdn.127.net/14c4de5b68fb2020a0264babd024c603.jpg\" _src=\"http://yanxuan.nosdn.127.net/14c4de5b68fb2020a0264babd024c603.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b7d4c10f37efe62df82a9d9ddcf5391d.jpg\" _src=\"http://yanxuan.nosdn.127.net/b7d4c10f37efe62df82a9d9ddcf5391d.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/88704a0306ac60f7ed5465f1a52f7a97.jpg\" _src=\"http://yanxuan.nosdn.127.net/88704a0306ac60f7ed5465f1a52f7a97.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/9e6f63dc6bd213450ee31307d521fc50.jpg\" _src=\"http://yanxuan.nosdn.127.net/9e6f63dc6bd213450ee31307d521fc50.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/843c898a55f5ba807ccfcde8171f6ab5.jpg\" _src=\"http://yanxuan.nosdn.127.net/843c898a55f5ba807ccfcde8171f6ab5.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/fe488f44863e3b1b55a94a8fb7d66468.jpg\" _src=\"http://yanxuan.nosdn.127.net/fe488f44863e3b1b55a94a8fb7d66468.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/86ea4ad80d5d9eb678f5845c5bd1f3df.jpg\" _src=\"http://yanxuan.nosdn.127.net/86ea4ad80d5d9eb678f5845c5bd1f3df.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/507427743783c8ad1e1e7acefe7ab16e.jpg\" _src=\"http://yanxuan.nosdn.127.net/507427743783c8ad1e1e7acefe7ab16e.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/087ac3cee9d8bd4656969f40ff05bde1.jpg\" _src=\"http://yanxuan.nosdn.127.net/087ac3cee9d8bd4656969f40ff05bde1.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/d5756bce5084f0da0d65ee9ba2ac40a8.jpg\" _src=\"http://yanxuan.nosdn.127.net/d5756bce5084f0da0d65ee9ba2ac40a8.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3823255dce16fc44337599b63351b02b.jpg\" _src=\"http://yanxuan.nosdn.127.net/3823255dce16fc44337599b63351b02b.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/9b152b2d010f933f515059e3ed9758b5.jpg\" _src=\"http://yanxuan.nosdn.127.net/9b152b2d010f933f515059e3ed9758b5.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/8fa95525f3e21af9ce526d27581cec4c.jpg\" _src=\"http://yanxuan.nosdn.127.net/8fa95525f3e21af9ce526d27581cec4c.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/e997646bc2f741071b5f06fedc2a409f.jpg\" _src=\"http://yanxuan.nosdn.127.net/e997646bc2f741071b5f06fedc2a409f.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/360ca78e2b931542a920ac7219e93ad3.jpg\" _src=\"http://yanxuan.nosdn.127.net/360ca78e2b931542a920ac7219e93ad3.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/6e17fba13878001812d33e60c53a5bb0.jpg\" _src=\"http://yanxuan.nosdn.127.net/6e17fba13878001812d33e60c53a5bb0.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b603073a532c7d16df0b09ff196d9516.jpg\" _src=\"http://yanxuan.nosdn.127.net/b603073a532c7d16df0b09ff196d9516.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/0d14ee677f0cbad8146478f9bdf80b39.jpg\" _src=\"http://yanxuan.nosdn.127.net/0d14ee677f0cbad8146478f9bdf80b39.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/bbb4839d17e5a4b49b16c2cb2a7a0bac.jpg\" _src=\"http://yanxuan.nosdn.127.net/bbb4839d17e5a4b49b16c2cb2a7a0bac.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a6e04bfeaa2be740610fb9ce274dcfed.jpg\" _src=\"http://yanxuan.nosdn.127.net/a6e04bfeaa2be740610fb9ce274dcfed.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/456c0767ef28a4ffd52bfdf2339998e8.jpg\" _src=\"http://yanxuan.nosdn.127.net/456c0767ef28a4ffd52bfdf2339998e8.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b7fa3373676f27f95c5dff94f7bf5b42.jpg\" _src=\"http://yanxuan.nosdn.127.net/b7fa3373676f27f95c5dff94f7bf5b42.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/45b2e9c89455735fba95f9c75e0c99a2.jpg\" _src=\"http://yanxuan.nosdn.127.net/45b2e9c89455735fba95f9c75e0c99a2.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/6e7c23c1da969d6a92ecbad43a0f10e4.jpg\" _src=\"http://yanxuan.nosdn.127.net/6e7c23c1da969d6a92ecbad43a0f10e4.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/bbad0ce217bb20c7d93292ee789492f3.jpg\" _src=\"http://yanxuan.nosdn.127.net/bbad0ce217bb20c7d93292ee789492f3.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/78b3c74a0fdf05bfcf62730c535ef2fb.jpg\" _src=\"http://yanxuan.nosdn.127.net/78b3c74a0fdf05bfcf62730c535ef2fb.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/b76a95e96b3f862486bee6dfbaccdaab.jpg\" _src=\"http://yanxuan.nosdn.127.net/b76a95e96b3f862486bee6dfbaccdaab.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/5ca838cfde190a22fa2ad0f8d55971b6.jpg\" _src=\"http://yanxuan.nosdn.127.net/5ca838cfde190a22fa2ad0f8d55971b6.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/15f3d4996d1cba52763c30f26a78a04f.jpg\" _src=\"http://yanxuan.nosdn.127.net/15f3d4996d1cba52763c30f26a78a04f.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/0a2172c4f6744c1024079b48554907ae.jpg\" _src=\"http://yanxuan.nosdn.127.net/0a2172c4f6744c1024079b48554907ae.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/303125108bdfd52bcab6dfb1b0bd7029.jpg\" _src=\"http://yanxuan.nosdn.127.net/303125108bdfd52bcab6dfb1b0bd7029.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/83d7090ea963d133103a3bfcac61484d.jpg\" _src=\"http://yanxuan.nosdn.127.net/83d7090ea963d133103a3bfcac61484d.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/eea591cfebdbb6cba0ae856e9a02894e.jpg\" _src=\"http://yanxuan.nosdn.127.net/eea591cfebdbb6cba0ae856e9a02894e.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/ab2cca8081ab4028778789e84b4a8c07.jpg\" _src=\"http://yanxuan.nosdn.127.net/ab2cca8081ab4028778789e84b4a8c07.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/12b1054eef2e784a993b4ccd01f240e5.jpg\" _src=\"http://yanxuan.nosdn.127.net/12b1054eef2e784a993b4ccd01f240e5.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/cde59e5ca29d69227359e0e326d6ff8b.jpg\" _src=\"http://yanxuan.nosdn.127.net/cde59e5ca29d69227359e0e326d6ff8b.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/143ab0a0996071b335a20543ce9b7859.jpg\" _src=\"http://yanxuan.nosdn.127.net/143ab0a0996071b335a20543ce9b7859.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/2bba82dcc5d4e446999fd2f53feea873.jpg\" _src=\"http://yanxuan.nosdn.127.net/2bba82dcc5d4e446999fd2f53feea873.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/4ed53aff4e1511efbbb44276b86c04f3.jpg\" _src=\"http://yanxuan.nosdn.127.net/4ed53aff4e1511efbbb44276b86c04f3.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/7873136c7901142199933d698f8857c5.jpg\" _src=\"http://yanxuan.nosdn.127.net/7873136c7901142199933d698f8857c5.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/35c9d0b967485ff7f6197c2767578271.jpg\" _src=\"http://yanxuan.nosdn.127.net/35c9d0b967485ff7f6197c2767578271.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/6c7751f977b560b203978f53dd784f77.jpg\" _src=\"http://yanxuan.nosdn.127.net/6c7751f977b560b203978f53dd784f77.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/251f3e1aa29dfeef37a2c44f315a87d9.jpg\" _src=\"http://yanxuan.nosdn.127.net/251f3e1aa29dfeef37a2c44f315a87d9.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/66d17ca9055cd144fea50657ea55d89a.jpg\" _src=\"http://yanxuan.nosdn.127.net/66d17ca9055cd144fea50657ea55d89a.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3351f1a84e9700554add7719325ee7d0.jpg\" _src=\"http://yanxuan.nosdn.127.net/3351f1a84e9700554add7719325ee7d0.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/e647f67fd2581fdde7b77a6f4ba76f8b.jpg\" _src=\"http://yanxuan.nosdn.127.net/e647f67fd2581fdde7b77a6f4ba76f8b.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/409de727c8353a60b27545ee1f4c9f62.jpg\" _src=\"http://yanxuan.nosdn.127.net/409de727c8353a60b27545ee1f4c9f62.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/bd1705c641c3d1dc20d21ca02a45d57c.jpg\" _src=\"http://yanxuan.nosdn.127.net/bd1705c641c3d1dc20d21ca02a45d57c.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/1baac00858cd4e174301490c05aa2547.jpg\" _src=\"http://yanxuan.nosdn.127.net/1baac00858cd4e174301490c05aa2547.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/9233b3612f978c00ca77b2bbb6258a17.jpg\" _src=\"http://yanxuan.nosdn.127.net/9233b3612f978c00ca77b2bbb6258a17.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/66925098d2c2bf8e6371395a74e5fd75.jpg\" _src=\"http://yanxuan.nosdn.127.net/66925098d2c2bf8e6371395a74e5fd75.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/f5d209471e5d4c7f3cd44abcd969f017.jpg\" _src=\"http://yanxuan.nosdn.127.net/f5d209471e5d4c7f3cd44abcd969f017.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/54f7aa76e034ea98467e172e5247b52a.jpg\" _src=\"http://yanxuan.nosdn.127.net/54f7aa76e034ea98467e172e5247b52a.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/8871ba3e623365c2f0a5bfcbcfcc7df2.jpg\" _src=\"http://yanxuan.nosdn.127.net/8871ba3e623365c2f0a5bfcbcfcc7df2.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/73353926afed90979ceb13f8db3cd789.jpg\" _src=\"http://yanxuan.nosdn.127.net/73353926afed90979ceb13f8db3cd789.jpg\" style=\"\"/></p><p><br/></p>"
+    }
+  },
+  "errmsg": "成功"
+}

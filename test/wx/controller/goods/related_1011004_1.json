@@ -1,0 +1,72 @@
+{
+  "errno": 0,
+  "data": {
+    "total": 12,
+    "pages": 2,
+    "limit": 6,
+    "page": 1,
+    "list": [
+      {
+        "id": 1006013,
+        "name": "双宫茧桑蚕丝被 空调被",
+        "brief": "一级桑蚕丝，吸湿透气柔软",
+        "picUrl": "http://yanxuan.nosdn.127.net/583812520c68ca7995b6fac4c67ae2c7.png",
+        "isNew": false,
+        "isHot": true,
+        "counterPrice": 719,
+        "retailPrice": 699
+      },
+      {
+        "id": 1011004,
+        "name": "色织精梳AB纱格纹空调被",
+        "brief": "加大加厚，双色精彩",
+        "picUrl": "http://yanxuan.nosdn.127.net/0984c9388a2c3fd2335779da904be393.png",
+        "isNew": false,
+        "isHot": true,
+        "counterPrice": 219,
+        "retailPrice": 199
+      },
+      {
+        "id": 1023012,
+        "name": "色织华夫格夏凉被",
+        "brief": "凹凸华夫格织法，舒适轻柔",
+        "picUrl": "http://yanxuan.nosdn.127.net/07376e78bf4fb8a5aa8e6a0b1437c3ad.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 319,
+        "retailPrice": 299
+      },
+      {
+        "id": 1023034,
+        "name": "泡泡纱可水洗夏凉被",
+        "brief": "全棉泡泡纱，柔软亲肤",
+        "picUrl": "http://yanxuan.nosdn.127.net/715899c65c023bb4973fb0466a5b79d6.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 319,
+        "retailPrice": 299
+      },
+      {
+        "id": 1027004,
+        "name": "色织六层纱布夏凉被",
+        "brief": "柔软纱布，婴童可用",
+        "picUrl": "http://yanxuan.nosdn.127.net/6252f53aaf36c072b6678f3d8c635132.png",
+        "isNew": false,
+        "isHot": true,
+        "counterPrice": 269,
+        "retailPrice": 249
+      },
+      {
+        "id": 1068012,
+        "name": "全棉色织绗缝夏凉件套",
+        "brief": "夏季凉被，冬季暖套，四季可用",
+        "picUrl": "http://yanxuan.nosdn.127.net/69145abddddd31ae8878ea7ca7297b4b.png",
+        "isNew": false,
+        "isHot": true,
+        "counterPrice": 619,
+        "retailPrice": 599
+      }
+    ]
+  },
+  "errmsg": "成功"
+}

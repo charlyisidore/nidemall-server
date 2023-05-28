@@ -1,0 +1,72 @@
+{
+  "errno": 0,
+  "data": {
+    "total": 22,
+    "pages": 4,
+    "limit": 6,
+    "page": 1,
+    "list": [
+      {
+        "id": 1006007,
+        "name": "秋冬保暖加厚澳洲羊毛被",
+        "brief": "臻品级澳洲进口羊毛",
+        "picUrl": "http://yanxuan.nosdn.127.net/66425d1ed50b3968fed27c822fdd32e0.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 479,
+        "retailPrice": 459
+      },
+      {
+        "id": 1006014,
+        "name": "双宫茧桑蚕丝被 子母被",
+        "brief": "双层子母被，四季皆可使用",
+        "picUrl": "http://yanxuan.nosdn.127.net/2b537159f0f789034bf8c4b339c43750.png",
+        "isNew": false,
+        "isHot": true,
+        "counterPrice": 14199,
+        "retailPrice": 1399
+      },
+      {
+        "id": 1009009,
+        "name": "白鹅绒秋冬加厚羽绒被",
+        "brief": "热销5万条，一条被子过冬",
+        "picUrl": "http://yanxuan.nosdn.127.net/9791006f25e26b2d7c81f41f87ce8619.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 2019,
+        "retailPrice": 1999
+      },
+      {
+        "id": 1009012,
+        "name": "可水洗舒柔丝羽绒枕",
+        "brief": "超细纤维，蓬松轻盈回弹",
+        "picUrl": "http://yanxuan.nosdn.127.net/a196b367f23ccfd8205b6da647c62b84.png",
+        "isNew": false,
+        "isHot": true,
+        "counterPrice": 79,
+        "retailPrice": 59
+      },
+      {
+        "id": 1009013,
+        "name": "可水洗抗菌防螨丝羽绒枕",
+        "brief": "进口防螨布，热销50万件",
+        "picUrl": "http://yanxuan.nosdn.127.net/da56fda947d0f430d5f4cf4aba14e679.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 119,
+        "retailPrice": 99
+      },
+      {
+        "id": 1019000,
+        "name": "升级款护颈波浪记忆枕",
+        "brief": "享受自在侧睡",
+        "picUrl": "http://yanxuan.nosdn.127.net/77c09feb378814be712741b273d16656.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 119,
+        "retailPrice": 99
+      }
+    ]
+  },
+  "errmsg": "成功"
+}

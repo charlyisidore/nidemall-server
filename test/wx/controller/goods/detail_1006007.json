@@ -1,0 +1,179 @@
+{
+  "errno": 0,
+  "data": {
+    "specificationList": [
+      {
+        "name": "规格",
+        "valueList": [
+          {
+            "id": 7,
+            "goodsId": 1006007,
+            "specification": "规格",
+            "value": "标准",
+            "picUrl": "",
+            "addTime": "2018-02-01 00:00:00",
+            "updateTime": "2018-02-01 00:00:00",
+            "deleted": false
+          }
+        ]
+      }
+    ],
+    "groupon": [],
+    "issue": [
+      {
+        "id": 1,
+        "question": "购买运费如何收取？",
+        "answer": "单笔订单金额（不含运费）满88元免邮费；不满88元，每单收取10元运费。\n(港澳台地区需满",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 2,
+        "question": "使用什么快递发货？",
+        "answer": "严选默认使用顺丰快递发货（个别商品使用其他快递），配送范围覆盖全国大部分地区（港澳台地区除",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 3,
+        "question": "如何申请退货？",
+        "answer": "1.自收到商品之日起30日内，顾客可申请无忧退货，退款将原路返还，不同的银行处理时间不同，",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 4,
+        "question": "如何开具发票？",
+        "answer": "1.如需开具普通发票，请在下单时选择“我要开发票”并填写相关信息（APP仅限2.4.0及以",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "userHasCollect": 0,
+    "shareImage": "",
+    "comment": {
+      "data": [
+        {
+          "addTime": "2018-02-01 00:00:00",
+          "picList": [],
+          "adminContent": "",
+          "nickname": "user123",
+          "id": 31,
+          "avatar": "",
+          "content": "很棒～很有质感，产品想是市面上千元以上的产品规格；被子侧面还有心的设计了一段小拉链扣可以真实的触摸到被子里面的填充物-是羊毛（羊�"
+        },
+        {
+          "addTime": "2018-02-01 00:00:00",
+          "picList": [
+            "http://yanxuan.nosdn.127.net/1637021a44433992f403a4b925401a3b.jpg",
+            "http://yanxuan.nosdn.127.net/5fd615a8f21050ac8f20a542f8e688a1.jpg",
+            "http://yanxuan.nosdn.127.net/968836b81e80750944ca350808763281.jpg"
+          ],
+          "adminContent": "",
+          "nickname": "user123",
+          "id": 32,
+          "avatar": "",
+          "content": "表面摸起来很舒服，线都处理得很好，里面有些地方填充物不太均匀"
+        }
+      ],
+      "count": 30
+    },
+    "share": false,
+    "attribute": [
+      {
+        "id": 8,
+        "goodsId": 1006007,
+        "attribute": "填充物重量",
+        "value": "2000g/2300g",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 9,
+        "goodsId": 1006007,
+        "attribute": "尺寸",
+        "value": "200*230cm/220*240cm",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 10,
+        "goodsId": 1006007,
+        "attribute": "面料",
+        "value": "100%棉",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 11,
+        "goodsId": 1006007,
+        "attribute": "填充物",
+        "value": "100%羊毛",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 12,
+        "goodsId": 1006007,
+        "attribute": "温馨提示",
+        "value": "1.经过碳化、清洗、梳理的天然羊毛被带会有少量味道，通风晾晒2-3天即可散去                     2.为减少羊毛漂白等化学用品的处理时间，部分羊毛可能未完全脱色，轻微泛黄属羊毛原色，为正常现象。",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "brand": {},
+    "productList": [
+      {
+        "id": 8,
+        "goodsId": 1006007,
+        "specifications": [
+          "标准"
+        ],
+        "price": 459,
+        "number": 100,
+        "url": "http://yanxuan.nosdn.127.net/66425d1ed50b3968fed27c822fdd32e0.png",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "info": {
+      "id": 1006007,
+      "goodsSn": "1006007",
+      "name": "秋冬保暖加厚澳洲羊毛被",
+      "categoryId": 1008008,
+      "brandId": 0,
+      "gallery": [
+        "http://yanxuan.nosdn.127.net/b7e3438c473a296a7e9feecbd4139af5.jpg",
+        "http://yanxuan.nosdn.127.net/70422011e5a9855a0723c9c08d0cbbb0.jpg",
+        "http://yanxuan.nosdn.127.net/f65dbb00aff8b43be02f2c8104208877.jpg",
+        "http://yanxuan.nosdn.127.net/85e8575c8e473a2f71054e9e36b1211c.jpg"
+      ],
+      "keywords": "",
+      "brief": "臻品级澳洲进口羊毛",
+      "isOnSale": true,
+      "sortOrder": 17,
+      "picUrl": "http://yanxuan.nosdn.127.net/66425d1ed50b3968fed27c822fdd32e0.png",
+      "shareUrl": "",
+      "isNew": false,
+      "isHot": false,
+      "unit": "件",
+      "counterPrice": 479,
+      "retailPrice": 459,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false,
+      "detail": "<p><img src=\"http://yanxuan.nosdn.127.net/c78ec6e16d8477525c0a59e3c9d847b8.jpg\" _src=\"http://yanxuan.nosdn.127.net/c78ec6e16d8477525c0a59e3c9d847b8.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/294185760b75f364f6ed42784877e59c.jpg\" _src=\"http://yanxuan.nosdn.127.net/294185760b75f364f6ed42784877e59c.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/2468d1851e29930cc3802f125da5d6e8.jpg\" _src=\"http://yanxuan.nosdn.127.net/2468d1851e29930cc3802f125da5d6e8.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/0794791277945c1577776724778124f8.jpg\" _src=\"http://yanxuan.nosdn.127.net/0794791277945c1577776724778124f8.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/6973ca1e6f264620d5d25e581a0d623d.jpg\" _src=\"http://yanxuan.nosdn.127.net/6973ca1e6f264620d5d25e581a0d623d.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/26f01273c833c2ae75177a5c8d9310ef.jpg\" _src=\"http://yanxuan.nosdn.127.net/26f01273c833c2ae75177a5c8d9310ef.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/bf0207da5160588acf58d0f02ea9d360.jpg\" _src=\"http://yanxuan.nosdn.127.net/bf0207da5160588acf58d0f02ea9d360.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/dbd5d5171a309344d05663952930441f.jpg\" _src=\"http://yanxuan.nosdn.127.net/dbd5d5171a309344d05663952930441f.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/e7a65ac0824fc1584c2f1943ed1eaed0.jpg\" _src=\"http://yanxuan.nosdn.127.net/e7a65ac0824fc1584c2f1943ed1eaed0.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/88871ed9eccf7fbdfccf7912bb8f9d21.jpg\" _src=\"http://yanxuan.nosdn.127.net/88871ed9eccf7fbdfccf7912bb8f9d21.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/7aa0e4c0abeb157e231b17e91cfa8f02.jpg\" _src=\"http://yanxuan.nosdn.127.net/7aa0e4c0abeb157e231b17e91cfa8f02.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a38f897200e305e7b23d62431b9c4d18.jpg\" _src=\"http://yanxuan.nosdn.127.net/a38f897200e305e7b23d62431b9c4d18.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/bb147c0e96cdac2d77ab4eef1785e99d.jpg\" _src=\"http://yanxuan.nosdn.127.net/bb147c0e96cdac2d77ab4eef1785e99d.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/c6a270f7aed68cfe74e66d720c776fca.jpg\" _src=\"http://yanxuan.nosdn.127.net/c6a270f7aed68cfe74e66d720c776fca.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/c2c0b548be17f620db8afbe039a99452.jpg\" _src=\"http://yanxuan.nosdn.127.net/c2c0b548be17f620db8afbe039a99452.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/155fe0023e17bac4af486a6c1c098537.jpg\" _src=\"http://yanxuan.nosdn.127.net/155fe0023e17bac4af486a6c1c098537.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/8f1f120ca7e362595fd986ea6de8814f.jpg\" _src=\"http://yanxuan.nosdn.127.net/8f1f120ca7e362595fd986ea6de8814f.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/6971f0333e0eeef7d9951edad068d4ec.jpg\" _src=\"http://yanxuan.nosdn.127.net/6971f0333e0eeef7d9951edad068d4ec.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/c307630edf971e408938f1007169fa53.jpg\" _src=\"http://yanxuan.nosdn.127.net/c307630edf971e408938f1007169fa53.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/4ea2ba74fb518a298ef825c43ed634f4.jpg\" _src=\"http://yanxuan.nosdn.127.net/4ea2ba74fb518a298ef825c43ed634f4.jpg\" style=\"\"/></p><p><br/></p>"
+    }
+  },
+  "errmsg": "成功"
+}

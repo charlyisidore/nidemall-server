@@ -1,0 +1,72 @@
+{
+  "errno": 0,
+  "data": {
+    "total": 15,
+    "pages": 3,
+    "limit": 6,
+    "page": 1,
+    "list": [
+      {
+        "id": 1116030,
+        "name": "罗马假日 永生花",
+        "brief": "黑粉的性感结合",
+        "picUrl": "http://yanxuan.nosdn.127.net/9d59a22b5aff348b5aba5fc7e451ea4d.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 459,
+        "retailPrice": 439
+      },
+      {
+        "id": 1109005,
+        "name": "方圆木钟",
+        "brief": "坚硬榉木，实木雕刻",
+        "picUrl": "http://yanxuan.nosdn.127.net/7f508253f65733c7b2af52dd3943ee28.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 99,
+        "retailPrice": 79
+      },
+      {
+        "id": 1109034,
+        "name": "LCD电子钟 升级版",
+        "brief": "MUJI风格，清晰简明",
+        "picUrl": "http://yanxuan.nosdn.127.net/c2c96acc680cbadb1787385598e1e593.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 149,
+        "retailPrice": 129
+      },
+      {
+        "id": 1110002,
+        "name": "大头风扇",
+        "brief": "静音劲风，小巧灵动",
+        "picUrl": "http://yanxuan.nosdn.127.net/a7a524512c34d24a4b9762766dd9d0f0.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 139,
+        "retailPrice": 119
+      },
+      {
+        "id": 1125016,
+        "name": "大丰收收纳摆件",
+        "brief": "兼具设计感与实用性",
+        "picUrl": "http://yanxuan.nosdn.127.net/46f3059b020eb3900e9af8e8c1af8a97.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 159,
+        "retailPrice": 139
+      },
+      {
+        "id": 1125017,
+        "name": "天鹅船创意摆件",
+        "brief": "造型可人，精巧实用",
+        "picUrl": "http://yanxuan.nosdn.127.net/ae63fed274187e3e572043c53fefd836.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 119,
+        "retailPrice": 99
+      }
+    ]
+  },
+  "errmsg": "成功"
+}

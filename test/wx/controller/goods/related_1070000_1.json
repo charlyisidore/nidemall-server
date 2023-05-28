@@ -1,0 +1,72 @@
+{
+  "errno": 0,
+  "data": {
+    "total": 9,
+    "pages": 2,
+    "limit": 6,
+    "page": 1,
+    "list": [
+      {
+        "id": 1045000,
+        "name": "绿茶蛋黄酥 200克/4枚入",
+        "brief": "香甜茶食，果腹优选",
+        "picUrl": "http://yanxuan.nosdn.127.net/b2adc3fd9b84a289a1be03e8ee400e61.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 48,
+        "retailPrice": 28
+      },
+      {
+        "id": 1070000,
+        "name": "星云酥 180克/3颗",
+        "brief": "酥饼界的小仙女",
+        "picUrl": "http://yanxuan.nosdn.127.net/8392725765cdd57fdae3f173877f4bda.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 46,
+        "retailPrice": 26
+      },
+      {
+        "id": 1111007,
+        "name": "妙曲奇遇记曲奇礼盒 520克",
+        "brief": "六种口味，酥香脆爽",
+        "picUrl": "http://yanxuan.nosdn.127.net/8d228f767b136a67aaf2cbbf6deb46fa.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 98,
+        "retailPrice": 78
+      },
+      {
+        "id": 1116011,
+        "name": "蔓越莓曲奇 200克",
+        "brief": "酥脆奶香，甜酸回味",
+        "picUrl": "http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png",
+        "isNew": true,
+        "isHot": true,
+        "counterPrice": 56,
+        "retailPrice": 36
+      },
+      {
+        "id": 1134036,
+        "name": "凤梨酥 360克",
+        "brief": "特别添加10%凤梨果肉",
+        "picUrl": "http://yanxuan.nosdn.127.net/9356cc27b22bd47ad43913d13226555f.png",
+        "isNew": false,
+        "isHot": true,
+        "counterPrice": 58,
+        "retailPrice": 38
+      },
+      {
+        "id": 1143018,
+        "name": "粽情乡思端午粽礼盒 640克",
+        "brief": "五种口味，寄情端午",
+        "picUrl": "http://yanxuan.nosdn.127.net/d1fd69cee4990f4de1109baef30efeeb.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 88,
+        "retailPrice": 68
+      }
+    ]
+  },
+  "errmsg": "成功"
+}

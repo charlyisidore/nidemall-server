@@ -1,0 +1,213 @@
+{
+  "errno": 0,
+  "data": {
+    "specificationList": [
+      {
+        "name": "规格",
+        "valueList": [
+          {
+            "id": 34,
+            "goodsId": 1023032,
+            "specification": "规格",
+            "value": "标准",
+            "picUrl": "",
+            "addTime": "2018-02-01 00:00:00",
+            "updateTime": "2018-02-01 00:00:00",
+            "deleted": false
+          }
+        ]
+      }
+    ],
+    "groupon": [],
+    "issue": [
+      {
+        "id": 1,
+        "question": "购买运费如何收取？",
+        "answer": "单笔订单金额（不含运费）满88元免邮费；不满88元，每单收取10元运费。\n(港澳台地区需满",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 2,
+        "question": "使用什么快递发货？",
+        "answer": "严选默认使用顺丰快递发货（个别商品使用其他快递），配送范围覆盖全国大部分地区（港澳台地区除",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 3,
+        "question": "如何申请退货？",
+        "answer": "1.自收到商品之日起30日内，顾客可申请无忧退货，退款将原路返还，不同的银行处理时间不同，",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 4,
+        "question": "如何开具发票？",
+        "answer": "1.如需开具普通发票，请在下单时选择“我要开发票”并填写相关信息（APP仅限2.4.0及以",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "userHasCollect": 0,
+    "shareImage": "",
+    "comment": {
+      "data": [
+        {
+          "addTime": "2018-02-01 00:00:00",
+          "picList": [
+            "https://yanxuan.nosdn.127.net/3bac7631effc2f0c3749b5a78b2edf27.jpg",
+            "https://yanxuan.nosdn.127.net/bd7cf1d02ab7c112879239a161b36d85.jpg",
+            "https://yanxuan.nosdn.127.net/8e22d927ded0f0bd170830f6bd65cdac.jpg",
+            "https://yanxuan.nosdn.127.net/e704b49044b98e3cbc9d46f399a5e06e.jpg"
+          ],
+          "adminContent": "",
+          "nickname": "user123",
+          "id": 691,
+          "avatar": "",
+          "content": "高质量的评价，高质量的评价，高质量的评价，高质量的评价，高质量的评价，高质量的评价，高质量的评价，高质量的评价，高质量的评价，�"
+        },
+        {
+          "addTime": "2018-02-01 00:00:00",
+          "picList": [
+            "https://yanxuan.nosdn.127.net/062e060a5bf6708a8765c1f7ee2cbe58.jpg",
+            "https://yanxuan.nosdn.127.net/883d1f066fb7d502b775d042244ee248.jpg",
+            "https://yanxuan.nosdn.127.net/5e9bb9c40eee150c3f5e6db90ca0eae5.jpg",
+            "https://yanxuan.nosdn.127.net/d25f2738b9dfb101cabc6ffbf8e643a2.jpg"
+          ],
+          "adminContent": "",
+          "nickname": "user123",
+          "id": 692,
+          "avatar": "",
+          "content": "高质量的评价，高质量的评价，高质量的评价，高质量的评价，高质量的评价，高质量的评价，高质量的评价，高质量的评价，高质量的评价，�"
+        }
+      ],
+      "count": 30
+    },
+    "share": false,
+    "attribute": [
+      {
+        "id": 126,
+        "goodsId": 1023032,
+        "attribute": "材质",
+        "value": "100%棉",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 127,
+        "goodsId": 1023032,
+        "attribute": "安全类别",
+        "value": "GB18401-2010 B类",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 128,
+        "goodsId": 1023032,
+        "attribute": "产地",
+        "value": "中国山东",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 129,
+        "goodsId": 1023032,
+        "attribute": "根数",
+        "value": "200根",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 130,
+        "goodsId": 1023032,
+        "attribute": "尺寸",
+        "value": "1.5米床品： 被套 200*230cm/ 枕套：48*74cm*2/ 床单：245*250cm\n1.8米床品：被套 220*240cm/ 枕套：48*74cm*2/ 床单：245*270cm",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 131,
+        "goodsId": 1023032,
+        "attribute": "工艺",
+        "value": "色织工艺",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 132,
+        "goodsId": 1023032,
+        "attribute": "温馨提示",
+        "value": "纺织品经历印染、织造等多道环节，产品初次拿到可能有些许味道，清水漂洗、晾干后味道即可散去。\n严选面料全部经过国标检测认证，选用环保活性染料，请放心使用。",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "brand": {
+      "id": 1001020,
+      "name": "Ralph Lauren制造商",
+      "desc": "我们与Ralph Lauren Home的制造商成功接洽，掌握先进的生产设备，传承品牌工艺和工序。追求生活品质的你，值得拥有。",
+      "picUrl": "http://yanxuan.nosdn.127.net/9df78eb751eae2546bd3ee7e61c9b854.png",
+      "sortOrder": 20,
+      "floorPrice": 29,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false
+    },
+    "productList": [
+      {
+        "id": 35,
+        "goodsId": 1023032,
+        "specifications": [
+          "标准"
+        ],
+        "price": 449,
+        "number": 100,
+        "url": "http://yanxuan.nosdn.127.net/e0b928ada728c140f6965bb41f47407b.png",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "info": {
+      "id": 1023032,
+      "goodsSn": "1023032",
+      "name": "纯棉色织缎纹四件套",
+      "categoryId": 1008009,
+      "brandId": 1001020,
+      "gallery": [
+        "http://yanxuan.nosdn.127.net/bbd9bf40c371e5beb0b380f3f431082f.jpg",
+        "http://yanxuan.nosdn.127.net/2b786fa55756292a644dcf7b6f85b1d8.jpg",
+        "http://yanxuan.nosdn.127.net/61a92631136272bf12cba53a4f27edfe.jpg",
+        "http://yanxuan.nosdn.127.net/4c36bfcea9ca68e120f3aadd072bfd1e.jpg"
+      ],
+      "keywords": "",
+      "brief": "色织缎纹工艺，亲肤舒适",
+      "isOnSale": true,
+      "sortOrder": 20,
+      "picUrl": "http://yanxuan.nosdn.127.net/e0b928ada728c140f6965bb41f47407b.png",
+      "shareUrl": "",
+      "isNew": false,
+      "isHot": false,
+      "unit": "件",
+      "counterPrice": 469,
+      "retailPrice": 449,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false,
+      "detail": "<p><img src=\"http://yanxuan.nosdn.127.net/e05936cc765b06296b623de8c8ad08df.jpg\" _src=\"http://yanxuan.nosdn.127.net/e05936cc765b06296b623de8c8ad08df.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/4eff9d27f32ff39c19f8f6e4fb1f222e.jpg\" _src=\"http://yanxuan.nosdn.127.net/4eff9d27f32ff39c19f8f6e4fb1f222e.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/7241fac29763a031c9ce1089a1e4b4be.jpg\" _src=\"http://yanxuan.nosdn.127.net/7241fac29763a031c9ce1089a1e4b4be.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/0dc6d93ac0498c5dfab30508b9412bc7.jpg\" _src=\"http://yanxuan.nosdn.127.net/0dc6d93ac0498c5dfab30508b9412bc7.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/88d77c126de94ba83b264c413433d1ef.jpg\" _src=\"http://yanxuan.nosdn.127.net/88d77c126de94ba83b264c413433d1ef.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3379adc4f8cb904a509830c339474986.jpg\" _src=\"http://yanxuan.nosdn.127.net/3379adc4f8cb904a509830c339474986.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/e4b36d6bba85f96e1fe35c721f1bef4b.jpg\" _src=\"http://yanxuan.nosdn.127.net/e4b36d6bba85f96e1fe35c721f1bef4b.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/0340dc32d4eb348e015b6ad02e613ae5.jpg\" _src=\"http://yanxuan.nosdn.127.net/0340dc32d4eb348e015b6ad02e613ae5.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/2e478f4d41d9cb43e5ca6d3f4ec31e5d.jpg\" _src=\"http://yanxuan.nosdn.127.net/2e478f4d41d9cb43e5ca6d3f4ec31e5d.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/656e723cec3cfc0e84d1c72eb286c3d3.jpg\" _src=\"http://yanxuan.nosdn.127.net/656e723cec3cfc0e84d1c72eb286c3d3.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/c0730b88458593c7f8cc3fb389682378.jpg\" _src=\"http://yanxuan.nosdn.127.net/c0730b88458593c7f8cc3fb389682378.jpg\"/><img src=\"http://yanxuan.nosdn.127.net/51bf3bc396723d289a1f9ec099dd7c74.jpg\" _src=\"http://yanxuan.nosdn.127.net/51bf3bc396723d289a1f9ec099dd7c74.jpg\" style=\"line-height: 1.42857;\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/301f70f9f1926ade3e7a7ef4c01d9084.jpg\" _src=\"http://yanxuan.nosdn.127.net/301f70f9f1926ade3e7a7ef4c01d9084.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/7b1596630f22d05ca935ab9d9793001e.jpg\" _src=\"http://yanxuan.nosdn.127.net/7b1596630f22d05ca935ab9d9793001e.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/87c1ea8b6868f46cdba056cd714108e8.jpg\" _src=\"http://yanxuan.nosdn.127.net/87c1ea8b6868f46cdba056cd714108e8.jpg\" style=\"\"/></p><p><br/></p>"
+    }
+  },
+  "errmsg": "成功"
+}

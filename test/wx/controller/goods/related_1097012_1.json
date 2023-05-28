@@ -1,0 +1,72 @@
+{
+  "errno": 0,
+  "data": {
+    "total": 14,
+    "pages": 3,
+    "limit": 6,
+    "page": 1,
+    "list": [
+      {
+        "id": 1109008,
+        "name": "云端沙发组合",
+        "brief": "MUJI供应商携手打造",
+        "picUrl": "http://yanxuan.nosdn.127.net/c5be2604c0e4186a4e7079feeb742cee.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 4019,
+        "retailPrice": 3999
+      },
+      {
+        "id": 1097014,
+        "name": "原素系列实木多抽柜",
+        "brief": "造型简约，拥有极高实用性",
+        "picUrl": "http://yanxuan.nosdn.127.net/308184b7b1965470d58b5c92e9bcc4b0.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 4219,
+        "retailPrice": 4199
+      },
+      {
+        "id": 1097016,
+        "name": "原素系列1.8米实木电视柜",
+        "brief": "经典木纹，结实不易蛀",
+        "picUrl": "http://yanxuan.nosdn.127.net/a7e6df722b82ad1b0158adcbdcf30df9.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 2819,
+        "retailPrice": 2799
+      },
+      {
+        "id": 1097017,
+        "name": "原素系列柜式实木茶几",
+        "brief": "山形木纹，经典优雅",
+        "picUrl": "http://yanxuan.nosdn.127.net/e16ff61bef76db81090db191b9d5ec15.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 2219,
+        "retailPrice": 2199
+      },
+      {
+        "id": 1097013,
+        "name": "原素系列实木五斗柜",
+        "brief": "造型经典，收纳的得力助手",
+        "picUrl": "http://yanxuan.nosdn.127.net/2fa8cb066a356f47a3f0814e99fee7f2.png",
+        "isNew": false,
+        "isHot": false,
+        "counterPrice": 2719,
+        "retailPrice": 2699
+      },
+      {
+        "id": 1116032,
+        "name": "怀抱休闲椅组合",
+        "brief": "敦厚包裹感 葛优躺神器",
+        "picUrl": "http://yanxuan.nosdn.127.net/45176a783387751fc07a07f5031dd62c.png",
+        "isNew": false,
+        "isHot": true,
+        "counterPrice": 3519,
+        "retailPrice": 3499
+      }
+    ]
+  },
+  "errmsg": "成功"
+}

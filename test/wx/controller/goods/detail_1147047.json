@@ -1,0 +1,147 @@
+{
+  "errno": 0,
+  "data": {
+    "specificationList": [
+      {
+        "name": "规格",
+        "valueList": [
+          {
+            "id": 226,
+            "goodsId": 1147047,
+            "specification": "规格",
+            "value": "标准",
+            "picUrl": "",
+            "addTime": "2018-02-01 00:00:00",
+            "updateTime": "2018-02-01 00:00:00",
+            "deleted": false
+          }
+        ]
+      }
+    ],
+    "groupon": [],
+    "issue": [
+      {
+        "id": 1,
+        "question": "购买运费如何收取？",
+        "answer": "单笔订单金额（不含运费）满88元免邮费；不满88元，每单收取10元运费。\n(港澳台地区需满",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 2,
+        "question": "使用什么快递发货？",
+        "answer": "严选默认使用顺丰快递发货（个别商品使用其他快递），配送范围覆盖全国大部分地区（港澳台地区除",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 3,
+        "question": "如何申请退货？",
+        "answer": "1.自收到商品之日起30日内，顾客可申请无忧退货，退款将原路返还，不同的银行处理时间不同，",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 4,
+        "question": "如何开具发票？",
+        "answer": "1.如需开具普通发票，请在下单时选择“我要开发票”并填写相关信息（APP仅限2.4.0及以",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "userHasCollect": 0,
+    "shareImage": "",
+    "comment": {
+      "data": [],
+      "count": 0
+    },
+    "share": false,
+    "attribute": [
+      {
+        "id": 843,
+        "goodsId": 1147047,
+        "attribute": "尺寸",
+        "value": "160*230cm",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 844,
+        "goodsId": 1147047,
+        "attribute": "材质",
+        "value": "绒面：100% 聚酯纤维 背面：52% 聚酯纤维/ 48% 棉",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 845,
+        "goodsId": 1147047,
+        "attribute": "颜色",
+        "value": "蓝粉拼接",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      },
+      {
+        "id": 846,
+        "goodsId": 1147047,
+        "attribute": "产地",
+        "value": "中国北京",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "brand": {},
+    "productList": [
+      {
+        "id": 227,
+        "goodsId": 1147047,
+        "specifications": [
+          "标准"
+        ],
+        "price": 559,
+        "number": 100,
+        "url": "http://yanxuan.nosdn.127.net/bda805b0a2464b6ec33c18981565e50e.png",
+        "addTime": "2018-02-01 00:00:00",
+        "updateTime": "2018-02-01 00:00:00",
+        "deleted": false
+      }
+    ],
+    "info": {
+      "id": 1147047,
+      "goodsSn": "1147047",
+      "name": "简约知性系列居家地毯 蓝粉拼接",
+      "categoryId": 1008002,
+      "brandId": 0,
+      "gallery": [
+        "http://yanxuan.nosdn.127.net/014530f37555bba33eec154a36b78a02.jpg",
+        "http://yanxuan.nosdn.127.net/7e1e516c116a663e587fc5dd3cd2f47b.jpg",
+        "http://yanxuan.nosdn.127.net/db03baeb92ec4be50203dc690b793830.jpg",
+        "http://yanxuan.nosdn.127.net/a9239c7e79510a1218f94da58a278a8d.jpg"
+      ],
+      "keywords": "",
+      "brief": "三角几何拼接 超细绒感",
+      "isOnSale": true,
+      "sortOrder": 29,
+      "picUrl": "http://yanxuan.nosdn.127.net/bda805b0a2464b6ec33c18981565e50e.png",
+      "shareUrl": "",
+      "isNew": false,
+      "isHot": false,
+      "unit": "件",
+      "counterPrice": 579,
+      "retailPrice": 559,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2018-02-01 00:00:00",
+      "deleted": false,
+      "detail": "<p><img src=\"http://yanxuan.nosdn.127.net/e56e30a2c6cbdeadb1a2b6d00f2e877f.jpg\" _src=\"http://yanxuan.nosdn.127.net/e56e30a2c6cbdeadb1a2b6d00f2e877f.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/d14496c74886e92b3a3f30692756e77a.jpg\" _src=\"http://yanxuan.nosdn.127.net/d14496c74886e92b3a3f30692756e77a.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/0a371e340849de0ca0c628021cbc0014.jpg\" _src=\"http://yanxuan.nosdn.127.net/0a371e340849de0ca0c628021cbc0014.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/1a5a80c783e941991414cd8ede724312.jpg\" _src=\"http://yanxuan.nosdn.127.net/1a5a80c783e941991414cd8ede724312.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/37a49c90311b2661a24887ff2de448c7.jpg\" _src=\"http://yanxuan.nosdn.127.net/37a49c90311b2661a24887ff2de448c7.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/e25787020a28bbb6e9f2a220aa2dd442.jpg\" _src=\"http://yanxuan.nosdn.127.net/e25787020a28bbb6e9f2a220aa2dd442.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/52b8beb545c2ae0115522908ac352a39.jpg\" _src=\"http://yanxuan.nosdn.127.net/52b8beb545c2ae0115522908ac352a39.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/afaa8978308f2531ada6aaaf63c56347.jpg\" _src=\"http://yanxuan.nosdn.127.net/afaa8978308f2531ada6aaaf63c56347.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/18789d3aacac9d2de6a6b21cfb7aec53.jpg\" _src=\"http://yanxuan.nosdn.127.net/18789d3aacac9d2de6a6b21cfb7aec53.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/154e9f3504ada7cdadcb906ee01450c7.jpg\" _src=\"http://yanxuan.nosdn.127.net/154e9f3504ada7cdadcb906ee01450c7.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3326e16fbfee855392404e970bd5aa4c.jpg\" _src=\"http://yanxuan.nosdn.127.net/3326e16fbfee855392404e970bd5aa4c.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/7b5b0d22fc526776cef8e756dff60dd1.jpg\" _src=\"http://yanxuan.nosdn.127.net/7b5b0d22fc526776cef8e756dff60dd1.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/48dd357aa1abc60c01b3fbf8dacb2694.jpg\" _src=\"http://yanxuan.nosdn.127.net/48dd357aa1abc60c01b3fbf8dacb2694.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/27e574eab03093d302f01e5ceb42d0af.jpg\" _src=\"http://yanxuan.nosdn.127.net/27e574eab03093d302f01e5ceb42d0af.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/30228bd984383c97633eef50ca556406.jpg\" _src=\"http://yanxuan.nosdn.127.net/30228bd984383c97633eef50ca556406.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/baa3cc805dc0afb4257c30466771535a.jpg\" _src=\"http://yanxuan.nosdn.127.net/baa3cc805dc0afb4257c30466771535a.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/daa37937c3440919e597e4954e68f646.jpg\" _src=\"http://yanxuan.nosdn.127.net/daa37937c3440919e597e4954e68f646.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/82df87910187f081e2a4d5f5a06df4cb.jpg\" _src=\"http://yanxuan.nosdn.127.net/82df87910187f081e2a4d5f5a06df4cb.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/eaa197c3d63c8479e38f46595df50a5e.jpg\" _src=\"http://yanxuan.nosdn.127.net/eaa197c3d63c8479e38f46595df50a5e.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/56cf9f1b8de8627ad0d064843d97cd96.jpg\" _src=\"http://yanxuan.nosdn.127.net/56cf9f1b8de8627ad0d064843d97cd96.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/99ad88418c88c550b183dc12a9280a1d.jpg\" _src=\"http://yanxuan.nosdn.127.net/99ad88418c88c550b183dc12a9280a1d.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a84aafb6ddbe25f32bddc4f843ad35d0.jpg\" _src=\"http://yanxuan.nosdn.127.net/a84aafb6ddbe25f32bddc4f843ad35d0.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/9ce402bfb9d08603259264e9115166b2.jpg\" _src=\"http://yanxuan.nosdn.127.net/9ce402bfb9d08603259264e9115166b2.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/1a7248d14d630770dfff1b17350219ba.jpg\" _src=\"http://yanxuan.nosdn.127.net/1a7248d14d630770dfff1b17350219ba.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/43113bc52b7eece12f777092d9b04c3f.jpg\" _src=\"http://yanxuan.nosdn.127.net/43113bc52b7eece12f777092d9b04c3f.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/fbe65886e9405ceb1a43fb3097fd709a.jpg\" _src=\"http://yanxuan.nosdn.127.net/fbe65886e9405ceb1a43fb3097fd709a.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/e098163e428171418a77c077a8330299.jpg\" _src=\"http://yanxuan.nosdn.127.net/e098163e428171418a77c077a8330299.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/cbb9a88692c9621652244844bf0b299d.jpg\" _src=\"http://yanxuan.nosdn.127.net/cbb9a88692c9621652244844bf0b299d.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/7d8264c945ccb68d432dcaeb86e3e4ec.jpg\" _src=\"http://yanxuan.nosdn.127.net/7d8264c945ccb68d432dcaeb86e3e4ec.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/5e0a467456d69bc746e6bd7797f6963b.jpg\" _src=\"http://yanxuan.nosdn.127.net/5e0a467456d69bc746e6bd7797f6963b.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/a58d0c630b0e2f51fa49aef8687a9e16.jpg\" _src=\"http://yanxuan.nosdn.127.net/a58d0c630b0e2f51fa49aef8687a9e16.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/1de7c562962e54da6a63e749634eb008.jpg\" _src=\"http://yanxuan.nosdn.127.net/1de7c562962e54da6a63e749634eb008.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/8931ee6e2b4b3ed3454184093b6471ed.jpg\" _src=\"http://yanxuan.nosdn.127.net/8931ee6e2b4b3ed3454184093b6471ed.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/3b032ca9815193ec258be3ffa0a25da3.jpg\" _src=\"http://yanxuan.nosdn.127.net/3b032ca9815193ec258be3ffa0a25da3.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/bfd12f882162e93008c97bff3187f694.jpg\" _src=\"http://yanxuan.nosdn.127.net/bfd12f882162e93008c97bff3187f694.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/79d69e15728310ec458ec665a287fc87.jpg\" _src=\"http://yanxuan.nosdn.127.net/79d69e15728310ec458ec665a287fc87.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/e10b0c8d89689483eceea36aa330deb4.jpg\" _src=\"http://yanxuan.nosdn.127.net/e10b0c8d89689483eceea36aa330deb4.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/88c5b10b0916839ae7cf6ca1b8c8d83f.jpg\" _src=\"http://yanxuan.nosdn.127.net/88c5b10b0916839ae7cf6ca1b8c8d83f.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/17b3ace86142f2b8c7f29ed10d1dba55.jpg\" _src=\"http://yanxuan.nosdn.127.net/17b3ace86142f2b8c7f29ed10d1dba55.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/83f9993c4dda4898693ba3fe9f313c1f.jpg\" _src=\"http://yanxuan.nosdn.127.net/83f9993c4dda4898693ba3fe9f313c1f.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/9310f4e403eb5db6107bfc280c3e6cf8.jpg\" _src=\"http://yanxuan.nosdn.127.net/9310f4e403eb5db6107bfc280c3e6cf8.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/7ba895b4d7507984a26344d7c03db550.jpg\" _src=\"http://yanxuan.nosdn.127.net/7ba895b4d7507984a26344d7c03db550.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/34f3faaad28a93f140f3f1b78def4bce.jpg\" _src=\"http://yanxuan.nosdn.127.net/34f3faaad28a93f140f3f1b78def4bce.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/355dc9d6e4a8a1a8561183641ef2890a.jpg\" _src=\"http://yanxuan.nosdn.127.net/355dc9d6e4a8a1a8561183641ef2890a.jpg\" style=\"\"/></p><p><img src=\"http://yanxuan.nosdn.127.net/f2b6a2155e30bf99750756ec4fb99f11.jpg\" _src=\"http://yanxuan.nosdn.127.net/f2b6a2155e30bf99750756ec4fb99f11.jpg\" style=\"\"/></p><p><br/></p>"
+    }
+  },
+  "errmsg": "成功"
+}
