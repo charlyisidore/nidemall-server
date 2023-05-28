@@ -94,7 +94,7 @@ test.serial('detail', async (t) => {
   const url = '/wx/goods/detail';
   const ignoreKeys = ['groupon'];
 
-  // // Missing `id`
+  // Missing `id`
   {
     const response = await request(think.app.listen())
       .get(url)
