@@ -245,8 +245,9 @@ test.serial('category', async (t) => {
 });
 
 test.serial('count', async (t) => {
+  const url = '/wx/goods/count';
   const response = await request(think.app.listen())
-    .get('/wx/goods/count')
+    .get(url)
     .expect('Content-Type', /json/)
     .expect(200);
 

@@ -102,8 +102,9 @@ test.serial('current', async (t) => {
 });
 
 test.serial('all', async (t) => {
+  const url = '/wx/catalog/all';
   const response = await request(think.app.listen())
-    .get('/wx/catalog/all')
+    .get(url)
     .expect('Content-Type', /json/)
     .expect(200);
 

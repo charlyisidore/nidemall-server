@@ -12,8 +12,9 @@ function omit(obj, keys) {
 }
 
 test.serial('index', async (t) => {
+  const url = '/wx/home/index';
   const response = await request(think.app.listen())
-    .get('/wx/home/index')
+    .get(url)
     .expect('Content-Type', /json/)
     .expect(200);
 
@@ -30,8 +31,9 @@ test.serial('index', async (t) => {
 });
 
 test.serial('about', async (t) => {
+  const url = '/wx/home/about';
   const response = await request(think.app.listen())
-    .get('/wx/home/about')
+    .get(url)
     .expect('Content-Type', /json/)
     .expect(200);
 
