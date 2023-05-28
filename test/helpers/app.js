@@ -39,6 +39,19 @@ function request(options) {
     .expect(200);
 }
 
+async function login({ username, password }) {
+  const response = await request({
+    method: 'post',
+    url: '/wx/auth/login',
+    data: {
+      username,
+      password,
+    },
+  });
+
+  return response.body.data.token;
+}
+
 function omit(obj, keys) {
   return Object.fromEntries(
     Object.entries(obj).filter(
@@ -50,5 +63,6 @@ function omit(obj, keys) {
 module.exports = {
   app,
   request,
+  login,
   omit,
 };
