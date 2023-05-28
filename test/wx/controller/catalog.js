@@ -1,7 +1,5 @@
 const test = require('ava');
-const request = require('supertest');
-const path = require('path');
-require(path.join(process.cwd(), 'production.js'));
+const { request } = require('../../helpers/app.js');
 
 const CATEGORY_ID = [
   1005000, 1005001, 1005002, 1008000, 1010000, 1011000,
@@ -27,10 +25,7 @@ test.serial('index', async (t) => {
 
   // Without `id`
   {
-    const response = await request(think.app.listen())
-      .get(url)
-      .expect('Content-Type', /json/)
-      .expect(200);
+    const response = await request({ url });
 
     const actual = response.body;
     const expected = require('./catalog/index.json');
@@ -43,11 +38,7 @@ test.serial('index', async (t) => {
   await Promise.all(
     CATEGORY_ID
       .map(async (id) => {
-        const response = await request(think.app.listen())
-          .get(url)
-          .query({ id })
-          .expect('Content-Type', /json/)
-          .expect(200);
+        const response = await request({ url, data: { id } });
 
         const actual = response.body;
         const expected = require(`./catalog/index_${id}.json`);
@@ -63,21 +54,14 @@ test.serial('current', async (t) => {
 
   // Missing `id`
   {
-    const response = await request(think.app.listen())
-      .get(url)
-      .expect('Content-Type', /json/)
-      .expect(200);
+    const response = await request({ url });
 
     t.is(response.body.errno, 402);
   }
 
   // Not found `id`
   {
-    const response = await request(think.app.listen())
-      .get(url)
-      .query({ id: 99999999 })
-      .expect('Content-Type', /json/)
-      .expect(200);
+    const response = await request({ url, data: { id: 99999999 } });
 
     t.is(response.body.errno, 402);
   }
@@ -86,11 +70,7 @@ test.serial('current', async (t) => {
   await Promise.all(
     CATEGORY_ID
       .map(async (id) => {
-        const response = await request(think.app.listen())
-          .get(url)
-          .query({ id })
-          .expect('Content-Type', /json/)
-          .expect(200);
+        const response = await request({ url, data: { id } });
 
         const actual = response.body;
         const expected = require(`./catalog/current_${id}.json`);
@@ -103,10 +83,7 @@ test.serial('current', async (t) => {
 
 test.serial('all', async (t) => {
   const url = '/wx/catalog/all';
-  const response = await request(think.app.listen())
-    .get(url)
-    .expect('Content-Type', /json/)
-    .expect(200);
+  const response = await request({ url });
 
   const actual = response.body;
   const expected = require(`./catalog/all.json`);

@@ -1,7 +1,5 @@
 const test = require('ava');
-const request = require('supertest');
-const path = require('path');
-require(path.join(process.cwd(), 'production.js'));
+const { request } = require('../../helpers/app.js');
 
 const BRAND_ID = [
   1001000, 1001002, 1001003, 1001007, 1001008,
@@ -22,10 +20,7 @@ test.serial('list', async (t) => {
 
   // No parameter
   {
-    const response = await request(think.app.listen())
-      .get(url)
-      .expect('Content-Type', /json/)
-      .expect(200);
+    const response = await request({ url });
 
     const actual = response.body;
     const expected = require(`./brand/list_1.json`);
@@ -38,11 +33,7 @@ test.serial('list', async (t) => {
 
   // With `page`
   for (let page = 1; page <= pages; page++) {
-    const response = await request(think.app.listen())
-      .get(url)
-      .query({ page })
-      .expect('Content-Type', /json/)
-      .expect(200);
+    const response = await request({ url, data: { page } });
 
     const actual = response.body;
     const expected = require(`./brand/list_${page}.json`);
@@ -57,21 +48,14 @@ test.serial('detail', async (t) => {
 
   // Missing `id`
   {
-    const response = await request(think.app.listen())
-      .get(url)
-      .expect('Content-Type', /json/)
-      .expect(200);
+    const response = await request({ url });
 
     t.is(response.body.errno, 402);
   }
 
   // Not found `id`
   {
-    const response = await request(think.app.listen())
-      .get(url)
-      .query({ id: 99999999 })
-      .expect('Content-Type', /json/)
-      .expect(200);
+    const response = await request({ url, data: { id: 99999999 } });
 
     t.is(response.body.errno, 402);
   }
@@ -80,11 +64,7 @@ test.serial('detail', async (t) => {
   await Promise.all(
     BRAND_ID
       .map(async (id) => {
-        const response = await request(think.app.listen())
-          .get(url)
-          .query({ id })
-          .expect('Content-Type', /json/)
-          .expect(200);
+        const response = await request({ url, data: { id } });
 
         const actual = response.body;
         const expected = require(`./brand/detail_${id}.json`);

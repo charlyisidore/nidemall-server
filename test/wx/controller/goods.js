@@ -1,7 +1,5 @@
 const test = require('ava');
-const request = require('supertest');
-const path = require('path');
-require(path.join(process.cwd(), 'production.js'));
+const { request, omit } = require('../../helpers/app.js');
 
 const CATEGORY_ID = [
   1005000, 1005001, 1005002, 1008000, 1010000, 1011000,
@@ -65,24 +63,13 @@ const GOODS_ID = [
   1135056, 1084001, 1135055, 1135053, 1135054
 ];
 
-function omit(obj, keys) {
-  return Object.fromEntries(
-    Object.entries(obj).filter(
-      ([k, v]) => !keys.includes(k)
-    )
-  );
-}
-
 test.serial('list', async (t) => {
   const url = '/wx/goods/list';
   let pages = 0;
 
   // No parameter
   {
-    const response = await request(think.app.listen())
-      .get(url)
-      .expect('Content-Type', /json/)
-      .expect(200);
+    const response = await request({ url });
 
     const actual = response.body;
     const expected = require(`./goods/list_1.json`);
@@ -95,11 +82,7 @@ test.serial('list', async (t) => {
 
   // With `page`
   for (let page = 1; page <= pages; page++) {
-    const response = await request(think.app.listen())
-      .get(url)
-      .query({ page })
-      .expect('Content-Type', /json/)
-      .expect(200);
+    const response = await request({ url, data: { page } });
 
     const actual = response.body;
     const expected = require(`./goods/list_${page}.json`);
@@ -115,21 +98,14 @@ test.serial('detail', async (t) => {
 
   // Missing `id`
   {
-    const response = await request(think.app.listen())
-      .get(url)
-      .expect('Content-Type', /json/)
-      .expect(200);
+    const response = await request({ url });
 
     t.is(response.body.errno, 402);
   }
 
   // Not found `id`
   {
-    const response = await request(think.app.listen())
-      .get(url)
-      .query({ id: 99999999 })
-      .expect('Content-Type', /json/)
-      .expect(200);
+    const response = await request({ url, data: { id: 99999999 } });
 
     // litemall returns 502
     t.is(response.body.errno, 402);
@@ -139,11 +115,7 @@ test.serial('detail', async (t) => {
   await Promise.all(
     GOODS_ID
       .map(async (id) => {
-        const response = await request(think.app.listen())
-          .get(url)
-          .query({ id })
-          .expect('Content-Type', /json/)
-          .expect(200);
+        const response = await request({ url, data: { id } });
 
         const actual = response.body;
         const expected = require(`./goods/detail_${id}.json`);
@@ -163,21 +135,14 @@ test.serial('related', async (t) => {
 
   // Missing `id`
   {
-    const response = await request(think.app.listen())
-      .get(url)
-      .expect('Content-Type', /json/)
-      .expect(200);
+    const response = await request({ url });
 
     t.is(response.body.errno, 402);
   }
 
   // Not found `id`
   {
-    const response = await request(think.app.listen())
-      .get(url)
-      .query({ id: 99999999 })
-      .expect('Content-Type', /json/)
-      .expect(200);
+    const response = await request({ url, data: { id: 99999999 } });
 
     t.is(response.body.errno, 402);
   }
@@ -186,11 +151,7 @@ test.serial('related', async (t) => {
   await Promise.all(
     GOODS_ID
       .map(async (id) => {
-        const response = await request(think.app.listen())
-          .get(url)
-          .query({ id })
-          .expect('Content-Type', /json/)
-          .expect(200);
+        const response = await request({ url, data: { id } });
 
         const actual = response.body;
         const expected = require(`./goods/related_${id}_1.json`);
@@ -206,21 +167,14 @@ test.serial('category', async (t) => {
 
   // Missing `id`
   {
-    const response = await request(think.app.listen())
-      .get(url)
-      .expect('Content-Type', /json/)
-      .expect(200);
+    const response = await request({ url });
 
     t.is(response.body.errno, 402);
   }
 
   // Not found `id`
   {
-    const response = await request(think.app.listen())
-      .get(url)
-      .query({ id: 99999999 })
-      .expect('Content-Type', /json/)
-      .expect(200);
+    const response = await request({ url, data: { id: 99999999 } });
 
     t.is(response.body.errno, 402);
   }
@@ -229,11 +183,7 @@ test.serial('category', async (t) => {
   await Promise.all(
     CATEGORY_ID
       .map(async (id) => {
-        const response = await request(think.app.listen())
-          .get(url)
-          .query({ id })
-          .expect('Content-Type', /json/)
-          .expect(200);
+        const response = await request({ url, data: { id } });
 
         const actual = response.body;
         const expected = require(`./goods/category_${id}_1.json`);
@@ -246,10 +196,7 @@ test.serial('category', async (t) => {
 
 test.serial('count', async (t) => {
   const url = '/wx/goods/count';
-  const response = await request(think.app.listen())
-    .get(url)
-    .expect('Content-Type', /json/)
-    .expect(200);
+  const response = await request({ url });
 
   const actual = response.body;
   const expected = require(`./goods/count.json`);
