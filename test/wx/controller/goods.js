@@ -142,7 +142,7 @@ test.serial('detail', async (t) => {
 test.serial('related', async (t) => {
   const url = '/wx/goods/related';
 
-  // // Missing `id`
+  // Missing `id`
   {
     const response = await request(think.app.listen())
       .get(url)
