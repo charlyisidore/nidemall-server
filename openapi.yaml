@@ -1,8 +1,8 @@
 openapi: '3.0.2'
 info:
-  title: nidemall wx
+  title: NideMall wx
   description: |-
-    `nidemall` server API specification for WeChat Mini Programs.
+    NideMall server API specification for WeChat Mini Programs.
   version: '1.0'
   contact: {}
 externalDocs:

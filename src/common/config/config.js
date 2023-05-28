@@ -3,8 +3,8 @@ module.exports = {
   workers: 1,
   validateDefaultErrno: 402,
   auth: {
-    header: 'X-Litemall-Token',
-    secret: 'yFHYEORzoiaUZvnVY32yTlkN',
+    header: 'X-Nidemall-Token',
+    secret: '$ecretf0rt3st',
     algorithm: 'HS256',
     expiresIn: '2h',
     audience: 'mp',

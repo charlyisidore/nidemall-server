@@ -127,6 +127,36 @@ exports.model = {
 };
 ```
 
+In `src/common/config/config.js`:
+
+```js
+module.exports = {
+  auth: {
+    header: 'X-Nidemall-Token',
+    secret: '$ecretf0rt3st',
+    algorithm: 'HS256',
+    expiresIn: '2h',
+    audience: 'mp',
+    issuer: 'nidemall',
+    subject: 'nidemall auth token',
+  },
+  system: {
+    prefix: 'litemall_',
+  },
+  weixin: {
+    appid: '',
+    secret: '',
+  },
+  express: {
+    enable: true,
+    appid: '',
+    appkey: '',
+    url: 'http://api.kdniao.com/Ebusiness/EbusinessOrderHandle.aspx',
+    vendors: [],
+  },
+};
+```
+
 ## Server
 
 Install packages:
