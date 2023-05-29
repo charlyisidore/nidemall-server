@@ -25,7 +25,14 @@ module.exports = class WxCollectController extends Base {
       return this.unlogin();
     }
 
-    const collectList = await collectService.queryByType(userId, type, page, limit, sort, order)
+    const collectList = await collectService.queryByType(
+      userId,
+      type,
+      page,
+      limit,
+      sort,
+      order
+    );
 
     const collectVoList = await Promise.all(
       collectList.data.map(async (collect) => {
