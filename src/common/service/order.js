@@ -128,6 +128,24 @@ module.exports = class OrderService extends think.Service {
   /**
    * 
    * @param {Order} order 
+   * @returns {Promise<number>}
+   */
+  updateWithOptimisticLocker(order) {
+    const now = new Date();
+    const preUpdateTime = order.updateTime;
+    return this.model('order')
+      .where({
+        id: order.id,
+        updateTime: preUpdateTime,
+      })
+      .update(Object.assign(order, {
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
+   * @param {Order} order 
    * @returns {Promise<number>} The number of rows affected
    */
   updateSelective(order) {

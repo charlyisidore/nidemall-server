@@ -32,6 +32,31 @@ module.exports = class GoodsProductService extends think.Service {
    * 
    * @param {number} id 
    * @param {number} num 
+   * @returns {Promise<number>}
+   */
+  async addStock(id, num) {
+    const product = await this.model('goods_product')
+      .field('number')
+      .where({ id })
+      .find();
+
+    if (think.isEmpty(product)) {
+      return 0;
+    }
+
+    const now = new Date();
+    return this.model('goods_product')
+      .where({ id })
+      .update({
+        number: product.number + num,
+        updateTime: now,
+      });
+  }
+
+  /**
+   * 
+   * @param {number} id 
+   * @param {number} num 
    * @returns {Promise<number>} The number of rows affected
    */
   async reduceStock(id, num) {

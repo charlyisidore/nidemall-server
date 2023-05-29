@@ -126,4 +126,18 @@ module.exports = class CouponUserService extends think.Service {
         updateTime: now,
       }));
   }
+
+  /**
+   * 
+   * @param {number} orderId 
+   * @returns {Promise<Order[]>}
+   */
+  findByOid(orderId) {
+    return this.model('coupon_user')
+      .where({
+        orderId,
+        deleted: false,
+      })
+      .select();
+  }
 }

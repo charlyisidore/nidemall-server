@@ -30,4 +30,18 @@ module.exports = class OrderGoodsService extends think.Service {
       })
       .select();
   }
+
+  /**
+   * 
+   * @param {number} orderId 
+   * @returns {Promise<number>}
+   */
+  getComments(orderId) {
+    return this.model('order_goods')
+      .where({
+        orderId,
+        deleted: false,
+      })
+      .count();
+  }
 }

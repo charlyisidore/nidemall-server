@@ -464,7 +464,58 @@ module.exports = class WxOrderController extends Base {
   }
 
   async cancelAction() {
-    return this.success('todo');
+    const userId = this.getUserId();
+    /** @type {number} */
+    const orderId = this.get('orderId');
+
+    /** @type {GoodsProductService} */
+    const goodsProductService = this.service('goods_product');
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+    /** @type {OrderGoodsService} */
+    const orderGoodsService = this.service('order_goods');
+
+    const { ORDER, STATUS } = this.constructor;
+
+    const now = new Date();
+
+    if (think.isNullOrUndefined(userId)) {
+      return this.unlogin();
+    }
+
+    const order = await orderService.findById(orderId, userId);
+    if (think.isEmpty(order) || order.userId != userId) {
+      return this.badArgumentValue();
+    }
+
+    const handleOption = this.build(order);
+
+    if (!handleOption.cancel) {
+      return this.fail(ORDER.INVALID_OPERATION, '订单不能取消');
+    }
+
+    Object.assign(order, {
+      orderStatus: STATUS.CANCEL,
+      endTime: now,
+    });
+
+    if (!await orderService.updateWithOptimisticLocker(order)) {
+      // Update data no longer available
+      throw new Error('更新数据已失效');
+    }
+
+    const orderGoodsList = await orderGoodsService.queryByOid(orderId);
+
+    for (const orderGoods of orderGoodsList) {
+      if (!await goodsProductService.addStock(orderGoods.productId, orderGoods.number)) {
+        // Failed to increase the inventory of a product
+        throw new Error('商品货品库存增加失败');
+      }
+    }
+
+    await this.releaseCoupon(orderId);
+
+    return this.success();
   }
 
   async prepayAction() {
@@ -472,11 +523,96 @@ module.exports = class WxOrderController extends Base {
   }
 
   async refundAction() {
-    return this.success('todo');
+    const userId = this.getUserId();
+    /** @type {number} */
+    const orderId = this.get('orderId');
+
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+
+    const { ORDER, STATUS } = this.constructor;
+
+    if (think.isNullOrUndefined(userId)) {
+      return this.unlogin();
+    }
+
+    const order = await orderService.findById(orderId, userId);
+
+    if (think.isEmpty(order)) {
+      return this.badArgument();
+    }
+
+    if (order.userId != userId) {
+      return this.badArgumentValue();
+    }
+
+    const handleOption = this.build(order);
+
+    if (!handleOption.refund) {
+      return this.fail(ORDER.INVALID_OPERATION, '订单不能取消');
+    }
+
+    Object.assign(order, {
+      orderStatus: STATUS.REFUND,
+    });
+
+    if (!await orderService.updateWithOptimisticLocker(order)) {
+      return this.updatedDateExpired();
+    }
+
+    // TODO
+    // await notifyService.notifyMail('退款申请', order.toString());
+
+    return this.success();
   }
 
   async confirmAction() {
-    return this.success('todo');
+    const userId = this.getUserId();
+    /** @type {number} */
+    const orderId = this.get('orderId');
+
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+    /** @type {OrderGoodsService} */
+    const orderGoodsService = this.service('order_goods');
+
+    const { ORDER, STATUS } = this.constructor;
+
+    const now = new Date();
+
+    if (think.isNullOrUndefined(userId)) {
+      return this.unlogin();
+    }
+
+    const order = await orderService.findById(orderId, userId);
+
+    if (think.isEmpty(order)) {
+      return this.badArgument();
+    }
+
+    if (order.userId != userId) {
+      return this.badArgumentValue();
+    }
+
+    const handleOption = this.build(order);
+
+    if (!handleOption.confirm) {
+      return this.fail(ORDER.INVALID_OPERATION, '订单不能确认收货');
+    }
+
+    const comments = await orderGoodsService.getComments(orderId);
+
+    Object.assign(order, {
+      comments,
+      orderStatus: STATUS.CONFIRM,
+      confirmTime: now,
+    });
+
+    if (!await orderService.updateWithOptimisticLocker(order)) {
+      return this.updatedDateExpired();
+    }
+
+    return this.success();
   }
 
   async deleteAction() {
@@ -489,6 +625,28 @@ module.exports = class WxOrderController extends Base {
 
   async commentAction() {
     return this.success('todo');
+  }
+
+  /**
+   * 
+   * @param {number} orderId 
+   */
+  async releaseCoupon(orderId) {
+    /** @type {CouponUserService} */
+    const couponUserService = this.service('coupon_user');
+
+    const now = new Date();
+
+    const couponUsers = await couponUserService.findByOid(orderId);
+
+    return Promise.all(couponUsers.map(async (couponUser) => {
+      Object.assign(couponUser, {
+        status: CouponUserService.STATUS.USABLE,
+        updateTime: now,
+      });
+
+      await couponUserService.update(couponUser);
+    }));
   }
 
   /**
