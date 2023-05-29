@@ -7,74 +7,74 @@
     "page": 3,
     "list": [
       {
-        "id": 1039000,
-        "name": "TEFAL制造商",
-        "desc": "严选对标国际品质，致力于高品质生活好物，\n执着寻求优质厨房电器供应商，\n携手WMF、Tefal制造商，打造高品质厨具。",
-        "picUrl": "http://yanxuan.nosdn.127.net/2b7a07e25a3f3be886a7fb90ba975bb7.png",
-        "floorPrice": 259
+        "id": 1010002,
+        "name": "资生堂制造商",
+        "desc": "发现美，成为美，是女性一生的追求。\n严选找寻资生堂代工厂，打造天然美妆产品，\n致力于带来更多美的体验和享受。",
+        "picUrl": "http://yanxuan.nosdn.127.net/5449236b80d1e678dedee2f626cd67c4.png",
+        "floorPrice": 29
       },
       {
-        "id": 1039001,
-        "name": "京瓷制造商",
-        "desc": "严选想为你的厨房生活，带来新鲜感和活力，\n深入全国各地，选择日本京瓷等品牌代工厂，\n打造钻石系列厨具，颜值与品质兼具。",
-        "picUrl": "http://yanxuan.nosdn.127.net/3dda530605e3ab1c82d5ed30f2489473.png",
-        "floorPrice": 89
+        "id": 1015000,
+        "name": "NITORI制造商",
+        "desc": "宠物是人类最温情的陪伴，\n严选找寻日本最大家居品牌NITORI制造商，\n每一个脚印，都是为了更好地关怀你的TA",
+        "picUrl": "http://yanxuan.nosdn.127.net/6f3d310601b18610553c675e0e14d107.png",
+        "floorPrice": 69
       },
       {
-        "id": 1040000,
-        "name": "Tescom制造商",
-        "desc": "严选为打造时尚健康的个护电器，\n选择Tescom品牌制造商，全球最大个护电器工厂之一，\n拥有20年经验，出口180多个国家，品质有保障。",
-        "picUrl": "http://yanxuan.nosdn.127.net/c17cd65971189fdc28f5bd6b78f657a7.png",
+        "id": 1016002,
+        "name": "HUGO BOSS制造商",
+        "desc": "严选深入德国知名奢侈品HUGO BOSS的制造商，\n开发睡衣、睡袍、休闲裤等轻奢品质家居服，\n希望你在家的每一天都优雅精致。",
+        "picUrl": "http://yanxuan.nosdn.127.net/70ada9877b2efa82227437af3231fe50.png",
+        "floorPrice": 45
+      },
+      {
+        "id": 1018000,
+        "name": "Sperry制造商",
+        "desc": "严选团队对比多家硫化鞋制造商产品质量，\n走访多个制鞋工厂，最终选定Sperry品牌制造商，\n为你提供一双舒适有型的高品质帆布鞋。",
+        "picUrl": "http://yanxuan.nosdn.127.net/2eb12d84037346441088267432da31c4.png",
+        "floorPrice": 199
+      },
+      {
+        "id": 1021000,
+        "name": "Marc Jacobs制造商",
+        "desc": "严选寻访独立设计品牌Marc Jacobs的制造商，\n严格选材，细究纺织与生产的细节，多次打磨，\n初心不忘，为你带来优雅高档的服饰配件。",
+        "picUrl": "http://yanxuan.nosdn.127.net/c8dac4eb1a458d778420ba520edab3d0.png",
+        "floorPrice": 69
+      },
+      {
+        "id": 1022000,
+        "name": "UGG制造商",
+        "desc": "为寻找优质的皮毛一体雪地靴，\n严选走访多家雪地靴制造商，对比工艺，\n甄选UGG认可的代工厂，只为足下的优雅舒适。",
+        "picUrl": "http://yanxuan.nosdn.127.net/4d2a3dea7e0172ae48e8161f04cfa045.jpg",
         "floorPrice": 59
       },
       {
-        "id": 1041000,
-        "name": "BCBG制造商",
-        "desc": "严选从产品源头开始，每道工序质量把关，\n选择美国知名品牌BCBG的制造商合作，\n严谨匠心，致力于优质柔滑的睡衣穿搭产品。",
-        "picUrl": "http://yanxuan.nosdn.127.net/b9072023afd3621714fd5c49f140fca8.png",
-        "floorPrice": 99
+        "id": 1022001,
+        "name": "Palladium制造商",
+        "desc": "严选探访多个制鞋大厂，选定Palladium制造商，\n对比工艺选材，找到传承多年的制鞋配方，\n只为制作一款高品质休闲鞋。",
+        "picUrl": "http://yanxuan.nosdn.127.net/3480f2a4026c60eb4921f0aa3facbde8.png",
+        "floorPrice": 249
       },
       {
-        "id": 1046000,
-        "name": "Police制造商",
-        "desc": "严选团队选定Police品牌制造商合作，\n有11年眼镜生产资质，兼顾品质与品味，\n为你带来专业时尚的墨镜。",
-        "picUrl": "http://yanxuan.nosdn.127.net/66e2cb956a9dd1efc7732bea278e901e.png",
-        "floorPrice": 109
+        "id": 1023000,
+        "name": "PetitBateau小帆船制造商",
+        "desc": "为打造适合宝宝的婴童服装，\n严选团队寻找PetitBateau小帆船的品牌制造商，\n无荧光剂，国家A类标准，让宝宝穿的放心。",
+        "picUrl": "http://yanxuan.nosdn.127.net/1a11438598f1bb52b1741e123b523cb5.jpg",
+        "floorPrice": 36
       },
       {
-        "id": 1001038,
-        "name": "Coach制造商",
-        "desc": "严选为制作高品质高颜值皮具配件，\n由Coach、MK等品牌制造商生产，\n由严选360度全程监制，给你带来优质皮具。",
-        "picUrl": "http://yanxuan.nosdn.127.net/1b1cc16135fd8467d40983f75f644127.png",
-        "floorPrice": 49
+        "id": 1024000,
+        "name": "WMF制造商",
+        "desc": "严选找寻德国百年高端厨具WMF的制造商，\n选择拥有14年经验的不锈钢生产工厂，\n为你甄选事半功倍的优质厨具。",
+        "picUrl": "http://yanxuan.nosdn.127.net/2018e9ac91ec37d9aaf437a1fd5d7070.png",
+        "floorPrice": 9.9
       },
       {
-        "id": 1001002,
-        "name": "内野制造商",
-        "desc": "严选从世界各地挑选毛巾，最终选择了为日本内野代工的工厂，追求毛巾的柔软度与功能性。品质比肩商场几百元的毛巾。",
-        "picUrl": "http://yanxuan.nosdn.127.net/8ca3ce091504f8aa1fba3fdbb7a6e351.png",
-        "floorPrice": 29
-      },
-      {
-        "id": 1001003,
-        "name": "Adidas制造商",
-        "desc": "严选找到为Adidas等品牌制造商，\n选取优质原材料，与厂方一起设计，\n为你提供好的理想的运动装备。",
-        "picUrl": "http://yanxuan.nosdn.127.net/335334d0deaff6dc3376334822ab3a2f.png",
-        "floorPrice": 49
-      },
-      {
-        "id": 1001007,
-        "name": "优衣库制造商",
-        "desc": "严选找到日本知名服装UNIQLO的制造商，\n选取优质长绒棉和精梳工艺，\n与厂方一起设计，为你提供理想的棉袜。",
-        "picUrl": "http://yanxuan.nosdn.127.net/0d72832e37e7e3ea391b519abbbc95a3.png",
-        "floorPrice": 29
-      },
-      {
-        "id": 1001008,
-        "name": "膳魔师制造商",
-        "desc": "严选深入保温行业内部，\n找到德国膳魔师制造商的代工厂。\n同样的品质，却有更优的价格。",
-        "picUrl": "http://yanxuan.nosdn.127.net/5fd51e29b9459dae7df8040c8219f241.png",
-        "floorPrice": 45
+        "id": 1024001,
+        "name": "OBH制造商",
+        "desc": "严选寻找OBH品牌的制造商，打造精致厨具，\n韩国独资工厂制造，严格质检，品质雕琢\n力求为消费者带来全新的烹饪体验。",
+        "picUrl": "http://yanxuan.nosdn.127.net/bf3499ac17a11ffb9bb7caa47ebef2dd.png",
+        "floorPrice": 39
       }
     ]
   },

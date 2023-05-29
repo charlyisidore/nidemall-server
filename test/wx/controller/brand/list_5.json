@@ -7,67 +7,67 @@
     "page": 5,
     "list": [
       {
-        "id": 1003000,
-        "name": "Carters制造商",
-        "desc": "来自Carters大牌代工厂生产，\n严选纯天然材料，无荧光不添加，\nITS安心标志权威检测，安全护航。",
-        "picUrl": "http://yanxuan.nosdn.127.net/efe9131599ced0297213e6ec67eb2174.png",
-        "floorPrice": 19.9
-      },
-      {
-        "id": 1005001,
-        "name": "Goody制造商",
-        "desc": "严选深入美国百年发饰品牌Goody制造商，\n确保每把梳子做工精湛，养护头皮。\n戴安娜王妃的最爱，你也能拥有。",
-        "picUrl": "http://yanxuan.nosdn.127.net/7c918f37de108f3687d69b39daab34eb.png",
-        "floorPrice": 39
-      },
-      {
-        "id": 1006000,
-        "name": "范思哲制造商",
-        "desc": "严选找寻意大利奢侈品牌范思哲Versace的制造商，\n致力于为用户带来精致、优雅、时尚的皮包，\n传承独特美感，体验品质生活。",
-        "picUrl": "http://yanxuan.nosdn.127.net/c80ae035387495a61a4515906205efff.png",
-        "floorPrice": 99
-      },
-      {
-        "id": 1008000,
-        "name": "WPC制造商",
-        "desc": "严选寻找日本雨伞品牌W.P.C制造商，\n采用严谨工艺以及环保材料，\n沉淀15年行业经验，打造精致雨具。",
-        "picUrl": "http://yanxuan.nosdn.127.net/c4e97cc87186ce17f9316f3ba39e220c.png",
-        "floorPrice": 59
-      },
-      {
-        "id": 1010001,
-        "name": "竹宝堂制造商",
-        "desc": "严选走访河北、安徽等制刷基地，\n选定竹宝堂、丝芙兰等品牌的制造商，\n严格把关生产与质检，与您一同追求美的生活。",
-        "picUrl": "http://yanxuan.nosdn.127.net/61b0b7ae4f0163422009defbceaa41ad.jpg",
-        "floorPrice": 29
-      },
-      {
-        "id": 1010002,
-        "name": "资生堂制造商",
-        "desc": "发现美，成为美，是女性一生的追求。\n严选找寻资生堂代工厂，打造天然美妆产品，\n致力于带来更多美的体验和享受。",
-        "picUrl": "http://yanxuan.nosdn.127.net/5449236b80d1e678dedee2f626cd67c4.png",
-        "floorPrice": 29
-      },
-      {
-        "id": 1015000,
-        "name": "NITORI制造商",
-        "desc": "宠物是人类最温情的陪伴，\n严选找寻日本最大家居品牌NITORI制造商，\n每一个脚印，都是为了更好地关怀你的TA",
-        "picUrl": "http://yanxuan.nosdn.127.net/6f3d310601b18610553c675e0e14d107.png",
+        "id": 1034001,
+        "name": "Alexander McQueen制造商",
+        "desc": "为制造精致实用的高品质包包，\n严选团队选择Alexander McQueen制造商，\n严格筛选，带来轻奢优雅体验。",
+        "picUrl": "http://yanxuan.nosdn.127.net/db7ee9667d84cbce573688297586699c.jpg",
         "floorPrice": 69
       },
       {
-        "id": 1016002,
-        "name": "HUGO BOSS制造商",
-        "desc": "严选深入德国知名奢侈品HUGO BOSS的制造商，\n开发睡衣、睡袍、休闲裤等轻奢品质家居服，\n希望你在家的每一天都优雅精致。",
-        "picUrl": "http://yanxuan.nosdn.127.net/70ada9877b2efa82227437af3231fe50.png",
-        "floorPrice": 45
+        "id": 1037000,
+        "name": "厚木ATSUGI制造商",
+        "desc": "严选考究袜子品质，层层把关原料生产，\n携手12年行业生产资质的厚木品牌制造商，\n带来轻盈优雅，舒适显瘦的袜子系列。",
+        "picUrl": "http://yanxuan.nosdn.127.net/7df55c408dbac6085ed6c30836c828ac.jpg",
+        "floorPrice": 29
       },
       {
-        "id": 1018000,
-        "name": "Sperry制造商",
-        "desc": "严选团队对比多家硫化鞋制造商产品质量，\n走访多个制鞋工厂，最终选定Sperry品牌制造商，\n为你提供一双舒适有型的高品质帆布鞋。",
-        "picUrl": "http://yanxuan.nosdn.127.net/2eb12d84037346441088267432da31c4.png",
-        "floorPrice": 199
+        "id": 1038000,
+        "name": "Birkenstock集团制造商",
+        "desc": "为打造一双舒适的软木拖鞋，\n严选团队寻找BIRKENSTOCK集团旗下产品制造商，\n360度全程监制，舒适随脚，百搭文艺。",
+        "picUrl": "http://yanxuan.nosdn.127.net/05a2ecffb60b77e4c165bd8492e5c22a.jpg",
+        "floorPrice": 59.9
+      },
+      {
+        "id": 1038001,
+        "name": "Nine West制造商",
+        "desc": "为打造一双优雅舒适的高跟鞋，\n严选选择美国Nine West玖熙品牌的制造商，\n让美丽绽放在足尖。",
+        "picUrl": "http://yanxuan.nosdn.127.net/ad4df7848ce450f00483c2d5e9f2bfa7.png",
+        "floorPrice": 219
+      },
+      {
+        "id": 1039000,
+        "name": "TEFAL制造商",
+        "desc": "严选对标国际品质，致力于高品质生活好物，\n执着寻求优质厨房电器供应商，\n携手WMF、Tefal制造商，打造高品质厨具。",
+        "picUrl": "http://yanxuan.nosdn.127.net/2b7a07e25a3f3be886a7fb90ba975bb7.png",
+        "floorPrice": 259
+      },
+      {
+        "id": 1039001,
+        "name": "京瓷制造商",
+        "desc": "严选想为你的厨房生活，带来新鲜感和活力，\n深入全国各地，选择日本京瓷等品牌代工厂，\n打造钻石系列厨具，颜值与品质兼具。",
+        "picUrl": "http://yanxuan.nosdn.127.net/3dda530605e3ab1c82d5ed30f2489473.png",
+        "floorPrice": 89
+      },
+      {
+        "id": 1040000,
+        "name": "Tescom制造商",
+        "desc": "严选为打造时尚健康的个护电器，\n选择Tescom品牌制造商，全球最大个护电器工厂之一，\n拥有20年经验，出口180多个国家，品质有保障。",
+        "picUrl": "http://yanxuan.nosdn.127.net/c17cd65971189fdc28f5bd6b78f657a7.png",
+        "floorPrice": 59
+      },
+      {
+        "id": 1041000,
+        "name": "BCBG制造商",
+        "desc": "严选从产品源头开始，每道工序质量把关，\n选择美国知名品牌BCBG的制造商合作，\n严谨匠心，致力于优质柔滑的睡衣穿搭产品。",
+        "picUrl": "http://yanxuan.nosdn.127.net/b9072023afd3621714fd5c49f140fca8.png",
+        "floorPrice": 99
+      },
+      {
+        "id": 1046000,
+        "name": "Police制造商",
+        "desc": "严选团队选定Police品牌制造商合作，\n有11年眼镜生产资质，兼顾品质与品味，\n为你带来专业时尚的墨镜。",
+        "picUrl": "http://yanxuan.nosdn.127.net/66e2cb956a9dd1efc7732bea278e901e.png",
+        "floorPrice": 109
       }
     ]
   },

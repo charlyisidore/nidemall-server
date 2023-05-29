@@ -7,74 +7,74 @@
     "page": 4,
     "list": [
       {
-        "id": 1001010,
-        "name": "星巴克制造商",
-        "desc": "严选寻访全国保温杯制造企业，\n最终找到高端咖啡品牌星巴克的制造商，\n专注保温杯生产20年，品质与颜值兼备。",
-        "picUrl": "http://yanxuan.nosdn.127.net/5668bc50f2f2e551891044525710dc84.png",
+        "id": 1024003,
+        "name": "Stoneline制造商",
+        "desc": "严选找寻德国经典品牌Stoneline的制造商，\n追踪工艺，考量细节，亲自试用，\n为你甄选出最合心意的锅具和陶瓷刀，下厨如神。",
+        "picUrl": "http://yanxuan.nosdn.127.net/3a44ae7db86f3f9b6e542720c54cc349.png",
+        "floorPrice": 9.9
+      },
+      {
+        "id": 1024006,
+        "name": "KitchenAid制造商",
+        "desc": "严选寻访KitchenAid品牌的制造商，\n采用德国LFGB认证食品级专用不锈钢，\n欧式简约设计，可靠安心，尽享下厨乐趣。",
+        "picUrl": "http://yanxuan.nosdn.127.net/e11385bf29d1b3949435b80fcd000948.png",
+        "floorPrice": 98
+      },
+      {
+        "id": 1025000,
+        "name": "Timberland制造商",
+        "desc": "为制作优质时尚的工装鞋靴，\n严选团队深入探访国内外制靴大厂，选择Timberland制造商，\n工厂拥有15年制鞋历史，专业品质有保证。",
+        "picUrl": "http://yanxuan.nosdn.127.net/6dcadb0791b33aa9fd00380b44fa6645.png",
+        "floorPrice": 359
+      },
+      {
+        "id": 1025001,
+        "name": "Kenneth Cole制造商",
+        "desc": "为出品优质格调的商务鞋靴，\n严选团队选择Kenneth Cole品牌合作的制造商，\n一切努力，只为打造高品质鞋靴。",
+        "picUrl": "http://yanxuan.nosdn.127.net/236322546c6860e1662ab147d6b0ba2f.jpg",
+        "floorPrice": 349
+      },
+      {
+        "id": 1026000,
+        "name": "CK制造商",
+        "desc": "严选寻访Calvin Klein品牌的制造商，\n深入世界领带第一生产地，设计与品质并重，\n致力于给消费者带来优质典雅的服饰用品。",
+        "picUrl": "http://yanxuan.nosdn.127.net/658f09b7ec522d31742b47b914d64338.png",
         "floorPrice": 39
       },
       {
-        "id": 1001012,
-        "name": "Wedgwood制造商",
-        "desc": "严选寻访英国皇室御用陶瓷Wedgwood制造商，\n制模到成品，历经25道工序、7次检验、3次烧制，\n你看不见的地方，我们也在坚持。",
-        "picUrl": "http://yanxuan.nosdn.127.net/68940e8e23f96dbeb3548d943d83d5e4.png",
+        "id": 1026001,
+        "name": "Under Armour制造商",
+        "desc": "严选为甄选优质好袜，走访东北、新疆等产袜基地，\n最终选定Under Armour品牌的合作制造商，\n从原料、工艺、品质多维度筛选监制，保证好品质。",
+        "picUrl": "http://yanxuan.nosdn.127.net/4e93ea29b1d06fabfd24ba68a9b20a34.jpg",
         "floorPrice": 39
       },
       {
-        "id": 1001013,
-        "name": "Royal Doulton制造商",
-        "desc": "严选深入英国最大骨瓷品牌Royal Doulton制造商， \n顶级英国瓷器的代名词，广受世界皇室喜爱。\n每件瓷器，都有自己的故事。",
-        "picUrl": "http://yanxuan.nosdn.127.net/0de643a02043fd9680b11e21c452adaa.png",
-        "floorPrice": 24.9
-      },
-      {
-        "id": 1001015,
-        "name": "日本KEYUCA制造商",
-        "desc": "KEYUCA是日本餐具及料理用具品牌，\n遵循极简原木风，高端餐具体验。\n严选的餐具正是来自这一品牌制造商。",
-        "picUrl": "http://yanxuan.nosdn.127.net/9b85b45f23da558be101dbcc273b1d6d.png",
-        "floorPrice": 14.9
-      },
-      {
-        "id": 1001016,
-        "name": "爱慕制造商",
-        "desc": "150家样品比对筛选，20家工厂深入走访，\n严选最终选定高端内衣爱慕制造商，\n20年品质保证，为你打造天然舒适的衣物。",
-        "picUrl": "http://yanxuan.nosdn.127.net/5104f84110eac111968c63c18ebd62c0.png",
-        "floorPrice": 35
-      },
-      {
-        "id": 1001020,
-        "name": "Ralph Lauren制造商",
-        "desc": "我们与Ralph Lauren Home的制造商成功接洽，掌握先进的生产设备，传承品牌工艺和工序。追求生活品质的你，值得拥有。",
-        "picUrl": "http://yanxuan.nosdn.127.net/9df78eb751eae2546bd3ee7e61c9b854.png",
-        "floorPrice": 29
-      },
-      {
-        "id": 1001037,
-        "name": "新秀丽制造商",
-        "desc": "严选为制作品质与颜值兼具的箱包，\n选定新秀丽、CK、Ricardo等品牌合作的制造商，\n拥有国内先进流水线20余条，实力保障品质。",
-        "picUrl": "http://yanxuan.nosdn.127.net/80dce660938931956ee9a3a2b111bd37.jpg",
+        "id": 1028000,
+        "name": "Gucci制造商",
+        "desc": "严选为设计一款优雅时尚的品质礼帽，\n找寻拥有10来年经验的大型毛毡帽厂商合作，\n坚持打造好设计、好工艺、好材质的潮流礼帽。",
+        "picUrl": "http://yanxuan.nosdn.127.net/278869cad9bf5411ffc18982686b88fb.jpg",
         "floorPrice": 59
       },
       {
-        "id": 1001000,
-        "name": "MUJI制造商",
-        "desc": "严选精选了MUJI制造商和生产原料，\n用几乎零利润的价格，剔除品牌溢价，\n让用户享受原品牌的品质生活。",
-        "picUrl": "http://yanxuan.nosdn.127.net/1541445967645114dd75f6b0edc4762d.png",
-        "floorPrice": 12.9
+        "id": 1028003,
+        "name": "Burberry制造商",
+        "desc": "为打造时尚舒适的童装系列，\n严选选择Burberry制造商，优化版型配色\n英伦风情融入经典格纹，百搭优雅气质款。",
+        "picUrl": "http://yanxuan.nosdn.127.net/07af01e281c7e0b912d162d611e22c32.jpg",
+        "floorPrice": 99
       },
       {
-        "id": 1001039,
-        "name": "MK制造商",
-        "desc": "严选为制造高品质的皮具，\n选择Michael Kors品牌合作的制造工厂，\n18年专业皮具生产经验，手工至美，品质保证。",
-        "picUrl": "http://yanxuan.nosdn.127.net/fc9cd1309374f7707855de80522fb310.jpg",
-        "floorPrice": 79
+        "id": 1033003,
+        "name": "Armani制造商",
+        "desc": "严选团队携手国际标准化专业生产厂家，\n厂家长期为Armani、Alexander wang等知名品牌代工，\n专业进口设备，精密质量把控，精于品质居家体验。",
+        "picUrl": "http://yanxuan.nosdn.127.net/981e06f0f46f5f1f041d7de3dd3202e6.jpg",
+        "floorPrice": 199
       },
       {
-        "id": 1001045,
-        "name": "罗莱制造商",
-        "desc": "严选团队为打造吸湿透气柔软的蚕丝被，\n从蚕茧原材到温感性能，多次甄选测试\n选择罗莱制造商工厂，手工处理，优质舒适。",
-        "picUrl": "http://yanxuan.nosdn.127.net/14122a41a4985d23e1a172302ee818e9.png",
-        "floorPrice": 699
+        "id": 1033004,
+        "name": "爱马仕集团制造商",
+        "desc": "严选采用欧洲一线品牌爱马仕的御用香料供应商，\n经过反复配比改良、试香调香、选品定样，\n为你带来独特馥郁的散香体验。",
+        "picUrl": "http://yanxuan.nosdn.127.net/d98470dd728fb5a91f7aceade07572b5.png",
+        "floorPrice": 19
       }
     ]
   },

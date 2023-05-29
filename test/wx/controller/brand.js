@@ -20,7 +20,13 @@ test.serial('list', async (t) => {
 
   // No parameter
   {
-    const response = await request({ url });
+    const response = await request({
+      url,
+      data: {
+        sort: 'id',
+        order: 'asc',
+      },
+    });
 
     const actual = response.body;
     const expected = require(`./brand/list_1.json`);
@@ -33,7 +39,14 @@ test.serial('list', async (t) => {
 
   // With `page`
   for (let page = 1; page <= pages; page++) {
-    const response = await request({ url, data: { page } });
+    const response = await request({
+      url,
+      data: {
+        page,
+        sort: 'id',
+        order: 'asc',
+      },
+    });
 
     const actual = response.body;
     const expected = require(`./brand/list_${page}.json`);
