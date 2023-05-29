@@ -2,7 +2,25 @@ const Base = require('./base.js');
 
 module.exports = class WxSearchController extends Base {
   async indexAction() {
-    return this.success('todo');
+    const userId = this.getUserId();
+
+    /** @type {KeywordService} */
+    const keywordService = this.service('keyword');
+    /** @type {SearchHistoryService} */
+    const searchHistoryService = this.service('search_history');
+
+    const defaultKeyword = await keywordService.queryDefault();
+    const hotKeywordList = await keywordService.queryHots();
+
+    const historyKeywordList = think.isNullOrUndefined(userId) ?
+      [] :
+      await searchHistoryService.queryByUid(userId);
+
+    return this.success({
+      defaultKeyword,
+      hotKeywordList,
+      historyKeywordList,
+    });
   }
 
   async helperAction() {

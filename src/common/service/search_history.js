@@ -16,4 +16,19 @@ module.exports = class SearchHistoryService extends think.Service {
         updateTime: now,
       }));
   }
+
+  /**
+   * 
+   * @param {number} userId 
+   * @returns {Promise<SearchHistory[]>}
+   */
+  queryByUid(userId) {
+    return this.model('search_history')
+      .field('keyword')
+      .where({
+        userId,
+        deleted: false,
+      })
+      .select();
+  }
 }
