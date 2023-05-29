@@ -5,7 +5,7 @@ module.exports = class KeywordService extends think.Service {
 
   /**
    * 
-   * @returns {Promise<Keyword>}
+   * @returns {Promise<Keyword|Record<string, never>>}
    */
   queryDefault() {
     return this.model('keyword')
