@@ -581,6 +581,12 @@ module.exports = class WxOrderController extends Base {
     return this.success(result);
   }
 
+  async paynotifyAction() {
+    const xml = this.post('xml');
+    console.log(xml);
+    return this.success('todo');
+  }
+
   async refundAction() {
     const userId = this.getUserId();
     /** @type {number} */

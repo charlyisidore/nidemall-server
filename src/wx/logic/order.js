@@ -83,6 +83,24 @@ module.exports = class extends think.Logic {
 
   prepayAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      orderId: {
+        int: true,
+        required: true,
+      },
+    };
+  }
+
+  paynotifyAction() {
+    this.allowMethods = 'POST';
+
+    this.rules = {
+      xml: {
+        string: true,
+        required: true,
+      },
+    };
   }
 
   refundAction() {
