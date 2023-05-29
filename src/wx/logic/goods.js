@@ -50,7 +50,7 @@ module.exports = class extends think.Logic {
       },
       sort: {
         string: true,
-        in: ['add_time', 'id'],
+        in: ['add_time', 'retail_price', 'name'],
         default: 'add_time',
       },
       order: {
