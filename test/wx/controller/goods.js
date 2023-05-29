@@ -69,7 +69,13 @@ test.serial('list', async (t) => {
 
   // No parameter
   {
-    const response = await request({ url });
+    const response = await request({
+      url,
+      data: {
+        sort: 'name',
+        order: 'asc',
+      },
+    });
 
     const actual = response.body;
     const expected = require(`./goods/list_1.json`);
@@ -82,7 +88,14 @@ test.serial('list', async (t) => {
 
   // With `page`
   for (let page = 1; page <= pages; page++) {
-    const response = await request({ url, data: { page } });
+    const response = await request({
+      url,
+      data: {
+        page,
+        sort: 'name',
+        order: 'asc',
+      },
+    });
 
     const actual = response.body;
     const expected = require(`./goods/list_${page}.json`);
@@ -94,7 +107,7 @@ test.serial('list', async (t) => {
 
 test.serial('detail', async (t) => {
   const url = '/wx/goods/detail';
-  const ignoreKeys = ['groupon'];
+  const omitKeys = ['groupon'];
 
   // Missing `id`
   {
@@ -123,8 +136,8 @@ test.serial('detail', async (t) => {
         t.is(actual.errno, expected.errno);
 
         t.deepEqual(
-          omit(actual.data, ignoreKeys),
-          omit(expected.data, ignoreKeys)
+          omit(actual.data, omitKeys),
+          omit(expected.data, omitKeys)
         );
       })
   );
