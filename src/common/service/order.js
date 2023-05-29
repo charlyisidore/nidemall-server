@@ -158,6 +158,19 @@ module.exports = class OrderService extends think.Service {
 
   /**
    * 
+   * @param {number} id 
+   * @returns {Promise<number>}
+   */
+  deleteById(id) {
+    return this.model('order')
+      .where({ id })
+      .update({
+        deleted: true,
+      });
+  }
+
+  /**
+   * 
    * @param {number} userId 
    * @returns {{unpaid: number, unship: number, unrecv: number, uncomment: number}}
    */

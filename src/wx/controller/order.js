@@ -616,7 +616,41 @@ module.exports = class WxOrderController extends Base {
   }
 
   async deleteAction() {
-    return this.success('todo');
+    const userId = this.getUserId();
+    /** @type {number} */
+    const orderId = this.get('orderId');
+
+    /** @type {AftersaleService} */
+    const aftersaleService = this.service('aftersale');
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+
+    const { ORDER } = this.constructor;
+
+    if (think.isNullOrUndefined(userId)) {
+      return this.unlogin();
+    }
+
+    const order = await orderService.findById(orderId, userId);
+
+    if (think.isEmpty(order)) {
+      return this.badArgument();
+    }
+
+    if (order.userId != userId) {
+      return this.badArgumentValue();
+    }
+
+    const handleOption = this.build(order);
+
+    if (!handleOption.delete) {
+      return this.fail(ORDER.INVALID_OPERATION, '订单不能删除');
+    }
+
+    await orderService.deleteById(orderId);
+    await aftersaleService.deleteByOrderId(orderId, userId);
+
+    return this.success();
   }
 
   async goodsAction() {
