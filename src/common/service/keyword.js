@@ -28,4 +28,23 @@ module.exports = class KeywordService extends think.Service {
       })
       .select();
   }
+
+  /**
+   * 
+   * @param {string} keyword 
+   * @param {number} page 
+   * @param {number} limit 
+   * @returns {Promise<Keyword[]>}
+   */
+  queryByKeyword(keyword, page, limit) {
+    return this.model('keyword')
+      .field('keyword')
+      .distinct('keyword')
+      .where({
+        keyword: ['LIKE', `%${keyword}%`],
+        deleted: false,
+      })
+      .page(page, limit)
+      .select();
+  }
 }

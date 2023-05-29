@@ -24,10 +24,33 @@ module.exports = class WxSearchController extends Base {
   }
 
   async helperAction() {
-    return this.success('todo');
+    /** @type {string} */
+    const keyword = this.get('keyword');
+    /** @type {number} */
+    const page = this.get('page');
+    /** @type {number} */
+    const limit = this.get('limit');
+
+    /** @type {KeywordService} */
+    const keywordService = this.service('keyword');
+
+    const keywordList = await keywordService.queryByKeyword(keyword, page, limit);
+
+    return this.success(keywordList.map((k) => k.keyword));
   }
 
   async clearhistoryAction() {
-    return this.success('todo');
+    const userId = this.getUserId();
+
+    /** @type {SearchHistoryService} */
+    const searchHistoryService = this.service('search_history');
+
+    if (think.isNullOrUndefined(userId)) {
+      return this.unlogin();
+    }
+
+    await searchHistoryService.deleteByUid(userId);
+
+    return this.success();
   }
 };

@@ -31,4 +31,19 @@ module.exports = class SearchHistoryService extends think.Service {
       })
       .select();
   }
+
+  /**
+   * 
+   * @param {number} userId 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  deleteByUid(userId) {
+    return this.model('search_history')
+      .where({
+        userId,
+      })
+      .update({
+        deleted: true,
+      });
+  }
 }
