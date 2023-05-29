@@ -26,7 +26,7 @@ const ADDRESS = [
 
 test.serial('unauth', async (t) => {
   const options = [
-    { method: 'get', url: '/wx/address/list', data: {} },
+    { method: 'get', url: '/wx/address/list' },
     { method: 'get', url: '/wx/address/detail', data: { id: 99999999 } },
     { method: 'post', url: '/wx/address/save', data: ADDRESS[0] },
     { method: 'post', url: '/wx/address/delete', data: { id: 99999999 } },
