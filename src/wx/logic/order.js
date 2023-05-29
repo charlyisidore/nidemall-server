@@ -120,6 +120,13 @@ module.exports = class extends think.Logic {
 
   goodsAction() {
     this.allowMethods = 'GET';
+
+    this.rules = {
+      ogid: {
+        int: true,
+        required: true,
+      },
+    };
   }
 
   commentAction() {

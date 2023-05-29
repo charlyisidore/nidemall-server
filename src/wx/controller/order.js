@@ -654,7 +654,32 @@ module.exports = class WxOrderController extends Base {
   }
 
   async goodsAction() {
-    return this.success('todo');
+    const userId = this.getUserId();
+    /** @type {number} */
+    const ogid = this.get('ogid');
+
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+    /** @type {OrderGoodsService} */
+    const orderGoodsService = this.service('order_goods');
+
+    if (think.isNullOrUndefined(userId)) {
+      return this.unlogin();
+    }
+
+    const orderGoods = await orderGoodsService.findById(ogid);
+
+    if (think.isEmpty(orderGoods)) {
+      return this.success(null);
+    }
+
+    const order = await orderService.findById(orderGoods.orderId);
+
+    if (order.userId != userId) {
+      return this.badArgument();
+    }
+
+    return this.success(orderGoods);
   }
 
   async commentAction() {
