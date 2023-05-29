@@ -61,7 +61,7 @@ module.exports = class WxGoodsController extends Base {
     return this.success({
       specificationList: data.specificationList,
       groupon: data.groupon,
-      issue: data.issue,
+      issue: data.issue.data,
       userHasCollect,
       shareImage: info.shareUrl,
       comment: data.comment,

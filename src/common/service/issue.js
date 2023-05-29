@@ -10,7 +10,7 @@ module.exports = class IssueService extends think.Service {
    * @param {number} limit 
    * @param {string?} sort 
    * @param {string?} order 
-   * @returns {Promise<Issue[]>} 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Issue[]}>}
    */
   querySelective(question, page, limit, sort, order) {
     const model = this.model('issue');
@@ -31,6 +31,6 @@ module.exports = class IssueService extends think.Service {
     return model
       .where(where)
       .page(page, limit)
-      .select();
+      .countSelect();
   }
 }
