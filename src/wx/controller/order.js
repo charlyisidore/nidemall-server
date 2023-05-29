@@ -683,7 +683,94 @@ module.exports = class WxOrderController extends Base {
   }
 
   async commentAction() {
-    return this.success('todo');
+    const userId = this.getUserId();
+    /** @type {number} */
+    const orderGoodsId = this.get('orderGoodsId');
+    /** @type {string} */
+    const content = this.get('content');
+    /** @type {number} */
+    const star = this.get('star');
+    /** @type {boolean} */
+    const hasPicture = this.get('hasPicture');
+    /** @type {string[]} */
+    let picUrls = this.get('picUrls');
+
+    /** @type {CommentService} */
+    const commentService = this.service('comment');
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+    /** @type {OrderGoodsService} */
+    const orderGoodsService = this.service('order_goods');
+
+    const { ORDER } = this.constructor;
+
+    if (think.isNullOrUndefined(userId)) {
+      return this.unlogin();
+    }
+
+    const orderGoods = await orderGoodsService.findById(orderGoodsId);
+
+    if (think.isEmpty(orderGoods)) {
+      return this.badArgumentValue();
+    }
+
+    const order = await orderService.findById(orderGoods.orderId, userId);
+
+    if (think.isEmpty(order)) {
+      return this.badArgumentValue();
+    }
+
+    if (!this.isConfirmStatus(order) && !this.isAutoConfirmStatus(order)) {
+      return this.fail(ORDER.INVALID_OPERATION, '当前商品不能评价');
+    }
+
+    if (order.userId != userId) {
+      return this.fail(ORDER.INVALID, '当前商品不属于用户');
+    }
+
+    if (-1 == orderGoods.comment) {
+      // Current product evaluation time has expired
+      return this.fail(ORDER.COMMENT_EXPIRED, '当前商品评价时间已经过期');
+    }
+
+    if (0 != orderGoods.comment) {
+      // Already evaluated
+      return this.fail(ORDER.COMMENTED, '订单商品已评价');
+    }
+
+    if (think.isNullOrUndefined(star) || star < 0 || star > 5) {
+      return this.badArgumentValue();
+    }
+
+    if (!hasPicture) {
+      picUrls = [];
+    }
+
+    const comment = {
+      userId,
+      type: 0,
+      valueId: orderGoods.goodsId,
+      star,
+      content,
+      hasPicture,
+      picUrls,
+    };
+
+    comment.id = await commentService.save(comment);
+
+    Object.assign(orderGoods, {
+      comment: comment.id,
+    });
+
+    await orderGoodsService.updateById(orderGoods);
+
+    Object.assign(order, {
+      comments: Math.max(0, order.comments - 1),
+    });
+
+    await orderService.updateWithOptimisticLocker(order);
+
+    return this.success();
   }
 
   /**

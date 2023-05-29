@@ -33,7 +33,7 @@ module.exports = class OrderService extends think.Service {
   /**
    * 
    * @param {number} id 
-   * @param {number} userId 
+   * @param {number?} userId 
    * @returns {Promise<Order|Record<string, never>>}
    */
   findById(id, userId) {

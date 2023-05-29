@@ -131,5 +131,31 @@ module.exports = class extends think.Logic {
 
   commentAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      orderGoodsId: {
+        int: true,
+        required: true,
+      },
+      content: {
+        string: true,
+        required: true,
+      },
+      star: {
+        int: true,
+        required: true,
+      },
+      hasPicture: {
+        boolean: true,
+        default: false,
+      },
+      picUrls: {
+        array: true,
+        default: [],
+        children: {
+          string: true,
+        },
+      },
+    };
   }
 };
