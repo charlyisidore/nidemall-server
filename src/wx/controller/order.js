@@ -1,4 +1,5 @@
 const Base = require('./base.js');
+const WxAuthController = require('./auth.js');
 const CouponUserService = require('../../common/service/coupon_user.js');
 const GrouponService = require('../../common/service/groupon.js');
 const GrouponRulesService = require('../../common/service/groupon_rules.js');
@@ -484,6 +485,7 @@ module.exports = class WxOrderController extends Base {
     }
 
     const order = await orderService.findById(orderId, userId);
+
     if (think.isEmpty(order) || order.userId != userId) {
       return this.badArgumentValue();
     }
@@ -519,7 +521,64 @@ module.exports = class WxOrderController extends Base {
   }
 
   async prepayAction() {
-    return this.success('todo');
+    const userId = this.getUserId();
+    /** @type {number} */
+    const orderId = this.get('orderId');
+
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+    /** @type {UserService} */
+    const userService = this.service('user');
+    /** @type {WeixinService} */
+    const weixinService = this.service('weixin');
+
+    const { ORDER, STATUS } = this.constructor;
+
+    const now = new Date();
+
+    if (think.isNullOrUndefined(userId)) {
+      return this.unlogin();
+    }
+
+    const order = await orderService.findById(orderId, userId);
+
+    if (think.isEmpty(order) || order.userId != userId) {
+      return this.badArgumentValue();
+    }
+
+    const handleOption = this.build(order);
+
+    if (!handleOption.pay) {
+      return this.fail(ORDER.INVALID_OPERATION, '订单不能支付');
+    }
+
+    const user = await userService.findById(userId);
+
+    if (think.isNullOrUndefined(user.weixinOpenid)) {
+      return this.fail(WxAuthController.AUTH.OPENID_UNACCESS, '订单不能支付');
+    }
+
+    let result = null;
+
+    try {
+      result = await weixinService.createOrder({
+        outTradeNo: order.orderSn,
+        body: `订单：${order.orderSn}`,
+        totalFee: Math.floor(order.actualPrice * 100.),
+        spbillCreateIp: this.ip,
+      });
+    } catch (e) {
+      console.error(e);
+      think.logger.error(e.toString());
+      return this.fail(ORDER.PAY_FAIL, '订单不能支付');
+    }
+
+
+    if (!await orderService.updateWithOptimisticLocker(order)) {
+      return this.updatedDateExpired();
+    }
+
+    return this.success(result);
   }
 
   async refundAction() {
