@@ -1,6 +1,7 @@
 /**
  * @typedef {import('./service/ad.js')} AdService
  * @typedef {import('./service/address.js')} AddressService
+ * @typedef {import('./service/aftersale.js')} AftersaleService
  * @typedef {import('./service/auth.js')} AuthService
  * @typedef {import('./service/brand.js')} BrandService
  * @typedef {import('./service/cart.js')} CartService
