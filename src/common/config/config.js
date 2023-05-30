@@ -11,6 +11,13 @@ module.exports = {
     issuer: 'nidemall',
     subject: 'nidemall auth token',
   },
+  storage: {
+    type: 'local',
+    local: {
+      path: 'www/static/upload',
+      baseUrl: 'http://127.0.0.1:8360/static/upload/',
+    },
+  },
   system: {
     prefix: 'litemall_',
   },

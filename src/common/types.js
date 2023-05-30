@@ -24,6 +24,7 @@
  * @typedef {import('./service/order.js')} OrderService
  * @typedef {import('./service/order_goods.js')} OrderGoodsService
  * @typedef {import('./service/search_history.js')} SearchHistoryService
+ * @typedef {import('./service/storage.js')} StorageService
  * @typedef {import('./service/system.js')} SystemService
  * @typedef {import('./service/topic.js')} TopicService
  * @typedef {import('./service/user.js')} UserService
