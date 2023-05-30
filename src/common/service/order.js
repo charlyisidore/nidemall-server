@@ -258,4 +258,73 @@ module.exports = class OrderService extends think.Service {
   isAutoConfirmStatus(order) {
     return this.constructor.STATUS.AUTO_CONFIRM == order.orderStatus;
   }
+
+  /**
+   * 
+   * @param {number} showType 
+   * @returns {number[]?}
+   */
+  orderStatus(showType) {
+    switch (showType) {
+      case 0:
+        // Full order
+        return null;
+      case 1:
+        // Orders to be paid
+        return [101];
+      case 2:
+        // Orders to be shipped
+        return [201];
+      case 3:
+        // Orders to be received
+        return [301];
+      case 4:
+        // Orders to be evaluated
+        return [401];
+      default:
+        return null;
+    }
+  }
+
+  /**
+   * 
+   * @param {{ orderStatus: number }} order 
+   * @returns {string}
+   */
+  orderStatusText(order) {
+    switch (order.orderStatus) {
+      case 101:
+        // Not paid
+        return '未付款';
+      case 102:
+        // Canceled
+        return '已取消';
+      case 103:
+        // Canceled (system)
+        return '已取消(系统)';
+      case 201:
+        // Paid
+        return '已付款';
+      case 202:
+        // Order cancelled, refund in progress
+        return '订单取消，退款中';
+      case 203:
+        // Refunded
+        return '已退款';
+      case 204:
+        // Timed out group buy
+        return '已超时团购';
+      case 301:
+        // Shipped
+        return '已发货';
+      case 401:
+        // Received
+        return '已收货';
+      case 402:
+        // Received (system)
+        return '已收货(系统)';
+      default:
+        throw new Error('orderStatus不支持');
+    }
+  }
 }
