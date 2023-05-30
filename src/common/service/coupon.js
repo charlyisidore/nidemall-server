@@ -241,6 +241,11 @@ module.exports = class CouponService extends think.Service {
 
   getConstants() {
     return {
+      COUPON: {
+        EXCEED_LIMIT: 740,
+        RECEIVE_FAIL: 741,
+        CODE_INVALID: 742,
+      },
       TYPE: {
         COMMON: 0,
         REGISTER: 1,

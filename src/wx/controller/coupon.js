@@ -1,12 +1,6 @@
 const Base = require('./base.js');
 
 module.exports = class WxCouponController extends Base {
-  static COUPON = {
-    EXCEED_LIMIT: 740,
-    RECEIVE_FAIL: 741,
-    CODE_INVALID: 742,
-  };
-
   async listAction() {
     /** @type {number} */
     const page = this.get('page');
@@ -135,8 +129,7 @@ module.exports = class WxCouponController extends Base {
     /** @type {CouponUserService} */
     const couponUserService = this.service('coupon_user');
 
-    const { COUPON } = this.constructor;
-    const { STATUS, TIME_TYPE, TYPE } = couponService.getConstants();
+    const { COUPON, STATUS, TIME_TYPE, TYPE } = couponService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
@@ -207,8 +200,7 @@ module.exports = class WxCouponController extends Base {
     /** @type {CouponUserService} */
     const couponUserService = this.service('coupon_user');
 
-    const { COUPON } = this.constructor;
-    const { STATUS, TIME_TYPE, TYPE } = couponService.getConstants();
+    const { COUPON, STATUS, TIME_TYPE, TYPE } = couponService.getConstants();
 
     const coupon = await couponService.findByCode(code);
     if (think.isEmpty(coupon)) {
