@@ -18,6 +18,24 @@ module.exports = class UserService extends think.Service {
 
   /**
    * 
+   * @param {number} id 
+   * @returns {Promise<User|Record<string, never>>} 
+   */
+  async findUserVoById(id) {
+    const user = await this.findById(id);
+
+    if (think.isEmpty(user)) {
+      return {};
+    }
+
+    return {
+      nickname: user.nickname,
+      avatar: user.avatar,
+    };
+  }
+
+  /**
+   * 
    * @param {string} openid 
    * @returns {Promise<User|Record<string, never>>} 
    */
