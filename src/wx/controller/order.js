@@ -171,7 +171,7 @@ module.exports = class WxOrderController extends Base {
     const systemService = this.service('system');
 
     const COUPON_USER = couponUserService.getConstants();
-    const { GROUPON } = grouponService.getConstants();
+    const GROUPON = grouponService.getConstants();
     const { RULE_STATUS } = grouponRulesService.getConstants();
     const { STATUS } = orderService.getConstants();
 
@@ -191,26 +191,26 @@ module.exports = class WxOrderController extends Base {
       }
 
       if (RULE_STATUS.DOWN_EXPIRE == rules.status) {
-        return this.fail(GROUPON.EXPIRED, '团购已过期!');
+        return this.fail(GROUPON.RESPONSE.EXPIRED, '团购已过期!');
       }
 
       if (RULE_STATUS.DOWN_ADMIN == rules.status) {
-        return this.fail(GROUPON.OFFLINE, '团购已下线!');
+        return this.fail(GROUPON.RESPONSE.OFFLINE, '团购已下线!');
       }
 
       if (!think.isEmpty(grouponLinkId)) {
         if ((await grouponService.countGroupon(grouponLinkId)) > (rules.discountMember - 1)) {
-          return this.fail(GROUPON.FULL, '团购活动人数已满!');
+          return this.fail(GROUPON.RESPONSE.FULL, '团购活动人数已满!');
         }
 
         if (await grouponService.hasJoin(grouponLinkId, userId)) {
-          return this.fail(GROUPON.JOIN, '团购活动已经参加!');
+          return this.fail(GROUPON.RESPONSE.JOIN, '团购活动已经参加!');
         }
 
         const groupon = await grouponService.queryById(grouponLinkId, userId);
 
         if (!think.isEmpty(groupon) && groupon.creatorUserId == userId) {
-          return this.fail(GROUPON.JOIN, '团购活动已经参加!');
+          return this.fail(GROUPON.RESPONSE.JOIN, '团购活动已经参加!');
         }
       }
     }

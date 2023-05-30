@@ -125,7 +125,7 @@ module.exports = class GrouponService extends think.Service {
 
   getConstants() {
     return {
-      GROUPON: {
+      RESPONSE: {
         EXPIRED: 730,
         OFFLINE: 731,
         FULL: 732,
