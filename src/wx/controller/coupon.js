@@ -129,7 +129,7 @@ module.exports = class WxCouponController extends Base {
     /** @type {CouponUserService} */
     const couponUserService = this.service('coupon_user');
 
-    const { COUPON, STATUS, TIME_TYPE, TYPE } = couponService.getConstants();
+    const COUPON = couponService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
@@ -142,27 +142,27 @@ module.exports = class WxCouponController extends Base {
 
     const totalCoupons = await couponUserService.countCoupon(couponId);
     if (0 != coupon.total && totalCoupons >= coupon.total) {
-      return this.fail(COUPON.EXCEED_LIMIT, '优惠券已领完');
+      return this.fail(COUPON.RESPONSE.EXCEED_LIMIT, '优惠券已领完');
     }
 
     const userCoupons = await couponUserService.countUserAndCoupon(userId, couponId);
     if (0 != coupon.limit && userCoupons >= coupon.limit) {
-      return this.fail(COUPON.EXCEED_LIMIT, '优惠券已经领取过');
+      return this.fail(COUPON.RESPONSE.EXCEED_LIMIT, '优惠券已经领取过');
     }
 
-    if (TYPE.REGISTER == coupon.type) {
-      return this.fail(COUPON.RECEIVE_FAIL, '新用户优惠券自动发送');
-    } else if (TYPE.CODE == coupon.type) {
-      return this.fail(COUPON.RECEIVE_FAIL, '优惠券只能兑换');
-    } else if (TYPE.COMMON != coupon.type) {
-      return this.fail(COUPON.RECEIVE_FAIL, '优惠券类型不支持');
+    if (COUPON.TYPE.REGISTER == coupon.type) {
+      return this.fail(COUPON.RESPONSE.RECEIVE_FAIL, '新用户优惠券自动发送');
+    } else if (COUPON.TYPE.CODE == coupon.type) {
+      return this.fail(COUPON.RESPONSE.RECEIVE_FAIL, '优惠券只能兑换');
+    } else if (COUPON.TYPE.COMMON != coupon.type) {
+      return this.fail(COUPON.RESPONSE.RECEIVE_FAIL, '优惠券类型不支持');
     }
 
     switch (coupon.status) {
-      case STATUS.OUT:
-        return this.fail(COUPON.EXCEED_LIMIT, '优惠券已领完');
-      case STATUS.EXPIRED:
-        return this.fail(COUPON.RECEIVE_FAIL, '优惠券已经过期');
+      case COUPON.STATUS.OUT:
+        return this.fail(COUPON.RESPONSE.EXCEED_LIMIT, '优惠券已领完');
+      case COUPON.STATUS.EXPIRED:
+        return this.fail(COUPON.RESPONSE.RECEIVE_FAIL, '优惠券已经过期');
     }
 
     const couponUser = {
@@ -170,7 +170,7 @@ module.exports = class WxCouponController extends Base {
       userId,
     };
 
-    if (TIME_TYPE.TIME == coupon.timeType) {
+    if (COUPON.TIME_TYPE.TIME == coupon.timeType) {
       Object.assign(couponUser, {
         startTime: coupon.startTime,
         endTime: coupon.endTime,
@@ -200,36 +200,36 @@ module.exports = class WxCouponController extends Base {
     /** @type {CouponUserService} */
     const couponUserService = this.service('coupon_user');
 
-    const { COUPON, STATUS, TIME_TYPE, TYPE } = couponService.getConstants();
+    const COUPON = couponService.getConstants();
 
     const coupon = await couponService.findByCode(code);
     if (think.isEmpty(coupon)) {
-      return this.fail(COUPON.CODE_INVALID, '优惠券不正确');
+      return this.fail(COUPON.RESPONSE.CODE_INVALID, '优惠券不正确');
     }
 
     const totalCoupons = await couponUserService.countCoupon(coupon.id);
     if (0 != coupon.total && totalCoupons >= coupon.total) {
-      return this.fail(COUPON.EXCEED_LIMIT, '优惠券已兑换');
+      return this.fail(COUPON.RESPONSE.EXCEED_LIMIT, '优惠券已兑换');
     }
 
     const userCoupons = await couponUserService.countUserAndCoupon(userId, coupon.id);
     if (0 != coupon.limit && userCoupons >= coupon.limit) {
-      return this.fail(COUPON.EXCEED_LIMIT, '优惠券已兑换');
+      return this.fail(COUPON.RESPONSE.EXCEED_LIMIT, '优惠券已兑换');
     }
 
-    if (TYPE.REGISTER == coupon.type) {
-      return this.fail(COUPON.RECEIVE_FAIL, '新用户优惠券自动发送');
-    } else if (TYPE.COMMON == coupon.type) {
-      return this.fail(COUPON.RECEIVE_FAIL, '优惠券只能领取，不能兑换');
-    } else if (TYPE.CODE != coupon.type) {
-      return this.fail(COUPON.RECEIVE_FAIL, '优惠券类型不支持');
+    if (COUPON.TYPE.REGISTER == coupon.type) {
+      return this.fail(COUPON.RESPONSE.RECEIVE_FAIL, '新用户优惠券自动发送');
+    } else if (COUPON.TYPE.COMMON == coupon.type) {
+      return this.fail(COUPON.RESPONSE.RECEIVE_FAIL, '优惠券只能领取，不能兑换');
+    } else if (COUPON.TYPE.CODE != coupon.type) {
+      return this.fail(COUPON.RESPONSE.RECEIVE_FAIL, '优惠券类型不支持');
     }
 
     switch (coupon.status) {
-      case STATUS.OUT:
-        return this.fail(COUPON.EXCEED_LIMIT, '优惠券已兑换');
-      case STATUS.EXPIRED:
-        return this.fail(COUPON.RECEIVE_FAIL, '优惠券已经过期');
+      case COUPON.STATUS.OUT:
+        return this.fail(COUPON.RESPONSE.EXCEED_LIMIT, '优惠券已兑换');
+      case COUPON.STATUS.EXPIRED:
+        return this.fail(COUPON.RESPONSE.RECEIVE_FAIL, '优惠券已经过期');
     }
 
     const couponUser = {
@@ -237,7 +237,7 @@ module.exports = class WxCouponController extends Base {
       userId,
     };
 
-    if (TIME_TYPE.TIME == coupon.timeType) {
+    if (COUPON.TIME_TYPE.TIME == coupon.timeType) {
       Object.assign(couponUser, {
         startTime: coupon.startTime,
         endTime: coupon.endTime,
