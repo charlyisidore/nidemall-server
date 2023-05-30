@@ -136,7 +136,38 @@ module.exports = class WxGrouponController extends Base {
   }
 
   async joinAction() {
-    return this.success('todo');
+    /** @type {number} */
+    const grouponId = this.get('grouponId');
+
+    /** @type {GrouponService} */
+    const grouponService = this.service('groupon');
+    /** @type {GrouponRulesService} */
+    const grouponRulesService = this.service('groupon_rules');
+    /** @type {GoodsService} */
+    const goodsService = this.service('goods');
+
+    const groupon = await grouponService.queryById(grouponId);
+
+    if (think.isEmpty(groupon)) {
+      return this.badArgumentValue();
+    }
+
+    const grouponRules = await grouponRulesService.findById(groupon.rulesId);
+
+    if (think.isEmpty(grouponRules)) {
+      return this.badArgumentValue();
+    }
+
+    const goods = await goodsService.findById(grouponRules.goodsId);
+
+    if (think.isEmpty(goods)) {
+      return this.badArgumentValue();
+    }
+
+    return this.success({
+      groupon,
+      goods,
+    });
   }
 
   async myAction() {
