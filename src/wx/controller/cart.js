@@ -1,11 +1,6 @@
 const Base = require('./base.js');
 
 module.exports = class WxCartController extends Base {
-  static GOODS = {
-    UNSHELVE: 710,
-    NO_STOCK: 711,
-  };
-
   indexAction() {
     return this.index(this.getUserId());
   }
@@ -26,7 +21,7 @@ module.exports = class WxCartController extends Base {
     /** @type {GoodsProductService} */
     const goodsProductService = this.service('goods_product');
 
-    const { GOODS } = this.constructor;
+    const GOODS = goodsService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
@@ -41,7 +36,7 @@ module.exports = class WxCartController extends Base {
     const goods = await goodsService.findById(goodsId);
 
     if (think.isEmpty(goods) || !goods.isOnSale) {
-      return this.fail(GOODS.UNSHELVE, '商品已下架')
+      return this.fail(GOODS.RESPONSE.UNSHELVE, '商品已下架')
     }
 
     const product = await goodsProductService.findById(productId);
@@ -49,7 +44,7 @@ module.exports = class WxCartController extends Base {
 
     if (think.isEmpty(existCart)) {
       if (think.isEmpty(product) || number > product.number) {
-        return this.fail(GOODS.NO_STOCK, '库存不足');
+        return this.fail(GOODS.RESPONSE.NO_STOCK, '库存不足');
       }
 
       Object.assign(cart, {
@@ -67,7 +62,7 @@ module.exports = class WxCartController extends Base {
     } else {
       const num = existCart.number + number;
       if (num > product.number) {
-        return this.fail(GOODS.NO_STOCK, '库存不足');
+        return this.fail(GOODS.RESPONSE.NO_STOCK, '库存不足');
       }
 
       existCart.number = num;
@@ -95,7 +90,7 @@ module.exports = class WxCartController extends Base {
     /** @type {GoodsProductService} */
     const goodsProductService = this.service('goods_product');
 
-    const { GOODS } = this.constructor;
+    const GOODS = goodsService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
@@ -110,7 +105,7 @@ module.exports = class WxCartController extends Base {
     const goods = await goodsService.findById(goodsId);
 
     if (think.isEmpty(goods) || !goods.isOnSale) {
-      return this.fail(GOODS.UNSHELVE, '商品已下架')
+      return this.fail(GOODS.RESPONSE.UNSHELVE, '商品已下架')
     }
 
     const product = await goodsProductService.findById(productId);
@@ -118,7 +113,7 @@ module.exports = class WxCartController extends Base {
 
     if (think.isEmpty(existCart)) {
       if (think.isEmpty(product) || number > product.number) {
-        return this.fail(GOODS.NO_STOCK, '库存不足');
+        return this.fail(GOODS.RESPONSE.NO_STOCK, '库存不足');
       }
 
       Object.assign(cart, {
@@ -135,7 +130,7 @@ module.exports = class WxCartController extends Base {
       cart.id = await cartService.add(cart);
     } else {
       if (number > product.number) {
-        return this.fail(GOODS.NO_STOCK, '库存不足');
+        return this.fail(GOODS.RESPONSE.NO_STOCK, '库存不足');
       }
 
       existCart.number = number;
@@ -169,7 +164,7 @@ module.exports = class WxCartController extends Base {
     /** @type {GoodsProductService} */
     const goodsProductService = this.service('goods_product');
 
-    const { GOODS } = this.constructor;
+    const GOODS = goodsService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
@@ -189,12 +184,12 @@ module.exports = class WxCartController extends Base {
 
     const goods = await goodsService.findById(goodsId);
     if (think.isEmpty(goods) || !goods.isOnSale) {
-      return this.fail(GOODS.UNSHELVE, '商品已下架');
+      return this.fail(GOODS.RESPONSE.UNSHELVE, '商品已下架');
     }
 
     const product = await goodsProductService.findById(productId);
     if (think.isEmpty(product) || product.number < number) {
-      return this.fail(GOODS.UNSHELVE, '库存不足');
+      return this.fail(GOODS.RESPONSE.UNSHELVE, '库存不足');
     }
 
     Object.assign(existCart, {

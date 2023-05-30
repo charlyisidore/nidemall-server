@@ -236,4 +236,13 @@ module.exports = class GoodsService extends think.Service {
     return (await model.select())
       .map((item) => item.categoryId);
   }
+
+  getConstants() {
+    return {
+      RESPONSE: {
+        UNSHELVE: 710,
+        NO_STOCK: 711,
+      },
+    };
+  }
 }
