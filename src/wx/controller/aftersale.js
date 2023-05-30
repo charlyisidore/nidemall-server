@@ -98,7 +98,7 @@ module.exports = class WxAftersaleController extends Base {
     /** @type {OrderService} */
     const orderService = this.service('order');
 
-    const { AFTERSALE, STATUS } = aftersaleService.getConstants();
+    const AFTERSALE = aftersaleService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
@@ -111,17 +111,17 @@ module.exports = class WxAftersaleController extends Base {
     }
 
     if (!orderService.isConfirmStatus(order) && !orderService.isAutoConfirmStatus(order)) {
-      return this.fail(AFTERSALE.UNALLOWED, '不能申请售后');
+      return this.fail(AFTERSALE.RESPONSE.UNALLOWED, '不能申请售后');
     }
 
     const orderAmount = order.actualPrice - order.freightPrice;
 
     if (amount > orderAmount) {
-      return this.fail(AFTERSALE.INVALID_AMOUNT, '退款金额不正确');
+      return this.fail(AFTERSALE.RESPONSE.INVALID_AMOUNT, '退款金额不正确');
     }
 
-    if ([STATUS.RECEPT, STATUS.REFUND].includes(order.aftersaleStatus)) {
-      return this.fail(AFTERSALE.INVALID_AMOUNT, '已申请售后');
+    if ([AFTERSALE.STATUS.RECEPT, AFTERSALE.STATUS.REFUND].includes(order.aftersaleStatus)) {
+      return this.fail(AFTERSALE.RESPONSE.INVALID_AMOUNT, '已申请售后');
     }
 
     await aftersaleService.deleteByOrderId(orderId, userId);
@@ -133,12 +133,12 @@ module.exports = class WxAftersaleController extends Base {
       reason,
       pictures,
       comment,
-      status: STATUS.REQUEST,
+      status: AFTERSALE.STATUS.REQUEST,
       aftersaleSn: await aftersaleService.generateAftersaleSn(userId),
       userId,
     });
 
-    await orderService.updateAftersaleStatus(orderId, STATUS.REQUEST);
+    await orderService.updateAftersaleStatus(orderId, AFTERSALE.STATUS.REQUEST);
 
     return this.success();
   }

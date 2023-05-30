@@ -134,7 +134,7 @@ module.exports = class AftersaleService extends think.Service {
 
   getConstants() {
     return {
-      AFTERSALE: {
+      RESPONSE: {
         UNALLOWED: 750,
         INVALID_AMOUNT: 751,
         INVALID_STATUS: 752,
