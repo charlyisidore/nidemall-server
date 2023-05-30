@@ -1,17 +1,4 @@
 module.exports = class OrderService extends think.Service {
-  static STATUS = {
-    CREATE: 101,
-    PAY: 201,
-    SHIP: 301,
-    CONFIRM: 401,
-    CANCEL: 102,
-    AUTO_CANCEL: 103,
-    ADMIN_CANCEL: 104,
-    REFUND: 202,
-    REFUND_CONFIRM: 203,
-    AUTO_CONFIRM: 402,
-  };
-
   constructor() {
     super();
   }
@@ -240,23 +227,28 @@ module.exports = class OrderService extends think.Service {
   }
 
   isCreateStatus(order) {
-    return this.constructor.STATUS.CREATE == order.orderStatus;
+    const { STATUS } = this.getConstants();
+    return STATUS.CREATE == order.orderStatus;
   }
 
   isPayStatus(order) {
-    return this.constructor.STATUS.PAY == order.orderStatus;
+    const { STATUS } = this.getConstants();
+    return STATUS.PAY == order.orderStatus;
   }
 
   isShipStatus(order) {
-    return this.constructor.STATUS.SHIP == order.orderStatus;
+    const { STATUS } = this.getConstants();
+    return STATUS.SHIP == order.orderStatus;
   }
 
   isConfirmStatus(order) {
-    return this.constructor.STATUS.CONFIRM == order.orderStatus;
+    const { STATUS } = this.getConstants();
+    return STATUS.CONFIRM == order.orderStatus;
   }
 
   isAutoConfirmStatus(order) {
-    return this.constructor.STATUS.AUTO_CONFIRM == order.orderStatus;
+    const { STATUS } = this.getConstants();
+    return STATUS.AUTO_CONFIRM == order.orderStatus;
   }
 
   /**
@@ -326,5 +318,32 @@ module.exports = class OrderService extends think.Service {
       default:
         throw new Error('orderStatus不支持');
     }
+  }
+
+  getConstants() {
+    return {
+      ORDER: {
+        UNKNOWN: 720,
+        INVALID: 721,
+        CHECKOUT_FAIL: 722,
+        CANCEL_FAIL: 723,
+        PAY_FAIL: 724,
+        INVALID_OPERATION: 725,
+        COMMENTED: 726,
+        COMMENT_EXPIRED: 727,
+      },
+      STATUS: {
+        CREATE: 101,
+        PAY: 201,
+        SHIP: 301,
+        CONFIRM: 401,
+        CANCEL: 102,
+        AUTO_CANCEL: 103,
+        ADMIN_CANCEL: 104,
+        REFUND: 202,
+        REFUND_CONFIRM: 203,
+        AUTO_CONFIRM: 402,
+      },
+    };
   }
 }

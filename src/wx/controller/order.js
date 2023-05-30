@@ -12,30 +12,6 @@ module.exports = class WxOrderController extends Base {
     JOIN: 733,
   };
 
-  static ORDER = {
-    UNKNOWN: 720,
-    INVALID: 721,
-    CHECKOUT_FAIL: 722,
-    CANCEL_FAIL: 723,
-    PAY_FAIL: 724,
-    INVALID_OPERATION: 725,
-    COMMENTED: 726,
-    COMMENT_EXPIRED: 727,
-  };
-
-  static STATUS = {
-    CREATE: 101,
-    CANCEL: 102,
-    AUTO_CANCEL: 103,
-    ADMIN_CANCEL: 104,
-    PAY: 201,
-    REFUND: 202,
-    REFUND_CONFIRM: 203,
-    SHIP: 301,
-    CONFIRM: 401,
-    AUTO_CONFIRM: 402,
-  };
-
   async listAction() {
     const userId = this.getUserId();
     /** @type {number} */
@@ -110,7 +86,7 @@ module.exports = class WxOrderController extends Base {
     /** @type {OrderGoodsService} */
     const orderGoodsService = this.service('order_goods');
 
-    const { ORDER, STATUS } = this.constructor;
+    const { ORDER, STATUS } = orderService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
@@ -205,7 +181,8 @@ module.exports = class WxOrderController extends Base {
     /** @type {SystemService} */
     const systemService = this.service('system');
 
-    const { GROUPON, STATUS } = this.constructor;
+    const { GROUPON } = this.constructor;
+    const { STATUS } = orderService.getConstants();
     const { RULE_STATUS } = GrouponRulesService;
     const COUPON_USER = couponUserService.getConstants();
 
@@ -477,7 +454,7 @@ module.exports = class WxOrderController extends Base {
     /** @type {OrderGoodsService} */
     const orderGoodsService = this.service('order_goods');
 
-    const { ORDER, STATUS } = this.constructor;
+    const { ORDER, STATUS } = orderService.getConstants();
 
     const now = new Date();
 
@@ -533,7 +510,7 @@ module.exports = class WxOrderController extends Base {
     /** @type {WeixinService} */
     const weixinService = this.service('weixin');
 
-    const { ORDER, STATUS } = this.constructor;
+    const { ORDER } = orderService.getConstants();
 
     const now = new Date();
 
@@ -596,7 +573,7 @@ module.exports = class WxOrderController extends Base {
     /** @type {OrderService} */
     const orderService = this.service('order');
 
-    const { ORDER, STATUS } = this.constructor;
+    const { ORDER, STATUS } = orderService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
@@ -642,7 +619,7 @@ module.exports = class WxOrderController extends Base {
     /** @type {OrderGoodsService} */
     const orderGoodsService = this.service('order_goods');
 
-    const { ORDER, STATUS } = this.constructor;
+    const { ORDER, STATUS } = orderService.getConstants();
 
     const now = new Date();
 
@@ -691,7 +668,7 @@ module.exports = class WxOrderController extends Base {
     /** @type {OrderService} */
     const orderService = this.service('order');
 
-    const { ORDER } = this.constructor;
+    const { ORDER } = orderService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
@@ -768,7 +745,7 @@ module.exports = class WxOrderController extends Base {
     /** @type {OrderGoodsService} */
     const orderGoodsService = this.service('order_goods');
 
-    const { ORDER } = this.constructor;
+    const { ORDER } = orderService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
