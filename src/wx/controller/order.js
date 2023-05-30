@@ -1,5 +1,4 @@
 const Base = require('./base.js');
-const WxAuthController = require('./auth.js');
 
 module.exports = class WxOrderController extends Base {
   async listAction() {
@@ -493,6 +492,8 @@ module.exports = class WxOrderController extends Base {
     /** @type {number} */
     const orderId = this.get('orderId');
 
+    /** @type {AuthService} */
+    const authService = this.service('auth');
     /** @type {OrderService} */
     const orderService = this.service('order');
     /** @type {UserService} */
@@ -500,9 +501,8 @@ module.exports = class WxOrderController extends Base {
     /** @type {WeixinService} */
     const weixinService = this.service('weixin');
 
+    const { AUTH } = authService.getConstants();
     const { ORDER } = orderService.getConstants();
-
-    const now = new Date();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
@@ -523,7 +523,7 @@ module.exports = class WxOrderController extends Base {
     const user = await userService.findById(userId);
 
     if (think.isNullOrUndefined(user.weixinOpenid)) {
-      return this.fail(WxAuthController.AUTH.OPENID_UNACCESS, '订单不能支付');
+      return this.fail(AUTH.OPENID_UNACCESS, '订单不能支付');
     }
 
     let result = null;

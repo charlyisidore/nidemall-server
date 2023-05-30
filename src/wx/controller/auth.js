@@ -1,16 +1,6 @@
 const Base = require('./base.js');
 
 module.exports = class WxAuthController extends Base {
-  static AUTH = {
-    INVALID_ACCOUNT: 700,
-    CAPTCHA_UNMATCH: 703,
-    NAME_REGISTERED: 704,
-    MOBILE_REGISTERED: 705,
-    INVALID_MOBILE: 707,
-    OPENID_UNACCESS: 708,
-    OPENID_BINDED: 709,
-  };
-
   static DEFAULT_AVATAR = 'https://yanxuan.nosdn.127.net/80841d741d7fa3073e0ae27bf487339f.jpg?imageView&quality=90&thumbnail=64x64';
 
   async loginAction() {
@@ -22,7 +12,7 @@ module.exports = class WxAuthController extends Base {
     /** @type {UserService} */
     const userService = this.service('user');
 
-    const { AUTH } = this.constructor;
+    const { AUTH } = authService.getConstants();
 
     if (think.isTrueEmpty(username) || think.isTrueEmpty(password)) {
       return this.badArgument();
@@ -154,7 +144,7 @@ module.exports = class WxAuthController extends Base {
     /** @type {WeixinService} */
     const weixinService = this.service('weixin');
 
-    const { AUTH } = this.constructor;
+    const { AUTH } = authService.getConstants();
 
     if (think.isTrueEmpty(username) ||
       think.isTrueEmpty(password) ||

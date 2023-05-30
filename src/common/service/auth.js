@@ -71,4 +71,18 @@ module.exports = class AuthService extends think.Service {
     const salt = await bcrypt.genSalt();
     return bcrypt.hash(password, salt);
   }
+
+  getConstants() {
+    return {
+      AUTH: {
+        INVALID_ACCOUNT: 700,
+        CAPTCHA_UNMATCH: 703,
+        NAME_REGISTERED: 704,
+        MOBILE_REGISTERED: 705,
+        INVALID_MOBILE: 707,
+        OPENID_UNACCESS: 708,
+        OPENID_BINDED: 709,
+      },
+    };
+  }
 }
