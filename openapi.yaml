@@ -12,29 +12,282 @@ servers:
   - url: http://localhost:8080/wx
   - url: http://localhost:8360/wx
 tags:
-  - name: home
-  - name: catalog
+  - name: address
+  - name: aftersale
   - name: auth
-  - name: goods
   - name: brand
   - name: cart
+  - name: catalog
   - name: collect
   - name: comment
-  - name: topic
-  - name: search
-  - name: address
+  - name: coupon
   - name: express
-  - name: region
-  - name: order
-  - name: aftersale
   - name: feedback
   - name: footprint
+  - name: goods
   - name: groupon
-  - name: coupon
-  - name: storage
-  - name: user
+  - name: home
   - name: issue
+  - name: order
+  - name: region
+  - name: search
+  - name: storage
+  - name: topic
+  - name: user
 paths:
+  /catalog/current:
+    get:
+      tags:
+        - catalog
+      summary: Catalog current
+      description: Catalog current
+      operationId: wxCatalogCurrent
+      parameters:
+        - name: id
+          in: query
+          description: Category ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          currentCategory:
+                            $ref: '#/components/schemas/Category'
+                          currentSubCategory:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Category'
+  /catalog/index:
+    get:
+      tags:
+        - catalog
+      summary: Catalog index
+      description: Catalog index
+      operationId: wxCatalogIndex
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          currentCategory:
+                            $ref: '#/components/schemas/Category'
+                          categoryList:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Category'
+                          currentSubCategory:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Category'
+  /goods/category:
+    get:
+      tags:
+        - goods
+      summary: Goods category
+      description: Goods category
+      operationId: wxGoodsCategory
+      parameters:
+        - name: id
+          in: query
+          description: Category ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          currentCategory:
+                            $ref: '#/components/schemas/Category'
+                          brotherCategory:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Category'
+                          parentCategory:
+                            $ref: '#/components/schemas/Category'
+  /goods/count:
+    get:
+      tags:
+        - goods
+      summary: Goods count
+      description: Goods count
+      operationId: wxGoodsCount
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: integer
+  /goods/detail:
+    get:
+      tags:
+        - goods
+      summary: Goods detail
+      description: Goods detail
+      operationId: wxGoodsDetail
+      parameters:
+        - name: id
+          in: query
+          description: Goods ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          specificationList:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                valueList:
+                                  type: array
+                                  items:
+                                    $ref: '#/components/schemas/GoodsSpecification'
+                          groupon:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/GrouponRules'
+                          issue:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Issue'
+                          userHasCollect:
+                            type: integer
+                          shareImage:
+                            type: string
+                          comment:
+                            type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  $ref: '#/components/schemas/Comment'
+                              count:
+                                type: integer
+                          share:
+                            type: boolean
+                          attribute:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/GoodsAttribute'
+                          brand:
+                            oneOf:
+                              - $ref: '#/components/schemas/Brand'
+                              - {}
+                          productList:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/GoodsProduct'
+                          info:
+                            $ref: '#/components/schemas/GoodsInfo'
+  /goods/list:
+    get:
+      tags:
+        - goods
+      summary: Goods list
+      description: Goods list
+      operationId: wxGoodsList
+      parameters:
+        - name: categoryId
+          in: query
+          description: Category ID
+          required: false
+          schema:
+            type: integer
+        - name: brandId
+          in: query
+          description: Brand ID
+          required: false
+          schema:
+            type: integer
+        - name: keyword
+          in: query
+          description: Search by keywords
+          required: false
+          schema:
+            type: string
+        - name: isNew
+          in: query
+          description: Only new goods
+          required: false
+          schema:
+            type: boolean
+        - name: isHot
+          in: query
+          description: Only hot goods
+          required: false
+          schema:
+            type: boolean
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sort'
+        - $ref: '#/components/parameters/order'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: '#/components/schemas/List'
+                          - type: object
+                            properties:
+                              list:
+                                type: array
+                                items:
+                                  $ref: '#/components/schemas/Goods'
   /home/index:
     get:
       tags:
@@ -132,259 +385,6 @@ paths:
                             type: string
                           longitude:
                             type: string
-  /catalog/index:
-    get:
-      tags:
-        - catalog
-      summary: Catalog index
-      description: Catalog index
-      operationId: wxCatalogIndex
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: '#/components/schemas/ApiResponse'
-                  - type: object
-                    properties:
-                      data:
-                        type: object
-                        properties:
-                          currentCategory:
-                            $ref: '#/components/schemas/Category'
-                          categoryList:
-                            type: array
-                            items:
-                              $ref: '#/components/schemas/Category'
-                          currentSubCategory:
-                            type: array
-                            items:
-                              $ref: '#/components/schemas/Category'
-  /catalog/current:
-    get:
-      tags:
-        - catalog
-      summary: Catalog current
-      description: Catalog current
-      operationId: wxCatalogCurrent
-      parameters:
-        - name: id
-          in: query
-          description: Category ID
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: '#/components/schemas/ApiResponse'
-                  - type: object
-                    properties:
-                      data:
-                        type: object
-                        properties:
-                          currentCategory:
-                            $ref: '#/components/schemas/Category'
-                          currentSubCategory:
-                            type: array
-                            items:
-                              $ref: '#/components/schemas/Category'
-  /goods/count:
-    get:
-      tags:
-        - goods
-      summary: Goods count
-      description: Goods count
-      operationId: wxGoodsCount
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: '#/components/schemas/ApiResponse'
-                  - type: object
-                    properties:
-                      data:
-                        type: integer
-  /goods/list:
-    get:
-      tags:
-        - goods
-      summary: Goods list
-      description: Goods list
-      operationId: wxGoodsList
-      parameters:
-        - name: categoryId
-          in: query
-          description: Category ID
-          required: false
-          schema:
-            type: integer
-        - name: brandId
-          in: query
-          description: Brand ID
-          required: false
-          schema:
-            type: integer
-        - name: keyword
-          in: query
-          description: Search by keywords
-          required: false
-          schema:
-            type: string
-        - name: isNew
-          in: query
-          description: Only new goods
-          required: false
-          schema:
-            type: boolean
-        - name: isHot
-          in: query
-          description: Only hot goods
-          required: false
-          schema:
-            type: boolean
-        - $ref: '#/components/parameters/page'
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/sort'
-        - $ref: '#/components/parameters/order'
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: '#/components/schemas/ApiResponse'
-                  - type: object
-                    properties:
-                      data:
-                        allOf:
-                          - $ref: '#/components/schemas/List'
-                          - type: object
-                            properties:
-                              list:
-                                type: array
-                                items:
-                                  $ref: '#/components/schemas/Goods'
-  /goods/category:
-    get:
-      tags:
-        - goods
-      summary: Goods category
-      description: Goods category
-      operationId: wxGoodsCategory
-      parameters:
-        - name: id
-          in: query
-          description: Category ID
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: '#/components/schemas/ApiResponse'
-                  - type: object
-                    properties:
-                      data:
-                        type: object
-                        properties:
-                          currentCategory:
-                            $ref: '#/components/schemas/Category'
-                          brotherCategory:
-                            type: array
-                            items:
-                              $ref: '#/components/schemas/Category'
-                          parentCategory:
-                            $ref: '#/components/schemas/Category'
-  /goods/detail:
-    get:
-      tags:
-        - goods
-      summary: Goods detail
-      description: Goods detail
-      operationId: wxGoodsDetail
-      parameters:
-        - name: id
-          in: query
-          description: Goods ID
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: '#/components/schemas/ApiResponse'
-                  - type: object
-                    properties:
-                      data:
-                        type: object
-                        properties:
-                          specificationList:
-                            type: array
-                            items:
-                              type: object
-                              properties:
-                                name:
-                                  type: string
-                                valueList:
-                                  type: array
-                                  items:
-                                    $ref: '#/components/schemas/GoodsSpecification'
-                          groupon:
-                            type: array
-                            items:
-                              $ref: '#/components/schemas/GrouponRules'
-                          issue:
-                            type: array
-                            items:
-                              $ref: '#/components/schemas/Issue'
-                          userHasCollect:
-                            type: integer
-                          shareImage:
-                            type: string
-                          comment:
-                            type: object
-                            properties:
-                              data:
-                                type: array
-                                items:
-                                  $ref: '#/components/schemas/Comment'
-                              count:
-                                type: integer
-                          share:
-                            type: boolean
-                          attribute:
-                            type: array
-                            items:
-                              $ref: '#/components/schemas/GoodsAttribute'
-                          brand:
-                            oneOf:
-                              - $ref: '#/components/schemas/Brand'
-                              - {}
-                          productList:
-                            type: array
-                            items:
-                              $ref: '#/components/schemas/GoodsProduct'
-                          info:
-                            $ref: '#/components/schemas/GoodsInfo'
 components:
   schemas:
     ApiResponse:
