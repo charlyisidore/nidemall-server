@@ -348,7 +348,7 @@ module.exports = class WxOrderController extends Base {
     if (grouponRulesId) {
       const groupon = {
         orderId: order.id,
-        status: grouponService.getConstants().STATUS.NONE,
+        status: GROUPON.STATUS.NONE,
         userId,
         rulesId: grouponRulesId,
       };
@@ -395,7 +395,7 @@ module.exports = class WxOrderController extends Base {
           groupon.shareUrl = 'TODO';//qrCodeService.createGrouponShareImage(grouponRules.goodsName, grouponRules.picUrl, groupon);
         }
 
-        groupon.status = grouponService.getConstants().STATUS.ON;
+        groupon.status = GROUPON.STATUS.ON;
 
         if (!await grouponService.updateById(groupon)) {
           throw new Error('更新数据已失效');
@@ -405,13 +405,13 @@ module.exports = class WxOrderController extends Base {
 
         if (groupon.groupondId && grouponList.length >= (grouponRules.discountMember - 1)) {
           for (const grouponActivity of grouponList) {
-            grouponActivity.status = grouponService.getConstants().STATUS.SUCCEED;
+            grouponActivity.status = GROUPON.STATUS.SUCCEED;
 
             await grouponService.updateById(grouponActivity);
           }
 
           const grouponSource = await grouponService.queryById(groupon.grouponId);
-          grouponSource.status = grouponService.getConstants().STATUS.SUCCEED;
+          grouponSource.status = GROUPON.STATUS.SUCCEED;
           await grouponService.updateById(grouponSource);
         }
       }
