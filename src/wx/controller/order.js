@@ -501,7 +501,7 @@ module.exports = class WxOrderController extends Base {
     /** @type {WeixinService} */
     const weixinService = this.service('weixin');
 
-    const { AUTH } = authService.getConstants();
+    const AUTH = authService.getConstants();
     const { ORDER } = orderService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
@@ -523,7 +523,7 @@ module.exports = class WxOrderController extends Base {
     const user = await userService.findById(userId);
 
     if (think.isNullOrUndefined(user.weixinOpenid)) {
-      return this.fail(AUTH.OPENID_UNACCESS, '订单不能支付');
+      return this.fail(AUTH.RESPONSE.OPENID_UNACCESS, '订单不能支付');
     }
 
     let result = null;

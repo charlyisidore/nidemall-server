@@ -12,7 +12,7 @@ module.exports = class WxAuthController extends Base {
     /** @type {UserService} */
     const userService = this.service('user');
 
-    const { AUTH } = authService.getConstants();
+    const AUTH = authService.getConstants();
 
     if (think.isTrueEmpty(username) || think.isTrueEmpty(password)) {
       return this.badArgument();
@@ -21,7 +21,7 @@ module.exports = class WxAuthController extends Base {
     const userList = await userService.queryByUsername(username);
 
     if (think.isEmpty(userList)) {
-      return this.fail(AUTH.INVALID_ACCOUNT, '账号不存在');
+      return this.fail(AUTH.RESPONSE.INVALID_ACCOUNT, '账号不存在');
     }
 
     if (userList.length > 1) {
@@ -31,7 +31,7 @@ module.exports = class WxAuthController extends Base {
     const [user] = userList;
 
     if (!await authService.comparePassword(password, user.password)) {
-      return this.fail(AUTH.INVALID_ACCOUNT, '账号密码不对');
+      return this.fail(AUTH.RESPONSE.INVALID_ACCOUNT, '账号密码不对');
     }
 
     user.lastLoginTime = new Date();
@@ -144,7 +144,7 @@ module.exports = class WxAuthController extends Base {
     /** @type {WeixinService} */
     const weixinService = this.service('weixin');
 
-    const { AUTH } = authService.getConstants();
+    const AUTH = authService.getConstants();
 
     if (think.isTrueEmpty(username) ||
       think.isTrueEmpty(password) ||
@@ -155,23 +155,23 @@ module.exports = class WxAuthController extends Base {
 
     let userList = await userService.queryByUsername(username);
     if (!think.isEmpty(userList)) {
-      return this.fail(AUTH.NAME_REGISTERED, '用户名已注册');
+      return this.fail(AUTH.RESPONSE.NAME_REGISTERED, '用户名已注册');
     }
 
     userList = await userService.queryByMobile(mobile);
     if (!think.isEmpty(userList)) {
-      return this.fail(AUTH.MOBILE_REGISTERED, '手机号已注册');
+      return this.fail(AUTH.RESPONSE.MOBILE_REGISTERED, '手机号已注册');
     }
 
     if (!/^[1]\d{10}$/.test(mobile)) {
-      return this.fail(AUTH.INVALID_MOBILE, '手机号格式不正确');
+      return this.fail(AUTH.RESPONSE.INVALID_MOBILE, '手机号格式不正确');
     }
 
     // TODO
     const cacheCode = CaptchaCodeManager.getCachedCaptcha(mobile);
 
     if (think.isEmpty(cacheCode) || cacheCode != code) {
-      return this.fail(AUTH.CAPTCHA_UNMATCH, '验证码错误');
+      return this.fail(AUTH.RESPONSE.CAPTCHA_UNMATCH, '验证码错误');
     }
 
     let openid = '';
@@ -184,7 +184,7 @@ module.exports = class WxAuthController extends Base {
       } catch (e) {
         console.error(e);
         think.logger.error(e.toString());
-        return this.fail(AUTH.OPENID_UNACCESS, 'openid 获取失败');
+        return this.fail(AUTH.RESPONSE.OPENID_UNACCESS, 'openid 获取失败');
       }
 
       userList = await userService.queryByOpenid(openid);
@@ -197,7 +197,7 @@ module.exports = class WxAuthController extends Base {
         const [checkUser] = userList;
 
         if (checkUser.username != openid || checkUser.password != openid) {
-          return this.fail(AUTH.OPENID_BINDED, 'openid已绑定账号');
+          return this.fail(AUTH.RESPONSE.OPENID_BINDED, 'openid已绑定账号');
         }
       }
     }

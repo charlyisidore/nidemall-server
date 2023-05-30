@@ -74,7 +74,7 @@ module.exports = class AuthService extends think.Service {
 
   getConstants() {
     return {
-      AUTH: {
+      RESPONSE: {
         INVALID_ACCOUNT: 700,
         CAPTCHA_UNMATCH: 703,
         NAME_REGISTERED: 704,
