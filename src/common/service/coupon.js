@@ -1,27 +1,4 @@
 module.exports = class CouponService extends think.Service {
-  static TYPE = {
-    COMMON: 0,
-    REGISTER: 1,
-    CODE: 2,
-  };
-
-  static GOODS_TYPE = {
-    ALL: 0,
-    CATEGORY: 1,
-    ARRAY: 2,
-  };
-
-  static STATUS = {
-    NORMAL: 0,
-    EXPIRED: 1,
-    OUT: 2,
-  };
-
-  static TIME_TYPE = {
-    DAYS: 0,
-    TIME: 1,
-  };
-
   static FIELDS = [
     'id',
     'name',
@@ -47,11 +24,12 @@ module.exports = class CouponService extends think.Service {
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Coupon[]}>}
    */
   queryList(page, limit, sort, order) {
+    const { TYPE, STATUS } = this.getConstants();
     const model = this.model('coupon')
       .field(this.constructor.FIELDS)
       .where({
-        type: this.constructor.TYPE.COMMON,
-        status: this.constructor.STATUS.NORMAL,
+        type: TYPE.COMMON,
+        status: STATUS.NORMAL,
         deleted: false,
       })
       .page(page, limit);
@@ -71,6 +49,7 @@ module.exports = class CouponService extends think.Service {
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Coupon[]}>}
    */
   async queryAvailableList(userId, page, limit) {
+    const { TYPE, STATUS } = this.getConstants();
     const model = this.model('coupon');
 
     const used = await this.model('coupon_user')
@@ -79,8 +58,8 @@ module.exports = class CouponService extends think.Service {
       });
 
     const where = {
-      type: this.constructor.TYPE.COMMON,
-      status: this.constructor.STATUS.NORMAL,
+      type: TYPE.COMMON,
+      status: STATUS.NORMAL,
       deleted: false,
     };
 
@@ -114,10 +93,11 @@ module.exports = class CouponService extends think.Service {
    * @returns {Promise<Coupon[]>} 
    */
   queryRegister() {
+    const { TYPE, STATUS } = this.getConstants();
     return this.model('coupon')
       .where({
-        type: this.constructor.TYPE.REGISTER,
-        status: this.constructor.STATUS.NORMAL,
+        type: TYPE.REGISTER,
+        status: STATUS.NORMAL,
         deleted: false,
       })
       .select();
@@ -128,6 +108,7 @@ module.exports = class CouponService extends think.Service {
    * @param {number} userId 
    */
   async assignForRegister(userId) {
+    const { TIME_TYPE } = this.getConstants();
     const couponList = await this.queryRegister();
 
     for (const coupon of couponList) {
@@ -143,7 +124,7 @@ module.exports = class CouponService extends think.Service {
           userId,
         };
 
-        if (this.constructor.TIME_TYPE.TIME == coupon.timeType) {
+        if (TIME_TYPE.TIME == coupon.timeType) {
           Object.assign(couponUser, {
             startTime: coupon.startTime,
             endTime: coupon.endTime,
@@ -177,7 +158,7 @@ module.exports = class CouponService extends think.Service {
     /** @type {GoodsService} */
     const goodsService = think.service('goods');
 
-    const { GOODS_TYPE, TIME_TYPE, STATUS } = this.constructor;
+    const { GOODS_TYPE, TIME_TYPE, STATUS } = this.getConstants();
 
     const coupon = await this.findById(couponId);
     if (think.isEmpty(coupon) || coupon.deleted) {
@@ -256,5 +237,29 @@ module.exports = class CouponService extends think.Service {
     }
 
     return coupon;
+  }
+
+  getConstants() {
+    return {
+      TYPE: {
+        COMMON: 0,
+        REGISTER: 1,
+        CODE: 2,
+      },
+      GOODS_TYPE: {
+        ALL: 0,
+        CATEGORY: 1,
+        ARRAY: 2,
+      },
+      STATUS: {
+        NORMAL: 0,
+        EXPIRED: 1,
+        OUT: 2,
+      },
+      TIME_TYPE: {
+        DAYS: 0,
+        TIME: 1,
+      },
+    };
   }
 }
