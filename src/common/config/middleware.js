@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 const isDev = think.env === 'development';
 
 module.exports = [

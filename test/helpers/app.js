@@ -1,5 +1,5 @@
 const supertest = require('supertest');
-const path = require('path');
+const path = require('node:path');
 require(path.join(process.cwd(), 'production.js'));
 
 const app = think.app.listen();

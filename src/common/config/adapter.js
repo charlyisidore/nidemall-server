@@ -3,7 +3,7 @@ const mysql = require('think-model-mysql');
 const postgresql = require('think-model-postgresql');
 const sqlite = require('think-model-sqlite');
 const { Console, File, DateFile } = require('think-logger3');
-const path = require('path');
+const path = require('node:path');
 const isDev = think.env === 'development';
 
 /**
