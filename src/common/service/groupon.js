@@ -1,11 +1,4 @@
 module.exports = class GrouponService extends think.Service {
-  static STATUS = {
-    NONE: 0,
-    ON: 1,
-    SUCCEED: 2,
-    FAIL: 3,
-  };
-
   constructor() {
     super();
   }
@@ -30,10 +23,11 @@ module.exports = class GrouponService extends think.Service {
    * @returns {Promise<Groupon[]>}
    */
   queryJoinRecord(id) {
+    const { STATUS } = this.getConstants();
     return this.model('groupon')
       .where({
         grouponId: id,
-        status: ['!=', this.constructor.STATUS.NONE],
+        status: ['!=', STATUS.NONE],
         deleted: false,
       })
       .order({
@@ -71,10 +65,11 @@ module.exports = class GrouponService extends think.Service {
    * @returns {Promise<number>} The total number
    */
   countGroupon(grouponId) {
+    const { STATUS } = this.getConstants();
     return this.model('groupon')
       .where({
         grouponId,
-        status: ['!=', this.constructor.STATUS.NONE],
+        status: ['!=', STATUS.NONE],
         deleted: false,
       })
       .count();
@@ -87,11 +82,12 @@ module.exports = class GrouponService extends think.Service {
    * @returns {Promise<boolean>}
    */
   async hasJoin(grouponId, userId) {
+    const { STATUS } = this.getConstants();
     return 0 != await this.model('groupon')
       .where({
         grouponId,
         userId,
-        status: ['!=', this.constructor.STATUS.NONE],
+        status: ['!=', STATUS.NONE],
         deleted: false,
       })
       .count();
@@ -125,5 +121,22 @@ module.exports = class GrouponService extends think.Service {
         addTime: now,
         updateTime: now,
       }));
+  }
+
+  getConstants() {
+    return {
+      GROUPON: {
+        EXPIRED: 730,
+        OFFLINE: 731,
+        FULL: 732,
+        JOIN: 733,
+      },
+      STATUS: {
+        NONE: 0,
+        ON: 1,
+        SUCCEED: 2,
+        FAIL: 3,
+      },
+    };
   }
 }

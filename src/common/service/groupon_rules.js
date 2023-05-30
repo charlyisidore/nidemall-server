@@ -1,17 +1,4 @@
 module.exports = class GrouponRulesService extends think.Service {
-  static RULE_STATUS = {
-    ON: 0,
-    DOWN_EXPIRE: 1,
-    DOWN_ADMIN: 2,
-  };
-
-  static STATUS = {
-    NONE: 0,
-    ON: 1,
-    SUCCEED: 2,
-    FAIL: 3,
-  };
-
   constructor() {
     super();
   }
@@ -33,10 +20,11 @@ module.exports = class GrouponRulesService extends think.Service {
    * @returns {Promise<GrouponRules[]>} 
    */
   queryByGoodsId(goodsId) {
+    const { RULE_STATUS } = this.getConstants();
     return this.model('groupon_rules')
       .where({
         goodsId,
-        status: this.constructor.RULE_STATUS.ON,
+        status: RULE_STATUS.ON,
         deleted: false,
       })
       .select();
@@ -51,9 +39,10 @@ module.exports = class GrouponRulesService extends think.Service {
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: GrouponRules[]}>}
    */
   queryList(page, limit, sort = 'addTime', order = 'DESC') {
+    const { RULE_STATUS } = this.getConstants();
     return this.model('groupon_rules')
       .where({
-        status: this.constructor.RULE_STATUS.ON,
+        status: RULE_STATUS.ON,
         deleted: false,
       })
       .order({
@@ -107,6 +96,16 @@ module.exports = class GrouponRulesService extends think.Service {
       pageSize: grouponRulesList.pageSize,
       totalPages: grouponRulesList.totalPages,
       list: grouponRulesVoList,
+    };
+  }
+
+  getConstants() {
+    return {
+      RULE_STATUS: {
+        ON: 0,
+        DOWN_EXPIRE: 1,
+        DOWN_ADMIN: 2,
+      },
     };
   }
 }

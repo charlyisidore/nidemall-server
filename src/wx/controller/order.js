@@ -1,17 +1,7 @@
 const Base = require('./base.js');
 const WxAuthController = require('./auth.js');
-const CouponUserService = require('../../common/service/coupon_user.js');
-const GrouponService = require('../../common/service/groupon.js');
-const GrouponRulesService = require('../../common/service/groupon_rules.js');
 
 module.exports = class WxOrderController extends Base {
-  static GROUPON = {
-    EXPIRED: 730,
-    OFFLINE: 731,
-    FULL: 732,
-    JOIN: 733,
-  };
-
   async listAction() {
     const userId = this.getUserId();
     /** @type {number} */
@@ -181,10 +171,10 @@ module.exports = class WxOrderController extends Base {
     /** @type {SystemService} */
     const systemService = this.service('system');
 
-    const { GROUPON } = this.constructor;
-    const { STATUS } = orderService.getConstants();
-    const { RULE_STATUS } = GrouponRulesService;
     const COUPON_USER = couponUserService.getConstants();
+    const { GROUPON } = grouponService.getConstants();
+    const { RULE_STATUS } = grouponRulesService.getConstants();
+    const { STATUS } = orderService.getConstants();
 
     const freight = await systemService.getFreight();
     const freightLimit = await systemService.getFreightLimit();
@@ -359,7 +349,7 @@ module.exports = class WxOrderController extends Base {
     if (grouponRulesId) {
       const groupon = {
         orderId: order.id,
-        status: GrouponService.STATUS.NONE,
+        status: grouponService.getConstants().STATUS.NONE,
         userId,
         rulesId: grouponRulesId,
       };
@@ -406,7 +396,7 @@ module.exports = class WxOrderController extends Base {
           groupon.shareUrl = 'TODO';//qrCodeService.createGrouponShareImage(grouponRules.goodsName, grouponRules.picUrl, groupon);
         }
 
-        groupon.status = GrouponService.STATUS.ON;
+        groupon.status = grouponService.getConstants().STATUS.ON;
 
         if (!await grouponService.updateById(groupon)) {
           throw new Error('更新数据已失效');
@@ -416,13 +406,13 @@ module.exports = class WxOrderController extends Base {
 
         if (groupon.groupondId && grouponList.length >= (grouponRules.discountMember - 1)) {
           for (const grouponActivity of grouponList) {
-            grouponActivity.status = GrouponService.STATUS.SUCCEED;
+            grouponActivity.status = grouponService.getConstants().STATUS.SUCCEED;
 
             await grouponService.updateById(grouponActivity);
           }
 
           const grouponSource = await grouponService.queryById(groupon.grouponId);
-          grouponSource.status = GrouponService.STATUS.SUCCEED;
+          grouponSource.status = grouponService.getConstants().STATUS.SUCCEED;
           await grouponService.updateById(grouponSource);
         }
       }
