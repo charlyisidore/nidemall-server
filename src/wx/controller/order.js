@@ -207,6 +207,7 @@ module.exports = class WxOrderController extends Base {
 
     const { GROUPON, STATUS } = this.constructor;
     const { RULE_STATUS } = GrouponRulesService;
+    const COUPON_USER = couponUserService.getConstants();
 
     const freight = await systemService.getFreight();
     const freightLimit = await systemService.getFreightLimit();
@@ -370,7 +371,7 @@ module.exports = class WxOrderController extends Base {
       const couponUser = await couponUserService.findById(userCouponId);
 
       Object.assign(couponUser, {
-        status: CouponUserService.STATUS.USED,
+        status: COUPON_USER.STATUS.USED,
         usedTime: now,
         orderId: order.id,
       });
@@ -846,13 +847,15 @@ module.exports = class WxOrderController extends Base {
     /** @type {CouponUserService} */
     const couponUserService = this.service('coupon_user');
 
+    const { STATUS } = couponUserService.getConstants();
+
     const now = new Date();
 
     const couponUsers = await couponUserService.findByOid(orderId);
 
     return Promise.all(couponUsers.map(async (couponUser) => {
       Object.assign(couponUser, {
-        status: CouponUserService.STATUS.USABLE,
+        status: STATUS.USABLE,
         updateTime: now,
       });
 

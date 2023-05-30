@@ -1,11 +1,4 @@
 module.exports = class CouponUserService extends think.Service {
-  static STATUS = {
-    USABLE: 0,
-    USED: 1,
-    EXPIRED: 2,
-    OUT: 3,
-  };
-
   constructor() {
     super();
   }
@@ -87,12 +80,14 @@ module.exports = class CouponUserService extends think.Service {
    * 
    * @param {number} userId 
    * @param {number?} couponId 
+   * @returns {Promise<CouponUser[]>} 
    */
   queryAll(userId, couponId) {
+    const { STATUS } = this.getConstants();
     return this.queryList(
       userId,
       couponId,
-      this.constructor.STATUS.USABLE,
+      STATUS.USABLE,
       null,
       null,
       'addTime',
@@ -130,7 +125,7 @@ module.exports = class CouponUserService extends think.Service {
   /**
    * 
    * @param {number} orderId 
-   * @returns {Promise<Order[]>}
+   * @returns {Promise<CouponUser[]>}
    */
   findByOid(orderId) {
     return this.model('coupon_user')
@@ -139,5 +134,16 @@ module.exports = class CouponUserService extends think.Service {
         deleted: false,
       })
       .select();
+  }
+
+  getConstants() {
+    return {
+      STATUS: {
+        USABLE: 0,
+        USED: 1,
+        EXPIRED: 2,
+        OUT: 3,
+      },
+    };
   }
 }
