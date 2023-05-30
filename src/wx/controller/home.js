@@ -49,7 +49,7 @@ module.exports = class WxHomeController extends Base {
       newGoodsList: data.newGoodsList,
       couponList: data.couponList.data,
       channel: data.channel,
-      grouponList: data.grouponList,
+      grouponList: data.grouponList.data,
       banner: data.banner,
       brandList: data.brandList.data,
       hotGoodsList: data.hotGoodsList,

@@ -48,7 +48,7 @@ module.exports = class GrouponRulesService extends think.Service {
    * @param {number} limit 
    * @param {string?} sort 
    * @param {string?} order 
-   * @returns {Promise<GrouponRules[]>} 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: GrouponRules[]}>}
    */
   queryList(page, limit, sort = 'addTime', order = 'DESC') {
     return this.model('groupon_rules')
@@ -60,7 +60,7 @@ module.exports = class GrouponRulesService extends think.Service {
         [sort]: order,
       })
       .page(page, limit)
-      .select();
+      .countSelect();
   }
 
   /**
@@ -69,7 +69,7 @@ module.exports = class GrouponRulesService extends think.Service {
    * @param {number} limit 
    * @param {string?} sort 
    * @param {string?} order 
-   * @returns {Promise<object[]>}
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: object[]}>}
    */
   async wxQueryList(page, limit, sort, order) {
     /** @type {GoodsService} */
@@ -77,8 +77,8 @@ module.exports = class GrouponRulesService extends think.Service {
 
     const grouponRulesList = await this.queryList(page, limit, sort, order);
 
-    return (await Promise.all(
-      grouponRulesList.map(async (rule) => {
+    const grouponRulesVoList = (await Promise.all(
+      grouponRulesList.data.map(async (rule) => {
         const goods = await goodsService.findById(rule.goodsId);
 
         if (think.isEmpty(goods)) {
@@ -100,5 +100,13 @@ module.exports = class GrouponRulesService extends think.Service {
       })
     ))
       .filter((grouponRules) => !think.isEmpty(grouponRules));
+
+    return {
+      count: grouponRulesList.count,
+      currentPage: grouponRulesList.currentPage,
+      pageSize: grouponRulesList.pageSize,
+      totalPages: grouponRulesList.totalPages,
+      list: grouponRulesVoList,
+    };
   }
 }
