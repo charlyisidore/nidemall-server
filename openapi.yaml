@@ -35,6 +35,32 @@ tags:
   - name: topic
   - name: user
 paths:
+  /address/detail:
+    get:
+      tags:
+        - address
+      summary: Address detail
+      description: Address detail
+      operationId: wxAddressDetail
+      parameters:
+        - name: id
+          in: query
+          description: Address ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Address'
   /catalog/current:
     get:
       tags:
@@ -430,6 +456,35 @@ components:
         content:
           type: string
         enabled:
+          type: boolean
+        addTime:
+          $ref: '#/components/schemas/DateTime'
+        updateTime:
+          $ref: '#/components/schemas/DateTime'
+        deleted:
+          type: boolean
+    Address:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        userId:
+          type: integer
+        province:
+          type: string
+        city:
+          type: string
+        county:
+          type: string
+        addressDetail:
+          type: string
+        areaCode:
+          type: string
+        tel:
+          type: string
+        isDefault:
           type: boolean
         addTime:
           $ref: '#/components/schemas/DateTime'
