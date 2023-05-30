@@ -5,6 +5,47 @@ module.exports = class GrouponService extends think.Service {
 
   /**
    * 
+   * @param {number} userId 
+   * @returns {Promise<Groupon[]>}
+   */
+  queryMyGroupon(userId) {
+    const { STATUS } = this.getConstants();
+    return this.model('groupon')
+      .where({
+        userId,
+        creatorUserId: userId,
+        grouponId: 0,
+        status: ['!=', STATUS.NONE],
+        deleted: false,
+      })
+      .order({
+        addTime: 'DESC',
+      })
+      .select();
+  }
+
+  /**
+   * 
+   * @param {number} userId 
+   * @returns {Promise<Groupon[]>}
+   */
+  queryMyJoinGroupon(userId) {
+    const { STATUS } = this.getConstants();
+    return this.model('groupon')
+      .where({
+        userId,
+        grouponId: ['!=', 0],
+        status: ['!=', STATUS.NONE],
+        deleted: false,
+      })
+      .order({
+        addTime: 'DESC',
+      })
+      .select();
+  }
+
+  /**
+   * 
    * @param {number} orderId 
    * @returns {Promise<Order|Record<string, never>>}
    */

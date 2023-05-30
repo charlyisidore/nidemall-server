@@ -171,6 +171,84 @@ module.exports = class WxGrouponController extends Base {
   }
 
   async myAction() {
-    return this.success('todo');
+    const userId = this.getUserId();
+    /** @type {number} */
+    const showType = this.get('showType');
+
+    /** @type {GrouponService} */
+    const grouponService = this.service('groupon');
+    /** @type {GrouponRulesService} */
+    const grouponRulesService = this.service('groupon_rules');
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+    /** @type {OrderGoodsService} */
+    const orderGoodsService = this.service('order_goods');
+    /** @type {UserService} */
+    const userService = this.service('user');
+
+    const ORDER = orderService.getConstants();
+
+    if (think.isNullOrUndefined(userId)) {
+      return this.unlogin();
+    }
+
+    const myGroupons = (0 == showType) ?
+      await grouponService.queryMyGroupon(userId) :
+      await grouponService.queryMyJoinGroupon(userId);
+
+    const grouponVoList = await Promise.all(
+      myGroupons.map(async (groupon) => {
+        const order = await orderService.findById(groupon.orderId, userId);
+        const rules = await grouponRulesService.findById(groupon.rulesId);
+        const creator = await userService.findById(groupon.creatorUserId);
+
+        const grouponVo = {
+          id: groupon.id,
+          groupon,
+          rules,
+          creator: creator.nickname,
+        };
+
+        let linkGrouponId;
+        if (0 == groupon.grouponId) {
+          linkGrouponId = groupon.id;
+          Object.assign(grouponVo, {
+            isCreator: (creator.id == userId),
+          });
+        } else {
+          linkGrouponId = groupon.grouponId;
+          Object.assign(grouponVo, {
+            isCreator: false,
+          });
+        }
+
+        const joinerCount = await grouponService.countGroupon(linkGrouponId);
+
+        Object.assign(grouponVo, {
+          joinerCount: joinerCount + 1,
+          orderId: order.id,
+          orderSn: order.orderSn,
+          actualPrice: order.actualPrice,
+          orderStatusText: orderService.orderStatusText(order),
+        });
+
+        const goodsList = (await orderGoodsService.queryByOid(order.id))
+          .map((orderGoods) => ({
+            id: orderGoods.id,
+            goodsName: orderGoods.goodsName,
+            number: orderGoods.number,
+            picUrl: orderGoods.picUrl,
+          }));
+
+        return Object.assign(grouponVo, {
+          goodsList,
+        });
+      })
+    );
+
+    return this.success({
+      total: grouponVoList.length,
+      list: grouponVoList,
+    });
   }
 };
