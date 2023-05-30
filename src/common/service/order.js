@@ -320,6 +320,70 @@ module.exports = class OrderService extends think.Service {
     }
   }
 
+  /**
+   * 
+   * @param {{ orderStatus: number }} order 
+   * @returns {{ cancel: boolean?, pay: boolean?, delete: boolean?, refund: boolean?, confirm: boolean?, comment: boolean?, rebuy: boolean?, aftersale: boolean? }}
+   */
+  build(order) {
+    const handleOption = {};
+
+    switch (order.orderStatus) {
+      case 101:
+        // If the order is not cancelled and not paid for, it is payable and can be cancelled
+        Object.assign(handleOption, {
+          cancel: true,
+          pay: true,
+        });
+        break;
+      case 102:
+      case 103:
+        // If the order has been cancelled or completed, it can be deleted
+        Object.assign(handleOption, {
+          delete: true,
+        });
+        break;
+      case 201:
+        // If an order is paid for and not shipped, a refund will be issued
+        Object.assign(handleOption, {
+          refund: true,
+        });
+        break;
+      case 202:
+      case 204:
+        // If the order request for refund is in progress, there is no relevant operation
+        break;
+      case 203:
+        // If the order has been refunded, it can be deleted
+        Object.assign(handleOption, {
+          delete: true,
+        });
+        break;
+      case 301:
+        // If the order has been shipped and not received, then you can receive the goods operation,
+        // at this time can not cancel the order
+        Object.assign(handleOption, {
+          confirm: true,
+        });
+        break;
+      case 401:
+      case 402:
+        // If an order has been paid for and received, it can be deleted, de-commented,
+        // requested after-sales and purchased again
+        Object.assign(handleOption, {
+          delete: true,
+          comment: true,
+          rebuy: true,
+          aftersale: true,
+        });
+        break;
+      default:
+        throw new Error('status不支持');
+    }
+
+    return handleOption;
+  }
+
   getConstants() {
     return {
       RESPONSE: {
