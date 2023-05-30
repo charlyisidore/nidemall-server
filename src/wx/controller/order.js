@@ -75,7 +75,7 @@ module.exports = class WxOrderController extends Base {
     /** @type {OrderGoodsService} */
     const orderGoodsService = this.service('order_goods');
 
-    const { ORDER, STATUS } = orderService.getConstants();
+    const ORDER = orderService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
@@ -84,11 +84,11 @@ module.exports = class WxOrderController extends Base {
     const order = await orderService.findById(orderId, userId);
 
     if (think.isEmpty(order)) {
-      return this.fail(ORDER.UNKNOWN, '订单不存在');
+      return this.fail(ORDER.RESPONSE.UNKNOWN, '订单不存在');
     }
 
     if (order.userId != userId) {
-      return this.fail(ORDER.INVALID, '不是当前用户的订单');
+      return this.fail(ORDER.RESPONSE.INVALID, '不是当前用户的订单');
     }
 
     const orderVo = {
@@ -119,7 +119,7 @@ module.exports = class WxOrderController extends Base {
       expressInfo: {},
     };
 
-    if (STATUS.SHIP === order.orderStatus) {
+    if (ORDER.STATUS.SHIP === order.orderStatus) {
       const expressInfo = await expressService.getExpressInfo(order.shipChannel, order.shipSn);
 
       if (!think.isEmpty(expressInfo)) {
@@ -173,7 +173,7 @@ module.exports = class WxOrderController extends Base {
     const COUPON_USER = couponUserService.getConstants();
     const GROUPON = grouponService.getConstants();
     const { RULE_STATUS } = grouponRulesService.getConstants();
-    const { STATUS } = orderService.getConstants();
+    const ORDER = orderService.getConstants();
 
     const freight = await systemService.getFreight();
     const freightLimit = await systemService.getFreightLimit();
@@ -279,7 +279,7 @@ module.exports = class WxOrderController extends Base {
     const order = {
       userId,
       orderSn: await orderService.generateOrderSn(userId),
-      orderStatus: STATUS.CREATE,
+      orderStatus: ORDER.STATUS.CREATE,
       consignee: checkedAddres.name,
       mobile: checkedAddres.tel,
       message,
@@ -382,7 +382,7 @@ module.exports = class WxOrderController extends Base {
 
       await orderService.updateSelective({
         id: order.id,
-        orderStatus: STATUS.PAY,
+        orderStatus: ORDER.STATUS.PAY,
       });
 
       const groupon = await grouponService.queryByOrderId(order.id);
@@ -443,7 +443,7 @@ module.exports = class WxOrderController extends Base {
     /** @type {OrderGoodsService} */
     const orderGoodsService = this.service('order_goods');
 
-    const { ORDER, STATUS } = orderService.getConstants();
+    const ORDER = orderService.getConstants();
 
     const now = new Date();
 
@@ -460,11 +460,11 @@ module.exports = class WxOrderController extends Base {
     const handleOption = this.build(order);
 
     if (!handleOption.cancel) {
-      return this.fail(ORDER.INVALID_OPERATION, '订单不能取消');
+      return this.fail(ORDER.RESPONSE.INVALID_OPERATION, '订单不能取消');
     }
 
     Object.assign(order, {
-      orderStatus: STATUS.CANCEL,
+      orderStatus: ORDER.STATUS.CANCEL,
       endTime: now,
     });
 
@@ -502,7 +502,7 @@ module.exports = class WxOrderController extends Base {
     const weixinService = this.service('weixin');
 
     const AUTH = authService.getConstants();
-    const { ORDER } = orderService.getConstants();
+    const ORDER = orderService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
@@ -517,7 +517,7 @@ module.exports = class WxOrderController extends Base {
     const handleOption = this.build(order);
 
     if (!handleOption.pay) {
-      return this.fail(ORDER.INVALID_OPERATION, '订单不能支付');
+      return this.fail(ORDER.RESPONSE.INVALID_OPERATION, '订单不能支付');
     }
 
     const user = await userService.findById(userId);
@@ -538,7 +538,7 @@ module.exports = class WxOrderController extends Base {
     } catch (e) {
       console.error(e);
       think.logger.error(e.toString());
-      return this.fail(ORDER.PAY_FAIL, '订单不能支付');
+      return this.fail(ORDER.RESPONSE.PAY_FAIL, '订单不能支付');
     }
 
 
@@ -563,7 +563,7 @@ module.exports = class WxOrderController extends Base {
     /** @type {OrderService} */
     const orderService = this.service('order');
 
-    const { ORDER, STATUS } = orderService.getConstants();
+    const ORDER = orderService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
@@ -582,11 +582,11 @@ module.exports = class WxOrderController extends Base {
     const handleOption = this.build(order);
 
     if (!handleOption.refund) {
-      return this.fail(ORDER.INVALID_OPERATION, '订单不能取消');
+      return this.fail(ORDER.RESPONSE.INVALID_OPERATION, '订单不能取消');
     }
 
     Object.assign(order, {
-      orderStatus: STATUS.REFUND,
+      orderStatus: ORDER.STATUS.REFUND,
     });
 
     if (!await orderService.updateWithOptimisticLocker(order)) {
@@ -609,7 +609,7 @@ module.exports = class WxOrderController extends Base {
     /** @type {OrderGoodsService} */
     const orderGoodsService = this.service('order_goods');
 
-    const { ORDER, STATUS } = orderService.getConstants();
+    const ORDER = orderService.getConstants();
 
     const now = new Date();
 
@@ -630,14 +630,14 @@ module.exports = class WxOrderController extends Base {
     const handleOption = this.build(order);
 
     if (!handleOption.confirm) {
-      return this.fail(ORDER.INVALID_OPERATION, '订单不能确认收货');
+      return this.fail(ORDER.RESPONSE.INVALID_OPERATION, '订单不能确认收货');
     }
 
     const comments = await orderGoodsService.getComments(orderId);
 
     Object.assign(order, {
       comments,
-      orderStatus: STATUS.CONFIRM,
+      orderStatus: ORDER.STATUS.CONFIRM,
       confirmTime: now,
     });
 
@@ -658,7 +658,7 @@ module.exports = class WxOrderController extends Base {
     /** @type {OrderService} */
     const orderService = this.service('order');
 
-    const { ORDER } = orderService.getConstants();
+    const ORDER = orderService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
@@ -677,7 +677,7 @@ module.exports = class WxOrderController extends Base {
     const handleOption = this.build(order);
 
     if (!handleOption.delete) {
-      return this.fail(ORDER.INVALID_OPERATION, '订单不能删除');
+      return this.fail(ORDER.RESPONSE.INVALID_OPERATION, '订单不能删除');
     }
 
     await orderService.deleteById(orderId);
@@ -735,7 +735,7 @@ module.exports = class WxOrderController extends Base {
     /** @type {OrderGoodsService} */
     const orderGoodsService = this.service('order_goods');
 
-    const { ORDER } = orderService.getConstants();
+    const ORDER = orderService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
@@ -754,21 +754,21 @@ module.exports = class WxOrderController extends Base {
     }
 
     if (!orderService.isConfirmStatus(order) && !orderService.isAutoConfirmStatus(order)) {
-      return this.fail(ORDER.INVALID_OPERATION, '当前商品不能评价');
+      return this.fail(ORDER.RESPONSE.INVALID_OPERATION, '当前商品不能评价');
     }
 
     if (order.userId != userId) {
-      return this.fail(ORDER.INVALID, '当前商品不属于用户');
+      return this.fail(ORDER.RESPONSE.INVALID, '当前商品不属于用户');
     }
 
     if (-1 == orderGoods.comment) {
       // Current product evaluation time has expired
-      return this.fail(ORDER.COMMENT_EXPIRED, '当前商品评价时间已经过期');
+      return this.fail(ORDER.RESPONSE.COMMENT_EXPIRED, '当前商品评价时间已经过期');
     }
 
     if (0 != orderGoods.comment) {
       // Already evaluated
-      return this.fail(ORDER.COMMENTED, '订单商品已评价');
+      return this.fail(ORDER.RESPONSE.COMMENTED, '订单商品已评价');
     }
 
     if (think.isNullOrUndefined(star) || star < 0 || star > 5) {
@@ -814,7 +814,7 @@ module.exports = class WxOrderController extends Base {
     /** @type {CouponUserService} */
     const couponUserService = this.service('coupon_user');
 
-    const { STATUS } = couponUserService.getConstants();
+    const COUPON_USER = couponUserService.getConstants();
 
     const now = new Date();
 
@@ -822,7 +822,7 @@ module.exports = class WxOrderController extends Base {
 
     return Promise.all(couponUsers.map(async (couponUser) => {
       Object.assign(couponUser, {
-        status: STATUS.USABLE,
+        status: COUPON_USER.STATUS.USABLE,
         updateTime: now,
       });
 

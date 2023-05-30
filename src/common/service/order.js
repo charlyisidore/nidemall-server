@@ -322,7 +322,7 @@ module.exports = class OrderService extends think.Service {
 
   getConstants() {
     return {
-      ORDER: {
+      RESPONSE: {
         UNKNOWN: 720,
         INVALID: 721,
         CHECKOUT_FAIL: 722,
