@@ -172,7 +172,7 @@ module.exports = class WxOrderController extends Base {
 
     const COUPON_USER = couponUserService.getConstants();
     const GROUPON = grouponService.getConstants();
-    const { RULE_STATUS } = grouponRulesService.getConstants();
+    const GROUPON_RULES = grouponRulesService.getConstants();
     const ORDER = orderService.getConstants();
 
     const freight = await systemService.getFreight();
@@ -190,11 +190,11 @@ module.exports = class WxOrderController extends Base {
         return this.badArgument();
       }
 
-      if (RULE_STATUS.DOWN_EXPIRE == rules.status) {
+      if (GROUPON_RULES.RULE_STATUS.DOWN_EXPIRE == rules.status) {
         return this.fail(GROUPON.RESPONSE.EXPIRED, '团购已过期!');
       }
 
-      if (RULE_STATUS.DOWN_ADMIN == rules.status) {
+      if (GROUPON_RULES.RULE_STATUS.DOWN_ADMIN == rules.status) {
         return this.fail(GROUPON.RESPONSE.OFFLINE, '团购已下线!');
       }
 
