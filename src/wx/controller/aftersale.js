@@ -1,18 +1,6 @@
 const Base = require('./base.js');
 
 module.exports = class WxAftersaleController extends Base {
-  static AFTERSALE = {
-    UNALLOWED: 750,
-    INVALID_AMOUNT: 751,
-    INVALID_STATUS: 752,
-  };
-
-  static STATUS = {
-    REQUEST: 1,
-    RECEPT: 2,
-    REFUND: 3,
-  };
-
   async listAction() {
     const userId = this.getUserId();
     /** @type {number?} */
@@ -110,7 +98,7 @@ module.exports = class WxAftersaleController extends Base {
     /** @type {OrderService} */
     const orderService = this.service('order');
 
-    const { AFTERSALE, STATUS } = this.constructor;
+    const { AFTERSALE, STATUS } = aftersaleService.getConstants();
 
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();

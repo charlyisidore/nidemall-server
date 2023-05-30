@@ -131,4 +131,27 @@ module.exports = class AftersaleService extends think.Service {
       .toString()
       .padStart(n, '0');
   }
+
+  getConstants() {
+    return {
+      AFTERSALE: {
+        UNALLOWED: 750,
+        INVALID_AMOUNT: 751,
+        INVALID_STATUS: 752,
+      },
+      STATUS: {
+        INIT: 0,
+        REQUEST: 1,
+        RECEPT: 2,
+        REFUND: 3,
+        REJECT: 4,
+        CANCEL: 5,
+      },
+      TYPE_GOODS: {
+        MISS: 0,
+        NEEDLESS: 1,
+        REQUIRED: 2,
+      },
+    };
+  }
 }
