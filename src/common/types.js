@@ -40,10 +40,10 @@
  * @property {string?} content - 活动内容
  * @property {Date?} startTime - 广告开始时间
  * @property {Date?} endTime - 广告结束时间
- * @property {number?} enabled - 是否启动
+ * @property {boolean?} enabled - 是否启动
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -58,10 +58,10 @@
  * @property {string?} areaCode - 地区编码
  * @property {string?} postalCode - 邮政编码
  * @property {string?} tel - 手机号码
- * @property {number?} isDefault - 是否默认地址
+ * @property {boolean?} isDefault - 是否默认地址
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -74,7 +74,7 @@
  * @property {string?} avatar - 头像图片
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  * @property {number[]?} roleIds - 角色列表
  */
 
@@ -93,7 +93,7 @@
  * @property {Date?} handleTime - 管理员操作时间
  * @property {Date?} addTime - 添加时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -106,7 +106,7 @@
  * @property {number?} floorPrice - 品牌商的商品低价，仅用于页面展示
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -120,11 +120,11 @@
  * @property {number?} price - 商品货品的价格
  * @property {number?} number - 商品货品的数量
  * @property {string[]?} specifications - 商品规格值列表，采用JSON数组格式
- * @property {number?} checked - 购物车中商品是否选择状态
+ * @property {boolean?} checked - 购物车中商品是否选择状态
  * @property {string?} picUrl - 商品图片或者商品货品图片
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -140,7 +140,7 @@
  * @property {number?} sortOrder - 排序
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -151,7 +151,7 @@
  * @property {number?} type - 收藏类型，如果type=0，则是商品ID；如果type=1，则是专题ID
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -162,12 +162,12 @@
  * @property {string?} content - 评论内容
  * @property {string?} adminContent - 管理员回复内容
  * @property {number?} userId - 用户表的用户ID
- * @property {number?} hasPicture - 是否含有图片
+ * @property {boolean?} hasPicture - 是否含有图片
  * @property {string[]?} picUrls - 图片地址列表，采用JSON数组格式
  * @property {number?} star - 评分， 1-5
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -191,7 +191,7 @@
  * @property {Date?} endTime - 使用券截至时间
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -206,7 +206,7 @@
  * @property {number?} orderId - 订单ID
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -218,11 +218,11 @@
  * @property {string?} feedType - 反馈类型
  * @property {string} content - 反馈内容
  * @property {number?} status - 状态
- * @property {number?} hasPicture - 是否含有图片
+ * @property {boolean?} hasPicture - 是否含有图片
  * @property {string[]?} picUrls - 图片地址列表，采用JSON数组格式
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -232,7 +232,7 @@
  * @property {number?} goodsId - 浏览商品ID
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -245,19 +245,19 @@
  * @property {string[]?} gallery - 商品宣传图片列表，采用JSON数组格式
  * @property {string?} keywords - 商品关键字，采用逗号间隔
  * @property {string?} brief - 商品简介
- * @property {number?} isOnSale - 是否上架
+ * @property {boolean?} isOnSale - 是否上架
  * @property {number?} sortOrder
  * @property {string?} picUrl - 商品页面商品图片
  * @property {string?} shareUrl - 商品分享海报
- * @property {number?} isNew - 是否新品首发，如果设置则可以在新品首发页面展示
- * @property {number?} isHot - 是否人气推荐，如果设置则可以在人气推荐页面展示
+ * @property {boolean?} isNew - 是否新品首发，如果设置则可以在新品首发页面展示
+ * @property {boolean?} isHot - 是否人气推荐，如果设置则可以在人气推荐页面展示
  * @property {string?} unit - 商品单位，例如件、盒
  * @property {number?} counterPrice - 专柜价格
  * @property {number?} retailPrice - 零售价格
  * @property {string?} detail - 商品详细介绍，是富文本格式
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -268,7 +268,7 @@
  * @property {string} value - 商品参数值
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -281,7 +281,7 @@
  * @property {string?} url - 商品货品图片
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -293,7 +293,7 @@
  * @property {string?} picUrl - 商品规格图片
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -309,7 +309,7 @@
  * @property {number?} status - 团购活动状态，开团未支付则0，开团中则1，开团失败则2
  * @property {Date} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -324,7 +324,7 @@
  * @property {number?} status - 团购规则状态，正常上线则0，到期自动下线则1，管理手动下线则2
  * @property {Date} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -334,7 +334,7 @@
  * @property {string?} answer - 问题答案
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -342,12 +342,12 @@
  * @property {number?} id - ID
  * @property {string?} keyword - 关键字
  * @property {string?} url - 关键字的跳转链接
- * @property {number?} isHot - 是否是热门关键字
- * @property {number?} isDefault - 是否是默认关键字
+ * @property {boolean?} isHot - 是否是热门关键字
+ * @property {boolean?} isDefault - 是否是默认关键字
  * @property {number?} sortOrder - 排序
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -357,12 +357,12 @@
  * @property {string?} ip - 管理员地址
  * @property {number?} type - 操作分类
  * @property {string?} action - 操作动作
- * @property {number?} status - 操作状态
+ * @property {boolean?} status - 操作状态
  * @property {string?} result - 操作结果，或者成功消息，或者失败消息
  * @property {string?} comment - 补充信息
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -373,7 +373,7 @@
  * @property {number?} adminId - 创建通知的管理员ID，如果是系统内置通知则是0.
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -385,7 +385,7 @@
  * @property {Date?} readTime - 阅读时间，如果是NULL则是未读状态
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -420,7 +420,7 @@
  * @property {Date?} endTime - 订单关闭时间
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -438,7 +438,7 @@
  * @property {number?} comment - 订单商品评论，如果是-1，则超期不能评价；如果是0，则可以评价；如果其他值，则是comment表里面的评论ID。
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -448,7 +448,7 @@
  * @property {string?} permission - 权限
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -465,10 +465,10 @@
  * @property {number?} id - ID
  * @property {string} name - 角色名称
  * @property {string?} desc - 角色描述
- * @property {number?} enabled - 是否启用
+ * @property {boolean?} enabled - 是否启用
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -479,7 +479,7 @@
  * @property {string?} from - 搜索来源，如pc、wx、app
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -492,7 +492,7 @@
  * @property {string?} url - 文件访问链接
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -502,7 +502,7 @@
  * @property {string} keyValue - 系统配置值
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -518,7 +518,7 @@
  * @property {number[]?} goods - 专题相关商品，采用JSON数组格式
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
 
 /**
@@ -539,5 +539,5 @@
  * @property {number?} status - 0 可用, 1 禁用, 2 注销
  * @property {Date?} addTime - 创建时间
  * @property {Date?} updateTime - 更新时间
- * @property {number?} deleted - 逻辑删除
+ * @property {boolean?} deleted - 逻辑删除
  */
