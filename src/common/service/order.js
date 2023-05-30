@@ -53,8 +53,9 @@ module.exports = class OrderService extends think.Service {
 
   /**
    * 
-   * @param {number} orderSn 
+   * @param {string} orderSn 
    * @param {number} userId 
+   * @returns {Promise<number>}
    */
   countByOrderSn(orderSn, userId) {
     return this.model('order')
@@ -69,7 +70,7 @@ module.exports = class OrderService extends think.Service {
   /**
    * 
    * @param {number} userId 
-   * @returns {string} A random orderSn
+   * @returns {Promise<string>} A random orderSn
    */
   async generateOrderSn(userId) {
     const now = new Date();
@@ -214,6 +215,22 @@ module.exports = class OrderService extends think.Service {
       unrecv,
       uncomment,
     };
+  }
+
+  /**
+   * 
+   * @param {number} id 
+   * @param {number} aftersaleStatus 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  updateAftersaleStatus(id, aftersaleStatus) {
+    const now = new Date();
+    return this.model('order')
+      .where({ id })
+      .update({
+        aftersaleStatus,
+        updateTime: now,
+      });
   }
 
   getRandomNum(n) {

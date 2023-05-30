@@ -42,6 +42,56 @@ module.exports = class AftersaleService extends think.Service {
 
   /**
    * 
+   * @param {string} aftersaleSn 
+   * @param {number} userId 
+   * @returns {Promise<number>}
+   */
+  countByAftersaleSn(aftersaleSn, userId) {
+    return this.model('aftersale')
+      .where({
+        aftersaleSn,
+        userId,
+        deleted: false,
+      })
+      .count();
+  }
+
+  /**
+   * 
+   * @param {number} userId 
+   * @returns {Promise<string>} A random aftersaleSn
+   */
+  async generateAftersaleSn(userId) {
+    const now = new Date();
+    const yyyy = now.getFullYear().toString().padStart(4, '0');
+    const mm = now.getMonth().toString().padStart(2, '0');
+    const dd = now.getDate().toString().padStart(2, '0');
+    const date = `${yyyy}${mm}${dd}`;
+
+    let aftersaleSn = `${date}${this.getRandomNum(6)}`;
+    while (await this.countByAftersaleSn(aftersaleSn, userId)) {
+      aftersaleSn = `${date}${this.getRandomNum(6)}`;
+    }
+
+    return aftersaleSn;
+  }
+
+  /**
+   * 
+   * @param {Aftersale} aftersale 
+   * @returns {Promise<number>} The ID inserted
+   */
+  add(aftersale) {
+    const now = new Date();
+    return this.model('aftersale')
+      .add(Object.assign(aftersale, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
    * @param {number} orderId 
    * @param {number} userId 
    * @returns {Promise<number>} The number of rows affected
@@ -74,5 +124,11 @@ module.exports = class AftersaleService extends think.Service {
         deleted: false,
       })
       .find();
+  }
+
+  getRandomNum(n) {
+    return Math.floor(Math.random() * (Math.pow(10, n) - 1))
+      .toString()
+      .padStart(n, '0');
   }
 }

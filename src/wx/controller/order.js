@@ -785,7 +785,7 @@ module.exports = class WxOrderController extends Base {
       return this.badArgumentValue();
     }
 
-    if (!this.isConfirmStatus(order) && !this.isAutoConfirmStatus(order)) {
+    if (!orderService.isConfirmStatus(order) && !orderService.isAutoConfirmStatus(order)) {
       return this.fail(ORDER.INVALID_OPERATION, '当前商品不能评价');
     }
 

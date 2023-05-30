@@ -42,6 +42,10 @@ module.exports = class extends think.Logic {
     this.allowMethods = 'POST';
 
     this.rules = {
+      orderId: {
+        int: true,
+        required: true,
+      },
       type: {
         int: true,
         required: true,
@@ -53,6 +57,17 @@ module.exports = class extends think.Logic {
       reason: {
         string: true,
         required: true,
+      },
+      pictures: {
+        array: true,
+        default: [],
+        children: {
+          string: true,
+        },
+      },
+      comment: {
+        string: true,
+        default: '',
       },
     };
   }
