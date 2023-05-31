@@ -19,9 +19,9 @@ module.exports = class WxGrouponController extends Base {
       return this.unlogin();
     }
 
-    const grouponRuleVoList = await grouponRulesService.wxQueryList(page, limit, sort, order);
+    const grouponRulesVoList = await grouponRulesService.wxQueryList(page, limit, sort, order);
 
-    return this.successList(grouponRuleVoList);
+    return this.successList(grouponRulesVoList);
   }
 
   async detailAction() {
@@ -54,9 +54,9 @@ module.exports = class WxGrouponController extends Base {
       return this.badArgumentValue();
     }
 
-    const grouponRules = await grouponRulesService.findById(groupon.rulesId);
+    const rules = await grouponRulesService.findById(groupon.rulesId);
 
-    if (think.isEmpty(grouponRules)) {
+    if (think.isEmpty(rules)) {
       return this.badArgumentValue();
     }
 
