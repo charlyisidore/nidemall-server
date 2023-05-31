@@ -42,16 +42,19 @@ paths:
     $ref: paths/address/list.yaml
   /address/save:
     $ref: paths/address/save.yaml
+
   /aftersale/detail:
     $ref: paths/aftersale/detail.yaml
   /aftersale/list:
     $ref: paths/aftersale/list.yaml
   /aftersale/submit:
     $ref: paths/aftersale/submit.yaml
+
   /brand/detail:
     $ref: paths/brand/detail.yaml
   /brand/list:
     $ref: paths/brand/list.yaml
+
   /cart/add:
     $ref: paths/cart/add.yaml
   /cart/checked:
@@ -68,16 +71,19 @@ paths:
     $ref: paths/cart/index.yaml
   /cart/update:
     $ref: paths/cart/update.yaml
+
   /catalog/all:
     $ref: paths/catalog/all.yaml
   /catalog/current:
     $ref: paths/catalog/current.yaml
   /catalog/index:
     $ref: paths/catalog/index.yaml
+
   /collect/addordelete:
     $ref: paths/collect/addordelete.yaml
   /collect/list:
     $ref: paths/collect/list.yaml
+
   /goods/category:
     $ref: paths/goods/category.yaml
   /goods/count:
@@ -86,10 +92,12 @@ paths:
     $ref: paths/goods/detail.yaml
   /goods/list:
     $ref: paths/goods/list.yaml
+
   /home/about:
     $ref: paths/home/about.yaml
   /home/index:
     $ref: paths/home/index.yaml
+
 components:
   securitySchemes:
     ApiKey:
