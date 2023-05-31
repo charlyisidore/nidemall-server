@@ -4,4 +4,7 @@ description: Sort direction
 required: false
 schema:
   type: string
+  enum:
+    - asc
+    - desc
   default: desc

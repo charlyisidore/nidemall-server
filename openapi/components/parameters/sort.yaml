@@ -4,4 +4,7 @@ description: Sort field
 required: false
 schema:
   type: string
+  enum:
+    - add_time
+    - id
   default: add_time
