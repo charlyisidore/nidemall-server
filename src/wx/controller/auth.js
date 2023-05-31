@@ -139,6 +139,8 @@ module.exports = class WxAuthController extends Base {
 
     /** @type {AuthService} */
     const authService = this.service('auth');
+    /** @type {CouponService} */
+    const couponService = this.service('coupon');
     /** @type {UserService} */
     const userService = this.service('user');
     /** @type {WeixinService} */
@@ -220,7 +222,7 @@ module.exports = class WxAuthController extends Base {
     await couponService.assignForRegister(user.id);
 
     const userInfo = {
-      nickname: username,
+      nickName: username,
       avatarUrl: user.avatar,
     };
 
