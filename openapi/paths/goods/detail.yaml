@@ -72,4 +72,4 @@ get:
                         items:
                           $ref: ../../components/schemas/GoodsProduct.yaml
                       info:
-                        $ref: ../../components/schemas/GoodsInfo.yaml
+                        $ref: ../../components/schemas/GoodsDetail.yaml

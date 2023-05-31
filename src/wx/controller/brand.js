@@ -13,6 +13,7 @@ module.exports = class WxBrandController extends Base {
 
     /** @type {BrandService} */
     const brandService = this.service('brand');
+
     const brandList = await brandService.query(page, limit, sort, order);
 
     return this.successList(brandList);
@@ -25,6 +26,7 @@ module.exports = class WxBrandController extends Base {
     const brandService = this.service('brand');
 
     const entity = await brandService.findById(id);
+
     if (think.isEmpty(entity)) {
       return this.badArgumentValue();
     }

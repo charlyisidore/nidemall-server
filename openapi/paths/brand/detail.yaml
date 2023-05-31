@@ -1,0 +1,25 @@
+get:
+  tags:
+    - brand
+  summary: Brand detail
+  description: Brand detail
+  operationId: wxBrandDetail
+  parameters:
+    - name: id
+      in: query
+      description: Brand ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    $ref: ../../components/schemas/BrandDetail.yaml

@@ -48,6 +48,10 @@ paths:
     $ref: paths/aftersale/list.yaml
   /aftersale/submit:
     $ref: paths/aftersale/submit.yaml
+  /brand/detail:
+    $ref: paths/brand/detail.yaml
+  /brand/list:
+    $ref: paths/brand/list.yaml
   /catalog/current:
     $ref: paths/catalog/current.yaml
   /catalog/index:
@@ -60,10 +64,10 @@ paths:
     $ref: paths/goods/detail.yaml
   /goods/list:
     $ref: paths/goods/list.yaml
-  /home/index:
-    $ref: paths/home/index.yaml
   /home/about:
     $ref: paths/home/about.yaml
+  /home/index:
+    $ref: paths/home/index.yaml
 components:
   securitySchemes:
     ApiKey:

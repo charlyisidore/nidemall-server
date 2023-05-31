@@ -1,0 +1,20 @@
+type: object
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+  desc:
+    type: string
+  picUrl:
+    type: string
+  sortOrder:
+    type: integer
+  floorPrice:
+    type: number
+  addTime:
+    $ref: ./DateTime.yaml
+  updateTime:
+    $ref: ./DateTime.yaml
+  deleted:
+    type: boolean
