@@ -19,5 +19,4 @@ properties:
   grouponMember:
     type: number
   expireTime:
-    type: string
-    format: date-time
+    $ref: ./DateTime.yaml
