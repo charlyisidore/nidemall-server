@@ -1,0 +1,19 @@
+# TODO
+post:
+  tags:
+    - auth
+  summary: Auth reset TODO
+  description: Auth reset TODO
+  operationId: wxAuthReset
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: string

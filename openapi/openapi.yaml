@@ -48,8 +48,20 @@ paths:
   /aftersale/submit:
     $ref: paths/aftersale/submit.yaml
 
+  /auth/bindPhone:
+    $ref: paths/auth/bindPhone.yaml
+  /auth/login_by_weixin:
+    $ref: paths/auth/login_by_weixin.yaml
   /auth/login:
     $ref: paths/auth/login.yaml
+  /auth/logout:
+    $ref: paths/auth/logout.yaml
+  /auth/regCaptcha:
+    $ref: paths/auth/regCaptcha.yaml
+  /auth/register:
+    $ref: paths/auth/register.yaml
+  /auth/reset:
+    $ref: paths/auth/reset.yaml
 
   /brand/detail:
     $ref: paths/brand/detail.yaml

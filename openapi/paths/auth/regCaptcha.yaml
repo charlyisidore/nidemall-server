@@ -1,0 +1,18 @@
+post:
+  tags:
+    - auth
+  summary: Auth regCaptcha TODO
+  description: Auth regCaptcha TODO
+  operationId: wxAuthRegCaptcha
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: string
