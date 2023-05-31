@@ -1,0 +1,33 @@
+required: true
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        tel:
+          type: string
+        province:
+          type: string
+        city:
+          type: string
+        county:
+          type: string
+        areaCode:
+          type: string
+        addressDetail:
+          type: string
+        isDefault:
+          type: boolean
+      required:
+        - name
+        - tel
+        - province
+        - city
+        - county
+        - areaCode
+        - addressDetail
+        - isDefault
