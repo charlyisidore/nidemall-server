@@ -1,21 +1,18 @@
 type: object
 properties:
-  userInfo:
-    type: object
-    properties:
-      nickName:
-        type: string
-      avatarUrl:
-        type: string
   addTime:
     $ref: ./DateTime.yaml
-  star:
-    type: integer
   picList:
     type: array
     items:
       type: string
   adminContent:
+    type: string
+  nickname:
+    type: string
+  id:
+    type: integer
+  avatar:
     type: string
   content:
     type: string

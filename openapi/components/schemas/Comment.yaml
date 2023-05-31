@@ -1,29 +1,22 @@
 type: object
 properties:
-  addTime:
-    $ref: ./DateTime.yaml
-  picList:
+  id:
+    type: integer
+  valueId:
+    type: integer
+  type:
+    type: integer
+  content:
+    type: string
+  userId:
+    type: integer
+  picUrls:
     type: array
     items:
       type: string
-  adminContent:
-    type: string
-  nickname:
-    type: string
-  id:
+  star:
     type: integer
-  avatar:
-    type: string
-  content:
-    type: string
-	"data": {
-		"id": 1015,
-		"valueId": 1006002,
-		"type": 0,
-		"content": "Happy",
-		"userId": 1,
-		"picUrls": [],
-		"star": 2,
-		"addTime": "2023-05-31 12:27:19",
-		"updateTime": "2023-05-31 12:27:19"
-	},
+  addTime:
+    $ref: ./DateTime.yaml
+  updateTime:
+    $ref: ./DateTime.yaml

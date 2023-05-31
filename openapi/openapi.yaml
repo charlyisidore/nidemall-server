@@ -84,6 +84,13 @@ paths:
   /collect/list:
     $ref: paths/collect/list.yaml
 
+  /comment/count:
+    $ref: paths/comment/count.yaml
+  /comment/list:
+    $ref: paths/comment/list.yaml
+  /comment/post:
+    $ref: paths/comment/post.yaml
+
   /goods/category:
     $ref: paths/goods/category.yaml
   /goods/count:

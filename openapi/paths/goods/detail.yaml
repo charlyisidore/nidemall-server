@@ -54,7 +54,7 @@ get:
                           data:
                             type: array
                             items:
-                              $ref: ../../components/schemas/Comment.yaml
+                              $ref: ../../components/schemas/GoodsComment.yaml
                           count:
                             type: integer
                       share:
