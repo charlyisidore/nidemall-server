@@ -39,30 +39,36 @@ function request(options) {
     .expect(200);
 }
 
-async function login({ username, password }) {
-  const response = await request({
-    method: 'post',
-    url: '/wx/auth/login',
-    data: {
-      username,
-      password,
-    },
-  });
-
-  return response.body.data.token;
+function randomString(n) {
+  return Array.from(
+    Array(n),
+    () => Math.floor(Math.random() * 36).toString(36)
+  ).join('');
 }
 
-function omit(obj, keys) {
-  return Object.fromEntries(
-    Object.entries(obj).filter(
-      ([k, v]) => !keys.includes(k)
-    )
-  );
+async function createUser() {
+  const authService = think.service('auth');
+
+  const username = randomString(16);
+  const password = randomString(16);
+
+  const id = await think.model('user')
+    .add({ username, password });
+
+  const token = await authService.createToken(id);
+
+  return { id, username, password, token };
+}
+
+function destroyUser(id) {
+  return think.model('user')
+    .where({ id })
+    .delete();
 }
 
 module.exports = {
   app,
   request,
-  login,
-  omit,
+  createUser,
+  destroyUser,
 };
