@@ -53,7 +53,7 @@ module.exports = class WxCommentController extends Base {
       userId,
     });
 
-    await commentService.save(comment);
+    comment.id = await commentService.save(comment);
 
     this.success(comment);
   }
