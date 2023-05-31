@@ -27,7 +27,6 @@ tags:
   - name: home
   - name: issue
   - name: order
-  - name: region
   - name: search
   - name: storage
   - name: topic
@@ -157,6 +156,13 @@ paths:
     $ref: paths/order/prepay.yaml
   /order/submit:
     $ref: paths/order/submit.yaml
+
+  /search/clearhistory:
+    $ref: paths/search/clearhistory.yaml
+  /search/helper:
+    $ref: paths/search/helper.yaml
+  /search/index:
+    $ref: paths/search/index.yaml
 
 components:
   securitySchemes:

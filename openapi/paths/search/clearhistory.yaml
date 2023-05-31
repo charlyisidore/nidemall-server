@@ -1,0 +1,15 @@
+post:
+  tags:
+    - search
+  summary: Search clearhistory
+  description: Search clearhistory
+  operationId: wxSearchClearhistory
+  security:
+    - ApiKey: []
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/ApiResponse.yaml

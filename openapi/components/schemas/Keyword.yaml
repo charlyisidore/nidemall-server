@@ -1,0 +1,20 @@
+type: object
+properties:
+  id:
+    type: integer
+  keyword:
+    type: string
+  url:
+    type: string
+  isHot:
+    type: boolean
+  isDefault:
+    type: boolean
+  sortOrder:
+    type: integer
+  addTime:
+    $ref: ./DateTime.yaml
+  updateTime:
+    $ref: ./DateTime.yaml
+  deleted:
+    type: boolean

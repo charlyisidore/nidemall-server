@@ -1,0 +1,16 @@
+type: object
+properties:
+  id:
+    type: integer
+  userId:
+    type: integer
+  keyword:
+    type: string
+  from:
+    type: string
+  addTime:
+    $ref: ./DateTime.yaml
+  updateTime:
+    $ref: ./DateTime.yaml
+  deleted:
+    type: boolean

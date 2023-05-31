@@ -1,0 +1,29 @@
+get:
+  tags:
+    - search
+  summary: Search helper
+  description: Search helper
+  operationId: wxSearchHelper
+  parameters:
+    - name: keyword
+      in: query
+      description: Keyword
+      required: true
+      schema:
+        type: string
+    - $ref: ../../components/parameters/page.yaml
+    - $ref: ../../components/parameters/limit.yaml
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: string
