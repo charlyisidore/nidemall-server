@@ -1,0 +1,35 @@
+post:
+  tags:
+    - cart
+  summary: Cart fastadd
+  description: Cart fastadd
+  operationId: wxCartFastadd
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            goodsId:
+              type: integer
+            productId:
+              type: integer
+            number:
+              type: integer
+          required:
+            - goodsId
+            - productId
+            - number
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: integer

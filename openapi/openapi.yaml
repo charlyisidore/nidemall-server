@@ -52,6 +52,22 @@ paths:
     $ref: paths/brand/detail.yaml
   /brand/list:
     $ref: paths/brand/list.yaml
+  /cart/add:
+    $ref: paths/cart/add.yaml
+  /cart/checked:
+    $ref: paths/cart/checked.yaml
+  /cart/checkout:
+    $ref: paths/cart/checkout.yaml
+  /cart/delete:
+    $ref: paths/cart/delete.yaml
+  /cart/fastadd:
+    $ref: paths/cart/fastadd.yaml
+  /cart/goodscount:
+    $ref: paths/cart/goodscount.yaml
+  /cart/index:
+    $ref: paths/cart/index.yaml
+  /cart/update:
+    $ref: paths/cart/update.yaml
   /catalog/current:
     $ref: paths/catalog/current.yaml
   /catalog/index:

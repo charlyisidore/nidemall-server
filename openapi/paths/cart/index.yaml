@@ -1,0 +1,18 @@
+get:
+  tags:
+    - cart
+  summary: Cart index
+  description: Cart index
+  operationId: wxCartIndex
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    $ref: ../../components/schemas/CartIndex.yaml

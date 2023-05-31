@@ -1,0 +1,17 @@
+type: object
+properties:
+  cartTotal:
+    type: object
+    properties:
+      goodsCount:
+        type: integer
+      checkedGoodsCount:
+        type: integer
+      goodsAmount:
+        type: integer
+      checkedGoodsAmount:
+        type: integer
+  cartList:
+    type: array
+    items:
+      $ref: ./Cart.yaml

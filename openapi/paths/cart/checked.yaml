@@ -1,0 +1,34 @@
+post:
+  tags:
+    - cart
+  summary: Cart checked
+  description: Cart checked
+  operationId: wxCartChecked
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            productIds:
+              type: array
+              items:
+                type: integer
+            isChecked:
+              type: boolean
+          required:
+            - productIds
+            - isChecked
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    $ref: ../../components/schemas/CartIndex.yaml
