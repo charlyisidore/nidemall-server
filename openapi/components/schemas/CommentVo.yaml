@@ -16,14 +16,10 @@ properties:
     type: string
   content:
     type: string
-	"data": {
-		"id": 1015,
-		"valueId": 1006002,
-		"type": 0,
-		"content": "Happy",
-		"userId": 1,
-		"picUrls": [],
-		"star": 2,
-		"addTime": "2023-05-31 12:27:19",
-		"updateTime": "2023-05-31 12:27:19"
-	},
+
+          userInfo: { nickName, avatarUrl }
+          addTime: comment.addTime,
+          star: comment.star,
+          picList: comment.picUrls,
+          adminContent: comment.adminContent,
+          content: comment.content,
