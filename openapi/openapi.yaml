@@ -91,6 +91,17 @@ paths:
   /comment/post:
     $ref: paths/comment/post.yaml
 
+  /coupon/exchange:
+    $ref: paths/coupon/exchange.yaml
+  /coupon/list:
+    $ref: paths/coupon/list.yaml
+  /coupon/mylist:
+    $ref: paths/coupon/mylist.yaml
+  /coupon/receive:
+    $ref: paths/coupon/receive.yaml
+  /coupon/selectlist:
+    $ref: paths/coupon/selectlist.yaml
+
   /goods/category:
     $ref: paths/goods/category.yaml
   /goods/count:

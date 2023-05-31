@@ -1,0 +1,30 @@
+get:
+  tags:
+    - coupon
+  summary: Coupon list
+  description: Coupon list
+  operationId: wxCouponList
+  parameters:
+    - $ref: ../../components/parameters/page.yaml
+    - $ref: ../../components/parameters/limit.yaml
+    - $ref: ../../components/parameters/sort.yaml
+    - $ref: ../../components/parameters/order.yaml
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    allOf:
+                      - $ref: ../../components/schemas/List.yaml
+                      - type: object
+                        properties:
+                          list:
+                            type: array
+                            items:
+                              $ref: ../../components/schemas/Coupon.yaml

@@ -1,0 +1,20 @@
+type: object
+properties:
+  id:
+    type: integer
+  cid:
+    type: integer
+  name:
+    type: string
+  desc:
+    type: string
+  tag:
+    type: string
+  min:
+    type: number
+  discount:
+    type: number
+  startTime:
+    $ref: ./DateTime.yaml
+  endTime:
+    $ref: ./DateTime.yaml
