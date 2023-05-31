@@ -1,0 +1,40 @@
+post:
+  tags:
+    - aftersale
+  summary: Aftersale submit
+  description: Aftersale submit
+  operationId: wxAftersaleSubmit
+  security:
+    - ApiKey: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            orderId:
+              type: integer
+            amount:
+              type: number
+            reason:
+              type: string
+            pictures:
+              type: array
+              items:
+                type: string
+            comment:
+              type: string
+          required:
+            - orderId
+            - amount
+            - reason
+            - pictures
+            - comment
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/ApiResponse.yaml

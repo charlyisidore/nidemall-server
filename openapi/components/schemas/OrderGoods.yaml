@@ -1,0 +1,32 @@
+type: object
+properties:
+  id:
+    type: integer
+  orderId:
+    type: integer
+  goodsId:
+    type: integer
+  goodsName:
+    type: string
+  goodsSn:
+    type: string
+  productId:
+    type: integer
+  number:
+    type: integer
+  price:
+    type: number
+  specifications:
+    type: array
+    items:
+      type: string
+  picUrl:
+    type: string
+  comment:
+    type: integer
+  addTime:
+    $ref: ./DateTime.yaml
+  updateTime:
+    $ref: ./DateTime.yaml
+  deleted:
+    type: boolean

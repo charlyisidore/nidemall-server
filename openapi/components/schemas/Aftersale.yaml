@@ -1,0 +1,32 @@
+type: object
+properties:
+  id:
+    type: integer
+  aftersaleSn:
+    type: string
+  orderId:
+    type: integer
+  userId:
+    type: integer
+  type:
+    type: integer
+  reason:
+    type: string
+  amount:
+    type: number
+  pictures:
+    type: array
+    items:
+      type: string
+  comment:
+    type: string
+  status:
+    type: integer
+  handleTime:
+    $ref: ./DateTime.yaml
+  addTime:
+    $ref: ./DateTime.yaml
+  updateTime:
+    $ref: ./DateTime.yaml
+  deleted:
+    type: boolean

@@ -1,0 +1,64 @@
+type: object
+properties:
+  id:
+    type: integer
+  userId:
+    type: integer
+  orderSn:
+    type: string
+  orderStatus:
+    type: integer
+  aftersaleStatus:
+    type: integer
+  consignee:
+    type: string
+  mobile:
+    type: string
+  address:
+    type: string
+  message:
+    type: string
+  goodsPrice:
+    type: number
+  freightPrice:
+    type: number
+  couponPrice:
+    type: number
+  integralPrice:
+    type: number
+  grouponPrice:
+    type: number
+  orderPrice:
+    type: number
+  actualPrice:
+    type: number
+  payId:
+    type: string
+  payTime:
+    $ref: ./DateTime.yaml
+  shipSn:
+    type: string
+  shipChannel:
+    type: string
+  shipTime:
+    $ref: ./DateTime.yaml
+  refundAmount:
+    type: number
+  refundType:
+    type: string
+  refundContent:
+    type: string
+  refundTime:
+    $ref: ./DateTime.yaml
+  confirmType:
+    $ref: ./DateTime.yaml
+  comments:
+    type: integer
+  endTime:
+    $ref: ./DateTime.yaml
+  addTime:
+    $ref: ./DateTime.yaml
+  updateTime:
+    $ref: ./DateTime.yaml
+  deleted:
+    type: boolean

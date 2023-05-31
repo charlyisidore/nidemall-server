@@ -42,6 +42,12 @@ paths:
     $ref: paths/address/list.yaml
   /address/save:
     $ref: paths/address/save.yaml
+  /aftersale/detail:
+    $ref: paths/aftersale/detail.yaml
+  /aftersale/list:
+    $ref: paths/aftersale/list.yaml
+  /aftersale/submit:
+    $ref: paths/aftersale/submit.yaml
   /catalog/current:
     $ref: paths/catalog/current.yaml
   /catalog/index:

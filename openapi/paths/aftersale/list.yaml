@@ -1,0 +1,34 @@
+get:
+  tags:
+    - aftersale
+  summary: Aftersale list
+  description: Aftersale list
+  operationId: wxAftersaleList
+  security:
+    - ApiKey: []
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    allOf:
+                      - $ref: ../../components/schemas/List.yaml
+                      - type: object
+                        properties:
+                          list:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                aftersale:
+                                  $ref: ../../components/schemas/Aftersale.yaml
+                                goodsList:
+                                  type: array
+                                  items:
+                                    $ref: ../../components/schemas/OrderGoods.yaml
