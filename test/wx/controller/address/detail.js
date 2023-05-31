@@ -2,8 +2,8 @@ const test = require('ava');
 const { request, createUser, destroyUser } = require('../../../helpers/app.js');
 
 const REQUEST = {
-  method: 'post',
-  url: '/wx/address/delete',
+  method: 'get',
+  url: '/wx/address/detail',
 };
 
 const DATA = {
@@ -31,22 +31,6 @@ function destroyAddress(id) {
   return think.model('address')
     .where({ id })
     .delete();
-}
-
-// Check if an address exists and is not soft deleted
-async function notDeleted(id) {
-  const address = await think.model('address')
-    .where({ id })
-    .find();
-  return !think.isEmpty(address) && !address.deleted;
-}
-
-// Check if an address exists and is soft deleted
-async function softDeleted(id) {
-  const address = await think.model('address')
-    .where({ id })
-    .find();
-  return true === address?.deleted;
 }
 
 // Create a user
@@ -83,7 +67,10 @@ test.serial('success', async (t) => {
   });
 
   t.is(response.body.errno, 0);
-  t.assert(softDeleted(t.context.id));
+  t.like(response.body.data, {
+    ...DATA,
+    id: t.context.id,
+  });
 });
 
 test.serial('not logged in', async (t) => {
@@ -93,7 +80,6 @@ test.serial('not logged in', async (t) => {
   });
 
   t.is(response.body.errno, 501);
-  t.assert(notDeleted(t.context.id));
 });
 
 test.serial('missing id', async (t) => {
@@ -104,7 +90,6 @@ test.serial('missing id', async (t) => {
   });
 
   t.is(response.body.errno, 402);
-  t.assert(notDeleted(t.context.id));
 });
 
 test.serial('not found', async (t) => {
@@ -115,7 +100,6 @@ test.serial('not found', async (t) => {
   });
 
   t.is(response.body.errno, 402);
-  t.assert(notDeleted(t.context.id));
 });
 
 test.serial('stolen id', async (t) => {
@@ -126,5 +110,4 @@ test.serial('stolen id', async (t) => {
   });
 
   t.is(response.body.errno, 402);
-  t.assert(notDeleted(t.context.id));
 });
