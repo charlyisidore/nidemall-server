@@ -5,10 +5,11 @@
   "author": "Charly Lersteau <charly.lersteau@gmx.fr>",
   "type": "commonjs",
   "scripts": {
+    "build:redoc": "redocly build-docs openapi/openapi.yaml --output=www/static/redoc.html",
     "start": "node development.js",
     "test": "THINK_UNIT_TEST=1 nyc ava test/ && nyc report --reporter=html",
     "lint": "eslint src/",
-    "lint-fix": "eslint --fix src/"
+    "lint:fix": "eslint --fix src/"
   },
   "dependencies": {
     "axios": "^1.4.0",
