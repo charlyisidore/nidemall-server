@@ -134,6 +134,9 @@ paths:
   /home/index:
     $ref: paths/home/index.yaml
 
+  /issue/list:
+    $ref: paths/issue/list.yaml
+
 components:
   securitySchemes:
     ApiKey:

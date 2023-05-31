@@ -1,9 +1,9 @@
 get:
   tags:
     - groupon
-  summary: Groupon join
-  description: Groupon join
-  operationId: wxGrouponJoin
+  summary: Groupon my
+  description: Groupon my
+  operationId: wxGrouponMy
   security:
     - ApiKey: []
   parameters:
