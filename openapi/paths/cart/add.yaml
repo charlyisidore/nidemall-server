@@ -4,6 +4,8 @@ post:
   summary: Cart add
   description: Cart add
   operationId: wxCartAdd
+  security:
+    - ApiKey: []
   requestBody:
     required: true
     content:

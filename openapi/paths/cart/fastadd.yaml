@@ -4,6 +4,8 @@ post:
   summary: Cart fastadd
   description: Cart fastadd
   operationId: wxCartFastadd
+  security:
+    - ApiKey: []
   requestBody:
     required: true
     content:

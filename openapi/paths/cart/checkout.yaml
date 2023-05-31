@@ -4,6 +4,8 @@ get:
   summary: Cart checkout
   description: Cart checkout
   operationId: wxCartCheckout
+  security:
+    - ApiKey: []
   parameters:
     - name: cartId
       in: query

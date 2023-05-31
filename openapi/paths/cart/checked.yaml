@@ -4,6 +4,8 @@ post:
   summary: Cart checked
   description: Cart checked
   operationId: wxCartChecked
+  security:
+    - ApiKey: []
   requestBody:
     required: true
     content:

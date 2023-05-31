@@ -4,6 +4,8 @@ post:
   summary: Cart delete
   description: Cart delete
   operationId: wxCartDelete
+  security:
+    - ApiKey: []
   requestBody:
     required: true
     content:

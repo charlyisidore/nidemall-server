@@ -4,6 +4,8 @@ post:
   summary: Cart update
   description: Cart update
   operationId: wxCartUpdate
+  security:
+    - ApiKey: []
   requestBody:
     required: true
     content:
