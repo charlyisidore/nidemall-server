@@ -4,6 +4,8 @@ properties:
     type: integer
   orderSn:
     type: string
+  message:
+    type: string
   addTime:
     $ref: ./DateTime.yaml
   consignee:
@@ -14,6 +16,8 @@ properties:
     type: string
   goodsPrice:
     type: number
+  couponPrice:
+    type: number
   freightPrice:
     type: number
   actualPrice:
@@ -22,7 +26,11 @@ properties:
     type: string
   handleOption:
     $ref: ./OrderHandleOption.yaml
+  aftersaleStatus:
+    type: integer
   expCode:
+    type: string
+  expName:
     type: string
   expNo:
     type: string

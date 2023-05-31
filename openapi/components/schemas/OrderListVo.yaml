@@ -1,0 +1,35 @@
+type: object
+properties:
+  id:
+    type: integer
+  orderSn:
+    type: string
+  actualPrice:
+    type: number
+  orderStatusText:
+    type: string
+  handleOption:
+    $ref: ./OrderHandleOption.yaml
+  aftersaleStatus:
+    type: integer
+  isGroupin:
+    type: boolean
+  goodsList:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+        goodsName:
+          type: string
+        number:
+          type: integer
+        picUrl:
+          type: string
+        specifications:
+          type: array
+          items:
+            type: string
+        price:
+          type: number

@@ -137,6 +137,11 @@ paths:
   /issue/list:
     $ref: paths/issue/list.yaml
 
+  /order/detail:
+    $ref: paths/order/detail.yaml
+  /order/list:
+    $ref: paths/order/list.yaml
+
 components:
   securitySchemes:
     ApiKey:

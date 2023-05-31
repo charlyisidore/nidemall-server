@@ -1,0 +1,36 @@
+get:
+  tags:
+    - order
+  summary: Order detail
+  description: Order detail
+  operationId: wxOrderDetail
+  security:
+    - ApiKey: []
+  parameters:
+    - name: orderId
+      in: query
+      description: Order ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      orderInfo:
+                        $ref: ../../components/schemas/OrderInfo.yaml
+                      orderGoods:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/OrderGoods.yaml
+                      expressInfo:
+                        $ref: ../../components/schemas/ExpressInfo.yaml

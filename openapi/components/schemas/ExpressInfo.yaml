@@ -1,0 +1,29 @@
+type: object
+properties:
+  EBusinessID:
+    type: string
+  OrderCode:
+    type: string
+  ShipperCode:
+    type: string
+  LogisticCode:
+    type: string
+  Success:
+    type: boolean
+  Reason:
+    type: string
+  State:
+    type: string
+  Traces:
+    type: array
+    items:
+      type: object
+      properties:
+        AcceptTime:
+          type: string
+        AcceptStation:
+          type: string
+        Remark:
+          type: string
+  ShipperName:
+    type: string

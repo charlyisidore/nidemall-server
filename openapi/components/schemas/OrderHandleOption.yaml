@@ -1,0 +1,18 @@
+type: object
+properties:
+  cancel:
+    type: boolean
+  pay:
+    type: boolean
+  delete:
+    type: boolean
+  refund:
+    type: boolean
+  confirm:
+    type: boolean
+  comment:
+    type: boolean
+  rebuy:
+    type: boolean
+  aftersale:
+    type: boolean
