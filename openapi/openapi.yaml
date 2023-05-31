@@ -167,6 +167,13 @@ paths:
   /storage/upload:
     $ref: paths/storage/upload.yaml
 
+  /topic/detail:
+    $ref: paths/topic/detail.yaml
+  /topic/list:
+    $ref: paths/topic/list.yaml
+  /topic/related:
+    $ref: paths/topic/related.yaml
+
 components:
   securitySchemes:
     ApiKey:

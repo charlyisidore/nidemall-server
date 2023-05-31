@@ -1,0 +1,34 @@
+get:
+  tags:
+    - topic
+  summary: Topic detail
+  description: Topic detail
+  operationId: wxTopicDetail
+  parameters:
+    - name: id
+      in: query
+      description: Topic ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      topic:
+                        $ref: ../../components/schemas/TopicDetail.yaml
+                      goods:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/Goods.yaml
+                      userHasCollect:
+                        type: integer
