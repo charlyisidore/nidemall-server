@@ -6,6 +6,17 @@ get:
   operationId: wxAftersaleList
   security:
     - ApiKey: []
+  parameters:
+    - name: status
+      in: query
+      description: Status
+      required: false
+      schema:
+        type: integer
+    - $ref: ../../components/parameters/page.yaml
+    - $ref: ../../components/parameters/limit.yaml
+    - $ref: ../../components/parameters/sort.yaml
+    - $ref: ../../components/parameters/order.yaml
   responses:
     '200':
       description: Successful operation
