@@ -1,16 +1,9 @@
 get:
   tags:
     - catalog
-  summary: Catalog index
-  description: Catalog index
-  operationId: wxCatalogIndex
-  parameters:
-    - name: id
-      in: query
-      description: Category ID
-      required: false
-      schema:
-        type: integer
+  summary: Catalog all
+  description: Catalog all
+  operationId: wxCatalogAll
   responses:
     '200':
       description: Successful operation
@@ -24,6 +17,10 @@ get:
                   data:
                     type: object
                     properties:
+                      allList:
+                        type: object
+                        additionalProperties:
+                          $ref: ../../components/schemas/Category.yaml
                       currentCategory:
                         $ref: ../../components/schemas/Category.yaml
                       categoryList:

@@ -68,6 +68,8 @@ paths:
     $ref: paths/cart/index.yaml
   /cart/update:
     $ref: paths/cart/update.yaml
+  /catalog/all:
+    $ref: paths/catalog/all.yaml
   /catalog/current:
     $ref: paths/catalog/current.yaml
   /catalog/index:
