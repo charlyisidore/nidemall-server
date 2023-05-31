@@ -1,0 +1,32 @@
+get:
+  tags:
+    - user
+  summary: User index
+  description: User index
+  operationId: wxUserIndex
+  security:
+    - ApiKey: []
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      order:
+                        type: object
+                        properties:
+                          unpaid:
+                            type: integer
+                          unship:
+                            type: integer
+                          unrecv:
+                            type: integer
+                          uncomment:
+                            type: integer
