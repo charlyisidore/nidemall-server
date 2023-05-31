@@ -1,0 +1,26 @@
+post:
+  tags:
+    - order
+  summary: Order paynotify
+  description: Order paynotify
+  operationId: wxOrderPaynotify
+  security:
+    - ApiKey: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            xml:
+              type: string
+          required:
+            - xml
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/ApiResponse.yaml

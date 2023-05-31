@@ -137,10 +137,18 @@ paths:
   /issue/list:
     $ref: paths/issue/list.yaml
 
+  /order/cancel:
+    $ref: paths/order/cancel.yaml
   /order/detail:
     $ref: paths/order/detail.yaml
   /order/list:
     $ref: paths/order/list.yaml
+  /order/paynotify:
+    $ref: paths/order/paynotify.yaml
+  /order/prepay:
+    $ref: paths/order/prepay.yaml
+  /order/submit:
+    $ref: paths/order/submit.yaml
 
 components:
   securitySchemes:

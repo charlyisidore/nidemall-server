@@ -1,0 +1,31 @@
+post:
+  tags:
+    - order
+  summary: Order prepay
+  description: Order prepay
+  operationId: wxOrderPrepay
+  security:
+    - ApiKey: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            orderId:
+              type: integer
+          required:
+            - orderId
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: object
