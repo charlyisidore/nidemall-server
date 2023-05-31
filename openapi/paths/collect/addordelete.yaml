@@ -1,0 +1,29 @@
+post:
+  tags:
+    - collect
+  summary: Collect addordelete
+  description: Collect addordelete
+  operationId: wxCollectAddordelete
+  security:
+    - ApiKey: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            type:
+              type: integer
+            valueId:
+              type: integer
+          required:
+            - type
+            - valueId
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/ApiResponse.yaml

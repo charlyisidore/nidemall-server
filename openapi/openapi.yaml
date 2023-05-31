@@ -74,6 +74,10 @@ paths:
     $ref: paths/catalog/current.yaml
   /catalog/index:
     $ref: paths/catalog/index.yaml
+  /collect/addordelete:
+    $ref: paths/collect/addordelete.yaml
+  /collect/list:
+    $ref: paths/collect/list.yaml
   /goods/category:
     $ref: paths/goods/category.yaml
   /goods/count:

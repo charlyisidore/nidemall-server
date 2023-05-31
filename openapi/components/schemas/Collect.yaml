@@ -1,0 +1,26 @@
+allOf:
+- type: object
+  properties:
+    id:
+      type: integer
+    type:
+      type: integer
+    valueId:
+      type: integer
+    name:
+      type: string
+    picUrl:
+      type: string
+- oneOf:
+  - type: object
+    properties:
+      brief:
+        type: string
+      retailPrice:
+        type: number
+  - type: object
+    properties:
+      subtitle:
+        type: string
+      price:
+        type: number
