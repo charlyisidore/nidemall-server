@@ -1,37 +1,11 @@
 const test = require('ava');
 const { request, createUser, destroyUser } = require('../../../helpers/app.js');
+const { createAddress, destroyAddress } = require('../../../helpers/address.js');
 
 const REQUEST = {
   method: 'get',
   url: '/wx/address/detail',
 };
-
-const DATA = {
-  name: 'my name',
-  tel: '13945678911',
-  province: 'my province',
-  city: 'my city',
-  county: 'my county',
-  areaCode: '123456',
-  addressDetail: 'my address detail',
-  isDefault: false,
-};
-
-// Create an address
-function createAddress(userId) {
-  return think.model('address')
-    .add({
-      ...DATA,
-      userId,
-    });
-}
-
-// Delete an address
-function destroyAddress(id) {
-  return think.model('address')
-    .where({ id })
-    .delete();
-}
 
 // Create a user
 test.before(async (t) => {
@@ -47,36 +21,33 @@ test.after.always(async (t) => {
 
 // Create the addresses
 test.beforeEach(async (t) => {
-  t.context.id = await createAddress(t.context.userId);
-  t.context.stolenId = await createAddress(99999999);
+  t.context.address = await createAddress({ userId: t.context.userId });
+  t.context.stolen = await createAddress({ userId: 99999999 });
 });
 
 // Hard-delete the addresses from the database
 test.afterEach(async (t) => {
-  await destroyAddress(t.context.id);
-  await destroyAddress(t.context.stolenId);
-  t.context.id = null;
-  t.context.stolenId = null;
+  await destroyAddress(t.context.address.id);
+  await destroyAddress(t.context.stolen.id);
+  t.context.address = null;
+  t.context.stolen = null;
 });
 
 test.serial('success', async (t) => {
   const response = await request({
     ...REQUEST,
     token: t.context.token,
-    data: { id: t.context.id },
+    data: { id: t.context.address.id },
   });
 
   t.is(response.body.errno, 0);
-  t.like(response.body.data, {
-    ...DATA,
-    id: t.context.id,
-  });
+  t.deepEqual(response.body.data, t.context.address);
 });
 
 test.serial('not logged in', async (t) => {
   const response = await request({
     ...REQUEST,
-    data: { id: t.context.id },
+    data: { id: t.context.address.id },
   });
 
   t.is(response.body.errno, 501);
@@ -106,7 +77,7 @@ test.serial('stolen id', async (t) => {
   const response = await request({
     ...REQUEST,
     token: t.context.token,
-    data: { id: t.context.stolenId },
+    data: { id: t.context.stolen.id },
   });
 
   t.is(response.body.errno, 402);

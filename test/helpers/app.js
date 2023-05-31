@@ -49,8 +49,8 @@ function randomString(n) {
 async function createUser() {
   const authService = think.service('auth');
 
-  const username = randomString(16);
-  const password = randomString(16);
+  const username = randomString(24);
+  const password = randomString(24);
 
   const id = await think.model('user')
     .add({ username, password });
