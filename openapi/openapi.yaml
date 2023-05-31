@@ -20,7 +20,6 @@ tags:
   - name: collect
   - name: comment
   - name: coupon
-  - name: express
   - name: feedback
   - name: footprint
   - name: goods
@@ -90,6 +89,9 @@ paths:
     $ref: paths/comment/list.yaml
   /comment/post:
     $ref: paths/comment/post.yaml
+
+  /feedback/submit:
+    $ref: paths/feedback/submit.yaml
 
   /coupon/exchange:
     $ref: paths/coupon/exchange.yaml
