@@ -139,12 +139,16 @@ paths:
 
   /order/cancel:
     $ref: paths/order/cancel.yaml
+  /order/comment:
+    $ref: paths/order/comment.yaml
   /order/confirm:
     $ref: paths/order/confirm.yaml
   /order/delete:
     $ref: paths/order/delete.yaml
   /order/detail:
     $ref: paths/order/detail.yaml
+  /order/goods:
+    $ref: paths/order/goods.yaml
   /order/list:
     $ref: paths/order/list.yaml
   /order/paynotify:
