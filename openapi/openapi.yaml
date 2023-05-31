@@ -117,6 +117,8 @@ paths:
     $ref: paths/goods/detail.yaml
   /goods/list:
     $ref: paths/goods/list.yaml
+  /goods/related:
+    $ref: paths/goods/related.yaml
 
   /home/about:
     $ref: paths/home/about.yaml

@@ -37,7 +37,17 @@ get:
         type: boolean
     - $ref: ../../components/parameters/page.yaml
     - $ref: ../../components/parameters/limit.yaml
-    - $ref: ../../components/parameters/sort.yaml
+    - name: sort
+      in: query
+      description: Sort field
+      required: false
+      schema:
+        type: string
+        enum:
+          - add_time
+          - retail_price
+          - name
+        default: add_time
     - $ref: ../../components/parameters/order.yaml
   responses:
     '200':
@@ -58,3 +68,7 @@ get:
                             type: array
                             items:
                               $ref: ../../components/schemas/Goods.yaml
+                          filterCategoryList:
+                            type: array
+                            items:
+                              $ref: ../../components/schemas/Category.yaml
