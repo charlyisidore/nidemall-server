@@ -1,0 +1,18 @@
+type: object
+properties:
+  id:
+    type: integer
+  key:
+    type: string
+  name:
+    type: string
+  type:
+    type: string
+  size:
+    type: integer
+  url:
+    type: string
+  addTime:
+    $ref: ./DateTime.yaml
+  updateTime:
+    $ref: ./DateTime.yaml

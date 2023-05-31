@@ -164,6 +164,9 @@ paths:
   /search/index:
     $ref: paths/search/index.yaml
 
+  /storage/upload:
+    $ref: paths/storage/upload.yaml
+
 components:
   securitySchemes:
     ApiKey:
