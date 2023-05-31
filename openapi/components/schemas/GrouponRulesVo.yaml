@@ -1,0 +1,22 @@
+type: object
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+  brief:
+    type: string
+  picUrl:
+    type: string
+  counterPrice:
+    type: number
+  retailPrice:
+    type: number
+  grouponPrice:
+    type: number
+  grouponDiscount:
+    type: number
+  grouponMember:
+    type: integer
+  expireTime:
+    $ref: ./DateTime.yaml

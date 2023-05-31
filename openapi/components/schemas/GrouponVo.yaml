@@ -1,0 +1,35 @@
+type: object
+properties:
+  id:
+    type: integer
+  groupon:
+    $ref: ./Groupon.yaml
+  rules:
+    $ref: ./GrouponRules.yaml
+  creator:
+    type: string
+  isCreator:
+    type: boolean
+  joinerCount:
+    type: integer
+  orderId:
+    type: integer
+  orderSn:
+    type: string
+  actualPrice:
+    type: number
+  orderStatusText:
+    type: string
+  goodsList:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+        goodsName:
+          type: string
+        number:
+          type: integer
+        picUrl:
+          type: string

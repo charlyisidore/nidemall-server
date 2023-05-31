@@ -1,0 +1,32 @@
+get:
+  tags:
+    - groupon
+  summary: Groupon join
+  description: Groupon join
+  operationId: wxGrouponJoin
+  security:
+    - ApiKey: []
+  parameters:
+    - name: grouponId
+      in: query
+      description: Groupon ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      groupon:
+                        $ref: ../../components/schemas/Groupon.yaml
+                      goods:
+                        $ref: ../../components/schemas/Goods.yaml

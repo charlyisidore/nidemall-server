@@ -120,6 +120,15 @@ paths:
   /goods/related:
     $ref: paths/goods/related.yaml
 
+  /groupon/detail:
+    $ref: paths/groupon/detail.yaml
+  /groupon/join:
+    $ref: paths/groupon/join.yaml
+  /groupon/list:
+    $ref: paths/groupon/list.yaml
+  /groupon/my:
+    $ref: paths/groupon/my.yaml
+
   /home/about:
     $ref: paths/home/about.yaml
   /home/index:

@@ -1,0 +1,45 @@
+type: object
+properties:
+  id:
+    type: integer
+  orderSn:
+    type: string
+  addTime:
+    $ref: ./DateTime.yaml
+  consignee:
+    type: string
+  mobile:
+    type: string
+  address:
+    type: string
+  goodsPrice:
+    type: number
+  freightPrice:
+    type: number
+  actualPrice:
+    type: number
+  orderStatusText:
+    type: string
+  handleOption:
+    type: object
+    properties:
+      cancel:
+        type: boolean
+      pay:
+        type: boolean
+      delete:
+        type: boolean
+      refund:
+        type: boolean
+      confirm:
+        type: boolean
+      comment:
+        type: boolean
+      rebuy:
+        type: boolean
+      aftersale:
+        type: boolean
+  expCode:
+    type: string
+  expNo:
+    type: string
