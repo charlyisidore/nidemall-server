@@ -90,9 +90,6 @@ paths:
   /comment/post:
     $ref: paths/comment/post.yaml
 
-  /feedback/submit:
-    $ref: paths/feedback/submit.yaml
-
   /coupon/exchange:
     $ref: paths/coupon/exchange.yaml
   /coupon/list:
@@ -103,6 +100,9 @@ paths:
     $ref: paths/coupon/receive.yaml
   /coupon/selectlist:
     $ref: paths/coupon/selectlist.yaml
+
+  /feedback/submit:
+    $ref: paths/feedback/submit.yaml
 
   /goods/category:
     $ref: paths/goods/category.yaml
