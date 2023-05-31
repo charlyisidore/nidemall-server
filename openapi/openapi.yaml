@@ -34,8 +34,12 @@ tags:
   - name: topic
   - name: user
 paths:
+  /address/delete:
+    $ref: paths/address/delete.yaml
   /address/detail:
     $ref: paths/address/detail.yaml
+  /address/list:
+    $ref: paths/address/list.yaml
   /address/save:
     $ref: paths/address/save.yaml
   /catalog/current:

@@ -1,0 +1,27 @@
+get:
+  tags:
+    - address
+  summary: Address list
+  description: Address list
+  operationId: wxAddressList
+  security:
+    - ApiKey: []
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    allOf:
+                      - $ref: ../../components/schemas/List.yaml
+                      - type: object
+                        properties:
+                          list:
+                            type: array
+                            items:
+                              $ref: ../../components/schemas/Address.yaml
