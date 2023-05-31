@@ -9,6 +9,7 @@ module.exports = class AuthService extends think.Service {
   /**
    * 
    * @param {number} userId 
+   * @returns {Promise<string>}
    */
   createToken(userId) {
     return new Promise((resolve) => {

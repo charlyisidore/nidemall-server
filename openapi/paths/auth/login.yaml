@@ -1,0 +1,42 @@
+post:
+  tags:
+    - auth
+  summary: Auth login
+  description: Auth login
+  operationId: wxAuthLogin
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            username:
+              type: string
+            password:
+              type: string
+          required:
+            - username
+            - password
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      userInfo:
+                        type: object
+                        properties:
+                          nickName:
+                            type: string
+                          avatarUrl:
+                            type: string
+                      token:
+                        type: string

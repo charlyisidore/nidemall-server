@@ -48,6 +48,9 @@ paths:
   /aftersale/submit:
     $ref: paths/aftersale/submit.yaml
 
+  /auth/login:
+    $ref: paths/auth/login.yaml
+
   /brand/detail:
     $ref: paths/brand/detail.yaml
   /brand/list:
