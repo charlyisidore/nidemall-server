@@ -1,0 +1,16 @@
+type: object
+properties:
+  id:
+    type: integer
+  goodsId:
+    type: integer
+  addTime:
+    $ref: ./DateTime.yaml
+  name:
+    type: string
+  brief:
+    type: string
+  picUrl:
+    type: string
+  retailPrice:
+    type: number

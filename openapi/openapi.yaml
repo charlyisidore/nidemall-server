@@ -104,6 +104,11 @@ paths:
   /feedback/submit:
     $ref: paths/feedback/submit.yaml
 
+  /footprint/delete:
+    $ref: paths/footprint/delete.yaml
+  /footprint/list:
+    $ref: paths/footprint/list.yaml
+
   /goods/category:
     $ref: paths/goods/category.yaml
   /goods/count:
