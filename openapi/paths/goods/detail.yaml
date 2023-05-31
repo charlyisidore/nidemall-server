@@ -1,0 +1,75 @@
+get:
+  tags:
+    - goods
+  summary: Goods detail
+  description: Goods detail
+  operationId: wxGoodsDetail
+  parameters:
+    - name: id
+      in: query
+      description: Goods ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      specificationList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            valueList:
+                              type: array
+                              items:
+                                $ref: >-
+                                  ../../components/schemas/GoodsSpecification.yaml
+                      groupon:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/GrouponRules.yaml
+                      issue:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/Issue.yaml
+                      userHasCollect:
+                        type: integer
+                      shareImage:
+                        type: string
+                      comment:
+                        type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              $ref: ../../components/schemas/Comment.yaml
+                          count:
+                            type: integer
+                      share:
+                        type: boolean
+                      attribute:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/GoodsAttribute.yaml
+                      brand:
+                        oneOf:
+                          - $ref: ../../components/schemas/Brand.yaml
+                          - {}
+                      productList:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/GoodsProduct.yaml
+                      info:
+                        $ref: ../../components/schemas/GoodsInfo.yaml

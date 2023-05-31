@@ -1,0 +1,12 @@
+type: object
+properties:
+  total:
+    type: integer
+  pages:
+    type: integer
+  limit:
+    type: integer
+  page:
+    type: integer
+  list:
+    type: array

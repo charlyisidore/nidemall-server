@@ -1,0 +1,25 @@
+get:
+  tags:
+    - address
+  summary: Address detail
+  description: Address detail
+  operationId: wxAddressDetail
+  parameters:
+    - name: id
+      in: query
+      description: Address ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    $ref: ../../components/schemas/Address.yaml

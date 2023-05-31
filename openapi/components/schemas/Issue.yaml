@@ -1,0 +1,14 @@
+type: object
+properties:
+  id:
+    type: integer
+  question:
+    type: string
+  answer:
+    type: string
+  addTime:
+    $ref: ./DateTime.yaml
+  updateTime:
+    $ref: ./DateTime.yaml
+  deleted:
+    type: boolean

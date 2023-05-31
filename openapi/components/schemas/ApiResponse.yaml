@@ -1,0 +1,10 @@
+type: object
+properties:
+  errno:
+    type: integer
+    description: Error code
+  errmsg:
+    type: string
+    description: Error message
+  data:
+    description: Output data

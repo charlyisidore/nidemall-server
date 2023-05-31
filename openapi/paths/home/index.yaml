@@ -1,0 +1,64 @@
+get:
+  tags:
+    - home
+  summary: Homepage index
+  description: Homepage index
+  operationId: wxHomeIndex
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      newGoodsList:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/Goods.yaml
+                      couponList:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/Coupon.yaml
+                      channel:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/CategoryChannel.yaml
+                      grouponList:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/Groupon.yaml
+                      banner:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/Ad.yaml
+                      brandList:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/Brand.yaml
+                      hotGoodsList:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/Goods.yaml
+                      topicList:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/Topic.yaml
+                      floorGoodsList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            goodsList:
+                              type: array
+                              items:
+                                $ref: ../../components/schemas/Goods.yaml
+                            id:
+                              type: integer

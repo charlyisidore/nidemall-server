@@ -1,0 +1,12 @@
+type: object
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+  desc:
+    type: string
+  picUrl:
+    type: string
+  floorPrice:
+    type: number

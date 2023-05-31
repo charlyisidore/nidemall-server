@@ -1,0 +1,60 @@
+get:
+  tags:
+    - goods
+  summary: Goods list
+  description: Goods list
+  operationId: wxGoodsList
+  parameters:
+    - name: categoryId
+      in: query
+      description: Category ID
+      required: false
+      schema:
+        type: integer
+    - name: brandId
+      in: query
+      description: Brand ID
+      required: false
+      schema:
+        type: integer
+    - name: keyword
+      in: query
+      description: Search by keywords
+      required: false
+      schema:
+        type: string
+    - name: isNew
+      in: query
+      description: Only new goods
+      required: false
+      schema:
+        type: boolean
+    - name: isHot
+      in: query
+      description: Only hot goods
+      required: false
+      schema:
+        type: boolean
+    - $ref: ../../components/parameters/page.yaml
+    - $ref: ../../components/parameters/limit.yaml
+    - $ref: ../../components/parameters/sort.yaml
+    - $ref: ../../components/parameters/order.yaml
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    allOf:
+                      - $ref: ../../components/schemas/List.yaml
+                      - type: object
+                        properties:
+                          list:
+                            type: array
+                            items:
+                              $ref: ../../components/schemas/Goods.yaml

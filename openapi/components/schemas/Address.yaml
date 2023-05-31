@@ -1,0 +1,28 @@
+type: object
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+  userId:
+    type: integer
+  province:
+    type: string
+  city:
+    type: string
+  county:
+    type: string
+  addressDetail:
+    type: string
+  areaCode:
+    type: string
+  tel:
+    type: string
+  isDefault:
+    type: boolean
+  addTime:
+    $ref: ./DateTime.yaml
+  updateTime:
+    $ref: ./DateTime.yaml
+  deleted:
+    type: boolean

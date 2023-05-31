@@ -1,0 +1,29 @@
+get:
+  tags:
+    - catalog
+  summary: Catalog index
+  description: Catalog index
+  operationId: wxCatalogIndex
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      currentCategory:
+                        $ref: ../../components/schemas/Category.yaml
+                      categoryList:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/Category.yaml
+                      currentSubCategory:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/Category.yaml

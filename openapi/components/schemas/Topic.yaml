@@ -1,0 +1,14 @@
+type: object
+properties:
+  id:
+    type: integer
+  title:
+    type: string
+  subtitle:
+    type: string
+  price:
+    type: number
+  readCount:
+    type: string
+  picUrl:
+    type: string

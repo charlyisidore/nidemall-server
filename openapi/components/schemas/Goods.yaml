@@ -1,0 +1,18 @@
+type: object
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+  brief:
+    type: string
+  picUrl:
+    type: string
+  isNew:
+    type: boolean
+  isHot:
+    type: boolean
+  counterPrice:
+    type: number
+  retailPrice:
+    type: number

@@ -1,0 +1,22 @@
+type: object
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+  link:
+    type: string
+  url:
+    type: string
+  position:
+    type: integer
+  content:
+    type: string
+  enabled:
+    type: boolean
+  addTime:
+    $ref: ./DateTime.yaml
+  updateTime:
+    $ref: ./DateTime.yaml
+  deleted:
+    type: boolean

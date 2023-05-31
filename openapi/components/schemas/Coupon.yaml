@@ -1,0 +1,16 @@
+type: object
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+  desc:
+    type: string
+  tag:
+    type: string
+  discount:
+    type: number
+  min:
+    type: number
+  days:
+    type: integer

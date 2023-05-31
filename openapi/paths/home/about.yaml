@@ -1,0 +1,31 @@
+get:
+  tags:
+    - home
+  summary: Homepage about
+  description: Homepage about
+  operationId: wxHomeAbout
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      qq:
+                        type: string
+                      address:
+                        type: string
+                      phone:
+                        type: string
+                      latitude:
+                        type: string
+                      name:
+                        type: string
+                      longitude:
+                        type: string

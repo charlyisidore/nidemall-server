@@ -1,0 +1,18 @@
+get:
+  tags:
+    - goods
+  summary: Goods count
+  description: Goods count
+  operationId: wxGoodsCount
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: integer

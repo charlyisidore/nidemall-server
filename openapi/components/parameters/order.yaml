@@ -1,0 +1,7 @@
+name: order
+in: query
+description: Sort direction
+required: false
+schema:
+  type: string
+  default: desc

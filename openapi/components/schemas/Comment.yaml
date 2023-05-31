@@ -1,0 +1,18 @@
+type: object
+properties:
+  addTime:
+    $ref: ./DateTime.yaml
+  picList:
+    type: array
+    items:
+      type: string
+  adminContent:
+    type: string
+  nickname:
+    type: string
+  id:
+    type: integer
+  avatar:
+    type: string
+  content:
+    type: string

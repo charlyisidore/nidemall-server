@@ -1,0 +1,32 @@
+get:
+  tags:
+    - catalog
+  summary: Catalog current
+  description: Catalog current
+  operationId: wxCatalogCurrent
+  parameters:
+    - name: id
+      in: query
+      description: Category ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../components/schemas/ApiResponse.yaml
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      currentCategory:
+                        $ref: ../../components/schemas/Category.yaml
+                      currentSubCategory:
+                        type: array
+                        items:
+                          $ref: ../../components/schemas/Category.yaml
