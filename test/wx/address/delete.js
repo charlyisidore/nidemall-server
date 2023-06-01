@@ -1,6 +1,6 @@
 const test = require('ava');
-const { request, createUser, destroyUser } = require('../../../helpers/app.js');
-const { createAddress, destroyAddress } = require('../../../helpers/address.js');
+const { request, createUser, destroyUser } = require('../../helpers/app.js');
+const { createAddress, destroyAddress } = require('../helpers/address.js');
 
 const REQUEST = {
   method: 'post',
@@ -38,18 +38,18 @@ test.after.always(async (t) => {
 // Create the addresses
 test.beforeEach(async (t) => {
   t.context.address = await createAddress({ userId: t.context.userId });
-  t.context.stolen = await createAddress({ userId: 99999999 });
+  t.context.other = await createAddress({ userId: 99999999 });
 });
 
 // Hard-delete the addresses from the database
 test.afterEach(async (t) => {
   await destroyAddress(t.context.address.id);
-  await destroyAddress(t.context.stolen.id);
+  await destroyAddress(t.context.other.id);
   t.context.address = null;
-  t.context.stolen = null;
+  t.context.other = null;
 });
 
-test.serial('success', async (t) => {
+test('success', async (t) => {
   const response = await request({
     ...REQUEST,
     token: t.context.token,
@@ -60,7 +60,7 @@ test.serial('success', async (t) => {
   t.assert(softDeleted(t.context.address.id));
 });
 
-test.serial('not logged in', async (t) => {
+test('not logged in', async (t) => {
   const response = await request({
     ...REQUEST,
     data: { id: t.context.address.id },
@@ -70,7 +70,7 @@ test.serial('not logged in', async (t) => {
   t.assert(notDeleted(t.context.address.id));
 });
 
-test.serial('missing id', async (t) => {
+test('missing id', async (t) => {
   const response = await request({
     ...REQUEST,
     token: t.context.token,
@@ -81,7 +81,7 @@ test.serial('missing id', async (t) => {
   t.assert(notDeleted(t.context.address.id));
 });
 
-test.serial('not found', async (t) => {
+test('not found', async (t) => {
   const response = await request({
     ...REQUEST,
     token: t.context.token,
@@ -92,11 +92,11 @@ test.serial('not found', async (t) => {
   t.assert(notDeleted(t.context.address.id));
 });
 
-test.serial('stolen id', async (t) => {
+test('other id', async (t) => {
   const response = await request({
     ...REQUEST,
     token: t.context.token,
-    data: { id: t.context.stolen.id },
+    data: { id: t.context.other.id },
   });
 
   t.is(response.body.errno, 402);
