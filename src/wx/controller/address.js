@@ -70,7 +70,7 @@ module.exports = class WxAddressController extends Base {
 
       address.id = await addressService.add(address);
     } else {
-      const addr = await addressService.query(userId, address.id);
+      const addr = await addressService.query(address.id, userId);
 
       if (think.isEmpty(addr)) {
         return this.badArgumentValue();
