@@ -45,8 +45,6 @@ test.beforeEach(async (t) => {
 test.afterEach(async (t) => {
   await destroyAddress(t.context.address.id);
   await destroyAddress(t.context.other.id);
-  t.context.address = null;
-  t.context.other = null;
 });
 
 test('success', async (t) => {
