@@ -1,6 +1,7 @@
 const test = require('ava');
 const { dualRequest, loginUser, deepEqualTypes } = require('../helpers/app.js');
 
+// Sample data
 const DATA = {
   name: 'my name',
   tel: '13456789012',
@@ -12,7 +13,7 @@ const DATA = {
   isDefault: false,
 };
 
-// Create a user
+// Get login tokens
 test.before(async (t) => {
   const nideLogin = await loginUser(t);
   const liteLogin = await loginUser(t, { litemall: true });
@@ -36,8 +37,8 @@ test('/wx/address', async (t) => {
       data: DATA,
     })
 
-    t.is(nideResponse.errno, 0, '/wx/address/save success');
-    t.is(nideResponse.errno, liteResponse.errno, '/wx/address/save diff errno');
+    t.is(nideResponse.errno, 0, '/save success');
+    t.is(nideResponse.errno, liteResponse.errno, '/save diff errno');
 
     nideAddressId = nideResponse.data;
     liteAddressId = liteResponse.data;
@@ -54,11 +55,11 @@ test('/wx/address', async (t) => {
       ],
     });
 
-    t.is(nideResponse.errno, 0, '/wx/address/save success');
-    t.is(nideResponse.errno, liteResponse.errno, '/wx/address/detail diff errno');
+    t.is(nideResponse.errno, 0, '/detail success');
+    t.is(nideResponse.errno, liteResponse.errno, '/detail diff errno');
 
-    t.like(nideResponse.data, DATA, '/wx/address/detail nidemall data');
-    t.like(liteResponse.data, DATA, '/wx/address/detail litemall data');
+    t.like(nideResponse.data, DATA, '/detail nidemall data');
+    t.like(liteResponse.data, DATA, '/detail litemall data');
 
     deepEqualTypes(t, nideResponse.data, liteResponse.data);
 
@@ -77,14 +78,14 @@ test('/wx/address', async (t) => {
       tokens: t.context.tokens,
     });
 
-    t.is(nideResponse.errno, 0, '/wx/address/save success');
-    t.is(nideResponse.errno, liteResponse.errno, '/wx/address/list diff errno');
+    t.is(nideResponse.errno, 0, '/list success');
+    t.is(nideResponse.errno, liteResponse.errno, '/list diff errno');
 
-    t.assert(think.isArray(nideResponse.data?.list), '/wx/address/list nidemall not a list');
-    t.assert(think.isArray(liteResponse.data?.list), '/wx/address/list litemall not a list');
+    t.assert(think.isArray(nideResponse.data?.list), '/list nidemall not a list');
+    t.assert(think.isArray(liteResponse.data?.list), '/list litemall not a list');
 
-    t.assert(nideResponse.data.list.length > 0, '/wx/address/list empty nidemall list');
-    t.assert(liteResponse.data.list.length > 0, '/wx/address/list empty litemall list');
+    t.assert(nideResponse.data.list.length > 0, '/list empty nidemall list');
+    t.assert(liteResponse.data.list.length > 0, '/list empty litemall list');
 
     deepEqualTypes(t, nideResponse.data, liteResponse.data);
   }
@@ -101,6 +102,7 @@ test('/wx/address', async (t) => {
       ],
     });
 
-    t.is(nideResponse.errno, liteResponse.errno, '/wx/address/delete diff errno');
+    t.is(nideResponse.errno, 0, '/delete success');
+    t.is(nideResponse.errno, liteResponse.errno, '/delete diff errno');
   }
 });
