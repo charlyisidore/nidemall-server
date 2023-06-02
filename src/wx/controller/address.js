@@ -102,10 +102,6 @@ module.exports = class WxAddressController extends Base {
       return this.unlogin();
     }
 
-    if (think.isNullOrUndefined(id)) {
-      return this.badArgument();
-    }
-
     const address = await addressService.query(id, userId);
     if (think.isEmpty(address)) {
       return this.badArgumentValue();
