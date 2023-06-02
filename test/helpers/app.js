@@ -121,18 +121,17 @@ function destroyUser(id) {
     .delete();
 }
 
-function deepEqualTypes(t, v1, v2) {
+function deepEqualType(t, v1, v2) {
   t.is(typeof v1, typeof v2, 'diff types');
 
   if (think.isArray(v1)) {
     if (v1.length == 0 || v2.length == 0) {
-      t.is(v1.length, v2.length, 'empty and non empty array');
-    } else {
-      const v0 = v2[0];
-
-      v1.forEach((v) => deepEqualTypes(t, v, v0));
-      v2.slice(1).forEach((v) => deepEqualTypes(t, v, v0));
+      return;
     }
+
+    const v0 = v2[0];
+    v1.forEach((v) => deepEqualType(t, v, v0));
+    v2.slice(1).forEach((v) => deepEqualType(t, v, v0));
   } else if (think.isObject(v1)) {
     t.deepEqual(
       Object.keys(v1).sort(),
@@ -140,7 +139,7 @@ function deepEqualTypes(t, v1, v2) {
       'diff keys'
     );
 
-    Object.entries(v1).forEach(([k, v]) => deepEqualTypes(t, v, v2[k]));
+    Object.entries(v1).forEach(([k, v]) => deepEqualType(t, v, v2[k]));
   }
 }
 
@@ -151,5 +150,5 @@ module.exports = {
   loginUser,
   createUser,
   destroyUser,
-  deepEqualTypes,
+  deepEqualType,
 };

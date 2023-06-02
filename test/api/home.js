@@ -1,5 +1,5 @@
 const test = require('ava');
-const { dualRequest, deepEqualTypes } = require('../helpers/app.js');
+const { dualRequest, deepEqualType } = require('../helpers/app.js');
 
 test('/wx/home/index', async (t) => {
   const [nideResponse, liteResponse] = await dualRequest(t, {
@@ -10,7 +10,7 @@ test('/wx/home/index', async (t) => {
   t.is(nideResponse.errno, liteResponse.errno, '/index diff errno');
 
   const omitKeys = ['grouponList'];
-  deepEqualTypes(
+  deepEqualType(
     t,
     think.omit(nideResponse.data, omitKeys),
     think.omit(liteResponse.data, omitKeys)

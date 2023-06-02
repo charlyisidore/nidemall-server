@@ -1,5 +1,5 @@
 const test = require('ava');
-const { dualRequest, loginUser, deepEqualTypes } = require('../helpers/app.js');
+const { dualRequest, loginUser, deepEqualType } = require('../helpers/app.js');
 
 // Sample data
 const DATA = {
@@ -61,7 +61,7 @@ test('/wx/address', async (t) => {
     t.like(nideResponse.data, DATA, '/detail nidemall data');
     t.like(liteResponse.data, DATA, '/detail litemall data');
 
-    deepEqualTypes(t, nideResponse.data, liteResponse.data);
+    deepEqualType(t, nideResponse.data, liteResponse.data);
 
     const omitKeys = ['id', 'addTime', 'updateTime'];
     t.deepEqual(
@@ -87,7 +87,7 @@ test('/wx/address', async (t) => {
     t.assert(nideResponse.data.list.length > 0, '/list empty nidemall list');
     t.assert(liteResponse.data.list.length > 0, '/list empty litemall list');
 
-    deepEqualTypes(t, nideResponse.data, liteResponse.data);
+    deepEqualType(t, nideResponse.data, liteResponse.data);
   }
 
   // Delete
