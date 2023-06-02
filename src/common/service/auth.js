@@ -73,13 +73,75 @@ module.exports = class AuthService extends think.Service {
     return bcrypt.hash(password, salt);
   }
 
+  /**
+   * 
+   * @param {string} phoneNumber 
+   * @param {string} code 
+   * @returns {Promise<boolean>}
+   */
+  async addCaptchaToCache(phoneNumber, code) {
+    let cache = await think.cache('captcha') || {};
+    const now = (new Date()).getTime();
+
+    if (phoneNumber in cache && cache[phoneNumber].expireTime > now) {
+      return false;
+    }
+
+    cache[phoneNumber] = {
+      code,
+      expireTime: now + 60 * 1000,
+    };
+
+    await think.cache('captcha', cache);
+    return true;
+  }
+
+  /**
+   * 
+   * @param {string} phoneNumber 
+   * @returns {Promise<string|null>}
+   */
+  async getCachedCaptcha(phoneNumber) {
+    let cache = await think.cache('captcha') || {};
+
+    if (!(phoneNumber in cache)) {
+      return null;
+    }
+
+    const now = (new Date()).getTime();
+
+    if (cache[phoneNumber].expireTime < now) {
+      return null;
+    }
+
+    return cache[phoneNumber].code;
+  }
+
+  /**
+   * 
+   */
+  async cleanCaptchaCache() {
+    let cache = await think.cache('captcha') || {};
+    const now = (new Date()).getTime();
+
+    cache = Object.fromEntries(
+      Object.entries(cache)
+        .filter(([k, v]) => v.expireTime < now)
+    );
+
+    await think.cache('captcha', cache);
+  }
+
   getConstants() {
     return {
       RESPONSE: {
         INVALID_ACCOUNT: 700,
+        CAPTCHA_UNSUPPORT: 701,
+        CAPTCHA_FREQUENCY: 702,
         CAPTCHA_UNMATCH: 703,
         NAME_REGISTERED: 704,
         MOBILE_REGISTERED: 705,
+        MOBILE_UNREGISTERED: 706,
         INVALID_MOBILE: 707,
         OPENID_UNACCESS: 708,
         OPENID_BINDED: 709,

@@ -21,6 +21,7 @@
  * @typedef {import('./service/groupon_rules.js')} GrouponRulesService
  * @typedef {import('./service/issue.js')} IssueService
  * @typedef {import('./service/keyword.js')} KeywordService
+ * @typedef {import('./service/notify.js')} NotifyService
  * @typedef {import('./service/order.js')} OrderService
  * @typedef {import('./service/order_goods.js')} OrderGoodsService
  * @typedef {import('./service/search_history.js')} SearchHistoryService

@@ -4,7 +4,9 @@ module.exports = class WxAuthController extends Base {
   static DEFAULT_AVATAR = 'https://yanxuan.nosdn.127.net/80841d741d7fa3073e0ae27bf487339f.jpg?imageView&quality=90&thumbnail=64x64';
 
   async loginAction() {
+    /** @type {string} */
     const username = this.post('username');
+    /** @type {string} */
     const password = this.post('password');
 
     /** @type {AuthService} */
@@ -53,6 +55,7 @@ module.exports = class WxAuthController extends Base {
   }
 
   async login_by_weixinAction() {
+    /** @type {string} */
     const code = this.post('code');
     const userInfo = this.post('userInfo');
 
@@ -127,14 +130,42 @@ module.exports = class WxAuthController extends Base {
   }
 
   async regCaptchaAction() {
-    return this.success('todo');
+    /** @type {string} */
+    const mobile = this.post('mobile');
+
+    /** @type {AuthService} */
+    const authService = this.service('auth');
+    /** @type {NotifyService} */
+    const notifyService = this.service('notify');
+
+    const AUTH = authService.getConstants();
+    const NOTIFY = notifyService.getConstants();
+
+    if (!notifyService.isSmsEnable()) {
+      return this.fail(AUTH.RESPONSE.CAPTCHA_UNSUPPORT, '小程序后台验证码服务不支持');
+    }
+
+    const code = this.getRandomNum(6);
+
+    if (!await authService.addCaptchaToCache(mobile, code)) {
+      return this.fail(AUTH.RESPONSE.CAPTCHA_FREQUENCY, '验证码未超时1分钟，不能发送');
+    }
+
+    await notifyService.notifySmsTemplate(mobile, NOTIFY.TYPE.CAPTCHA, [code]);
+
+    return this.success();
   }
 
   async registerAction() {
+    /** @type {string} */
     const username = this.post('username');
+    /** @type {string} */
     const password = this.post('password');
+    /** @type {string} */
     const mobile = this.post('mobile');
+    /** @type {string} */
     const code = this.post('code');
+    /** @type {string} */
     const wxCode = this.post('wxCode');
 
     /** @type {AuthService} */
@@ -169,10 +200,9 @@ module.exports = class WxAuthController extends Base {
       return this.fail(AUTH.RESPONSE.INVALID_MOBILE, '手机号格式不正确');
     }
 
-    // TODO
-    const cacheCode = CaptchaCodeManager.getCachedCaptcha(mobile);
+    const cacheCode = await authService.getCachedCaptcha(mobile);
 
-    if (think.isEmpty(cacheCode) || cacheCode != code) {
+    if (think.isNullOrUndefined(cacheCode) || cacheCode != code) {
       return this.fail(AUTH.RESPONSE.CAPTCHA_UNMATCH, '验证码错误');
     }
 
@@ -181,7 +211,6 @@ module.exports = class WxAuthController extends Base {
     if (!think.isTrueEmpty(wxCode)) {
       try {
         const response = await weixinService.login(code, userInfo);
-
         openid = response.openid;
       } catch (e) {
         console.error(e);
@@ -235,11 +264,75 @@ module.exports = class WxAuthController extends Base {
   }
 
   async resetAction() {
-    return this.success('todo');
+    /** @type {string} */
+    const password = this.post('password');
+    /** @type {string} */
+    const mobile = this.post('mobile');
+    /** @type {string} */
+    const code = this.post('code');
+
+    /** @type {AuthService} */
+    const authService = this.service('auth');
+    /** @type {UserService} */
+    const userService = this.service('user');
+
+    const AUTH = authService.getConstants();
+
+    const cacheCode = await authService.getCachedCaptcha(mobile);
+
+    if (think.isNullOrUndefined(cacheCode) || cacheCode != code) {
+      return this.fail(AUTH.RESPONSE.CAPTCHA_UNMATCH, '验证码错误');
+    }
+
+    const userList = await userService.queryByMobile(mobile);
+
+    if (userList.length > 1) {
+      return this.serious();
+    }
+
+    if (0 == userList.length) {
+      return this.fail(AUTH.RESPONSE.MOBILE_UNREGISTERED, '手机号未注册');
+    }
+
+    const [user] = userList;
+
+    user.password = await authService.hashPassword(password);
+
+    if (!await userService.updateById(user)) {
+      return this.updatedDataFailed();
+    }
+
+    return this.success();
   }
 
   async bindPhoneAction() {
-    return this.success('todo');
+    const userId = this.getUserId();
+    /** @type {string} */
+    const encryptedData = this.post('encryptedData');
+    /** @type {string} */
+    const iv = this.post('iv');
+
+    /** @type {UserService} */
+    const userService = this.service('user');
+    /** @type {WeixinService} */
+    const weixinService = this.service('weixin');
+
+    if (think.isNullOrUndefined(userId)) {
+      return this.unlogin();
+    }
+
+    const user = await userService.findById(userId);
+    const phoneNumberInfo = await weixinService.getPhoneNoInfo(user.sessionKey, encryptedData, iv);
+
+    Object.assign(user, {
+      mobile: phoneNumberInfo.phoneNumber,
+    });
+
+    if (!await userService.updateById(user)) {
+      return this.updatedDataFailed();
+    }
+
+    return this.success();
   }
 
   async logoutAction() {
@@ -250,5 +343,11 @@ module.exports = class WxAuthController extends Base {
     }
 
     return this.success();
+  }
+
+  getRandomNum(n) {
+    return Math.floor(Math.random() * (Math.pow(10, n) - 1))
+      .toString()
+      .padStart(n, '0');
   }
 };

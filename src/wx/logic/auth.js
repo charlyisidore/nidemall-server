@@ -61,6 +61,14 @@ module.exports = class extends think.Logic {
 
   regCaptchaAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      mobile: {
+        string: true,
+        mobile: 'zh-CN',
+        required: true,
+      },
+    };
   }
 
   registerAction() {
@@ -92,10 +100,36 @@ module.exports = class extends think.Logic {
 
   resetAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      password: {
+        string: true,
+        required: true,
+      },
+      mobile: {
+        string: true,
+        required: true,
+      },
+      code: {
+        string: true,
+        required: true,
+      },
+    };
   }
 
   bindPhoneAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      encryptedData: {
+        string: true,
+        required: true,
+      },
+      iv: {
+        string: true,
+        required: true,
+      },
+    };
   }
 
   logoutAction() {

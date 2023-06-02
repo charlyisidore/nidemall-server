@@ -92,6 +92,20 @@ module.exports = class UserService extends think.Service {
 
   /**
    * 
+   * @param {string} mobile 
+   * @returns {Promise<User[]>} 
+   */
+  queryByMobile(mobile) {
+    return this.model('user')
+      .where({
+        mobile,
+        deleted: false,
+      })
+      .select();
+  }
+
+  /**
+   * 
    * @param {string} openid 
    * @returns {Promise<User[]>} 
    */

@@ -39,4 +39,24 @@ module.exports = class WeixinService extends think.Service {
       }
     });
   }
+
+  /**
+   * 
+   * @param {string} sessionKey 
+   * @param {string} encryptedData 
+   * @param {string} iv 
+   */
+  getPhoneNoInfo(sessionKey, encryptedData, iv) {
+    // TODO
+    // decrypt(sessionKey, encryptedData, iv)
+    return {
+      phoneNumber: '',
+      purePhoneNumber: '',
+      countryCode: '',
+      watermark: {
+        appid: '',
+        timestamp: '',
+      },
+    };
+  }
 }
