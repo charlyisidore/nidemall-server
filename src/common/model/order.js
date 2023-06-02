@@ -56,6 +56,7 @@ module.exports = class extends Base {
       },
       pay_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       ship_sn: {
         type: 'varchar(63)',
@@ -65,6 +66,7 @@ module.exports = class extends Base {
       },
       ship_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       refund_amount: {
         type: 'decimal(10,2)',
@@ -77,21 +79,26 @@ module.exports = class extends Base {
       },
       refund_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       confirm_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       comments: {
         type: 'smallint(6)',
       },
       end_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       add_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       update_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       deleted: {
         type: 'tinyint(1)',

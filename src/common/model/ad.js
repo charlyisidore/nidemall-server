@@ -23,9 +23,11 @@ module.exports = class extends Base {
       },
       start_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       end_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       enabled: {
         type: 'tinyint(1)',
@@ -33,9 +35,11 @@ module.exports = class extends Base {
       },
       add_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       update_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       deleted: {
         type: 'tinyint(1)',

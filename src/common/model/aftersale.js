@@ -36,12 +36,15 @@ module.exports = class extends Base {
       },
       handle_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       add_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       update_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       deleted: {
         type: 'tinyint(1)',

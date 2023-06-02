@@ -26,15 +26,18 @@ module.exports = class extends Base {
       },
       creator_user_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       status: {
         type: 'smallint(6)',
       },
       add_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       update_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       deleted: {
         type: 'tinyint(1)',

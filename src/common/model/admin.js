@@ -17,15 +17,18 @@ module.exports = class extends Base {
       },
       last_login_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       avatar: {
         type: 'varchar(255)',
       },
       add_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       update_time: {
         type: 'datetime',
+        dataType: 'datetime',
       },
       deleted: {
         type: 'tinyint(1)',
