@@ -9,12 +9,7 @@ test('/wx/home/index', async (t) => {
   t.is(nideResponse.errno, 0, '/index success');
   t.is(nideResponse.errno, liteResponse.errno, '/index diff errno');
 
-  const omitKeys = ['grouponList'];
-  deepEqualType(
-    t,
-    think.omit(nideResponse.data, omitKeys),
-    think.omit(liteResponse.data, omitKeys)
-  );
+  deepEqualType(t, nideResponse.data, liteResponse.data);
 });
 
 test('/wx/home/about', async (t) => {
@@ -25,6 +20,5 @@ test('/wx/home/about', async (t) => {
   t.is(nideResponse.errno, 0, '/about success');
   t.is(nideResponse.errno, liteResponse.errno, '/about diff errno');
 
-  const omitKeys = ['grouponList'];
   deepEqualType(t, nideResponse.data, liteResponse.data);
 });
