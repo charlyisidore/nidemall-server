@@ -63,10 +63,10 @@ module.exports = class AftersaleService extends think.Service {
    */
   async generateAftersaleSn(userId) {
     const now = new Date();
-    const yyyy = now.getFullYear().toString().padStart(4, '0');
-    const mm = now.getMonth().toString().padStart(2, '0');
+    const year = now.getFullYear().toString();
+    const mm = (1 + now.getMonth()).toString().padStart(2, '0');
     const dd = now.getDate().toString().padStart(2, '0');
-    const date = `${yyyy}${mm}${dd}`;
+    const date = `${year}${mm}${dd}`;
 
     let aftersaleSn = `${date}${this.getRandomNum(6)}`;
     while (await this.countByAftersaleSn(aftersaleSn, userId)) {
