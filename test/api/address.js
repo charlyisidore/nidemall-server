@@ -57,6 +57,9 @@ test('/wx/address', async (t) => {
     t.is(nideResponse.errno, 0, '/wx/address/save success');
     t.is(nideResponse.errno, liteResponse.errno, '/wx/address/detail diff errno');
 
+    t.like(nideResponse.data, DATA, '/wx/address/detail nidemall data');
+    t.like(liteResponse.data, DATA, '/wx/address/detail litemall data');
+
     deepEqualTypes(t, nideResponse.data, liteResponse.data);
 
     const omitKeys = ['id', 'addTime', 'updateTime'];
