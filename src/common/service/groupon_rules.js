@@ -95,7 +95,7 @@ module.exports = class GrouponRulesService extends think.Service {
       currentPage: grouponRulesList.currentPage,
       pageSize: grouponRulesList.pageSize,
       totalPages: grouponRulesList.totalPages,
-      list: grouponRulesVoList,
+      data: grouponRulesVoList,
     };
   }
 
