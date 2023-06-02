@@ -41,7 +41,7 @@ module.exports = class extends think.Model {
       Object.entries(data)
         .map(([k, v]) => [
           think.snakeCase(k),
-          this._beforeValue(v, k)
+          this._beforeValue(v, think.snakeCase(k))
         ])
     );
   }
@@ -53,7 +53,7 @@ module.exports = class extends think.Model {
           think.camelCase(k),
           this._afterValue(v, k)
         ])
-        .filter(([k, v]) => null !== v)
+        .filter(([k, v]) => !think.isNullOrUndefined(v))
     );
   }
 
@@ -63,6 +63,8 @@ module.exports = class extends think.Model {
     switch (dataType) {
       case 'boolean':
         return value ? 1 : 0;
+      case 'datetime':
+        return think.datetime(value);
       case 'json':
         return JSON.stringify(value);
     }
