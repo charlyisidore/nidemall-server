@@ -6,7 +6,7 @@ const DATA = {
   county: 'my county',
   areaCode: '123456',
   addressDetail: 'my address detail',
-  isDefault: false,
+  isDefault: true,
 };
 
 async function createAddress(data = {}) {

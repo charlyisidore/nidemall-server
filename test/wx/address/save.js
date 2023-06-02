@@ -35,19 +35,52 @@ test.afterEach(async (t) => {
 
 test.serial('success', async (t) => {
   const data = Object.assign({}, DATA);
+
+  // Add
+  {
+    const response = await request(t, {
+      ...REQUEST,
+      token: t.context.token,
+      data,
+    });
+
+    t.is(response.errno, 0);
+    t.assert(Number.isInteger(response.data));
+
+    data.id = response.data;
+
+    const address = await getAddress(data.id);
+    t.like(address, data);
+  }
+
+  // Update
+  {
+    const response = await request(t, {
+      ...REQUEST,
+      token: t.context.token,
+      data,
+    });
+
+    t.is(response.errno, 0);
+    t.assert(Number.isInteger(response.data));
+    t.is(response.data, data.id);
+
+    const address = await getAddress(data.id);
+    t.like(address, data);
+  }
+});
+
+test.serial('not found', async (t) => {
+  const data = Object.assign({}, DATA, {
+    id: 99999999,
+  });
   const response = await request(t, {
     ...REQUEST,
     token: t.context.token,
     data,
   });
 
-  t.is(response.errno, 0);
-  t.assert(Number.isInteger(response.data));
-
-  data.id = response.data;
-
-  const address = await getAddress(data.id);
-  t.like(address, data);
+  t.is(response.errno, 402);
 });
 
 test.serial('not logged in', async (t) => {
