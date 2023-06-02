@@ -4,7 +4,7 @@ const { createAddress, destroyAddress } = require('../helpers/address.js');
 
 const REQUEST = {
   method: 'post',
-  url: '/wx/address/delete',
+  path: '/wx/address/delete',
 };
 
 // Check if an address exists and is soft deleted
@@ -48,55 +48,55 @@ test.afterEach(async (t) => {
 });
 
 test('success', async (t) => {
-  const response = await request({
+  const response = await request(t, {
     ...REQUEST,
     token: t.context.token,
     data: { id: t.context.address.id },
   });
 
-  t.is(response.body.errno, 0);
+  t.is(response.errno, 0);
   t.assert(softDeleted(t.context.address.id));
 });
 
 test('not logged in', async (t) => {
-  const response = await request({
+  const response = await request(t, {
     ...REQUEST,
     data: { id: t.context.address.id },
   });
 
-  t.is(response.body.errno, 501);
+  t.is(response.errno, 501);
   t.assert(notDeleted(t.context.address.id));
 });
 
 test('missing id', async (t) => {
-  const response = await request({
+  const response = await request(t, {
     ...REQUEST,
     token: t.context.token,
     data: {},
   });
 
-  t.is(response.body.errno, 402);
+  t.is(response.errno, 402);
   t.assert(notDeleted(t.context.address.id));
 });
 
 test('not found', async (t) => {
-  const response = await request({
+  const response = await request(t, {
     ...REQUEST,
     token: t.context.token,
     data: { id: 99999999 },
   });
 
-  t.is(response.body.errno, 402);
+  t.is(response.errno, 402);
   t.assert(notDeleted(t.context.address.id));
 });
 
 test('other id', async (t) => {
-  const response = await request({
+  const response = await request(t, {
     ...REQUEST,
     token: t.context.token,
     data: { id: t.context.other.id },
   });
 
-  t.is(response.body.errno, 402);
+  t.is(response.errno, 402);
   t.assert(notDeleted(t.context.address.id));
 });

@@ -4,7 +4,7 @@ const { createAddress, destroyAddress } = require('../helpers/address.js');
 
 const REQUEST = {
   method: 'get',
-  url: '/wx/address/detail',
+  path: '/wx/address/detail',
 };
 
 // Create a user
@@ -32,51 +32,51 @@ test.afterEach(async (t) => {
 });
 
 test('success', async (t) => {
-  const response = await request({
+  const response = await request(t, {
     ...REQUEST,
     token: t.context.token,
     data: { id: t.context.address.id },
   });
 
-  t.is(response.body.errno, 0);
-  t.deepEqual(response.body.data, t.context.address);
+  t.is(response.errno, 0);
+  t.deepEqual(response.data, t.context.address);
 });
 
 test('not logged in', async (t) => {
-  const response = await request({
+  const response = await request(t, {
     ...REQUEST,
     data: { id: t.context.address.id },
   });
 
-  t.is(response.body.errno, 501);
+  t.is(response.errno, 501);
 });
 
 test('missing id', async (t) => {
-  const response = await request({
+  const response = await request(t, {
     ...REQUEST,
     token: t.context.token,
     data: {},
   });
 
-  t.is(response.body.errno, 402);
+  t.is(response.errno, 402);
 });
 
 test('not found', async (t) => {
-  const response = await request({
+  const response = await request(t, {
     ...REQUEST,
     token: t.context.token,
     data: { id: 99999999 },
   });
 
-  t.is(response.body.errno, 402);
+  t.is(response.errno, 402);
 });
 
 test('other id', async (t) => {
-  const response = await request({
+  const response = await request(t, {
     ...REQUEST,
     token: t.context.token,
     data: { id: t.context.other.id },
   });
 
-  t.is(response.body.errno, 402);
+  t.is(response.errno, 402);
 });

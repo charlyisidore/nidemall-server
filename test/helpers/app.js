@@ -1,42 +1,42 @@
+const axios = require('axios');
 const supertest = require('supertest');
 const path = require('node:path');
 require(path.join(process.cwd(), 'production.js'));
 
 const app = think.app.listen();
 
-function request(options) {
-  const tokenName = think.config('auth')?.header;
-  const url = options.url;
-  const method = options.method ?? 'get';
-  const token = options.token ?? null;
-  const data = options.data ?? null;
+const BASE_URL = `http://127.0.0.1:${app.address().port}`;
 
-  let req = supertest(app);
+async function request(t, options) {
+  const baseURL = options?.baseUrl ?? BASE_URL;
+  const method = options?.method?.toUpperCase() ?? 'GET';
+  const url = options?.path;
+  const headers = {};
+  const params = ('GET' == method) ? (options?.data ?? {}) : {};
+  const data = ('GET' == method) ? {} : (options?.data ?? {});
 
-  switch (method.toLowerCase()) {
-    case 'get':
-      req = req.get(url);
-      if (!think.isEmpty(data)) {
-        req = req.query(data);
-      }
-      break;
-    case 'post':
-      req = req.post(url);
-      if (!think.isEmpty(data)) {
-        req = req.send(data);
-      }
-      break;
-    default:
-      throw new Error('Unsupported HTTP method');
+  const tokenName = options?.tokenName ?? think.config('auth')?.header;
+  const token = options?.token ?? null;
+
+  if (!think.isNullOrUndefined(tokenName) && !think.isNullOrUndefined(token)) {
+    Object.assign(headers, {
+      [tokenName]: token,
+    });
   }
 
-  if (!think.isNullOrUndefined(token)) {
-    req = req.set(tokenName, token);
-  }
+  const response = await axios({
+    baseURL,
+    method,
+    url,
+    headers,
+    params,
+    data,
+  });
 
-  return req
-    .expect('Content-Type', /json/)
-    .expect(200);
+  t.is(response.status, 200);
+  t.regex(response.headers['content-type'], /json/);
+
+  return response.data;
 }
 
 function randomString(n) {

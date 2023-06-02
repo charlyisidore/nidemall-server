@@ -4,7 +4,7 @@ const { DATA } = require('../helpers/address.js');
 
 const REQUEST = {
   method: 'post',
-  url: '/wx/address/save',
+  path: '/wx/address/save',
 };
 
 // Check if an address exists
@@ -35,16 +35,16 @@ test.afterEach(async (t) => {
 
 test.serial('success', async (t) => {
   const data = Object.assign({}, DATA);
-  const response = await request({
+  const response = await request(t, {
     ...REQUEST,
     token: t.context.token,
     data,
   });
 
-  t.is(response.body.errno, 0);
-  t.assert(Number.isInteger(response.body.data));
+  t.is(response.errno, 0);
+  t.assert(Number.isInteger(response.data));
 
-  data.id = response.body.data;
+  data.id = response.data;
 
   const address = await getAddress(data.id);
   t.like(address, data);
@@ -52,10 +52,10 @@ test.serial('success', async (t) => {
 
 test.serial('not logged in', async (t) => {
   const data = Object.assign({}, DATA);
-  const response = await request({
+  const response = await request(t, {
     ...REQUEST,
     data,
   });
 
-  t.is(response.body.errno, 501);
+  t.is(response.errno, 501);
 });

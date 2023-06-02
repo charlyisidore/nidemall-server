@@ -4,7 +4,7 @@ const { createAddress, destroyAddress } = require('../helpers/address.js');
 
 const REQUEST = {
   method: 'get',
-  url: '/wx/address/list',
+  path: '/wx/address/list',
 };
 
 // Create a user
@@ -40,13 +40,13 @@ test.afterEach(async (t) => {
 test.serial('success', async (t) => {
   const list = t.context.addressList;
 
-  const response = await request({
+  const response = await request(t, {
     ...REQUEST,
     token: t.context.token,
   });
 
-  t.is(response.body.errno, 0);
-  t.deepEqual(response.body.data, {
+  t.is(response.errno, 0);
+  t.deepEqual(response.data, {
     total: list.length,
     pages: 1,
     limit: list.length,
@@ -56,9 +56,9 @@ test.serial('success', async (t) => {
 });
 
 test('not logged in', async (t) => {
-  const response = await request({
+  const response = await request(t, {
     ...REQUEST,
   });
 
-  t.is(response.body.errno, 501);
+  t.is(response.errno, 501);
 });
