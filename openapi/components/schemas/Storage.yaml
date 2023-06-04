@@ -1,4 +1,14 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - key
+  - name
+  - type
+  - size
+  - url
+  - addTime
+  - updateTime
 properties:
   id:
     type: integer

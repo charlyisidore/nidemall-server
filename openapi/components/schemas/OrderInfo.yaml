@@ -1,4 +1,23 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - orderSn
+  - message
+  - addTime
+  - consignee
+  - mobile
+  - address
+  - goodsPrice
+  - couponPrice
+  - freightPrice
+  - actualPrice
+  - orderStatusText
+  - handleOption
+  - aftersaleStatus
+  - expCode
+  - expName
+  - expNo
 properties:
   id:
     type: integer

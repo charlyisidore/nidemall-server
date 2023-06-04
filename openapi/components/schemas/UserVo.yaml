@@ -1,4 +1,8 @@
 type: object
+additionalProperties: false
+required:
+  - nickname
+  - avatar
 properties:
   nickname:
     type: string

@@ -1,4 +1,18 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - title
+  - subtitle
+  - price
+  - readCount
+  - picUrl
+  - sortOrder
+  - goods
+  - addTime
+  - updateTime
+  - deleted
+  - content
 properties:
   id:
     type: integer

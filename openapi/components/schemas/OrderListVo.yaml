@@ -1,4 +1,14 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - orderSn
+  - actualPrice
+  - orderStatusText
+  - handleOption
+  - aftersaleStatus
+  - isGroupin
+  - goodsList
 properties:
   id:
     type: integer
@@ -18,6 +28,14 @@ properties:
     type: array
     items:
       type: object
+      additionalProperties: false
+      required:
+        - id
+        - goodsName
+        - number
+        - picUrl
+        - specifications
+        - price
       properties:
         id:
           type: integer

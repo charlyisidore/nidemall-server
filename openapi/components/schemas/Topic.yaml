@@ -1,4 +1,12 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - title
+  - subtitle
+  - price
+  - readCount
+  - picUrl
 properties:
   id:
     type: integer

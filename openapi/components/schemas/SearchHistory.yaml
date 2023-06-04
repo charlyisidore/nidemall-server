@@ -1,4 +1,13 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - userId
+  - keyword
+  - from
+  - addTime
+  - updateTime
+  - deleted
 properties:
   id:
     type: integer
