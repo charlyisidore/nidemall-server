@@ -20,14 +20,34 @@ get:
             allOf:
               - $ref: ../../components/schemas/ApiResponse.yaml
               - type: object
+                additionalProperties: false
+                required:
+                  - data
                 properties:
                   data:
                     type: object
+                    additionalProperties: false
+                    required:
+                      - specificationList
+                      - groupon
+                      - issue
+                      - userHasCollect
+                      - shareImage
+                      - comment
+                      - share
+                      - attribute
+                      - brand
+                      - productList
+                      - info
                     properties:
                       specificationList:
                         type: array
                         items:
                           type: object
+                          additionalProperties: false
+                          required:
+                            - name
+                            - valueList
                           properties:
                             name:
                               type: string
@@ -50,6 +70,10 @@ get:
                         type: string
                       comment:
                         type: object
+                        additionalProperties: false
+                        required:
+                          - data
+                          - count
                         properties:
                           data:
                             type: array
@@ -66,7 +90,8 @@ get:
                       brand:
                         oneOf:
                           - $ref: ../../components/schemas/Brand.yaml
-                          - {}
+                          - type: object
+                            additionalProperties: false
                       productList:
                         type: array
                         items:
