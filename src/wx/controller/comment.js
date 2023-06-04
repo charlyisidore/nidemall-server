@@ -55,6 +55,12 @@ module.exports = class WxCommentController extends Base {
 
     comment.id = await commentService.save(comment);
 
+    // Format dates
+    Object.assign(comment, {
+      addTime: think.datetime(comment.addTime),
+      updateTime: think.datetime(comment.updateTime),
+    });
+
     this.success(comment);
   }
 
