@@ -125,7 +125,7 @@ module.exports = class UserService extends think.Service {
   async getInfo(userId) {
     const user = await this.findById(userId);
 
-    assert.ok(user, '用户不存在');
+    assert.ok(!think.isEmpty(user), '用户不存在');
 
     return {
       nickName: user.nickname,
