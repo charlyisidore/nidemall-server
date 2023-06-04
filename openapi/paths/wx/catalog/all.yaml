@@ -28,7 +28,9 @@ get:
                   allList:
                     type: object
                     additionalProperties:
-                      $ref: ../../../components/schemas/Category.yaml
+                      type: array
+                      items:
+                        $ref: ../../../components/schemas/Category.yaml
                   currentCategory:
                     $ref: ../../../components/schemas/Category.yaml
                   categoryList:
