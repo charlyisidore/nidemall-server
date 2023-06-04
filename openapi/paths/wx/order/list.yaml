@@ -30,16 +30,13 @@ get:
               - data
             properties:
               data:
+                type: object
                 allOf:
                   - $ref: ../../../components/schemas/List.yaml
-                  - type: object
-                    additionalProperties: false
-                    required:
-                      - list
-                    properties:
-                      list:
-                        type: array
-                        items:
-                          $ref: ../../../components/schemas/OrderListVo.yaml
+                properties:
+                  list:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/OrderListVo.yaml
     '4XX':
       description: Unexpected error

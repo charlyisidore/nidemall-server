@@ -62,21 +62,31 @@ get:
               - data
             properties:
               data:
-                allOf:
-                  - $ref: ../../../components/schemas/List.yaml
-                  - type: object
-                    additionalProperties: false
-                    required:
-                      - list
-                      - filterCategoryList
-                    properties:
-                      list:
-                        type: array
-                        items:
-                          $ref: ../../../components/schemas/Goods.yaml
-                      filterCategoryList:
-                        type: array
-                        items:
-                          $ref: ../../../components/schemas/Category.yaml
+                type: object
+                additionalProperties: false
+                required:
+                  - total
+                  - pages
+                  - limit
+                  - page
+                  - list
+                  - filterCategoryList
+                properties:
+                  total:
+                    type: integer
+                  pages:
+                    type: integer
+                  limit:
+                    type: integer
+                  page:
+                    type: integer
+                  list:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/Goods.yaml
+                  filterCategoryList:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/Category.yaml
     '4XX':
       description: Unexpected error
