@@ -297,9 +297,10 @@ module.exports = class WxCartController extends Base {
     }
 
     let grouponPrice = 0.;
-    const grouponRules = think.isNullOrUndefined(grouponRulesId) ?
-      null :
-      await grouponRulesService.findById(grouponRulesId);
+    const grouponRules = !think.isNullOrUndefined(grouponRulesId) ?
+      await grouponRulesService.findById(grouponRulesId) :
+      {};
+
     if (!think.isEmpty(grouponRules)) {
       grouponPrice = grouponRules.discount;
     }
