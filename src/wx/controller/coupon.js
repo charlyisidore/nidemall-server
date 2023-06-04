@@ -49,7 +49,7 @@ module.exports = class WxCouponController extends Base {
       order
     );
 
-    const couponVoList = await this.change(couponUserList.data);
+    const couponVoList = await this.change(couponUserList);
 
     return this.successList(couponVoList, couponUserList);
   }
