@@ -4,8 +4,6 @@ get:
   summary: Groupon join
   description: Groupon join
   operationId: wxGrouponJoin
-  security:
-    - ApiKey: []
   parameters:
     - name: grouponId
       in: query

@@ -4,8 +4,6 @@ get:
   summary: Groupon list
   description: Groupon list
   operationId: wxGrouponList
-  security:
-    - ApiKey: []
   parameters:
     - $ref: ../../../components/parameters/page.yaml
     - $ref: ../../../components/parameters/limit.yaml
