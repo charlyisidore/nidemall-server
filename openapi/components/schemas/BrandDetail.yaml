@@ -1,4 +1,15 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - name
+  - desc
+  - picUrl
+  - sortOrder
+  - floorPrice
+  - addTime
+  - updateTime
+  - deleted
 properties:
   id:
     type: integer

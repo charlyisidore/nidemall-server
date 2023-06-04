@@ -1,4 +1,11 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - name
+  - desc
+  - picUrl
+  - floorPrice
 properties:
   id:
     type: integer

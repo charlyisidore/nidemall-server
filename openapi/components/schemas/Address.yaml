@@ -1,4 +1,19 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - name
+  - userId
+  - province
+  - city
+  - county
+  - addressDetail
+  - areaCode
+  - tel
+  - isDefault
+  - addTime
+  - updateTime
+  - deleted
 properties:
   id:
     type: integer

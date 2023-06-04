@@ -1,4 +1,18 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - name
+  - keywords
+  - desc
+  - pid
+  - iconUrl
+  - picUrl
+  - level
+  - sortOrder
+  - addTime
+  - updateTime
+  - deleted
 properties:
   id:
     type: integer

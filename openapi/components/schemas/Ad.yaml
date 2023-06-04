@@ -1,4 +1,16 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - name
+  - link
+  - url
+  - position
+  - content
+  - enabled
+  - addTime
+  - updateTime
+  - deleted
 properties:
   id:
     type: integer

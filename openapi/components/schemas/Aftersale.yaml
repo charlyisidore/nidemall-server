@@ -1,4 +1,20 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - aftersaleSn
+  - orderId
+  - userId
+  - type
+  - reason
+  - amount
+  - pictures
+  - comment
+  - status
+  - handleTime
+  - addTime
+  - updateTime
+  - deleted
 properties:
   id:
     type: integer
