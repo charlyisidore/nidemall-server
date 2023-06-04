@@ -2,6 +2,7 @@ type: object
 additionalProperties: false
 required:
   - errno
+  - errmsg
 properties:
   errno:
     type: integer
@@ -9,3 +10,4 @@ properties:
   errmsg:
     type: string
     description: Error message
+  data: {}
