@@ -1,8 +1,11 @@
-openapi: 3.1.0
+openapi: '3.1.0'
 info:
   title: NideMall wx
   description: NideMall server API specification for WeChat Mini Programs.
   version: '1.0'
+  license:
+    name: MIT
+    url: https://opensource.org/license/mit/
   contact: {}
 externalDocs:
   description: GitHub repository
@@ -12,25 +15,45 @@ servers:
   - url: http://localhost:8360/wx
 tags:
   - name: address
+    description: Address controller
   - name: aftersale
+    description: Aftersale controller
   - name: auth
+    description: Auth controller
   - name: brand
+    description: Brand controller
   - name: cart
+    description: Cart controller
   - name: catalog
+    description: Catalog controller
   - name: collect
+    description: Collect controller
   - name: comment
+    description: Comment controller
   - name: coupon
+    description: Coupon controller
   - name: feedback
+    description: Feedback controller
   - name: footprint
+    description: Footprint controller
   - name: goods
+    description: Goods controller
   - name: groupon
+    description: Groupon controller
   - name: home
+    description: Home controller
   - name: issue
+    description: Issue controller
   - name: order
+    description: Order controller
   - name: search
+    description: Search controller
   - name: storage
+    description: Storage controller
   - name: topic
+    description: Topic controller
   - name: user
+    description: User controller
 paths:
   /address/delete:
     $ref: paths/address/delete.yaml
@@ -198,3 +221,5 @@ components:
       type: apiKey
       in: header
       name: X-Litemall-Token
+
+security: []
