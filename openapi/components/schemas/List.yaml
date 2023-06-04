@@ -5,6 +5,7 @@ required:
   - pages
   - limit
   - page
+  - list
 properties:
   total:
     type: integer
@@ -14,3 +15,4 @@ properties:
     type: integer
   page:
     type: integer
+  list: {}
