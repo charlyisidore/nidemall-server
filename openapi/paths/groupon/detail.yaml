@@ -58,3 +58,5 @@ get:
                             $ref: ../../components/schemas/Groupon.yaml
                           rules:
                             $ref: ../../components/schemas/GrouponRules.yaml
+    '4XX':
+      description: Unexpected error

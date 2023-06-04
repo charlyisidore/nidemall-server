@@ -36,3 +36,5 @@ post:
         application/json:
           schema:
             $ref: ../../components/schemas/ApiResponse.yaml
+    '4XX':
+      description: Unexpected error

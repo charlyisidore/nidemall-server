@@ -89,3 +89,5 @@ post:
                             type: string
                       token:
                         type: string
+    '4XX':
+      description: Unexpected error

@@ -40,3 +40,5 @@ get:
                           $ref: ../../components/schemas/Category.yaml
                       parentCategory:
                         $ref: ../../components/schemas/Category.yaml
+    '4XX':
+      description: Unexpected error

@@ -98,3 +98,5 @@ get:
                           $ref: ../../components/schemas/GoodsProduct.yaml
                       info:
                         $ref: ../../components/schemas/GoodsDetail.yaml
+    '4XX':
+      description: Unexpected error

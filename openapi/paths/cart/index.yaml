@@ -21,3 +21,5 @@ get:
                 properties:
                   data:
                     $ref: ../../components/schemas/CartIndex.yaml
+    '4XX':
+      description: Unexpected error

@@ -19,3 +19,5 @@ get:
                 properties:
                   data:
                     type: integer
+    '4XX':
+      description: Unexpected error

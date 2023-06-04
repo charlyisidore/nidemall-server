@@ -43,3 +43,5 @@ get:
                         type: integer
                       allCount:
                         type: integer
+    '4XX':
+      description: Unexpected error

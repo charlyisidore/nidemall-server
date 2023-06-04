@@ -31,3 +31,5 @@ post:
                 properties:
                   data:
                     $ref: ../../components/schemas/Storage.yaml
+    '4XX':
+      description: Unexpected error

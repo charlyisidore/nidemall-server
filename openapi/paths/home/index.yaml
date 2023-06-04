@@ -81,3 +81,5 @@ get:
                                 $ref: ../../components/schemas/Goods.yaml
                             id:
                               type: integer
+    '4XX':
+      description: Unexpected error

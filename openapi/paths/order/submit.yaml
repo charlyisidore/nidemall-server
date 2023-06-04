@@ -58,3 +58,5 @@ post:
                         type: boolean
                       grouponLinkId:
                         type: integer
+    '4XX':
+      description: Unexpected error

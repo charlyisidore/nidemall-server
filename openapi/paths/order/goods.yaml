@@ -28,3 +28,5 @@ get:
                 properties:
                   data:
                     $ref: ../../components/schemas/OrderGoods.yaml
+    '4XX':
+      description: Unexpected error

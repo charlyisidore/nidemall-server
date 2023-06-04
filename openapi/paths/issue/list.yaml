@@ -40,3 +40,5 @@ get:
                             type: array
                             items:
                               $ref: ../../components/schemas/Issue.yaml
+    '4XX':
+      description: Unexpected error

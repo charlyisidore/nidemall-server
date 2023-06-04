@@ -37,3 +37,5 @@ get:
                         $ref: ../../components/schemas/Groupon.yaml
                       goods:
                         $ref: ../../components/schemas/Goods.yaml
+    '4XX':
+      description: Unexpected error

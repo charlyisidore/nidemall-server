@@ -19,3 +19,5 @@ post:
                 properties:
                   data:
                     type: string
+    '4XX':
+      description: Unexpected error

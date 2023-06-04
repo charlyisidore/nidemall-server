@@ -47,3 +47,5 @@ post:
                 properties:
                   data:
                     $ref: ../../components/schemas/Comment.yaml
+    '4XX':
+      description: Unexpected error

@@ -30,3 +30,5 @@ get:
                     type: array
                     items:
                       type: string
+    '4XX':
+      description: Unexpected error

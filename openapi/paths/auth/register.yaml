@@ -41,3 +41,5 @@ post:
                 properties:
                   data:
                     $ref: ../../components/schemas/AuthLogin.yaml
+    '4XX':
+      description: Unexpected error

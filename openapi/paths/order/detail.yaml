@@ -42,3 +42,5 @@ get:
                           $ref: ../../components/schemas/OrderGoods.yaml
                       expressInfo:
                         $ref: ../../components/schemas/ExpressInfo.yaml
+    '4XX':
+      description: Unexpected error

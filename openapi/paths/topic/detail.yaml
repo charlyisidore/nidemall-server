@@ -40,3 +40,5 @@ get:
                           $ref: ../../components/schemas/Goods.yaml
                       userHasCollect:
                         type: integer
+    '4XX':
+      description: Unexpected error

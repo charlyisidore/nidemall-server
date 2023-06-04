@@ -32,3 +32,5 @@ post:
                 properties:
                   data:
                     type: object
+    '4XX':
+      description: Unexpected error

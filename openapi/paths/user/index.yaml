@@ -42,3 +42,5 @@ get:
                             type: integer
                           uncomment:
                             type: integer
+    '4XX':
+      description: Unexpected error
