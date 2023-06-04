@@ -6,6 +6,7 @@ required:
   - type
   - content
   - userId
+  - hasPicture
   - picUrls
   - star
   - addTime
@@ -21,6 +22,8 @@ properties:
     type: string
   userId:
     type: integer
+  hasPicture:
+    type: boolean
   picUrls:
     type: array
     items:
