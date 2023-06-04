@@ -8,6 +8,7 @@ required:
   - goodsName
   - productId
   - price
+  - number
   - specifications
   - checked
   - picUrl
@@ -29,6 +30,8 @@ properties:
     type: integer
   price:
     type: number
+  number:
+    type: integer
   specifications:
     type: array
     items:

@@ -53,48 +53,57 @@ get:
                 type: object
                 additionalProperties: false
                 required:
-                  - addressId
-                  - couponId
-                  - cartId
+                  - actualPrice
+                  - orderTotalPrice
                   - userCouponId
-                  - grouponRulesId
+                  - couponId
+                  - goodsTotalPrice
+                  - addressId
                   - grouponPrice
                   - checkedAddress
-                  - availableCouponLength
-                  - goodsTotalPrice
-                  - freightPrice
                   - couponPrice
-                  - orderTotalPrice
-                  - actualPrice
+                  - availableCouponLength
+                  - freightPrice
                   - checkedGoodsList
                 properties:
-                  addressId:
+                  actualPrice:
+                    type: number
+                  orderTotalPrice:
+                    type: number
+                  userCouponId:
                     type: integer
                   couponId:
                     type: integer
-                  cartId:
-                    type: integer
-                  userCouponId:
-                    type: integer
-                  grouponRulesId:
+                  goodsTotalPrice:
+                    type: number
+                  addressId:
                     type: integer
                   grouponPrice:
                     type: number
                   checkedAddress:
-                    $ref: ../../../components/schemas/Address.yaml
-                  availableCouponLength:
-                    type: integer
-                  goodsTotalPrice:
-                    type: number
-                  freightPrice:
-                    type: number
+                    oneOf:
+                      - $ref: ../../../components/schemas/Address.yaml
+                      - type: object
+                        additionalProperties: false
+                        required:
+                          - id
+                        properties:
+                          id:
+                            type:
+                              integer
                   couponPrice:
                     type: number
-                  orderTotalPrice:
-                    type: number
-                  actualPrice:
+                  availableCouponLength:
+                    type: integer
+                  freightPrice:
                     type: number
                   checkedGoodsList:
-                    type: number
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/Cart.yaml
+                  cartId:
+                    type: integer
+                  grouponRulesId:
+                    type: integer
     '4XX':
       description: Unexpected error
