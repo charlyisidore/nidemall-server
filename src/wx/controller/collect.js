@@ -72,9 +72,9 @@ module.exports = class WxCollectController extends Base {
   async addordeleteAction() {
     const userId = this.getUserId();
     /** @type {number} */
-    const type = this.get('type');
+    const type = this.post('type');
     /** @type {number} */
-    const valueId = this.get('valueId');
+    const valueId = this.post('valueId');
 
     /** @type {CollectService} */
     const collectService = this.service('collect');
