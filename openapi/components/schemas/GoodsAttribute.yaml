@@ -1,4 +1,13 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - goodsId
+  - attribute
+  - value
+  - addTime
+  - updateTime
+  - deleted
 properties:
   id:
     type: integer

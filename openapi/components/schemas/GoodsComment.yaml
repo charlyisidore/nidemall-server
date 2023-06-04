@@ -1,5 +1,16 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - addTime
+  - picList
+  - adminContent
+  - nickname
+  - avatar
+  - content
 properties:
+  id:
+    type: integer
   addTime:
     $ref: ./DateTime.yaml
   picList:
@@ -10,8 +21,6 @@ properties:
     type: string
   nickname:
     type: string
-  id:
-    type: integer
   avatar:
     type: string
   content:

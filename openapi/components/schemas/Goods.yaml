@@ -1,4 +1,14 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - name
+  - brief
+  - picUrl
+  - isNew
+  - isHot
+  - counterPrice
+  - retailPrice
 properties:
   id:
     type: integer

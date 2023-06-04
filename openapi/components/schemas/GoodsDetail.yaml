@@ -1,4 +1,27 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - goodsSn
+  - name
+  - categoryId
+  - brandId
+  - gallery
+  - keywords
+  - brief
+  - isOnSale
+  - sortOrder
+  - picUrl
+  - shareUrl
+  - isNew
+  - isHot
+  - unit
+  - counterPrice
+  - retailPrice
+  - addTime
+  - updateTime
+  - deleted
+  - detail
 properties:
   id:
     type: integer
