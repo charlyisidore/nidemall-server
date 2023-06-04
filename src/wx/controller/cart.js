@@ -138,13 +138,13 @@ module.exports = class WxCartController extends Base {
       if (!await cartService.updateById(existCart)) {
         return this.updatedDataFailed();
       }
-
-      return this.success(
-        think.isEmpty(existCart) ?
-          cart.id :
-          existCart.id
-      );
     }
+
+    return this.success(
+      think.isEmpty(existCart) ?
+        cart.id :
+        existCart.id
+    );
   }
 
   async updateAction() {
