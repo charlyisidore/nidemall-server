@@ -31,6 +31,6 @@ get:
                   list:
                     type: array
                     items:
-                      $ref: ../../../components/schemas/Topic.yaml
+                      $ref: ../../../components/schemas/TopicDetail.yaml
     '4XX':
       description: Unexpected error
