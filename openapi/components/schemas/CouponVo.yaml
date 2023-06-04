@@ -10,6 +10,7 @@ required:
   - discount
   - startTime
   - endTime
+  - available
 properties:
   id:
     type: integer
@@ -29,3 +30,5 @@ properties:
     $ref: ./DateTime.yaml
   endTime:
     $ref: ./DateTime.yaml
+  available:
+    type: boolean

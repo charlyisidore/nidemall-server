@@ -277,6 +277,7 @@ module.exports = class WxCouponController extends Base {
           discount: coupon.discount,
           startTime: couponUser.startTime,
           endTime: couponUser.endTime,
+          available: false,
         };
       })
     );
