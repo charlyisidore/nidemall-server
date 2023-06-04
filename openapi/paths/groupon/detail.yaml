@@ -22,11 +22,23 @@ get:
             allOf:
               - $ref: ../../components/schemas/ApiResponse.yaml
               - type: object
+                additionalProperties: false
+                required:
+                  - data
                 properties:
                   data:
                     allOf:
                       - $ref: ../../components/schemas/List.yaml
                       - type: object
+                        additionalProperties: false
+                        required:
+                          - orderInfo
+                          - orderGoods
+                          - linkGrouponId
+                          - creator
+                          - joiners
+                          - groupon
+                          - rules
                         properties:
                           orderInfo:
                             $ref: ../../components/schemas/OrderVo.yaml

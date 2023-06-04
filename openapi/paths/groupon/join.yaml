@@ -22,9 +22,16 @@ get:
             allOf:
               - $ref: ../../components/schemas/ApiResponse.yaml
               - type: object
+                additionalProperties: false
+                required:
+                  - data
                 properties:
                   data:
                     type: object
+                    additionalProperties: false
+                    required:
+                      - groupon
+                      - goods
                     properties:
                       groupon:
                         $ref: ../../components/schemas/Groupon.yaml

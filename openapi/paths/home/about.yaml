@@ -13,10 +13,23 @@ get:
             allOf:
               - $ref: ../../components/schemas/ApiResponse.yaml
               - type: object
+                additionalProperties: false
+                required:
+                  - data
                 properties:
                   data:
                     type: object
+                    additionalProperties: false
+                    required:
+                      - name
+                      - qq
+                      - address
+                      - phone
+                      - latitude
+                      - longitude
                     properties:
+                      name:
+                        type: string
                       qq:
                         type: string
                       address:
@@ -24,8 +37,6 @@ get:
                       phone:
                         type: string
                       latitude:
-                        type: string
-                      name:
                         type: string
                       longitude:
                         type: string
