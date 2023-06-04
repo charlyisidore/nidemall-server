@@ -1,4 +1,37 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - userId
+  - orderSn
+  - orderStatus
+  - aftersaleStatus
+  - consignee
+  - mobile
+  - address
+  - message
+  - goodsPrice
+  - freightPrice
+  - couponPrice
+  - integralPrice
+  - grouponPrice
+  - orderPrice
+  - actualPrice
+  - payId
+  - payTime
+  - shipSn
+  - shipChannel
+  - shipTime
+  - refundAmount
+  - refundType
+  - refundContent
+  - refundTime
+  - confirmType
+  - comments
+  - endTime
+  - addTime
+  - updateTime
+  - deleted
 properties:
   id:
     type: integer

@@ -1,4 +1,20 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - orderId
+  - goodsId
+  - goodsName
+  - goodsSn
+  - productId
+  - number
+  - price
+  - specifications
+  - picUrl
+  - comment
+  - addTime
+  - updateTime
+  - deleted
 properties:
   id:
     type: integer

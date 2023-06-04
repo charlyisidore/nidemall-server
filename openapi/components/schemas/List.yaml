@@ -1,4 +1,11 @@
 type: object
+additionalProperties: false
+required:
+  - total
+  - pages
+  - limit
+  - page
+  - list
 properties:
   total:
     type: integer

@@ -1,4 +1,15 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - keyword
+  - url
+  - isHot
+  - isDefault
+  - sortOrder
+  - addTime
+  - updateTime
+  - deleted
 properties:
   id:
     type: integer

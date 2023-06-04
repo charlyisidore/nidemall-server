@@ -1,4 +1,14 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - orderId
+  - goodsId
+  - goodsName
+  - number
+  - retailPrice
+  - picUrl
+  - goodsSpecificationValues
 properties:
   id:
     type: integer
@@ -10,7 +20,7 @@ properties:
     type: string
   number:
     type: integer
-  retailPricee:
+  retailPrice:
     type: number
   picUrl:
     type: string
