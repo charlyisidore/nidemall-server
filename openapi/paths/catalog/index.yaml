@@ -23,6 +23,11 @@ get:
                 properties:
                   data:
                     type: object
+                    additionalProperties: false
+                    required:
+                      - currentCategory
+                      - categoryList
+                      - currentSubCategory
                     properties:
                       currentCategory:
                         $ref: ../../components/schemas/Category.yaml
