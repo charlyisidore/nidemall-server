@@ -183,7 +183,7 @@ module.exports = class WxOrderController extends Base {
       return this.unlogin();
     }
 
-    if (!think.isEmpty(grouponRulesId)) {
+    if (grouponRulesId) {
       const rules = await grouponRulesService.findById(grouponRulesId);
 
       if (think.isEmpty(rules)) {
@@ -198,7 +198,7 @@ module.exports = class WxOrderController extends Base {
         return this.fail(GROUPON.RESPONSE.OFFLINE, '团购已下线!');
       }
 
-      if (!think.isEmpty(grouponLinkId)) {
+      if (grouponLinkId) {
         if ((await grouponService.countGroupon(grouponLinkId)) > (rules.discountMember - 1)) {
           return this.fail(GROUPON.RESPONSE.FULL, '团购活动人数已满!');
         }
@@ -222,7 +222,9 @@ module.exports = class WxOrderController extends Base {
     }
 
     let grouponPrice = 0.;
-    const grouponRules = await grouponRulesService.findById(grouponRulesId);
+    const grouponRules = !think.isNullOrUndefined(grouponRulesId) ?
+      await grouponRulesService.findById(grouponRulesId) :
+      {};
 
     if (!think.isEmpty(grouponRules)) {
       grouponPrice = grouponRules.discount;

@@ -19,17 +19,24 @@ module.exports = class AddressService extends think.Service {
 
   /**
    * 
-   * @param {number} id 
+   * @param {number?} id 
    * @param {number} userId 
    * @returns {Promise<Address|Record<string, never>>} 
    */
   query(id, userId) {
-    return this.model('address')
-      .where({
+    const where = {
+      userId,
+      deleted: false,
+    };
+
+    if (!think.isNullOrUndefined(id)) {
+      Object.assign(where, {
         id,
-        userId,
-        deleted: false,
-      })
+      });
+    }
+
+    return this.model('address')
+      .where(where)
       .find();
   }
 
