@@ -1,7 +1,17 @@
 type: object
+additionalProperties: false
+required:
+  - cartTotal
+  - cartList
 properties:
   cartTotal:
     type: object
+    additionalProperties: false
+    required:
+      - goodsCount
+      - checkedGoodsCount
+      - goodsAmount
+      - checkedGoodsAmount
     properties:
       goodsCount:
         type: integer

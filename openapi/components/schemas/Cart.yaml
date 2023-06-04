@@ -1,4 +1,19 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - userId
+  - goodsId
+  - goodsSn
+  - goodsName
+  - productId
+  - price
+  - specifications
+  - checked
+  - picUrl
+  - addTime
+  - updateTime
+  - deleted
 properties:
   id:
     type: integer
