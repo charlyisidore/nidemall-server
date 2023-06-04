@@ -17,85 +17,84 @@ get:
       content:
         application/json:
           schema:
+            type: object
             allOf:
               - $ref: ../../../components/schemas/ApiResponse.yaml
-              - type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
                 additionalProperties: false
                 required:
-                  - data
+                  - specificationList
+                  - groupon
+                  - issue
+                  - userHasCollect
+                  - shareImage
+                  - comment
+                  - share
+                  - attribute
+                  - brand
+                  - productList
+                  - info
                 properties:
-                  data:
+                  specificationList:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: false
+                      required:
+                        - name
+                        - valueList
+                      properties:
+                        name:
+                          type: string
+                        valueList:
+                          type: array
+                          items:
+                            $ref: ../../../components/schemas/GoodsSpecification.yaml
+                  groupon:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/GrouponRules.yaml
+                  issue:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/Issue.yaml
+                  userHasCollect:
+                    type: integer
+                  shareImage:
+                    type: string
+                  comment:
                     type: object
                     additionalProperties: false
                     required:
-                      - specificationList
-                      - groupon
-                      - issue
-                      - userHasCollect
-                      - shareImage
-                      - comment
-                      - share
-                      - attribute
-                      - brand
-                      - productList
-                      - info
+                      - data
+                      - count
                     properties:
-                      specificationList:
+                      data:
                         type: array
                         items:
-                          type: object
-                          additionalProperties: false
-                          required:
-                            - name
-                            - valueList
-                          properties:
-                            name:
-                              type: string
-                            valueList:
-                              type: array
-                              items:
-                                $ref: ../../../components/schemas/GoodsSpecification.yaml
-                      groupon:
-                        type: array
-                        items:
-                          $ref: ../../../components/schemas/GrouponRules.yaml
-                      issue:
-                        type: array
-                        items:
-                          $ref: ../../../components/schemas/Issue.yaml
-                      userHasCollect:
+                          $ref: ../../../components/schemas/GoodsComment.yaml
+                      count:
                         type: integer
-                      shareImage:
-                        type: string
-                      comment:
-                        type: object
+                  share:
+                    type: boolean
+                  attribute:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/GoodsAttribute.yaml
+                  brand:
+                    oneOf:
+                      - $ref: ../../../components/schemas/Brand.yaml
+                      - type: object
                         additionalProperties: false
-                        required:
-                          - data
-                          - count
-                        properties:
-                          data:
-                            type: array
-                            items:
-                              $ref: ../../../components/schemas/GoodsComment.yaml
-                          count:
-                            type: integer
-                      share:
-                        type: boolean
-                      attribute:
-                        type: array
-                        items:
-                          $ref: ../../../components/schemas/GoodsAttribute.yaml
-                      brand:
-                        oneOf:
-                          - $ref: ../../../components/schemas/Brand.yaml
-                          - type: object
-                            additionalProperties: false
-                      productList:
-                        type: array
-                        items:
-                          $ref: ../../../components/schemas/GoodsProduct.yaml
-                      info:
-                        $ref: ../../../components/schemas/GoodsDetail.yaml
+                  productList:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/GoodsProduct.yaml
+                  info:
+                    $ref: ../../../components/schemas/GoodsDetail.yaml
     '4XX':
       description: Unexpected error

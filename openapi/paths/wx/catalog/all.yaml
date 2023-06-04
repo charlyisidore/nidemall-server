@@ -10,35 +10,34 @@ get:
       content:
         application/json:
           schema:
+            type: object
             allOf:
               - $ref: ../../../components/schemas/ApiResponse.yaml
-              - type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
                 additionalProperties: false
                 required:
-                  - data
+                  - allList
+                  - currentCategory
+                  - categoryList
+                  - currentSubCategory
                 properties:
-                  data:
+                  allList:
                     type: object
-                    additionalProperties: false
-                    required:
-                      - allList
-                      - currentCategory
-                      - categoryList
-                      - currentSubCategory
-                    properties:
-                      allList:
-                        type: object
-                        additionalProperties:
-                          $ref: ../../../components/schemas/Category.yaml
-                      currentCategory:
-                        $ref: ../../../components/schemas/Category.yaml
-                      categoryList:
-                        type: array
-                        items:
-                          $ref: ../../../components/schemas/Category.yaml
-                      currentSubCategory:
-                        type: array
-                        items:
-                          $ref: ../../../components/schemas/Category.yaml
+                    additionalProperties:
+                      $ref: ../../../components/schemas/Category.yaml
+                  currentCategory:
+                    $ref: ../../../components/schemas/Category.yaml
+                  categoryList:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/Category.yaml
+                  currentSubCategory:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/Category.yaml
     '4XX':
       description: Unexpected error

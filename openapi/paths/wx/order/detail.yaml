@@ -19,28 +19,27 @@ get:
       content:
         application/json:
           schema:
+            type: object
             allOf:
               - $ref: ../../../components/schemas/ApiResponse.yaml
-              - type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
                 additionalProperties: false
                 required:
-                  - data
+                  - orderInfo
+                  - orderGoods
+                  - expressInfo
                 properties:
-                  data:
-                    type: object
-                    additionalProperties: false
-                    required:
-                      - orderInfo
-                      - orderGoods
-                      - expressInfo
-                    properties:
-                      orderInfo:
-                        $ref: ../../../components/schemas/OrderInfo.yaml
-                      orderGoods:
-                        type: array
-                        items:
-                          $ref: ../../../components/schemas/OrderGoods.yaml
-                      expressInfo:
-                        $ref: ../../../components/schemas/ExpressInfo.yaml
+                  orderInfo:
+                    $ref: ../../../components/schemas/OrderInfo.yaml
+                  orderGoods:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/OrderGoods.yaml
+                  expressInfo:
+                    $ref: ../../../components/schemas/ExpressInfo.yaml
     '4XX':
       description: Unexpected error

@@ -17,28 +17,27 @@ get:
       content:
         application/json:
           schema:
+            type: object
             allOf:
               - $ref: ../../../components/schemas/ApiResponse.yaml
-              - type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
                 additionalProperties: false
                 required:
-                  - data
+                  - currentCategory
+                  - brotherCategory
+                  - parentCategory
                 properties:
-                  data:
-                    type: object
-                    additionalProperties: false
-                    required:
-                      - currentCategory
-                      - brotherCategory
-                      - parentCategory
-                    properties:
-                      currentCategory:
-                        $ref: ../../../components/schemas/Category.yaml
-                      brotherCategory:
-                        type: array
-                        items:
-                          $ref: ../../../components/schemas/Category.yaml
-                      parentCategory:
-                        $ref: ../../../components/schemas/Category.yaml
+                  currentCategory:
+                    $ref: ../../../components/schemas/Category.yaml
+                  brotherCategory:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/Category.yaml
+                  parentCategory:
+                    $ref: ../../../components/schemas/Category.yaml
     '4XX':
       description: Unexpected error

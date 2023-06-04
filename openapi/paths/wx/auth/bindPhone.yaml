@@ -10,14 +10,13 @@ post:
       content:
         application/json:
           schema:
+            type: object
             allOf:
               - $ref: ../../../components/schemas/ApiResponse.yaml
-              - type: object
-                additionalProperties: false
-                required:
-                  - data
-                properties:
-                  data:
-                    type: string
+            required:
+              - data
+            properties:
+              data:
+                type: string
     '4XX':
       description: Unexpected error

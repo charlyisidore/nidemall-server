@@ -10,30 +10,29 @@ get:
       content:
         application/json:
           schema:
+            type: object
             allOf:
               - $ref: ../../../components/schemas/ApiResponse.yaml
-              - type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
                 additionalProperties: false
                 required:
-                  - data
+                  - defaultKeyword
+                  - hotKeywordList
+                  - historyKeywordList
                 properties:
-                  data:
-                    type: object
-                    additionalProperties: false
-                    required:
-                      - defaultKeyword
-                      - hotKeywordList
-                      - historyKeywordList
-                    properties:
-                      defaultKeyword:
-                        $ref: ../../../components/schemas/Keyword.yaml
-                      hotKeywordList:
-                        type: array
-                        items:
-                          $ref: ../../../components/schemas/Keyword.yaml
-                      historyKeywordList:
-                        type: array
-                        items:
-                          $ref: ../../../components/schemas/SearchHistory.yaml
+                  defaultKeyword:
+                    $ref: ../../../components/schemas/Keyword.yaml
+                  hotKeywordList:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/Keyword.yaml
+                  historyKeywordList:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/SearchHistory.yaml
     '4XX':
       description: Unexpected error

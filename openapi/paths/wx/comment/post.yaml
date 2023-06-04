@@ -38,14 +38,13 @@ post:
       content:
         application/json:
           schema:
+            type: object
             allOf:
               - $ref: ../../../components/schemas/ApiResponse.yaml
-              - type: object
-                additionalProperties: false
-                required:
-                  - data
-                properties:
-                  data:
-                    $ref: ../../../components/schemas/Comment.yaml
+            required:
+              - data
+            properties:
+              data:
+                $ref: ../../../components/schemas/Comment.yaml
     '4XX':
       description: Unexpected error

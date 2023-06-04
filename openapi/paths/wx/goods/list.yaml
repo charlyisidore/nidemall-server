@@ -55,29 +55,28 @@ get:
       content:
         application/json:
           schema:
+            type: object
             allOf:
               - $ref: ../../../components/schemas/ApiResponse.yaml
-              - type: object
-                additionalProperties: false
-                required:
-                  - data
-                properties:
-                  data:
-                    allOf:
-                      - $ref: ../../../components/schemas/List.yaml
-                      - type: object
-                        additionalProperties: false
-                        required:
-                          - list
-                          - filterCategoryList
-                        properties:
-                          list:
-                            type: array
-                            items:
-                              $ref: ../../../components/schemas/Goods.yaml
-                          filterCategoryList:
-                            type: array
-                            items:
-                              $ref: ../../../components/schemas/Category.yaml
+            required:
+              - data
+            properties:
+              data:
+                allOf:
+                  - $ref: ../../../components/schemas/List.yaml
+                  - type: object
+                    additionalProperties: false
+                    required:
+                      - list
+                      - filterCategoryList
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          $ref: ../../../components/schemas/Goods.yaml
+                      filterCategoryList:
+                        type: array
+                        items:
+                          $ref: ../../../components/schemas/Category.yaml
     '4XX':
       description: Unexpected error

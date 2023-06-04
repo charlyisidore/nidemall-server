@@ -12,35 +12,34 @@ get:
       content:
         application/json:
           schema:
+            type: object
             allOf:
               - $ref: ../../../components/schemas/ApiResponse.yaml
-              - type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
                 additionalProperties: false
                 required:
-                  - data
+                  - order
                 properties:
-                  data:
+                  order:
                     type: object
                     additionalProperties: false
                     required:
-                      - order
+                      - unpaid
+                      - unship
+                      - unrecv
+                      - uncomment
                     properties:
-                      order:
-                        type: object
-                        additionalProperties: false
-                        required:
-                          - unpaid
-                          - unship
-                          - unrecv
-                          - uncomment
-                        properties:
-                          unpaid:
-                            type: integer
-                          unship:
-                            type: integer
-                          unrecv:
-                            type: integer
-                          uncomment:
-                            type: integer
+                      unpaid:
+                        type: integer
+                      unship:
+                        type: integer
+                      unrecv:
+                        type: integer
+                      uncomment:
+                        type: integer
     '4XX':
       description: Unexpected error

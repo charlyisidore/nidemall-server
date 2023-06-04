@@ -23,35 +23,34 @@ get:
       content:
         application/json:
           schema:
+            type: object
             allOf:
               - $ref: ../../../components/schemas/ApiResponse.yaml
-              - type: object
-                additionalProperties: false
-                required:
-                  - data
-                properties:
-                  data:
-                    allOf:
-                      - $ref: ../../../components/schemas/List.yaml
-                      - type: object
-                        additionalProperties: false
-                        required:
-                          - list
-                        properties:
-                          list:
-                            type: array
-                            items:
-                              type: object
-                              additionalProperties: false
-                              required:
-                                - aftersale
-                                - goodsList
-                              properties:
-                                aftersale:
-                                  $ref: ../../../components/schemas/Aftersale.yaml
-                                goodsList:
-                                  type: array
-                                  items:
-                                    $ref: ../../../components/schemas/OrderGoods.yaml
+            required:
+              - data
+            properties:
+              data:
+                allOf:
+                  - $ref: ../../../components/schemas/List.yaml
+                  - type: object
+                    additionalProperties: false
+                    required:
+                      - list
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          type: object
+                          additionalProperties: false
+                          required:
+                            - aftersale
+                            - goodsList
+                          properties:
+                            aftersale:
+                              $ref: ../../../components/schemas/Aftersale.yaml
+                            goodsList:
+                              type: array
+                              items:
+                                $ref: ../../../components/schemas/OrderGoods.yaml
     '4XX':
       description: Unexpected error

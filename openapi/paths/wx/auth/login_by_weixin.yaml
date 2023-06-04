@@ -47,47 +47,46 @@ post:
       content:
         application/json:
           schema:
+            type: object
             allOf:
               - $ref: ../../../components/schemas/ApiResponse.yaml
-              - type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
                 additionalProperties: false
                 required:
-                  - data
+                  - token
+                  - userInfo
                 properties:
-                  data:
+                  token:
+                    type: string
+                  userInfo:
                     type: object
                     additionalProperties: false
                     required:
-                      - userInfo
-                      - token
+                      - country
+                      - province
+                      - city
+                      - language
+                      - gender
+                      - nickName
+                      - avatarUrl
                     properties:
-                      userInfo:
-                        type: object
-                        additionalProperties: false
-                        required:
-                          - country
-                          - province
-                          - city
-                          - language
-                          - gender
-                          - nickName
-                          - avatarUrl
-                        properties:
-                          country:
-                            type: string
-                          province:
-                            type: string
-                          city:
-                            type: string
-                          language:
-                            type: string
-                          gender:
-                            type: string
-                          nickName:
-                            type: string
-                          avatarUrl:
-                            type: string
-                      token:
+                      country:
+                        type: string
+                      province:
+                        type: string
+                      city:
+                        type: string
+                      language:
+                        type: string
+                      gender:
+                        type: string
+                      nickName:
+                        type: string
+                      avatarUrl:
                         type: string
     '4XX':
       description: Unexpected error

@@ -25,23 +25,22 @@ get:
       content:
         application/json:
           schema:
+            type: object
             allOf:
               - $ref: ../../../components/schemas/ApiResponse.yaml
-              - type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
                 additionalProperties: false
                 required:
-                  - data
+                  - hasPicCount
+                  - allCount
                 properties:
-                  data:
-                    type: object
-                    additionalProperties: false
-                    required:
-                      - hasPicCount
-                      - allCount
-                    properties:
-                      hasPicCount:
-                        type: integer
-                      allCount:
-                        type: integer
+                  hasPicCount:
+                    type: integer
+                  allCount:
+                    type: integer
     '4XX':
       description: Unexpected error

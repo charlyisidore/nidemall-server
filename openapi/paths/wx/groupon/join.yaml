@@ -19,23 +19,22 @@ get:
       content:
         application/json:
           schema:
+            type: object
             allOf:
               - $ref: ../../../components/schemas/ApiResponse.yaml
-              - type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
                 additionalProperties: false
                 required:
-                  - data
+                  - groupon
+                  - goods
                 properties:
-                  data:
-                    type: object
-                    additionalProperties: false
-                    required:
-                      - groupon
-                      - goods
-                    properties:
-                      groupon:
-                        $ref: ../../../components/schemas/Groupon.yaml
-                      goods:
-                        $ref: ../../../components/schemas/Goods.yaml
+                  groupon:
+                    $ref: ../../../components/schemas/Groupon.yaml
+                  goods:
+                    $ref: ../../../components/schemas/Goods.yaml
     '4XX':
       description: Unexpected error

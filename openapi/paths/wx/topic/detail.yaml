@@ -17,28 +17,27 @@ get:
       content:
         application/json:
           schema:
+            type: object
             allOf:
               - $ref: ../../../components/schemas/ApiResponse.yaml
-              - type: object
+            required:
+              - data
+            properties:
+              data:
+                type: object
                 additionalProperties: false
                 required:
-                  - data
+                  - topic
+                  - goods
+                  - userHasCollect
                 properties:
-                  data:
-                    type: object
-                    additionalProperties: false
-                    required:
-                      - topic
-                      - goods
-                      - userHasCollect
-                    properties:
-                      topic:
-                        $ref: ../../../components/schemas/TopicDetail.yaml
-                      goods:
-                        type: array
-                        items:
-                          $ref: ../../../components/schemas/Goods.yaml
-                      userHasCollect:
-                        type: integer
+                  topic:
+                    $ref: ../../../components/schemas/TopicDetail.yaml
+                  goods:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/Goods.yaml
+                  userHasCollect:
+                    type: integer
     '4XX':
       description: Unexpected error
