@@ -2,7 +2,6 @@ const Base = require('./base.js');
 
 module.exports = class WxGrouponController extends Base {
   async listAction() {
-    const userId = this.getUserId();
     /** @type {number} */
     const page = this.get('page');
     /** @type {number} */
@@ -14,10 +13,6 @@ module.exports = class WxGrouponController extends Base {
 
     /** @type {GrouponRulesService} */
     const grouponRulesService = this.service('groupon_rules');
-
-    if (think.isNullOrUndefined(userId)) {
-      return this.unlogin();
-    }
 
     const grouponRulesVoList = await grouponRulesService.wxQueryList(page, limit, sort, order);
 
