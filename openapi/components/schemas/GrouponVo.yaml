@@ -1,4 +1,17 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - groupon
+  - rules
+  - creator
+  - isCreator
+  - joinerCount
+  - orderId
+  - orderSn
+  - actualPrice
+  - orderStatusText
+  - goodsList
 properties:
   id:
     type: integer
@@ -24,6 +37,12 @@ properties:
     type: array
     items:
       type: object
+      additionalProperties: false
+      required:
+        - id
+        - goodsName
+        - number
+        - picUrl
       properties:
         id:
           type: integer

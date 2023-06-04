@@ -1,4 +1,12 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - question
+  - answer
+  - addTime
+  - updateTime
+  - deleted
 properties:
   id:
     type: integer
