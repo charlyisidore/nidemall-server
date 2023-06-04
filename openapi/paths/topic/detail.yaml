@@ -20,9 +20,17 @@ get:
             allOf:
               - $ref: ../../components/schemas/ApiResponse.yaml
               - type: object
+                additionalProperties: false
+                required:
+                  - data
                 properties:
                   data:
                     type: object
+                    additionalProperties: false
+                    required:
+                      - topic
+                      - goods
+                      - userHasCollect
                     properties:
                       topic:
                         $ref: ../../components/schemas/TopicDetail.yaml

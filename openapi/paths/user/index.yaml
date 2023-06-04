@@ -15,12 +15,24 @@ get:
             allOf:
               - $ref: ../../components/schemas/ApiResponse.yaml
               - type: object
+                additionalProperties: false
+                required:
+                  - data
                 properties:
                   data:
                     type: object
+                    additionalProperties: false
+                    required:
+                      - order
                     properties:
                       order:
                         type: object
+                        additionalProperties: false
+                        required:
+                          - unpaid
+                          - unship
+                          - unrecv
+                          - uncomment
                         properties:
                           unpaid:
                             type: integer

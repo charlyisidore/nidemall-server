@@ -25,6 +25,9 @@ post:
             allOf:
               - $ref: ../../components/schemas/ApiResponse.yaml
               - type: object
+                additionalProperties: false
+                required:
+                  - data
                 properties:
                   data:
                     $ref: ../../components/schemas/Storage.yaml

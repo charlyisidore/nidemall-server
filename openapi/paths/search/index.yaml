@@ -13,9 +13,17 @@ get:
             allOf:
               - $ref: ../../components/schemas/ApiResponse.yaml
               - type: object
+                additionalProperties: false
+                required:
+                  - data
                 properties:
                   data:
                     type: object
+                    additionalProperties: false
+                    required:
+                      - defaultKeyword
+                      - hotKeywordList
+                      - historyKeywordList
                     properties:
                       defaultKeyword:
                         $ref: ../../components/schemas/Keyword.yaml
