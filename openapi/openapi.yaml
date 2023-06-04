@@ -55,165 +55,165 @@ tags:
   - name: user
     description: User controller
 paths:
-  /address/delete:
-    $ref: paths/address/delete.yaml
-  /address/detail:
-    $ref: paths/address/detail.yaml
-  /address/list:
-    $ref: paths/address/list.yaml
-  /address/save:
-    $ref: paths/address/save.yaml
+  /wx/address/delete:
+    $ref: paths/wx/address/delete.yaml
+  /wx/address/detail:
+    $ref: paths/wx/address/detail.yaml
+  /wx/address/list:
+    $ref: paths/wx/address/list.yaml
+  /wx/address/save:
+    $ref: paths/wx/address/save.yaml
 
-  /aftersale/detail:
-    $ref: paths/aftersale/detail.yaml
-  /aftersale/list:
-    $ref: paths/aftersale/list.yaml
-  /aftersale/submit:
-    $ref: paths/aftersale/submit.yaml
+  /wx/aftersale/detail:
+    $ref: paths/wx/aftersale/detail.yaml
+  /wx/aftersale/list:
+    $ref: paths/wx/aftersale/list.yaml
+  /wx/aftersale/submit:
+    $ref: paths/wx/aftersale/submit.yaml
 
-  /auth/bindPhone:
-    $ref: paths/auth/bindPhone.yaml
-  /auth/login_by_weixin:
-    $ref: paths/auth/login_by_weixin.yaml
-  /auth/login:
-    $ref: paths/auth/login.yaml
-  /auth/logout:
-    $ref: paths/auth/logout.yaml
-  /auth/regCaptcha:
-    $ref: paths/auth/regCaptcha.yaml
-  /auth/register:
-    $ref: paths/auth/register.yaml
-  /auth/reset:
-    $ref: paths/auth/reset.yaml
+  /wx/auth/bindPhone:
+    $ref: paths/wx/auth/bindPhone.yaml
+  /wx/auth/login_by_weixin:
+    $ref: paths/wx/auth/login_by_weixin.yaml
+  /wx/auth/login:
+    $ref: paths/wx/auth/login.yaml
+  /wx/auth/logout:
+    $ref: paths/wx/auth/logout.yaml
+  /wx/auth/regCaptcha:
+    $ref: paths/wx/auth/regCaptcha.yaml
+  /wx/auth/register:
+    $ref: paths/wx/auth/register.yaml
+  /wx/auth/reset:
+    $ref: paths/wx/auth/reset.yaml
 
-  /brand/detail:
-    $ref: paths/brand/detail.yaml
-  /brand/list:
-    $ref: paths/brand/list.yaml
+  /wx/brand/detail:
+    $ref: paths/wx/brand/detail.yaml
+  /wx/brand/list:
+    $ref: paths/wx/brand/list.yaml
 
-  /cart/add:
-    $ref: paths/cart/add.yaml
-  /cart/checked:
-    $ref: paths/cart/checked.yaml
-  /cart/checkout:
-    $ref: paths/cart/checkout.yaml
-  /cart/delete:
-    $ref: paths/cart/delete.yaml
-  /cart/fastadd:
-    $ref: paths/cart/fastadd.yaml
-  /cart/goodscount:
-    $ref: paths/cart/goodscount.yaml
-  /cart/index:
-    $ref: paths/cart/index.yaml
-  /cart/update:
-    $ref: paths/cart/update.yaml
+  /wx/cart/add:
+    $ref: paths/wx/cart/add.yaml
+  /wx/cart/checked:
+    $ref: paths/wx/cart/checked.yaml
+  /wx/cart/checkout:
+    $ref: paths/wx/cart/checkout.yaml
+  /wx/cart/delete:
+    $ref: paths/wx/cart/delete.yaml
+  /wx/cart/fastadd:
+    $ref: paths/wx/cart/fastadd.yaml
+  /wx/cart/goodscount:
+    $ref: paths/wx/cart/goodscount.yaml
+  /wx/cart/index:
+    $ref: paths/wx/cart/index.yaml
+  /wx/cart/update:
+    $ref: paths/wx/cart/update.yaml
 
-  /catalog/all:
-    $ref: paths/catalog/all.yaml
-  /catalog/current:
-    $ref: paths/catalog/current.yaml
-  /catalog/index:
-    $ref: paths/catalog/index.yaml
+  /wx/catalog/all:
+    $ref: paths/wx/catalog/all.yaml
+  /wx/catalog/current:
+    $ref: paths/wx/catalog/current.yaml
+  /wx/catalog/index:
+    $ref: paths/wx/catalog/index.yaml
 
-  /collect/addordelete:
-    $ref: paths/collect/addordelete.yaml
-  /collect/list:
-    $ref: paths/collect/list.yaml
+  /wx/collect/addordelete:
+    $ref: paths/wx/collect/addordelete.yaml
+  /wx/collect/list:
+    $ref: paths/wx/collect/list.yaml
 
-  /comment/count:
-    $ref: paths/comment/count.yaml
-  /comment/list:
-    $ref: paths/comment/list.yaml
-  /comment/post:
-    $ref: paths/comment/post.yaml
+  /wx/comment/count:
+    $ref: paths/wx/comment/count.yaml
+  /wx/comment/list:
+    $ref: paths/wx/comment/list.yaml
+  /wx/comment/post:
+    $ref: paths/wx/comment/post.yaml
 
-  /coupon/exchange:
-    $ref: paths/coupon/exchange.yaml
-  /coupon/list:
-    $ref: paths/coupon/list.yaml
-  /coupon/mylist:
-    $ref: paths/coupon/mylist.yaml
-  /coupon/receive:
-    $ref: paths/coupon/receive.yaml
-  /coupon/selectlist:
-    $ref: paths/coupon/selectlist.yaml
+  /wx/coupon/exchange:
+    $ref: paths/wx/coupon/exchange.yaml
+  /wx/coupon/list:
+    $ref: paths/wx/coupon/list.yaml
+  /wx/coupon/mylist:
+    $ref: paths/wx/coupon/mylist.yaml
+  /wx/coupon/receive:
+    $ref: paths/wx/coupon/receive.yaml
+  /wx/coupon/selectlist:
+    $ref: paths/wx/coupon/selectlist.yaml
 
-  /feedback/submit:
-    $ref: paths/feedback/submit.yaml
+  /wx/feedback/submit:
+    $ref: paths/wx/feedback/submit.yaml
 
-  /footprint/delete:
-    $ref: paths/footprint/delete.yaml
-  /footprint/list:
-    $ref: paths/footprint/list.yaml
+  /wx/footprint/delete:
+    $ref: paths/wx/footprint/delete.yaml
+  /wx/footprint/list:
+    $ref: paths/wx/footprint/list.yaml
 
-  /goods/category:
-    $ref: paths/goods/category.yaml
-  /goods/count:
-    $ref: paths/goods/count.yaml
-  /goods/detail:
-    $ref: paths/goods/detail.yaml
-  /goods/list:
-    $ref: paths/goods/list.yaml
-  /goods/related:
-    $ref: paths/goods/related.yaml
+  /wx/goods/category:
+    $ref: paths/wx/goods/category.yaml
+  /wx/goods/count:
+    $ref: paths/wx/goods/count.yaml
+  /wx/goods/detail:
+    $ref: paths/wx/goods/detail.yaml
+  /wx/goods/list:
+    $ref: paths/wx/goods/list.yaml
+  /wx/goods/related:
+    $ref: paths/wx/goods/related.yaml
 
-  /groupon/detail:
-    $ref: paths/groupon/detail.yaml
-  /groupon/join:
-    $ref: paths/groupon/join.yaml
-  /groupon/list:
-    $ref: paths/groupon/list.yaml
-  /groupon/my:
-    $ref: paths/groupon/my.yaml
+  /wx/groupon/detail:
+    $ref: paths/wx/groupon/detail.yaml
+  /wx/groupon/join:
+    $ref: paths/wx/groupon/join.yaml
+  /wx/groupon/list:
+    $ref: paths/wx/groupon/list.yaml
+  /wx/groupon/my:
+    $ref: paths/wx/groupon/my.yaml
 
-  /home/about:
-    $ref: paths/home/about.yaml
-  /home/index:
-    $ref: paths/home/index.yaml
+  /wx/home/about:
+    $ref: paths/wx/home/about.yaml
+  /wx/home/index:
+    $ref: paths/wx/home/index.yaml
 
-  /issue/list:
-    $ref: paths/issue/list.yaml
+  /wx/issue/list:
+    $ref: paths/wx/issue/list.yaml
 
-  /order/cancel:
-    $ref: paths/order/cancel.yaml
-  /order/comment:
-    $ref: paths/order/comment.yaml
-  /order/confirm:
-    $ref: paths/order/confirm.yaml
-  /order/delete:
-    $ref: paths/order/delete.yaml
-  /order/detail:
-    $ref: paths/order/detail.yaml
-  /order/goods:
-    $ref: paths/order/goods.yaml
-  /order/list:
-    $ref: paths/order/list.yaml
-  /order/paynotify:
-    $ref: paths/order/paynotify.yaml
-  /order/prepay:
-    $ref: paths/order/prepay.yaml
-  /order/submit:
-    $ref: paths/order/submit.yaml
+  /wx/order/cancel:
+    $ref: paths/wx/order/cancel.yaml
+  /wx/order/comment:
+    $ref: paths/wx/order/comment.yaml
+  /wx/order/confirm:
+    $ref: paths/wx/order/confirm.yaml
+  /wx/order/delete:
+    $ref: paths/wx/order/delete.yaml
+  /wx/order/detail:
+    $ref: paths/wx/order/detail.yaml
+  /wx/order/goods:
+    $ref: paths/wx/order/goods.yaml
+  /wx/order/list:
+    $ref: paths/wx/order/list.yaml
+  /wx/order/paynotify:
+    $ref: paths/wx/order/paynotify.yaml
+  /wx/order/prepay:
+    $ref: paths/wx/order/prepay.yaml
+  /wx/order/submit:
+    $ref: paths/wx/order/submit.yaml
 
-  /search/clearhistory:
-    $ref: paths/search/clearhistory.yaml
-  /search/helper:
-    $ref: paths/search/helper.yaml
-  /search/index:
-    $ref: paths/search/index.yaml
+  /wx/search/clearhistory:
+    $ref: paths/wx/search/clearhistory.yaml
+  /wx/search/helper:
+    $ref: paths/wx/search/helper.yaml
+  /wx/search/index:
+    $ref: paths/wx/search/index.yaml
 
-  /storage/upload:
-    $ref: paths/storage/upload.yaml
+  /wx/storage/upload:
+    $ref: paths/wx/storage/upload.yaml
 
-  /topic/detail:
-    $ref: paths/topic/detail.yaml
-  /topic/list:
-    $ref: paths/topic/list.yaml
-  /topic/related:
-    $ref: paths/topic/related.yaml
+  /wx/topic/detail:
+    $ref: paths/wx/topic/detail.yaml
+  /wx/topic/list:
+    $ref: paths/wx/topic/list.yaml
+  /wx/topic/related:
+    $ref: paths/wx/topic/related.yaml
 
-  /user/index:
-    $ref: paths/user/index.yaml
+  /wx/user/index:
+    $ref: paths/wx/user/index.yaml
 
 components:
   securitySchemes:

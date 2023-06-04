@@ -1,10 +1,18 @@
-# TODO
-post:
+get:
   tags:
-    - auth
-  summary: Auth reset TODO
-  description: Auth reset TODO
-  operationId: wxAuthReset
+    - search
+  summary: Search helper
+  description: Search helper
+  operationId: wxSearchHelper
+  parameters:
+    - name: keyword
+      in: query
+      description: Keyword
+      required: true
+      schema:
+        type: string
+    - $ref: ../../../components/parameters/page.yaml
+    - $ref: ../../../components/parameters/limit.yaml
   responses:
     '200':
       description: Successful operation
@@ -19,6 +27,8 @@ post:
                   - data
                 properties:
                   data:
-                    type: string
+                    type: array
+                    items:
+                      type: string
     '4XX':
       description: Unexpected error

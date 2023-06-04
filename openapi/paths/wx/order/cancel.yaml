@@ -1,0 +1,28 @@
+post:
+  tags:
+    - order
+  summary: Order cancel
+  description: Order cancel
+  operationId: wxOrderCancel
+  security:
+    - ApiKey: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            orderId:
+              type: integer
+          required:
+            - orderId
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/schemas/ApiResponse.yaml
+    '4XX':
+      description: Unexpected error

@@ -1,0 +1,40 @@
+get:
+  tags:
+    - topic
+  summary: Topic related
+  description: Topic related
+  operationId: wxTopicRelated
+  parameters:
+    - name: id
+      in: query
+      description: Topic ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+              - type: object
+                additionalProperties: false
+                required:
+                  - data
+                properties:
+                  data:
+                    allOf:
+                      - $ref: ../../../components/schemas/List.yaml
+                      - type: object
+                        additionalProperties: false
+                        required:
+                          - list
+                        properties:
+                          list:
+                            type: array
+                            items:
+                              $ref: ../../../components/schemas/Topic.yaml
+    '4XX':
+      description: Unexpected error

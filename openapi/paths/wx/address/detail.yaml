@@ -1,10 +1,18 @@
-# TODO
-post:
+get:
   tags:
-    - auth
-  summary: Auth reset TODO
-  description: Auth reset TODO
-  operationId: wxAuthReset
+    - address
+  summary: Address detail
+  description: Address detail
+  operationId: wxAddressDetail
+  security:
+    - ApiKey: []
+  parameters:
+    - name: id
+      in: query
+      description: Address ID
+      required: true
+      schema:
+        type: integer
   responses:
     '200':
       description: Successful operation
@@ -19,6 +27,6 @@ post:
                   - data
                 properties:
                   data:
-                    type: string
+                    $ref: ../../../components/schemas/Address.yaml
     '4XX':
       description: Unexpected error

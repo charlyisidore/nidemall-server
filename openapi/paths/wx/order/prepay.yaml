@@ -1,10 +1,22 @@
-# TODO
 post:
   tags:
-    - auth
-  summary: Auth reset TODO
-  description: Auth reset TODO
-  operationId: wxAuthReset
+    - order
+  summary: Order prepay
+  description: Order prepay
+  operationId: wxOrderPrepay
+  security:
+    - ApiKey: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            orderId:
+              type: integer
+          required:
+            - orderId
   responses:
     '200':
       description: Successful operation
@@ -19,6 +31,6 @@ post:
                   - data
                 properties:
                   data:
-                    type: string
+                    type: object
     '4XX':
       description: Unexpected error

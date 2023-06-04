@@ -1,0 +1,38 @@
+post:
+  tags:
+    - cart
+  summary: Cart delete
+  description: Cart delete
+  operationId: wxCartDelete
+  security:
+    - ApiKey: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            productIds:
+              type: array
+              items:
+                type: integer
+          required:
+            - productIds
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+              - type: object
+                additionalProperties: false
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: ../../../components/schemas/CartIndex.yaml
+    '4XX':
+      description: Unexpected error

@@ -1,0 +1,17 @@
+post:
+  tags:
+    - auth
+  summary: Auth logout
+  description: Auth logout
+  operationId: wxAuthLogout
+  security:
+    - ApiKey: []
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/schemas/ApiResponse.yaml
+    '4XX':
+      description: Unexpected error

@@ -1,0 +1,39 @@
+get:
+  tags:
+    - search
+  summary: Search index
+  description: Search index
+  operationId: wxSearchIndex
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+              - type: object
+                additionalProperties: false
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    additionalProperties: false
+                    required:
+                      - defaultKeyword
+                      - hotKeywordList
+                      - historyKeywordList
+                    properties:
+                      defaultKeyword:
+                        $ref: ../../../components/schemas/Keyword.yaml
+                      hotKeywordList:
+                        type: array
+                        items:
+                          $ref: ../../../components/schemas/Keyword.yaml
+                      historyKeywordList:
+                        type: array
+                        items:
+                          $ref: ../../../components/schemas/SearchHistory.yaml
+    '4XX':
+      description: Unexpected error

@@ -1,0 +1,62 @@
+get:
+  tags:
+    - groupon
+  summary: Groupon detail
+  description: Groupon detail
+  operationId: wxGrouponDetail
+  security:
+    - ApiKey: []
+  parameters:
+    - name: grouponId
+      in: query
+      description: Groupon ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+              - type: object
+                additionalProperties: false
+                required:
+                  - data
+                properties:
+                  data:
+                    allOf:
+                      - $ref: ../../../components/schemas/List.yaml
+                      - type: object
+                        additionalProperties: false
+                        required:
+                          - orderInfo
+                          - orderGoods
+                          - linkGrouponId
+                          - creator
+                          - joiners
+                          - groupon
+                          - rules
+                        properties:
+                          orderInfo:
+                            $ref: ../../../components/schemas/OrderVo.yaml
+                          orderGoods:
+                            type: array
+                            items:
+                              $ref: ../../../components/schemas/OrderGoodsVo.yaml
+                          linkGrouponId:
+                            type: integer
+                          creator:
+                            $ref: ../../../components/schemas/UserVo.yaml
+                          joiners:
+                            type: array
+                            items:
+                              $ref: ../../../components/schemas/UserVo.yaml
+                          groupon:
+                            $ref: ../../../components/schemas/Groupon.yaml
+                          rules:
+                            $ref: ../../../components/schemas/GrouponRules.yaml
+    '4XX':
+      description: Unexpected error

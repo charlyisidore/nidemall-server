@@ -1,0 +1,42 @@
+post:
+  tags:
+    - cart
+  summary: Cart fastadd
+  description: Cart fastadd
+  operationId: wxCartFastadd
+  security:
+    - ApiKey: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            goodsId:
+              type: integer
+            productId:
+              type: integer
+            number:
+              type: integer
+          required:
+            - goodsId
+            - productId
+            - number
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+              - type: object
+                additionalProperties: false
+                required:
+                  - data
+                properties:
+                  data:
+                    type: integer
+    '4XX':
+      description: Unexpected error

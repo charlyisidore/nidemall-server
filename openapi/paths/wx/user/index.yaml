@@ -1,0 +1,46 @@
+get:
+  tags:
+    - user
+  summary: User index
+  description: User index
+  operationId: wxUserIndex
+  security:
+    - ApiKey: []
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+              - type: object
+                additionalProperties: false
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    additionalProperties: false
+                    required:
+                      - order
+                    properties:
+                      order:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - unpaid
+                          - unship
+                          - unrecv
+                          - uncomment
+                        properties:
+                          unpaid:
+                            type: integer
+                          unship:
+                            type: integer
+                          unrecv:
+                            type: integer
+                          uncomment:
+                            type: integer
+    '4XX':
+      description: Unexpected error

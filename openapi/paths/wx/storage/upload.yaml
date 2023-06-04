@@ -1,10 +1,21 @@
-# TODO
 post:
   tags:
-    - auth
-  summary: Auth reset TODO
-  description: Auth reset TODO
-  operationId: wxAuthReset
+    - storage
+  summary: Storage upload
+  description: Storage upload
+  operationId: wxStorageUpload
+  requestBody:
+    required: true
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            file:
+              type: string
+              format: binary
+          required:
+            - file
   responses:
     '200':
       description: Successful operation
@@ -19,6 +30,6 @@ post:
                   - data
                 properties:
                   data:
-                    type: string
+                    $ref: ../../../components/schemas/Storage.yaml
     '4XX':
       description: Unexpected error

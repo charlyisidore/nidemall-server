@@ -1,0 +1,59 @@
+post:
+  tags:
+    - address
+  summary: Address save
+  description: Address save
+  operationId: wxAddressSave
+  security:
+    - ApiKey: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            tel:
+              type: string
+            province:
+              type: string
+            city:
+              type: string
+            county:
+              type: string
+            areaCode:
+              type: string
+            addressDetail:
+              type: string
+            isDefault:
+              type: boolean
+          required:
+            - name
+            - tel
+            - province
+            - city
+            - county
+            - areaCode
+            - addressDetail
+            - isDefault
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+              - type: object
+                additionalProperties: false
+                required:
+                  - data
+                properties:
+                  data:
+                    type: integer
+    '4XX':
+      description: Unexpected error

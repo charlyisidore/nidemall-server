@@ -1,0 +1,44 @@
+get:
+  tags:
+    - catalog
+  summary: Catalog all
+  description: Catalog all
+  operationId: wxCatalogAll
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+              - type: object
+                additionalProperties: false
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    additionalProperties: false
+                    required:
+                      - allList
+                      - currentCategory
+                      - categoryList
+                      - currentSubCategory
+                    properties:
+                      allList:
+                        type: object
+                        additionalProperties:
+                          $ref: ../../../components/schemas/Category.yaml
+                      currentCategory:
+                        $ref: ../../../components/schemas/Category.yaml
+                      categoryList:
+                        type: array
+                        items:
+                          $ref: ../../../components/schemas/Category.yaml
+                      currentSubCategory:
+                        type: array
+                        items:
+                          $ref: ../../../components/schemas/Category.yaml
+    '4XX':
+      description: Unexpected error

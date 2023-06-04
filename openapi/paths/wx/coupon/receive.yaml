@@ -1,0 +1,24 @@
+post:
+  tags:
+    - coupon
+  summary: Coupon receive
+  description: Coupon receive
+  operationId: wxCouponReceive
+  security:
+    - ApiKey: []
+  parameters:
+    - name: couponId
+      in: query
+      description: Coupon ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/schemas/ApiResponse.yaml
+    '4XX':
+      description: Unexpected error

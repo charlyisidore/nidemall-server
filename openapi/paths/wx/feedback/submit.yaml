@@ -1,0 +1,40 @@
+post:
+  tags:
+    - feedback
+  summary: Feedback submit
+  description: Feedback submit
+  operationId: wxFeedbackSubmit
+  security:
+    - ApiKey: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            content:
+              type: string
+            feedType:
+              type: integer
+            mobile:
+              type: string
+            hasPicture:
+              type: boolean
+            picUrls:
+              type: array
+              items:
+                type: string
+          required:
+            - content
+            - feedType
+            - mobile
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/schemas/ApiResponse.yaml
+    '4XX':
+      description: Unexpected error

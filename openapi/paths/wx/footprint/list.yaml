@@ -1,0 +1,38 @@
+get:
+  tags:
+    - footprint
+  summary: Footprint list
+  description: Footprint list
+  operationId: wxFootprintList
+  security:
+    - ApiKey: []
+  parameters:
+    - $ref: ../../../components/parameters/page.yaml
+    - $ref: ../../../components/parameters/limit.yaml
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+              - type: object
+                additionalProperties: false
+                required:
+                  - data
+                properties:
+                  data:
+                    allOf:
+                      - $ref: ../../../components/schemas/List.yaml
+                      - type: object
+                        additionalProperties: false
+                        required:
+                          - list
+                        properties:
+                          list:
+                            type: array
+                            items:
+                              $ref: ../../../components/schemas/FootprintVo.yaml
+    '4XX':
+      description: Unexpected error

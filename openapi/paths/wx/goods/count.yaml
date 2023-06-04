@@ -1,10 +1,9 @@
-# TODO
-post:
+get:
   tags:
-    - auth
-  summary: Auth reset TODO
-  description: Auth reset TODO
-  operationId: wxAuthReset
+    - goods
+  summary: Goods count
+  description: Goods count
+  operationId: wxGoodsCount
   responses:
     '200':
       description: Successful operation
@@ -19,6 +18,6 @@ post:
                   - data
                 properties:
                   data:
-                    type: string
+                    type: integer
     '4XX':
       description: Unexpected error

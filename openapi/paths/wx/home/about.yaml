@@ -1,0 +1,44 @@
+get:
+  tags:
+    - home
+  summary: Homepage about
+  description: Homepage about
+  operationId: wxHomeAbout
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+              - type: object
+                additionalProperties: false
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    additionalProperties: false
+                    required:
+                      - name
+                      - qq
+                      - address
+                      - phone
+                      - latitude
+                      - longitude
+                    properties:
+                      name:
+                        type: string
+                      qq:
+                        type: string
+                      address:
+                        type: string
+                      phone:
+                        type: string
+                      latitude:
+                        type: string
+                      longitude:
+                        type: string
+    '4XX':
+      description: Unexpected error

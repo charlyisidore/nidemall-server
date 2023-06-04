@@ -1,0 +1,40 @@
+get:
+  tags:
+    - goods
+  summary: Goods related
+  description: Goods related
+  operationId: wxGoodsRelated
+  parameters:
+    - name: id
+      in: query
+      description: Goods ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+              - type: object
+                additionalProperties: false
+                required:
+                  - data
+                properties:
+                  data:
+                    allOf:
+                      - $ref: ../../../components/schemas/List.yaml
+                      - type: object
+                        additionalProperties: false
+                        required:
+                          - list
+                        properties:
+                          list:
+                            type: array
+                            items:
+                              $ref: ../../../components/schemas/Goods.yaml
+    '4XX':
+      description: Unexpected error

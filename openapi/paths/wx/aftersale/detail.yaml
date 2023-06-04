@@ -1,0 +1,46 @@
+get:
+  tags:
+    - aftersale
+  summary: Aftersale detail
+  description: Aftersale detail
+  operationId: wxAftersaleDetail
+  security:
+    - ApiKey: []
+  parameters:
+    - name: orderId
+      in: query
+      description: Order ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+              - type: object
+                additionalProperties: false
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    additionalProperties: false
+                    required:
+                      - aftersale
+                      - order
+                      - orderGoods
+                    properties:
+                      aftersale:
+                        $ref: ../../../components/schemas/Aftersale.yaml
+                      order:
+                        $ref: ../../../components/schemas/Order.yaml
+                      orderGoods:
+                        type: array
+                        items:
+                          $ref: ../../../components/schemas/OrderGoods.yaml
+    '4XX':
+      description: Unexpected error

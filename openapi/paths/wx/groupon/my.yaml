@@ -1,0 +1,43 @@
+get:
+  tags:
+    - groupon
+  summary: Groupon my
+  description: Groupon my
+  operationId: wxGrouponMy
+  security:
+    - ApiKey: []
+  parameters:
+    - name: showType
+      in: query
+      description: Show type
+      required: false
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+              - type: object
+                additionalProperties: false
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    additionalProperties: false
+                    required:
+                      - total
+                      - list
+                    properties:
+                      total:
+                        type: integer
+                      list:
+                        type: array
+                        items:
+                          $ref: ../../../components/schemas/GrouponVo.yaml
+    '4XX':
+      description: Unexpected error

@@ -1,0 +1,44 @@
+get:
+  tags:
+    - goods
+  summary: Goods category
+  description: Goods category
+  operationId: wxGoodsCategory
+  parameters:
+    - name: id
+      in: query
+      description: Category ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+              - type: object
+                additionalProperties: false
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    additionalProperties: false
+                    required:
+                      - currentCategory
+                      - brotherCategory
+                      - parentCategory
+                    properties:
+                      currentCategory:
+                        $ref: ../../../components/schemas/Category.yaml
+                      brotherCategory:
+                        type: array
+                        items:
+                          $ref: ../../../components/schemas/Category.yaml
+                      parentCategory:
+                        $ref: ../../../components/schemas/Category.yaml
+    '4XX':
+      description: Unexpected error
