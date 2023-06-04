@@ -248,7 +248,7 @@ module.exports = class WxOrderController extends Base {
       if (!think.isEmpty(grouponRules) && grouponRules.goodsId == checkGoods.goodsId) {
         checkedGoodsPrice += (checkGoods.price - grouponPrice) * checkGoods.number;
       } else {
-        checkedGoodsList += checkGoods.price * checkGoods.number;
+        checkedGoodsPrice += checkGoods.price * checkGoods.number;
       }
     }
 
