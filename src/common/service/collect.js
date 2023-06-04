@@ -86,4 +86,18 @@ module.exports = class CollectService extends think.Service {
         deleted: true,
       });
   }
+
+  /**
+   * 
+   * @param {Collect} collect 
+   * @returns {Promise<number>} The ID inserted
+   */
+  add(collect) {
+    const now = new Date();
+    return this.model('collect')
+      .add(Object.assign(collect, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
 }

@@ -83,7 +83,9 @@ module.exports = class WxCollectController extends Base {
       return this.unlogin();
     }
 
-    const collect = await collectService.queryByTypeAndValue(userId, type, valueId);
+    const collect = !think.isNullOrUndefined(type) && !think.isNullOrUndefined(valueId) ?
+      await collectService.queryByTypeAndValue(userId, type, valueId) :
+      {};
 
     if (think.isEmpty(collect)) {
       await collectService.add({
