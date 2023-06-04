@@ -20,9 +20,16 @@ get:
             allOf:
               - $ref: ../../components/schemas/ApiResponse.yaml
               - type: object
+                additionalProperties: false
+                required:
+                  - data
                 properties:
                   data:
                     type: object
+                    additionalProperties: false
+                    required:
+                      - currentCategory
+                      - currentSubCategory
                     properties:
                       currentCategory:
                         $ref: ../../components/schemas/Category.yaml

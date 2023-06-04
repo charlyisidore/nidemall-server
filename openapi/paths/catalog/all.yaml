@@ -13,9 +13,18 @@ get:
             allOf:
               - $ref: ../../components/schemas/ApiResponse.yaml
               - type: object
+                additionalProperties: false
+                required:
+                  - data
                 properties:
                   data:
                     type: object
+                    additionalProperties: false
+                    required:
+                      - allList
+                      - currentCategory
+                      - categoryList
+                      - currentSubCategory
                     properties:
                       allList:
                         type: object
