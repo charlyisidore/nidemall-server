@@ -50,12 +50,28 @@ post:
             allOf:
               - $ref: ../../components/schemas/ApiResponse.yaml
               - type: object
+                additionalProperties: false
+                required:
+                  - data
                 properties:
                   data:
                     type: object
+                    additionalProperties: false
+                    required:
+                      - userInfo
+                      - token
                     properties:
                       userInfo:
                         type: object
+                        additionalProperties: false
+                        required:
+                          - country
+                          - province
+                          - city
+                          - language
+                          - gender
+                          - nickName
+                          - avatarUrl
                         properties:
                           country:
                             type: string

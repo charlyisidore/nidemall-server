@@ -35,12 +35,23 @@ post:
             allOf:
               - $ref: ../../components/schemas/ApiResponse.yaml
               - type: object
+                additionalProperties: false
+                required:
+                  - data
                 properties:
                   data:
                     type: object
+                    additionalProperties: false
+                    required:
+                      - userInfo
+                      - token
                     properties:
                       userInfo:
                         type: object
+                        additionalProperties: false
+                        required:
+                          - nickName
+                          - avatarUrl
                         properties:
                           nickName:
                             type: string
