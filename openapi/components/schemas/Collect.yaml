@@ -1,7 +1,7 @@
+type: object
+unevaluatedProperties: false
 allOf:
-- type: object
-  additionalProperties: false
-  required:
+- required:
     - id
     - type
     - valueId
@@ -19,9 +19,7 @@ allOf:
     picUrl:
       type: string
 - oneOf:
-  - type: object
-    additionalProperties: false
-    required:
+  - required:
       - brief
       - retailPrice
     properties:
@@ -29,9 +27,7 @@ allOf:
         type: string
       retailPrice:
         type: number
-  - type: object
-    additionalProperties: false
-    required:
+  - required:
       - subtitle
       - price
     properties:
