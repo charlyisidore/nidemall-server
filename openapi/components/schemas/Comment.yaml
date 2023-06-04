@@ -1,4 +1,15 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - valueId
+  - type
+  - content
+  - userId
+  - picUrls
+  - star
+  - addTime
+  - updateTime
 properties:
   id:
     type: integer

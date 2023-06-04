@@ -1,7 +1,19 @@
 type: object
+additionalProperties: false
+required:
+  - userInfo
+  - addTime
+  - star
+  - picList
+  - adminContent
+  - content
 properties:
   userInfo:
     type: object
+    additionalProperties: false
+    required:
+      - nickName
+      - avatarUrl
     properties:
       nickName:
         type: string

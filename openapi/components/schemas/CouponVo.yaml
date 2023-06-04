@@ -1,4 +1,15 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - cid
+  - name
+  - desc
+  - tag
+  - min
+  - discount
+  - startTime
+  - endTime
 properties:
   id:
     type: integer

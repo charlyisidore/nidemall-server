@@ -1,5 +1,12 @@
 allOf:
 - type: object
+  additionalProperties: false
+  required:
+    - id
+    - type
+    - valueId
+    - name
+    - picUrl
   properties:
     id:
       type: integer
@@ -13,12 +20,20 @@ allOf:
       type: string
 - oneOf:
   - type: object
+    additionalProperties: false
+    required:
+      - brief
+      - retailPrice
     properties:
       brief:
         type: string
       retailPrice:
         type: number
   - type: object
+    additionalProperties: false
+    required:
+      - subtitle
+      - price
     properties:
       subtitle:
         type: string

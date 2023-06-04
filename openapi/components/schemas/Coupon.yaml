@@ -1,4 +1,13 @@
 type: object
+additionalProperties: false
+required:
+  - id
+  - name
+  - desc
+  - tag
+  - discount
+  - min
+  - days
 properties:
   id:
     type: integer
