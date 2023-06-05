@@ -18,6 +18,15 @@ module.exports = [
       await orderService.checkOrderUnconfirm();
     },
   },
+  // Order job
+  {
+    cron: '0 0 4 * * ?',
+    handle: async () => {
+      /** @type {OrderService} */
+      const orderService = think.service('order');
+      await orderService.checkOrderComment();
+    },
+  },
   // Clean captcha cache
   {
     interval: '1h',

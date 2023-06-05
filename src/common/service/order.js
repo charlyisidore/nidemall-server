@@ -224,6 +224,23 @@ module.exports = class OrderService extends think.Service {
 
   /**
    * 
+   * @param {number} days 
+   * @returns {Promise<Order[]>}
+   */
+  queryComment(days) {
+    const now = new Date();
+    const expired = (new Date(now)).setDate(now.getDate() - days);
+    return this.model('order')
+      .where({
+        comments: ['>', 0],
+        confirmTime: ['<', think.datetime(expired)],
+        deleted: false,
+      })
+      .select();
+  }
+
+  /**
+   * 
    * @param {number} id 
    * @param {number} aftersaleStatus 
    * @returns {Promise<number>} The number of rows affected
@@ -270,6 +287,46 @@ module.exports = class OrderService extends think.Service {
     );
 
     think.logger.info('系统结束定时任务检查订单是否已经超期自动确认收货');
+  }
+
+  /**
+   * 
+   */
+  async checkOrderComment() {
+    think.logger.info('系统开启任务检查订单是否已经超期未评价');
+
+    /** @type {OrderGoodsService} */
+    const orderGoodsService = think.service('order_goods');
+    /** @type {SystemService} */
+    const systemService = think.service('system');
+
+    const orderComment = await systemService.getOrderComment();
+
+    const orderList = await this.queryComment(orderComment);
+
+    await Promise.all(
+      orderList.map(async (order) => {
+        Object.assign(order, {
+          comments: 0,
+        });
+
+        await this.updateWithOptimisticLocker(order);
+
+        const orderGoodsList = await orderGoodsService.queryByOid(order.id);
+
+        await Promise.all(
+          orderGoodsList.map(async (orderGoods) => {
+            Object.assign(orderGoods, {
+              comment: -1,
+            });
+
+            await orderGoodsService.updateById(orderGoods);
+          })
+        );
+      })
+    );
+
+    think.logger.info('系统结束任务检查订单是否已经超期未评价');
   }
 
   getRandomNum(n) {
