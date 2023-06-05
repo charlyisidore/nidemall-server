@@ -159,6 +159,24 @@ module.exports = class OrderService extends think.Service {
 
   /**
    * 
+   * @param {number} days 
+   * @returns {Promise<Order[]>}
+   */
+  queryUnconfirm(days) {
+    const { STATUS } = this.getConstants();
+    const now = new Date();
+    const expired = (new Date(now)).setDate(now.getDate() - days);
+    return this.model('order')
+      .where({
+        orderStatus: STATUS.SHIP,
+        shipTime: ['<', think.datetime(expired)],
+        deleted: false,
+      })
+      .select();
+  }
+
+  /**
+   * 
    * @param {number} userId 
    * @returns {{unpaid: number, unship: number, unrecv: number, uncomment: number}}
    */
@@ -218,6 +236,40 @@ module.exports = class OrderService extends think.Service {
         aftersaleStatus,
         updateTime: now,
       });
+  }
+
+  /**
+   * 
+   */
+  async checkOrderUnconfirm() {
+    think.logger.info('系统开启定时任务检查订单是否已经超期自动确认收货');
+
+    /** @type {SystemService} */
+    const systemService = think.service('system');
+
+    const { STATUS } = this.getConstants();
+
+    const orderUnconfirm = await systemService.getOrderUnconfirm();
+
+    const orderList = await this.queryUnconfirm(orderUnconfirm);
+    const now = new Date();
+
+    await Promise.all(
+      orderList.map(async (order) => {
+        Object.assign(order, {
+          status: STATUS.AUTO_CONFIRM,
+          confirmTime: now,
+        });
+
+        if (!this.updateWithOptimisticLocker(order)) {
+          think.logger.info(`订单 ID=${order.id} 数据已经更新，放弃自动确认收货`);
+        } else {
+          think.logger.info(`订单 ID=${order.id} 已经超期自动确认收货`);
+        }
+      })
+    );
+
+    think.logger.info('系统结束定时任务检查订单是否已经超期自动确认收货');
   }
 
   getRandomNum(n) {

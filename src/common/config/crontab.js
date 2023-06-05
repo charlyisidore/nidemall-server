@@ -9,6 +9,15 @@ module.exports = [
       await CouponService.checkCouponExpired();
     },
   },
+  // Order job
+  {
+    cron: '0 0 3 * * ?',
+    handle: async () => {
+      /** @type {OrderService} */
+      const orderService = think.service('order');
+      await orderService.checkOrderUnconfirm();
+    },
+  },
   // Clean captcha cache
   {
     interval: '1h',
