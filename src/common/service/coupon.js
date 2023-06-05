@@ -128,6 +128,39 @@ module.exports = class CouponService extends think.Service {
 
   /**
    * 
+   * @param {Coupon} coupon 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  updateById(coupon) {
+    const now = new Date();
+    return this.model('coupon')
+      .where({
+        id: coupon.id,
+      })
+      .update(Object.assign(coupon, {
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
+   * @returns {Promise<Coupon[]>}
+   */
+  queryExpired() {
+    const { STATUS, TIME_TYPE } = this.getConstants();
+    const now = new Date();
+    return this.model('coupon')
+      .where({
+        status: STATUS.NORMAL,
+        timeType: TIME_TYPE.TIME,
+        endTime: ['<', think.datetime(now)],
+        deleted: false,
+      })
+      .select();
+  }
+
+  /**
+   * 
    * @param {number} userId 
    */
   async assignForRegister(userId) {
@@ -260,6 +293,40 @@ module.exports = class CouponService extends think.Service {
     }
 
     return coupon;
+  }
+
+  async checkCouponExpired() {
+    think.logger.info('系统开启任务检查优惠券是否已经过期');
+
+    /** @type {CouponUserService} */
+    const couponUserService = think.service('coupon_user');
+
+    const COUPON = this.getConstants();
+    const COUPON_USER = this.getConstants();
+
+    const couponList = await this.queryExpired();
+
+    await Promise.all(
+      couponList.map(async (coupon) => {
+        Object.assign(coupon, {
+          status: COUPON.STATUS.EXPIRED,
+        });
+        await this.updateById(coupon);
+      })
+    );
+
+    const couponUserList = await couponUserService.queryExpired();
+
+    await Promise.all(
+      couponUserList.map(async (couponUser) => {
+        Object.assign(couponUser, {
+          status: COUPON_USER.STATUS.EXPIRED,
+        });
+        await couponUserService.update(couponUser);
+      })
+    );
+
+    think.logger.info('系统结束任务检查优惠券是否已经过期');
   }
 
   getConstants() {

@@ -156,6 +156,18 @@ module.exports = class CouponUserService extends think.Service {
       }));
   }
 
+  queryExpired() {
+    const { STATUS } = this.getConstants();
+    const now = new Date();
+    return this.model('coupon_user')
+      .where({
+        status: STATUS.USABLE,
+        endTime: ['<', think.datetime(now)],
+        deleted: false,
+      })
+      .select();
+  }
+
   /**
    * 
    * @param {number} orderId 
