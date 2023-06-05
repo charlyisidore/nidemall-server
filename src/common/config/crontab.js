@@ -1,4 +1,13 @@
 module.exports = [
+  // Database backup job
+  {
+    cron: '0 0 5 * * ?',
+    handle: () => {
+      think.logger.info('系统开启定时任务数据库备份');
+      think.logger.warn('TODO: backup db crontab');
+      think.logger.info('系统结束定时任务数据库备份');
+    },
+  },
   // Coupon job
   {
     interval: '1h',
