@@ -32,6 +32,20 @@ module.exports = class GrouponRulesService extends think.Service {
 
   /**
    * 
+   * @param {number} status 
+   * @returns {Promise<GrouponRules[]>}
+   */
+  queryByStatus(status) {
+    return this.model('groupon_rules')
+      .where({
+        status,
+        deleted: false,
+      })
+      .select();
+  }
+
+  /**
+   * 
    * @param {number} page 
    * @param {number} limit 
    * @param {string?} sort 
@@ -50,6 +64,35 @@ module.exports = class GrouponRulesService extends think.Service {
       })
       .page(page, limit)
       .countSelect();
+  }
+
+  /**
+   * 
+   * @param {number} id 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  delete(id) {
+    return this.model('groupon_rules')
+      .where({ id })
+      .update({
+        deleted: true,
+      });
+  }
+
+  /**
+   * 
+   * @param {GrouponRules} grouponRules 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  updateById(grouponRules) {
+    const now = new Date();
+    return this.model('groupon_rules')
+      .where({
+        id: grouponRules.id,
+      })
+      .update(Object.assign(grouponRules, {
+        updateTime: now,
+      }));
   }
 
   /**
@@ -97,6 +140,89 @@ module.exports = class GrouponRulesService extends think.Service {
       totalPages: grouponRulesList.totalPages,
       data: grouponRulesVoList,
     };
+  }
+
+  /**
+   * Delete expired groupon rules and schedule next deletions.
+   */
+  async expiredTaskStartup() {
+    const { RULE_STATUS } = this.getConstants();
+
+    const grouponRulesList = await this.queryByStatus(RULE_STATUS.ON);
+
+    await Promise.all(
+      grouponRulesList.map(async (grouponRules) => {
+        const now = new Date();
+        const expire = new Date(grouponRules.expireTime);
+
+        const delay = expire.getTime() - now.getTime();
+
+        setTimeout(
+          () => this.expiredTask(grouponRules.id),
+          Math.max(0, delay)
+        );
+      })
+    );
+  }
+
+  /**
+   * Delete an expired groupon rules.
+   * @param {number} grouponRulesId 
+   */
+  async expiredTask(grouponRulesId) {
+    think.logger.info(`系统开始处理延时任务---团购规则过期---${grouponRulesId}`);
+
+    /** @type {GrouponService} */
+    const grouponService = think.service('groupon');
+    /** @type {OrderService} */
+    const orderService = think.service('order');
+
+    const GROUPON = grouponService.getConstants();
+    const GROUPON_RULES = this.getConstants();
+    const ORDER = orderService.getConstants();
+
+    const grouponRules = await this.findById(grouponRulesId);
+
+    if (think.isEmpty(grouponRules)) {
+      return;
+    }
+
+    if (GROUPON_RULES.RULE_STATUS.ON != grouponRules.status) {
+      return;
+    }
+
+    Object.assign(grouponRules, {
+      status: GROUPON_RULES.RULE_STATUS.DOWN_EXPIRE,
+    });
+    await this.updateById(grouponRules);
+
+    const grouponList = await grouponService.queryByRulesId(grouponRulesId);
+
+    await Promise.all(
+      grouponList.map(async (groupon) => {
+        const order = await orderService.findById(groupon.orderId);
+        if (GROUPON.STATUS.NONE == groupon.status) {
+          Object.assign(groupon, {
+            status: GROUPON.STATUS.FAIL,
+          });
+          await grouponService.updateById(groupon);
+        } else if (GROUPON.STATUS.ON == groupon.status) {
+          Object.assign(groupon, {
+            status: GROUPON.STATUS.FAIL,
+          });
+          await grouponService.updateById(groupon);
+
+          if (orderService.isPayStatus(order)) {
+            Object.assign(order, {
+              status: ORDER.STATUS.REFUND,
+            });
+            await orderService.updateWithOptimisticLocker(order);
+          }
+        }
+      })
+    );
+
+    think.logger.info(`系统结束处理延时任务---团购规则过期---${grouponRulesId}`);
   }
 
   getConstants() {

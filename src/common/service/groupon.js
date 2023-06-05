@@ -164,6 +164,20 @@ module.exports = class GrouponService extends think.Service {
       }));
   }
 
+  /**
+   * 
+   * @param {number} grouponRulesId 
+   * @returns {Promise<Groupon[]>}
+   */
+  queryByRulesId(grouponRulesId) {
+    return this.model('groupon')
+      .where({
+        rulesId: grouponRulesId,
+        deleted: false,
+      })
+      .select();
+  }
+
   getConstants() {
     return {
       RESPONSE: {
