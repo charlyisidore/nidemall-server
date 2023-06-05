@@ -90,6 +90,29 @@ module.exports = class CouponService extends think.Service {
 
   /**
    * 
+   * @param {string} code 
+   * @returns {Promise<Coupon|null>}
+   */
+  async findByCode(code) {
+    const { TYPE, STATUS } = this.getConstants();
+    const couponList = await this.model('coupon')
+      .where({
+        code,
+        type: TYPE.CODE,
+        status: STATUS.NORMAL,
+        deleted: false,
+      })
+      .select();
+
+    if (couponList.length > 1) {
+      throw new Error('');
+    }
+
+    return couponList.length > 0 ? couponList[0] : null;
+  }
+
+  /**
+   * 
    * @returns {Promise<Coupon[]>} 
    */
   queryRegister() {
@@ -185,7 +208,7 @@ module.exports = class CouponService extends think.Service {
         return null;
       }
     } else if (TIME_TYPE.DAYS == timeType) {
-      const addTime = couponUser.addTime;
+      const addTime = new Date(couponUser.addTime);
       const expired = (new Date(addTime)).setDate(addTime.getDate() + days);
 
       if (now > expired) {

@@ -5,6 +5,20 @@ module.exports = class CouponUserService extends think.Service {
 
   /**
    * 
+   * @param {number} couponId 
+   * @returns {Promise<number>}
+   */
+  countCoupon(couponId) {
+    return this.model('coupon_user')
+      .where({
+        couponId,
+        deleted: false,
+      })
+      .count();
+  }
+
+  /**
+   * 
    * @param {number} userId 
    * @param {number} couponId 
    * @returns {Promise<number>} The total number
@@ -93,6 +107,26 @@ module.exports = class CouponUserService extends think.Service {
       'addTime',
       'DESC'
     );
+  }
+
+  /**
+   * 
+   * @param {number} userId 
+   * @param {number} couponId 
+   * @returns {Promise<CouponUser|null>}
+   */
+  async queryOne(userId, couponId) {
+    const { STATUS } = this.getConstants();
+    const couponUserList = await this.queryList(
+      userId,
+      couponId,
+      STATUS.USABLE,
+      1,
+      1,
+      'addTime',
+      'DESC'
+    );
+    return couponUserList.length > 0 ? couponUserList[0] : null;
   }
 
   /**

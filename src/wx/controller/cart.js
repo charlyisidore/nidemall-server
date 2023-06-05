@@ -268,6 +268,8 @@ module.exports = class WxCartController extends Base {
     const addressService = this.service('address');
     /** @type {CartService} */
     const cartService = this.service('cart');
+    /** @type {CouponService} */
+    const couponService = this.service('coupon');
     /** @type {CouponUserService} */
     const couponUserService = this.service('coupon_user');
     /** @type {GrouponRulesService} */
