@@ -68,7 +68,7 @@ module.exports = class SystemService extends think.Service {
    * @returns {Promise<boolean?>}
    */
   async getConfigBoolean(key) {
-    switch (await this.getConfig(key).toLowerCase()) {
+    switch ((await this.getConfig(key)).toLowerCase()) {
       case 'true':
       case '1':
         return true;
