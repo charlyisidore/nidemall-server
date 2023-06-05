@@ -26,7 +26,7 @@ module.exports = class TaskService extends think.Service {
 
     // https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#maximum_delay_value
     return (delay > MAX_TIMEOUT) ?
-      setTimeout(() => this.addTask(callback, time), MAX_TIMEOUT) :
+      setTimeout(() => this.addTask(callback, dueTime), MAX_TIMEOUT) :
       setTimeout(callback, Math.max(0, delay));
   }
 
