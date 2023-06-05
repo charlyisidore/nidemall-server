@@ -9,11 +9,11 @@ module.exports = class extends think.Model {
   }
 
   where(where) {
-    return super.where(this._toSnakeCase(where));
+    return super.where(this._beforeClause(where));
   }
 
   order(value) {
-    return super.order(this._toSnakeCase(value));
+    return super.order(this._beforeClause(value));
   }
 
   add(data, options) {
@@ -43,6 +43,7 @@ module.exports = class extends think.Model {
           think.snakeCase(k),
           this._beforeValue(v, think.snakeCase(k))
         ])
+        .filter(([k, v]) => !think.isUndefined(v))
     );
   }
 
@@ -85,11 +86,14 @@ module.exports = class extends think.Model {
     return value;
   }
 
-  _toSnakeCase(data) {
+  _beforeClause(data) {
     return think.isObject(data) ?
       Object.fromEntries(
         Object.entries(data)
-          .map(([k, v]) => [think.snakeCase(k), v])
+          .map(([k, v]) => [
+            think.snakeCase(k),
+            think.isUndefined(v) ? null : v
+          ])
       ) :
       data;
   }
