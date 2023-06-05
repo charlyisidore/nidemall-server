@@ -143,23 +143,21 @@ module.exports = class GrouponRulesService extends think.Service {
   }
 
   /**
-   * Delete expired groupon rules and schedule next deletions.
+   * Schedule deletions at startup.
    */
   async expiredTaskStartup() {
+    /** @type {TaskService} */
+    const taskService = think.service('task');
+
     const { RULE_STATUS } = this.getConstants();
 
     const grouponRulesList = await this.queryByStatus(RULE_STATUS.ON);
 
     await Promise.all(
       grouponRulesList.map(async (grouponRules) => {
-        const now = new Date();
-        const expire = new Date(grouponRules.expireTime);
-
-        const delay = expire.getTime() - now.getTime();
-
-        setTimeout(
+        taskService.addTask(
           () => this.expiredTask(grouponRules.id),
-          Math.max(0, delay)
+          grouponRules.expireTime
         );
       })
     );
