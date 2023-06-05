@@ -27,6 +27,7 @@
  * @typedef {import('./service/search_history.js')} SearchHistoryService
  * @typedef {import('./service/storage.js')} StorageService
  * @typedef {import('./service/system.js')} SystemService
+ * @typedef {import('./service/task.js')} TaskService
  * @typedef {import('./service/topic.js')} TopicService
  * @typedef {import('./service/user.js')} UserService
  * @typedef {import('./service/weixin.js')} WeixinService
