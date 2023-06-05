@@ -21,10 +21,10 @@ module.exports = class WxHomeController extends Base {
     /** @type {SystemService} */
     const systemService = this.service('system');
 
-    const newLimit = parseInt(await systemService.getNewLimit());
-    const hotLimit = parseInt(await systemService.getHotLimit());
-    const brandLimit = parseInt(await systemService.getBrandLimit());
-    const topicLimit = parseInt(await systemService.getTopicLimit());
+    const newLimit = await systemService.getNewLimit();
+    const hotLimit = await systemService.getHotLimit();
+    const brandLimit = await systemService.getBrandLimit();
+    const topicLimit = await systemService.getTopicLimit();
 
     const promises = {
       newGoodsList: goodsService.queryByNew(0, newLimit),
@@ -83,8 +83,8 @@ module.exports = class WxHomeController extends Base {
     /** @type {SystemService} */
     const systemService = this.service('system');
 
-    const catlogListLimit = parseInt(await systemService.getCatlogListLimit());
-    const catlogMoreLimit = parseInt(await systemService.getCatlogMoreLimit());
+    const catlogListLimit = await systemService.getCatlogListLimit();
+    const catlogMoreLimit = await systemService.getCatlogMoreLimit();
 
     const categoryList = [];
     const catL1List = await categoryService.queryL1WithoutRecommend(0, catlogListLimit);

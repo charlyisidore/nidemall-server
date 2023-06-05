@@ -44,98 +44,134 @@ module.exports = class SystemService extends think.Service {
   /**
    * 
    * @param {string?} key 
+   * @returns {Promise<object|string>}
    */
   async getConfig(key) {
     const config = await this.config;
-    return (undefined !== key) ?
-      config[key] :
-      config;
+    return think.isUndefined(key) ?
+      config :
+      config[key];
+  }
+
+  /**
+   * 
+   * @param {string?} key 
+   * @returns {Promise<number>}
+   */
+  async getConfigInt(key) {
+    return parseInt(await this.getConfig(key));
+  }
+
+  /**
+   * 
+   * @param {string?} key 
+   * @returns {Promise<boolean?>}
+   */
+  async getConfigBoolean(key) {
+    switch (await this.getConfig(key).toLowerCase()) {
+      case 'true':
+      case '1':
+        return true;
+      case 'false':
+      case '0':
+        return false;
+      default:
+        return null;
+    }
+  }
+
+  /**
+   * 
+   * @param {string?} key 
+   * @returns {Promise<number>}
+   */
+  async getConfigFloat(key) {
+    return parseFloat(await this.getConfig(key));
   }
 
   /**
    * 
    */
   getNewLimit() {
-    return this.getConfig('wx_index_new');
+    return this.getConfigInt('wx_index_new');
   }
 
   /**
    * 
    */
   getHotLimit() {
-    return this.getConfig('wx_index_hot');
+    return this.getConfigInt('wx_index_hot');
   }
 
   /**
    * 
    */
   getBrandLimit() {
-    return this.getConfig('wx_index_brand');
+    return this.getConfigInt('wx_index_brand');
   }
 
   /**
    * 
    */
   getTopicLimit() {
-    return this.getConfig('wx_index_topic');
+    return this.getConfigInt('wx_index_topic');
   }
 
   /**
    * 
    */
   getCatlogListLimit() {
-    return this.getConfig('wx_catlog_list');
+    return this.getConfigInt('wx_catlog_list');
   }
 
   /**
    * 
    */
   getCatlogMoreLimit() {
-    return this.getConfig('wx_catlog_goods');
+    return this.getConfigInt('wx_catlog_goods');
   }
 
   /**
    * 
    */
   isAutoCreateShareImage() {
-    return this.getConfig('wx_share');
+    return this.getConfigBoolean('wx_share');
   }
 
   /**
    * 
    */
   getFreight() {
-    return this.getConfig('express_freight_value');
+    return this.getConfigFloat('express_freight_value');
   }
 
   /**
    * 
    */
   getFreightLimit() {
-    return this.getConfig('express_freight_min');
+    return this.getConfigFloat('express_freight_min');
   }
 
   /**
    * 
    */
   getOrderUnpaid() {
-    return this.getConfig('order_unpaid');
+    return this.getConfigInt('order_unpaid');
   }
 
   /**
    * 
    */
   getOrderUnconfirm() {
-    return this.getConfig('order_unconfirm');
+    return this.getConfigInt('order_unconfirm');
   }
 
   /**
    * 
    */
   getOrderComment() {
-    return this.getConfig('order_comment');
+    return this.getConfigInt('order_comment');
   }
-
 
   /**
    * 
