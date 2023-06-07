@@ -69,7 +69,9 @@ module.exports = class WxBaseController extends think.Controller {
    * @param {string?} message `errmsg` property
    */
   success(data, message = '成功') {
-    return super.success(data, message);
+    return think.isUndefined(data) ?
+      this.json({ errno: 0, errmsg: message }) :
+      super.success(data, message);
   }
 
   /**
