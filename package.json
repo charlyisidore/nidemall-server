@@ -31,6 +31,7 @@
     "ava": "^5.3.0",
     "eslint": "^8.41.0",
     "eslint-config-think": "^1.0.3",
+    "msw": "^1.2.1",
     "nyc": "^15.1.0",
     "think-watcher": "^3.0.4"
   },
