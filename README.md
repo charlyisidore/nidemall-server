@@ -13,10 +13,14 @@ See [installation instructions](./INSTALL.md).
 
 ## Usage
 
-Once installed, run:
+```bash
+yarn run start
+```
+
+## Testing
 
 ```bash
-yarn start
+yarn run test
 ```
 
 ## License
