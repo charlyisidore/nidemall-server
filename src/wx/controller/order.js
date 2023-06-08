@@ -490,7 +490,7 @@ module.exports = class WxOrderController extends Base {
   async prepayAction() {
     const userId = this.getUserId();
     /** @type {number} */
-    const orderId = this.get('orderId');
+    const orderId = this.post('orderId');
 
     /** @type {AuthService} */
     const authService = this.service('auth');
@@ -531,6 +531,7 @@ module.exports = class WxOrderController extends Base {
     try {
       result = await weixinService.createOrder({
         outTradeNo: order.orderSn,
+        openid: user.weixinOpenid,
         body: `订单：${order.orderSn}`,
         totalFee: Math.floor(order.actualPrice * 100.),
         spbillCreateIp: this.ip,
