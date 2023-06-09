@@ -1,4 +1,5 @@
 const fileCache = require('think-cache-file');
+const fileSession = require('think-session-file');
 const mysql = require('think-model-mysql');
 const postgresql = require('think-model-postgresql');
 const sqlite = require('think-model-sqlite');
@@ -60,6 +61,25 @@ exports.model = {
     database: 'nidemall',
     prefix: 'nidemall_',
   },
+};
+
+/**
+ * session adapter config
+ * @type {Object}
+ */
+exports.session = {
+  type: 'file',
+  common: {
+    cookie: {
+      name: 'thinkjs'
+      // keys: ['werwer', 'werwer'],
+      // signed: true
+    }
+  },
+  file: {
+    handle: fileSession,
+    sessionPath: path.join(think.ROOT_PATH, 'runtime/session')
+  }
 };
 
 /**
