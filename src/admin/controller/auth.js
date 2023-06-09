@@ -1,18 +1,11 @@
 const Base = require('./base.js');
-const svgCaptcha = require('svg-captcha');
 const AuthenticationError = require('../../common/error/authentication.js');
 const LockedAccountError = require('../../common/error/locked_account.js');
 const UnknownAccountError = require('../../common/error/unknown_account.js');
 
 module.exports = class AdminAuthController extends Base {
   async kaptchaAction() {
-    const captcha = svgCaptcha.create();
-
-    this.session('kaptcha', captcha.text);
-
-    const base64 = Buffer.from(captcha.data).toString('base64');
-
-    return this.success('data:image/svg+xml;base64,'.concat(base64));
+    return this.success('data:image/svg+xml;base64,');
   }
 
   async loginAction() {
@@ -36,7 +29,6 @@ module.exports = class AdminAuthController extends Base {
       switch (true) {
         case error instanceof UnknownAccountError:
           logService.logAuthFail('登录', '用户帐号或密码不正确', this.ctx);
-          // TODO: doKaptcha
           return this.fail(ADMIN_RESPONSE.INVALID_ACCOUNT, '用户帐号或密码不正确');
 
         case error instanceof LockedAccountError:
