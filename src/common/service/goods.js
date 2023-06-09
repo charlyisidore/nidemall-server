@@ -194,6 +194,18 @@ module.exports = class GoodsService extends think.Service {
 
   /**
    * 
+   * @returns {Promise<number>} The total number
+   */
+  count() {
+    return this.model('goods')
+      .where({
+        deleted: false,
+      })
+      .count();
+  }
+
+  /**
+   * 
    * @param {number?} brandId 
    * @param {string?} keywords 
    * @param {boolean?} isHot 

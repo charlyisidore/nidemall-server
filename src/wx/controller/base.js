@@ -1,3 +1,3 @@
-const BaseController = require('../../common/controller/base.js');
+const Base = require('../../common/controller/base.js');
 
-module.exports = class WxBaseController extends BaseController {};
+module.exports = class WxBaseController extends Base {};

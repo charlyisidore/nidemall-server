@@ -6,6 +6,20 @@ module.exports = class GoodsProductService extends think.Service {
   /**
    * 
    * @param {number} id 
+   * @returns {Promise<GoodsProduct[]>} 
+   */
+  queryByGid(id) {
+    return this.model('goods_product')
+      .where({
+        goodsId: id,
+        deleted: false,
+      })
+      .select();
+  }
+
+  /**
+   * 
+   * @param {number} id 
    * @returns {Promise<GoodsProduct|Record<string, never>>} 
    */
   findById(id) {
@@ -16,16 +30,14 @@ module.exports = class GoodsProductService extends think.Service {
 
   /**
    * 
-   * @param {number} id 
-   * @returns {Promise<GoodsProduct[]>} 
+   * @returns {Promise<number>} The total number
    */
-  queryByGid(id) {
+  count() {
     return this.model('goods_product')
       .where({
-        goodsId: id,
         deleted: false,
       })
-      .select();
+      .count();
   }
 
   /**

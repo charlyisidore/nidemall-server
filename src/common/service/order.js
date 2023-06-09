@@ -159,6 +159,18 @@ module.exports = class OrderService extends think.Service {
 
   /**
    * 
+   * @returns {Promise<number>} The total number
+   */
+  count() {
+    return this.model('order')
+      .where({
+        deleted: false,
+      })
+      .count();
+  }
+
+  /**
+   * 
    * @param {number} days 
    * @returns {Promise<Order[]>}
    */

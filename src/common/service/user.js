@@ -78,6 +78,18 @@ module.exports = class UserService extends think.Service {
 
   /**
    * 
+   * @returns {Promise<number>} The total number
+   */
+  count() {
+    return this.model('user')
+      .where({
+        deleted: false,
+      })
+      .count();
+  }
+
+  /**
+   * 
    * @param {string} username 
    * @returns {Promise<User[]>} 
    */
