@@ -10,7 +10,7 @@ module.exports = class LogService extends think.Service {
    */
   logGeneralSucceed(action, result = '', ctx) {
     const { TYPE } = this.getConstants();
-    this.logAdmin(TYPE.GENERAL, action, true, result, '', ctx);
+    return this.logAdmin(TYPE.GENERAL, action, true, result, '', ctx);
   }
 
   /**
@@ -20,7 +20,7 @@ module.exports = class LogService extends think.Service {
    */
   logGeneralFail(action, error = '', ctx) {
     const { TYPE } = this.getConstants();
-    this.logAdmin(TYPE.GENERAL, action, false, error, '', ctx);
+    return this.logAdmin(TYPE.GENERAL, action, false, error, '', ctx);
   }
 
   /**
@@ -30,7 +30,7 @@ module.exports = class LogService extends think.Service {
    */
   logAuthSucceed(action, result = '', ctx) {
     const { TYPE } = this.getConstants();
-    this.logAdmin(TYPE.AUTH, action, true, result, '', ctx);
+    return this.logAdmin(TYPE.AUTH, action, true, result, '', ctx);
   }
 
   /**
@@ -40,7 +40,7 @@ module.exports = class LogService extends think.Service {
    */
   logAuthFail(action, error = '', ctx) {
     const { TYPE } = this.getConstants();
-    this.logAdmin(TYPE.AUTH, action, false, error, '', ctx);
+    return this.logAdmin(TYPE.AUTH, action, false, error, '', ctx);
   }
 
   /**
@@ -50,7 +50,7 @@ module.exports = class LogService extends think.Service {
    */
   logOrderSucceed(action, result = '', ctx) {
     const { TYPE } = this.getConstants();
-    this.logAdmin(TYPE.ORDER, action, true, result, '', ctx);
+    return this.logAdmin(TYPE.ORDER, action, true, result, '', ctx);
   }
 
   /**
@@ -60,7 +60,7 @@ module.exports = class LogService extends think.Service {
    */
   logOrderFail(action, error = '', ctx) {
     const { TYPE } = this.getConstants();
-    this.logAdmin(TYPE.ORDER, action, false, error, '', ctx);
+    return this.logAdmin(TYPE.ORDER, action, false, error, '', ctx);
   }
 
   /**
@@ -70,7 +70,7 @@ module.exports = class LogService extends think.Service {
    */
   logOtherSucceed(action, result = '', ctx) {
     const { TYPE } = this.getConstants();
-    this.logAdmin(TYPE.OTHER, action, true, result, '', ctx);
+    return this.logAdmin(TYPE.OTHER, action, true, result, '', ctx);
   }
 
   /**
@@ -80,9 +80,19 @@ module.exports = class LogService extends think.Service {
    */
   logOtherFail(action, error = '', ctx) {
     const { TYPE } = this.getConstants();
-    this.logAdmin(TYPE.OTHER, action, false, error, '', ctx);
+    return this.logAdmin(TYPE.OTHER, action, false, error, '', ctx);
   }
 
+  /**
+   * 
+   * @param {number} type 
+   * @param {string} action 
+   * @param {boolean} succeed 
+   * @param {string} result 
+   * @param {string} comment 
+   * @param {any} ctx 
+   * @returns {Promise<number>} The ID inserted
+   */
   logAdmin(type, action, succeed, result, comment, ctx) {
     const log = {
       type,
@@ -90,8 +100,7 @@ module.exports = class LogService extends think.Service {
       succeed,
       result,
       comment,
-      // TODO: find admin
-      admin: '匿名用户',
+      admin: ctx?.state?.admin?.username ?? '匿名用户',
     };
 
     if (!think.isNullOrUndefined(ctx)) {
@@ -100,8 +109,7 @@ module.exports = class LogService extends think.Service {
       });
     }
 
-    return this.model('log')
-      .add(log);
+    return this.model('log').add(log);
   }
 
   getConstants() {
