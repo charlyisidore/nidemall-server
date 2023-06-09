@@ -5,6 +5,17 @@ module.exports = class extends think.Logic {
 
   loginAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      username: {
+        string: true,
+        required: true,
+      },
+      password: {
+        string: true,
+        required: true,
+      },
+    };
   }
 
   logoutAction() {
