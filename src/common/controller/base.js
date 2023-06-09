@@ -1,13 +1,5 @@
 module.exports = class BaseController extends think.Controller {
   /**
-   * Get the logged in user ID
-   * @returns {number?} User ID
-   */
-  getUserId() {
-    return this.ctx.state.userId;
-  }
-
-  /**
    * Incorrect parameters
    */
   badArgument() {
