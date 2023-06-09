@@ -39,6 +39,10 @@ module.exports = [
     handle: 'auth',
     options: {},
   },
+  {
+    handle: 'admin',
+    options: {},
+  },
   'logic',
   'controller'
 ];
