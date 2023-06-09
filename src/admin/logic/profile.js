@@ -1,6 +1,17 @@
 module.exports = class extends think.Logic {
   passwordAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      oldPassword: {
+        string: true,
+        required: true,
+      },
+      newPassword: {
+        string: true,
+        required: true,
+      },
+    };
   }
 
   nnoticeAction() {
@@ -40,17 +51,51 @@ module.exports = class extends think.Logic {
 
   catnoticeAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      noticeId: {
+        int: true,
+        required: true,
+      },
+    };
   }
 
   bcatnoticeAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      ids: {
+        array: true,
+        required: true,
+        children: {
+          int: true,
+        },
+      },
+    };
   }
 
   rmnoticeAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      id: {
+        int: true,
+        required: true,
+      },
+    };
   }
 
   brmnoticeAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      ids: {
+        array: true,
+        required: true,
+        children: {
+          int: true,
+        },
+      },
+    };
   }
 };
