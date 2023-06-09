@@ -24,6 +24,7 @@
  * @typedef {import('./service/keyword.js')} KeywordService
  * @typedef {import('./service/log.js')} LogService
  * @typedef {import('./service/notify.js')} NotifyService
+ * @typedef {import('./service/notice_admin.js')} NoticeAdminService
  * @typedef {import('./service/order.js')} OrderService
  * @typedef {import('./service/order_goods.js')} OrderGoodsService
  * @typedef {import('./service/search_history.js')} SearchHistoryService
