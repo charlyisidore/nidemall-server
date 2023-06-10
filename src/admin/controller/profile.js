@@ -2,7 +2,34 @@ const Base = require('./base.js');
 
 module.exports = class AdminProfileController extends Base {
   async passwordAction() {
-    return this.success('todo');
+    const adminId = this.getAdminId();
+    /** @type {string} */
+    const oldPassword = this.post('oldPassword');
+    /** @type {string} */
+    const newPassword = this.post('newPassword');
+
+    /** @type {AdminService} */
+    const adminService = this.service('admin');
+
+    const { ADMIN_RESPONSE } = adminService.getConstants();
+
+    const admin = await adminService.findAdminById(adminId);
+
+    if (think.isEmpty(admin)) {
+      return this.unauthz();
+    }
+
+    if (!await adminService.comparePassword(oldPassword, admin.password)) {
+      return this.fail(ADMIN_RESPONSE.INVALID_ACCOUNT, '账号密码不对');
+    }
+
+    Object.assign(admin, {
+      password: await adminService.hashPassword(password),
+    });
+
+    await adminService.updateById(admin);
+
+    return this.success();
   }
 
   async nnoticeAction() {
@@ -18,9 +45,9 @@ module.exports = class AdminProfileController extends Base {
   async lsnoticeAction() {
     const adminId = this.getAdminId();
     /** @type {string?} */
-    const title = this.post('title');
+    const title = this.get('title');
     /** @type {string?} */
-    const type = this.post('type');
+    const type = this.get('type');
     /** @type {number} */
     const page = this.get('page');
     /** @type {number} */
@@ -47,7 +74,50 @@ module.exports = class AdminProfileController extends Base {
   }
 
   async catnoticeAction() {
-    return this.success('todo');
+    const adminId = this.getAdminId();
+    /** @type {number} */
+    const noticeId = this.get('noticeId');
+
+    /** @type {AdminService} */
+    const adminService = this.service('admin');
+    /** @type {NoticeService} */
+    const noticeService = this.service('notice');
+    /** @type {NoticeAdminService} */
+    const noticeAdminService = this.service('notice_admin');
+
+    const noticeAdmin = await noticeAdminService.find(noticeId, adminId);
+
+    if (think.isEmpty(noticeAdmin)) {
+      return this.badArgumentValue();
+    }
+
+    Object.assign(noticeAdmin, {
+      readTime: now,
+    });
+
+    await noticeAdminService.update(noticeAdmin);
+
+    const notice = await noticeService.findById(noticeId);
+
+    const data = {
+      title: notice.title,
+      content: notice.content,
+      time: notice.updateTime,
+    };
+
+    if (notice.adminId) {
+      const admin = await adminService.findById(notice.adminId);
+      Object.assign(data, {
+        admin: admin.username,
+        avatar: admin.avatar,
+      });
+    } else {
+      Object.assign(data, {
+        admin: '系统',
+      });
+    }
+
+    return this.success(data);
   }
 
   async bcatnoticeAction() {

@@ -4,6 +4,13 @@ const AccountError = require('../error/account.js');
 const UnknownAccountError = require('../error/unknown_account.js');
 
 module.exports = class AdminService extends think.Service {
+  static FIELDS = [
+    'id',
+    'username',
+    'avatar',
+    'roleIds',
+  ].join(',');
+
   constructor() {
     super();
   }
@@ -47,6 +54,18 @@ module.exports = class AdminService extends think.Service {
       .update(Object.assign(admin, {
         updateTime: now,
       }));
+  }
+
+  /**
+   * 
+   * @param {number} id 
+   * @returns {Promise<Admin|Record<string, never>>}
+   */
+  findById(id) {
+    return this.model('admin')
+      .field(this.constructor.FIELDS)
+      .where({ id })
+      .find();
   }
 
   /**

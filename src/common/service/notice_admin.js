@@ -53,6 +53,38 @@ module.exports = class NoticeAdminService extends think.Service {
 
   /**
    * 
+   * @param {number} noticeId 
+   * @param {number} adminId 
+   * @returns {Promise<NoticeAdmin|Record<string, never>>}
+   */
+  find(noticeId, adminId) {
+    return this.model('notice_admin')
+      .where({
+        noticeId,
+        adminId,
+        deleted: false,
+      })
+      .find();
+  }
+
+  /**
+   * 
+   * @param {NoticeAdmin} noticeAdmin 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  update(noticeAdmin) {
+    const now = new Date();
+    return this.model('notice_admin')
+      .where({
+        id: noticeAdmin.id,
+      })
+      .update(Object.assign(noticeAdmin, {
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
    * @param {number} adminId 
    * @returns {Promise<number>}
    */
