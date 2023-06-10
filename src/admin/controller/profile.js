@@ -121,14 +121,41 @@ module.exports = class AdminProfileController extends Base {
   }
 
   async bcatnoticeAction() {
-    return this.success('todo');
+    const adminId = this.getAdminId();
+    /** @type {number[]} */
+    const ids = this.get('ids');
+
+    /** @type {NoticeAdminService} */
+    const noticeAdminService = this.service('notice_admin');
+
+    await noticeAdminService.markReadByIds(ids, adminId);
+
+    return this.success();
   }
 
   async rmnoticeAction() {
-    return this.success('todo');
+    const adminId = this.getAdminId();
+    /** @type {number} */
+    const id = this.get('id');
+
+    /** @type {NoticeAdminService} */
+    const noticeAdminService = this.service('notice_admin');
+
+    await noticeAdminService.deleteById(id, adminId);
+
+    return this.success();
   }
 
   async brmnoticeAction() {
-    return this.success('todo');
+    const adminId = this.getAdminId();
+    /** @type {number[]} */
+    const ids = this.get('ids');
+
+    /** @type {NoticeAdminService} */
+    const noticeAdminService = this.service('notice_admin');
+
+    await noticeAdminService.deleteByIds(ids, adminId);
+
+    return this.success();
   }
 };
