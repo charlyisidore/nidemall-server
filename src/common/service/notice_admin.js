@@ -16,7 +16,6 @@ module.exports = class NoticeAdminService extends think.Service {
    */
   querySelective(title, type, adminId, page, limit, sort, order) {
     const model = this.model('notice_admin');
-
     const where = {
       adminId,
       deleted: false,
@@ -41,12 +40,11 @@ module.exports = class NoticeAdminService extends think.Service {
     }
 
     if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
-      model.order({
-        [sort]: order,
-      });
+      model.order({ [sort]: order });
     }
 
     return model
+      .where(where)
       .page(page, limit)
       .countSelect();
   }
