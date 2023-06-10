@@ -32,11 +32,11 @@ module.exports = class AdminAuthController extends Base {
           return this.fail(ADMIN_RESPONSE.INVALID_ACCOUNT, '用户帐号或密码不正确');
 
         case error instanceof LockedAccountError:
-          logService.logAuthFail('登录', '用户帐号已锁定不可用');
+          logService.logAuthFail('登录', '用户帐号已锁定不可用', this.ctx);
           return this.fail(ADMIN_RESPONSE.INVALID_ACCOUNT, '用户帐号已锁定不可用');
 
         case error instanceof AuthenticationError:
-          logService.logAuthFail('登录', '认证失败');
+          logService.logAuthFail('登录', '认证失败', this.ctx);
           return this.fail(ADMIN_RESPONSE.INVALID_ACCOUNT, '认证失败');
       }
     }
