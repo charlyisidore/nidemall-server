@@ -78,6 +78,44 @@ module.exports = class UserService extends think.Service {
 
   /**
    * 
+   * @param {string?} username 
+   * @param {string?} mobile 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string} sort 
+   * @param {string} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: User[]}>}
+   */
+  querySelective(username, mobile, page, limit, sort, order) {
+    const model = this.model('user');
+    const where = {
+      deleted: false,
+    };
+
+    if (!think.isTrueEmpty(username)) {
+      Object.assign(where, {
+        username: ['LIKE', `%${username}%`],
+      });
+    }
+
+    if (!think.isTrueEmpty(mobile)) {
+      Object.assign(where, {
+        mobile,
+      });
+    }
+
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
+      model.order({ [sort]: order });
+    }
+
+    return model
+      .where(where)
+      .page(page, limit)
+      .countSelect();
+  }
+
+  /**
+   * 
    * @returns {Promise<number>} The total number
    */
   count() {

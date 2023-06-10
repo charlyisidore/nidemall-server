@@ -21,7 +21,6 @@ module.exports = class AdService extends think.Service {
    * 
    * @param {string?} name 
    * @param {string?} content 
-   * @param {integer} adminId 
    * @param {number} page 
    * @param {number} limit 
    * @param {string} sort 
@@ -37,13 +36,13 @@ module.exports = class AdService extends think.Service {
     if (!think.isTrueEmpty(name)) {
       Object.assign(where, {
         name: ['LIKE', `%${name}%`],
-      })
+      });
     }
 
     if (!think.isTrueEmpty(content)) {
       Object.assign(where, {
         content: ['LIKE', `%${content}%`],
-      })
+      });
     }
 
     if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
