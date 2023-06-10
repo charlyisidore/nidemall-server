@@ -28,6 +28,7 @@
  * @typedef {import('./service/notify.js')} NotifyService
  * @typedef {import('./service/order.js')} OrderService
  * @typedef {import('./service/order_goods.js')} OrderGoodsService
+ * @typedef {import('./service/role.js')} RoleService
  * @typedef {import('./service/search_history.js')} SearchHistoryService
  * @typedef {import('./service/storage.js')} StorageService
  * @typedef {import('./service/system.js')} SystemService
