@@ -24,7 +24,6 @@ module.exports = class AdminAdController extends Base {
   }
 
   async createAction() {
-    /** @type {{ name: string, content: string, url: string, position: number, link: string, enabled: boolean }} */
     const ad = this.post([
       'name',
       'content',
@@ -55,7 +54,6 @@ module.exports = class AdminAdController extends Base {
   }
 
   async updateAction() {
-    /** @type {{ id: number, name: string, content: string, url: string, position: number, link: string, enabled: boolean }} */
     const ad = this.post([
       'id',
       'name',
