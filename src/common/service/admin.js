@@ -42,6 +42,37 @@ module.exports = class AdminService extends think.Service {
 
   /**
    * 
+   * @param {string?} username 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string} sort 
+   * @param {string} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Admin[]}>}
+   */
+  querySelective(username, page, limit, sort, order) {
+    const model = this.model('admin');
+    const where = {
+      deleted: false,
+    };
+
+    if (!think.isTrueEmpty(username)) {
+      Object.assign(where, {
+        username: ['LIKE', `%${username}%`],
+      });
+    }
+
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
+      model.order({ [sort]: order });
+    }
+
+    return model
+      .where(where)
+      .page(page, limit)
+      .countSelect();
+  }
+
+  /**
+   * 
    * @param {Admin} admin 
    * @returns {Promise<number>} The number of rows affected
    */
@@ -52,6 +83,33 @@ module.exports = class AdminService extends think.Service {
         id: admin.id,
       })
       .update(Object.assign(admin, {
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
+   * @param {number} id 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  deleteById(id) {
+    return this.model('admin')
+      .where({ id })
+      .update({
+        deleted: true,
+      });
+  }
+
+  /**
+   * 
+   * @param {Admin} admin 
+   * @returns {Promise<number>} The ID inserted
+   */
+  add(admin) {
+    const now = new Date();
+    return this.model('admin')
+      .add(Object.assign(admin, {
+        addTime: now,
         updateTime: now,
       }));
   }
