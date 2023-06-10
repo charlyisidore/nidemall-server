@@ -113,4 +113,42 @@ module.exports = class AddressService extends think.Service {
         updateTime: now,
       });
   }
+
+  /**
+   * 
+   * @param {number?} userId 
+   * @param {string?} name 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string} sort 
+   * @param {string} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Address[]}>}
+   */
+  querySelective(userId, name, page, limit, sort, order) {
+    const model = this.model('address');
+    const where = {
+      deleted: false,
+    };
+
+    if (!think.isNullOrUndefined(userId)) {
+      Object.assign(where, {
+        userId,
+      });
+    }
+
+    if (!think.isTrueEmpty(name)) {
+      Object.assign(where, {
+        name: ['LIKE', `%${name}%`],
+      });
+    }
+
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
+      model.order({ [sort]: order });
+    }
+
+    return model
+      .where(where)
+      .page(page, limit)
+      .countSelect();
+  }
 }
