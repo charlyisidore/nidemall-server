@@ -107,4 +107,40 @@ module.exports = class RoleService extends think.Service {
         updateTime: now,
       }));
   }
+
+  /**
+   * 
+   * @param {string} name 
+   * @returns {Promise<boolean>}
+   */
+  async checkExist(name) {
+    return 0 != (await this.model('role')
+      .where({
+        name,
+        deleted: false,
+      })
+      .count());
+  }
+
+  /**
+   * 
+   * @returns {Promise<Role[]>}
+   */
+  queryAll() {
+    return this.model('role')
+      .where({
+        deleted: false,
+      })
+      .select();
+  }
+
+  getConstants() {
+    return {
+      ADMIN_RESPONSE: {
+        NAME_EXIST: 640,
+        SUPER_SUPERMISSION: 641,
+        USER_EXIST: 642,
+      },
+    };
+  }
 }

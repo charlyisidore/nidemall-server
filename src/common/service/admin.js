@@ -128,6 +128,18 @@ module.exports = class AdminService extends think.Service {
 
   /**
    * 
+   * @returns {Promise<Admin[]>}
+   */
+  all() {
+    return this.model('admin')
+      .where({
+        deleted: false,
+      })
+      .select();
+  }
+
+  /**
+   * 
    * @param {string} username 
    * @param {string} password 
    * @param {any} ctx
