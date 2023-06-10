@@ -1,6 +1,6 @@
 const Base = require('./base.js');
 
-module.exports = class AdminAdController extends Base {
+module.exports = class AdminBrandController extends Base {
   async listAction() {
     /** @type {number?} */
     const id = this.get('id');
