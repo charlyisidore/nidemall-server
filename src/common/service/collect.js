@@ -100,4 +100,42 @@ module.exports = class CollectService extends think.Service {
         updateTime: now,
       }));
   }
+
+  /**
+   * 
+   * @param {number?} userId 
+   * @param {number?} valueId 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string} sort 
+   * @param {string} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Collect[]}>}
+   */
+  querySelective(userId, valueId, page, limit, sort, order) {
+    const model = this.model('collect');
+    const where = {
+      deleted: false,
+    };
+
+    if (!think.isNullOrUndefined(userId)) {
+      Object.assign(where, {
+        userId,
+      });
+    }
+
+    if (!think.isNullOrUndefined(valueId)) {
+      Object.assign(where, {
+        valueId,
+      });
+    }
+
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
+      model.order({ [sort]: order });
+    }
+
+    return model
+      .where(where)
+      .page(page, limit)
+      .countSelect();
+  }
 }

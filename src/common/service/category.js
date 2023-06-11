@@ -124,7 +124,7 @@ module.exports = class CategoryService extends think.Service {
   add(category) {
     const now = new Date();
     return this.model('category')
-      .add(Object.assign({
+      .add(Object.assign(category, {
         addTime: now,
         updateTime: now,
       }));
