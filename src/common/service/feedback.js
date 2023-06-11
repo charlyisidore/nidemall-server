@@ -2,7 +2,7 @@ module.exports = class FeedbackService extends think.Service {
   constructor() {
     super();
   }
-  
+
   /**
    * 
    * @param {Feedback} feedback 
@@ -15,5 +15,41 @@ module.exports = class FeedbackService extends think.Service {
         addtime: now,
         updateTime: now,
       }));
+  }
+
+  /**
+   * 
+   * @param {number?} userId 
+   * @param {string?} username 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string} sort 
+   * @param {string} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Feedback[]}>}
+   */
+  querySelective(userId, username, page, limit, sort, order) {
+    const model = this.model('feedback');
+    const where = {
+      deleted: false,
+    };
+
+    if (!think.isNullOrUndefined(userId)) {
+      Object.assign(where, { userId });
+    }
+
+    if (!think.isTrueEmpty(username)) {
+      Object.assign(where, {
+        username: ['LIKE', `%${username}%`],
+      });
+    }
+
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
+      model.order({ [sort]: order });
+    }
+
+    return model
+      .where(where)
+      .page(page, limit)
+      .countSelect();
   }
 }

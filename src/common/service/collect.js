@@ -118,15 +118,11 @@ module.exports = class CollectService extends think.Service {
     };
 
     if (!think.isNullOrUndefined(userId)) {
-      Object.assign(where, {
-        userId,
-      });
+      Object.assign(where, { userId });
     }
 
     if (!think.isNullOrUndefined(valueId)) {
-      Object.assign(where, {
-        valueId,
-      });
+      Object.assign(where, { valueId });
     }
 
     if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
