@@ -27,7 +27,7 @@ module.exports = class AdminAftersaleController extends Base {
 
   async receptAction() {
     /** @type {number} */
-    const id = this.get('id');
+    const id = this.post('id');
 
     /** @type {AftersaleService} */
     const aftersaleService = this.service('aftersale');
@@ -62,7 +62,7 @@ module.exports = class AdminAftersaleController extends Base {
 
   async ['batch-receptAction']() {
     /** @type {number} */
-    const ids = this.get('ids');
+    const ids = this.post('ids');
 
     /** @type {AftersaleService} */
     const aftersaleService = this.service('aftersale');
@@ -98,11 +98,75 @@ module.exports = class AdminAftersaleController extends Base {
   }
 
   async rejectAction() {
-    return this.success('todo');
+    /** @type {number} */
+    const id = this.post('id');
+
+    /** @type {AftersaleService} */
+    const aftersaleService = this.service('aftersale');
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+
+    const { ADMIN_RESPONSE, STATUS } = aftersaleService.getConstants();
+
+    const aftersale = await aftersaleService.findById(id);
+
+    if (think.isEmpty(aftersale)) {
+      return this.badArgumentValue();
+    }
+
+    if (STATUS.REQUEST != aftersale.status) {
+      return this.fail(ADMIN_RESPONSE.NOT_ALLOWED, '售后不能进行审核拒绝操作');
+    }
+
+    const now = new Date();
+
+    Object.assign(aftersale, {
+      status: STATUS.REJECT,
+      handleTime: now,
+    });
+
+    await aftersaleService.updateById(aftersale);
+
+    await orderService.updateAftersaleStatus(aftersale.orderId, STATUS.REJECT);
+
+    return this.success();
   }
 
   async ['batch-rejectAction']() {
-    return this.success('todo');
+    /** @type {number} */
+    const ids = this.post('ids');
+
+    /** @type {AftersaleService} */
+    const aftersaleService = this.service('aftersale');
+
+    const { STATUS } = aftersaleService.getConstants();
+
+    const now = new Date();
+
+    await Promise.all(
+      ids.map(async (id) => {
+        const aftersale = await aftersaleService.findById(id);
+
+        if (think.isEmpty(aftersale)) {
+          return;
+        }
+
+        if (STATUS.REQUEST != aftersale.status) {
+          return;
+        }
+
+        Object.assign(aftersale, {
+          status: STATUS.REJECT,
+          handleTime: now,
+        });
+
+        await aftersaleService.updateById(aftersale);
+
+        await orderService.updateAftersaleStatus(aftersale.orderId, STATUS.REJECT);
+      })
+    );
+
+    return this.success();
   }
 
   async refundAction() {

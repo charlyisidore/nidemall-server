@@ -60,10 +60,27 @@ module.exports = class extends think.Logic {
 
   rejectAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      id: {
+        int: true,
+        required: true,
+      },
+    };
   }
 
   ['batch-rejectAction']() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      ids: {
+        array: true,
+        required: true,
+        children: {
+          int: true,
+        },
+      },
+    };
   }
 
   refundAction() {
