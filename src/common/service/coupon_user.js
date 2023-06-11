@@ -56,11 +56,10 @@ module.exports = class CouponUserService extends think.Service {
    * @param {number?} limit 
    * @param {string?} sort 
    * @param {string?} order 
-   * @returns {Promise<CouponUser[]>} 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: CouponUser[]}>}
    */
   queryList(userId, couponId, status, page, limit, sort, order) {
     const model = this.model('coupon_user');
-
     const where = {
       deleted: false,
     };
@@ -77,8 +76,6 @@ module.exports = class CouponUserService extends think.Service {
       Object.assign(where, { status });
     }
 
-    model.where(where);
-
     if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
       model.order({ [sort]: order });
     }
@@ -87,7 +84,9 @@ module.exports = class CouponUserService extends think.Service {
       model.page(page, limit);
     }
 
-    return model.select();
+    return model
+      .where(where)
+      .countSelect();
   }
 
   /**
