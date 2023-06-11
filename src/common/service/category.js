@@ -89,6 +89,49 @@ module.exports = class CategoryService extends think.Service {
 
   /**
    * 
+   * @param {Category} category 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  updateById(category) {
+    const now = new Date();
+    return this.model('category')
+      .where({
+        id: category.id,
+      })
+      .update(Object.assign(category, {
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
+   * @param {number} id 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  deleteById(id) {
+    return this.model('category')
+      .where({ id })
+      .update({
+        deleted: true,
+      });
+  }
+
+  /**
+   * 
+   * @param {Category} category 
+   * @returns {Promise<number>} The ID inserted
+   */
+  add(category) {
+    const now = new Date();
+    return this.model('category')
+      .add(Object.assign({
+        addTime: now,
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
    * @returns {Promise<Category[]>} 
    */
   queryChannel() {
