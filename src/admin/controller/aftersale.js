@@ -61,7 +61,7 @@ module.exports = class AdminAftersaleController extends Base {
   }
 
   async ['batch-receptAction']() {
-    /** @type {number} */
+    /** @type {number[]} */
     const ids = this.post('ids');
 
     /** @type {AftersaleService} */
@@ -133,7 +133,7 @@ module.exports = class AdminAftersaleController extends Base {
   }
 
   async ['batch-rejectAction']() {
-    /** @type {number} */
+    /** @type {number[]} */
     const ids = this.post('ids');
 
     /** @type {AftersaleService} */
