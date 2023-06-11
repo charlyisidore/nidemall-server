@@ -35,6 +35,13 @@ module.exports = class extends think.Logic {
 
   receptAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      id: {
+        int: true,
+        required: true,
+      },
+    };
   }
 
   ['batch-receptAction']() {

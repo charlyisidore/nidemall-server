@@ -5,6 +5,17 @@ module.exports = class AftersaleService extends think.Service {
 
   /**
    * 
+   * @param {number} id 
+   * @returns {Promise<Aftersale|Record<string, never>>}
+   */
+  findById(id) {
+    return this.model('aftersale')
+      .where({ id })
+      .find();
+  }
+
+  /**
+   * 
    * @param {number} userId 
    * @param {number?} status 
    * @param {number} page 
@@ -157,6 +168,22 @@ module.exports = class AftersaleService extends think.Service {
 
   /**
    * 
+   * @param {Aftersale} aftersale 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  updateById(aftersale) {
+    const now = new Date();
+    return this.model('aftersale')
+      .where({
+        id: aftersale.id,
+      })
+      .update(Object.assign(aftersale, {
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
    * @param {number} orderId 
    * @param {number} userId 
    * @returns {Promise<Aftersale|Record<string, never>>}
@@ -183,6 +210,9 @@ module.exports = class AftersaleService extends think.Service {
         UNALLOWED: 750,
         INVALID_AMOUNT: 751,
         INVALID_STATUS: 752,
+      },
+      ADMIN_RESPONSE: {
+        NOT_ALLOWED: 670,
       },
       STATUS: {
         INIT: 0,

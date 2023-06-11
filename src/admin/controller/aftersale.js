@@ -26,7 +26,38 @@ module.exports = class AdminAftersaleController extends Base {
   }
 
   async receptAction() {
-    return this.success('todo');
+    /** @type {number} */
+    const id = this.get('id');
+
+    /** @type {AftersaleService} */
+    const aftersaleService = this.service('aftersale');
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+
+    const { ADMIN_RESPONSE, STATUS } = aftersaleService.getConstants();
+
+    const aftersale = await aftersaleService.findById(id);
+
+    if (think.isEmpty(aftersale)) {
+      return this.fail(ADMIN_RESPONSE.NOT_ALLOWED, '售后不存在');
+    }
+
+    if (STATUS.REQUEST != aftersale.status) {
+      return this.fail(ADMIN_RESPONSE.NOT_ALLOWED, '售后不能进行审核通过操作');
+    }
+
+    const now = new Date();
+
+    Object.assign(aftersale, {
+      status: STATUS.RECEPT,
+      handleTime: now,
+    });
+
+    await aftersaleService.updateById(aftersale);
+
+    await orderService.updateAftersaleStatus(aftersale.orderId, STATUS.RECEPT);
+
+    return this.success();
   }
 
   async ['batch-receptAction']() {
