@@ -229,7 +229,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'POST /admin/category/create',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '订单管理',
@@ -278,7 +278,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/order/detail',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '关键词',
@@ -315,7 +315,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'POST /admin/keyword/create',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '通用问题',
@@ -346,7 +346,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'POST /admin/issue/create',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '品牌管理',
@@ -383,9 +383,9 @@ module.exports = class AdminRoleController extends Base {
                 api: 'POST /admin/brand/create',
                 children: [],
               },
-            ]
+            ],
           },
-        ]
+        ],
       },
       {
         id: '用户管理',
@@ -403,7 +403,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/history/list',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '意见反馈',
@@ -416,7 +416,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/feedback/list',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '用户足迹',
@@ -429,7 +429,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/footprint/list',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '会员管理',
@@ -454,7 +454,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'POST /admin/user/update',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '用户收藏',
@@ -467,7 +467,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/collect/list',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '收货地址',
@@ -480,9 +480,9 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/address/list',
                 children: [],
               },
-            ]
+            ],
           },
-        ]
+        ],
       },
       {
         id: '系统管理',
@@ -524,7 +524,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'POST /admin/storage/create',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '角色管理',
@@ -573,7 +573,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'POST /admin/role/permissions',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '操作日志',
@@ -586,7 +586,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/log/list',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '通知管理',
@@ -599,7 +599,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/notice/list',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '管理员管理',
@@ -636,9 +636,9 @@ module.exports = class AdminRoleController extends Base {
                 api: 'POST /admin/admin/create',
                 children: [],
               },
-            ]
+            ],
           },
-        ]
+        ],
       },
       {
         id: '统计管理',
@@ -656,7 +656,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/stat/user',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '订单统计',
@@ -669,7 +669,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/stat/order',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '商品统计',
@@ -682,9 +682,9 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/stat/goods',
                 children: [],
               },
-            ]
+            ],
           },
-        ]
+        ],
       },
       {
         id: '推广管理',
@@ -732,7 +732,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'POST /admin/topic/batch-delete',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '通知管理',
@@ -769,7 +769,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'POST /admin/notice/batch-delete',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '广告管理',
@@ -806,7 +806,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'POST /admin/ad/create',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '优惠券管理',
@@ -849,7 +849,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/coupon/listuser',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '团购管理',
@@ -886,9 +886,9 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/groupon/listRecord',
                 children: [],
               },
-            ]
+            ],
           },
-        ]
+        ],
       },
       {
         id: '其他',
@@ -912,9 +912,9 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/index/read',
                 children: [],
               },
-            ]
+            ],
           },
-        ]
+        ],
       },
       {
         id: '商品管理',
@@ -938,7 +938,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'POST /admin/comment/delete',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '商品管理',
@@ -975,9 +975,9 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/goods/detail',
                 children: [],
               },
-            ]
+            ],
           },
-        ]
+        ],
       },
       {
         id: '商城管理',
@@ -1025,9 +1025,9 @@ module.exports = class AdminRoleController extends Base {
                 api: 'POST /admin/aftersale/batch-reject',
                 children: [],
               },
-            ]
+            ],
           },
-        ]
+        ],
       },
       {
         id: '配置管理',
@@ -1051,7 +1051,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/config/express',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '订单配置',
@@ -1070,7 +1070,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'POST /admin/config/order',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '小程序配置',
@@ -1089,7 +1089,7 @@ module.exports = class AdminRoleController extends Base {
                 api: 'GET /admin/config/wx',
                 children: [],
               },
-            ]
+            ],
           },
           {
             id: '商场配置',
@@ -1108,9 +1108,9 @@ module.exports = class AdminRoleController extends Base {
                 api: 'POST /admin/config/mall',
                 children: [],
               },
-            ]
+            ],
           },
-        ]
+        ],
       },
     ];
   }
