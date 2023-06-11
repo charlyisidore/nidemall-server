@@ -38,34 +38,85 @@ module.exports = class AdminConfigController extends Base {
   }
 
   async getMall() {
-    return this.success('todo');
+    /** @type {SystemService} */
+    const systemService = this.service('system');
+
+    const data = await systemService.listMall();
+
+    return this.success(data);
   }
 
   async postMall() {
-    return this.success('todo');
+    /** @type {Record<string, string>} */
+    const data = this.post();
+    /** @type {SystemService} */
+    const systemService = this.service('system');
+
+    await systemService.updateConfig(data);
+    await systemService.updateConfigs(data);
+
+    return this.success();
   }
 
   async getExpress() {
-    return this.success('todo');
+    /** @type {SystemService} */
+    const systemService = this.service('system');
+
+    const data = await systemService.listExpress();
+
+    return this.success(data);
   }
 
   async postExpress() {
-    return this.success('todo');
+    /** @type {Record<string, string>} */
+    const data = this.post();
+    /** @type {SystemService} */
+    const systemService = this.service('system');
+
+    await systemService.updateConfig(data);
+    await systemService.updateConfigs(data);
+
+    return this.success();
   }
 
   async getOrder() {
-    return this.success('todo');
+    /** @type {SystemService} */
+    const systemService = this.service('system');
+
+    const data = await systemService.listOrder();
+
+    return this.success(data);
   }
 
   async postOrder() {
-    return this.success('todo');
+    /** @type {Record<string, string>} */
+    const data = this.post();
+    /** @type {SystemService} */
+    const systemService = this.service('system');
+
+    await systemService.updateConfig(data);
+
+    return this.success();
   }
 
   async getWx() {
-    return this.success('todo');
+    /** @type {SystemService} */
+    const systemService = this.service('system');
+
+    const data = await systemService.listWx();
+
+    return this.success(data);
   }
 
   async postWx() {
-    return this.success('todo');
+    /** @type {Record<string, string>} */
+    const data = this.post();
+    /** @type {SystemService} */
+    const systemService = this.service('system');
+
+    await systemService.updateConfig(data);
+    await systemService.updateConfigs(data);
+
+    return this.success();
   }
 };

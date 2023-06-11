@@ -43,6 +43,76 @@ module.exports = class SystemService extends think.Service {
 
   /**
    * 
+   * @returns {Promise<Record<string, string>>}
+   */
+  listMall() {
+    return this._list('mall_');
+  }
+
+  /**
+   * 
+   * @returns {Promise<Record<string, string>>}
+   */
+  listWx() {
+    return this._list('wx_');
+  }
+
+  /**
+   * 
+   * @returns {Promise<Record<string, string>>}
+   */
+  listOrder() {
+    return this._list('order_');
+  }
+
+  /**
+   * 
+   * @returns {Promise<Record<string, string>>}
+   */
+  listExpress() {
+    return this._list('express_');
+  }
+
+  /**
+   * 
+   * @param {Record<string, string>} data 
+   * @returns {Promise<number[]>}
+   */
+  updateConfig(data) {
+    const now = new Date();
+    return Promise.all(
+      Object.entries(data)
+        .map(([keyName, keyValue]) => {
+          return this.model('system')
+            .where({
+              keyName,
+              deleted: false,
+            })
+            .update({
+              keyValue,
+              updateTime: now,
+            })
+        })
+    );
+  }
+
+  async _list(prefix) {
+    const systemList = await this.model('system')
+      .where({
+        keyName: ['LIKE', `${this.prefix}${prefix}%`],
+        deleted: false,
+      })
+      .select();
+
+    return Object.fromEntries(
+      systemList.map(
+        (system) => [system.keyName, system.keyValue]
+      )
+    );
+  }
+
+  /**
+   * 
    * @param {string?} key 
    * @returns {Promise<object|string>}
    */
@@ -87,6 +157,17 @@ module.exports = class SystemService extends think.Service {
    */
   async getConfigFloat(key) {
     return parseFloat(await this.getConfig(key));
+  }
+
+  async setConfigs(configs) {
+    await this.config;
+    this.config = configs;
+  }
+
+  async updateConfigs(data) {
+    await this.config;
+    Object.entries(data)
+      .forEach(([key, value]) => this.config[key] = value);
   }
 
   /**
