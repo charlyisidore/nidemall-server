@@ -85,5 +85,12 @@ module.exports = class extends think.Logic {
 
   refundAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      id: {
+        int: true,
+        required: true,
+      },
+    };
   }
 };

@@ -517,6 +517,13 @@ module.exports = class OrderService extends think.Service {
         COMMENTED: 726,
         COMMENT_EXPIRED: 727,
       },
+      ADMIN_RESPONSE: {
+        CONFIRM_NOT_ALLOWED: 620,
+        REFUND_FAILED: 621,
+        REPLY_EXIST: 622,
+        DELETE_FAILED: 623,
+        PAY_FAILED: 624,
+      },
       STATUS: {
         CREATE: 101,
         PAY: 201,
