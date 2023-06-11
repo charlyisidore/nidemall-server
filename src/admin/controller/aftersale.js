@@ -61,7 +61,40 @@ module.exports = class AdminAftersaleController extends Base {
   }
 
   async ['batch-receptAction']() {
-    return this.success('todo');
+    /** @type {number} */
+    const ids = this.get('ids');
+
+    /** @type {AftersaleService} */
+    const aftersaleService = this.service('aftersale');
+
+    const { STATUS } = aftersaleService.getConstants();
+
+    const now = new Date();
+
+    await Promise.all(
+      ids.map(async (id) => {
+        const aftersale = await aftersaleService.findById(id);
+
+        if (think.isEmpty(aftersale)) {
+          return;
+        }
+
+        if (STATUS.REQUEST != aftersale.status) {
+          return;
+        }
+
+        Object.assign(aftersale, {
+          status: STATUS.RECEPT,
+          handleTime: now,
+        });
+
+        await aftersaleService.updateById(aftersale);
+
+        await orderService.updateAftersaleStatus(aftersale.orderId, STATUS.RECEPT);
+      })
+    );
+
+    return this.success();
   }
 
   async rejectAction() {
