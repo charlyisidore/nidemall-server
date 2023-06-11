@@ -128,6 +128,61 @@ module.exports = class CouponService extends think.Service {
 
   /**
    * 
+   * @param {string?} name 
+   * @param {number?} type 
+   * @param {number?} status 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string} sort 
+   * @param {string} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Coupon[]}>}
+   */
+  querySelective(name, type, status, page, limit, sort, order) {
+    const model = this.model('coupon');
+    const where = {
+      deleted: false,
+    };
+
+    if (!think.isTrueEmpty(name)) {
+      Object.assign(where, {
+        name: ['LIKE', `%${name}%`],
+      });
+    }
+
+    if (!think.isNullOrUndefined(type)) {
+      Object.assign(where, { type });
+    }
+
+    if (!think.isNullOrUndefined(status)) {
+      Object.assign(where, { status });
+    }
+
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
+      model.order({ [sort]: order });
+    }
+
+    return model
+      .where(where)
+      .page(page, limit)
+      .countSelect();
+  }
+
+  /**
+   * 
+   * @param {Coupon} coupon 
+   * @returns {Promise<number>} The ID inserted
+   */
+  add(coupon) {
+    const now = new Date();
+    return this.model('coupon')
+      .add(Object.assign(coupon, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
    * @param {Coupon} coupon 
    * @returns {Promise<number>} The number of rows affected
    */
@@ -140,6 +195,34 @@ module.exports = class CouponService extends think.Service {
       .update(Object.assign(coupon, {
         updateTime: now,
       }));
+  }
+
+  /**
+   * 
+   * @param {number} id 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  deleteById(id) {
+    return this.model('coupon')
+      .where({ id })
+      .update({
+        deleted: true,
+      });
+  }
+
+  getRandomString(n) {
+    return Array.from(
+      Array(n),
+      () => Math.floor(Math.random() * 36).toString(36)
+    ).join('');
+  }
+
+  /**
+   * 
+   * @returns {string}
+   */
+  generateCode() {
+    return this.getRandomString(8);
   }
 
   /**
