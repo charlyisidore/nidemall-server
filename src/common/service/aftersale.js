@@ -42,6 +42,51 @@ module.exports = class AftersaleService extends think.Service {
 
   /**
    * 
+   * @param {number?} orderId 
+   * @param {string?} aftersaleSn 
+   * @param {number?} status 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string} sort 
+   * @param {string} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Aftersale[]}>}
+   */
+  querySelective(orderId, aftersaleSn, status, page, limit, sort, order) {
+    const model = this.model('aftersale');
+    const where = {
+      deleted: false,
+    };
+
+    if (!think.isNullOrUndefined(orderId)) {
+      Object.assign(where, {
+        orderId,
+      });
+    }
+
+    if (!think.isNullOrUndefined(aftersaleSn)) {
+      Object.assign(where, {
+        aftersaleSn,
+      });
+    }
+
+    if (!think.isNullOrUndefined(status)) {
+      Object.assign(where, {
+        status,
+      });
+    }
+
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
+      model.order({ [sort]: order });
+    }
+
+    return model
+      .where(where)
+      .page(page, limit)
+      .countSelect();
+  }
+
+  /**
+   * 
    * @param {string} aftersaleSn 
    * @param {number} userId 
    * @returns {Promise<number>}
