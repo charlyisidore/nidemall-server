@@ -70,4 +70,38 @@ module.exports = class FootprintService extends think.Service {
         updateTime: now,
       }));
   }
+
+  /**
+   * 
+   * @param {number?} userId 
+   * @param {number?} goodsId 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string} sort 
+   * @param {string} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Footprint[]}>}
+   */
+  querySelective(userId, goodsId, page, limit, sort, order) {
+    const model = this.model('footprint');
+    const where = {
+      deleted: false,
+    };
+
+    if (!think.isNullOrUndefined(userId)) {
+      Object.assign(where, { userId });
+    }
+
+    if (!think.isNullOrUndefined(goodsId)) {
+      Object.assign(where, { goodsId });
+    }
+
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
+      model.order({ [sort]: order });
+    }
+
+    return model
+      .where(where)
+      .page(page, limit)
+      .countSelect();
+  }
 }
