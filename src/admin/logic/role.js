@@ -87,5 +87,17 @@ module.exports = class extends think.Logic {
 
   permissionsAction() {
     this.allowMethods = 'GET,POST';
+
+    this.rules = {
+      roleId: {
+        int: true,
+      },
+      permissions: {
+        array: true,
+        children: {
+          string: true,
+        },
+      },
+    };
   }
 };

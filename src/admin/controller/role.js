@@ -107,7 +107,91 @@ module.exports = class AdminRoleController extends Base {
     return this.success();
   }
 
-  async permissionsAction() {
-    return this.success('todo');
+  permissionsAction() {
+    switch (true) {
+      case this.isGet:
+        return this.getPermissions();
+      case this.isPost:
+        return this.updatePermissions();
+    }
+  }
+
+  async getPermissions() {
+    const adminId = this.getAdminId();
+    /** @type {number} */
+    const roleId = this.get('roleId');
+
+    /** @type {AdminService} */
+    const adminService = this.service('admin');
+    /** @type {PermissionService} */
+    const permissionService = this.service('permission');
+
+    /** @type {object[]} */
+    const systemPermissions = this.getSystemPermissions();
+
+    /** @type {string[]|null} */
+    let assignedPermissions = null;
+    if (await permissionService.checkSuperPermission(roleId)) {
+      // TODO
+      // this.getSystemPermissions();
+      // TODO
+      assignedPermissions = []; // systemPermissionsString
+    } else {
+      assignedPermissions = await permissionService.queryByRoleId(roleId);
+    }
+
+    const admin = await adminService.findAdminById(adminId);
+
+    /** @type {string[]|null} */
+    let curPermissions = null;
+    if (!await permissionService.checkSuperPermission(admin.roleIds)) {
+      curPermissions = await permissionService.queryByRoleId(admin.roleIds);
+    }
+
+    return this.success({
+      systemPermissions,
+      assignedPermissions,
+      curPermissions,
+    });
+  }
+
+  async updatePermissions() {
+    /** @type {number} */
+    const roleId = this.post('roleId');
+    /** @type {string[]} */
+    const permissions = this.post('permissions');
+
+    /** @type {PermissionService} */
+    const permissionService = this.service('permission');
+    /** @type {RoleService} */
+    const roleService = this.service('role');
+
+    const { ADMIN_RESPONSE } = roleService.getConstants();
+
+    if (think.isNullOrUndefined(roleId) || think.isNullOrUndefined(permissions)) {
+      return this.badArgument();
+    }
+
+    if (await permissionService.checkSuperPermission(roleId)) {
+      return this.fail(ADMIN_RESPONSE.SUPER_SUPERMISSION, '当前角色的超级权限不能变更');
+    }
+
+    await permissionService.deleteByRoleId(roleId);
+
+    await Promise.all(
+      permissions.map(async (permission) => {
+        await permissionService.add({
+          roleId,
+          permission,
+        });
+      })
+    );
+
+    return this.success();
+  }
+
+  getSystemPermissions() {
+    // TODO
+    return [];
   }
 };
