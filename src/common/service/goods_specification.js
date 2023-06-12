@@ -58,4 +58,20 @@ module.exports = class GoodsSpecificationService extends think.Service {
 
     return specificationVoList;
   }
+
+  /**
+   * 
+   * @param {GoodsSpecification} goodsSpecification 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  updateById(goodsSpecification) {
+    const now = new Date();
+    return this.model('goods_specification')
+      .where({
+        id: goodsSpecification.id,
+      })
+      .update(Object.assign(goodsSpecification, {
+        updateTime: now,
+      }));
+  }
 }

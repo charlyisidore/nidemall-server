@@ -103,4 +103,20 @@ module.exports = class GoodsProductService extends think.Service {
         updateTime: now,
       });
   }
+
+  /**
+   * 
+   * @param {GoodsProduct} goodsProduct 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  updateById(goodsProduct) {
+    const now = new Date();
+    return this.model('goods_product')
+      .where({
+        id: goodsProduct.id,
+      })
+      .update(Object.assign(goodsProduct, {
+        updateTime: now,
+      }));
+  }
 }

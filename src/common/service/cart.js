@@ -166,4 +166,26 @@ module.exports = class CartService extends think.Service {
         deleted: true,
       });
   }
+
+  /**
+   * 
+   * @param {number} productId 
+   * @param {string} goodsSn 
+   * @param {string} goodsName 
+   * @param {number} price 
+   * @param {string} picUrl 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  updateProduct(productId, goodsSn, goodsName, price, picUrl) {
+    return this.model('cart')
+      .where({
+        productId,
+      })
+      .update({
+        price,
+        picUrl,
+        goodsSn,
+        goodsName,
+      });
+  }
 }
