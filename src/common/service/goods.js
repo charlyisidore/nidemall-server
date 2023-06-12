@@ -122,7 +122,48 @@ module.exports = class GoodsService extends think.Service {
       });
     }
 
-    model.where(where);
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
+      model.order({
+        [sort]: order,
+      });
+    }
+
+    return model
+      .where(where)
+      .page(page, limit)
+      .countSelect();
+  }
+
+  /**
+   * 
+   * @param {number?} id 
+   * @param {string?} goodsSn 
+   * @param {string?} name 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string} sort 
+   * @param {string} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Goods[]}>}
+   */
+  querySelectiveGoods(id, goodsSn, name, page, limit, sort, order) {
+    const model = this.model('goods');
+    const where = {
+      deleted: false,
+    };
+
+    if (!think.isNullOrUndefined(id)) {
+      Object.assign(where, { id });
+    }
+
+    if (!think.isNullOrUndefined(goodsSn)) {
+      Object.assign(where, { goodsSn });
+    }
+
+    if (!think.isTrueEmpty(name)) {
+      Object.assign(where, {
+        name: ['LIKE', `%${name}%`],
+      });
+    }
 
     if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
       model.order({
@@ -131,22 +172,9 @@ module.exports = class GoodsService extends think.Service {
     }
 
     return model
+      .where(where)
       .page(page, limit)
       .countSelect();
-  }
-
-  /**
-   * 
-   * @param {number} goodsId 
-   * @param {string} goodsSn 
-   * @param {string} name 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
-   */
-  querySelectiveGoods(goodsId, goodsSn, name, page, limit, sort, order) {
-    // TODO
   }
 
   /**
