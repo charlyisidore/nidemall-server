@@ -19,6 +19,20 @@ module.exports = class GoodsSpecificationService extends think.Service {
 
   /**
    * 
+   * @param {GoodsSpecification} goodsSpecification 
+   * @returns {Promise<number>} The ID inserted
+   */
+  add(goodsSpecification) {
+    const now = new Date();
+    return this.model('goods_specification')
+      .add(Object.assign(goodsSpecification, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
    * @param {number} id 
    * @returns {Promise<{ name: string, valueList: GoodsSpecification[] }[]>}
    */

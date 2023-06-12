@@ -222,6 +222,36 @@ module.exports = class GoodsService extends think.Service {
 
   /**
    * 
+   * @param {Goods} goods 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  updateById(goods) {
+    const now = new Date();
+    return this.model('goods')
+      .where({
+        id: goods.id,
+      })
+      .update(Object.assign(goods, {
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
+   * @param {Goods} goods 
+   * @returns {Promise<number>} The ID inserted
+   */
+  add(goods) {
+    const now = new Date();
+    return this.model('goods')
+      .add(Object.assign(goods, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
    * @returns {Promise<number>} The total number
    */
   count() {
@@ -277,11 +307,30 @@ module.exports = class GoodsService extends think.Service {
       .map((item) => item.categoryId);
   }
 
+  /**
+   * 
+   * @param {string} name 
+   * @returns {Promise<boolean>}
+   */
+  async checkExistByName(name) {
+    return 0 != (await this.model('goods')
+      .where({
+        name,
+        isOnSale: true,
+        deleted: false,
+      })
+      .count());
+  }
+
   getConstants() {
     return {
       RESPONSE: {
         UNSHELVE: 710,
         NO_STOCK: 711,
+      },
+      ADMIN_RESPONSE: {
+        UPDATE_NOT_ALLOWED: 610,
+        NAME_EXIST: 611,
       },
     };
   }

@@ -30,6 +30,20 @@ module.exports = class GoodsProductService extends think.Service {
 
   /**
    * 
+   * @param {GoodsProduct} goodsProduct 
+   * @returns {Promise<number>} The ID inserted
+   */
+  add(goodsProduct) {
+    const now = new Date();
+    return this.model('goods_product')
+      .add(Object.assign(goodsProduct, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
    * @returns {Promise<number>} The total number
    */
   count() {

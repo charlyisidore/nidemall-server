@@ -16,4 +16,18 @@ module.exports = class GoodsAttributeService extends think.Service {
       })
       .select();
   }
+
+  /**
+   * 
+   * @param {GoodsAttribute} goodsAttribute 
+   * @returns {Promise<number>} The ID inserted
+   */
+  add(goodsAttribute) {
+    const now = new Date();
+    return this.model('goods_attribute')
+      .add(Object.assign(goodsAttribute, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
 }

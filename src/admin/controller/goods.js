@@ -68,7 +68,72 @@ module.exports = class AdminGoodsController extends Base {
   }
 
   async createAction() {
-    return this.success('todo');
+    /** @type {object} */
+    const goods = this.post('goods');
+    /** @type {object[]} */
+    const specifications = this.post('specifications');
+    /** @type {object[]} */
+    const products = this.post('products');
+    /** @type {object[]} */
+    const attributes = this.post('attributes');
+
+    /** @type {GoodsService} */
+    const goodsService = this.service('goods');
+    /** @type {GoodsAttributeService} */
+    const goodsAttributeService = this.service('goods_attribute');
+    /** @type {GoodsProductService} */
+    const goodsProductService = this.service('goods_product');
+    /** @type {GoodsSpecificationService} */
+    const goodsSpecificationService = this.service('goods_specification');
+
+    const { ADMIN_RESPONSE } = goodsService.getConstants();
+
+    if (await goodsService.checkExistByName(goods.name)) {
+      return this.fail(ADMIN_RESPONSE.NAME_EXIST, '商品名已经存在');
+    }
+
+    Object.assign(goods, {
+      retailPrice: Math.min(...products.map((product) => product.price)),
+    });
+
+    await goodsService.add(goods);
+
+    // TODO
+    const shareUrl = ''; // await qrCodeService.createGoodsShareImage(goods.id, goods.picUrl, goods.name);
+    if (!think.isTrueEmpty(shareUrl)) {
+      Object.assign(goods, {
+        shareUrl,
+      });
+      if (!await goodsService.updateById(goods)) {
+        throw new Error('更新数据失败');
+      }
+    }
+
+    await Promise.all([
+      ...specifications
+        .map(async (specification) => {
+          Object.assign(specification, {
+            goodsId: goods.id,
+          });
+          await goodsSpecificationService.add(specification);
+        }),
+      ...attributes
+        .map(async (attribute) => {
+          Object.assign(attribute, {
+            goodsId: goods.id,
+          });
+          await goodsAttributeService.add(attribute);
+        }),
+      ...products
+        .map(async (product) => {
+          Object.assign(product, {
+            goodsId: goods.id,
+          });
+          await goodsProductService.add(product);
+        })
+    ]);
+
+    return this.success();
   }
 
   async detailAction() {
