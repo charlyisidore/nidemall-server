@@ -60,7 +60,80 @@ module.exports = class AdminGoodsController extends Base {
   }
 
   async updateAction() {
-    return this.success('todo');
+    /** @type {object} */
+    const goods = this.post('goods');
+    /** @type {object[]} */
+    const specifications = this.post('specifications');
+    /** @type {object[]} */
+    const products = this.post('products');
+    /** @type {object[]} */
+    const attributes = this.post('attributes');
+
+    /** @type {CartService} */
+    const cartService = this.service('cart');
+    /** @type {GoodsService} */
+    const goodsService = this.service('goods');
+    /** @type {GoodsAttributeService} */
+    const goodsAttributeService = this.service('goods_attribute');
+    /** @type {GoodsProductService} */
+    const goodsProductService = this.service('goods_product');
+    /** @type {GoodsSpecificationService} */
+    const goodsSpecificationService = this.service('goods_specification');
+
+    const error = await this.validate(goods, attributes, specifications, products);
+    if (!think.isNullOrUndefined(error)) {
+      return error;
+    }
+
+    Object.assign(goods, {
+      // TODO
+      shareUrl: '', // await qrCodeService.createGoodsShareImage(goods.id, goods.picUrl, goods.name);
+      retailPrice: Math.min(...products.map((product) => product.price)),
+    });
+
+    if (!await goodsService.updateById(goods)) {
+      throw new Error('更新数据失败');
+    }
+
+    await Promise.all([
+      ...specifications
+        .map(async (specification) => {
+          if (think.isNullOrUndefined(specification.updateTime)) {
+            Object.assign(specification, {
+              specification: null,
+              value: null,
+            });
+            await goodsSpecificationService.updateById(specification);
+          }
+        }),
+      ...products
+        .map(async (product) => {
+          if (think.isNullOrUndefined(product.updateTime)) {
+            await goodsProductService.updateById(product);
+          }
+        }),
+      ...attributes
+        .map(async (attribute) => {
+          if (think.isEmpty(attribute.id)) {
+            Object.assign(attribute, {
+              goodsId: goods.id,
+            });
+            await goodsAttributeService.add(attribute);
+          } else if (attribute.deleted) {
+            await goodsAttributeService.deleteById(attribute.id);
+          } else if (think.isNullOrUndefined(attribute.updateTime)) {
+            await goodsAttributeService.updateById(attribute);
+          }
+        }),
+    ]);
+
+    await Promise.all(
+      products.map(async (product) => {
+        await cartService.updateProduct(product.id, goods.goodsSn, goods.name, product.price, product.url);
+      })
+    );
+
+    return this.success();
   }
 
   async deleteAction() {
@@ -135,7 +208,7 @@ module.exports = class AdminGoodsController extends Base {
             goodsId: goods.id,
           });
           await goodsProductService.add(product);
-        })
+        }),
     ]);
 
     return this.success();
