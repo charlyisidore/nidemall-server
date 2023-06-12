@@ -68,6 +68,35 @@ module.exports = class GrouponRulesService extends think.Service {
 
   /**
    * 
+   * @param {number?} goodsId 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string} sort 
+   * @param {string} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: GrouponRules[]}>}
+   */
+  querySelective(goodsId, page, limit, sort, order) {
+    const model = this.model('groupon_rules');
+    const where = {
+      deleted: false,
+    };
+
+    if (!think.isNullOrUndefined(goodsId)) {
+      Object.assign(where, { goodsId });
+    }
+
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
+      model.order({ [sort]: order });
+    }
+
+    return model
+      .where(where)
+      .page(page, limit)
+      .countSelect();
+  }
+
+  /**
+   * 
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
