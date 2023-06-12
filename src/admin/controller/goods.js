@@ -137,7 +137,26 @@ module.exports = class AdminGoodsController extends Base {
   }
 
   async deleteAction() {
-    return this.success('todo');
+    /** @type {number} */
+    const id = this.post('id');
+
+    /** @type {GoodsService} */
+    const goodsService = this.service('goods');
+    /** @type {GoodsAttributeService} */
+    const goodsAttributeService = this.service('goods_attribute');
+    /** @type {GoodsProductService} */
+    const goodsProductService = this.service('goods_product');
+    /** @type {GoodsSpecificationService} */
+    const goodsSpecificationService = this.service('goods_specification');
+
+    await Promise.all([
+      goodsService.deleteById(id),
+      goodsSpecificationService.deleteByGid(id),
+      goodsAttributeService.deleteByGid(id),
+      goodsProductService.deleteByGid(id),
+    ]);
+
+    return this.success();
   }
 
   async createAction() {

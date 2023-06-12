@@ -19,6 +19,21 @@ module.exports = class GoodsSpecificationService extends think.Service {
 
   /**
    * 
+   * @param {number} goodsId 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  deleteByGid(goodsId) {
+    return this.model('goods_specification')
+      .where({
+        goodsId,
+      })
+      .update({
+        deleted: true,
+      });
+  }
+
+  /**
+   * 
    * @param {GoodsSpecification} goodsSpecification 
    * @returns {Promise<number>} The ID inserted
    */
