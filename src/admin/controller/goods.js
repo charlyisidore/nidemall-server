@@ -88,6 +88,11 @@ module.exports = class AdminGoodsController extends Base {
 
     const { ADMIN_RESPONSE } = goodsService.getConstants();
 
+    const error = await this.validate(goods, attributes, specifications, products);
+    if (!think.isNullOrUndefined(error)) {
+      return error;
+    }
+
     if (await goodsService.checkExistByName(goods.name)) {
       return this.fail(ADMIN_RESPONSE.NAME_EXIST, '商品名已经存在');
     }
@@ -138,5 +143,68 @@ module.exports = class AdminGoodsController extends Base {
 
   async detailAction() {
     return this.success('todo');
+  }
+
+  async validate(goods, attributes, specifications, products) {
+    /** @type {BrandService} */
+    const brandService = this.service('brand');
+    /** @type {CategoryService} */
+    const categoryService = this.service('category');
+
+    if (think.isTrueEmpty(goods.name)) {
+      return this.badArgument();
+    }
+
+    if (think.isTrueEmpty(goods.goodsSn)) {
+      return this.badArgument();
+    }
+
+    if (!think.isEmpty(goods.brandId)) {
+      if (think.isEmpty(await brandService.findById(goods.brandId))) {
+        return this.badArgumentValue();
+      }
+    }
+
+    if (!think.isEmpty(goods.categoryId)) {
+      if (think.isEmpty(await categoryService.findById(goods.categoryId))) {
+        return this.badArgumentValue();
+      }
+    }
+
+    for (const attribute of attributes) {
+      if (think.isTrueEmpty(attribute.attribute)) {
+        return this.badArgument();
+      }
+
+      if (think.isTrueEmpty(attribute.value)) {
+        return this.badArgument();
+      }
+    }
+
+    for (const specification of specifications) {
+      if (think.isTrueEmpty(specification.specification)) {
+        return this.badArgument();
+      }
+
+      if (think.isTrueEmpty(specification.value)) {
+        return this.badArgument();
+      }
+    }
+
+    for (const product of products) {
+      if (think.isNullOrUndefined(product.number) || product.number < 0) {
+        return this.badArgument();
+      }
+
+      if (think.isNullOrUndefined(product.price)) {
+        return this.badArgument();
+      }
+
+      if (think.isEmpty(product.specifications)) {
+        return this.badArgument();
+      }
+    }
+
+    return null;
   }
 };
