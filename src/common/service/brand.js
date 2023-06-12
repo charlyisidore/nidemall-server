@@ -125,4 +125,16 @@ module.exports = class BrandService extends think.Service {
         updateTime: now,
       }));
   }
+
+  /**
+   * 
+   * @returns {Promise<Brand[]>}
+   */
+  all() {
+    return this.model('brand')
+      .where({
+        deleted: false,
+      })
+      .select();
+  }
 }

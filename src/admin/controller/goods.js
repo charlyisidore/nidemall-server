@@ -26,7 +26,37 @@ module.exports = class AdminGoodsController extends Base {
   }
 
   async catAndBrandAction() {
-    return this.success('todo');
+    /** @type {BrandService} */
+    const brandService = this.service('brand');
+    /** @type {CategoryService} */
+    const categoryService = this.service('category');
+
+    const l1CatList = await categoryService.queryL1();
+
+    const categoryList = await Promise.all(
+      l1CatList.map(async (l1) => {
+        const l2CatList = await categoryService.queryByPid(l1.id);
+        return {
+          value: l1.id,
+          label: l1.name,
+          children: l2CatList.map((l2) => ({
+            value: l2.id,
+            label: l2.name,
+          })),
+        };
+      })
+    );
+
+    const brandList = (await brandService.all())
+      .map((brand) => ({
+        value: brand.id,
+        label: brand.name,
+      }));
+
+    return this.success({
+      categoryList,
+      brandList,
+    });
   }
 
   async updateAction() {
