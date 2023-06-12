@@ -234,7 +234,37 @@ module.exports = class AdminGoodsController extends Base {
   }
 
   async detailAction() {
-    return this.success('todo');
+    /** @type {number} */
+    const id = this.post('id');
+
+    /** @type {CategoryService} */
+    const categoryService = this.service('category');
+    /** @type {GoodsService} */
+    const goodsService = this.service('goods');
+    /** @type {GoodsAttributeService} */
+    const goodsAttributeService = this.service('goods_attribute');
+    /** @type {GoodsProductService} */
+    const goodsProductService = this.service('goods_product');
+    /** @type {GoodsSpecificationService} */
+    const goodsSpecificationService = this.service('goods_specification');
+
+    const goods = await goodsService.findById(id);
+    const products = await goodsProductService.queryByGid(id);
+    const specifications = await goodsSpecificationService.queryByGid(id);
+    const attributes = await goodsAttributeService.queryByGid(id);
+
+    const category = await categoryService.findById(goods.categoryId);
+    const categoryIds = think.isEmpty(category) ?
+      [] :
+      [category.pid, category.id];
+
+    return this.success({
+      goods,
+      specifications,
+      products,
+      attributes,
+      categoryIds,
+    });
   }
 
   async validate(goods, attributes, specifications, products) {

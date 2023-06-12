@@ -5,13 +5,13 @@ module.exports = class GoodsSpecificationService extends think.Service {
 
   /**
    * 
-   * @param {number} id 
+   * @param {number} goodsId 
    * @returns {Promise<GoodsSpecification[]>} 
    */
-  queryByGid(id) {
+  queryByGid(goodsId) {
     return this.model('goods_specification')
       .where({
-        goodsId: id,
+        goodsId,
         deleted: false,
       })
       .select();
