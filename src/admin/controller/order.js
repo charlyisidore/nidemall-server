@@ -291,7 +291,7 @@ module.exports = class AdminOrderController extends Base {
       STATUS.AUTO_CANCEL,
       STATUS.CONFIRM,
       STATUS.AUTO_CONFIRM,
-      STATUS.REFUND_CONFIRM
+      STATUS.REFUND_CONFIRM,
     ].includes(order.orderStatus)) {
       return this.fail(ADMIN_RESPONSE.DELETE_FAILED, '订单不能删除');
     }
