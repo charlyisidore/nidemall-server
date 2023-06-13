@@ -30,7 +30,7 @@ module.exports = class AdminIssueController extends Base {
     /** @type {IssueService} */
     const issueService = this.service('issue');
 
-    await issueService.add(issue);
+    issue.id = await issueService.add(issue);
 
     return this.success(issue);
   }

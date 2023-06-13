@@ -193,7 +193,7 @@ module.exports = class AdminGoodsController extends Base {
       retailPrice: Math.min(...products.map((product) => product.price)),
     });
 
-    await goodsService.add(goods);
+    goods.id = await goodsService.add(goods);
 
     // TODO
     const shareUrl = ''; // await qrCodeService.createGoodsShareImage(goods.id, goods.picUrl, goods.name);
