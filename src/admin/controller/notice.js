@@ -81,7 +81,45 @@ module.exports = class AdminNoticeController extends Base {
   }
 
   async updateAction() {
-    return this.success('todo');
+    const adminId = this.getAdminId();
+    const notice = this.post([
+      'id',
+      'title',
+      'content',
+    ].join(','));
+
+    /** @type {NoticeService} */
+    const noticeService = this.service('notice');
+    /** @type {NoticeAdminService} */
+    const noticeAdminService = this.service('notice_admin');
+
+    const { ADMIN_RESPONSE } = noticeService.getConstants();
+
+    const originalNotice = await noticeService.findById(notice.id);
+
+    if (think.isEmpty(originalNotice)) {
+      return this.badArgument();
+    }
+
+    if ((await noticeAdminService.countReadByNoticeId(notice.id)) > 0) {
+      return this.fail(ADMIN_RESPONSE.UPDATE_NOT_ALLOWED, '通知已被阅读，不能重新编辑');
+    }
+
+    Object.assign(notice, {
+      adminId,
+    });
+
+    await noticeService.updateById(notice);
+
+    if (originalNotice.title != notice.title) {
+      const noticeAdmin = {
+        noticeTitle: notice.title,
+      };
+
+      await noticeAdminService.updateByNoticeId(noticeAdmin, notice.id);
+    }
+
+    return this.success(notice);
   }
 
   async deleteAction() {

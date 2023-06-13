@@ -44,6 +44,22 @@ module.exports = class NoticeService extends think.Service {
   /**
    * 
    * @param {Notice} notice 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  updateById(notice) {
+    const now = new Date();
+    return this.model('notice')
+      .where({
+        id: notice.id,
+      })
+      .update(Object.assign(notice, {
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
+   * @param {Notice} notice 
    * @returns {Promise<number>} The ID inserted
    */
   add(notice) {
@@ -64,5 +80,13 @@ module.exports = class NoticeService extends think.Service {
     return this.model('notice')
       .where({ id })
       .find();
+  }
+
+  getConstants() {
+    return {
+      ADMIN_RESPONSE: {
+        UPDATE_NOT_ALLOWED: 660,
+      },
+    };
   }
 }

@@ -183,4 +183,37 @@ module.exports = class NoticeAdminService extends think.Service {
       })
       .select();
   }
+
+  /**
+   * 
+   * @param {number} noticeId 
+   * @returns {Promise<number>}
+   */
+  countReadByNoticeId(noticeId) {
+    return this.model('notice_admin')
+      .where({
+        noticeId,
+        readTime: ['!=', null],
+        deleted: false,
+      })
+      .count();
+  }
+
+  /**
+   * 
+   * @param {NoticeAdmin} noticeAdmin 
+   * @param {number} noticeId 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  updateByNoticeId(noticeAdmin, noticeId) {
+    const now = new Date();
+    return this.model('notice_admin')
+      .where({
+        noticeId,
+        deleted: false,
+      })
+      .update(Object.assign(noticeAdmin, {
+        updateTime: now,
+      }));
+  }
 }
