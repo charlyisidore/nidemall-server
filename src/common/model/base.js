@@ -1,9 +1,11 @@
 module.exports = class extends think.Model {
-  field(fields) {
+  field(field) {
+    if (think.isString(field)) {
+      field = field.split(',');
+    }
     return super.field(
-      fields
-        .split(',')
-        .map((k) => think.snakeCase(k.trim()))
+      field
+        .map((k) => this._beforeField(k.trim()))
         .join(',')
     );
   }
@@ -84,6 +86,24 @@ module.exports = class extends think.Model {
     }
 
     return value;
+  }
+
+  _beforeField(field) {
+    const m = field.match(/^([\w_][\w_\.]*) AS ([\w_]+)$/i);
+    if (!think.isEmpty(m)) {
+      return `${this._beforeFieldName(m[1])} AS ${m[2]}`;
+    }
+    if (/^[\w_][\w_\.]*$/.test(field)) {
+      return this._beforeFieldName(field);
+    }
+    return field;
+  }
+
+  _beforeFieldName(field) {
+    return field
+      .split('.')
+      .map((k, i, a) => (i + 1 === a.length) ? think.snakeCase(k) : k)
+      .join('.');
   }
 
   _beforeClause(data) {
