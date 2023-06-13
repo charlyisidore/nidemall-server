@@ -75,9 +75,9 @@ module.exports = class AdminOrderController extends Base {
 
   async refundAction() {
     /** @type {number} */
-    const orderId = this.get('orderId');
+    const orderId = this.post('orderId');
     /** @type {number} */
-    const refundMoney = this.get('refundMoney');
+    const refundMoney = this.post('refundMoney');
 
     /** @type {CouponUserService} */
     const couponUserService = this.service('coupon_user');
@@ -94,8 +94,9 @@ module.exports = class AdminOrderController extends Base {
     /** @type {WeixinService} */
     const weixinService = this.service('weixin');
 
-    const ORDER = orderService.getConstants();
     const COUPON_USER = couponUserService.getConstants();
+    const NOTIFY = notifyService.getConstants();
+    const ORDER = orderService.getConstants();
 
     const order = await orderService.findById(orderId);
 
@@ -184,7 +185,55 @@ module.exports = class AdminOrderController extends Base {
   }
 
   async shipAction() {
-    return this.success('todo');
+    /** @type {number} */
+    const orderId = this.post('orderId');
+    /** @type {string} */
+    const shipSn = this.post('shipSn');
+    /** @type {string} */
+    const shipChannel = this.post('shipChannel');
+
+    /** @type {CouponUserService} */
+    const couponUserService = this.service('coupon_user');
+    /** @type {GoodsProductService} */
+    const goodsProductService = this.service('goods_product');
+    /** @type {LogService} */
+    const logService = this.service('log');
+    /** @type {NotifyService} */
+    const notifyService = this.service('notify');
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+
+    const NOTIFY = notifyService.getConstants();
+    const ORDER = orderService.getConstants();
+
+    const order = await orderService.findById(orderId);
+
+    if (think.isEmpty(order)) {
+      return this.badArgument();
+    }
+
+    if (ORDER.STATUS.PAY != order.orderStatus) {
+      return this.fail(ORDER.ADMIN_RESPONSE.CONFIRM_NOT_ALLOWED, '订单不能确认收货');
+    }
+
+    const now = new Date();
+
+    Object.assign(order, {
+      orderStatus: ORDER.STATUS.SHIP,
+      shipSn,
+      shipChannel,
+      shipTime: now,
+    });
+
+    if (!await orderService.updateWithOptimisticLocker(order)) {
+      return this.updatedDateExpired();
+    }
+
+    await notifyService.notifySmsTemplate(order.mobile, NOTIFY.TYPE.SHIP, [shipChannel, shipSn]);
+
+    await logService.logOrderSucceed('发货', `订单编号 ${order.orderSn}`, this.ctx);
+
+    return this.success();
   }
 
   async payAction() {
