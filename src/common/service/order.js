@@ -269,6 +269,216 @@ module.exports = class OrderService extends think.Service {
 
   /**
    * 
+   * @param {string?} nickname 
+   * @param {string?} consignee 
+   * @param {string?} orderSn 
+   * @param {Date?} start 
+   * @param {Date?} end 
+   * @param {number[]?} orderStatusArray 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string?} sort 
+   * @param {string?} order 
+   * @returns {Promise<{list: Order[], total: number, page: number, limit: number, pages: number}>}
+   */
+  async queryVoSelective(nickname, consignee, orderSn, start, end, orderStatusArray, page, limit, sort, order) {
+    const where = {
+      'o.deleted': false,
+      'og.deleted': false,
+    };
+
+    const orderBy = {};
+
+    if (!think.isTrueEmpty(nickname)) {
+      Object.assign(where, {
+        'u.nickname': ['LIKE', `%${nickname}%`],
+      });
+    }
+
+    if (!think.isTrueEmpty(consignee)) {
+      Object.assign(where, {
+        'o.consignee': ['LIKE', `%${consignee}%`],
+      });
+    }
+
+    if (!think.isTrueEmpty(orderSn)) {
+      Object.assign(where, {
+        'o.orderSn': ['LIKE', `%${orderSn}%`],
+      });
+    }
+
+    if (!think.isTrueEmpty(start)) {
+      Object.assign(where, {
+        'o.addTime': ['>=', start],
+      });
+    }
+
+    if (!think.isTrueEmpty(end)) {
+      Object.assign(where, {
+        'o.addTime': ['<', end],
+      });
+    }
+
+    if (!think.isEmpty(orderStatusArray)) {
+      Object.assign(where, {
+        'o.orderStatus': ['IN', orderStatusArray],
+      });
+    }
+
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
+      Object.assign(orderBy, {
+        [`o.${sort}`]: order,
+        'o.id': 'DESC',
+      });
+    }
+
+    /*
+      select o.id, o.add_time
+      from nidemall_order o
+      left join nidemall_user u
+        on o.user_id = u.id
+      left join nidemall_order_goods og
+        on o.id = og.order_id
+      [where ...]
+      group by o.id
+      [order by ...]
+    */
+
+    /** @type {{pageSize: number, currentPage: number, count: number, totalPages: number, data: Order[]}} */
+    const list1 = await this.model('order')
+      .field([
+        'o.id',
+        'o.addTime',
+      ].join(','))
+      .alias('o')
+      .join({
+        user: {
+          join: 'left',
+          as: 'u',
+          on: ['user_id', 'id'],
+        },
+        order_goods: {
+          join: 'left',
+          as: 'og',
+          on: ['id', 'order_id'],
+        },
+      })
+      .where(where)
+      .group('o.id')
+      .order(orderBy)
+      .page(page, limit)
+      .countSelect();
+
+    const ids = list1.data.map((order) => order.id);
+
+    /** @type {Order[]} */
+    let list2 = [];
+
+    if (!think.isEmpty(ids)) {
+      /*
+        select
+          o.id,
+          o.order_sn,
+          o.order_status,
+          o.actual_price,
+          o.freight_price,
+          o.add_time,
+          o.message,
+          o.consignee,
+          o.address,
+          o.mobile,
+          o.pay_time,
+          o.order_price,
+          o.ship_channel,
+          o.ship_sn,
+          u.id user_id,
+          u.nickname user_name,
+          u.avatar user_avatar,
+          o.integral_price,
+          og.id ogid,
+          og.goods_id,
+          og.product_id,
+          og.goods_name,
+          og.pic_url goods_picture,
+          og.specifications goods_specifications,
+          og.number goods_number,
+          og.price goods_price
+        from litemall_order o
+        left join litemall_user u
+          on o.user_id = u.id
+        left join litemall_order_goods og
+          on o.id = og.order_id
+        left join litemall_goods g
+          on og.goods_id = g.id
+        [where ...]
+        [order by ...]
+      */
+
+      list2 = await this.model('order')
+        .field([
+          'o.id',
+          'o.orderSn',
+          'o.orderStatus',
+          'o.actualPrice',
+          'o.freightPrice',
+          'o.addTime',
+          'o.message',
+          'o.consignee',
+          'o.address',
+          'o.mobile',
+          'o.payTime',
+          'o.orderPrice',
+          'o.shipChannel',
+          'o.shipSn',
+          'u.id AS userId',
+          'u.nickname AS userName',
+          'u.avatar AS userAvatar',
+          'o.integralPrice',
+          'og.id AS ogid',
+          'og.goodsId',
+          'og.productId',
+          'og.goodsName',
+          'og.picUrl AS goodsPicture',
+          'og.specifications AS goodsSpecifications',
+          'og.number AS goodsNumber',
+          'og.price AS goodsPrice',
+        ].join(','))
+        .alias('o')
+        .join({
+          user: {
+            join: 'left',
+            as: 'u',
+            on: ['user_id', 'id'],
+          },
+          order_goods: {
+            join: 'left',
+            as: 'og',
+            on: ['id', 'order_id'],
+          },
+          goods: {
+            join: 'left',
+            as: 'g',
+            on: ['og.goods_id', 'id'],
+          },
+        })
+        .where(Object.assign(where, {
+          'o.id': ['IN', ids],
+        }))
+        .order(orderBy)
+        .select();
+    }
+
+    return {
+      list: list2,
+      total: list1.count,
+      page: list1.currentPage,
+      limit: list1.pageSize,
+      pages: list1.totalPages,
+    };
+  }
+
+  /**
+   * 
    */
   async checkOrderUnconfirm() {
     think.logger.info('系统开启定时任务检查订单是否已经超期自动确认收货');
