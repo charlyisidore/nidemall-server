@@ -36,6 +36,42 @@ module.exports = class StorageService extends think.Service {
 
   /**
    * 
+   * @param {string?} key 
+   * @param {string?} name 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string?} sort 
+   * @param {string?} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Storage[]}>}
+   */
+  querySelective(key, name, page, limit, sort, order) {
+    const model = this.model('storage');
+    const where = {
+      deleted: false,
+    };
+
+    if (!think.isNullOrUndefined(key)) {
+      Object.assign(where, { key });
+    }
+
+    if (!think.isTrueEmpty(name)) {
+      Object.assign(where, {
+        name: ['LIKE', `%${name}%`],
+      });
+    }
+
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
+      model.order({ [sort]: order });
+    }
+
+    return model
+      .where(where)
+      .page(page, limit)
+      .countSelect();
+  }
+
+  /**
+   * 
    * @param {File} file 
    * @returns {Promise<Storage>}
    */
