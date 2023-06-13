@@ -43,6 +43,20 @@ module.exports = class NoticeService extends think.Service {
 
   /**
    * 
+   * @param {Notice} notice 
+   * @returns {Promise<number>} The ID inserted
+   */
+  add(notice) {
+    const now = new Date();
+    return this.model('notice')
+      .add(Object.assign(notice, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
    * @param {number} id 
    * @returns {Promise<Notice|Record<string, never>>}
    */

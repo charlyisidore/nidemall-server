@@ -34,6 +34,12 @@ module.exports = class extends think.Logic {
     this.allowMethods = 'POST';
 
     this.rules = {
+      title: {
+        string: true,
+      },
+      content: {
+        string: true,
+      },
     };
   }
 

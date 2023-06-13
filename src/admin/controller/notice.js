@@ -24,7 +24,42 @@ module.exports = class AdminNoticeController extends Base {
   }
 
   async createAction() {
-    return this.success('todo');
+    const adminId = this.getAdminId();
+    const notice = this.post([
+      'title',
+      'content',
+    ].join(','));
+
+    /** @type {AdminService} */
+    const adminService = this.service('admin');
+    /** @type {NoticeService} */
+    const noticeService = this.service('notice');
+    /** @type {NoticeAdminService} */
+    const noticeAdminService = this.service('notice_admin');
+
+    Object.assign(notice, {
+      adminId,
+    });
+
+    notice.id = await noticeService.add(notice);
+
+    const adminList = await adminService.all();
+
+    const noticeAdmin = {
+      noticeId: notice.id,
+      noticeTitle: notice.title,
+    };
+
+    await Promise.all(
+      adminList.map(async (admin) => {
+        Object.assign(noticeAdmin, {
+          adminId: admin.id,
+        });
+        await noticeAdminService.add(noticeAdmin);
+      })
+    );
+
+    return this.success(notice);
   }
 
   async readAction() {

@@ -68,6 +68,20 @@ module.exports = class NoticeAdminService extends think.Service {
   /**
    * 
    * @param {NoticeAdmin} noticeAdmin 
+   * @returns {Promise<number>} The ID inserted
+   */
+  add(noticeAdmin) {
+    const now = new Date();
+    return this.model('notice_admin')
+      .add(Object.assign(noticeAdmin, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
+   * @param {NoticeAdmin} noticeAdmin 
    * @returns {Promise<number>} The number of rows affected
    */
   update(noticeAdmin) {
