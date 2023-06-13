@@ -59,6 +59,19 @@ module.exports = class NoticeService extends think.Service {
 
   /**
    * 
+   * @param {number} id 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  deleteById(id) {
+    return this.model('notice')
+      .where({ id })
+      .update({
+        deleted: true,
+      });
+  }
+
+  /**
+   * 
    * @param {Notice} notice 
    * @returns {Promise<number>} The ID inserted
    */
@@ -80,6 +93,24 @@ module.exports = class NoticeService extends think.Service {
     return this.model('notice')
       .where({ id })
       .find();
+  }
+
+  /**
+   * 
+   * @param {number[]} ids 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  deleteByIds(ids) {
+    const now = new Date();
+    return this.model('notice')
+      .where({
+        id: ['IN', ids],
+        deleted: false,
+      })
+      .update({
+        updateTime: now,
+        deleted: true,
+      });
   }
 
   getConstants() {

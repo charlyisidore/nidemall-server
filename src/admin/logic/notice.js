@@ -62,6 +62,12 @@ module.exports = class extends think.Logic {
         int: true,
         required: true,
       },
+      title: {
+        string: true,
+      },
+      content: {
+        string: true,
+      },
     };
   }
 

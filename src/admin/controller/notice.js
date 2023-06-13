@@ -123,10 +123,32 @@ module.exports = class AdminNoticeController extends Base {
   }
 
   async deleteAction() {
-    return this.success('todo');
+    /** @type {number} */
+    const id = this.post('id');
+
+    /** @type {NoticeService} */
+    const noticeService = this.service('notice');
+    /** @type {NoticeAdminService} */
+    const noticeAdminService = this.service('notice_admin');
+
+    await noticeAdminService.deleteByNoticeId(id);
+    await noticeService.deleteById(id);
+
+    return this.success();
   }
 
   async ['batch-deleteAction']() {
-    return this.success('todo');
+    /** @type {number[]} */
+    const ids = this.post('ids');
+
+    /** @type {NoticeService} */
+    const noticeService = this.service('notice');
+    /** @type {NoticeAdminService} */
+    const noticeAdminService = this.service('notice_admin');
+
+    await noticeAdminService.deleteByNoticeIds(ids);
+    await noticeService.deleteByIds(ids);
+
+    return this.success();
   }
 };
