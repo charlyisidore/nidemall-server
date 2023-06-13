@@ -305,6 +305,34 @@ module.exports = class AdminOrderController extends Base {
   }
 
   async replyAction() {
-    return this.success('todo');
+    /** @type {number} */
+    const commentId = this.post('commentId');
+    /** @type {string} */
+    const content = this.post('content');
+
+    /** @type {CommentService} */
+    const commentService = this.service('comment');
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+
+    const { ADMIN_RESPONSE } = orderService.getConstants();
+
+    const comment = await commentService.findById(commentId);
+
+    if (think.isEmpty(comment)) {
+      return this.badArgument();
+    }
+
+    if (!think.isTrueEmpty(comment.adminContent)) {
+      return this.fail(ADMIN_RESPONSE.REPLY_EXIST, '订单商品已回复！');
+    }
+
+    Object.assign(comment, {
+      content,
+    });
+
+    await commentService.updateById(comment);
+
+    return this.success();
   }
 };

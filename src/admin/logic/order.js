@@ -111,9 +111,27 @@ module.exports = class extends think.Logic {
 
   deleteAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      orderId: {
+        int: true,
+        required: true,
+      },
+    };
   }
 
   replyAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      commentId: {
+        int: true,
+        required: true,
+      },
+      content: {
+        string: true,
+        required: true,
+      },
+    };
   }
 };

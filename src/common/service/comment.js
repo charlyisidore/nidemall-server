@@ -151,4 +151,28 @@ module.exports = class CommentService extends think.Service {
         deleted: true,
       });
   }
+
+  /**
+   * 
+   * @param {number} id 
+   * @returns {Promise<Comment|Record<string, never>>}
+   */
+  findById(id) {
+    return this.model('comment')
+      .where({ id })
+      .find();
+  }
+
+  /**
+   * 
+   * @param {Comment} comment 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  updateById(comment) {
+    return this.model('comment')
+      .where({
+        id: comment.id,
+      })
+      .update(comment);
+  }
 }
