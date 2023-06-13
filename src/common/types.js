@@ -32,6 +32,7 @@
  * @typedef {import('./service/region.js')} RegionService
  * @typedef {import('./service/role.js')} RoleService
  * @typedef {import('./service/search_history.js')} SearchHistoryService
+ * @typedef {import('./service/stat.js')} StatService
  * @typedef {import('./service/storage.js')} StorageService
  * @typedef {import('./service/system.js')} SystemService
  * @typedef {import('./service/task.js')} TaskService
