@@ -51,6 +51,13 @@ module.exports = class extends think.Logic {
 
   detailAction() {
     this.allowMethods = 'GET';
+
+    this.rules = {
+      id: {
+        int: true,
+        required: true,
+      },
+    };
   }
 
   refundAction() {

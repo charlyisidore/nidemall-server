@@ -21,6 +21,14 @@ module.exports = class ExpressService extends think.Service {
 
   /**
    * 
+   * @returns {object[]}
+   */
+  getVendors() {
+    return think.config('express')?.vendors ?? [];
+  }
+
+  /**
+   * 
    * @param {string} vendorCode 
    * @returns {string?}
    */

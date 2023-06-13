@@ -43,11 +43,34 @@ module.exports = class AdminOrderController extends Base {
   }
 
   async channelAction() {
-    return this.success('todo');
+    /** @type {ExpressService} */
+    const expressService = this.service('express');
+
+    const vendors = expressService.getVendors();
+
+    return this.success(vendors);
   }
 
   async detailAction() {
-    return this.success('todo');
+    /** @type {number} */
+    const id = this.get('id');
+
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+    /** @type {OrderGoodsService} */
+    const orderGoodsService = this.service('order_goods');
+    /** @type {UserService} */
+    const userService = this.service('user');
+
+    const order = await orderService.findById(id);
+    const orderGoods = await orderGoodsService.queryByOid(id);
+    const user = await userService.findUserVoById(order.userId);
+
+    return this.success({
+      order,
+      orderGoods,
+      user,
+    });
   }
 
   async refundAction() {
