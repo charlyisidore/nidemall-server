@@ -62,9 +62,7 @@ module.exports = class BrandService extends think.Service {
     };
 
     if (!think.isNullOrUndefined(id)) {
-      Object.assign(where, {
-        id,
-      });
+      Object.assign(where, { id });
     }
 
     if (!think.isTrueEmpty(name)) {

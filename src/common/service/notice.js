@@ -22,13 +22,13 @@ module.exports = class NoticeService extends think.Service {
     if (!think.isTrueEmpty(title)) {
       Object.assign(where, {
         title: ['LIKE', `%${title}%`],
-      })
+      });
     }
 
     if (!think.isTrueEmpty(content)) {
       Object.assign(where, {
         content: ['LIKE', `%${content}%`],
-      })
+      });
     }
 
     if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {

@@ -48,7 +48,7 @@ module.exports = class IssueService extends think.Service {
     if (!think.isTrueEmpty(question)) {
       Object.assign(where, {
         question: ['LIKE', `%${question}%`],
-      })
+      });
     }
 
     if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {

@@ -131,9 +131,7 @@ module.exports = class AddressService extends think.Service {
     };
 
     if (!think.isNullOrUndefined(userId)) {
-      Object.assign(where, {
-        userId,
-      });
+      Object.assign(where, { userId });
     }
 
     if (!think.isTrueEmpty(name)) {

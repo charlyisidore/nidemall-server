@@ -67,13 +67,13 @@ module.exports = class KeywordService extends think.Service {
     if (!think.isTrueEmpty(keyword)) {
       Object.assign(where, {
         keyword: ['LIKE', `%${keyword}%`],
-      })
+      });
     }
 
     if (!think.isTrueEmpty(url)) {
       Object.assign(where, {
         url: ['LIKE', `%${url}%`],
-      })
+      });
     }
 
     if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {

@@ -21,7 +21,7 @@ module.exports = class LogService extends think.Service {
     if (!think.isTrueEmpty(name)) {
       Object.assign(where, {
         name: ['LIKE', `%${name}%`],
-      })
+      });
     }
 
     if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
