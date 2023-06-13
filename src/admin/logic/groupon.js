@@ -84,9 +84,35 @@ module.exports = class extends think.Logic {
 
   createAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      goodsId: {
+        int: true,
+        required: true,
+      },
+      discount: {
+        float: true,
+        required: true,
+      },
+      discountMember: {
+        int: true,
+        required: true,
+      },
+      expireTime: {
+        date: true,
+        required: true,
+      },
+    };
   }
 
   deleteAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      id: {
+        int: true,
+        required: true,
+      },
+    };
   }
 };

@@ -5,6 +5,20 @@ module.exports = class GrouponRulesService extends think.Service {
 
   /**
    * 
+   * @param {GrouponRules} grouponRules 
+   * @returns {Promise<number>} The ID inserted
+   */
+  createRules(grouponRules) {
+    const now = new Date();
+    return this.model('groupon_rules')
+      .add(Object.assign(grouponRules, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
    * @param {number} id 
    * @returns {Promise<GrouponRules|Record<string, never>>} 
    */
@@ -28,6 +42,22 @@ module.exports = class GrouponRulesService extends think.Service {
         deleted: false,
       })
       .select();
+  }
+
+  /**
+   * 
+   * @param {number} goodsId 
+   * @returns {Promise<number>}
+   */
+  countByGoodsId(goodsId) {
+    const { RULE_STATUS } = this.getConstants();
+    return this.model('groupon_rules')
+      .where({
+        goodsId,
+        status: RULE_STATUS.ON,
+        deleted: false,
+      })
+      .count();
   }
 
   /**

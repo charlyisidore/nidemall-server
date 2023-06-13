@@ -114,10 +114,60 @@ module.exports = class AdminGrouponController extends Base {
   }
 
   async createAction() {
-    return this.success('todo');
+    const grouponRules = this.post([
+      'goodsId',
+      'discount',
+      'discountMember',
+      'expireTime',
+    ].join(','));
+
+    /** @type {GoodsService} */
+    const goodsService = this.service('goods');
+    /** @type {GrouponService} */
+    const grouponService = this.service('groupon');
+    /** @type {GrouponRulesService} */
+    const grouponRulesService = this.service('groupon_rules');
+    /** @type {TaskService} */
+    const taskService = think.service('task');
+
+    const { ADMIN_RESPONSE } = grouponService.getConstants();
+    const { RULE_STATUS } = grouponRulesService.getConstants();
+
+    const goods = await goodsService.findById(grouponRules.goodsId);
+
+    if (think.isEmpty(goods)) {
+      return this.fail(ADMIN_RESPONSE.GOODS_UNKNOWN, '团购商品不存在');
+    }
+
+    if ((await grouponRulesService.countByGoodsId(grouponRules.goodsId)) > 0) {
+      return this.fail(ADMIN_RESPONSE.GOODS_EXISTED, '团购商品已经存在');
+    }
+
+    Object.assign(grouponRules, {
+      goodsName: goods.name,
+      picUrl: goods.picUrl,
+      status: RULE_STATUS.ON,
+    });
+
+    await grouponRulesService.createRules(grouponRules);
+
+    taskService.addTask(
+      () => grouponRulesService.expiredTask(grouponRules.id),
+      grouponRules.expireTime
+    );
+
+    return this.success(grouponRules);
   }
 
   async deleteAction() {
-    return this.success('todo');
+    /** @type {number} */
+    const id = this.post('id');
+
+    /** @type {GrouponRulesService} */
+    const grouponRulesService = this.service('groupon_rules');
+
+    await grouponRulesService.delete(id);
+
+    return this.success();
   }
 };
