@@ -5,6 +5,33 @@ module.exports = class IssueService extends think.Service {
 
   /**
    * 
+   * @param {number} id 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  deleteById(id) {
+    return this.model('issue')
+      .where({ id })
+      .update({
+        deleted: true,
+      });
+  }
+
+  /**
+   * 
+   * @param {Issue} issue 
+   * @returns {Promise<number>} The ID inserted
+   */
+  add(issue) {
+    const now = new Date();
+    return this.model('issue')
+      .add(Object.assign(issue, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
    * @param {string?} question 
    * @param {number} page 
    * @param {number} limit 
@@ -32,5 +59,32 @@ module.exports = class IssueService extends think.Service {
       .where(where)
       .page(page, limit)
       .countSelect();
+  }
+
+  /**
+   * 
+   * @param {Issue} issue 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  updateById(issue) {
+    const now = new Date();
+    return this.model('issue')
+      .where({
+        id: issue.id,
+      })
+      .update(Object.assign(issue, {
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
+   * @param {number} id 
+   * @returns {Promise<Issue|Record<string, never>>}
+   */
+  findById(id) {
+    return this.model('issue')
+      .where({ id })
+      .find();
   }
 }
