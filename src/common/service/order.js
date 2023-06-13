@@ -147,7 +147,7 @@ module.exports = class OrderService extends think.Service {
   /**
    * 
    * @param {number} id 
-   * @returns {Promise<number>}
+   * @returns {Promise<number>} The number of rows affected
    */
   deleteById(id) {
     return this.model('order')
@@ -190,7 +190,7 @@ module.exports = class OrderService extends think.Service {
   /**
    * 
    * @param {number} userId 
-   * @returns {{unpaid: number, unship: number, unrecv: number, uncomment: number}}
+   * @returns {Promise<{unpaid: number, unship: number, unrecv: number, uncomment: number}>}
    */
   async orderInfo(userId) {
     const orders = await this.model('order')

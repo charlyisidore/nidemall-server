@@ -192,10 +192,6 @@ module.exports = class AdminOrderController extends Base {
     /** @type {string} */
     const shipChannel = this.post('shipChannel');
 
-    /** @type {CouponUserService} */
-    const couponUserService = this.service('coupon_user');
-    /** @type {GoodsProductService} */
-    const goodsProductService = this.service('goods_product');
     /** @type {LogService} */
     const logService = this.service('log');
     /** @type {NotifyService} */
@@ -272,7 +268,40 @@ module.exports = class AdminOrderController extends Base {
   }
 
   async deleteAction() {
-    return this.success('todo');
+    /** @type {number} */
+    const orderId = this.post('orderId');
+
+    /** @type {LogService} */
+    const logService = this.service('log');
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+    /** @type {OrderGoodsService} */
+    const orderGoodsService = this.service('order_goods');
+
+    const { ADMIN_RESPONSE, STATUS } = orderService.getConstants();
+
+    const order = await orderService.findById(orderId);
+
+    if (think.isEmpty(order)) {
+      return this.badArgument();
+    }
+
+    if (![
+      STATUS.CANCEL,
+      STATUS.AUTO_CANCEL,
+      STATUS.CONFIRM,
+      STATUS.AUTO_CONFIRM,
+      STATUS.REFUND_CONFIRM
+    ].includes(order.orderStatus)) {
+      return this.fail(ADMIN_RESPONSE.DELETE_FAILED, '订单不能删除');
+    }
+
+    await orderService.deleteById(orderId);
+    await orderGoodsService.deleteByOrderId(orderId);
+
+    await logService.logOrderSucceed('删除', `订单编号 ${order.orderSn}`, this.ctx);
+
+    return this.success();
   }
 
   async replyAction() {

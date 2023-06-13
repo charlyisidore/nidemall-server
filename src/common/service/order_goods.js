@@ -71,4 +71,20 @@ module.exports = class OrderGoodsService extends think.Service {
       })
       .count();
   }
+
+  /**
+   * 
+   * @param {number} orderId 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  deleteByOrderId(orderId) {
+    return this.model('order_goods')
+      .where({
+        orderId,
+        deleted: false,
+      })
+      .update({
+        deleted: true,
+      });
+  }
 }
