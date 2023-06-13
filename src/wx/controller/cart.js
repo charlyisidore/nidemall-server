@@ -331,7 +331,7 @@ module.exports = class WxCartController extends Base {
     let tmpCouponLength = 0;
     const couponUserList = await couponUserService.queryAll(userId);
 
-    for (const couponUser of couponUserList) {
+    for (const couponUser of couponUserList.data) {
       const coupon = await couponService.checkCoupon(
         userId,
         couponUser.couponId,

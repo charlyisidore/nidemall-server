@@ -93,7 +93,7 @@ module.exports = class CouponUserService extends think.Service {
    * 
    * @param {number} userId 
    * @param {number?} couponId 
-   * @returns {Promise<CouponUser[]>} 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: CouponUser[]}>}
    */
   queryAll(userId, couponId) {
     const { STATUS } = this.getConstants();

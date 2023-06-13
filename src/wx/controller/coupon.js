@@ -104,7 +104,7 @@ module.exports = class WxCouponController extends Base {
     }
 
     const couponUserList = await couponUserService.queryAll(userId);
-    const couponVoList = await this.change(couponUserList);
+    const couponVoList = await this.change(couponUserList.data);
 
     for (const couponVo of couponVoList) {
       const coupon = await couponService.checkCoupon(
