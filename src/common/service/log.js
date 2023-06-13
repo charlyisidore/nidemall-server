@@ -5,6 +5,37 @@ module.exports = class LogService extends think.Service {
 
   /**
    * 
+   * @param {string?} name 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string?} sort 
+   * @param {string?} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Log[]}>}
+   */
+  querySelective(name, page, limit, sort, order) {
+    const model = this.model('log');
+    const where = {
+      deleted: false,
+    };
+
+    if (!think.isTrueEmpty(name)) {
+      Object.assign(where, {
+        name: ['LIKE', `%${name}%`],
+      })
+    }
+
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
+      model.order({ [sort]: order });
+    }
+
+    return model
+      .where(where)
+      .page(page, limit)
+      .countSelect();
+  }
+
+  /**
+   * 
    * @param {string} action 
    * @param {string} result 
    */
