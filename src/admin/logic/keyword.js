@@ -34,6 +34,19 @@ module.exports = class extends think.Logic {
     this.allowMethods = 'POST';
 
     this.rules = {
+      keyword: {
+        string: true,
+        required: true,
+      },
+      url: {
+        string: true,
+      },
+      isHot: {
+        boolean: true,
+      },
+      isDefault: {
+        boolean: true,
+      },
     };
   }
 
@@ -55,6 +68,19 @@ module.exports = class extends think.Logic {
       id: {
         int: true,
         required: true,
+      },
+      keyword: {
+        string: true,
+        required: true,
+      },
+      url: {
+        string: true,
+      },
+      isHot: {
+        boolean: true,
+      },
+      isDefault: {
+        boolean: true,
       },
     };
   }
