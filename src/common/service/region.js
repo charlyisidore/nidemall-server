@@ -5,6 +5,18 @@ module.exports = class RegionService extends think.Service {
 
   /**
    * 
+   * @returns {Promise<Region[]>}
+   */
+  getAll() {
+    return this.model('region')
+      .where({
+        type: ['!=', 4],
+      })
+      .select();
+  }
+
+  /**
+   * 
    * @param {number} pid 
    * @returns {Promise<Region[]>}
    */
