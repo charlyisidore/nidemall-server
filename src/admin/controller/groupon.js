@@ -67,7 +67,50 @@ module.exports = class AdminGrouponController extends Base {
   }
 
   async updateAction() {
-    return this.success('todo');
+    const grouponRules = this.post([
+      'id',
+      'goodsId',
+      'discount',
+      'discountMember',
+      'expireTime',
+    ].join(','));
+
+    /** @type {GoodsService} */
+    const goodsService = this.service('goods');
+    /** @type {GrouponService} */
+    const grouponService = this.service('groupon');
+    /** @type {GrouponRulesService} */
+    const grouponRulesService = this.service('groupon_rules');
+
+    const { ADMIN_RESPONSE } = grouponService.getConstants();
+    const { RULE_STATUS } = grouponRulesService.getConstants();
+
+    const rules = await grouponRulesService.findById(grouponRules.id);
+
+    if (think.isEmpty(rules)) {
+      return this.badArgumentValue();
+    }
+
+    if (RULE_STATUS.ON != rules.status) {
+      return this.fail(ADMIN_RESPONSE.GOODS_OFFLINE, '团购已经下线');
+    }
+
+    const goods = await goodsService.findById(grouponRules.goodsId);
+
+    if (think.isEmpty(goods)) {
+      return this.badArgumentValue();
+    }
+
+    Object.assign(grouponRules, {
+      goodsName: goods.name,
+      picUrl: goods.picUrl,
+    });
+
+    if (!await grouponRulesService.updateById(grouponRules)) {
+      return this.updatedDataFailed();
+    }
+
+    return this.success();
   }
 
   async createAction() {

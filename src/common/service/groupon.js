@@ -219,6 +219,11 @@ module.exports = class GrouponService extends think.Service {
         FULL: 732,
         JOIN: 733,
       },
+      ADMIN_RESPONSE: {
+        GOODS_UNKNOWN: 650,
+        GOODS_EXISTED: 651,
+        GOODS_OFFLINE: 652,
+      },
       STATUS: {
         NONE: 0,
         ON: 1,
