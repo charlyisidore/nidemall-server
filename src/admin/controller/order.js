@@ -237,7 +237,38 @@ module.exports = class AdminOrderController extends Base {
   }
 
   async payAction() {
-    return this.success('todo');
+    /** @type {number} */
+    const orderId = this.post('orderId');
+    /** @type {number} */
+    const newMoney = this.post('newMoney');
+
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+
+    const { ADMIN_RESPONSE, STATUS } = orderService.getConstants();
+
+    const order = await orderService.findById(orderId);
+
+    if (think.isEmpty(order)) {
+      return this.badArgument();
+    }
+
+    if (STATUS.CREATE != order.orderStatus) {
+      return this.fail(ADMIN_RESPONSE.PAY_FAILED, '当前订单状态不支持线下收款');
+    }
+
+    Object.assign(order, {
+      actualPrice: newMoney,
+      orderStatus: STATUS.PAY,
+    });
+
+    if (!await orderService.updateWithOptimisticLocker(order)) {
+      return this.fail(ADMIN_RESPONSE.PAY_FAILED, '更新数据已失效');
+      // https://github.com/Wechat-Group/WxJava/blob/develop/weixin-java-pay/src/main/java/com/github/binarywang/wxpay/bean/notify/WxPayNotifyResponse.java
+      // return WxPayNotifyResponse.fail("更新数据已失效");
+    }
+
+    return this.success();
   }
 
   async deleteAction() {
