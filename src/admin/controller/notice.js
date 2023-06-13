@@ -63,7 +63,21 @@ module.exports = class AdminNoticeController extends Base {
   }
 
   async readAction() {
-    return this.success('todo');
+    /** @type {number} */
+    const id = this.get('id');
+
+    /** @type {NoticeService} */
+    const noticeService = this.service('notice');
+    /** @type {NoticeAdminService} */
+    const noticeAdminService = this.service('notice_admin');
+
+    const notice = await noticeService.findById(id);
+    const noticeAdminList = await noticeAdminService.queryByNoticeId(id);
+
+    return this.success({
+      notice,
+      noticeAdminList,
+    });
   }
 
   async updateAction() {

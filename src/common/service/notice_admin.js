@@ -169,4 +169,18 @@ module.exports = class NoticeAdminService extends think.Service {
       })
       .count();
   }
+
+  /**
+   * 
+   * @param {number} noticeId 
+   * @returns {Promise<NoticeAdmin[]>}
+   */
+  queryByNoticeId(noticeId) {
+    return this.model('notice_admin')
+      .where({
+        noticeId,
+        deleted: false,
+      })
+      .select();
+  }
 }
