@@ -189,6 +189,20 @@ module.exports = class OrderService extends think.Service {
 
   /**
    * 
+   * @param {string} orderSn 
+   * @returns {Promise<Order|Record<string, never>>}
+   */
+  findBySn(orderSn) {
+    return this.model('order')
+      .where({
+        orderSn,
+        deleted: false,
+      })
+      .find();
+  }
+
+  /**
+   * 
    * @param {number} userId 
    * @returns {Promise<{unpaid: number, unship: number, unrecv: number, uncomment: number}>}
    */

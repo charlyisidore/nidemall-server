@@ -554,23 +554,150 @@ module.exports = class WxOrderController extends Base {
   }
 
   async paynotifyAction() {
+    // TODO
     console.log(`============ PAY NOTIFY 1 ============`);
     console.log(this.post());
-    // TODO
+
     const xml = this.post('xml');
 
     console.log(`============ PAY NOTIFY 2 ============`);
     console.log(xml);
 
+    /** @type {GrouponService} */
+    const grouponService = this.service('groupon');
+    /** @type {GrouponRulesService} */
+    const grouponRulesService = this.service('groupon_rules');
+    /** @type {NotifyService} */
+    const notifyService = this.service('notify');
+    /** @type {OrderService} */
+    const orderService = this.service('order');
+    /** @type {QrCodeService} */
+    const qrCodeService = this.service('qr_code');
     /** @type {WeixinService} */
     const weixinService = this.service('weixin');
+
+    const GROUPON = grouponService.getConstants();
+    const NOTIFY = notifyService.getConstants();
+    const ORDER = orderService.getConstants();
 
     // const result = await weixinService.parsePayNotify(xml);
 
     // console.log(result);
 
     console.log(`============ PAY NOTIFY 3 ============`);
-    return this.success('todo');
+
+    // TODO: parse order notify result
+    // try {
+    //   result = wxPayService.parseOrderNotifyResult(xmlResult);
+
+    //   if(!WxPayConstants.ResultCode.SUCCESS.equals(result.getResultCode())){
+    //       logger.error(xmlResult);
+    //       throw new WxPayException("微信通知支付失败！");
+    //   }
+    //   if(!WxPayConstants.ResultCode.SUCCESS.equals(result.getReturnCode())){
+    //       logger.error(xmlResult);
+    //       throw new WxPayException("微信通知支付失败！");
+    //   }
+    // } catch (WxPayException e) {
+    //     e.printStackTrace();
+    //     return WxPayNotifyResponse.fail(e.getMessage());
+    // }
+
+    think.logger.info('处理腾讯支付平台的订单支付');
+    think.logger.info(result);
+
+    // TODO: check XML response syntax (camel case?)
+    const orderSn = result.outTradeNo;
+    const payId = result.transationId;
+    const totalFee = BaseWxPayResult.fenToYuan(result.totalFee);
+
+    const order = await orderService.findBySn(orderSn);
+
+    if (think.isEmpty(order)) {
+      // TODO: weixinService.fail
+      return weixinService.fail(`订单不存在 sn=${orderSn}`);
+    }
+
+    // TODO: hasPayed()
+    if (this.hasPayed(order)) {
+      // TODO: weixinService.success
+      return weixinService.success('订单已经处理成功!');
+    }
+
+    if (totalFee != order.actualPrice) {
+      // TODO: weixinService.fail
+      return weixinService.fail(`${order.orderSn} : 支付金额不符合 totalFee=${totalFee}`);
+    }
+
+    const now = new Date();
+
+    Object.assign(order, {
+      payId,
+      payTime: now,
+      orderStatus: ORDER.STATUS.PAY,
+    });
+
+    if (!await orderService.updateWithOptimisticLocker(order)) {
+      // TODO: weixinService.fail
+      return weixinService.fail('更新数据已失效');
+    }
+
+    const groupon = await grouponService.queryByOrderId(order.id);
+
+    if (!think.isEmpty(groupon)) {
+      const grouponRules = await grouponRulesService.findById(groupon.rulesId);
+
+      if (think.isEmpty(groupon.grouponId)) {
+        Object.assign(groupon, {
+          shareUrl: await qrCodeService.createGrouponShareImage(
+            grouponRules.goodsName,
+            grouponRules.picUrl,
+            groupon
+          ),
+        });
+      }
+
+      Object.assign(groupon, {
+        status: GROUPON.STATUS.ON,
+      });
+
+      if (!await grouponService.updateById(groupon)) {
+        // TODO: weixinService.fail
+        return weixinService.fail('更新数据已失效');
+      }
+
+      const grouponList = await grouponService.queryJoinRecord(groupon.grouponId);
+
+      if (!think.isEmpty(groupon.grouponId) && grouponList.length >= grouponRules.discountMember - 1) {
+        await Promise.all(
+          grouponList.map(async (grouponActivity) => {
+            Object.assign(grouponActivity, {
+              status: GROUPON.STATUS.SUCCEED,
+            });
+            await grouponService.updateById(grouponActivity);
+          })
+        );
+
+        const grouponSource = await grouponService.queryById(groupon.grouponId);
+        Object.assign(grouponSource, {
+          status: GROUPON.STATUS.SUCCEED,
+        });
+        await grouponService.updateById(grouponSource);
+      }
+    }
+
+    // TODO: order.toString()
+    await notifyService.notifyMail('新订单通知', order.toString());
+    await notifyService.notifySmsTemplate(
+      order.mobile,
+      NOTIFY.TYPE.PAY_SUCCEED,
+      order.orderSn.substring(8, 14)
+    );
+
+    await taskService.removeTask(new OrderUnpaidTask(order.id));
+
+    // TODO: weixinService.success
+    return weixinService.success('处理成功!');
   }
 
   async refundAction() {
