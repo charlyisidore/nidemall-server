@@ -13,23 +13,29 @@ module.exports = class QrCodeService extends Base {
    * @returns {Promise<string>}
    */
   async createGrouponShareImage(goodsName, goodsPicUrl, groupon) {
-    /** @type {StorageService} */
-    const storageService = think.service('storage');
-    /** @type {WeixinService} */
-    const weixinService = think.service('weixin');
+    try {
+      /** @type {StorageService} */
+      const storageService = think.service('storage');
+      /** @type {WeixinService} */
+      const weixinService = think.service('weixin');
 
-    const file = await weixinService.getUnlimitedQrCode(
-      `groupon,${groupon.id}`,
-      'pages/index/index'
-    );
+      const file = await weixinService.getUnlimitedQrCode(
+        `groupon,${groupon.id}`,
+        'pages/index/index'
+      );
 
-    const storage = await storageService.store(
-      file,
-      'image/jpeg',
-      `GOOD_QCODE_${groupon.id}.jpg`
-    );
+      const storage = await storageService.store(
+        file,
+        'image/jpeg',
+        `GOOD_QCODE_${groupon.id}.jpg`
+      );
 
-    return storage.url;
+      return storage.url;
+    } catch (e) {
+      console.error(e);
+      think.logger.error(e.toString());
+      return '';
+    }
   }
 
   /**
@@ -40,22 +46,28 @@ module.exports = class QrCodeService extends Base {
    * @returns {Promise<string>}
    */
   async createGoodsShareImage(goodsId, goodsPicUrl, goodsName) {
-    /** @type {StorageService} */
-    const storageService = think.service('storage');
-    /** @type {WeixinService} */
-    const weixinService = think.service('weixin');
+    try {
+      /** @type {StorageService} */
+      const storageService = think.service('storage');
+      /** @type {WeixinService} */
+      const weixinService = think.service('weixin');
 
-    const file = await weixinService.getUnlimitedQrCode(
-      `goods,${goodsId}`,
-      'pages/index/index'
-    );
+      const file = await weixinService.getUnlimitedQrCode(
+        `goods,${goodsId}`,
+        'pages/index/index'
+      );
 
-    const storage = await storageService.store(
-      file,
-      'image/jpeg',
-      `GOOD_QCODE_${goodsId}.jpg`
-    );
+      const storage = await storageService.store(
+        file,
+        'image/jpeg',
+        `GOOD_QCODE_${goodsId}.jpg`
+      );
 
-    return storage.url;
+      return storage.url;
+    } catch (e) {
+      console.error(e);
+      think.logger.error(e.toString());
+      return '';
+    }
   }
 }
