@@ -30,6 +30,7 @@
  * @typedef {import('./service/order.js')} OrderService
  * @typedef {import('./service/order_goods.js')} OrderGoodsService
  * @typedef {import('./service/permission.js')} PermissionService
+ * @typedef {import('./service/qr_code.js')} QrCodeService
  * @typedef {import('./service/region.js')} RegionService
  * @typedef {import('./service/role.js')} RoleService
  * @typedef {import('./service/search_history.js')} SearchHistoryService
