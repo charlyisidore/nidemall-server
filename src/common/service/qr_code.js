@@ -8,6 +8,7 @@ module.exports = class QrCodeService extends think.Service {
    * @param {string} goodsName 
    * @param {string} goodsPicUrl 
    * @param {Groupon} groupon 
+   * @returns {Promise<string>}
    */
   async createGrouponShareImage(goodsName, goodsPicUrl, groupon) {
     /** @type {StorageService} */
@@ -34,6 +35,7 @@ module.exports = class QrCodeService extends think.Service {
    * @param {number} goodsId 
    * @param {string} goodsPicUrl 
    * @param {string} goodsName 
+   * @returns {Promise<string>}
    */
   async createGoodsShareImage(goodsId, goodsPicUrl, goodsName) {
     /** @type {StorageService} */
