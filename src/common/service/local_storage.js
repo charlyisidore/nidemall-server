@@ -8,7 +8,7 @@ module.exports = class LocalStorageService extends think.Service {
 
   /**
    * 
-   * @param {File} file 
+   * @param {string|Buffer|File} file 
    * @param {string} key 
    * @returns {Promise<string>} The file URL
    */
@@ -16,21 +16,28 @@ module.exports = class LocalStorageService extends think.Service {
     return new Promise((resolve, reject) => {
       const config = think.config('storage');
       const rootPath = this.getRootPath();
+      const targetPath = path.join(rootPath, key);
+      const url = `${config.local.baseUrl}${key}`;
 
       if (!think.isExist(rootPath)) {
         think.mkdir(rootPath);
       }
 
-      fs.rename(
-        file.path,
-        path.join(rootPath, key),
-        (err) => {
+      if (think.isString(file) || file instanceof Buffer) {
+        fs.writeFile(targetPath, file, (err) => {
           if (err) {
             reject(err);
           }
-          resolve(`${config.local.baseUrl}${key}`);
-        }
-      );
+          resolve(url);
+        });
+      } else {
+        fs.rename(file.path, targetPath, (err) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(url);
+        });
+      }
     });
   }
 

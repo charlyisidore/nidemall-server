@@ -111,20 +111,29 @@ module.exports = class StorageService extends think.Service {
 
   /**
    * 
-   * @param {File} file 
+   * @param {string|Buffer|File} file 
+   * @param {string?} fileType 
+   * @param {string?} fileName 
    * @returns {Promise<Storage>}
    */
-  async store(file) {
+  async store(file, fileType, fileName) {
     /** @type {LocalStorageService} */
     const localStorageService = think.service('local_storage');
 
-    const key = await this.generateKey(file.name);
+    fileName ??= file.name;
+    fileType ??= file.type;
+
+    const size = (think.isString(file) || file instanceof Buffer) ?
+      file.length :
+      file.size;
+
+    const key = await this.generateKey(fileName);
     const url = await localStorageService.store(file, key);
 
     const storage = {
-      name: file.name,
-      type: file.type,
-      size: file.size,
+      name: fileName,
+      type: fileType,
+      size,
       key,
       url,
     };
