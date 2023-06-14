@@ -79,6 +79,8 @@ module.exports = class AdminGoodsController extends Base {
     const goodsProductService = this.service('goods_product');
     /** @type {GoodsSpecificationService} */
     const goodsSpecificationService = this.service('goods_specification');
+    /** @type {QrCodeService} */
+    const qrCodeService = this.service('qr_code');
 
     const error = await this.validate(goods, attributes, specifications, products);
     if (!think.isNullOrUndefined(error)) {
@@ -86,8 +88,7 @@ module.exports = class AdminGoodsController extends Base {
     }
 
     Object.assign(goods, {
-      // TODO
-      shareUrl: '', // await qrCodeService.createGoodsShareImage(goods.id, goods.picUrl, goods.name);
+      shareUrl: await qrCodeService.createGoodsShareImage(goods.id, goods.picUrl, goods.name),
       retailPrice: Math.min(...products.map((product) => product.price)),
     });
 
@@ -177,6 +178,8 @@ module.exports = class AdminGoodsController extends Base {
     const goodsProductService = this.service('goods_product');
     /** @type {GoodsSpecificationService} */
     const goodsSpecificationService = this.service('goods_specification');
+    /** @type {QrCodeService} */
+    const qrCodeService = this.service('qr_code');
 
     const { ADMIN_RESPONSE } = goodsService.getConstants();
 
@@ -195,8 +198,7 @@ module.exports = class AdminGoodsController extends Base {
 
     goods.id = await goodsService.add(goods);
 
-    // TODO
-    const shareUrl = ''; // await qrCodeService.createGoodsShareImage(goods.id, goods.picUrl, goods.name);
+    const shareUrl = await qrCodeService.createGoodsShareImage(goods.id, goods.picUrl, goods.name);
     if (!think.isTrueEmpty(shareUrl)) {
       Object.assign(goods, {
         shareUrl,

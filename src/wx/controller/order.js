@@ -167,6 +167,8 @@ module.exports = class WxOrderController extends Base {
     const orderService = this.service('order');
     /** @type {OrderGoodsService} */
     const orderGoodsService = this.service('order_goods');
+    /** @type {QrCodeService} */
+    const qrCodeService = this.service('qr_code');
     /** @type {SystemService} */
     const systemService = this.service('system');
 
@@ -391,8 +393,9 @@ module.exports = class WxOrderController extends Base {
         const grouponRules = await grouponRulesService.findById(groupon.rulesId);
 
         if (groupon.grouponId == 0) {
-          // TODO
-          groupon.shareUrl = 'TODO';//qrCodeService.createGrouponShareImage(grouponRules.goodsName, grouponRules.picUrl, groupon);
+          Object.assign(groupon, {
+            shareUrl: await qrCodeService.createGrouponShareImage(grouponRules.goodsName, grouponRules.picUrl, groupon),
+          });
         }
 
         groupon.status = GROUPON.STATUS.ON;
