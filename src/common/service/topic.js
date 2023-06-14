@@ -82,4 +82,103 @@ module.exports = class TopicService extends think.Service {
 
     return this.queryList(page, limit, 'addTime', 'DESC');
   }
+
+  /**
+   * 
+   * @param {string?} title 
+   * @param {string?} subtitle 
+   * @param {number} page 
+   * @param {number} limit 
+   * @param {string} sort 
+   * @param {string} order 
+   * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Topic[]}>}
+   */
+  querySelective(title, subtitle, page, limit, sort, order) {
+    const model = this.model('topic');
+    const where = {
+      deleted: false,
+    };
+
+    if (!think.isTrueEmpty(title)) {
+      Object.assign(where, {
+        title: ['LIKE', `%${title}%`],
+      });
+    }
+
+    if (!think.isTrueEmpty(subtitle)) {
+      Object.assign(where, {
+        subtitle: ['LIKE', `%${subtitle}%`],
+      });
+    }
+
+    if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
+      model.order({ [sort]: order });
+    }
+
+    return model
+      .where(where)
+      .page(page, limit)
+      .countSelect();
+  }
+
+  /**
+   * 
+   * @param {Topic} topic 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  updateById(topic) {
+    const now = new Date();
+    return this.model('topic')
+      .where({
+        id: topic.id,
+      })
+      .update(Object.assign(topic, {
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
+   * @param {number} id 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  deleteById(id) {
+    return this.model('topic')
+      .where({ id })
+      .update({
+        deleted: true,
+      });
+  }
+
+  /**
+   * 
+   * @param {Topic} topic 
+   * @returns {Promise<number>} The ID inserted
+   */
+  add(topic) {
+    const now = new Date();
+    return this.model('topic')
+      .add(Object.assign(topic, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
+   * @param {number[]} ids 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  deleteByIds(ids) {
+    const now = new Date();
+    return this.model('topic')
+      .where({
+        id: ['IN', ids],
+        deleted: false,
+      })
+      .update({
+        updateTime: now,
+        deleted: true,
+      });
+  }
 }

@@ -322,6 +322,22 @@ module.exports = class GoodsService extends think.Service {
       .count());
   }
 
+  /**
+   * 
+   * @param {number[]} ids 
+   * @returns {Promise<Goods[]>}
+   */
+  queryByIds(ids) {
+    return this.model('goods')
+      .field(this.constructor.FIELDS)
+      .where({
+        id: ['IN', ids],
+        isOnSale: true,
+        deleted: false,
+      })
+      .select();
+  }
+
   getConstants() {
     return {
       RESPONSE: {
