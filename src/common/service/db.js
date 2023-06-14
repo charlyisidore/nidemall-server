@@ -30,7 +30,7 @@ module.exports = class DbService extends Base {
 
   /**
    * Make a database transaction.
-   * @param {*} callback 
+   * @param {() => void} callback 
    * @returns 
    */
   async transaction(callback) {
