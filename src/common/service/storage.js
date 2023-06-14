@@ -1,4 +1,3 @@
-const fs = require('node:fs');
 const path = require('node:path');
 
 module.exports = class StorageService extends think.Service {
@@ -116,10 +115,11 @@ module.exports = class StorageService extends think.Service {
    * @returns {Promise<Storage>}
    */
   async store(file) {
-    const config = think.config('storage');
+    /** @type {LocalStorageService} */
+    const localStorageService = think.service('local_storage');
 
     const key = await this.generateKey(file.name);
-    const url = await this.storeLocal(file, key);
+    const url = await localStorageService.store(file, key);
 
     const storage = {
       name: file.name,
@@ -139,45 +139,10 @@ module.exports = class StorageService extends think.Service {
    * @param {string} key 
    */
   delete(key) {
-    return this.deleteLocal(key);
-  }
+    /** @type {LocalStorageService} */
+    const localStorageService = think.service('local_storage');
 
-  storeLocal(file, key) {
-    return new Promise((resolve, reject) => {
-      const config = think.config('storage');
-      const rootPath = this.getLocalRootPath();
-
-      if (!think.isExist(rootPath)) {
-        think.mkdir(rootPath);
-      }
-
-      fs.rename(
-        file.path,
-        path.join(rootPath, key),
-        (err) => {
-          if (err) {
-            reject(err);
-          }
-          resolve(`${config.local.baseUrl}${key}`);
-        }
-      );
-    });
-  }
-
-  deleteLocal(key) {
-    return new Promise((resolve, reject) => {
-      const rootPath = this.getLocalRootPath();
-
-      fs.unlink(
-        path.join(rootPath, key),
-        (err) => {
-          if (err) {
-            reject(err);
-          }
-          resolve();
-        }
-      )
-    });
+    return localStorageService.delete(key);
   }
 
   async generateKey(filename) {
@@ -192,16 +157,6 @@ module.exports = class StorageService extends think.Service {
     } while (!think.isEmpty(storage));
 
     return key;
-  }
-
-  getLocalRootPath() {
-    const config = think.config('storage');
-
-    let rootPath = config.local.path;
-    if (!path.isAbsolute(rootPath)) {
-      rootPath = path.join(think.ROOT_PATH, config.local.path);
-    }
-    return rootPath;
   }
 
   getRandomString(num) {
