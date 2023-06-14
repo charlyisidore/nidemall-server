@@ -194,261 +194,261 @@ module.exports = class WxOrderController extends Base {
     ]);
 
     return await dbService.transaction(async () => {
-    const freight = await systemService.getFreight();
-    const freightLimit = await systemService.getFreightLimit();
-    const now = new Date();
+      const freight = await systemService.getFreight();
+      const freightLimit = await systemService.getFreightLimit();
+      const now = new Date();
 
-    if (think.isNullOrUndefined(userId)) {
-      return this.unlogin();
-    }
+      if (think.isNullOrUndefined(userId)) {
+        return this.unlogin();
+      }
 
-    if (grouponRulesId) {
-      const rules = await grouponRulesService.findById(grouponRulesId);
+      if (grouponRulesId) {
+        const rules = await grouponRulesService.findById(grouponRulesId);
 
-      if (think.isEmpty(rules)) {
+        if (think.isEmpty(rules)) {
+          return this.badArgument();
+        }
+
+        if (GROUPON_RULES.RULE_STATUS.DOWN_EXPIRE == rules.status) {
+          return this.fail(GROUPON.RESPONSE.EXPIRED, '团购已过期!');
+        }
+
+        if (GROUPON_RULES.RULE_STATUS.DOWN_ADMIN == rules.status) {
+          return this.fail(GROUPON.RESPONSE.OFFLINE, '团购已下线!');
+        }
+
+        if (grouponLinkId) {
+          if ((await grouponService.countGroupon(grouponLinkId)) > (rules.discountMember - 1)) {
+            return this.fail(GROUPON.RESPONSE.FULL, '团购活动人数已满!');
+          }
+
+          if (await grouponService.hasJoin(grouponLinkId, userId)) {
+            return this.fail(GROUPON.RESPONSE.JOIN, '团购活动已经参加!');
+          }
+
+          const groupon = await grouponService.queryById(grouponLinkId, userId);
+
+          if (!think.isEmpty(groupon) && groupon.creatorUserId == userId) {
+            return this.fail(GROUPON.RESPONSE.JOIN, '团购活动已经参加!');
+          }
+        }
+      }
+
+      const checkedAddres = await addressService.query(addressId, userId);
+
+      if (think.isEmpty(checkedAddres)) {
         return this.badArgument();
       }
 
-      if (GROUPON_RULES.RULE_STATUS.DOWN_EXPIRE == rules.status) {
-        return this.fail(GROUPON.RESPONSE.EXPIRED, '团购已过期!');
+      let grouponPrice = 0.;
+      const grouponRules = await grouponRulesService.findById(grouponRulesId);
+
+      if (!think.isEmpty(grouponRules)) {
+        grouponPrice = grouponRules.discount;
       }
 
-      if (GROUPON_RULES.RULE_STATUS.DOWN_ADMIN == rules.status) {
-        return this.fail(GROUPON.RESPONSE.OFFLINE, '团购已下线!');
-      }
+      let checkedGoodsList = null;
 
-      if (grouponLinkId) {
-        if ((await grouponService.countGroupon(grouponLinkId)) > (rules.discountMember - 1)) {
-          return this.fail(GROUPON.RESPONSE.FULL, '团购活动人数已满!');
-        }
-
-        if (await grouponService.hasJoin(grouponLinkId, userId)) {
-          return this.fail(GROUPON.RESPONSE.JOIN, '团购活动已经参加!');
-        }
-
-        const groupon = await grouponService.queryById(grouponLinkId, userId);
-
-        if (!think.isEmpty(groupon) && groupon.creatorUserId == userId) {
-          return this.fail(GROUPON.RESPONSE.JOIN, '团购活动已经参加!');
-        }
-      }
-    }
-
-    const checkedAddres = await addressService.query(addressId, userId);
-
-    if (think.isEmpty(checkedAddres)) {
-      return this.badArgument();
-    }
-
-    let grouponPrice = 0.;
-    const grouponRules = await grouponRulesService.findById(grouponRulesId);
-
-    if (!think.isEmpty(grouponRules)) {
-      grouponPrice = grouponRules.discount;
-    }
-
-    let checkedGoodsList = null;
-
-    if (!cartId) {
-      checkedGoodsList = await cartService.queryByUidAndChecked(userId);
-    } else {
-      const cart = await cartService.findById(cartId);
-      checkedGoodsList = [cart];
-    }
-
-    if (checkedGoodsList.length == 0) {
-      return this.badArgumentValue();
-    }
-
-    let checkedGoodsPrice = 0.;
-    for (const checkGoods of checkedGoodsList) {
-      if (!think.isEmpty(grouponRules) && grouponRules.goodsId == checkGoods.goodsId) {
-        checkedGoodsPrice += (checkGoods.price - grouponPrice) * checkGoods.number;
+      if (!cartId) {
+        checkedGoodsList = await cartService.queryByUidAndChecked(userId);
       } else {
-        checkedGoodsPrice += checkGoods.price * checkGoods.number;
+        const cart = await cartService.findById(cartId);
+        checkedGoodsList = [cart];
       }
-    }
 
-    let couponPrice = 0.;
-    if (couponId && couponId != -1) {
-      const coupon = await couponService.checkCoupon(
-        userId,
-        couponId,
-        userCouponId,
-        checkedGoodsPrice,
-        checkedGoodsList
-      );
-
-      if (think.isEmpty(coupon)) {
+      if (checkedGoodsList.length == 0) {
         return this.badArgumentValue();
       }
 
-      couponPrice = coupon.discount;
-    }
-
-    let freightPrice = 0.;
-    if (checkedGoodsPrice < freightLimit) {
-      freightPrice = freight;
-    }
-
-    const integralPrice = 0.;
-    const orderTotalPrice = Math.max(0., checkedGoodsPrice + freightPrice - couponPrice);
-    const actualPrice = orderTotalPrice - integralPrice;
-
-    const order = {
-      userId,
-      orderSn: await orderService.generateOrderSn(userId),
-      orderStatus: ORDER.STATUS.CREATE,
-      consignee: checkedAddres.name,
-      mobile: checkedAddres.tel,
-      message,
-      address: `${checkedAddres.province}${checkedAddres.city}${checkedAddres.county} ${checkedAddres.addressDetail}`,
-      goodsPrice: checkedGoodsPrice,
-      freightPrice,
-      couponPrice,
-      integralPrice,
-      orderPrice: orderTotalPrice,
-      actualPrice,
-      grouponPrice: think.isEmpty(grouponRules) ? 0. : grouponPrice,
-    };
-
-    order.id = await orderService.add(order);
-
-    for (const cartGoods of checkedGoodsList) {
-      const orderGoods = {
-        orderId: order.id,
-        goodsId: cartGoods.goodsId,
-        goodsSn: cartGoods.goodsSn,
-        productId: cartGoods.productId,
-        goodsName: cartGoods.goodsName,
-        picUrl: cartGoods.picUrl,
-        price: cartGoods.price,
-        number: cartGoods.number,
-        specifications: cartGoods.specifications,
-        addTime: now,
-      };
-
-      await orderGoodsService.add(orderGoods);
-    }
-
-    if (cartId) {
-      await cartService.deleteById(cartId);
-    } else {
-      await cartService.clearGoods(userId);
-    }
-
-    for (const checkGoods of checkedGoodsList) {
-      const productId = checkGoods.productId;
-      const product = await goodsProductService.findById(productId);
-
-      const remainNumber = product.number - checkGoods.number;
-
-      if (remainNumber < 0) {
-        throw new Error('下单的商品货品数量大于库存量');
+      let checkedGoodsPrice = 0.;
+      for (const checkGoods of checkedGoodsList) {
+        if (!think.isEmpty(grouponRules) && grouponRules.goodsId == checkGoods.goodsId) {
+          checkedGoodsPrice += (checkGoods.price - grouponPrice) * checkGoods.number;
+        } else {
+          checkedGoodsPrice += checkGoods.price * checkGoods.number;
+        }
       }
 
-      if (!await goodsProductService.reduceStock(productId, checkGoods.number)) {
-        throw new Error('商品货品库存减少失败');
+      let couponPrice = 0.;
+      if (couponId && couponId != -1) {
+        const coupon = await couponService.checkCoupon(
+          userId,
+          couponId,
+          userCouponId,
+          checkedGoodsPrice,
+          checkedGoodsList
+        );
+
+        if (think.isEmpty(coupon)) {
+          return this.badArgumentValue();
+        }
+
+        couponPrice = coupon.discount;
       }
-    }
 
-    if (couponId && couponId != -1) {
-      const couponUser = await couponUserService.findById(userCouponId);
+      let freightPrice = 0.;
+      if (checkedGoodsPrice < freightLimit) {
+        freightPrice = freight;
+      }
 
-      Object.assign(couponUser, {
-        status: COUPON_USER.STATUS.USED,
-        usedTime: now,
-        orderId: order.id,
-      });
+      const integralPrice = 0.;
+      const orderTotalPrice = Math.max(0., checkedGoodsPrice + freightPrice - couponPrice);
+      const actualPrice = orderTotalPrice - integralPrice;
 
-      await couponUserService.update(couponUser);
-    }
-
-    if (grouponRulesId) {
-      const groupon = {
-        orderId: order.id,
-        status: GROUPON.STATUS.NONE,
+      const order = {
         userId,
-        rulesId: grouponRulesId,
+        orderSn: await orderService.generateOrderSn(userId),
+        orderStatus: ORDER.STATUS.CREATE,
+        consignee: checkedAddres.name,
+        mobile: checkedAddres.tel,
+        message,
+        address: `${checkedAddres.province}${checkedAddres.city}${checkedAddres.county} ${checkedAddres.addressDetail}`,
+        goodsPrice: checkedGoodsPrice,
+        freightPrice,
+        couponPrice,
+        integralPrice,
+        orderPrice: orderTotalPrice,
+        actualPrice,
+        grouponPrice: think.isEmpty(grouponRules) ? 0. : grouponPrice,
       };
 
-      if (grouponLinkId) {
-        const baseGroupon = await grouponService.queryById(grouponLinkId);
+      order.id = await orderService.add(order);
 
-        Object.assign(groupon, {
-          creatorUserId: baseGroupon.creatorUserId,
-          grouponId: grouponLinkId,
-          shareUrl: baseGroupon.shareUrl,
-        });
+      for (const cartGoods of checkedGoodsList) {
+        const orderGoods = {
+          orderId: order.id,
+          goodsId: cartGoods.goodsId,
+          goodsSn: cartGoods.goodsSn,
+          productId: cartGoods.productId,
+          goodsName: cartGoods.goodsName,
+          picUrl: cartGoods.picUrl,
+          price: cartGoods.price,
+          number: cartGoods.number,
+          specifications: cartGoods.specifications,
+          addTime: now,
+        };
 
-        await grouponService.createGroupon(groupon);
-      } else {
-        Object.assign(groupon, {
-          creatorUserId: userId,
-          creatorUserTime: now,
-          grouponId: 0,
-        });
-
-        grouponLinkId = await grouponService.createGroupon(groupon);
+        await orderGoodsService.add(orderGoods);
       }
-    }
 
-    let payed = false;
+      if (cartId) {
+        await cartService.deleteById(cartId);
+      } else {
+        await cartService.clearGoods(userId);
+      }
 
-    // Deal with float precision
-    if (order.actualPrice < 0.001) {
-      payed = true;
+      for (const checkGoods of checkedGoodsList) {
+        const productId = checkGoods.productId;
+        const product = await goodsProductService.findById(productId);
 
-      await orderService.updateSelective({
-        id: order.id,
-        orderStatus: ORDER.STATUS.PAY,
-      });
+        const remainNumber = product.number - checkGoods.number;
 
-      const groupon = await grouponService.queryByOrderId(order.id);
+        if (remainNumber < 0) {
+          throw new Error('下单的商品货品数量大于库存量');
+        }
 
-      if (!think.isEmpty(groupon)) {
-        const grouponRules = await grouponRulesService.findById(groupon.rulesId);
+        if (!await goodsProductService.reduceStock(productId, checkGoods.number)) {
+          throw new Error('商品货品库存减少失败');
+        }
+      }
 
-        if (groupon.grouponId == 0) {
+      if (couponId && couponId != -1) {
+        const couponUser = await couponUserService.findById(userCouponId);
+
+        Object.assign(couponUser, {
+          status: COUPON_USER.STATUS.USED,
+          usedTime: now,
+          orderId: order.id,
+        });
+
+        await couponUserService.update(couponUser);
+      }
+
+      if (grouponRulesId) {
+        const groupon = {
+          orderId: order.id,
+          status: GROUPON.STATUS.NONE,
+          userId,
+          rulesId: grouponRulesId,
+        };
+
+        if (grouponLinkId) {
+          const baseGroupon = await grouponService.queryById(grouponLinkId);
+
           Object.assign(groupon, {
-            shareUrl: await qrCodeService.createGrouponShareImage(grouponRules.goodsName, grouponRules.picUrl, groupon),
+            creatorUserId: baseGroupon.creatorUserId,
+            grouponId: grouponLinkId,
+            shareUrl: baseGroupon.shareUrl,
           });
+
+          await grouponService.createGroupon(groupon);
+        } else {
+          Object.assign(groupon, {
+            creatorUserId: userId,
+            creatorUserTime: now,
+            grouponId: 0,
+          });
+
+          grouponLinkId = await grouponService.createGroupon(groupon);
         }
+      }
 
-        groupon.status = GROUPON.STATUS.ON;
+      let payed = false;
 
-        if (!await grouponService.updateById(groupon)) {
-          throw new Error('更新数据已失效');
-        }
+      // Deal with float precision
+      if (order.actualPrice < 0.001) {
+        payed = true;
 
-        const grouponList = await grouponService.queryJoinRecord(groupon.grouponId);
+        await orderService.updateSelective({
+          id: order.id,
+          orderStatus: ORDER.STATUS.PAY,
+        });
 
-        if (groupon.groupondId && grouponList.length >= (grouponRules.discountMember - 1)) {
-          for (const grouponActivity of grouponList) {
-            grouponActivity.status = GROUPON.STATUS.SUCCEED;
+        const groupon = await grouponService.queryByOrderId(order.id);
 
-            await grouponService.updateById(grouponActivity);
+        if (!think.isEmpty(groupon)) {
+          const grouponRules = await grouponRulesService.findById(groupon.rulesId);
+
+          if (groupon.grouponId == 0) {
+            Object.assign(groupon, {
+              shareUrl: await qrCodeService.createGrouponShareImage(grouponRules.goodsName, grouponRules.picUrl, groupon),
+            });
           }
 
-          const grouponSource = await grouponService.queryById(groupon.grouponId);
-          grouponSource.status = GROUPON.STATUS.SUCCEED;
-          await grouponService.updateById(grouponSource);
+          groupon.status = GROUPON.STATUS.ON;
+
+          if (!await grouponService.updateById(groupon)) {
+            throw new Error('更新数据已失效');
+          }
+
+          const grouponList = await grouponService.queryJoinRecord(groupon.grouponId);
+
+          if (groupon.groupondId && grouponList.length >= (grouponRules.discountMember - 1)) {
+            for (const grouponActivity of grouponList) {
+              grouponActivity.status = GROUPON.STATUS.SUCCEED;
+
+              await grouponService.updateById(grouponActivity);
+            }
+
+            const grouponSource = await grouponService.queryById(groupon.grouponId);
+            grouponSource.status = GROUPON.STATUS.SUCCEED;
+            await grouponService.updateById(grouponSource);
+          }
         }
+
+        // TODO
+        // await notifyService.notifyMail('新订单通知', order.toString());
+        // await notifyService.notifySmsTemplateSync(order.mobile, NotifyService.PAY.SUCCEED, order.orderSn.substr(8, 14));
+      } else {
+        // TODO
+        // await taskService.addTask(new OrderUnpaidTask(order.id));
       }
 
-      // TODO
-      // await notifyService.notifyMail('新订单通知', order.toString());
-      // await notifyService.notifySmsTemplateSync(order.mobile, NotifyService.PAY.SUCCEED, order.orderSn.substr(8, 14));
-    } else {
-      // TODO
-      // await taskService.addTask(new OrderUnpaidTask(order.id));
-    }
-
-    return this.success({
-      orderId: order.id,
-      payed,
-      grouponLinkId: (grouponRulesId ? grouponLinkId : 0),
-    });
+      return this.success({
+        orderId: order.id,
+        payed,
+        grouponLinkId: (grouponRulesId ? grouponLinkId : 0),
+      });
     });
   }
 
@@ -475,46 +475,46 @@ module.exports = class WxOrderController extends Base {
     ]);
 
     return await dbService.transaction(async () => {
-    const now = new Date();
+      const now = new Date();
 
-    if (think.isNullOrUndefined(userId)) {
-      return this.unlogin();
-    }
-
-    const order = await orderService.findById(orderId, userId);
-
-    if (think.isEmpty(order) || order.userId != userId) {
-      return this.badArgumentValue();
-    }
-
-    const handleOption = orderService.build(order);
-
-    if (!handleOption.cancel) {
-      return this.fail(ORDER.RESPONSE.INVALID_OPERATION, '订单不能取消');
-    }
-
-    Object.assign(order, {
-      orderStatus: ORDER.STATUS.CANCEL,
-      endTime: now,
-    });
-
-    if (!await orderService.updateWithOptimisticLocker(order)) {
-      // Update data no longer available
-      throw new Error('更新数据已失效');
-    }
-
-    const orderGoodsList = await orderGoodsService.queryByOid(orderId);
-
-    for (const orderGoods of orderGoodsList) {
-      if (!await goodsProductService.addStock(orderGoods.productId, orderGoods.number)) {
-        // Failed to increase the inventory of a product
-        throw new Error('商品货品库存增加失败');
+      if (think.isNullOrUndefined(userId)) {
+        return this.unlogin();
       }
-    }
 
-    await this.releaseCoupon(orderId);
+      const order = await orderService.findById(orderId, userId);
 
-    return this.success();
+      if (think.isEmpty(order) || order.userId != userId) {
+        return this.badArgumentValue();
+      }
+
+      const handleOption = orderService.build(order);
+
+      if (!handleOption.cancel) {
+        return this.fail(ORDER.RESPONSE.INVALID_OPERATION, '订单不能取消');
+      }
+
+      Object.assign(order, {
+        orderStatus: ORDER.STATUS.CANCEL,
+        endTime: now,
+      });
+
+      if (!await orderService.updateWithOptimisticLocker(order)) {
+        // Update data no longer available
+        throw new Error('更新数据已失效');
+      }
+
+      const orderGoodsList = await orderGoodsService.queryByOid(orderId);
+
+      for (const orderGoods of orderGoodsList) {
+        if (!await goodsProductService.addStock(orderGoods.productId, orderGoods.number)) {
+          // Failed to increase the inventory of a product
+          throw new Error('商品货品库存增加失败');
+        }
+      }
+
+      await this.releaseCoupon(orderId);
+
+      return this.success();
     });
   }
 
@@ -545,50 +545,50 @@ module.exports = class WxOrderController extends Base {
     ]);
 
     return await dbService.transaction(async () => {
-    if (think.isNullOrUndefined(userId)) {
-      return this.unlogin();
-    }
+      if (think.isNullOrUndefined(userId)) {
+        return this.unlogin();
+      }
 
-    const order = await orderService.findById(orderId, userId);
+      const order = await orderService.findById(orderId, userId);
 
-    if (think.isEmpty(order) || order.userId != userId) {
-      return this.badArgumentValue();
-    }
+      if (think.isEmpty(order) || order.userId != userId) {
+        return this.badArgumentValue();
+      }
 
-    const handleOption = orderService.build(order);
+      const handleOption = orderService.build(order);
 
-    if (!handleOption.pay) {
-      return this.fail(ORDER.RESPONSE.INVALID_OPERATION, '订单不能支付');
-    }
+      if (!handleOption.pay) {
+        return this.fail(ORDER.RESPONSE.INVALID_OPERATION, '订单不能支付');
+      }
 
-    const user = await userService.findById(userId);
+      const user = await userService.findById(userId);
 
-    if (think.isNullOrUndefined(user.weixinOpenid)) {
-      return this.fail(AUTH.RESPONSE.OPENID_UNACCESS, '订单不能支付');
-    }
+      if (think.isNullOrUndefined(user.weixinOpenid)) {
+        return this.fail(AUTH.RESPONSE.OPENID_UNACCESS, '订单不能支付');
+      }
 
-    let result = null;
+      let result = null;
 
-    try {
-      result = await weixinService.createOrder({
-        outTradeNo: order.orderSn,
-        openid: user.weixinOpenid,
-        body: `订单：${order.orderSn}`,
-        totalFee: Math.floor(order.actualPrice * 100.),
-        spbillCreateIp: this.ip,
-      });
-    } catch (e) {
-      console.error(e);
-      think.logger.error(e.toString());
-      return this.fail(ORDER.RESPONSE.PAY_FAIL, '订单不能支付');
-    }
+      try {
+        result = await weixinService.createOrder({
+          outTradeNo: order.orderSn,
+          openid: user.weixinOpenid,
+          body: `订单：${order.orderSn}`,
+          totalFee: Math.floor(order.actualPrice * 100.),
+          spbillCreateIp: this.ip,
+        });
+      } catch (e) {
+        console.error(e);
+        think.logger.error(e.toString());
+        return this.fail(ORDER.RESPONSE.PAY_FAIL, '订单不能支付');
+      }
 
 
-    if (!await orderService.updateWithOptimisticLocker(order)) {
-      return this.updatedDateExpired();
-    }
+      if (!await orderService.updateWithOptimisticLocker(order)) {
+        return this.updatedDateExpired();
+      }
 
-    return this.success(result);
+      return this.success(result);
     });
   }
 
@@ -631,124 +631,124 @@ module.exports = class WxOrderController extends Base {
     ]);
 
     return await dbService.transaction(async () => {
-    // const result = await weixinService.parsePayNotify(xml);
+      // const result = await weixinService.parsePayNotify(xml);
 
-    // console.log(result);
+      // console.log(result);
 
-    console.log(`============ PAY NOTIFY 3 ============`);
+      console.log(`============ PAY NOTIFY 3 ============`);
 
-    // TODO: parse order notify result
-    // try {
-    //   result = wxPayService.parseOrderNotifyResult(xmlResult);
+      // TODO: parse order notify result
+      // try {
+      //   result = wxPayService.parseOrderNotifyResult(xmlResult);
 
-    //   if(!WxPayConstants.ResultCode.SUCCESS.equals(result.getResultCode())){
-    //       logger.error(xmlResult);
-    //       throw new WxPayException("微信通知支付失败！");
-    //   }
-    //   if(!WxPayConstants.ResultCode.SUCCESS.equals(result.getReturnCode())){
-    //       logger.error(xmlResult);
-    //       throw new WxPayException("微信通知支付失败！");
-    //   }
-    // } catch (WxPayException e) {
-    //     e.printStackTrace();
-    //     return WxPayNotifyResponse.fail(e.getMessage());
-    // }
+      //   if(!WxPayConstants.ResultCode.SUCCESS.equals(result.getResultCode())){
+      //       logger.error(xmlResult);
+      //       throw new WxPayException("微信通知支付失败！");
+      //   }
+      //   if(!WxPayConstants.ResultCode.SUCCESS.equals(result.getReturnCode())){
+      //       logger.error(xmlResult);
+      //       throw new WxPayException("微信通知支付失败！");
+      //   }
+      // } catch (WxPayException e) {
+      //     e.printStackTrace();
+      //     return WxPayNotifyResponse.fail(e.getMessage());
+      // }
 
-    think.logger.info('处理腾讯支付平台的订单支付');
-    think.logger.info(result);
+      think.logger.info('处理腾讯支付平台的订单支付');
+      think.logger.info(result);
 
-    // TODO: check XML response syntax (camel case?)
-    const orderSn = result.outTradeNo;
-    const payId = result.transationId;
-    const totalFee = BaseWxPayResult.fenToYuan(result.totalFee);
+      // TODO: check XML response syntax (camel case?)
+      const orderSn = result.outTradeNo;
+      const payId = result.transationId;
+      const totalFee = BaseWxPayResult.fenToYuan(result.totalFee);
 
-    const order = await orderService.findBySn(orderSn);
+      const order = await orderService.findBySn(orderSn);
 
-    if (think.isEmpty(order)) {
-      // TODO: weixinService.fail
-      return weixinService.fail(`订单不存在 sn=${orderSn}`);
-    }
-
-    // TODO: hasPayed()
-    if (this.hasPayed(order)) {
-      // TODO: weixinService.success
-      return weixinService.success('订单已经处理成功!');
-    }
-
-    if (totalFee != order.actualPrice) {
-      // TODO: weixinService.fail
-      return weixinService.fail(`${order.orderSn} : 支付金额不符合 totalFee=${totalFee}`);
-    }
-
-    const now = new Date();
-
-    Object.assign(order, {
-      payId,
-      payTime: now,
-      orderStatus: ORDER.STATUS.PAY,
-    });
-
-    if (!await orderService.updateWithOptimisticLocker(order)) {
-      // TODO: weixinService.fail
-      return weixinService.fail('更新数据已失效');
-    }
-
-    const groupon = await grouponService.queryByOrderId(order.id);
-
-    if (!think.isEmpty(groupon)) {
-      const grouponRules = await grouponRulesService.findById(groupon.rulesId);
-
-      if (think.isEmpty(groupon.grouponId)) {
-        Object.assign(groupon, {
-          shareUrl: await qrCodeService.createGrouponShareImage(
-            grouponRules.goodsName,
-            grouponRules.picUrl,
-            groupon
-          ),
-        });
+      if (think.isEmpty(order)) {
+        // TODO: weixinService.fail
+        return weixinService.fail(`订单不存在 sn=${orderSn}`);
       }
 
-      Object.assign(groupon, {
-        status: GROUPON.STATUS.ON,
+      // TODO: hasPayed()
+      if (this.hasPayed(order)) {
+        // TODO: weixinService.success
+        return weixinService.success('订单已经处理成功!');
+      }
+
+      if (totalFee != order.actualPrice) {
+        // TODO: weixinService.fail
+        return weixinService.fail(`${order.orderSn} : 支付金额不符合 totalFee=${totalFee}`);
+      }
+
+      const now = new Date();
+
+      Object.assign(order, {
+        payId,
+        payTime: now,
+        orderStatus: ORDER.STATUS.PAY,
       });
 
-      if (!await grouponService.updateById(groupon)) {
+      if (!await orderService.updateWithOptimisticLocker(order)) {
         // TODO: weixinService.fail
         return weixinService.fail('更新数据已失效');
       }
 
-      const grouponList = await grouponService.queryJoinRecord(groupon.grouponId);
+      const groupon = await grouponService.queryByOrderId(order.id);
 
-      if (!think.isEmpty(groupon.grouponId) && grouponList.length >= grouponRules.discountMember - 1) {
-        await Promise.all(
-          grouponList.map(async (grouponActivity) => {
-            Object.assign(grouponActivity, {
-              status: GROUPON.STATUS.SUCCEED,
-            });
-            await grouponService.updateById(grouponActivity);
-          })
-        );
+      if (!think.isEmpty(groupon)) {
+        const grouponRules = await grouponRulesService.findById(groupon.rulesId);
 
-        const grouponSource = await grouponService.queryById(groupon.grouponId);
-        Object.assign(grouponSource, {
-          status: GROUPON.STATUS.SUCCEED,
+        if (think.isEmpty(groupon.grouponId)) {
+          Object.assign(groupon, {
+            shareUrl: await qrCodeService.createGrouponShareImage(
+              grouponRules.goodsName,
+              grouponRules.picUrl,
+              groupon
+            ),
+          });
+        }
+
+        Object.assign(groupon, {
+          status: GROUPON.STATUS.ON,
         });
-        await grouponService.updateById(grouponSource);
+
+        if (!await grouponService.updateById(groupon)) {
+          // TODO: weixinService.fail
+          return weixinService.fail('更新数据已失效');
+        }
+
+        const grouponList = await grouponService.queryJoinRecord(groupon.grouponId);
+
+        if (!think.isEmpty(groupon.grouponId) && grouponList.length >= grouponRules.discountMember - 1) {
+          await Promise.all(
+            grouponList.map(async (grouponActivity) => {
+              Object.assign(grouponActivity, {
+                status: GROUPON.STATUS.SUCCEED,
+              });
+              await grouponService.updateById(grouponActivity);
+            })
+          );
+
+          const grouponSource = await grouponService.queryById(groupon.grouponId);
+          Object.assign(grouponSource, {
+            status: GROUPON.STATUS.SUCCEED,
+          });
+          await grouponService.updateById(grouponSource);
+        }
       }
-    }
 
-    // TODO: order.toString()
-    await notifyService.notifyMail('新订单通知', order.toString());
-    await notifyService.notifySmsTemplate(
-      order.mobile,
-      NOTIFY.TYPE.PAY_SUCCEED,
-      order.orderSn.substring(8, 14)
-    );
+      // TODO: order.toString()
+      await notifyService.notifyMail('新订单通知', order.toString());
+      await notifyService.notifySmsTemplate(
+        order.mobile,
+        NOTIFY.TYPE.PAY_SUCCEED,
+        order.orderSn.substring(8, 14)
+      );
 
-    await taskService.removeTask(new OrderUnpaidTask(order.id));
+      await taskService.removeTask(new OrderUnpaidTask(order.id));
 
-    // TODO: weixinService.success
-    return weixinService.success('处理成功!');
+      // TODO: weixinService.success
+      return weixinService.success('处理成功!');
     });
   }
 
