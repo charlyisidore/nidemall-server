@@ -1,1 +1,1 @@
-module.exports = class AuthenticationError extends Error {}
+module.exports = class AuthenticationError extends Error {};
