@@ -4,9 +4,6 @@ const Base = require('./base.js');
  * Helper service for database transactions.
  */
 module.exports = class DbService extends Base {
-  /** Model name used for transactions */
-  static MODEL_NAME = 'ad';
-
   /** Store models used for transactions */
   _stack = [];
 
@@ -79,7 +76,7 @@ module.exports = class DbService extends Base {
    * Start a transaction.
    */
   async _startTrans() {
-    const model = this.model(this.constructor.MODEL_NAME);
+    const model = this.model();
     await model.startTrans();
     this._stack.push(model);
   }
