@@ -720,7 +720,7 @@ module.exports = class WxOrderController extends Base {
         const grouponList = await grouponService.queryJoinRecord(groupon.grouponId);
 
         if (!think.isEmpty(groupon.grouponId) && grouponList.length >= grouponRules.discountMember - 1) {
-          await Promise.all(
+          await dbService.promiseAll(
             grouponList.map(async (grouponActivity) => {
               Object.assign(grouponActivity, {
                 status: GROUPON.STATUS.SUCCEED,
