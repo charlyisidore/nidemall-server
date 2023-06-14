@@ -144,21 +144,22 @@ module.exports = class WeixinService extends think.Service {
       data: {
         appid: config.appid,
         mch_id: config.mchId,
+        description: '',
+        out_trade_no: order.outTradeNo,
+        time_expire: null,
+        attach: null,
         notify_url: config.notifyUrl,
         amount: {
           total: 0,
-          currency: null,
-          payer_total: 0,
+          currency: 'CNY',
+          payer_total: null,
           payer_currency: null,
         },
         payer: {
-          openid: '',
+          openid: '???',
         },
         detail: null,
         scene_info: null,
-        attach: null,
-        description: '',
-        time_expire: '',
         settle_info: null,
       },
     });
