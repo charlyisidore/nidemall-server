@@ -81,6 +81,8 @@ module.exports = class AdminOrderController extends Base {
 
     /** @type {CouponUserService} */
     const couponUserService = this.service('coupon_user');
+    /** @type {DbService} */
+    const dbService = this.service('db');
     /** @type {GoodsProductService} */
     const goodsProductService = this.service('goods_product');
     /** @type {LogService} */
@@ -98,6 +100,17 @@ module.exports = class AdminOrderController extends Base {
     const NOTIFY = notifyService.getConstants();
     const ORDER = orderService.getConstants();
 
+    dbService.listen([
+      couponUserService,
+      goodsProductService,
+      logService,
+      notifyService,
+      orderService,
+      orderGoodsService,
+      weixinService,
+    ]);
+
+    return await dbService.transaction(async () => {
     const order = await orderService.findById(orderId);
 
     if (think.isEmpty(order)) {
@@ -156,7 +169,7 @@ module.exports = class AdminOrderController extends Base {
 
     const orderGoodsList = await orderGoodsService.queryByOid(orderId);
 
-    await Promise.all(
+    await dbService.promiseAll(
       orderGoodsList.map(async (orderGoods) => {
         if (!await goodsProductService.addStock(orderGoods.productId, orderGoods.number)) {
           throw new Error('商品货品库存增加失败');
@@ -166,7 +179,7 @@ module.exports = class AdminOrderController extends Base {
 
     const couponUsers = await couponUserService.queryByOid(orderId);
 
-    await Promise.all(
+    await dbService.promiseAll(
       couponUsers.map(async (couponUser) => {
         Object.assign(couponUser, {
           status: COUPON_USER.STATUS.USABLE,
@@ -182,6 +195,7 @@ module.exports = class AdminOrderController extends Base {
     await logService.logOrderSucceed('退款', `订单编号 ${order.orderSn}`, this.ctx);
 
     return this.success();
+    });
   }
 
   async shipAction() {
