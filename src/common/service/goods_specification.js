@@ -10,7 +10,7 @@ module.exports = class GoodsSpecificationService extends Base {
    * @param {number} goodsId 
    * @returns {Promise<GoodsSpecification[]>} 
    */
-  queryByGid(goodsId) {
+  async queryByGid(goodsId) {
     return this.model('goods_specification')
       .where({
         goodsId,
@@ -24,7 +24,7 @@ module.exports = class GoodsSpecificationService extends Base {
    * @param {number} goodsId 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteByGid(goodsId) {
+  async deleteByGid(goodsId) {
     return this.model('goods_specification')
       .where({
         goodsId,
@@ -39,7 +39,7 @@ module.exports = class GoodsSpecificationService extends Base {
    * @param {GoodsSpecification} goodsSpecification 
    * @returns {Promise<number>} The ID inserted
    */
-  add(goodsSpecification) {
+  async add(goodsSpecification) {
     const now = new Date();
     return this.model('goods_specification')
       .add(Object.assign(goodsSpecification, {
@@ -81,7 +81,7 @@ module.exports = class GoodsSpecificationService extends Base {
    * @param {GoodsSpecification} goodsSpecification 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(goodsSpecification) {
+  async updateById(goodsSpecification) {
     const now = new Date();
     return this.model('goods_specification')
       .where({

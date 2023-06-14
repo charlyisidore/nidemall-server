@@ -10,7 +10,7 @@ module.exports = class CouponUserService extends Base {
    * @param {number} couponId 
    * @returns {Promise<number>}
    */
-  countCoupon(couponId) {
+  async countCoupon(couponId) {
     return this.model('coupon_user')
       .where({
         couponId,
@@ -25,7 +25,7 @@ module.exports = class CouponUserService extends Base {
    * @param {number} couponId 
    * @returns {Promise<number>} The total number
    */
-  countUserAndCoupon(userId, couponId) {
+  async countUserAndCoupon(userId, couponId) {
     return this.model('coupon_user')
       .where({
         userId,
@@ -40,7 +40,7 @@ module.exports = class CouponUserService extends Base {
    * @param {CouponUser} couponUser 
    * @returns {Promise<number>} The ID inserted
    */
-  add(couponUser) {
+  async add(couponUser) {
     const now = new Date();
     return this.model('coupon_user')
       .add(Object.assign(couponUser, {
@@ -60,7 +60,7 @@ module.exports = class CouponUserService extends Base {
    * @param {string?} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: CouponUser[]}>}
    */
-  queryList(userId, couponId, status, page, limit, sort, order) {
+  async queryList(userId, couponId, status, page, limit, sort, order) {
     const model = this.model('coupon_user');
     const where = {
       deleted: false,
@@ -97,7 +97,7 @@ module.exports = class CouponUserService extends Base {
    * @param {number?} couponId 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: CouponUser[]}>}
    */
-  queryAll(userId, couponId) {
+  async queryAll(userId, couponId) {
     const { STATUS } = this.getConstants();
     return this.queryList(
       userId,
@@ -135,7 +135,7 @@ module.exports = class CouponUserService extends Base {
    * @param {number} id 
    * @returns {Promise<CouponUser|Record<string, never>>}
    */
-  findById(id) {
+  async findById(id) {
     return this.model('coupon_user')
       .where({ id })
       .find();
@@ -146,7 +146,7 @@ module.exports = class CouponUserService extends Base {
    * @param {CouponUser} couponUser 
    * @returns {Promise<number>} The number of rows affected
    */
-  update(couponUser) {
+  async update(couponUser) {
     const now = new Date();
     return this.model('coupon_user')
       .where({
@@ -157,7 +157,7 @@ module.exports = class CouponUserService extends Base {
       }));
   }
 
-  queryExpired() {
+  async queryExpired() {
     const { STATUS } = this.getConstants();
     const now = new Date();
     return this.model('coupon_user')
@@ -174,7 +174,7 @@ module.exports = class CouponUserService extends Base {
    * @param {number} orderId 
    * @returns {Promise<CouponUser[]>}
    */
-  findByOid(orderId) {
+  async findByOid(orderId) {
     return this.model('coupon_user')
       .where({
         orderId,

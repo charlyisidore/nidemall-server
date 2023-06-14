@@ -10,7 +10,7 @@ module.exports = class GoodsAttributeService extends Base {
    * @param {number} goodsId 
    * @returns {Promise<GoodsAttribute[]>} 
    */
-  queryByGid(goodsId) {
+  async queryByGid(goodsId) {
     return this.model('goods_attribute')
       .where({
         goodsId,
@@ -24,7 +24,7 @@ module.exports = class GoodsAttributeService extends Base {
    * @param {GoodsAttribute} goodsAttribute 
    * @returns {Promise<number>} The ID inserted
    */
-  add(goodsAttribute) {
+  async add(goodsAttribute) {
     const now = new Date();
     return this.model('goods_attribute')
       .add(Object.assign(goodsAttribute, {
@@ -38,7 +38,7 @@ module.exports = class GoodsAttributeService extends Base {
    * @param {number} goodsId 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteByGid(goodsId) {
+  async deleteByGid(goodsId) {
     return this.model('goods_attribute')
       .where({
         goodsId,
@@ -53,7 +53,7 @@ module.exports = class GoodsAttributeService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('goods_attribute')
       .where({ id })
       .update({
@@ -66,7 +66,7 @@ module.exports = class GoodsAttributeService extends Base {
    * @param {GoodsAttribute} goodsAttribute 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(goodsAttribute) {
+  async updateById(goodsAttribute) {
     const now = new Date();
     return this.model('goods_attribute')
       .where({

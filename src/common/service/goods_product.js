@@ -10,7 +10,7 @@ module.exports = class GoodsProductService extends Base {
    * @param {number} goodsId 
    * @returns {Promise<GoodsProduct[]>} 
    */
-  queryByGid(goodsId) {
+  async queryByGid(goodsId) {
     return this.model('goods_product')
       .where({
         goodsId,
@@ -24,7 +24,7 @@ module.exports = class GoodsProductService extends Base {
    * @param {number} id 
    * @returns {Promise<GoodsProduct|Record<string, never>>} 
    */
-  findById(id) {
+  async findById(id) {
     return this.model('goods_product')
       .where({ id })
       .find();
@@ -35,7 +35,7 @@ module.exports = class GoodsProductService extends Base {
    * @param {GoodsProduct} goodsProduct 
    * @returns {Promise<number>} The ID inserted
    */
-  add(goodsProduct) {
+  async add(goodsProduct) {
     const now = new Date();
     return this.model('goods_product')
       .add(Object.assign(goodsProduct, {
@@ -48,7 +48,7 @@ module.exports = class GoodsProductService extends Base {
    * 
    * @returns {Promise<number>} The total number
    */
-  count() {
+  async count() {
     return this.model('goods_product')
       .where({
         deleted: false,
@@ -61,7 +61,7 @@ module.exports = class GoodsProductService extends Base {
    * @param {number} goodsId 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteByGid(goodsId) {
+  async deleteByGid(goodsId) {
     return this.model('goods_product')
       .where({
         goodsId,
@@ -126,7 +126,7 @@ module.exports = class GoodsProductService extends Base {
    * @param {GoodsProduct} goodsProduct 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(goodsProduct) {
+  async updateById(goodsProduct) {
     const now = new Date();
     return this.model('goods_product')
       .where({

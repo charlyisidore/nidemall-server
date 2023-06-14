@@ -10,7 +10,7 @@ module.exports = class SearchHistoryService extends Base {
    * @param {SearchHistory} searchHistory 
    * @returns {Promise<number>} The ID inserted
    */
-  save(searchHistory) {
+  async save(searchHistory) {
     const now = new Date();
     return this.model('search_history')
       .add(Object.assign(searchHistory, {
@@ -24,7 +24,7 @@ module.exports = class SearchHistoryService extends Base {
    * @param {number} userId 
    * @returns {Promise<SearchHistory[]>}
    */
-  queryByUid(userId) {
+  async queryByUid(userId) {
     return this.model('search_history')
       .field('keyword')
       .where({
@@ -39,7 +39,7 @@ module.exports = class SearchHistoryService extends Base {
    * @param {number} userId 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteByUid(userId) {
+  async deleteByUid(userId) {
     return this.model('search_history')
       .where({
         userId,
@@ -59,7 +59,7 @@ module.exports = class SearchHistoryService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: SearchHistory[]}>}
    */
-  querySelective(userId, keyword, page, limit, sort, order) {
+  async querySelective(userId, keyword, page, limit, sort, order) {
     const model = this.model('search_history');
     const where = {
       deleted: false,

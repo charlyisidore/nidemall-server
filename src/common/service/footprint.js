@@ -12,7 +12,7 @@ module.exports = class FootprintService extends Base {
    * @param {number} limit 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Footprint[]}>}
    */
-  queryByAddTime(userId, page, limit) {
+  async queryByAddTime(userId, page, limit) {
     return this.model('footprint')
       .where({
         userId,
@@ -31,7 +31,7 @@ module.exports = class FootprintService extends Base {
    * @param {number?} userId 
    * @returns {Promise<Footprint>}
    */
-  findById(id, userId) {
+  async findById(id, userId) {
     const where = { id };
 
     if (!think.isNullOrUndefined(userId)) {
@@ -51,7 +51,7 @@ module.exports = class FootprintService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('footprint')
       .where({ id })
       .update({
@@ -64,7 +64,7 @@ module.exports = class FootprintService extends Base {
    * @param {Footprint} footprint 
    * @returns {Promise<number>} The ID inserted
    */
-  add(footprint) {
+  async add(footprint) {
     const now = new Date();
     return this.model('footprint')
       .add(Object.assign(footprint, {
@@ -83,7 +83,7 @@ module.exports = class FootprintService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Footprint[]}>}
    */
-  querySelective(userId, goodsId, page, limit, sort, order) {
+  async querySelective(userId, goodsId, page, limit, sort, order) {
     const model = this.model('footprint');
     const where = {
       deleted: false,

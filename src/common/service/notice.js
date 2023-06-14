@@ -15,7 +15,7 @@ module.exports = class NoticeService extends Base {
    * @param {string?} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Notice[]}>}
    */
-  querySelective(title, content, page, limit, sort, order) {
+  async querySelective(title, content, page, limit, sort, order) {
     const model = this.model('notice');
     const where = {
       deleted: false,
@@ -48,7 +48,7 @@ module.exports = class NoticeService extends Base {
    * @param {Notice} notice 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(notice) {
+  async updateById(notice) {
     const now = new Date();
     return this.model('notice')
       .where({
@@ -64,7 +64,7 @@ module.exports = class NoticeService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('notice')
       .where({ id })
       .update({
@@ -77,7 +77,7 @@ module.exports = class NoticeService extends Base {
    * @param {Notice} notice 
    * @returns {Promise<number>} The ID inserted
    */
-  add(notice) {
+  async add(notice) {
     const now = new Date();
     return this.model('notice')
       .add(Object.assign(notice, {
@@ -91,7 +91,7 @@ module.exports = class NoticeService extends Base {
    * @param {number} id 
    * @returns {Promise<Notice|Record<string, never>>}
    */
-  findById(id) {
+  async findById(id) {
     return this.model('notice')
       .where({ id })
       .find();
@@ -102,7 +102,7 @@ module.exports = class NoticeService extends Base {
    * @param {number[]} ids 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteByIds(ids) {
+  async deleteByIds(ids) {
     const now = new Date();
     return this.model('notice')
       .where({

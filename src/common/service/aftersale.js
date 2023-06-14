@@ -10,7 +10,7 @@ module.exports = class AftersaleService extends Base {
    * @param {number} id 
    * @returns {Promise<Aftersale|Record<string, never>>}
    */
-  findById(id) {
+  async findById(id) {
     return this.model('aftersale')
       .where({ id })
       .find();
@@ -26,7 +26,7 @@ module.exports = class AftersaleService extends Base {
    * @param {string?} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Aftersale[]}>}
    */
-  queryList(userId, status, page, limit, sort, order) {
+  async queryList(userId, status, page, limit, sort, order) {
     const model = this.model('aftersale');
 
     const where = {
@@ -64,7 +64,7 @@ module.exports = class AftersaleService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Aftersale[]}>}
    */
-  querySelective(orderId, aftersaleSn, status, page, limit, sort, order) {
+  async querySelective(orderId, aftersaleSn, status, page, limit, sort, order) {
     const model = this.model('aftersale');
     const where = {
       deleted: false,
@@ -104,7 +104,7 @@ module.exports = class AftersaleService extends Base {
    * @param {number} userId 
    * @returns {Promise<number>}
    */
-  countByAftersaleSn(aftersaleSn, userId) {
+  async countByAftersaleSn(aftersaleSn, userId) {
     return this.model('aftersale')
       .where({
         aftersaleSn,
@@ -139,7 +139,7 @@ module.exports = class AftersaleService extends Base {
    * @param {Aftersale} aftersale 
    * @returns {Promise<number>} The ID inserted
    */
-  add(aftersale) {
+  async add(aftersale) {
     const now = new Date();
     return this.model('aftersale')
       .add(Object.assign(aftersale, {
@@ -154,7 +154,7 @@ module.exports = class AftersaleService extends Base {
    * @param {number} userId 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteByOrderId(orderId, userId) {
+  async deleteByOrderId(orderId, userId) {
     const now = new Date();
     return this.model('aftersale')
       .where({
@@ -173,7 +173,7 @@ module.exports = class AftersaleService extends Base {
    * @param {Aftersale} aftersale 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(aftersale) {
+  async updateById(aftersale) {
     const now = new Date();
     return this.model('aftersale')
       .where({
@@ -190,7 +190,7 @@ module.exports = class AftersaleService extends Base {
    * @param {number} userId 
    * @returns {Promise<Aftersale|Record<string, never>>}
    */
-  findByOrderId(orderId, userId) {
+  async findByOrderId(orderId, userId) {
     return this.model('aftersale')
       .where({
         orderId,

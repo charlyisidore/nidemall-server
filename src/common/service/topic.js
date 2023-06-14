@@ -22,7 +22,7 @@ module.exports = class TopicService extends Base {
    * @param {string?} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Topic[]}>}
    */
-  queryList(page, limit, sort = 'addTime', order = 'DESC') {
+  async queryList(page, limit, sort = 'addTime', order = 'DESC') {
     return this.model('topic')
       .field(this.constructor.FIELDS)
       .where({
@@ -40,7 +40,7 @@ module.exports = class TopicService extends Base {
    * @param {number} id 
    * @returns {Promise<Topic|Record<string, never>>} 
    */
-  findById(id) {
+  async findById(id) {
     return this.model('topic')
       .where({
         id,
@@ -95,7 +95,7 @@ module.exports = class TopicService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Topic[]}>}
    */
-  querySelective(title, subtitle, page, limit, sort, order) {
+  async querySelective(title, subtitle, page, limit, sort, order) {
     const model = this.model('topic');
     const where = {
       deleted: false,
@@ -128,7 +128,7 @@ module.exports = class TopicService extends Base {
    * @param {Topic} topic 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(topic) {
+  async updateById(topic) {
     const now = new Date();
     return this.model('topic')
       .where({
@@ -144,7 +144,7 @@ module.exports = class TopicService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('topic')
       .where({ id })
       .update({
@@ -157,7 +157,7 @@ module.exports = class TopicService extends Base {
    * @param {Topic} topic 
    * @returns {Promise<number>} The ID inserted
    */
-  add(topic) {
+  async add(topic) {
     const now = new Date();
     return this.model('topic')
       .add(Object.assign(topic, {
@@ -171,7 +171,7 @@ module.exports = class TopicService extends Base {
    * @param {number[]} ids 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteByIds(ids) {
+  async deleteByIds(ids) {
     const now = new Date();
     return this.model('topic')
       .where({

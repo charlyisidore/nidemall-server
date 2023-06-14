@@ -17,7 +17,7 @@ module.exports = class CategoryService extends Base {
    * @param {number} limit 
    * @returns {Promise<Category[]>} 
    */
-  queryL1WithoutRecommend(page, limit) {
+  async queryL1WithoutRecommend(page, limit) {
     return this.model('category')
       .where({
         level: 'L1',
@@ -34,13 +34,13 @@ module.exports = class CategoryService extends Base {
    * @param {number?} limit 
    * @returns {Promise<Category[]>} 
    */
-  queryL1(page, limit) {
+  async queryL1(page, limit) {
     const model = this.model('category')
       .where({
         level: 'L1',
         deleted: false,
       });
-    if (undefined !== page) {
+    if (!think.isNullOrUndefined(page) && !think.isNullOrUndefined(limit)) {
       model.page(page, limit);
     }
     return model.select();
@@ -51,7 +51,7 @@ module.exports = class CategoryService extends Base {
    * @param {number} pid 
    * @returns {Promise<Category[]>} 
    */
-  queryByPid(pid) {
+  async queryByPid(pid) {
     return this.model('category')
       .where({
         pid,
@@ -65,7 +65,7 @@ module.exports = class CategoryService extends Base {
    * @param {number[]} ids 
    * @returns {Promise<Category[]>} 
    */
-  queryL2ByIds(ids) {
+  async queryL2ByIds(ids) {
     return this.model('category')
       .where({
         id: ['IN', ids],
@@ -80,7 +80,7 @@ module.exports = class CategoryService extends Base {
    * @param {number} id 
    * @returns {Promise<Category|Record<string, never>>} 
    */
-  findById(id) {
+  async findById(id) {
     return this.model('category')
       .where({
         id,
@@ -94,7 +94,7 @@ module.exports = class CategoryService extends Base {
    * @param {Category} category 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(category) {
+  async updateById(category) {
     const now = new Date();
     return this.model('category')
       .where({
@@ -110,7 +110,7 @@ module.exports = class CategoryService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('category')
       .where({ id })
       .update({
@@ -123,7 +123,7 @@ module.exports = class CategoryService extends Base {
    * @param {Category} category 
    * @returns {Promise<number>} The ID inserted
    */
-  add(category) {
+  async add(category) {
     const now = new Date();
     return this.model('category')
       .add(Object.assign(category, {
@@ -136,7 +136,7 @@ module.exports = class CategoryService extends Base {
    * 
    * @returns {Promise<Category[]>} 
    */
-  queryChannel() {
+  async queryChannel() {
     return this.model('category')
       .field(this.constructor.CHANNEL_FIELDS)
       .where({

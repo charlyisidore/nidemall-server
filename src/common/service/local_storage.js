@@ -13,7 +13,7 @@ module.exports = class LocalStorageService extends Base {
    * @param {string} key 
    * @returns {Promise<string>} The file URL
    */
-  store(file, key) {
+  async store(file, key) {
     return new Promise((resolve, reject) => {
       const config = think.config('storage');
       const rootPath = this.getRootPath();
@@ -47,7 +47,7 @@ module.exports = class LocalStorageService extends Base {
    * @param {string} key 
    * @returns {Promise<void>}
    */
-  delete(key) {
+  async delete(key) {
     return new Promise((resolve, reject) => {
       const rootPath = this.getRootPath();
 

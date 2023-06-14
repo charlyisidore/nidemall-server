@@ -11,7 +11,7 @@ module.exports = class UserService extends Base {
    * @param {number} id 
    * @returns {Promise<User|Record<string, never>>} 
    */
-  findById(id) {
+  async findById(id) {
     return this.model('user')
       .where({ id })
       .find();
@@ -40,7 +40,7 @@ module.exports = class UserService extends Base {
    * @param {string} openid 
    * @returns {Promise<User|Record<string, never>>} 
    */
-  queryByOid(openid) {
+  async queryByOid(openid) {
     return this.model('user')
       .where({
         weixinOpenid: openid,
@@ -54,7 +54,7 @@ module.exports = class UserService extends Base {
    * @param {User} user 
    * @returns {Promise<number>} The ID inserted
    */
-  add(user) {
+  async add(user) {
     const now = new Date();
     return this.model('user')
       .add(Object.assign(user, {
@@ -68,7 +68,7 @@ module.exports = class UserService extends Base {
    * @param {User} user 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(user) {
+  async updateById(user) {
     const now = new Date();
     return this.model('user')
       .where({ id: user.id })
@@ -87,7 +87,7 @@ module.exports = class UserService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: User[]}>}
    */
-  querySelective(username, mobile, page, limit, sort, order) {
+  async querySelective(username, mobile, page, limit, sort, order) {
     const model = this.model('user');
     const where = {
       deleted: false,
@@ -119,7 +119,7 @@ module.exports = class UserService extends Base {
    * 
    * @returns {Promise<number>} The total number
    */
-  count() {
+  async count() {
     return this.model('user')
       .where({
         deleted: false,
@@ -132,7 +132,7 @@ module.exports = class UserService extends Base {
    * @param {string} username 
    * @returns {Promise<User[]>} 
    */
-  queryByUsername(username) {
+  async queryByUsername(username) {
     return this.model('user')
       .where({
         username,
@@ -146,7 +146,7 @@ module.exports = class UserService extends Base {
    * @param {string} mobile 
    * @returns {Promise<User[]>} 
    */
-  queryByMobile(mobile) {
+  async queryByMobile(mobile) {
     return this.model('user')
       .where({
         mobile,
@@ -160,7 +160,7 @@ module.exports = class UserService extends Base {
    * @param {string} openid 
    * @returns {Promise<User[]>} 
    */
-  queryByOpenid(openid) {
+  async queryByOpenid(openid) {
     return this.model('user')
       .where({
         weixinOpenid: openid,

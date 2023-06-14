@@ -61,7 +61,7 @@ module.exports = class AuthService extends Base {
    * @param {string} password 
    * @param {string} hash 
    */
-  comparePassword(password, hash) {
+  async comparePassword(password, hash) {
     return bcrypt.compare(password, hash);
   }
 

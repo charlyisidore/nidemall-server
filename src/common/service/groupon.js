@@ -10,7 +10,7 @@ module.exports = class GrouponService extends Base {
    * @param {number} userId 
    * @returns {Promise<Groupon[]>}
    */
-  queryMyGroupon(userId) {
+  async queryMyGroupon(userId) {
     const { STATUS } = this.getConstants();
     return this.model('groupon')
       .where({
@@ -31,7 +31,7 @@ module.exports = class GrouponService extends Base {
    * @param {number} userId 
    * @returns {Promise<Groupon[]>}
    */
-  queryMyJoinGroupon(userId) {
+  async queryMyJoinGroupon(userId) {
     const { STATUS } = this.getConstants();
     return this.model('groupon')
       .where({
@@ -51,7 +51,7 @@ module.exports = class GrouponService extends Base {
    * @param {number} orderId 
    * @returns {Promise<Order|Record<string, never>>}
    */
-  queryByOrderId(orderId) {
+  async queryByOrderId(orderId) {
     return this.model('groupon')
       .where({
         orderId,
@@ -65,7 +65,7 @@ module.exports = class GrouponService extends Base {
    * @param {number} id 
    * @returns {Promise<Groupon[]>}
    */
-  queryJoinRecord(id) {
+  async queryJoinRecord(id) {
     const { STATUS } = this.getConstants();
     return this.model('groupon')
       .where({
@@ -85,7 +85,7 @@ module.exports = class GrouponService extends Base {
    * @param {number?} userId 
    * @returns {Promise<Groupon|Record<string, never>>}
    */
-  queryById(id, userId) {
+  async queryById(id, userId) {
     const where = {
       id,
       deleted: false,
@@ -107,7 +107,7 @@ module.exports = class GrouponService extends Base {
    * @param {number} grouponId 
    * @returns {Promise<number>} The total number
    */
-  countGroupon(grouponId) {
+  async countGroupon(grouponId) {
     const { STATUS } = this.getConstants();
     return this.model('groupon')
       .where({
@@ -141,7 +141,7 @@ module.exports = class GrouponService extends Base {
    * @param {Groupon} groupon 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(groupon) {
+  async updateById(groupon) {
     const now = new Date();
     return this.model('groupon')
       .where({
@@ -157,7 +157,7 @@ module.exports = class GrouponService extends Base {
    * @param {Groupon} groupon 
    * @returns {Promise<number>} The ID inserted
    */
-  createGroupon(groupon) {
+  async createGroupon(groupon) {
     const now = new Date();
     return this.model('groupon')
       .add(Object.assign(groupon, {
@@ -175,7 +175,7 @@ module.exports = class GrouponService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Groupon[]}>}
    */
-  querySelective(rulesId, page, limit, sort, order) {
+  async querySelective(rulesId, page, limit, sort, order) {
     const { STATUS } = this.getConstants();
 
     const model = this.model('groupon');
@@ -204,7 +204,7 @@ module.exports = class GrouponService extends Base {
    * @param {number} grouponRulesId 
    * @returns {Promise<Groupon[]>}
    */
-  queryByRulesId(grouponRulesId) {
+  async queryByRulesId(grouponRulesId) {
     return this.model('groupon')
       .where({
         rulesId: grouponRulesId,

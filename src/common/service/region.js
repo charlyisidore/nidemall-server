@@ -9,7 +9,7 @@ module.exports = class RegionService extends Base {
    * 
    * @returns {Promise<Region[]>}
    */
-  getAll() {
+  async getAll() {
     return this.model('region')
       .where({
         type: ['!=', 4],
@@ -22,7 +22,7 @@ module.exports = class RegionService extends Base {
    * @param {number} pid 
    * @returns {Promise<Region[]>}
    */
-  queryByPid(pid) {
+  async queryByPid(pid) {
     return this.model('region')
       .where({
         pid,

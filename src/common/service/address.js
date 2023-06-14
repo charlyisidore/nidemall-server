@@ -10,7 +10,7 @@ module.exports = class AddressService extends Base {
    * @param {number} userId 
    * @returns {Promise<Address[]>} 
    */
-  queryByUid(userId) {
+  async queryByUid(userId) {
     return this.model('address')
       .where({
         userId,
@@ -25,7 +25,7 @@ module.exports = class AddressService extends Base {
    * @param {number} userId 
    * @returns {Promise<Address|Record<string, never>>} 
    */
-  query(id, userId) {
+  async query(id, userId) {
     const where = {
       userId,
       deleted: false,
@@ -47,7 +47,7 @@ module.exports = class AddressService extends Base {
    * @param {Address} address 
    * @returns {Promise<number>} The ID inserted
    */
-  add(address) {
+  async add(address) {
     const now = new Date();
     return this.model('address')
       .add(Object.assign(address, {
@@ -61,7 +61,7 @@ module.exports = class AddressService extends Base {
    * @param {Address} address 
    * @returns {Promise<number>} The number of rows affected
    */
-  update(address) {
+  async update(address) {
     const now = new Date();
     return this.model('address')
       .where({ id: address.id })
@@ -75,7 +75,7 @@ module.exports = class AddressService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  delete(id) {
+  async delete(id) {
     return this.model('address')
       .where({ id })
       .update({
@@ -88,7 +88,7 @@ module.exports = class AddressService extends Base {
    * @param {number} userId 
    * @returns {Promise<Address|Record<string, never>>} 
    */
-  findDefault(userId) {
+  async findDefault(userId) {
     return this.model('address')
       .where({
         userId,
@@ -103,7 +103,7 @@ module.exports = class AddressService extends Base {
    * @param {number} userId 
    * @returns {Promise<number>} The number of rows affected
    */
-  resetDefault(userId) {
+  async resetDefault(userId) {
     const now = new Date();
     return this.model('address')
       .where({
@@ -126,7 +126,7 @@ module.exports = class AddressService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Address[]}>}
    */
-  querySelective(userId, name, page, limit, sort, order) {
+  async querySelective(userId, name, page, limit, sort, order) {
     const model = this.model('address');
     const where = {
       deleted: false,

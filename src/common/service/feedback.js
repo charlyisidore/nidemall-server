@@ -10,7 +10,7 @@ module.exports = class FeedbackService extends Base {
    * @param {Feedback} feedback 
    * @returns {Promise<number>} The ID inserted
    */
-  add(feedback) {
+  async add(feedback) {
     const now = new Date();
     return this.model('feedback')
       .add(Object.assign(feedback, {
@@ -29,7 +29,7 @@ module.exports = class FeedbackService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Feedback[]}>}
    */
-  querySelective(userId, username, page, limit, sort, order) {
+  async querySelective(userId, username, page, limit, sort, order) {
     const model = this.model('feedback');
     const where = {
       deleted: false,

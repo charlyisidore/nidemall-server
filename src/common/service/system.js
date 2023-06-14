@@ -47,7 +47,7 @@ module.exports = class SystemService extends Base {
    * 
    * @returns {Promise<Record<string, string>>}
    */
-  listMall() {
+  async listMall() {
     return this._list('mall_');
   }
 
@@ -55,7 +55,7 @@ module.exports = class SystemService extends Base {
    * 
    * @returns {Promise<Record<string, string>>}
    */
-  listWx() {
+  async listWx() {
     return this._list('wx_');
   }
 
@@ -63,7 +63,7 @@ module.exports = class SystemService extends Base {
    * 
    * @returns {Promise<Record<string, string>>}
    */
-  listOrder() {
+  async listOrder() {
     return this._list('order_');
   }
 
@@ -71,7 +71,7 @@ module.exports = class SystemService extends Base {
    * 
    * @returns {Promise<Record<string, string>>}
    */
-  listExpress() {
+  async listExpress() {
     return this._list('express_');
   }
 
@@ -80,7 +80,7 @@ module.exports = class SystemService extends Base {
    * @param {Record<string, string>} data 
    * @returns {Promise<number[]>}
    */
-  updateConfig(data) {
+  async updateConfig(data) {
     const now = new Date();
     return Promise.all(
       Object.entries(data)
@@ -175,126 +175,126 @@ module.exports = class SystemService extends Base {
   /**
    * 
    */
-  getNewLimit() {
+  async getNewLimit() {
     return this.getConfigInt('wx_index_new');
   }
 
   /**
    * 
    */
-  getHotLimit() {
+  async getHotLimit() {
     return this.getConfigInt('wx_index_hot');
   }
 
   /**
    * 
    */
-  getBrandLimit() {
+  async getBrandLimit() {
     return this.getConfigInt('wx_index_brand');
   }
 
   /**
    * 
    */
-  getTopicLimit() {
+  async getTopicLimit() {
     return this.getConfigInt('wx_index_topic');
   }
 
   /**
    * 
    */
-  getCatlogListLimit() {
+  async getCatlogListLimit() {
     return this.getConfigInt('wx_catlog_list');
   }
 
   /**
    * 
    */
-  getCatlogMoreLimit() {
+  async getCatlogMoreLimit() {
     return this.getConfigInt('wx_catlog_goods');
   }
 
   /**
    * 
    */
-  isAutoCreateShareImage() {
+  async isAutoCreateShareImage() {
     return this.getConfigBoolean('wx_share');
   }
 
   /**
    * 
    */
-  getFreight() {
+  async getFreight() {
     return this.getConfigFloat('express_freight_value');
   }
 
   /**
    * 
    */
-  getFreightLimit() {
+  async getFreightLimit() {
     return this.getConfigFloat('express_freight_min');
   }
 
   /**
    * 
    */
-  getOrderUnpaid() {
+  async getOrderUnpaid() {
     return this.getConfigInt('order_unpaid');
   }
 
   /**
    * 
    */
-  getOrderUnconfirm() {
+  async getOrderUnconfirm() {
     return this.getConfigInt('order_unconfirm');
   }
 
   /**
    * 
    */
-  getOrderComment() {
+  async getOrderComment() {
     return this.getConfigInt('order_comment');
   }
 
   /**
    * 
    */
-  getMallName() {
+  async getMallName() {
     return this.getConfig('mall_name');
   }
 
   /**
    * 
    */
-  getMallAddress() {
+  async getMallAddress() {
     return this.getConfig('mall_address');
   }
 
   /**
    * 
    */
-  getMallPhone() {
+  async getMallPhone() {
     return this.getConfig('mall_phone');
   }
 
   /**
    * 
    */
-  getMallQq() {
+  async getMallQq() {
     return this.getConfig('mall_qq');
   }
 
   /**
    * 
    */
-  getMallLongitude() {
+  async getMallLongitude() {
     return this.getConfig('mall_longitude');
   }
 
   /**
    * 
    */
-  getMallLatitude() {
+  async getMallLatitude() {
     return this.getConfig('mall_latitude');
   }
 }

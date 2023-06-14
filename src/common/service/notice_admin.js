@@ -16,7 +16,7 @@ module.exports = class NoticeAdminService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: NoticeAdmin[]}>}
    */
-  querySelective(title, type, adminId, page, limit, sort, order) {
+  async querySelective(title, type, adminId, page, limit, sort, order) {
     const model = this.model('notice_admin');
     const where = {
       adminId,
@@ -57,7 +57,7 @@ module.exports = class NoticeAdminService extends Base {
    * @param {number} adminId 
    * @returns {Promise<NoticeAdmin|Record<string, never>>}
    */
-  find(noticeId, adminId) {
+  async find(noticeId, adminId) {
     return this.model('notice_admin')
       .where({
         noticeId,
@@ -72,7 +72,7 @@ module.exports = class NoticeAdminService extends Base {
    * @param {NoticeAdmin} noticeAdmin 
    * @returns {Promise<number>} The ID inserted
    */
-  add(noticeAdmin) {
+  async add(noticeAdmin) {
     const now = new Date();
     return this.model('notice_admin')
       .add(Object.assign(noticeAdmin, {
@@ -86,7 +86,7 @@ module.exports = class NoticeAdminService extends Base {
    * @param {NoticeAdmin} noticeAdmin 
    * @returns {Promise<number>} The number of rows affected
    */
-  update(noticeAdmin) {
+  async update(noticeAdmin) {
     const now = new Date();
     return this.model('notice_admin')
       .where({
@@ -103,7 +103,7 @@ module.exports = class NoticeAdminService extends Base {
    * @param {number} adminId 
    * @returns {Promise<number>} The number of rows affected
    */
-  markReadByIds(ids, adminId) {
+  async markReadByIds(ids, adminId) {
     const now = new Date();
     return this.model('notice_admin')
       .where({
@@ -123,7 +123,7 @@ module.exports = class NoticeAdminService extends Base {
    * @param {number} adminId 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id, adminId) {
+  async deleteById(id, adminId) {
     const now = new Date();
     return this.model('notice_admin')
       .where({
@@ -143,7 +143,7 @@ module.exports = class NoticeAdminService extends Base {
    * @param {number} adminId 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteByIds(ids, adminId) {
+  async deleteByIds(ids, adminId) {
     const now = new Date();
     return this.model('notice_admin')
       .where({
@@ -162,7 +162,7 @@ module.exports = class NoticeAdminService extends Base {
    * @param {number} adminId 
    * @returns {Promise<number>}
    */
-  countUnread(adminId) {
+  async countUnread(adminId) {
     return this.model('notice_admin')
       .where({
         adminId,
@@ -177,7 +177,7 @@ module.exports = class NoticeAdminService extends Base {
    * @param {number} noticeId 
    * @returns {Promise<NoticeAdmin[]>}
    */
-  queryByNoticeId(noticeId) {
+  async queryByNoticeId(noticeId) {
     return this.model('notice_admin')
       .where({
         noticeId,
@@ -191,7 +191,7 @@ module.exports = class NoticeAdminService extends Base {
    * @param {number} noticeId 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteByNoticeId(noticeId) {
+  async deleteByNoticeId(noticeId) {
     const now = new Date();
     return this.model('notice_admin')
       .where({
@@ -209,7 +209,7 @@ module.exports = class NoticeAdminService extends Base {
    * @param {number[]} ids 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteByNoticeIds(ids) {
+  async deleteByNoticeIds(ids) {
     const now = new Date();
     return this.model('notice_admin')
       .where({
@@ -227,7 +227,7 @@ module.exports = class NoticeAdminService extends Base {
    * @param {number} noticeId 
    * @returns {Promise<number>}
    */
-  countReadByNoticeId(noticeId) {
+  async countReadByNoticeId(noticeId) {
     return this.model('notice_admin')
       .where({
         noticeId,
@@ -243,7 +243,7 @@ module.exports = class NoticeAdminService extends Base {
    * @param {number} noticeId 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateByNoticeId(noticeAdmin, noticeId) {
+  async updateByNoticeId(noticeAdmin, noticeId) {
     const now = new Date();
     return this.model('notice_admin')
       .where({

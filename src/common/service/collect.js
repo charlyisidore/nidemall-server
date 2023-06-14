@@ -12,7 +12,7 @@ module.exports = class CollectService extends Base {
    * @param {number} gid 
    * @returns {Promise<number>} The total number
    */
-  count(userId, type, gid) {
+  async count(userId, type, gid) {
     return this.model('collect')
       .where({
         userId,
@@ -33,9 +33,8 @@ module.exports = class CollectService extends Base {
    * @param {string?} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Collect[]}>}
    */
-  queryByType(userId, type, page, limit, sort, order) {
+  async queryByType(userId, type, page, limit, sort, order) {
     const model = this.model('collect');
-
     const where = {
       userId,
       deleted: false,
@@ -65,7 +64,7 @@ module.exports = class CollectService extends Base {
    * @param {number} valueId 
    * @returns {Promise<Collect>}
    */
-  queryByTypeAndValue(userId, type, valueId) {
+  async queryByTypeAndValue(userId, type, valueId) {
     return this.model('collect')
       .where({
         userId,
@@ -81,7 +80,7 @@ module.exports = class CollectService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('collect')
       .where({ id })
       .update({
@@ -94,7 +93,7 @@ module.exports = class CollectService extends Base {
    * @param {Collect} collect 
    * @returns {Promise<number>} The ID inserted
    */
-  add(collect) {
+  async add(collect) {
     const now = new Date();
     return this.model('collect')
       .add(Object.assign(collect, {
@@ -113,7 +112,7 @@ module.exports = class CollectService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Collect[]}>}
    */
-  querySelective(userId, valueId, page, limit, sort, order) {
+  async querySelective(userId, valueId, page, limit, sort, order) {
     const model = this.model('collect');
     const where = {
       deleted: false,

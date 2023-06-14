@@ -10,7 +10,7 @@ module.exports = class IssueService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('issue')
       .where({ id })
       .update({
@@ -23,7 +23,7 @@ module.exports = class IssueService extends Base {
    * @param {Issue} issue 
    * @returns {Promise<number>} The ID inserted
    */
-  add(issue) {
+  async add(issue) {
     const now = new Date();
     return this.model('issue')
       .add(Object.assign(issue, {
@@ -41,7 +41,7 @@ module.exports = class IssueService extends Base {
    * @param {string?} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Issue[]}>}
    */
-  querySelective(question, page, limit, sort, order) {
+  async querySelective(question, page, limit, sort, order) {
     const model = this.model('issue');
     const where = {
       deleted: false,
@@ -68,7 +68,7 @@ module.exports = class IssueService extends Base {
    * @param {Issue} issue 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(issue) {
+  async updateById(issue) {
     const now = new Date();
     return this.model('issue')
       .where({
@@ -84,7 +84,7 @@ module.exports = class IssueService extends Base {
    * @param {number} id 
    * @returns {Promise<Issue|Record<string, never>>}
    */
-  findById(id) {
+  async findById(id) {
     return this.model('issue')
       .where({ id })
       .find();

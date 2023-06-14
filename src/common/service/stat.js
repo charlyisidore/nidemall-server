@@ -9,7 +9,7 @@ module.exports = class StatService extends Base {
    * 
    * @returns {Promise<{day: string, users: number}[]>}
    */
-  statUser() {
+  async statUser() {
     /*
       select
       substr(add_time,1,10) as day,
@@ -30,7 +30,7 @@ module.exports = class StatService extends Base {
    * 
    * @returns {Promise<{day: string, orders: number, customers: number, amount: number, pcr: number}[]>}
    */
-  statOrder() {
+  async statOrder() {
     /*
       select
       substr(add_time,1,10) as day,
@@ -61,7 +61,7 @@ module.exports = class StatService extends Base {
    * 
    * @returns {Promise<{day: string, orders: number, products: number, amount: number}[]>}
    */
-  statGoods() {
+  async statGoods() {
     /*
       select
       substr(add_time,1, 10) as day,

@@ -12,7 +12,7 @@ module.exports = class CommentService extends Base {
    * @param {number} limit 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Comment[]}>}
    */
-  queryGoodsByGid(id, page, limit) {
+  async queryGoodsByGid(id, page, limit) {
     return this.model('comment')
       .where({
         valueId: id,
@@ -33,7 +33,7 @@ module.exports = class CommentService extends Base {
    * @param {number} limit 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Comment[]}>}
    */
-  query(type, valueId, showType, page, limit) {
+  async query(type, valueId, showType, page, limit) {
     if (![0, 1].includes(showType)) {
       throw new Error('showType不支持');
     }
@@ -67,7 +67,7 @@ module.exports = class CommentService extends Base {
    * @param {number} showType 
    * @returns {Promise<number>} The total number
    */
-  count(type, valueId, showType) {
+  async count(type, valueId, showType) {
     if (![0, 1].includes(showType)) {
       throw new Error('showType不支持');
     }
@@ -94,7 +94,7 @@ module.exports = class CommentService extends Base {
    * @param {Comment} comment 
    * @returns {Promise<number>} The ID inserted
    */
-  save(comment) {
+  async save(comment) {
     const now = new Date();
     return this.model('comment')
       .add(Object.assign(comment, {
@@ -113,7 +113,7 @@ module.exports = class CommentService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Comment[]}>}
    */
-  querySelective(userId, valueId, page, limit, sort, order) {
+  async querySelective(userId, valueId, page, limit, sort, order) {
     const model = this.model('comment');
     const where = {
       deleted: false,
@@ -146,7 +146,7 @@ module.exports = class CommentService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('comment')
       .where({ id })
       .update({
@@ -159,7 +159,7 @@ module.exports = class CommentService extends Base {
    * @param {number} id 
    * @returns {Promise<Comment|Record<string, never>>}
    */
-  findById(id) {
+  async findById(id) {
     return this.model('comment')
       .where({ id })
       .find();
@@ -170,7 +170,7 @@ module.exports = class CommentService extends Base {
    * @param {Comment} comment 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(comment) {
+  async updateById(comment) {
     return this.model('comment')
       .where({
         id: comment.id,

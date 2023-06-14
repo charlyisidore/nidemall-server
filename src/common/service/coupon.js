@@ -25,7 +25,7 @@ module.exports = class CouponService extends Base {
    * @param {string?} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Coupon[]}>}
    */
-  queryList(page, limit, sort, order) {
+  async queryList(page, limit, sort, order) {
     const { TYPE, STATUS } = this.getConstants();
     const model = this.model('coupon')
       .field(this.constructor.FIELDS)
@@ -84,7 +84,7 @@ module.exports = class CouponService extends Base {
    * @param {number} id 
    * @returns {Promise<Coupon|Record<string, never>>} 
    */
-  findById(id) {
+  async findById(id) {
     return this.model('coupon')
       .where({ id })
       .find();
@@ -117,7 +117,7 @@ module.exports = class CouponService extends Base {
    * 
    * @returns {Promise<Coupon[]>} 
    */
-  queryRegister() {
+  async queryRegister() {
     const { TYPE, STATUS } = this.getConstants();
     return this.model('coupon')
       .where({
@@ -139,7 +139,7 @@ module.exports = class CouponService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Coupon[]}>}
    */
-  querySelective(name, type, status, page, limit, sort, order) {
+  async querySelective(name, type, status, page, limit, sort, order) {
     const model = this.model('coupon');
     const where = {
       deleted: false,
@@ -174,7 +174,7 @@ module.exports = class CouponService extends Base {
    * @param {Coupon} coupon 
    * @returns {Promise<number>} The ID inserted
    */
-  add(coupon) {
+  async add(coupon) {
     const now = new Date();
     return this.model('coupon')
       .add(Object.assign(coupon, {
@@ -188,7 +188,7 @@ module.exports = class CouponService extends Base {
    * @param {Coupon} coupon 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(coupon) {
+  async updateById(coupon) {
     const now = new Date();
     return this.model('coupon')
       .where({
@@ -204,7 +204,7 @@ module.exports = class CouponService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('coupon')
       .where({ id })
       .update({
@@ -231,7 +231,7 @@ module.exports = class CouponService extends Base {
    * 
    * @returns {Promise<Coupon[]>}
    */
-  queryExpired() {
+  async queryExpired() {
     const { STATUS, TIME_TYPE } = this.getConstants();
     const now = new Date();
     return this.model('coupon')

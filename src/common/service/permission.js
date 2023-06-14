@@ -74,7 +74,7 @@ module.exports = class PermissionService extends Base {
    * @param {number} roleId 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteByRoleId(roleId) {
+  async deleteByRoleId(roleId) {
     return this.model('permission')
       .where({
         roleId,
@@ -90,7 +90,7 @@ module.exports = class PermissionService extends Base {
    * @param {Permission} permission 
    * @returns {Promise<number>} The ID inserted
    */
-  add(permission) {
+  async add(permission) {
     const now = new Date();
     return this.model('permission')
       .add(Object.assign(permission, {

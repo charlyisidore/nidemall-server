@@ -34,7 +34,7 @@ module.exports = class RoleService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Role[]}>}
    */
-  querySelective(name, page, limit, sort, order) {
+  async querySelective(name, page, limit, sort, order) {
     const model = this.model('role');
     const where = {
       deleted: false,
@@ -61,7 +61,7 @@ module.exports = class RoleService extends Base {
    * @param {number} id 
    * @returns {Promise<Role|Record<string, never>>}
    */
-  findById(id) {
+  async findById(id) {
     return this.model('role')
       .where({ id })
       .find();
@@ -72,7 +72,7 @@ module.exports = class RoleService extends Base {
    * @param {Role} role 
    * @returns {Promise<number>} The ID inserted
    */
-  add(role) {
+  async add(role) {
     const now = new Date();
     return this.model('role')
       .add(Object.assign(role, {
@@ -86,7 +86,7 @@ module.exports = class RoleService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('role')
       .where({ id })
       .update({
@@ -99,7 +99,7 @@ module.exports = class RoleService extends Base {
    * @param {Role} role 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(role) {
+  async updateById(role) {
     const now = new Date();
     return this.model('role')
       .where({
@@ -128,7 +128,7 @@ module.exports = class RoleService extends Base {
    * 
    * @returns {Promise<Role[]>}
    */
-  queryAll() {
+  async queryAll() {
     return this.model('role')
       .where({
         deleted: false,

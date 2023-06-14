@@ -9,7 +9,7 @@ module.exports = class KeywordService extends Base {
    * 
    * @returns {Promise<Keyword|Record<string, never>>}
    */
-  queryDefault() {
+  async queryDefault() {
     return this.model('keyword')
       .where({
         isDefault: true,
@@ -22,7 +22,7 @@ module.exports = class KeywordService extends Base {
    * 
    * @returns {Promise<Keyword[]>}
    */
-  queryHots() {
+  async queryHots() {
     return this.model('keyword')
       .where({
         isHot: true,
@@ -38,7 +38,7 @@ module.exports = class KeywordService extends Base {
    * @param {number} limit 
    * @returns {Promise<Keyword[]>}
    */
-  queryByKeyword(keyword, page, limit) {
+  async queryByKeyword(keyword, page, limit) {
     return this.model('keyword')
       .field('keyword')
       .distinct('keyword')
@@ -60,7 +60,7 @@ module.exports = class KeywordService extends Base {
    * @param {string?} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Keyword[]}>}
    */
-  querySelective(keyword, url, page, limit, sort, order) {
+  async querySelective(keyword, url, page, limit, sort, order) {
     const model = this.model('keyword');
     const where = {
       deleted: false,
@@ -93,7 +93,7 @@ module.exports = class KeywordService extends Base {
    * @param {Keyword} keyword 
    * @returns {Promise<number>} The ID inserted
    */
-  add(keyword) {
+  async add(keyword) {
     const now = new Date();
     return this.model('keyword')
       .add(Object.assign(keyword, {
@@ -107,7 +107,7 @@ module.exports = class KeywordService extends Base {
    * @param {number} id 
    * @returns {Promise<Keyword|Record<string, never>>}
    */
-  findById(id) {
+  async findById(id) {
     return this.model('keyword')
       .where({ id })
       .find();
@@ -118,7 +118,7 @@ module.exports = class KeywordService extends Base {
    * @param {Keyword} keyword 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(keyword) {
+  async updateById(keyword) {
     const now = new Date();
     return this.model('keyword')
       .where({
@@ -134,7 +134,7 @@ module.exports = class KeywordService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('keyword')
       .where({ id })
       .update({

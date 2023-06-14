@@ -21,7 +21,7 @@ module.exports = class AdminService extends Base {
    * @param {number} id 
    * @returns {Promise<Admin|Record<string, never>>} 
    */
-  findAdminById(id) {
+  async findAdminById(id) {
     return this.model('admin')
       .where({ id })
       .find();
@@ -32,7 +32,7 @@ module.exports = class AdminService extends Base {
    * @param {string} username 
    * @returns {Promise<Admin[]>} 
    */
-  findAdminByUsername(username) {
+  async findAdminByUsername(username) {
     return this.model('admin')
       .where({
         username,
@@ -50,7 +50,7 @@ module.exports = class AdminService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Admin[]}>}
    */
-  querySelective(username, page, limit, sort, order) {
+  async querySelective(username, page, limit, sort, order) {
     const model = this.model('admin');
     const where = {
       deleted: false,
@@ -77,7 +77,7 @@ module.exports = class AdminService extends Base {
    * @param {Admin} admin 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(admin) {
+  async updateById(admin) {
     const now = new Date();
     return this.model('admin')
       .where({
@@ -93,7 +93,7 @@ module.exports = class AdminService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('admin')
       .where({ id })
       .update({
@@ -106,7 +106,7 @@ module.exports = class AdminService extends Base {
    * @param {Admin} admin 
    * @returns {Promise<number>} The ID inserted
    */
-  add(admin) {
+  async add(admin) {
     const now = new Date();
     return this.model('admin')
       .add(Object.assign(admin, {
@@ -120,7 +120,7 @@ module.exports = class AdminService extends Base {
    * @param {number} id 
    * @returns {Promise<Admin|Record<string, never>>}
    */
-  findById(id) {
+  async findById(id) {
     return this.model('admin')
       .field(this.constructor.FIELDS)
       .where({ id })
@@ -131,7 +131,7 @@ module.exports = class AdminService extends Base {
    * 
    * @returns {Promise<Admin[]>}
    */
-  all() {
+  async all() {
     return this.model('admin')
       .where({
         deleted: false,
@@ -187,7 +187,7 @@ module.exports = class AdminService extends Base {
    * @param {string} password 
    * @param {string} hash 
    */
-  comparePassword(password, hash) {
+  async comparePassword(password, hash) {
     return bcrypt.compare(password, hash);
   }
 

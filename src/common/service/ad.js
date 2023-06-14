@@ -9,7 +9,7 @@ module.exports = class AdService extends Base {
    * 
    * @returns {Promise<Ad[]>} 
    */
-  queryIndex() {
+  async queryIndex() {
     return this.model('ad')
       .where({
         position: 1,
@@ -29,7 +29,7 @@ module.exports = class AdService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Ad[]}>}
    */
-  querySelective(name, content, page, limit, sort, order) {
+  async querySelective(name, content, page, limit, sort, order) {
     const model = this.model('ad');
     const where = {
       deleted: false,
@@ -62,7 +62,7 @@ module.exports = class AdService extends Base {
    * @param {Ad} ad 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(ad) {
+  async updateById(ad) {
     const now = new Date();
     return this.model('ad')
       .where({
@@ -78,7 +78,7 @@ module.exports = class AdService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('ad')
       .where({ id })
       .update({
@@ -91,7 +91,7 @@ module.exports = class AdService extends Base {
    * @param {Ad} ad 
    * @returns {Promise<number>} The ID inserted
    */
-  add(ad) {
+  async add(ad) {
     const now = new Date();
     return this.model('ad')
       .add(Object.assign(ad, {
@@ -105,7 +105,7 @@ module.exports = class AdService extends Base {
    * @param {number} id 
    * @returns {Promise<Ad|Record<string, never>>}
    */
-  findById(id) {
+  async findById(id) {
     return this.model('ad')
       .where({ id })
       .find();

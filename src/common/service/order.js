@@ -10,7 +10,7 @@ module.exports = class OrderService extends Base {
    * @param {Order} order 
    * @returns {Promise<number>} The ID inserted
    */
-  add(order) {
+  async add(order) {
     const now = new Date();
     return this.model('order')
       .add(Object.assign(order, {
@@ -25,7 +25,7 @@ module.exports = class OrderService extends Base {
    * @param {number?} userId 
    * @returns {Promise<Order|Record<string, never>>}
    */
-  findById(id, userId) {
+  async findById(id, userId) {
     const where = { id };
 
     if (!think.isNullOrUndefined(userId)) {
@@ -46,7 +46,7 @@ module.exports = class OrderService extends Base {
    * @param {number} userId 
    * @returns {Promise<number>}
    */
-  countByOrderSn(orderSn, userId) {
+  async countByOrderSn(orderSn, userId) {
     return this.model('order')
       .where({
         orderSn,
@@ -86,7 +86,7 @@ module.exports = class OrderService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Order[]}>}
    */
-  queryByOrderStatus(userId, orderStatus, page, limit, sort, order) {
+  async queryByOrderStatus(userId, orderStatus, page, limit, sort, order) {
     const model = this.model('order');
     const where = {
       userId,
@@ -120,7 +120,7 @@ module.exports = class OrderService extends Base {
    * @param {Order} order 
    * @returns {Promise<number>}
    */
-  updateWithOptimisticLocker(order) {
+  async updateWithOptimisticLocker(order) {
     const now = new Date();
     const preUpdateTime = order.updateTime;
     return this.model('order')
@@ -138,7 +138,7 @@ module.exports = class OrderService extends Base {
    * @param {Order} order 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateSelective(order) {
+  async updateSelective(order) {
     return this.model('order')
       .where({
         id: order.id,
@@ -151,7 +151,7 @@ module.exports = class OrderService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('order')
       .where({ id })
       .update({
@@ -163,7 +163,7 @@ module.exports = class OrderService extends Base {
    * 
    * @returns {Promise<number>} The total number
    */
-  count() {
+  async count() {
     return this.model('order')
       .where({
         deleted: false,
@@ -176,7 +176,7 @@ module.exports = class OrderService extends Base {
    * @param {number} days 
    * @returns {Promise<Order[]>}
    */
-  queryUnconfirm(days) {
+  async queryUnconfirm(days) {
     const { STATUS } = this.getConstants();
     const now = new Date();
     const expired = (new Date(now)).setDate(now.getDate() - days);
@@ -194,7 +194,7 @@ module.exports = class OrderService extends Base {
    * @param {string} orderSn 
    * @returns {Promise<Order|Record<string, never>>}
    */
-  findBySn(orderSn) {
+  async findBySn(orderSn) {
     return this.model('order')
       .where({
         orderSn,
@@ -255,7 +255,7 @@ module.exports = class OrderService extends Base {
    * @param {number} days 
    * @returns {Promise<Order[]>}
    */
-  queryComment(days) {
+  async queryComment(days) {
     const now = new Date();
     const expired = (new Date(now)).setDate(now.getDate() - days);
     return this.model('order')
@@ -273,7 +273,7 @@ module.exports = class OrderService extends Base {
    * @param {number} aftersaleStatus 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateAftersaleStatus(id, aftersaleStatus) {
+  async updateAftersaleStatus(id, aftersaleStatus) {
     const now = new Date();
     return this.model('order')
       .where({ id })

@@ -22,7 +22,7 @@ module.exports = class GoodsService extends Base {
    * @param {number} limit 
    * @returns {Promise<Goods[]>} 
    */
-  queryByHot(page, limit) {
+  async queryByHot(page, limit) {
     return this.model('goods')
       .field(this.constructor.FIELDS)
       .where({
@@ -41,7 +41,7 @@ module.exports = class GoodsService extends Base {
    * @param {number} limit 
    * @returns {Promise<Goods[]>} 
    */
-  queryByNew(page, limit) {
+  async queryByNew(page, limit) {
     return this.model('goods')
       .field(this.constructor.FIELDS)
       .where({
@@ -61,7 +61,7 @@ module.exports = class GoodsService extends Base {
    * @param {number} limit 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Goods[]}>}
    */
-  queryByCategory(catIdOrList, page, limit) {
+  async queryByCategory(catIdOrList, page, limit) {
     return this.model('goods')
       .field(this.constructor.FIELDS)
       .where({
@@ -89,7 +89,7 @@ module.exports = class GoodsService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Goods[]}>}
    */
-  querySelectiveCategory(categoryId, brandId, keywords, isHot, isNew, page, limit, sort, order) {
+  async querySelectiveCategory(categoryId, brandId, keywords, isHot, isNew, page, limit, sort, order) {
     const model = this.model('goods')
       .field(this.constructor.FIELDS);
 
@@ -147,7 +147,7 @@ module.exports = class GoodsService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Goods[]}>}
    */
-  querySelectiveGoods(id, goodsSn, name, page, limit, sort, order) {
+  async querySelectiveGoods(id, goodsSn, name, page, limit, sort, order) {
     const model = this.model('goods');
     const where = {
       deleted: false,
@@ -184,7 +184,7 @@ module.exports = class GoodsService extends Base {
    * @param {number} id 
    * @returns {Promise<Goods|Record<string, never>>} 
    */
-  findById(id) {
+  async findById(id) {
     return this.model('goods')
       .where({
         id,
@@ -198,7 +198,7 @@ module.exports = class GoodsService extends Base {
    * @param {number} id 
    * @returns {Promise<Goods|Record<string, never>>} 
    */
-  findByIdVo(id) {
+  async findByIdVo(id) {
     return this.model('goods')
       .field(this.constructor.FIELDS)
       .where({
@@ -213,7 +213,7 @@ module.exports = class GoodsService extends Base {
    * 
    * @returns {Promise<number>} The total number
    */
-  queryOnSale() {
+  async queryOnSale() {
     return this.model('goods')
       .where({
         isOnSale: true,
@@ -227,7 +227,7 @@ module.exports = class GoodsService extends Base {
    * @param {Goods} goods 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(goods) {
+  async updateById(goods) {
     const now = new Date();
     return this.model('goods')
       .where({
@@ -243,7 +243,7 @@ module.exports = class GoodsService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('goods')
       .where({ id })
       .update({
@@ -256,7 +256,7 @@ module.exports = class GoodsService extends Base {
    * @param {Goods} goods 
    * @returns {Promise<number>} The ID inserted
    */
-  add(goods) {
+  async add(goods) {
     const now = new Date();
     return this.model('goods')
       .add(Object.assign(goods, {
@@ -269,7 +269,7 @@ module.exports = class GoodsService extends Base {
    * 
    * @returns {Promise<number>} The total number
    */
-  count() {
+  async count() {
     return this.model('goods')
       .where({
         deleted: false,
@@ -342,7 +342,7 @@ module.exports = class GoodsService extends Base {
    * @param {number[]} ids 
    * @returns {Promise<Goods[]>}
    */
-  queryByIds(ids) {
+  async queryByIds(ids) {
     return this.model('goods')
       .field(this.constructor.FIELDS)
       .where({

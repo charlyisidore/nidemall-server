@@ -21,7 +21,7 @@ module.exports = class BrandService extends Base {
    * @param {string?} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Brand[]}>}
    */
-  query(page, limit, sort, order) {
+  async query(page, limit, sort, order) {
     const model = this.model('brand')
       .field(this.constructor.FIELDS)
       .where({
@@ -41,7 +41,7 @@ module.exports = class BrandService extends Base {
    * @param {number} id 
    * @returns {Promise<Brand|Record<string, never>>} 
    */
-  findById(id) {
+  async findById(id) {
     return this.model('brand')
       .where({ id })
       .find();
@@ -57,7 +57,7 @@ module.exports = class BrandService extends Base {
    * @param {string} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Brand[]}>}
    */
-  querySelective(id, name, page, limit, sort, order) {
+  async querySelective(id, name, page, limit, sort, order) {
     const model = this.model('brand');
     const where = {
       deleted: false,
@@ -88,7 +88,7 @@ module.exports = class BrandService extends Base {
    * @param {Brand} brand 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(brand) {
+  async updateById(brand) {
     const now = new Date();
     return this.model('brand')
       .where({
@@ -104,7 +104,7 @@ module.exports = class BrandService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('brand')
       .where({ id })
       .update({
@@ -117,7 +117,7 @@ module.exports = class BrandService extends Base {
    * @param {Brand} brand 
    * @returns {Promise<number>} The ID inserted
    */
-  add(brand) {
+  async add(brand) {
     const now = new Date();
     return this.model('brand')
       .add(Object.assign(brand, {
@@ -130,7 +130,7 @@ module.exports = class BrandService extends Base {
    * 
    * @returns {Promise<Brand[]>}
    */
-  all() {
+  async all() {
     return this.model('brand')
       .where({
         deleted: false,

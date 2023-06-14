@@ -11,7 +11,7 @@ module.exports = class StorageService extends Base {
    * @param {string} key 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteByKey(key) {
+  async deleteByKey(key) {
     return this.model('storage')
       .where({ key })
       .update({
@@ -24,7 +24,7 @@ module.exports = class StorageService extends Base {
    * @param {Storage} storage 
    * @returns 
    */
-  add(storage) {
+  async add(storage) {
     const now = new Date();
     return this.model('storage')
       .add(Object.assign(storage, {
@@ -38,7 +38,7 @@ module.exports = class StorageService extends Base {
    * @param {string} key 
    * @returns {Promise<Storage|Record<string, never>}
    */
-  findByKey(key) {
+  async findByKey(key) {
     return this.model('storage')
       .where({
         key,
@@ -52,7 +52,7 @@ module.exports = class StorageService extends Base {
    * @param {Storage} storage 
    * @returns {Promise<number>} The number of rows affected
    */
-  update(storage) {
+  async update(storage) {
     const now = new Date();
     return this.model('storage')
       .where({
@@ -68,7 +68,7 @@ module.exports = class StorageService extends Base {
    * @param {number} id 
    * @returns {Promise<Storage|Record<string, never>>}
    */
-  findById(id) {
+  async findById(id) {
     return this.model('storage')
       .where({ id })
       .find();
@@ -84,7 +84,7 @@ module.exports = class StorageService extends Base {
    * @param {string?} order 
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Storage[]}>}
    */
-  querySelective(key, name, page, limit, sort, order) {
+  async querySelective(key, name, page, limit, sort, order) {
     const model = this.model('storage');
     const where = {
       deleted: false,
@@ -148,7 +148,7 @@ module.exports = class StorageService extends Base {
    * 
    * @param {string} key 
    */
-  delete(key) {
+  async delete(key) {
     /** @type {LocalStorageService} */
     const localStorageService = think.service('local_storage');
 

@@ -12,7 +12,7 @@ module.exports = class CartService extends Base {
    * @param {number} userId 
    * @returns {Promise<Cart|Record<string, never>>} 
    */
-  queryExist(goodsId, productId, userId) {
+  async queryExist(goodsId, productId, userId) {
     return this.model('cart')
       .where({
         goodsId,
@@ -28,7 +28,7 @@ module.exports = class CartService extends Base {
    * @param {Cart} cart 
    * @returns {Promise<number>} The ID inserted
    */
-  add(cart) {
+  async add(cart) {
     const now = new Date();
     return this.model('cart')
       .add(Object.assign(cart, {
@@ -42,7 +42,7 @@ module.exports = class CartService extends Base {
    * @param {Cart} cart 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateById(cart) {
+  async updateById(cart) {
     const now = new Date();
     return this.model('cart')
       .where({ id: cart.id })
@@ -56,7 +56,7 @@ module.exports = class CartService extends Base {
    * @param {number} userId 
    * @returns {Promise<Cart[]>} 
    */
-  queryByUid(userId) {
+  async queryByUid(userId) {
     return this.model('cart')
       .where({
         userId,
@@ -70,7 +70,7 @@ module.exports = class CartService extends Base {
    * @param {number} userId 
    * @returns {Promise<Cart[]>} 
    */
-  queryByUidAndChecked(userId) {
+  async queryByUidAndChecked(userId) {
     return this.model('cart')
       .where({
         userId,
@@ -86,7 +86,7 @@ module.exports = class CartService extends Base {
    * @param {number} userId 
    * @returns {Promise<number>} The number of rows affected
    */
-  delete(productIdList, userId) {
+  async delete(productIdList, userId) {
     return this.model('cart')
       .where({
         userId,
@@ -103,7 +103,7 @@ module.exports = class CartService extends Base {
    * @param {number?} userId 
    * @returns {Promise<Cart|Record<string, never>>} 
    */
-  findById(id, userId) {
+  async findById(id, userId) {
     const where = { id };
 
     if (!think.isNullOrUndefined(userId)) {
@@ -124,7 +124,7 @@ module.exports = class CartService extends Base {
    * @param {boolean} checked 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateCheck(userId, idsList, checked) {
+  async updateCheck(userId, idsList, checked) {
     const now = new Date();
     return this.model('cart')
       .where({
@@ -143,7 +143,7 @@ module.exports = class CartService extends Base {
    * @param {number} userId 
    * @returns {Promise<number>} The number of rows affected
    */
-  clearGoods(userId) {
+  async clearGoods(userId) {
     return this.model('cart')
       .where({
         userId,
@@ -159,7 +159,7 @@ module.exports = class CartService extends Base {
    * @param {number} id 
    * @returns {Promise<number>} The number of rows affected
    */
-  deleteById(id) {
+  async deleteById(id) {
     return this.model('cart')
       .where({
         id,
@@ -178,7 +178,7 @@ module.exports = class CartService extends Base {
    * @param {string} picUrl 
    * @returns {Promise<number>} The number of rows affected
    */
-  updateProduct(productId, goodsSn, goodsName, price, picUrl) {
+  async updateProduct(productId, goodsSn, goodsName, price, picUrl) {
     return this.model('cart')
       .where({
         productId,
