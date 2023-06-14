@@ -240,6 +240,19 @@ module.exports = class GoodsService extends Base {
 
   /**
    * 
+   * @param {number} id 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  deleteById(id) {
+    return this.model('goods')
+      .where({ id })
+      .update({
+        deleted: true,
+      });
+  }
+
+  /**
+   * 
    * @param {Goods} goods 
    * @returns {Promise<number>} The ID inserted
    */
