@@ -8,13 +8,26 @@ module.exports = class StorageService extends think.Service {
 
   /**
    * 
-   * @param {Storage} storageInfo 
+   * @param {string} key 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  deleteByKey(key) {
+    return this.model('storage')
+      .where({ key })
+      .update({
+        deleted: true,
+      });
+  }
+
+  /**
+   * 
+   * @param {Storage} storage 
    * @returns 
    */
-  add(storageInfo) {
+  add(storage) {
     const now = new Date();
     return this.model('storage')
-      .add(Object.assign(storageInfo, {
+      .add(Object.assign(storage, {
         addTime: now,
         updateTime: now,
       }));
@@ -31,6 +44,33 @@ module.exports = class StorageService extends think.Service {
         key,
         deleted: false,
       })
+      .find();
+  }
+
+  /**
+   * 
+   * @param {Storage} storage 
+   * @returns {Promise<number>} The number of rows affected
+   */
+  update(storage) {
+    const now = new Date();
+    return this.model('storage')
+      .where({
+        id: storage.id,
+      })
+      .update(Object.assign(storage, {
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * 
+   * @param {number} id 
+   * @returns {Promise<Storage|Record<string, never>>}
+   */
+  findById(id) {
+    return this.model('storage')
+      .where({ id })
       .find();
   }
 
@@ -81,7 +121,7 @@ module.exports = class StorageService extends think.Service {
     const key = await this.generateKey(file.name);
     const url = await this.storeLocal(file, key);
 
-    const storageInfo = {
+    const storage = {
       name: file.name,
       type: file.type,
       size: file.size,
@@ -89,20 +129,23 @@ module.exports = class StorageService extends think.Service {
       url,
     };
 
-    storageInfo.id = await this.add(storageInfo);
+    storage.id = await this.add(storage);
 
-    return storageInfo;
+    return storage;
+  }
+
+  /**
+   * 
+   * @param {string} key 
+   */
+  delete(key) {
+    return this.deleteLocal(key);
   }
 
   storeLocal(file, key) {
     return new Promise((resolve, reject) => {
       const config = think.config('storage');
-
-      let rootPath = config.local.path;
-
-      if (!path.isAbsolute(rootPath)) {
-        rootPath = path.join(think.ROOT_PATH, config.local.path);
-      }
+      const rootPath = this.getLocalRootPath();
 
       if (!think.isExist(rootPath)) {
         think.mkdir(rootPath);
@@ -121,18 +164,44 @@ module.exports = class StorageService extends think.Service {
     });
   }
 
+  deleteLocal(key) {
+    return new Promise((resolve, reject) => {
+      const rootPath = this.getLocalRootPath();
+
+      fs.unlink(
+        path.join(rootPath, key),
+        (err) => {
+          if (err) {
+            reject(err);
+          }
+          resolve();
+        }
+      )
+    });
+  }
+
   async generateKey(filename) {
     const ext = path.extname(filename);
 
     let key = null;
-    let storageInfo = null;
+    let storage = null;
 
     do {
       key = `${this.getRandomString(20)}${ext}`;
-      storageInfo = await this.findByKey(key);
-    } while (!think.isEmpty(storageInfo));
+      storage = await this.findByKey(key);
+    } while (!think.isEmpty(storage));
 
     return key;
+  }
+
+  getLocalRootPath() {
+    const config = think.config('storage');
+
+    let rootPath = config.local.path;
+    if (!path.isAbsolute(rootPath)) {
+      rootPath = path.join(think.ROOT_PATH, config.local.path);
+    }
+    return rootPath;
   }
 
   getRandomString(num) {

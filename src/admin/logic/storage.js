@@ -32,17 +32,45 @@ module.exports = class extends think.Logic {
 
   createAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      file: {
+        method: 'FILE',
+        required: true,
+      },
+    };
   }
 
   readAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      id: {
+        int: true,
+        required: true,
+      },
+    };
   }
 
   updateAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      name: {
+        string: true,
+        required: true,
+      },
+    };
   }
 
   deleteAction() {
     this.allowMethods = 'POST';
+
+    this.rules = {
+      key: {
+        string: true,
+        required: true,
+      },
+    };
   }
 };

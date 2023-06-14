@@ -24,18 +24,57 @@ module.exports = class AdminStorageController extends Base {
   }
 
   async createAction() {
-    return this.success('todo');
+    /** @type {File} */
+    const file = this.file('file');
+
+    /** @type {StorageService} */
+    const storageService = this.service('storage');
+
+    const storage = await storageService.store(file);
+
+    return this.success(storage);
   }
 
   async readAction() {
-    return this.success('todo');
+    /** @type {number} */
+    const id = this.file('id');
+    /** @type {StorageService} */
+    const storageService = this.service('storage');
+
+    const storage = await storageService.findById(id);
+
+    if (think.isEmpty(storage)) {
+      return this.badArgumentValue();
+    }
+
+    return this.success(storage);
   }
 
   async updateAction() {
-    return this.success('todo');
+    const storage = this.post([
+      'id',
+      'name',
+    ].join(','));
+
+    /** @type {StorageService} */
+    const storageService = this.service('storage');
+
+    if (!await storageService.update(storage)) {
+      return this.updatedDataFailed();
+    }
+
+    return this.success(storage);
   }
 
   async deleteAction() {
-    return this.success('todo');
+    /** @type {string} */
+    const key = this.post('key');
+    /** @type {StorageService} */
+    const storageService = this.service('storage');
+
+    await storageService.deleteByKey(key);
+    await storageService.delete(key);
+
+    return this.success();
   }
 };
