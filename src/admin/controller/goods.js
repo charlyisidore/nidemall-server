@@ -273,7 +273,7 @@ module.exports = class AdminGoodsController extends Base {
 
   async detailAction() {
     /** @type {number} */
-    const id = this.post('id');
+    const id = this.get('id');
 
     /** @type {CategoryService} */
     const categoryService = this.service('category');
