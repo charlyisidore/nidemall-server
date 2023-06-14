@@ -111,90 +111,90 @@ module.exports = class AdminOrderController extends Base {
     ]);
 
     return await dbService.transaction(async () => {
-    const order = await orderService.findById(orderId);
+      const order = await orderService.findById(orderId);
 
-    if (think.isEmpty(order)) {
-      return this.badArgument();
-    }
+      if (think.isEmpty(order)) {
+        return this.badArgument();
+      }
 
-    if (order.actualPrice != refundMoney) {
-      return this.badArgumentValue();
-    }
+      if (order.actualPrice != refundMoney) {
+        return this.badArgumentValue();
+      }
 
-    if (ORDER.STATUS.REFUND != order.orderStatus) {
-      return this.fail(ORDER.ADMIN_RESPONSE.CONFIRM_NOT_ALLOWED, '订单不能确认收货');
-    }
+      if (ORDER.STATUS.REFUND != order.orderStatus) {
+        return this.fail(ORDER.ADMIN_RESPONSE.CONFIRM_NOT_ALLOWED, '订单不能确认收货');
+      }
 
-    // TODO
-    // let wxPayRefundResult;
-    // try {
-    //   const totalFee = Math.floor(order.actualPrice * 100.);
-    //   wxPayRefundResult = await weixinService.refund({
-    //     outTradeNo: order.orderSn,
-    //     outRefundNo: `refund_${order.orderSn}`,
-    //     totalFee,
-    //     refundFee: totalFee,
-    //   });
-    // } catch (e) {
-    //   switch (true) {
-    //     case e instanceof WxPayError:
-    //       think.logger.error(e.message, e);
-    //       return this.fail(ORDER.ADMIN_RESPONSE.REFUND_FAILED, '订单退款失败');
-    //   }
-    // }
-    // if ('SUCCESS' != wxPayRefundResult.returnCode) {
-    //   think.logger.warn(`refund fail: ${wxPayRefundResult.returnMsg}`);
-    //   return this.fail(ORDER.ADMIN_RESPONSE.REFUND_FAILED, '订单退款失败');
-    // }
-    // if ('SUCCESS' != wxPayRefundResult.resultCode) {
-    //   think.logger.warn(`refund fail: ${wxPayRefundResult.returnMsg}`);
-    //   return this.fail(ORDER.ADMIN_RESPONSE.REFUND_FAILED, '订单退款失败');
-    // }
-    return this.fail(-1, 'not implemented');
+      // TODO
+      // let wxPayRefundResult;
+      // try {
+      //   const totalFee = Math.floor(order.actualPrice * 100.);
+      //   wxPayRefundResult = await weixinService.refund({
+      //     outTradeNo: order.orderSn,
+      //     outRefundNo: `refund_${order.orderSn}`,
+      //     totalFee,
+      //     refundFee: totalFee,
+      //   });
+      // } catch (e) {
+      //   switch (true) {
+      //     case e instanceof WxPayError:
+      //       think.logger.error(e.message, e);
+      //       return this.fail(ORDER.ADMIN_RESPONSE.REFUND_FAILED, '订单退款失败');
+      //   }
+      // }
+      // if ('SUCCESS' != wxPayRefundResult.returnCode) {
+      //   think.logger.warn(`refund fail: ${wxPayRefundResult.returnMsg}`);
+      //   return this.fail(ORDER.ADMIN_RESPONSE.REFUND_FAILED, '订单退款失败');
+      // }
+      // if ('SUCCESS' != wxPayRefundResult.resultCode) {
+      //   think.logger.warn(`refund fail: ${wxPayRefundResult.returnMsg}`);
+      //   return this.fail(ORDER.ADMIN_RESPONSE.REFUND_FAILED, '订单退款失败');
+      // }
+      return this.fail(-1, 'not implemented');
 
-    const now = new Date();
+      const now = new Date();
 
-    Object.assign(order, {
-      orderStatus: ORDER.STATUS.REFUND_CONFIRM,
-      endTime: now,
-      refundAmount: order.actualPrice,
-      refundType: '微信退款接口',
-      refundContent: wxPayRefundResult.refundId,
-      refundTime: now,
-    });
+      Object.assign(order, {
+        orderStatus: ORDER.STATUS.REFUND_CONFIRM,
+        endTime: now,
+        refundAmount: order.actualPrice,
+        refundType: '微信退款接口',
+        refundContent: wxPayRefundResult.refundId,
+        refundTime: now,
+      });
 
-    if (!await orderService.updateWithOptimisticLocker(order)) {
-      throw new Error('更新数据已失效');
-    }
+      if (!await orderService.updateWithOptimisticLocker(order)) {
+        throw new Error('更新数据已失效');
+      }
 
-    const orderGoodsList = await orderGoodsService.queryByOid(orderId);
+      const orderGoodsList = await orderGoodsService.queryByOid(orderId);
 
-    await dbService.promiseAll(
-      orderGoodsList.map(async (orderGoods) => {
-        if (!await goodsProductService.addStock(orderGoods.productId, orderGoods.number)) {
-          throw new Error('商品货品库存增加失败');
-        }
-      })
-    );
+      await dbService.promiseAll(
+        orderGoodsList.map(async (orderGoods) => {
+          if (!await goodsProductService.addStock(orderGoods.productId, orderGoods.number)) {
+            throw new Error('商品货品库存增加失败');
+          }
+        })
+      );
 
-    const couponUsers = await couponUserService.queryByOid(orderId);
+      const couponUsers = await couponUserService.queryByOid(orderId);
 
-    await dbService.promiseAll(
-      couponUsers.map(async (couponUser) => {
-        Object.assign(couponUser, {
-          status: COUPON_USER.STATUS.USABLE,
-          updateTime: now,
-        });
+      await dbService.promiseAll(
+        couponUsers.map(async (couponUser) => {
+          Object.assign(couponUser, {
+            status: COUPON_USER.STATUS.USABLE,
+            updateTime: now,
+          });
 
-        await couponUserService.update(couponUser);
-      })
-    );
+          await couponUserService.update(couponUser);
+        })
+      );
 
-    await notifyService.notifySmsTemplate(order.mobile, NOTIFY.TYPE.REFUND, order.orderSn.substring(8, 14));
+      await notifyService.notifySmsTemplate(order.mobile, NOTIFY.TYPE.REFUND, order.orderSn.substring(8, 14));
 
-    await logService.logOrderSucceed('退款', `订单编号 ${order.orderSn}`, this.ctx);
+      await logService.logOrderSucceed('退款', `订单编号 ${order.orderSn}`, this.ctx);
 
-    return this.success();
+      return this.success();
     });
   }
 
