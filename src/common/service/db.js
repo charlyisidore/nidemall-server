@@ -79,7 +79,6 @@ module.exports = class DbService extends Base {
    * Start a transaction.
    */
   async _startTrans() {
-    // 
     const model = this.model(this.constructor.MODEL_NAME);
     await model.startTrans();
     this._stack.push(model);
