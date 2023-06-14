@@ -554,8 +554,22 @@ module.exports = class WxOrderController extends Base {
   }
 
   async paynotifyAction() {
+    console.log(`============ PAY NOTIFY 1 ============`);
+    console.log(this.post());
+    // TODO
     const xml = this.post('xml');
+
+    console.log(`============ PAY NOTIFY 2 ============`);
     console.log(xml);
+
+    /** @type {WeixinService} */
+    const weixinService = this.service('weixin');
+
+    // const result = await weixinService.parsePayNotify(xml);
+
+    // console.log(result);
+
+    console.log(`============ PAY NOTIFY 3 ============`);
     return this.success('todo');
   }
 
