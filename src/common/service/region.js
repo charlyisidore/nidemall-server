@@ -1,4 +1,6 @@
-module.exports = class RegionService extends think.Service {
+const Base = require('./base.js');
+
+module.exports = class RegionService extends Base {
   constructor() {
     super();
   }

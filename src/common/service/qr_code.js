@@ -1,4 +1,6 @@
-module.exports = class QrCodeService extends think.Service {
+const Base = require('./base.js');
+
+module.exports = class QrCodeService extends Base {
   constructor() {
     super();
   }

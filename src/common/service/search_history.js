@@ -1,4 +1,6 @@
-module.exports = class SearchHistoryService extends think.Service {
+const Base = require('./base.js');
+
+module.exports = class SearchHistoryService extends Base {
   constructor() {
     super();
   }

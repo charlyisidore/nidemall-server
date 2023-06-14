@@ -1,4 +1,6 @@
-module.exports = class SystemService extends think.Service {
+const Base = require('./base.js');
+
+module.exports = class SystemService extends Base {
   prefix = '';
 
   config = {

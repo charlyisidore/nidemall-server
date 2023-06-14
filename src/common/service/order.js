@@ -1,4 +1,6 @@
-module.exports = class OrderService extends think.Service {
+const Base = require('./base.js');
+
+module.exports = class OrderService extends Base {
   constructor() {
     super();
   }

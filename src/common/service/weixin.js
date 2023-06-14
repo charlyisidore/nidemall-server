@@ -1,7 +1,8 @@
+const Base = require('./base.js');
 const axios = require('axios');
 const { XMLBuilder, XMLParser } = require('fast-xml-parser');
 
-module.exports = class WeixinService extends think.Service {
+module.exports = class WeixinService extends Base {
   constructor() {
     super();
   }

@@ -1,4 +1,6 @@
-module.exports = class TopicService extends think.Service {
+const Base = require('./base.js');
+
+module.exports = class TopicService extends Base {
   static FIELDS = [
     'id',
     'title',

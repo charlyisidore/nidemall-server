@@ -1,4 +1,6 @@
-module.exports = class PermissionService extends think.Service {
+const Base = require('./base.js');
+
+module.exports = class PermissionService extends Base {
   constructor() {
     super();
   }

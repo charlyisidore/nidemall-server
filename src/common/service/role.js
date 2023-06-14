@@ -1,4 +1,6 @@
-module.exports = class RoleService extends think.Service {
+const Base = require('./base.js');
+
+module.exports = class RoleService extends Base {
   constructor() {
     super();
   }

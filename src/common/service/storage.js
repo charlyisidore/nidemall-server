@@ -1,6 +1,7 @@
+const Base = require('./base.js');
 const path = require('node:path');
 
-module.exports = class StorageService extends think.Service {
+module.exports = class StorageService extends Base {
   constructor() {
     super();
   }

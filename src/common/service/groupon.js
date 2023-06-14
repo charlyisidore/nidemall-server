@@ -1,4 +1,6 @@
-module.exports = class GrouponService extends think.Service {
+const Base = require('./base.js');
+
+module.exports = class GrouponService extends Base {
   constructor() {
     super();
   }
