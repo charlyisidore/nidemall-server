@@ -1,9 +1,10 @@
+const Base = require('./base.js');
 const assert = require('node:assert');
 const bcrypt = require('bcrypt');
 const AccountError = require('../error/account.js');
 const UnknownAccountError = require('../error/unknown_account.js');
 
-module.exports = class AdminService extends think.Service {
+module.exports = class AdminService extends Base {
   static FIELDS = [
     'id',
     'username',

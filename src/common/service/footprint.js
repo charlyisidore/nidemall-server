@@ -1,4 +1,6 @@
-module.exports = class FootprintService extends think.Service {
+const Base = require('./base.js');
+
+module.exports = class FootprintService extends Base {
   constructor() {
     super();
   }

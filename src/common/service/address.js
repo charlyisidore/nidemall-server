@@ -1,4 +1,6 @@
-module.exports = class AddressService extends think.Service {
+const Base = require('./base.js');
+
+module.exports = class AddressService extends Base {
   constructor() {
     super();
   }

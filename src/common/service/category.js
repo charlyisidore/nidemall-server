@@ -1,4 +1,6 @@
-module.exports = class CategoryService extends think.Service {
+const Base = require('./base.js');
+
+module.exports = class CategoryService extends Base {
   static CHANNEL_FIELDS = [
     'id',
     'name',

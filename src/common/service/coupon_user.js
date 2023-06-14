@@ -1,4 +1,6 @@
-module.exports = class CouponUserService extends think.Service {
+const Base = require('./base.js');
+
+module.exports = class CouponUserService extends Base {
   constructor() {
     super();
   }

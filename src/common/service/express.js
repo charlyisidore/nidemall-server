@@ -1,3 +1,4 @@
+const Base = require('./base.js');
 const axios = require('axios');
 
 /**
@@ -14,7 +15,7 @@ const axios = require('axios');
  * http://www.kdniao.com/api-track
  */
 
-module.exports = class ExpressService extends think.Service {
+module.exports = class ExpressService extends Base {
   constructor() {
     super();
   }

@@ -1,4 +1,6 @@
-module.exports = class CouponService extends think.Service {
+const Base = require('./base.js');
+
+module.exports = class CouponService extends Base {
   static FIELDS = [
     'id',
     'name',
