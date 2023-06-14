@@ -71,6 +71,8 @@ module.exports = class AdminGoodsController extends Base {
 
     /** @type {CartService} */
     const cartService = this.service('cart');
+    /** @type {DbService} */
+    const dbService = this.service('db');
     /** @type {GoodsService} */
     const goodsService = this.service('goods');
     /** @type {GoodsAttributeService} */
@@ -82,6 +84,16 @@ module.exports = class AdminGoodsController extends Base {
     /** @type {QrCodeService} */
     const qrCodeService = this.service('qr_code');
 
+    dbService.listen([
+      cartService,
+      goodsService,
+      goodsAttributeService,
+      goodsProductService,
+      goodsSpecificationService,
+      qrCodeService,
+    ]);
+
+    return await dbService.transaction(async () => {
     const error = await this.validate(goods, attributes, specifications, products);
     if (!think.isNullOrUndefined(error)) {
       return error;
@@ -96,7 +108,7 @@ module.exports = class AdminGoodsController extends Base {
       throw new Error('更新数据失败');
     }
 
-    await Promise.all([
+    await dbService.promiseAll([
       ...specifications
         .map(async (specification) => {
           if (think.isNullOrUndefined(specification.updateTime)) {
@@ -128,19 +140,22 @@ module.exports = class AdminGoodsController extends Base {
         }),
     ]);
 
-    await Promise.all(
+    await dbService.promiseAll(
       products.map(async (product) => {
         await cartService.updateProduct(product.id, goods.goodsSn, goods.name, product.price, product.url);
       })
     );
 
     return this.success();
+    });
   }
 
   async deleteAction() {
     /** @type {number} */
     const id = this.post('id');
 
+    /** @type {DbService} */
+    const dbService = this.service('db');
     /** @type {GoodsService} */
     const goodsService = this.service('goods');
     /** @type {GoodsAttributeService} */
@@ -150,7 +165,15 @@ module.exports = class AdminGoodsController extends Base {
     /** @type {GoodsSpecificationService} */
     const goodsSpecificationService = this.service('goods_specification');
 
-    await Promise.all([
+    dbService.listen([
+      goodsService,
+      goodsAttributeService,
+      goodsProductService,
+      goodsSpecificationService,
+    ]);
+
+    return await dbService.transaction(async () => {
+    await dbService.promiseAll([
       goodsService.deleteById(id),
       goodsSpecificationService.deleteByGid(id),
       goodsAttributeService.deleteByGid(id),
@@ -158,6 +181,7 @@ module.exports = class AdminGoodsController extends Base {
     ]);
 
     return this.success();
+    });
   }
 
   async createAction() {
@@ -170,6 +194,8 @@ module.exports = class AdminGoodsController extends Base {
     /** @type {object[]} */
     const attributes = this.post('attributes');
 
+    /** @type {DbService} */
+    const dbService = this.service('db');
     /** @type {GoodsService} */
     const goodsService = this.service('goods');
     /** @type {GoodsAttributeService} */
@@ -183,6 +209,15 @@ module.exports = class AdminGoodsController extends Base {
 
     const { ADMIN_RESPONSE } = goodsService.getConstants();
 
+    dbService.listen([
+      goodsService,
+      goodsAttributeService,
+      goodsProductService,
+      goodsSpecificationService,
+      qrCodeService,
+    ]);
+
+    return await dbService.transaction(async () => {
     const error = await this.validate(goods, attributes, specifications, products);
     if (!think.isNullOrUndefined(error)) {
       return error;
@@ -208,7 +243,7 @@ module.exports = class AdminGoodsController extends Base {
       }
     }
 
-    await Promise.all([
+    await dbService.promiseAll([
       ...specifications
         .map(async (specification) => {
           Object.assign(specification, {
@@ -233,6 +268,7 @@ module.exports = class AdminGoodsController extends Base {
     ]);
 
     return this.success();
+    });
   }
 
   async detailAction() {
