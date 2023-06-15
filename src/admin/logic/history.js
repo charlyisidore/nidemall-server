@@ -2,7 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   listAction() {
-    this.requiresPermissions = 'admin:history:list';
+    // this.requiresPermissions = 'admin:history:list';
     this.allowMethods = 'GET';
 
     this.rules = {

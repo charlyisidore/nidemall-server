@@ -2,12 +2,12 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   listAction() {
-    this.requiresPermissions = 'admin:category:list';
+    // this.requiresPermissions = 'admin:category:list';
     this.allowMethods = 'GET';
   }
 
   createAction() {
-    this.requiresPermissions = 'admin:category:create';
+    // this.requiresPermissions = 'admin:category:create';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -38,7 +38,7 @@ module.exports = class extends Base {
   }
 
   readAction() {
-    this.requiresPermissions = 'admin:category:read';
+    // this.requiresPermissions = 'admin:category:read';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -50,7 +50,7 @@ module.exports = class extends Base {
   }
 
   updateAction() {
-    this.requiresPermissions = 'admin:category:update';
+    // this.requiresPermissions = 'admin:category:update';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -85,7 +85,7 @@ module.exports = class extends Base {
   }
 
   deleteAction() {
-    this.requiresPermissions = 'admin:category:delete';
+    // this.requiresPermissions = 'admin:category:delete';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -97,7 +97,7 @@ module.exports = class extends Base {
   }
 
   l1Action() {
-    this.requiresPermissions = 'admin:category:list';
+    // this.requiresPermissions = 'admin:category:list';
     this.allowMethods = 'GET';
   }
 };

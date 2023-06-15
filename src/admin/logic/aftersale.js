@@ -2,7 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   listAction() {
-    this.requiresPermissions = 'admin:aftersale:list';
+    // this.requiresPermissions = 'admin:aftersale:list';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -37,7 +37,7 @@ module.exports = class extends Base {
   }
 
   receptAction() {
-    this.requiresPermissions = 'admin:aftersale:recept';
+    // this.requiresPermissions = 'admin:aftersale:recept';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -49,7 +49,7 @@ module.exports = class extends Base {
   }
 
   ['batch-receptAction']() {
-    this.requiresPermissions = 'admin:aftersale:batch-recept';
+    // this.requiresPermissions = 'admin:aftersale:batch-recept';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -64,7 +64,7 @@ module.exports = class extends Base {
   }
 
   rejectAction() {
-    this.requiresPermissions = 'admin:aftersale:reject';
+    // this.requiresPermissions = 'admin:aftersale:reject';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -76,7 +76,7 @@ module.exports = class extends Base {
   }
 
   ['batch-rejectAction']() {
-    this.requiresPermissions = 'admin:aftersale:batch-reject';
+    // this.requiresPermissions = 'admin:aftersale:batch-reject';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -91,7 +91,7 @@ module.exports = class extends Base {
   }
 
   refundAction() {
-    this.requiresPermissions = 'admin:aftersale:refund';
+    // this.requiresPermissions = 'admin:aftersale:refund';
     this.allowMethods = 'POST';
 
     this.rules = {

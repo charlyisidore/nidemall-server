@@ -4,10 +4,10 @@ module.exports = class extends Base {
   mallAction() {
     switch (true) {
       case this.isGet:
-        this.requiresPermissions = 'admin:config:mall:list';
+        // this.requiresPermissions = 'admin:config:mall:list';
         break;
       case this.isPost:
-        this.requiresPermissions = 'admin:config:mall:updateConfigs';
+        // this.requiresPermissions = 'admin:config:mall:updateConfigs';
         break;
     }
 
@@ -17,10 +17,10 @@ module.exports = class extends Base {
   expressAction() {
     switch (true) {
       case this.isGet:
-        this.requiresPermissions = 'admin:config:express:list';
+        // this.requiresPermissions = 'admin:config:express:list';
         break;
       case this.isPost:
-        this.requiresPermissions = 'admin:config:express:updateConfigs';
+        // this.requiresPermissions = 'admin:config:express:updateConfigs';
         break;
     }
 
@@ -30,10 +30,10 @@ module.exports = class extends Base {
   orderAction() {
     switch (true) {
       case this.isGet:
-        this.requiresPermissions = 'admin:config:order:list';
+        // this.requiresPermissions = 'admin:config:order:list';
         break;
       case this.isPost:
-        this.requiresPermissions = 'admin:config:order:updateConfigs';
+        // this.requiresPermissions = 'admin:config:order:updateConfigs';
         break;
     }
 
@@ -43,10 +43,10 @@ module.exports = class extends Base {
   wxAction() {
     switch (true) {
       case this.isGet:
-        this.requiresPermissions = 'admin:config:wx:list';
+        // this.requiresPermissions = 'admin:config:wx:list';
         break;
       case this.isPost:
-        this.requiresPermissions = 'admin:config:wx:updateConfigs';
+        // this.requiresPermissions = 'admin:config:wx:updateConfigs';
         break;
     }
 

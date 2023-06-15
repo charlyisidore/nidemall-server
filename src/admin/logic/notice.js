@@ -2,7 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   listAction() {
-    this.requiresPermissions = 'admin:notice:list';
+    // this.requiresPermissions = 'admin:notice:list';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -34,7 +34,7 @@ module.exports = class extends Base {
   }
 
   createAction() {
-    this.requiresPermissions = 'admin:notice:create';
+    // this.requiresPermissions = 'admin:notice:create';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -48,7 +48,7 @@ module.exports = class extends Base {
   }
 
   readAction() {
-    this.requiresPermissions = 'admin:notice:read';
+    // this.requiresPermissions = 'admin:notice:read';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -60,7 +60,7 @@ module.exports = class extends Base {
   }
 
   updateAction() {
-    this.requiresPermissions = 'admin:notice:update';
+    // this.requiresPermissions = 'admin:notice:update';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -78,7 +78,7 @@ module.exports = class extends Base {
   }
 
   deleteAction() {
-    this.requiresPermissions = 'admin:notice:delete';
+    // this.requiresPermissions = 'admin:notice:delete';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -90,7 +90,7 @@ module.exports = class extends Base {
   }
 
   ['batch-deleteAction']() {
-    this.requiresPermissions = 'admin:notice:batch-delete';
+    // this.requiresPermissions = 'admin:notice:batch-delete';
     this.allowMethods = 'POST';
 
     this.rules = {

@@ -2,7 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   listAction() {
-    this.requiresPermissions = 'admin:storage:list';
+    // this.requiresPermissions = 'admin:storage:list';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -34,7 +34,7 @@ module.exports = class extends Base {
   }
 
   createAction() {
-    this.requiresPermissions = 'admin:storage:create';
+    // this.requiresPermissions = 'admin:storage:create';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -46,7 +46,7 @@ module.exports = class extends Base {
   }
 
   readAction() {
-    this.requiresPermissions = 'admin:storage:read';
+    // this.requiresPermissions = 'admin:storage:read';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -58,7 +58,7 @@ module.exports = class extends Base {
   }
 
   updateAction() {
-    this.requiresPermissions = 'admin:storage:update';
+    // this.requiresPermissions = 'admin:storage:update';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -70,7 +70,7 @@ module.exports = class extends Base {
   }
 
   deleteAction() {
-    this.requiresPermissions = 'admin:storage:delete';
+    // this.requiresPermissions = 'admin:storage:delete';
     this.allowMethods = 'POST';
 
     this.rules = {
