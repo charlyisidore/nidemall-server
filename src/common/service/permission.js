@@ -16,7 +16,7 @@ module.exports = class PermissionService extends Base {
     }
     return (await this.model('permission')
       .where({
-        id: ['IN', roleIds],
+        roleId: ['IN', roleIds],
         deleted: false,
       })
       .select())
