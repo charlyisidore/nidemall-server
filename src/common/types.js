@@ -11,7 +11,6 @@
  * @typedef {import('./service/comment.js')} CommentService
  * @typedef {import('./service/coupon.js')} CouponService
  * @typedef {import('./service/coupon_user.js')} CouponUserService
- * @typedef {import('./service/db.js')} DbService
  * @typedef {import('./service/express.js')} ExpressService
  * @typedef {import('./service/feedback.js')} FeedbackService
  * @typedef {import('./service/footprint.js')} FootprintService

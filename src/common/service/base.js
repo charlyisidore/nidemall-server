@@ -22,7 +22,6 @@ module.exports = class BaseService extends think.Service {
 
   /**
    * Create a model and emit a `model` event.
-   * @see {DbService}
    * @param {string} name 
    * @param {any?} config 
    * @param {string?} module 
