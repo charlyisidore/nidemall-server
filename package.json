@@ -2,7 +2,11 @@
   "name": "nidemall-server",
   "description": "ecommerce platform",
   "version": "1.0.0",
-  "author": "Charly Lersteau <charly.lersteau@gmx.fr>",
+  "author": "Charly Lersteau",
+  "contributors": [
+    "linlinjava <linlinjava@163.com>",
+    "tumobi <tumobi@163.com>"
+  ],
   "type": "commonjs",
   "scripts": {
     "build:redoc": "redocly build-docs openapi/openapi.yaml --output=www/static/redoc.html",
@@ -47,7 +51,7 @@
     "metadata": {
       "name": "nidemall-server",
       "description": "ecommerce platform",
-      "author": "Charly Lersteau <charly.lersteau@gmx.fr>",
+      "author": "Charly Lersteau",
       "babel": false
     },
     "projectName": "nidemall-server",
