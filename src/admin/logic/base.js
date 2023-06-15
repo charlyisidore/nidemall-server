@@ -1,4 +1,7 @@
 module.exports = class extends think.Logic {
+  /**
+   * Check permissions.
+   */
   async __before() {
     /** @type {PermissionService} */
     const permissionService = this.service('permission');
@@ -29,6 +32,9 @@ module.exports = class extends think.Logic {
     }
   }
 
+  /**
+   * Check authentication.
+   */
   async __after() {
     if (this.requiresAuthentication) {
       const adminId = this.getAdminId();
