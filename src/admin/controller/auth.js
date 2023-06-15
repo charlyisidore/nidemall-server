@@ -73,13 +73,44 @@ module.exports = class AdminAuthController extends Base {
   }
 
   async infoAction() {
-    const admin = this.getAdmin();
+    const adminId = this.getAdminId();
+    /** @type {AdminService} */
+    const adminService = this.service('admin');
+    /** @type {PermissionService} */
+    const permissionService = this.service('permission');
+    /** @type {RoleService} */
+    const roleService = this.service('role');
+
+    const admin = await adminService.findById(adminId);
+    const roles = await roleService.queryByIds(admin.roleIds);
+    const permissions = await permissionService.queryByRoleIds(admin.roleIds);
 
     return this.success({
       name: admin.username,
       avatar: admin.avatar,
-      roles: admin.roleIds,
-      perms: ['*'],
+      roles,
+      perms: this.toApi(permissions),
     });
+  }
+
+  toApi(permissions) {
+    /** @type {PermissionService} */
+    const permissionService = this.service('permission');
+
+    const systemPermissionsMap = permissionService.listPermission()
+      .reduce((map, permission) => {
+        const perm = permission.requiresPermissions.value[0];
+        map[perm] = permission.api;
+        return map;
+      }, {});
+
+    const apis = [];
+    for (const perm of permissions) {
+      if ('*' == perm) {
+        return ['*'];
+      }
+      apis.push(systemPermissionsMap[perm]);
+    }
+    return apis;
   }
 };
