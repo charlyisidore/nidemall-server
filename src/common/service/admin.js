@@ -179,6 +179,7 @@ module.exports = class AdminService extends Base {
    * @param {any} ctx 
    */
   async logout(ctx) {
+    await ctx.session('adminId', null);
     await ctx.session(null);
   }
 
