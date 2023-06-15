@@ -116,4 +116,21 @@ module.exports = class PermissionService extends Base {
         updateTime: now,
       }));
   }
+
+  /**
+   * Check if given role IDs have a permission.
+   * @param {number[]} roleIds 
+   * @param {string} requiresPermissions 
+   * @returns {Promise<boolean>}
+   */
+  async hasPermission(roleIds, requiresPermissions) {
+    return (await this.queryByRoleIds(roleIds))
+      .some((permission) => {
+        const pattern = permission
+          .replace(/[.+?^${}()|[\]\\]/g, "\\$&")
+          .replace('*', '.*');
+        const regex = new RegExp(`^${pattern}$`);
+        return regex.test(requiresPermissions);
+      });
+  }
 }
