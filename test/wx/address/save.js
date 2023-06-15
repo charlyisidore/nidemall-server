@@ -58,7 +58,7 @@ test.serial('update', async (t) => {
     await destroyAddress(data.id);
   });
 
-  const newData = Object.assign(data, {
+  const newData = Object.assign({}, data, {
     name: 'my name 2',
     tel: '13456789013',
     province: 'my province 2',
