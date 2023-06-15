@@ -81,7 +81,7 @@ module.exports = class AdminAuthController extends Base {
     /** @type {RoleService} */
     const roleService = this.service('role');
 
-    const admin = await adminService.findById(adminId);
+    const admin = await adminService.findAdminById(adminId);
     const roles = await roleService.queryByIds(admin.roleIds);
     const permissions = await permissionService.queryByRoleIds(admin.roleIds);
 
