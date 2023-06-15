@@ -2,6 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   listAction() {
+    this.requiresPermissions = 'admin:keyword:list';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -33,6 +34,7 @@ module.exports = class extends Base {
   }
 
   createAction() {
+    this.requiresPermissions = 'admin:keyword:create';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -53,6 +55,7 @@ module.exports = class extends Base {
   }
 
   readAction() {
+    this.requiresPermissions = 'admin:keyword:read';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -64,6 +67,7 @@ module.exports = class extends Base {
   }
 
   updateAction() {
+    this.requiresPermissions = 'admin:keyword:update';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -88,6 +92,7 @@ module.exports = class extends Base {
   }
 
   deleteAction() {
+    this.requiresPermissions = 'admin:keyword:delete';
     this.allowMethods = 'POST';
 
     this.rules = {

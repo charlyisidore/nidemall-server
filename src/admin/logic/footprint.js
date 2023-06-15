@@ -2,6 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   listAction() {
+    this.requiresPermissions = 'admin:footprint:list';
     this.allowMethods = 'GET';
 
     this.rules = {

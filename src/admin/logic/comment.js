@@ -2,6 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   listAction() {
+    this.requiresPermissions = 'admin:comment:list';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -33,6 +34,7 @@ module.exports = class extends Base {
   }
 
   deleteAction() {
+    this.requiresPermissions = 'admin:comment:delete';
     this.allowMethods = 'POST';
 
     this.rules = {

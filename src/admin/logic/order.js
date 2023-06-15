@@ -2,6 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   listAction() {
+    this.requiresPermissions = 'admin:order:list';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -52,6 +53,7 @@ module.exports = class extends Base {
   }
 
   detailAction() {
+    this.requiresPermissions = 'admin:order:read';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -63,6 +65,7 @@ module.exports = class extends Base {
   }
 
   refundAction() {
+    this.requiresPermissions = 'admin:order:refund';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -78,6 +81,7 @@ module.exports = class extends Base {
   }
 
   shipAction() {
+    this.requiresPermissions = 'admin:order:ship';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -97,6 +101,7 @@ module.exports = class extends Base {
   }
 
   payAction() {
+    this.requiresPermissions = 'admin:order:pay';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -112,6 +117,7 @@ module.exports = class extends Base {
   }
 
   deleteAction() {
+    this.requiresPermissions = 'admin:order:delete';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -123,6 +129,7 @@ module.exports = class extends Base {
   }
 
   replyAction() {
+    this.requiresPermissions = 'admin:order:reply';
     this.allowMethods = 'POST';
 
     this.rules = {
