@@ -71,7 +71,7 @@ test('not found', async (t) => {
   t.is(response.errno, 402);
 });
 
-test('other id', async (t) => {
+test('not owned', async (t) => {
   const response = await request(t, {
     ...REQUEST,
     token: t.context.token,

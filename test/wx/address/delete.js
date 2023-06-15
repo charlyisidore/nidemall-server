@@ -12,7 +12,7 @@ async function softDeleted(id) {
   const address = await think.model('address')
     .where({ id })
     .find();
-  return true === address?.deleted;
+  return !think.isEmpty(address) && address.deleted;
 }
 
 // Check if an address exists and is not soft deleted
@@ -56,6 +56,7 @@ test('success', async (t) => {
 
   t.is(response.errno, 0);
   t.assert(softDeleted(t.context.address.id));
+  t.assert(notDeleted(t.context.other.id));
 });
 
 test('not logged in', async (t) => {
@@ -66,6 +67,7 @@ test('not logged in', async (t) => {
 
   t.is(response.errno, 501);
   t.assert(notDeleted(t.context.address.id));
+  t.assert(notDeleted(t.context.other.id));
 });
 
 test('missing id', async (t) => {
@@ -77,6 +79,7 @@ test('missing id', async (t) => {
 
   t.is(response.errno, 402);
   t.assert(notDeleted(t.context.address.id));
+  t.assert(notDeleted(t.context.other.id));
 });
 
 test('not found', async (t) => {
@@ -88,9 +91,10 @@ test('not found', async (t) => {
 
   t.is(response.errno, 402);
   t.assert(notDeleted(t.context.address.id));
+  t.assert(notDeleted(t.context.other.id));
 });
 
-test('other id', async (t) => {
+test('not owned', async (t) => {
   const response = await request(t, {
     ...REQUEST,
     token: t.context.token,
@@ -99,4 +103,5 @@ test('other id', async (t) => {
 
   t.is(response.errno, 402);
   t.assert(notDeleted(t.context.address.id));
+  t.assert(notDeleted(t.context.other.id));
 });

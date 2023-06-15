@@ -1,6 +1,6 @@
 const test = require('ava');
 const { request, createUser, destroyUser } = require('../../helpers/app.js');
-const { DATA } = require('../helpers/address.js');
+const { createAddress, destroyAddress, DATA } = require('../helpers/address.js');
 
 const REQUEST = {
   method: 'post',
@@ -33,41 +33,54 @@ test.afterEach(async (t) => {
     .delete();
 });
 
-test.serial('success', async (t) => {
+test.serial('add', async (t) => {
   const data = Object.assign({}, DATA);
 
-  // Add
-  {
-    const response = await request(t, {
-      ...REQUEST,
-      token: t.context.token,
-      data,
-    });
+  const response = await request(t, {
+    ...REQUEST,
+    token: t.context.token,
+    data,
+  });
 
-    t.is(response.errno, 0);
-    t.assert(Number.isInteger(response.data));
+  t.is(response.errno, 0);
+  t.assert(Number.isInteger(response.data));
 
-    data.id = response.data;
+  data.id = response.data;
 
-    const address = await getAddress(data.id);
-    t.like(address, data);
-  }
+  const address = await getAddress(data.id);
+  t.like(address, data);
+});
 
-  // Update
-  {
-    const response = await request(t, {
-      ...REQUEST,
-      token: t.context.token,
-      data,
-    });
 
-    t.is(response.errno, 0);
-    t.assert(Number.isInteger(response.data));
-    t.is(response.data, data.id);
+test.serial('update', async (t) => {
+  const data = await createAddress({ userId: t.context.userId });
+  t.teardown(async () => {
+    await destroyAddress(data.id);
+  });
 
-    const address = await getAddress(data.id);
-    t.like(address, data);
-  }
+  const newData = Object.assign(data, {
+    name: 'my name 2',
+    tel: '13456789013',
+    province: 'my province 2',
+    city: 'my city 2',
+    county: 'my county 2',
+    areaCode: '123457',
+    addressDetail: 'my address detail 2',
+    isDefault: false,
+  });
+
+  const response = await request(t, {
+    ...REQUEST,
+    token: t.context.token,
+    data: newData,
+  });
+
+  t.is(response.errno, 0);
+  t.assert(Number.isInteger(response.data));
+  t.is(response.data, data.id);
+
+  const address = await getAddress(data.id);
+  t.like(address, newData);
 });
 
 test.serial('not found', async (t) => {
@@ -91,4 +104,39 @@ test.serial('not logged in', async (t) => {
   });
 
   t.is(response.errno, 501);
+});
+
+test.serial('update default', async (t) => {
+  const data1 = await createAddress({
+    userId: t.context.userId,
+    isDefault: false,
+  });
+  const data2 = await createAddress({
+    userId: t.context.userId,
+    isDefault: true,
+  });
+
+  t.teardown(async () => {
+    await destroyAddress(data1.id);
+    await destroyAddress(data2.id);
+  });
+
+  const newData1 = Object.assign({}, data1, {
+    isDefault: true,
+  });
+
+  const response = await request(t, {
+    ...REQUEST,
+    token: t.context.token,
+    data: newData1,
+  });
+
+  t.is(response.errno, 0);
+  t.assert(Number.isInteger(response.data));
+  t.is(response.data, data1.id);
+
+  const address1 = await getAddress(data1.id);
+  t.is(address1.isDefault, true);
+  const address2 = await getAddress(data2.id);
+  t.is(address2.isDefault, false);
 });
