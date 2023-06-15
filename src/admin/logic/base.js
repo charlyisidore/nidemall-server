@@ -29,6 +29,25 @@ module.exports = class extends think.Logic {
     }
   }
 
+  async __after() {
+    if (this.requiresAuthentication) {
+      const adminId = this.getAdminId();
+
+      if (think.isNullOrUndefined(adminId)) {
+        return this.unlogin();
+      }
+
+      /** @type {AdminService} */
+      const adminService = this.service('admin');
+
+      const admin = await adminService.findAdminById(adminId);
+      if (think.isEmpty(admin)) {
+        return this.unlogin();
+      }
+    }
+    return await super.__after();
+  }
+
   /**
    * 
    * @returns {number|null}

@@ -21,10 +21,12 @@ module.exports = class extends Base {
   }
 
   logoutAction() {
+    this.requiresAuthentication = true;
     this.allowMethods = 'POST';
   }
 
   infoAction() {
+    this.requiresAuthentication = true;
     this.allowMethods = 'GET';
   }
 };

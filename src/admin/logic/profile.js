@@ -2,6 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   passwordAction() {
+    this.requiresAuthentication = true;
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -17,10 +18,12 @@ module.exports = class extends Base {
   }
 
   nnoticeAction() {
+    this.requiresAuthentication = true;
     this.allowMethods = 'GET';
   }
 
   lsnoticeAction() {
+    this.requiresAuthentication = true;
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -52,6 +55,7 @@ module.exports = class extends Base {
   }
 
   catnoticeAction() {
+    this.requiresAuthentication = true;
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -63,6 +67,7 @@ module.exports = class extends Base {
   }
 
   bcatnoticeAction() {
+    this.requiresAuthentication = true;
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -77,6 +82,7 @@ module.exports = class extends Base {
   }
 
   rmnoticeAction() {
+    this.requiresAuthentication = true;
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -88,6 +94,7 @@ module.exports = class extends Base {
   }
 
   brmnoticeAction() {
+    this.requiresAuthentication = true;
     this.allowMethods = 'POST';
 
     this.rules = {
