@@ -133,6 +133,7 @@ module.exports = class WxOrderController extends Base {
   }
 
   async submitAction() {
+    return this.transaction(async () => {
     const userId = this.getUserId();
     /** @type {number} */
     const cartId = this.get('cartId');
@@ -157,8 +158,6 @@ module.exports = class WxOrderController extends Base {
     const couponService = this.service('coupon');
     /** @type {CouponUserService} */
     const couponUserService = this.service('coupon_user');
-    /** @type {DbService} */
-    const dbService = this.service('db');
     /** @type {GoodsProductService} */
     const goodsProductService = this.service('goods_product');
     /** @type {GrouponService} */
@@ -179,21 +178,6 @@ module.exports = class WxOrderController extends Base {
     const GROUPON_RULES = grouponRulesService.getConstants();
     const ORDER = orderService.getConstants();
 
-    dbService.listen([
-      addressService,
-      cartService,
-      couponService,
-      couponUserService,
-      goodsProductService,
-      grouponService,
-      grouponRulesService,
-      orderService,
-      orderGoodsService,
-      qrCodeService,
-      systemService,
-    ]);
-
-    return await dbService.transaction(async () => {
       const freight = await systemService.getFreight();
       const freightLimit = await systemService.getFreightLimit();
       const now = new Date();
@@ -453,12 +437,11 @@ module.exports = class WxOrderController extends Base {
   }
 
   async cancelAction() {
+    return this.transaction(async () => {
     const userId = this.getUserId();
     /** @type {number} */
     const orderId = this.get('orderId');
 
-    /** @type {DbService} */
-    const dbService = this.service('db');
     /** @type {GoodsProductService} */
     const goodsProductService = this.service('goods_product');
     /** @type {OrderService} */
@@ -468,13 +451,6 @@ module.exports = class WxOrderController extends Base {
 
     const ORDER = orderService.getConstants();
 
-    dbService.listen([
-      goodsProductService,
-      orderService,
-      orderGoodsService,
-    ]);
-
-    return await dbService.transaction(async () => {
       const now = new Date();
 
       if (think.isNullOrUndefined(userId)) {
@@ -519,14 +495,13 @@ module.exports = class WxOrderController extends Base {
   }
 
   async prepayAction() {
+    return this.transaction(async () => {
     const userId = this.getUserId();
     /** @type {number} */
     const orderId = this.post('orderId');
 
     /** @type {AuthService} */
     const authService = this.service('auth');
-    /** @type {DbService} */
-    const dbService = this.service('db');
     /** @type {OrderService} */
     const orderService = this.service('order');
     /** @type {UserService} */
@@ -537,14 +512,6 @@ module.exports = class WxOrderController extends Base {
     const AUTH = authService.getConstants();
     const ORDER = orderService.getConstants();
 
-    dbService.listen([
-      authService,
-      orderService,
-      userService,
-      weixinService,
-    ]);
-
-    return await dbService.transaction(async () => {
       if (think.isNullOrUndefined(userId)) {
         return this.unlogin();
       }
@@ -593,6 +560,7 @@ module.exports = class WxOrderController extends Base {
   }
 
   async paynotifyAction() {
+    return this.transaction(async () => {
     // TODO
     console.log(`============ PAY NOTIFY 1 ============`);
     console.log(this.post());
@@ -602,8 +570,6 @@ module.exports = class WxOrderController extends Base {
     console.log(`============ PAY NOTIFY 2 ============`);
     console.log(xml);
 
-    /** @type {DbService} */
-    const dbService = this.service('db');
     /** @type {GrouponService} */
     const grouponService = this.service('groupon');
     /** @type {GrouponRulesService} */
@@ -621,16 +587,6 @@ module.exports = class WxOrderController extends Base {
     const NOTIFY = notifyService.getConstants();
     const ORDER = orderService.getConstants();
 
-    dbService.listen([
-      grouponService,
-      grouponRulesService,
-      notifyService,
-      orderService,
-      qrCodeService,
-      weixinService,
-    ]);
-
-    return await dbService.transaction(async () => {
       // const result = await weixinService.parsePayNotify(xml);
 
       // console.log(result);
@@ -720,7 +676,7 @@ module.exports = class WxOrderController extends Base {
         const grouponList = await grouponService.queryJoinRecord(groupon.grouponId);
 
         if (!think.isEmpty(groupon.grouponId) && grouponList.length >= grouponRules.discountMember - 1) {
-          await dbService.promiseAll(
+          await this.promiseAllFinished(
             grouponList.map(async (grouponActivity) => {
               Object.assign(grouponActivity, {
                 status: GROUPON.STATUS.SUCCEED,

@@ -60,6 +60,7 @@ module.exports = class AdminGoodsController extends Base {
   }
 
   async updateAction() {
+    return this.transaction(async () => {
     /** @type {object} */
     const goods = this.post('goods');
     /** @type {object[]} */
@@ -71,8 +72,6 @@ module.exports = class AdminGoodsController extends Base {
 
     /** @type {CartService} */
     const cartService = this.service('cart');
-    /** @type {DbService} */
-    const dbService = this.service('db');
     /** @type {GoodsService} */
     const goodsService = this.service('goods');
     /** @type {GoodsAttributeService} */
@@ -84,16 +83,6 @@ module.exports = class AdminGoodsController extends Base {
     /** @type {QrCodeService} */
     const qrCodeService = this.service('qr_code');
 
-    dbService.listen([
-      cartService,
-      goodsService,
-      goodsAttributeService,
-      goodsProductService,
-      goodsSpecificationService,
-      qrCodeService,
-    ]);
-
-    return await dbService.transaction(async () => {
       const error = await this.validate(goods, attributes, specifications, products);
       if (!think.isNullOrUndefined(error)) {
         return error;
@@ -108,7 +97,7 @@ module.exports = class AdminGoodsController extends Base {
         throw new Error('更新数据失败');
       }
 
-      await dbService.promiseAll([
+      await this.promiseAllFinished([
         ...specifications
           .map(async (specification) => {
             if (think.isNullOrUndefined(specification.updateTime)) {
@@ -140,7 +129,7 @@ module.exports = class AdminGoodsController extends Base {
           }),
       ]);
 
-      await dbService.promiseAll(
+      await this.promiseAllFinished(
         products.map(async (product) => {
           await cartService.updateProduct(product.id, goods.goodsSn, goods.name, product.price, product.url);
         })
@@ -151,11 +140,10 @@ module.exports = class AdminGoodsController extends Base {
   }
 
   async deleteAction() {
+    return this.transaction(async () => {
     /** @type {number} */
     const id = this.post('id');
 
-    /** @type {DbService} */
-    const dbService = this.service('db');
     /** @type {GoodsService} */
     const goodsService = this.service('goods');
     /** @type {GoodsAttributeService} */
@@ -165,15 +153,7 @@ module.exports = class AdminGoodsController extends Base {
     /** @type {GoodsSpecificationService} */
     const goodsSpecificationService = this.service('goods_specification');
 
-    dbService.listen([
-      goodsService,
-      goodsAttributeService,
-      goodsProductService,
-      goodsSpecificationService,
-    ]);
-
-    return await dbService.transaction(async () => {
-      await dbService.promiseAll([
+      await this.promiseAllFinished([
         goodsService.deleteById(id),
         goodsSpecificationService.deleteByGid(id),
         goodsAttributeService.deleteByGid(id),
@@ -185,6 +165,7 @@ module.exports = class AdminGoodsController extends Base {
   }
 
   async createAction() {
+    return this.transaction(async () => {
     /** @type {object} */
     const goods = this.post('goods');
     /** @type {object[]} */
@@ -194,8 +175,6 @@ module.exports = class AdminGoodsController extends Base {
     /** @type {object[]} */
     const attributes = this.post('attributes');
 
-    /** @type {DbService} */
-    const dbService = this.service('db');
     /** @type {GoodsService} */
     const goodsService = this.service('goods');
     /** @type {GoodsAttributeService} */
@@ -209,15 +188,6 @@ module.exports = class AdminGoodsController extends Base {
 
     const { ADMIN_RESPONSE } = goodsService.getConstants();
 
-    dbService.listen([
-      goodsService,
-      goodsAttributeService,
-      goodsProductService,
-      goodsSpecificationService,
-      qrCodeService,
-    ]);
-
-    return await dbService.transaction(async () => {
       const error = await this.validate(goods, attributes, specifications, products);
       if (!think.isNullOrUndefined(error)) {
         return error;
@@ -243,7 +213,7 @@ module.exports = class AdminGoodsController extends Base {
         }
       }
 
-      await dbService.promiseAll([
+      await this.promiseAllFinished([
         ...specifications
           .map(async (specification) => {
             Object.assign(specification, {

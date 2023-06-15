@@ -1,4 +1,7 @@
 module.exports = class BaseController extends think.Controller {
+  /** Stack of transactions */
+  _transactions = [];
+
   /**
    * Incorrect parameters
    */
@@ -100,5 +103,97 @@ module.exports = class BaseController extends think.Controller {
     });
 
     return this.success(data);
+  }
+
+  /**
+   * Create a service and listen to its `model()` method calls.
+   * @param {string} name 
+   * @param {string?} module 
+   * @param  {...any} args 
+   * @returns {think.Service}
+   */
+  service(name, module, ...args) {
+    const service = super.service(name, module, ...args);
+    service.on('model', (model) => this._onServiceModel(model));
+    return service;
+  }
+
+  /**
+   * Make a database transaction.
+   * @param {() => any} callback 
+   * @returns 
+   */
+  async transaction(callback) {
+    try {
+      await this._startTrans();
+      const result = await callback();
+      await this._commit();
+      return result;
+    } catch (e) {
+      await this._rollback();
+      throw e;
+    } finally {
+      await this._finishTrans();
+    }
+  }
+
+  /**
+   * Helper function to wait for all promises to finish before throwing an error.
+   * @param {Promise<any>[]} promises 
+   */
+  async promiseAllFinished(promises) {
+    return (await Promise.allSettled(promises))
+      .map((result) => {
+        if ('rejected' == result.status) {
+          throw result.reason;
+        }
+        return result.value;
+      });
+  }
+
+  /**
+   * Triggered when a service calls its `model()` method.
+   * Use a shared database connection if a transaction exists.
+   * @param {think.Model} model 
+   */
+  _onServiceModel(model) {
+    if (think.isEmpty(this._transactions)) {
+      // No transaction
+      return;
+    }
+    const last = this._transactions[this._transactions.length - 1];
+    model.db(last.db());
+  }
+
+  /**
+   * Start a transaction.
+   */
+  async _startTrans() {
+    const model = this.model();
+    await model.startTrans();
+    this._transactions.push(model);
+  }
+
+  /**
+   * Finish a transaction.
+   */
+  async _finishTrans() {
+    this._transactions.pop();
+  }
+
+  /**
+   * Called after a transaction when no error occurred.
+   */
+  async _commit() {
+    const model = this._transactions[this._transactions.length - 1];
+    await model.commit();
+  }
+
+  /**
+   * Called after a transaction when an error occurred.
+   */
+  async _rollback() {
+    const model = this._transactions[this._transactions.length - 1];
+    await model.rollback();
   }
 };
