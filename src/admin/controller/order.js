@@ -75,29 +75,29 @@ module.exports = class AdminOrderController extends Base {
 
   async refundAction() {
     return this.transaction(async () => {
-    /** @type {number} */
-    const orderId = this.post('orderId');
-    /** @type {number} */
-    const refundMoney = this.post('refundMoney');
+      /** @type {number} */
+      const orderId = this.post('orderId');
+      /** @type {number} */
+      const refundMoney = this.post('refundMoney');
 
-    /** @type {CouponUserService} */
-    const couponUserService = this.service('coupon_user');
-    /** @type {GoodsProductService} */
-    const goodsProductService = this.service('goods_product');
-    /** @type {LogService} */
-    const logService = this.service('log');
-    /** @type {NotifyService} */
-    const notifyService = this.service('notify');
-    /** @type {OrderService} */
-    const orderService = this.service('order');
-    /** @type {OrderGoodsService} */
-    const orderGoodsService = this.service('order_goods');
-    /** @type {WeixinService} */
-    const weixinService = this.service('weixin');
+      /** @type {CouponUserService} */
+      const couponUserService = this.service('coupon_user');
+      /** @type {GoodsProductService} */
+      const goodsProductService = this.service('goods_product');
+      /** @type {LogService} */
+      const logService = this.service('log');
+      /** @type {NotifyService} */
+      const notifyService = this.service('notify');
+      /** @type {OrderService} */
+      const orderService = this.service('order');
+      /** @type {OrderGoodsService} */
+      const orderGoodsService = this.service('order_goods');
+      /** @type {WeixinService} */
+      const weixinService = this.service('weixin');
 
-    const COUPON_USER = couponUserService.getConstants();
-    const NOTIFY = notifyService.getConstants();
-    const ORDER = orderService.getConstants();
+      const COUPON_USER = couponUserService.getConstants();
+      const NOTIFY = notifyService.getConstants();
+      const ORDER = orderService.getConstants();
 
       const order = await orderService.findById(orderId);
 

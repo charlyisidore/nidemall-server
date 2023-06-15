@@ -134,49 +134,49 @@ module.exports = class WxOrderController extends Base {
 
   async submitAction() {
     return this.transaction(async () => {
-    const userId = this.getUserId();
-    /** @type {number} */
-    const cartId = this.get('cartId');
-    /** @type {number} */
-    const addressId = this.get('addressId');
-    /** @type {number} */
-    const couponId = this.get('couponId');
-    /** @type {number?} */
-    const userCouponId = this.get('userCouponId');
-    /** @type {string?} */
-    const message = this.get('message');
-    /** @type {number?} */
-    const grouponRulesId = this.get('grouponRulesId');
-    /** @type {number?} */
-    const grouponLinkId = this.get('grouponLinkId');
+      const userId = this.getUserId();
+      /** @type {number} */
+      const cartId = this.get('cartId');
+      /** @type {number} */
+      const addressId = this.get('addressId');
+      /** @type {number} */
+      const couponId = this.get('couponId');
+      /** @type {number?} */
+      const userCouponId = this.get('userCouponId');
+      /** @type {string?} */
+      const message = this.get('message');
+      /** @type {number?} */
+      const grouponRulesId = this.get('grouponRulesId');
+      /** @type {number?} */
+      const grouponLinkId = this.get('grouponLinkId');
 
-    /** @type {AddressService} */
-    const addressService = this.service('address');
-    /** @type {CartService} */
-    const cartService = this.service('cart');
-    /** @type {CouponService} */
-    const couponService = this.service('coupon');
-    /** @type {CouponUserService} */
-    const couponUserService = this.service('coupon_user');
-    /** @type {GoodsProductService} */
-    const goodsProductService = this.service('goods_product');
-    /** @type {GrouponService} */
-    const grouponService = this.service('groupon');
-    /** @type {GrouponRulesService} */
-    const grouponRulesService = this.service('groupon_rules');
-    /** @type {OrderService} */
-    const orderService = this.service('order');
-    /** @type {OrderGoodsService} */
-    const orderGoodsService = this.service('order_goods');
-    /** @type {QrCodeService} */
-    const qrCodeService = this.service('qr_code');
-    /** @type {SystemService} */
-    const systemService = this.service('system');
+      /** @type {AddressService} */
+      const addressService = this.service('address');
+      /** @type {CartService} */
+      const cartService = this.service('cart');
+      /** @type {CouponService} */
+      const couponService = this.service('coupon');
+      /** @type {CouponUserService} */
+      const couponUserService = this.service('coupon_user');
+      /** @type {GoodsProductService} */
+      const goodsProductService = this.service('goods_product');
+      /** @type {GrouponService} */
+      const grouponService = this.service('groupon');
+      /** @type {GrouponRulesService} */
+      const grouponRulesService = this.service('groupon_rules');
+      /** @type {OrderService} */
+      const orderService = this.service('order');
+      /** @type {OrderGoodsService} */
+      const orderGoodsService = this.service('order_goods');
+      /** @type {QrCodeService} */
+      const qrCodeService = this.service('qr_code');
+      /** @type {SystemService} */
+      const systemService = this.service('system');
 
-    const COUPON_USER = couponUserService.getConstants();
-    const GROUPON = grouponService.getConstants();
-    const GROUPON_RULES = grouponRulesService.getConstants();
-    const ORDER = orderService.getConstants();
+      const COUPON_USER = couponUserService.getConstants();
+      const GROUPON = grouponService.getConstants();
+      const GROUPON_RULES = grouponRulesService.getConstants();
+      const ORDER = orderService.getConstants();
 
       const freight = await systemService.getFreight();
       const freightLimit = await systemService.getFreightLimit();
@@ -438,18 +438,18 @@ module.exports = class WxOrderController extends Base {
 
   async cancelAction() {
     return this.transaction(async () => {
-    const userId = this.getUserId();
-    /** @type {number} */
-    const orderId = this.get('orderId');
+      const userId = this.getUserId();
+      /** @type {number} */
+      const orderId = this.get('orderId');
 
-    /** @type {GoodsProductService} */
-    const goodsProductService = this.service('goods_product');
-    /** @type {OrderService} */
-    const orderService = this.service('order');
-    /** @type {OrderGoodsService} */
-    const orderGoodsService = this.service('order_goods');
+      /** @type {GoodsProductService} */
+      const goodsProductService = this.service('goods_product');
+      /** @type {OrderService} */
+      const orderService = this.service('order');
+      /** @type {OrderGoodsService} */
+      const orderGoodsService = this.service('order_goods');
 
-    const ORDER = orderService.getConstants();
+      const ORDER = orderService.getConstants();
 
       const now = new Date();
 
@@ -496,21 +496,21 @@ module.exports = class WxOrderController extends Base {
 
   async prepayAction() {
     return this.transaction(async () => {
-    const userId = this.getUserId();
-    /** @type {number} */
-    const orderId = this.post('orderId');
+      const userId = this.getUserId();
+      /** @type {number} */
+      const orderId = this.post('orderId');
 
-    /** @type {AuthService} */
-    const authService = this.service('auth');
-    /** @type {OrderService} */
-    const orderService = this.service('order');
-    /** @type {UserService} */
-    const userService = this.service('user');
-    /** @type {WeixinService} */
-    const weixinService = this.service('weixin');
+      /** @type {AuthService} */
+      const authService = this.service('auth');
+      /** @type {OrderService} */
+      const orderService = this.service('order');
+      /** @type {UserService} */
+      const userService = this.service('user');
+      /** @type {WeixinService} */
+      const weixinService = this.service('weixin');
 
-    const AUTH = authService.getConstants();
-    const ORDER = orderService.getConstants();
+      const AUTH = authService.getConstants();
+      const ORDER = orderService.getConstants();
 
       if (think.isNullOrUndefined(userId)) {
         return this.unlogin();
@@ -561,31 +561,31 @@ module.exports = class WxOrderController extends Base {
 
   async paynotifyAction() {
     return this.transaction(async () => {
-    // TODO
-    console.log(`============ PAY NOTIFY 1 ============`);
-    console.log(this.post());
+      // TODO
+      console.log(`============ PAY NOTIFY 1 ============`);
+      console.log(this.post());
 
-    const xml = this.post('xml');
+      const xml = this.post('xml');
 
-    console.log(`============ PAY NOTIFY 2 ============`);
-    console.log(xml);
+      console.log(`============ PAY NOTIFY 2 ============`);
+      console.log(xml);
 
-    /** @type {GrouponService} */
-    const grouponService = this.service('groupon');
-    /** @type {GrouponRulesService} */
-    const grouponRulesService = this.service('groupon_rules');
-    /** @type {NotifyService} */
-    const notifyService = this.service('notify');
-    /** @type {OrderService} */
-    const orderService = this.service('order');
-    /** @type {QrCodeService} */
-    const qrCodeService = this.service('qr_code');
-    /** @type {WeixinService} */
-    const weixinService = this.service('weixin');
+      /** @type {GrouponService} */
+      const grouponService = this.service('groupon');
+      /** @type {GrouponRulesService} */
+      const grouponRulesService = this.service('groupon_rules');
+      /** @type {NotifyService} */
+      const notifyService = this.service('notify');
+      /** @type {OrderService} */
+      const orderService = this.service('order');
+      /** @type {QrCodeService} */
+      const qrCodeService = this.service('qr_code');
+      /** @type {WeixinService} */
+      const weixinService = this.service('weixin');
 
-    const GROUPON = grouponService.getConstants();
-    const NOTIFY = notifyService.getConstants();
-    const ORDER = orderService.getConstants();
+      const GROUPON = grouponService.getConstants();
+      const NOTIFY = notifyService.getConstants();
+      const ORDER = orderService.getConstants();
 
       // const result = await weixinService.parsePayNotify(xml);
 

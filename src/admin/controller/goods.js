@@ -61,27 +61,27 @@ module.exports = class AdminGoodsController extends Base {
 
   async updateAction() {
     return this.transaction(async () => {
-    /** @type {object} */
-    const goods = this.post('goods');
-    /** @type {object[]} */
-    const specifications = this.post('specifications');
-    /** @type {object[]} */
-    const products = this.post('products');
-    /** @type {object[]} */
-    const attributes = this.post('attributes');
+      /** @type {object} */
+      const goods = this.post('goods');
+      /** @type {object[]} */
+      const specifications = this.post('specifications');
+      /** @type {object[]} */
+      const products = this.post('products');
+      /** @type {object[]} */
+      const attributes = this.post('attributes');
 
-    /** @type {CartService} */
-    const cartService = this.service('cart');
-    /** @type {GoodsService} */
-    const goodsService = this.service('goods');
-    /** @type {GoodsAttributeService} */
-    const goodsAttributeService = this.service('goods_attribute');
-    /** @type {GoodsProductService} */
-    const goodsProductService = this.service('goods_product');
-    /** @type {GoodsSpecificationService} */
-    const goodsSpecificationService = this.service('goods_specification');
-    /** @type {QrCodeService} */
-    const qrCodeService = this.service('qr_code');
+      /** @type {CartService} */
+      const cartService = this.service('cart');
+      /** @type {GoodsService} */
+      const goodsService = this.service('goods');
+      /** @type {GoodsAttributeService} */
+      const goodsAttributeService = this.service('goods_attribute');
+      /** @type {GoodsProductService} */
+      const goodsProductService = this.service('goods_product');
+      /** @type {GoodsSpecificationService} */
+      const goodsSpecificationService = this.service('goods_specification');
+      /** @type {QrCodeService} */
+      const qrCodeService = this.service('qr_code');
 
       const error = await this.validate(goods, attributes, specifications, products);
       if (!think.isNullOrUndefined(error)) {
@@ -141,17 +141,17 @@ module.exports = class AdminGoodsController extends Base {
 
   async deleteAction() {
     return this.transaction(async () => {
-    /** @type {number} */
-    const id = this.post('id');
+      /** @type {number} */
+      const id = this.post('id');
 
-    /** @type {GoodsService} */
-    const goodsService = this.service('goods');
-    /** @type {GoodsAttributeService} */
-    const goodsAttributeService = this.service('goods_attribute');
-    /** @type {GoodsProductService} */
-    const goodsProductService = this.service('goods_product');
-    /** @type {GoodsSpecificationService} */
-    const goodsSpecificationService = this.service('goods_specification');
+      /** @type {GoodsService} */
+      const goodsService = this.service('goods');
+      /** @type {GoodsAttributeService} */
+      const goodsAttributeService = this.service('goods_attribute');
+      /** @type {GoodsProductService} */
+      const goodsProductService = this.service('goods_product');
+      /** @type {GoodsSpecificationService} */
+      const goodsSpecificationService = this.service('goods_specification');
 
       await this.promiseAllFinished([
         goodsService.deleteById(id),
@@ -166,27 +166,27 @@ module.exports = class AdminGoodsController extends Base {
 
   async createAction() {
     return this.transaction(async () => {
-    /** @type {object} */
-    const goods = this.post('goods');
-    /** @type {object[]} */
-    const specifications = this.post('specifications');
-    /** @type {object[]} */
-    const products = this.post('products');
-    /** @type {object[]} */
-    const attributes = this.post('attributes');
+      /** @type {object} */
+      const goods = this.post('goods');
+      /** @type {object[]} */
+      const specifications = this.post('specifications');
+      /** @type {object[]} */
+      const products = this.post('products');
+      /** @type {object[]} */
+      const attributes = this.post('attributes');
 
-    /** @type {GoodsService} */
-    const goodsService = this.service('goods');
-    /** @type {GoodsAttributeService} */
-    const goodsAttributeService = this.service('goods_attribute');
-    /** @type {GoodsProductService} */
-    const goodsProductService = this.service('goods_product');
-    /** @type {GoodsSpecificationService} */
-    const goodsSpecificationService = this.service('goods_specification');
-    /** @type {QrCodeService} */
-    const qrCodeService = this.service('qr_code');
+      /** @type {GoodsService} */
+      const goodsService = this.service('goods');
+      /** @type {GoodsAttributeService} */
+      const goodsAttributeService = this.service('goods_attribute');
+      /** @type {GoodsProductService} */
+      const goodsProductService = this.service('goods_product');
+      /** @type {GoodsSpecificationService} */
+      const goodsSpecificationService = this.service('goods_specification');
+      /** @type {QrCodeService} */
+      const qrCodeService = this.service('qr_code');
 
-    const { ADMIN_RESPONSE } = goodsService.getConstants();
+      const { ADMIN_RESPONSE } = goodsService.getConstants();
 
       const error = await this.validate(goods, attributes, specifications, products);
       if (!think.isNullOrUndefined(error)) {
