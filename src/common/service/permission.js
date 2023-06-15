@@ -134,6 +134,58 @@ module.exports = class PermissionService extends Base {
       });
   }
 
+  listPermVo(permissions) {
+    const root = [];
+    for (const permission of permissions) {
+      const { api, requiresPermissions, requiresPermissionsDesc } = permission;
+      const { menu, button } = requiresPermissionsDesc;
+
+      if (2 != menu.length) {
+        throw new Error('目前只支持两级菜单');
+      }
+
+      const [menu1, menu2] = menu;
+
+      let perm1 = root.find((permVo) => permVo.label == menu1);
+      if (think.isNullOrUndefined(perm1)) {
+        perm1 = {
+          id: menu1,
+          label: menu1,
+          children: [],
+        };
+        root.push(perm1);
+      }
+
+      let perm2 = perm1.children.find((permVo) => permVo.label == menu2);
+      if (think.isNullOrUndefined(perm2)) {
+        perm2 = {
+          id: menu2,
+          label: menu2,
+          children: [],
+        };
+        perm1.children.push(perm2);
+      }
+
+      let leftPerm = perm2.children.find((permVo) => permVo.label == button);
+      if (think.isNullOrUndefined(leftPerm)) {
+        leftPerm = {
+          id: requiresPermissions.value[0],
+          label: button,
+          api,
+        };
+        perm2.children.push(leftPerm);
+      } else {
+        throw new Error('权限已经存在，不能添加新权限');
+      }
+    }
+    return root;
+  }
+
+  listPermissionString(permissions) {
+    return permissions
+      .map((permission) => permission.requiresPermissions.value[0]);
+  }
+
   listPermission() {
     return [
       {
@@ -1833,10 +1885,5 @@ module.exports = class PermissionService extends Base {
         },
       },
     ];
-  }
-
-  listPermissionString(permissions) {
-    return permissions
-      .map((permission) => permission.requiresPermissions.value[0]);
   }
 }
