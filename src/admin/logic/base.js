@@ -1,6 +1,13 @@
 module.exports = class extends think.Logic {
-  async __after() {
-    if (!think.isEmpty(this.requiresPermissions)) {
+  async __before() {
+    /** @type {PermissionService} */
+    const permissionService = this.service('permission');
+
+    const api = `${this.ctx.method} ${this.ctx.path}`;
+    const permission = permissionService.listPermission()
+      .find((p) => p.api == api);
+
+    if (!think.isNullOrUndefined(permission)) {
       const adminId = this.getAdminId();
 
       if (think.isNullOrUndefined(adminId)) {
@@ -10,20 +17,16 @@ module.exports = class extends think.Logic {
       /** @type {AdminService} */
       const adminService = this.service('admin');
 
-      const admin = await adminService.findById(adminId);
+      const admin = await adminService.findAdminById(adminId);
       if (think.isEmpty(admin)) {
         return this.unlogin();
       }
 
-      /** @type {PermissionService} */
-      const permissionService = this.service('permission');
-
-      if (!await permissionService.hasPermission(admin.roleIds, this.requiresPermissions)) {
+      const requiresPermissions = permission.requiresPermissions.value[0];
+      if (!await permissionService.hasPermission(admin.roleIds, requiresPermissions)) {
         return this.unauthz();
       }
     }
-
-    return await super.__after();
   }
 
   /**
