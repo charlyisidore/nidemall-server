@@ -7,6 +7,24 @@ module.exports = class PermissionService extends Base {
 
   /**
    * 
+   * @param {number[]} roleIds 
+   * @returns {Promise<string[]>}
+   */
+  async queryByRoleIds(roleIds) {
+    if (think.isEmpty(roleIds)) {
+      return [];
+    }
+    return (await this.model('permission')
+      .where({
+        id: ['IN', roleIds],
+        deleted: false,
+      })
+      .select())
+      .map((permission) => permission.permission);
+  }
+
+  /**
+   * 
    * @param {number|number[]|null} roleId 
    * @returns {Promise<string[]>}
    */
