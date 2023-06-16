@@ -18,6 +18,8 @@ tags:
     description: Ad controller
   - name: address
     description: Address controller
+  - name: admin
+    description: Admin controller
   - name: aftersale
     description: Aftersale controller
   - name: auth
