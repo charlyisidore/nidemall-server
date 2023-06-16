@@ -1,0 +1,48 @@
+get:
+  tags:
+    - address
+  summary: Address list
+  description: Address list
+  operationId: adminAddressList
+  security:
+    - cookieAuth: []
+  parameters:
+    - name: userId
+      in: query
+      description: User ID
+      required: false
+      schema:
+        type: integer
+    - name: name
+      in: query
+      description: Name
+      required: false
+      schema:
+        type: string
+    - $ref: ../../../components/parameters/page.yaml
+    - $ref: ../../../components/parameters/limit.yaml
+    - $ref: ../../../components/parameters/sort.yaml
+    - $ref: ../../../components/parameters/order.yaml
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+            required:
+              - data
+            properties:
+              data:
+                type: object
+                allOf:
+                  - $ref: ../../../components/schemas/List.yaml
+                properties:
+                  list:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/Address.yaml
+    '4XX':
+      description: Unexpected error

@@ -68,6 +68,9 @@ paths:
   /admin/ad/update:
     $ref: paths/admin/ad/update.yaml
 
+  /admin/address/list:
+    $ref: paths/admin/address/list.yaml
+
   /wx/address/delete:
     $ref: paths/wx/address/delete.yaml
   /wx/address/detail:
