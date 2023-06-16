@@ -242,6 +242,8 @@ module.exports = class AdminOrderController extends Base {
 
     /** @type {OrderService} */
     const orderService = this.service('order');
+    /** @type {WeixinService} */
+    const weixinService = this.service('weixin');
 
     const { ADMIN_RESPONSE, STATUS } = orderService.getConstants();
 
@@ -261,9 +263,7 @@ module.exports = class AdminOrderController extends Base {
     });
 
     if (!await orderService.updateWithOptimisticLocker(order)) {
-      return this.fail(ADMIN_RESPONSE.PAY_FAILED, '更新数据已失效');
-      // https://github.com/Wechat-Group/WxJava/blob/develop/weixin-java-pay/src/main/java/com/github/binarywang/wxpay/bean/notify/WxPayNotifyResponse.java
-      // return WxPayNotifyResponse.fail("更新数据已失效");
+      return weixinService.fail("更新数据已失效");
     }
 
     return this.success();
