@@ -4,6 +4,7 @@ module.exports = class NotifyService extends Base {
   constructor() {
     super();
 
+    this.mailSender = null;
     this.smsSender = null;
   }
 
@@ -11,8 +12,16 @@ module.exports = class NotifyService extends Base {
    * 
    * @returns {boolean}
    */
+  isMailEnable() {
+    return !think.isNullOrUndefined(this.mailSender);
+  }
+
+  /**
+   * 
+   * @returns {boolean}
+   */
   isSmsEnable() {
-    return false;
+    return !think.isNullOrUndefined(this.smsSender);
   }
 
   /**
@@ -20,8 +29,9 @@ module.exports = class NotifyService extends Base {
    * @param {string} phoneNumber 
    * @param {string} message 
    */
-  notifySms(phoneNumber, message) {
+  async notifySms(phoneNumber, message) {
     console.log(`notifySms(${JSON.stringify({ phoneNumber, message })})`);
+    think.logger.info(`notifySms(${JSON.stringify({ phoneNumber, message })})`);
   }
 
   /**
@@ -30,8 +40,30 @@ module.exports = class NotifyService extends Base {
    * @param {string} notifyType 
    * @param {string[]} params 
    */
-  notifySmsTemplate(phoneNumber, notifyType, params) {
+  async notifySmsTemplate(phoneNumber, notifyType, params) {
     console.log(`notifySmsTemplate(${JSON.stringify({ phoneNumber, notifyType, params })})`);
+    think.logger.info(`notifySmsTemplate(${JSON.stringify({ phoneNumber, notifyType, params })})`);
+  }
+
+  /**
+   * 
+   * @param {string} phoneNumber 
+   * @param {string} notifyType 
+   * @param {string[]} params 
+   */
+  async notifySmsTemplateSync(phoneNumber, notifyType, params) {
+    console.log(`notifySmsTemplateSync(${JSON.stringify({ phoneNumber, notifyType, params })})`);
+    think.logger.info(`notifySmsTemplateSync(${JSON.stringify({ phoneNumber, notifyType, params })})`);
+  }
+
+  /**
+   * 
+   * @param {string} subject 
+   * @param {string} content 
+   */
+  async notifyMail(subject, content) {
+    console.log(`notifyMail(${JSON.stringify({ subject, content })})`);
+    think.logger.info(`notifyMail(${JSON.stringify({ subject, content })})`);
   }
 
   getConstants() {
