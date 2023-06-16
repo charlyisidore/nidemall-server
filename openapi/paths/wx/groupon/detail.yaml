@@ -5,7 +5,7 @@ get:
   description: Groupon detail
   operationId: wxGrouponDetail
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   parameters:
     - name: grouponId
       in: query

@@ -5,7 +5,7 @@ post:
   description: Comment post
   operationId: wxCommentPost
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   requestBody:
     required: true
     content:

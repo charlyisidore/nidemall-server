@@ -5,7 +5,7 @@ get:
   description: Footprint list
   operationId: wxFootprintList
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   parameters:
     - $ref: ../../../components/parameters/page.yaml
     - $ref: ../../../components/parameters/limit.yaml

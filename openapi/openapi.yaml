@@ -230,7 +230,7 @@ paths:
 
 components:
   securitySchemes:
-    ApiKey:
+    apiKeyAuth:
       type: apiKey
       in: header
       name: X-Litemall-Token

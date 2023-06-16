@@ -5,7 +5,7 @@ get:
   description: Comment count
   operationId: wxCommentCount
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   parameters:
     - name: type
       in: query

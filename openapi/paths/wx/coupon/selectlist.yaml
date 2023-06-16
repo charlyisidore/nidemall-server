@@ -5,7 +5,7 @@ get:
   description: Coupon selectlist
   operationId: wxCouponSelectlist
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   parameters:
     - name: cartId
       in: query

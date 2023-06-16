@@ -5,7 +5,7 @@ post:
   description: Order confirm
   operationId: wxOrderConfirm
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   requestBody:
     required: true
     content:

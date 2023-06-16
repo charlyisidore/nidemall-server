@@ -5,7 +5,7 @@ post:
   description: Auth logout
   operationId: wxAuthLogout
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   responses:
     '200':
       description: Successful operation

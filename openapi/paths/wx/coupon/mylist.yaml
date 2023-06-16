@@ -5,7 +5,7 @@ get:
   description: Coupon mylist
   operationId: wxCouponMylist
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   parameters:
     - name: status
       in: query

@@ -5,7 +5,7 @@ post:
   description: Order prepay
   operationId: wxOrderPrepay
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   requestBody:
     required: true
     content:

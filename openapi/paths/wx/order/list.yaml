@@ -5,7 +5,7 @@ get:
   description: Order list
   operationId: wxOrderList
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   parameters:
     - name: showType
       in: query

@@ -5,7 +5,7 @@ get:
   description: Order goods
   operationId: wxOrderGoods
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   parameters:
     - name: ogid
       in: query

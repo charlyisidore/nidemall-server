@@ -5,7 +5,7 @@ get:
   description: Collect list
   operationId: wxCollectList
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   parameters:
     - name: type
       in: query

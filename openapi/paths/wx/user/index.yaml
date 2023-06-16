@@ -5,7 +5,7 @@ get:
   description: User index
   operationId: wxUserIndex
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   responses:
     '200':
       description: Successful operation

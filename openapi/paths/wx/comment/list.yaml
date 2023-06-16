@@ -5,7 +5,7 @@ get:
   description: Comment list
   operationId: wxCommentList
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   parameters:
     - name: type
       in: query

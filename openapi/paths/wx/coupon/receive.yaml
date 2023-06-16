@@ -5,7 +5,7 @@ post:
   description: Coupon receive
   operationId: wxCouponReceive
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   parameters:
     - name: couponId
       in: query

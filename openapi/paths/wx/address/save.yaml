@@ -5,7 +5,7 @@ post:
   description: Address save
   operationId: wxAddressSave
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   requestBody:
     required: true
     content:

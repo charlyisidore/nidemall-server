@@ -5,7 +5,7 @@ post:
   description: Order comment
   operationId: wxOrderComment
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   requestBody:
     required: true
     content:

@@ -5,7 +5,7 @@ post:
   description: Coupon exchange
   operationId: wxCouponExchange
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   parameters:
     - name: code
       in: query

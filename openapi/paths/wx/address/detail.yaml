@@ -5,7 +5,7 @@ get:
   description: Address detail
   operationId: wxAddressDetail
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   parameters:
     - name: id
       in: query

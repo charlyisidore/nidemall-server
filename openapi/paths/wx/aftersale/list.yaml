@@ -5,7 +5,7 @@ get:
   description: Aftersale list
   operationId: wxAftersaleList
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   parameters:
     - name: status
       in: query

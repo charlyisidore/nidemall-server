@@ -5,7 +5,7 @@ post:
   description: Aftersale submit
   operationId: wxAftersaleSubmit
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   requestBody:
     required: true
     content:

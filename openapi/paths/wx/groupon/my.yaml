@@ -5,7 +5,7 @@ get:
   description: Groupon my
   operationId: wxGrouponMy
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   parameters:
     - name: showType
       in: query

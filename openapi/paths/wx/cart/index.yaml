@@ -5,7 +5,7 @@ get:
   description: Cart index
   operationId: wxCartIndex
   security:
-    - ApiKey: []
+    - apiKeyAuth: []
   responses:
     '200':
       description: Successful operation
