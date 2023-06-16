@@ -164,6 +164,8 @@ module.exports = class WxOrderController extends Base {
       const grouponService = this.service('groupon');
       /** @type {GrouponRulesService} */
       const grouponRulesService = this.service('groupon_rules');
+      /** @type {NotifyService} */
+      const notifyService = this.service('notify');
       /** @type {OrderService} */
       const orderService = this.service('order');
       /** @type {OrderGoodsService} */
@@ -178,6 +180,7 @@ module.exports = class WxOrderController extends Base {
       const COUPON_USER = couponUserService.getConstants();
       const GROUPON = grouponService.getConstants();
       const GROUPON_RULES = grouponRulesService.getConstants();
+      const NOTIFY = notifyService.getConstants();
       const ORDER = orderService.getConstants();
 
       const freight = await systemService.getFreight();
@@ -282,6 +285,7 @@ module.exports = class WxOrderController extends Base {
       const orderTotalPrice = Math.max(0., checkedGoodsPrice + freightPrice - couponPrice);
       const actualPrice = orderTotalPrice - integralPrice;
 
+      /** @type {Order} */
       const order = {
         userId,
         orderSn: await orderService.generateOrderSn(userId),
@@ -300,6 +304,7 @@ module.exports = class WxOrderController extends Base {
       };
 
       order.id = await orderService.add(order);
+      const orderId = order.id;
 
       for (const cartGoods of checkedGoodsList) {
         const orderGoods = {
@@ -345,7 +350,7 @@ module.exports = class WxOrderController extends Base {
         Object.assign(couponUser, {
           status: COUPON_USER.STATUS.USED,
           usedTime: now,
-          orderId: order.id,
+          orderId,
         });
 
         await couponUserService.update(couponUser);
@@ -353,7 +358,7 @@ module.exports = class WxOrderController extends Base {
 
       if (grouponRulesId) {
         const groupon = {
-          orderId: order.id,
+          orderId,
           status: GROUPON.STATUS.NONE,
           userId,
           rulesId: grouponRulesId,
@@ -368,7 +373,7 @@ module.exports = class WxOrderController extends Base {
             shareUrl: baseGroupon.shareUrl,
           });
 
-          await grouponService.createGroupon(groupon);
+          groupon.id = await grouponService.createGroupon(groupon);
         } else {
           Object.assign(groupon, {
             creatorUserId: userId,
@@ -376,18 +381,19 @@ module.exports = class WxOrderController extends Base {
             grouponId: 0,
           });
 
-          grouponLinkId = await grouponService.createGroupon(groupon);
+          groupon.id = await grouponService.createGroupon(groupon);
+          grouponLinkId = groupon.id;
         }
       }
 
       let payed = false;
 
       // Deal with float precision
-      if (order.actualPrice < 0.001) {
+      if (Math.abs(order.actualPrice) < 0.001) {
         payed = true;
 
         await orderService.updateSelective({
-          id: order.id,
+          id: orderId,
           orderStatus: ORDER.STATUS.PAY,
         });
 
@@ -413,7 +419,6 @@ module.exports = class WxOrderController extends Base {
           if (groupon.groupondId && grouponList.length >= (grouponRules.discountMember - 1)) {
             for (const grouponActivity of grouponList) {
               grouponActivity.status = GROUPON.STATUS.SUCCEED;
-
               await grouponService.updateById(grouponActivity);
             }
 
@@ -423,12 +428,15 @@ module.exports = class WxOrderController extends Base {
           }
         }
 
-        // TODO
-        // await notifyService.notifyMail('新订单通知', order.toString());
-        // await notifyService.notifySmsTemplateSync(order.mobile, NotifyService.PAY.SUCCEED, order.orderSn.substr(8, 14));
+        await notifyService.notifyMail('新订单通知', orderService.orderToString(order));
+        await notifyService.notifySmsTemplateSync(
+          order.mobile,
+          NOTIFY.TYPE.PAY_SUCCEED,
+          [order.orderSn.substring(8, 14)]
+        );
       } else {
         taskService.addTask(
-          () => orderService.orderUnpaidTask(order.id),
+          () => orderService.orderUnpaidTask(orderId),
           now.getTime() + orderUnpaid * 60 * 1000,
           `OrderUnpaidTask:${order.id}`
         );
@@ -701,15 +709,14 @@ module.exports = class WxOrderController extends Base {
         }
       }
 
-      // TODO: order.toString()
-      await notifyService.notifyMail('新订单通知', order.toString());
+      await notifyService.notifyMail('新订单通知', orderService.orderToString(order));
       await notifyService.notifySmsTemplate(
         order.mobile,
         NOTIFY.TYPE.PAY_SUCCEED,
         order.orderSn.substring(8, 14)
       );
 
-      await taskService.removeTask(`OrderUnpaidTask:${order.id}`);
+      taskService.removeTask(`OrderUnpaidTask:${order.id}`);
 
       return weixinService.success('处理成功!');
     });

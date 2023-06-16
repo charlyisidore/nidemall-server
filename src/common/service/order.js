@@ -643,6 +643,65 @@ module.exports = class OrderService extends Base {
     think.logger.info(`系统结束处理延时任务---订单超时未付款---${orderId}`);
   }
 
+  /**
+   * 
+   * @param {Order} order 
+   * @returns {string}
+   */
+  orderToString(order) {
+    return JSON.stringify(order);
+  }
+
+  /**
+   * 
+   * @param {Order} order 
+   * @returns {string}
+   */
+  orderToStringJava(order) {
+    const hashCode = 0;
+    const NOT_DELETED = '0'; // 未删除
+    const IS_DELETED = '1'; // 已删除
+    return [
+      'LitemallOrder',
+      ' [',
+      `Hash = ${hashCode}`,
+      `, IS_DELETED=${IS_DELETED}`,
+      `, NOT_DELETED=${NOT_DELETED}`,
+      `, id=${order.id}`,
+      `, userId=${order.userId}`,
+      `, orderSn=${order.orderSn}`,
+      `, orderStatus=${order.orderStatus}`,
+      `, aftersaleStatus=${order.aftersaleStatus}`,
+      `, consignee=${order.consignee}`,
+      `, mobile=${order.mobile}`,
+      `, address=${order.address}`,
+      `, message=${order.message}`,
+      `, goodsPrice=${order.goodsPrice}`,
+      `, freightPrice=${order.freightPrice}`,
+      `, couponPrice=${order.couponPrice}`,
+      `, integralPrice=${order.integralPrice}`,
+      `, grouponPrice=${order.grouponPrice}`,
+      `, orderPrice=${order.orderPrice}`,
+      `, actualPrice=${order.actualPrice}`,
+      `, payId=${order.payId}`,
+      `, payTime=${order.payTime}`,
+      `, shipSn=${order.shipSn}`,
+      `, shipChannel=${order.shipChannel}`,
+      `, shipTime=${order.shipTime}`,
+      `, refundAmount=${order.refundAmount}`,
+      `, refundType=${order.refundType}`,
+      `, refundContent=${order.refundContent}`,
+      `, refundTime=${order.refundTime}`,
+      `, confirmTime=${order.confirmTime}`,
+      `, comments=${order.comments}`,
+      `, endTime=${order.endTime}`,
+      `, addTime=${order.addTime}`,
+      `, updateTime=${order.updateTime}`,
+      `, deleted=${order.deleted}`,
+      ']',
+    ].join();
+  }
+
   getRandomNum(n) {
     return Math.floor(Math.random() * (Math.pow(10, n) - 1))
       .toString()
