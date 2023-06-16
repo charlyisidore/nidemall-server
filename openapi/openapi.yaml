@@ -14,6 +14,8 @@ servers:
   - url: http://localhost:8080/wx
   - url: http://localhost:8360/wx
 tags:
+  - name: ad
+    description: Ad controller
   - name: address
     description: Address controller
   - name: aftersale
@@ -55,6 +57,17 @@ tags:
   - name: user
     description: User controller
 paths:
+  /admin/ad/create:
+    $ref: paths/admin/ad/create.yaml
+  /admin/ad/delete:
+    $ref: paths/admin/ad/delete.yaml
+  /admin/ad/list:
+    $ref: paths/admin/ad/list.yaml
+  /admin/ad/read:
+    $ref: paths/admin/ad/read.yaml
+  /admin/ad/update:
+    $ref: paths/admin/ad/update.yaml
+
   /wx/address/delete:
     $ref: paths/wx/address/delete.yaml
   /wx/address/detail:
@@ -221,5 +234,9 @@ components:
       type: apiKey
       in: header
       name: X-Litemall-Token
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: thinkjs
 
 security: []

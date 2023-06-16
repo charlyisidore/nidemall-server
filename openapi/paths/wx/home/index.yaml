@@ -49,7 +49,7 @@ get:
                   banner:
                     type: array
                     items:
-                      $ref: ../../../components/schemas/Ad.yaml
+                      $ref: ../../../components/schemas/AdDetail.yaml
                   brandList:
                     type: array
                     items:

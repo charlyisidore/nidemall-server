@@ -1,0 +1,47 @@
+post:
+  tags:
+    - ad
+  summary: Ad update
+  description: Ad update
+  operationId: wxAdUpdate
+  security:
+    - cookieAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+            content:
+              type: string
+            url:
+              type: string
+            position:
+              type: integer
+            link:
+              type: string
+            enabled:
+              type: boolean
+          required:
+            - id
+            - name
+            - content
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+            required:
+              - data
+            properties:
+              data:
+                $ref: ../../../components/schemas/Ad.yaml
+    '4XX':
+      description: Unexpected error

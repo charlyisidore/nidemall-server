@@ -1,0 +1,31 @@
+get:
+  tags:
+    - ad
+  summary: Ad read
+  description: Ad read
+  operationId: adminAdRead
+  security:
+    - cookieAuth: []
+  parameters:
+    - name: id
+      in: query
+      description: Ad ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+            required:
+              - data
+            properties:
+              data:
+                $ref: ../../../components/schemas/AdDetail.yaml
+    '4XX':
+      description: Unexpected error
