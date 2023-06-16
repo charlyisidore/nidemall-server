@@ -443,7 +443,7 @@ module.exports = class WxOrderController extends Base {
       }
 
       return this.success({
-        orderId: order.id,
+        orderId,
         payed,
         grouponLinkId: (grouponRulesId ? grouponLinkId : 0),
       });
