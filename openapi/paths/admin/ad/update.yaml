@@ -3,7 +3,7 @@ post:
     - ad
   summary: Ad update
   description: Ad update
-  operationId: wxAdUpdate
+  operationId: adminAdUpdate
   security:
     - cookieAuth: []
   requestBody:

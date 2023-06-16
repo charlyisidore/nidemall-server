@@ -1,9 +1,9 @@
 post:
   tags:
-    - ad
-  summary: Ad update
-  description: Ad update
-  operationId: wxAdUpdate
+    - admin
+  summary: Admin update
+  description: Admin update
+  operationId: adminAdminUpdate
   security:
     - cookieAuth: []
   requestBody:
