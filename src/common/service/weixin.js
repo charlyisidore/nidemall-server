@@ -8,6 +8,34 @@ module.exports = class WeixinService extends Base {
   }
 
   /**
+   * 
+   * @param {string} msg 
+   * @returns {string}
+   */
+  success(msg) {
+    return this.buildXml({
+      xml: {
+        return_code: 'SUCCESS',
+        return_msg: msg,
+      },
+    });
+  }
+
+  /**
+   * 
+   * @param {string} msg 
+   * @returns {string}
+   */
+  fail(msg) {
+    return this.buildXml({
+      xml: {
+        return_code: 'FAIL',
+        return_msg: msg,
+      },
+    });
+  }
+
+  /**
    * 获取接口调用凭据
    * @see https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/mp-access-token/getAccessToken.html
    * @returns {Promise<string>}
