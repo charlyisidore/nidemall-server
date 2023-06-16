@@ -495,6 +495,32 @@ module.exports = class OrderService extends Base {
 
   /**
    * 
+   * @param {number} orderId 
+   */
+  async releaseCoupon(orderId) {
+    /** @type {CouponUserService} */
+    const couponUserService = think.service('coupon_user');
+
+    const COUPON_USER = couponUserService.getConstants();
+
+    const couponUsers = await couponUserService.findByOid(orderId);
+
+    const now = new Date();
+
+    return Promise.all(
+      couponUsers.map(async (couponUser) => {
+        Object.assign(couponUser, {
+          status: COUPON_USER.STATUS.USABLE,
+          updateTime: now,
+        });
+
+        await couponUserService.update(couponUser);
+      })
+    );
+  }
+
+  /**
+   * 
    */
   async checkOrderUnconfirm() {
     think.logger.info('系统开启定时任务检查订单是否已经超期自动确认收货');
@@ -565,6 +591,56 @@ module.exports = class OrderService extends Base {
     );
 
     think.logger.info('系统结束任务检查订单是否已经超期未评价');
+  }
+
+  /**
+   * 
+   * @param {number} orderId 
+   */
+  async orderUnpaidTask(orderId) {
+    think.logger.info(`系统开始处理延时任务---订单超时未付款---${orderId}`);
+
+    /** @type {GoodsProductService} */
+    const goodsProductService = think.service('goods_product');
+    /** @type {OrderGoodsService} */
+    const orderGoodsService = think.service('order_goods');
+
+    const { STATUS } = this.getConstants();
+
+    const order = await this.findById(orderId);
+
+    if (think.isEmpty(order)) {
+      return;
+    }
+
+    if (!this.isCreateStatus(order)) {
+      return;
+    }
+
+    const now = new Date();
+
+    Object.assign(order, {
+      orderStatus: STATUS.AUTO_CANCEL,
+      endTime: now,
+    });
+
+    if (!await this.updateWithOptimisticLocker(order)) {
+      throw new Error('更新数据已失效');
+    }
+
+    const orderGoodsList = await orderGoodsService.queryByOid(order.id);
+
+    await Promise.all(
+      orderGoodsList.map(async (orderGoods) => {
+        if (!await goodsProductService.addStock(orderGoods.productId, orderGoods.number)) {
+          throw new Error('商品货品库存增加失败');
+        }
+      })
+    );
+
+    await this.releaseCoupon(order.id);
+
+    think.logger.info(`系统结束处理延时任务---订单超时未付款---${orderId}`);
   }
 
   getRandomNum(n) {

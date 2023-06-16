@@ -967,30 +967,6 @@ module.exports = class WxOrderController extends Base {
   }
 
   /**
-   * 
-   * @param {number} orderId 
-   */
-  async releaseCoupon(orderId) {
-    /** @type {CouponUserService} */
-    const couponUserService = this.service('coupon_user');
-
-    const COUPON_USER = couponUserService.getConstants();
-
-    const now = new Date();
-
-    const couponUsers = await couponUserService.findByOid(orderId);
-
-    return Promise.all(couponUsers.map(async (couponUser) => {
-      Object.assign(couponUser, {
-        status: COUPON_USER.STATUS.USABLE,
-        updateTime: now,
-      });
-
-      await couponUserService.update(couponUser);
-    }));
-  }
-
-  /**
    * https://github.com/Wechat-Group/WxJava/blob/cb34973efe26574da9027a8a39672fe8c38aea86/weixin-java-pay/src/main/java/com/github/binarywang/wxpay/bean/result/BaseWxPayResult.java#L126
    */
   fenToYuan(fen) {
