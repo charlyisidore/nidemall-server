@@ -1,6 +1,8 @@
 const Base = require('./base.js');
 
 module.exports = class TaskService extends Base {
+  _tasks = {};
+
   constructor() {
     super();
   }
@@ -9,9 +11,10 @@ module.exports = class TaskService extends Base {
    * 
    * @param {() => any} callback 
    * @param {Date|string|number} dueTime 
+   * @param {string?} key
    * @returns {number}
    */
-  addTask(callback, dueTime) {
+  addTask(callback, dueTime, key) {
     const MAX_TIMEOUT = 2147483647;
     let time = dueTime;
 
@@ -27,16 +30,29 @@ module.exports = class TaskService extends Base {
     const delay = time - now.getTime();
 
     // https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#maximum_delay_value
-    return (delay > MAX_TIMEOUT) ?
+    const id = (delay > MAX_TIMEOUT) ?
       setTimeout(() => this.addTask(callback, dueTime), MAX_TIMEOUT) :
       setTimeout(callback, Math.max(0, delay));
+
+    if (!think.isNullOrUndefined(key)) {
+      this._tasks[key] = id;
+    }
+    return id;
   }
 
   /**
    * 
-   * @param {number} task 
+   * @param {number|string} idOrKey 
    */
-  removeTask(task) {
-    clearTimeout(task);
+  removeTask(idOrKey) {
+    let id = idOrKey;
+    if (think.isString(idOrKey)) {
+      if (!(idOrKey in this._tasks)) {
+        return;
+      }
+      id = this._tasks[idOrKey];
+      delete this._tasks[idOrKey];
+    }
+    return clearTimeout(id);
   }
 }
