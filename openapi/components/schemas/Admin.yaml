@@ -1,0 +1,18 @@
+type: object
+additionalProperties: false
+required:
+  - id
+  - username
+  - avatar
+  - roleIds
+properties:
+  id:
+    type: integer
+  username:
+    type: string
+  avatar:
+    type: integer
+  roleIds:
+    type: array
+    items:
+      type: integer

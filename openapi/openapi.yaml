@@ -71,6 +71,17 @@ paths:
   /admin/address/list:
     $ref: paths/admin/address/list.yaml
 
+  /admin/admin/create:
+    $ref: paths/admin/admin/create.yaml
+  /admin/admin/delete:
+    $ref: paths/admin/admin/delete.yaml
+  /admin/admin/list:
+    $ref: paths/admin/admin/list.yaml
+  /admin/admin/read:
+    $ref: paths/admin/admin/read.yaml
+  /admin/admin/update:
+    $ref: paths/admin/admin/update.yaml
+
   /wx/address/delete:
     $ref: paths/wx/address/delete.yaml
   /wx/address/detail:

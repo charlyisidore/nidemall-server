@@ -1,0 +1,18 @@
+type: object
+additionalProperties: false
+required:
+  - id
+  - username
+properties:
+  id:
+    type: integer
+  username:
+    type: string
+  avatar:
+    type: integer
+  updateTime:
+    $ref: ./DateTime.yaml
+  roleIds:
+    type: array
+    items:
+      type: integer

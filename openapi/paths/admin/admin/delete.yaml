@@ -1,0 +1,28 @@
+post:
+  tags:
+    - admin
+  summary: Admin delete
+  description: Admin delete
+  operationId: adminAdminDelete
+  security:
+    - cookieAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+          required:
+            - id
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/schemas/ApiResponse.yaml
+    '4XX':
+      description: Unexpected error

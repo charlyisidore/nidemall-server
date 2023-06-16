@@ -1,0 +1,44 @@
+post:
+  tags:
+    - admin
+  summary: Admin create
+  description: Admin create
+  operationId: adminAdminCreate
+  security:
+    - cookieAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            username:
+              type: string
+            password:
+              type: string
+            avatar:
+              type: string
+            roleIds:
+              type: array
+              items:
+                type: integer
+          required:
+            - username
+            - password
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+            required:
+              - data
+            properties:
+              data:
+                $ref: ../../../components/schemas/AdminCreate.yaml
+    '4XX':
+      description: Unexpected error
