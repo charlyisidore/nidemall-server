@@ -172,6 +172,8 @@ module.exports = class WxOrderController extends Base {
       const qrCodeService = this.service('qr_code');
       /** @type {SystemService} */
       const systemService = this.service('system');
+      /** @type {TaskService} */
+      const taskService = this.service('task');
 
       const COUPON_USER = couponUserService.getConstants();
       const GROUPON = grouponService.getConstants();
@@ -180,6 +182,7 @@ module.exports = class WxOrderController extends Base {
 
       const freight = await systemService.getFreight();
       const freightLimit = await systemService.getFreightLimit();
+      const orderUnpaid = await systemService.getOrderUnpaid();
       const now = new Date();
 
       if (think.isNullOrUndefined(userId)) {
@@ -424,8 +427,11 @@ module.exports = class WxOrderController extends Base {
         // await notifyService.notifyMail('新订单通知', order.toString());
         // await notifyService.notifySmsTemplateSync(order.mobile, NotifyService.PAY.SUCCEED, order.orderSn.substr(8, 14));
       } else {
-        // TODO
-        // await taskService.addTask(new OrderUnpaidTask(order.id));
+        taskService.addTask(
+          () => orderService.orderUnpaidTask(order.id),
+          now.getTime() + orderUnpaid * 60 * 1000,
+          `OrderUnpaidTask:${order.id}`
+        );
       }
 
       return this.success({
@@ -488,7 +494,7 @@ module.exports = class WxOrderController extends Base {
         }
       }
 
-      await this.releaseCoupon(orderId);
+      await orderService.releaseCoupon(orderId);
 
       return this.success();
     });
@@ -564,11 +570,9 @@ module.exports = class WxOrderController extends Base {
       // TODO
       console.log(`============ PAY NOTIFY 1 ============`);
       console.log(this.post());
+      console.log(this.file());
 
-      const xml = this.post('xml');
-
-      console.log(`============ PAY NOTIFY 2 ============`);
-      console.log(xml);
+      // return this.fail(-1);
 
       /** @type {GrouponService} */
       const grouponService = this.service('groupon');
@@ -580,6 +584,8 @@ module.exports = class WxOrderController extends Base {
       const orderService = this.service('order');
       /** @type {QrCodeService} */
       const qrCodeService = this.service('qr_code');
+      /** @type {TaskService} */
+      const taskService = this.service('task');
       /** @type {WeixinService} */
       const weixinService = this.service('weixin');
 
@@ -616,7 +622,9 @@ module.exports = class WxOrderController extends Base {
       // TODO: check XML response syntax (camel case?)
       const orderSn = result.outTradeNo;
       const payId = result.transationId;
-      const totalFee = BaseWxPayResult.fenToYuan(result.totalFee);
+
+      // https://github.com/Wechat-Group/WxJava/blob/cb34973efe26574da9027a8a39672fe8c38aea86/weixin-java-pay/src/main/java/com/github/binarywang/wxpay/bean/result/BaseWxPayResult.java#L126
+      const totalFee = this.fenToYuan(result.totalFee);
 
       const order = await orderService.findBySn(orderSn);
 
@@ -701,9 +709,8 @@ module.exports = class WxOrderController extends Base {
         order.orderSn.substring(8, 14)
       );
 
-      await taskService.removeTask(new OrderUnpaidTask(order.id));
+      await taskService.removeTask(`OrderUnpaidTask:${order.id}`);
 
-      // TODO: weixinService.success
       return weixinService.success('处理成功!');
     });
   }
@@ -981,5 +988,12 @@ module.exports = class WxOrderController extends Base {
 
       await couponUserService.update(couponUser);
     }));
+  }
+
+  /**
+   * https://github.com/Wechat-Group/WxJava/blob/cb34973efe26574da9027a8a39672fe8c38aea86/weixin-java-pay/src/main/java/com/github/binarywang/wxpay/bean/result/BaseWxPayResult.java#L126
+   */
+  fenToYuan(fen) {
+    return (fen / 100.).toFixed(2);
   }
 };
