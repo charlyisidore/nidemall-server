@@ -1,0 +1,31 @@
+get:
+  tags:
+    - brand
+  summary: Brand read
+  description: Brand read
+  operationId: adminBrandRead
+  security:
+    - cookieAuth: []
+  parameters:
+    - name: id
+      in: query
+      description: Brand ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+            required:
+              - data
+            properties:
+              data:
+                $ref: ../../../components/schemas/BrandDetail.yaml
+    '4XX':
+      description: Unexpected error

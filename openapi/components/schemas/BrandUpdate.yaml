@@ -1,0 +1,23 @@
+type: object
+additionalProperties: false
+required:
+  - id
+  - name
+  - desc
+  - floorPrice
+  - updateTime
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+  desc:
+    type: string
+  picUrl:
+    type: string
+  sortOrder:
+    type: integer
+  floorPrice:
+    type: number
+  updateTime:
+    $ref: ./DateTime.yaml

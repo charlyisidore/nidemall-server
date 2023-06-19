@@ -1,0 +1,46 @@
+post:
+  tags:
+    - brand
+  summary: Brand update
+  description: Brand update
+  operationId: adminBrandUpdate
+  security:
+    - cookieAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            desc:
+              type: string
+            picUrl:
+              type: string
+            floorPrice:
+              type: number
+          required:
+            - id
+            - name
+            - desc
+            - floorPrice
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+            required:
+              - data
+            properties:
+              data:
+                $ref: ../../../components/schemas/BrandUpdate.yaml
+    '4XX':
+      description: Unexpected error

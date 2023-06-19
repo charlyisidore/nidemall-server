@@ -1,0 +1,43 @@
+post:
+  tags:
+    - brand
+  summary: Brand create
+  description: Brand create
+  operationId: adminBrandCreate
+  security:
+    - cookieAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+            desc:
+              type: string
+            picUrl:
+              type: string
+            floorPrice:
+              type: number
+          required:
+            - name
+            - desc
+            - floorPrice
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+            required:
+              - data
+            properties:
+              data:
+                $ref: ../../../components/schemas/BrandCreate.yaml
+    '4XX':
+      description: Unexpected error

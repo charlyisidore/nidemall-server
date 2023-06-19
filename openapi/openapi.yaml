@@ -97,6 +97,17 @@ paths:
   /admin/aftersale/reject:
     $ref: paths/admin/aftersale/reject.yaml
 
+  /admin/brand/create:
+    $ref: paths/admin/brand/create.yaml
+  /admin/brand/delete:
+    $ref: paths/admin/brand/delete.yaml
+  /admin/brand/list:
+    $ref: paths/admin/brand/list.yaml
+  /admin/brand/read:
+    $ref: paths/admin/brand/read.yaml
+  /admin/brand/update:
+    $ref: paths/admin/brand/update.yaml
+
   /wx/address/delete:
     $ref: paths/wx/address/delete.yaml
   /wx/address/detail:
