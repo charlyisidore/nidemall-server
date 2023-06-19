@@ -37,7 +37,7 @@ module.exports = class AdminStorageController extends Base {
 
   async readAction() {
     /** @type {number} */
-    const id = this.file('id');
+    const id = this.post('id');
     /** @type {StorageService} */
     const storageService = this.service('storage');
 
