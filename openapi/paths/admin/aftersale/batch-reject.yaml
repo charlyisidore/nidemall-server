@@ -1,0 +1,30 @@
+post:
+  tags:
+    - aftersale
+  summary: Aftersale batch-reject
+  description: Aftersale batch-reject
+  operationId: adminAftersaleBatchReject
+  security:
+    - cookieAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            ids:
+              type: array
+              items:
+                type: integer
+          required:
+            - ids
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/schemas/ApiResponse.yaml
+    "4XX":
+      description: Unexpected error

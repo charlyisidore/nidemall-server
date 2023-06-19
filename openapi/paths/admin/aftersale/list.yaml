@@ -1,0 +1,54 @@
+get:
+  tags:
+    - aftersale
+  summary: Aftersale list
+  description: Aftersale list
+  operationId: adminAftersaleList
+  security:
+    - cookieAuth: []
+  parameters:
+    - name: orderId
+      in: query
+      description: Order ID
+      required: false
+      schema:
+        type: integer
+    - name: aftersaleSn
+      in: query
+      description: Aftersale SN
+      required: false
+      schema:
+        type: string
+    - name: status
+      in: query
+      description: Status
+      required: false
+      schema:
+        type: integer
+    - $ref: ../../../components/parameters/page.yaml
+    - $ref: ../../../components/parameters/limit.yaml
+    - $ref: ../../../components/parameters/sort.yaml
+    - $ref: ../../../components/parameters/order.yaml
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            allOf:
+              - $ref: ../../../components/schemas/ApiResponse.yaml
+            required:
+              - data
+            properties:
+              data:
+                type: object
+                allOf:
+                  - $ref: ../../../components/schemas/List.yaml
+                properties:
+                  list:
+                    type: array
+                    items:
+                      $ref: ../../../components/schemas/Aftersale.yaml
+    '4XX':
+      description: Unexpected error

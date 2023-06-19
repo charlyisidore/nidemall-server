@@ -84,6 +84,19 @@ paths:
   /admin/admin/update:
     $ref: paths/admin/admin/update.yaml
 
+  /admin/aftersale/batch-recept:
+    $ref: paths/admin/aftersale/batch-recept.yaml
+  /admin/aftersale/batch-reject:
+    $ref: paths/admin/aftersale/batch-reject.yaml
+  /admin/aftersale/list:
+    $ref: paths/admin/aftersale/list.yaml
+  /admin/aftersale/recept:
+    $ref: paths/admin/aftersale/recept.yaml
+  /admin/aftersale/refund:
+    $ref: paths/admin/aftersale/refund.yaml
+  /admin/aftersale/reject:
+    $ref: paths/admin/aftersale/reject.yaml
+
   /wx/address/delete:
     $ref: paths/wx/address/delete.yaml
   /wx/address/detail:
