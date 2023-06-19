@@ -28,19 +28,7 @@ module.exports = class SystemService extends Base {
     super();
 
     this.prefix = think.config('system')?.prefix || '';
-
-    const re = new RegExp(`^${this.prefix}`);
-
-    this.config = this.model('system')
-      .select()
-      .then((result) => {
-        return result.reduce(
-          (config, { keyName, keyValue }) => Object.assign(config, {
-            [keyName.replace(re, '')]: keyValue,
-          }),
-          {}
-        );
-      });
+    this.config = null;
   }
 
   /**
@@ -119,10 +107,22 @@ module.exports = class SystemService extends Base {
    * @returns {Promise<object|string>}
    */
   async getConfig(key) {
-    const config = await this.config;
+    if (think.isNullOrUndefined(this.config)) {
+      const re = new RegExp(`^${this.prefix}`);
+      this.config = await this.model('system')
+        .select()
+        .then((result) => {
+          return result.reduce(
+            (config, { keyName, keyValue }) => Object.assign(config, {
+              [keyName.replace(re, '')]: keyValue,
+            }),
+            {}
+          );
+        });
+    }
     return think.isUndefined(key) ?
-      config :
-      config[key];
+      this.config :
+      this.config[key];
   }
 
   /**
