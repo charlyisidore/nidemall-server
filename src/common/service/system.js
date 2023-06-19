@@ -2,6 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class SystemService extends Base {
   prefix = '';
+  config = null;
 
   config = {
     wx_index_new: '6',
@@ -26,9 +27,7 @@ module.exports = class SystemService extends Base {
 
   constructor() {
     super();
-
     this.prefix = think.config('system')?.prefix || '';
-    this.config = null;
   }
 
   /**
@@ -120,7 +119,7 @@ module.exports = class SystemService extends Base {
           );
         });
     }
-    return think.isUndefined(key) ?
+    return think.isNullOrUndefined(key) ?
       this.config :
       this.config[key];
   }
