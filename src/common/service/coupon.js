@@ -249,6 +249,9 @@ module.exports = class CouponService extends Base {
    * @param {number} userId 
    */
   async assignForRegister(userId) {
+    /** @type {CouponUserService} */
+    const couponUserService = think.service('coupon_user');
+
     const { TIME_TYPE } = this.getConstants();
     const couponList = await this.queryRegister();
 

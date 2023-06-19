@@ -25,36 +25,6 @@ module.exports = class extends think.Logic {
       userInfo: {
         object: true,
         required: true,
-        children: {
-          country: {
-            string: true,
-            required: true,
-          },
-          province: {
-            string: true,
-            required: true,
-          },
-          city: {
-            string: true,
-            required: true,
-          },
-          language: {
-            string: true,
-            required: true,
-          },
-          gender: {
-            string: true,
-            required: true,
-          },
-          nickName: {
-            string: true,
-            required: true,
-          },
-          avatarUrl: {
-            string: true,
-            required: true,
-          },
-        },
       },
     };
   }
