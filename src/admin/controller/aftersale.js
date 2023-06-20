@@ -1,4 +1,5 @@
 const Base = require('./base.js');
+const WxPayError = require('../../common/error/wx_pay.js');
 
 module.exports = class AdminAftersaleController extends Base {
   async listAction() {
@@ -66,6 +67,8 @@ module.exports = class AdminAftersaleController extends Base {
 
     /** @type {AftersaleService} */
     const aftersaleService = this.service('aftersale');
+    /** @type {OrderService} */
+    const orderService = this.service('order');
 
     const { STATUS } = aftersaleService.getConstants();
 
@@ -138,6 +141,8 @@ module.exports = class AdminAftersaleController extends Base {
 
     /** @type {AftersaleService} */
     const aftersaleService = this.service('aftersale');
+    /** @type {OrderService} */
+    const orderService = this.service('order');
 
     const { STATUS } = aftersaleService.getConstants();
 
@@ -185,6 +190,8 @@ module.exports = class AdminAftersaleController extends Base {
     const orderService = this.service('order');
     /** @type {OrderGoodsService} */
     const orderGoodsService = this.service('order_goods');
+    /** @type {WeixinService} */
+    const weixinService = this.service('weixin');
 
     const AFTERSALE = aftersaleService.getConstants();
     const NOTIFY = notifyService.getConstants();
@@ -202,30 +209,32 @@ module.exports = class AdminAftersaleController extends Base {
 
     const order = await orderService.findById(aftersale.orderId);
 
-    // TODO
-    // try {
-    //   wxPayRefundRequest({
-    //     outTradeNo: order.orderSn,
-    //     outRefundNo: `refund_${order.orderSn}`,
-    //     totalFree: Math.floor(order.actualPrice * 100.),
-    //     refundFree: Math.floor(aftersale.amount * 100.),
-    //   });
-    // } catch (e) {
-    //   switch (true) {
-    //     case e instanceof WxPayError:
-    //       think.logger.error(e.message, e);
-    //       return this.fail(ORDER.ADMIN_RESPONSE.REFUND_FAILED, '订单退款失败');
-    //   }
-    // }
-    // if ('SUCCESS' != wxPayRefundResult.returnCode) {
-    //   think.logger.warn(`refund fail: ${wxPayRefundResult.returnMsg}`);
-    //   return this.fail(ORDER.ADMIN_RESPONSE.REFUND_FAILED, '订单退款失败');
-    // }
-    // if ('SUCCESS' != wxPayRefundResult.resultCode) {
-    //   think.logger.warn(`refund fail: ${wxPayRefundResult.returnMsg}`);
-    //   return this.fail(ORDER.ADMIN_RESPONSE.REFUND_FAILED, '订单退款失败');
-    // }
-    return this.fail(-1, 'not implemented');
+    let wxPayRefundResult;
+    try {
+      wxPayRefundResult = await weixinService.refund({
+        outTradeNo: order.orderSn,
+        outRefundNo: `refund_${order.orderSn}`,
+        totalFree: Math.floor(order.actualPrice * 100.),
+        refundFree: Math.floor(aftersale.amount * 100.),
+      });
+    } catch (e) {
+      switch (true) {
+        case e instanceof WxPayError:
+          console.error(e);
+          think.logger.error(e.toString());
+          return this.fail(ORDER.ADMIN_RESPONSE.REFUND_FAILED, '订单退款失败');
+      }
+    }
+
+    if ('SUCCESS' != wxPayRefundResult.returnCode) {
+      think.logger.warn(`refund fail: ${wxPayRefundResult.returnMsg}`);
+      return this.fail(ORDER.ADMIN_RESPONSE.REFUND_FAILED, '订单退款失败');
+    }
+
+    if ('SUCCESS' != wxPayRefundResult.resultCode) {
+      think.logger.warn(`refund fail: ${wxPayRefundResult.returnMsg}`);
+      return this.fail(ORDER.ADMIN_RESPONSE.REFUND_FAILED, '订单退款失败');
+    }
 
     const now = new Date();
 
