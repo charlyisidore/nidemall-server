@@ -1,3 +1,5 @@
+/** @see https://mswjs.io/docs/getting-started/mocks/rest-api */
+
 const { rest } = require('msw');
 const { XMLBuilder, XMLParser } = require('fast-xml-parser');
 const crypto = require('node:crypto');
