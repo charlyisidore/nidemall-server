@@ -237,25 +237,75 @@ module.exports = class WeixinService extends Base {
   /**
    * 应用场景
    * @see https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_5
-   * @param {{ outTradeNo: string, outRefundNo: string, totalFee: number, refundFee: number }} refundRequest
+   * @param {{ outTradeNo: string, outRefundNo: string, totalFee: number, refundFee: number }} refund
    * @returns {Promise<object>}
    */
-  async refund(refundRequest) {
+  async refund(refund) {
     const config = think.config('weixin');
+
+    const tradeType = 'JSAPI';
+    const signType = 'MD5';
+    /** @type {string} */
+    const signKey = config.mchKey;
+    const nonceStr = (new Date()).getTime().toString();
+
+    const query = {
+      appid: config.appid,
+      mch_id: config.mchId,
+      notify_url: config.notifyUrl,
+      //
+      trade_type: tradeType,
+      sign_type: signType,
+      nonce_str: nonceStr,
+      //
+      out_trade_no: refund.outRefundNo,
+      out_refund_no: refund.outRefundNo,
+      total_fee: refund.totalFee,
+      refund_fee: refund.refundFee,
+    };
+
+    Object.assign(query, {
+      sign: this.createSign(query, signType, signKey),
+    });
 
     const response = await this.request({
       method: 'post',
       url: 'https://api.mch.weixin.qq.com/secapi/pay/refund',
-      data: this.buildXml({
-        appid: config.appid,
-        secret: config.secret,
-        mch_id: config.mchId,
-        nonce_str: '',
-        sign: '',
-      }),
+      data: this.buildXml({ xml: query }),
     });
 
-    return response;
+    const result = this.parseXml(response)?.xml;
+
+    if (!think.isObject(result)) {
+      throw new WxPayError(`weixin refund XML parse error`);
+    }
+
+    if (!this.checkSign(result, signType, signKey)) {
+      think.logger.debug(`weixin refund checkSign 校验结果签名失败，参数：${JSON.stringify(responseXml)}`);
+      throw new WxPayError('weixin refund checkSign 参数格式校验错误！');
+    }
+
+    if ('SUCCESS' != result.return_code) {
+      think.logger.error(`weixin refund fail 结果业务代码异常，返回结果：${JSON.stringify(responseXml)}`);
+      throw new WxPayError(`weixin refund fail`);
+    }
+
+    const coupons = [];
+    if (!think.isNullOrUndefined(result.coupon_refund_count)) {
+      for (let i = 0; i < result.coupon_refund_count; ++i) {
+        coupons.push({
+          couponRefundId: result[`coupon_refund_id_${i}`],
+          couponRefundFee: result[`coupon_refund_fee_${i}`],
+          couponType: result[`coupon_refund_type_${i}`],
+        });
+      }
+    }
+    result.refund_coupons = coupons;
+
+    return Object.fromEntries(
+      Object.entries(result)
+        .map(([k, v]) => [think.camelCase(k), v])
+    );
   }
 
   /**
