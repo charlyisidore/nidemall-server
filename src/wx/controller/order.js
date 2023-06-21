@@ -549,7 +549,6 @@ module.exports = class WxOrderController extends Base {
       }
 
       let result = null;
-
       try {
         result = await weixinService.createOrder({
           outTradeNo: order.orderSn,
