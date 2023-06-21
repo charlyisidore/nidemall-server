@@ -89,7 +89,7 @@ exports.handlers = [
       refund_count: '1',
       refund_fee_0: '1',
       refund_id_0: randomNumString(28),
-      refund_id_status: 'PROCESSING',
+      refund_status_0: 'PROCESSING',
       result_code: 'SUCCESS',
       return_code: 'SUCCESS',
       return_msg: 'OK',
