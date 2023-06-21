@@ -1,4 +1,5 @@
 const Base = require('./base.js');
+const WxPayError = require('../error/wx_pay.js');
 const axios = require('axios');
 const { XMLBuilder, XMLParser } = require('fast-xml-parser');
 const crypto = require('node:crypto');
@@ -163,22 +164,22 @@ module.exports = class WeixinService extends Base {
     const result = this.parseXml(response)?.xml;
 
     if (!think.isObject(result)) {
-      throw new Error(`weixin createOrder XML parse error`);
+      throw new WxPayError(`weixin createOrder XML parse error`);
     }
 
     if (!this.checkSign(result, signType, signKey)) {
       think.logger.debug(`weixin createOrder checkSign 校验结果签名失败，参数：${JSON.stringify(responseXml)}`);
-      throw new Error('weixin createOrder checkSign 参数格式校验错误！');
+      throw new WxPayError('weixin createOrder checkSign 参数格式校验错误！');
     }
 
     if ('SUCCESS' != result.return_code) {
       think.logger.error(`weixin createOrder fail 结果业务代码异常，返回结果：${JSON.stringify(responseXml)}`);
-      throw new Error(`weixin createOrder fail`);
+      throw new WxPayError(`weixin createOrder fail`);
     }
 
     if (think.isTrueEmpty(result.prepay_id)) {
       think.logger.error(`weixin createOrder 无法获取prepay id，错误代码： '${result.err_code}'，信息：${result.err_code_des}。`)
-      throw new Error(`weixin createOrder 无法获取prepay id，错误代码： '${result.err_code}'，信息：${result.err_code_des}。`);
+      throw new WxPayError(`weixin createOrder 无法获取prepay id，错误代码： '${result.err_code}'，信息：${result.err_code_des}。`);
     }
 
     const now = new Date();
