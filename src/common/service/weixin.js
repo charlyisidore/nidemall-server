@@ -290,17 +290,33 @@ module.exports = class WeixinService extends Base {
       throw new WxPayError(`weixin refund fail`);
     }
 
-    const coupons = [];
-    if (!think.isNullOrUndefined(result.coupon_refund_count)) {
-      for (let i = 0; i < result.coupon_refund_count; ++i) {
-        coupons.push({
-          couponRefundId: result[`coupon_refund_id_${i}`],
-          couponRefundFee: result[`coupon_refund_fee_${i}`],
-          couponType: result[`coupon_refund_type_${i}`],
-        });
+    {
+      const coupons = [];
+      if (!think.isEmpty(result.coupon_refund_count)) {
+        for (let i = 0; i < result.coupon_refund_count; ++i) {
+          coupons.push({
+            id: result[`coupon_refund_id_${i}`],
+            fee: result[`coupon_refund_fee_${i}`],
+            type: result[`coupon_refund_type_${i}`],
+          });
+        }
       }
+      result.refund_coupons = coupons;
     }
-    result.refund_coupons = coupons;
+
+    {
+      const refunds = [];
+      if (!think.isEmpty(result.refund_count)) {
+        for (let i = 0; i < result.refund_count; ++i) {
+          refunds.push({
+            id: result[`refund_id_${i}`],
+            fee: result[`refund_fee_${i}`],
+            status: result[`refund_status_${i}`],
+          });
+        }
+      }
+      result.refunds = refunds;
+    }
 
     return Object.fromEntries(
       Object.entries(result)
