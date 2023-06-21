@@ -563,7 +563,6 @@ module.exports = class WxOrderController extends Base {
         return this.fail(ORDER.RESPONSE.PAY_FAIL, '订单不能支付');
       }
 
-
       if (!await orderService.updateWithOptimisticLocker(order)) {
         return this.updatedDateExpired();
       }
