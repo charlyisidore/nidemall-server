@@ -571,7 +571,7 @@ module.exports = class WxOrderController extends Base {
     });
   }
 
-  async paynotifyAction() {
+  async ['pay-notifyAction']() {
     return this.transaction(async () => {
       // TODO
       console.log(`============ PAY NOTIFY 1 ============`);

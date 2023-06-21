@@ -92,7 +92,7 @@ module.exports = class extends think.Logic {
     };
   }
 
-  paynotifyAction() {
+  ['pay-notifyAction']() {
     this.allowMethods = 'POST';
 
     this.rules = {

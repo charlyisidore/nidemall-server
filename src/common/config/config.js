@@ -22,11 +22,11 @@ module.exports = {
     prefix: 'litemall_',
   },
   weixin: {
-    appid: '',
-    secret: '',
-    mchId: '',
-    mchKey: '',
-    notifyUrl: '',
+    appid: 'wx8888888888888888',
+    secret: '$ecretf0rt3st',
+    mchId: '1900000109',
+    mchKey: '$ecretf0rt3st',
+    notifyUrl: 'http://127.0.0.1:8360/wx/order/pay-notify',
   },
   express: {
     enable: true,
@@ -35,4 +35,5 @@ module.exports = {
     url: 'http://api.kdniao.com/Ebusiness/EbusinessOrderHandle.aspx',
     vendors: [],
   },
+  mocks: false,
 };
