@@ -1,5 +1,5 @@
 // production config, it will load in production enviroment
 module.exports = {
   workers: 0,
-  mock: false,
+  mocks: false,
 };
