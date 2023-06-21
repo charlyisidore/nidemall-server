@@ -4,3 +4,10 @@ think.beforeStartServer(async () => {
   const grouponRulesService = think.service('groupon_rules');
   await grouponRulesService.expiredTaskStartup();
 });
+
+if (think.config('mock')) {
+  think.beforeStartServer(() => {
+    const { server } = require('../../common/mocks/server.js');
+    server.listen();
+  });
+}
