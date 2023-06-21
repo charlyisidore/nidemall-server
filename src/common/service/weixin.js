@@ -168,12 +168,12 @@ module.exports = class WeixinService extends Base {
     }
 
     if (!this.checkSign(result, signType, signKey)) {
-      think.logger.debug(`weixin createOrder checkSign 校验结果签名失败，参数：${JSON.stringify(responseXml)}`);
+      think.logger.debug(`weixin createOrder checkSign 校验结果签名失败，参数：${JSON.stringify(result)}`);
       throw new WxPayError('weixin createOrder checkSign 参数格式校验错误！');
     }
 
     if ('SUCCESS' != result.return_code) {
-      think.logger.error(`weixin createOrder fail 结果业务代码异常，返回结果：${JSON.stringify(responseXml)}`);
+      think.logger.error(`weixin createOrder fail 结果业务代码异常，返回结果：${JSON.stringify(result)}`);
       throw new WxPayError(`weixin createOrder fail`);
     }
 
@@ -187,7 +187,7 @@ module.exports = class WeixinService extends Base {
     const data = {
       appId: result.appid,
       timeStamp: Math.floor(now.getTime() / 1000).toString(),
-      nonceStr: result.nonceStr,
+      nonceStr: result.nonce_str,
       package: `prepay_id=${result.prepay_id}`,
       signType,
     };
@@ -281,12 +281,12 @@ module.exports = class WeixinService extends Base {
     }
 
     if (!this.checkSign(result, signType, signKey)) {
-      think.logger.debug(`weixin refund checkSign 校验结果签名失败，参数：${JSON.stringify(responseXml)}`);
+      think.logger.debug(`weixin refund checkSign 校验结果签名失败，参数：${JSON.stringify(result)}`);
       throw new WxPayError('weixin refund checkSign 参数格式校验错误！');
     }
 
     if ('SUCCESS' != result.return_code) {
-      think.logger.error(`weixin refund fail 结果业务代码异常，返回结果：${JSON.stringify(responseXml)}`);
+      think.logger.error(`weixin refund fail 结果业务代码异常，返回结果：${JSON.stringify(result)}`);
       throw new WxPayError(`weixin refund fail`);
     }
 
@@ -345,15 +345,17 @@ module.exports = class WeixinService extends Base {
       'xmlString',
     ]);
 
-    const toSign = Object.entries(params).reduce(
-      (toSign, [key, value]) => {
-        const valueStr = value.toString();
-        if ('' === valueStr || ignoredParams.includes(key)) {
-          return toSign;
-        }
-        return toSign.concat(`${key}=${valueStr}&`);
-      }
-    )
+    const toSign = Object.entries(params)
+      .reduce(
+        (toSign, [key, value]) => {
+          const valueStr = value.toString();
+          if ('' === valueStr || ignoredParams.includes(key)) {
+            return toSign;
+          }
+          return toSign.concat(`${key}=${valueStr}&`);
+        },
+        ''
+      )
       .concat(`key=${signKey}`);
 
     switch (signType) {
