@@ -713,6 +713,15 @@ module.exports = class OrderService extends Base {
     return STATUS.CREATE == order.orderStatus;
   }
 
+  hasPayed(order) {
+    const { STATUS } = this.getConstants();
+    return ![
+      STATUS.CREATE,
+      STATUS.CANCEL,
+      STATUS.AUTO_CANCEL,
+    ].includes(order.orderStatus);
+  }
+
   isPayStatus(order) {
     const { STATUS } = this.getConstants();
     return STATUS.PAY == order.orderStatus;
