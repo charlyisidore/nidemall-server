@@ -1,4 +1,5 @@
 const Base = require('./base.js');
+const WxPayError = require('../../common/error/wx_pay.js');
 
 module.exports = class WxOrderController extends Base {
   async listAction() {
@@ -573,12 +574,8 @@ module.exports = class WxOrderController extends Base {
 
   async ['pay-notifyAction']() {
     return this.transaction(async () => {
-      // TODO
-      console.log(`============ PAY NOTIFY 1 ============`);
-      console.log(this.post());
-      console.log(this.file());
-
-      // return this.fail(-1);
+      /** @type {string} */
+      const xml = this.post('xml');
 
       /** @type {GrouponService} */
       const grouponService = this.service('groupon');
@@ -599,54 +596,51 @@ module.exports = class WxOrderController extends Base {
       const NOTIFY = notifyService.getConstants();
       const ORDER = orderService.getConstants();
 
-      // const result = await weixinService.parsePayNotify(xml);
+      let result = null;
+      try {
+        // TODO: parseOrderNotifyResult()
+        result = weixinService.parseOrderNotifyResult(xml);
 
-      // console.log(result);
+        if ('SUCCESS' != result.resultCode) {
+          console.error(xml);
+          think.logger.error(xml);
+          throw new WxPayError('微信通知支付失败！');
+        }
 
-      console.log(`============ PAY NOTIFY 3 ============`);
-
-      // TODO: parse order notify result
-      // try {
-      //   result = wxPayService.parseOrderNotifyResult(xmlResult);
-
-      //   if(!WxPayConstants.ResultCode.SUCCESS.equals(result.getResultCode())){
-      //       logger.error(xmlResult);
-      //       throw new WxPayException("微信通知支付失败！");
-      //   }
-      //   if(!WxPayConstants.ResultCode.SUCCESS.equals(result.getReturnCode())){
-      //       logger.error(xmlResult);
-      //       throw new WxPayException("微信通知支付失败！");
-      //   }
-      // } catch (WxPayException e) {
-      //     e.printStackTrace();
-      //     return WxPayNotifyResponse.fail(e.getMessage());
-      // }
+        if ('SUCCESS' != result.returnCode) {
+          console.error(xml);
+          think.logger.error(xml);
+          throw new WxPayError('微信通知支付失败！');
+        }
+      } catch (e) {
+        switch (true) {
+          case e instanceof WxPayError:
+          default:
+            console.error(e);
+            think.logger.error(e.toString());
+            return weixinService.fail(e.message);
+        }
+      }
 
       think.logger.info('处理腾讯支付平台的订单支付');
       think.logger.info(result);
 
-      // TODO: check XML response syntax (camel case?)
       const orderSn = result.outTradeNo;
       const payId = result.transationId;
 
-      // https://github.com/Wechat-Group/WxJava/blob/cb34973efe26574da9027a8a39672fe8c38aea86/weixin-java-pay/src/main/java/com/github/binarywang/wxpay/bean/result/BaseWxPayResult.java#L126
-      const totalFee = this.fenToYuan(result.totalFee);
+      const totalFee = weixinService.fenToYuan(result.totalFee);
 
       const order = await orderService.findBySn(orderSn);
 
       if (think.isEmpty(order)) {
-        // TODO: weixinService.fail
         return weixinService.fail(`订单不存在 sn=${orderSn}`);
       }
 
-      // TODO: hasPayed()
-      if (this.hasPayed(order)) {
-        // TODO: weixinService.success
+      if (orderService.hasPayed(order)) {
         return weixinService.success('订单已经处理成功!');
       }
 
       if (totalFee != order.actualPrice) {
-        // TODO: weixinService.fail
         return weixinService.fail(`${order.orderSn} : 支付金额不符合 totalFee=${totalFee}`);
       }
 
@@ -659,7 +653,6 @@ module.exports = class WxOrderController extends Base {
       });
 
       if (!await orderService.updateWithOptimisticLocker(order)) {
-        // TODO: weixinService.fail
         return weixinService.fail('更新数据已失效');
       }
 
@@ -683,7 +676,6 @@ module.exports = class WxOrderController extends Base {
         });
 
         if (!await grouponService.updateById(groupon)) {
-          // TODO: weixinService.fail
           return weixinService.fail('更新数据已失效');
         }
 
@@ -969,12 +961,5 @@ module.exports = class WxOrderController extends Base {
     await orderService.updateWithOptimisticLocker(order);
 
     return this.success();
-  }
-
-  /**
-   * https://github.com/Wechat-Group/WxJava/blob/cb34973efe26574da9027a8a39672fe8c38aea86/weixin-java-pay/src/main/java/com/github/binarywang/wxpay/bean/result/BaseWxPayResult.java#L126
-   */
-  fenToYuan(fen) {
-    return (fen / 100.).toFixed(2);
   }
 };
