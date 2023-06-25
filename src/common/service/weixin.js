@@ -406,6 +406,13 @@ module.exports = class WeixinService extends Base {
     return params.sign == this.createSign(params, signType, signKey);
   }
 
+  /**
+   * @see // https://github.com/Wechat-Group/WxJava/blob/cb34973efe26574da9027a8a39672fe8c38aea86/weixin-java-pay/src/main/java/com/github/binarywang/wxpay/bean/result/BaseWxPayResult.java#L126
+   */
+  fenToYuan(fen) {
+    return (fen / 100.).toFixed(2);
+  }
+
   buildXml(obj) {
     const builder = new XMLBuilder();
     return builder.build(obj);
