@@ -716,6 +716,8 @@ module.exports = class WxOrderController extends Base {
     /** @type {number} */
     const orderId = this.get('orderId');
 
+    /** @type {NotifyService} */
+    const notifyService = this.service('notify');
     /** @type {OrderService} */
     const orderService = this.service('order');
 
@@ -749,8 +751,7 @@ module.exports = class WxOrderController extends Base {
       return this.updatedDateExpired();
     }
 
-    // TODO
-    // await notifyService.notifyMail('退款申请', order.toString());
+    await notifyService.notifyMail('退款申请', orderService.orderToString(order));
 
     return this.success();
   }
