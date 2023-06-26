@@ -376,10 +376,12 @@ module.exports = class WeixinService extends Base {
    * @param {string} sessionKey 
    * @param {string} encryptedData 
    * @param {string} iv 
+   * @returns {object}
    */
   getPhoneNoInfo(sessionKey, encryptedData, iv) {
+    const decrypted = this.decrypt(sessionKey, encryptedData, iv);
+    return JSON.parse(decrypted);
     // TODO
-    // decrypt(sessionKey, encryptedData, iv)
     return {
       phoneNumber: '',
       purePhoneNumber: '',
@@ -451,6 +453,27 @@ module.exports = class WeixinService extends Base {
       return false;
     }
     return params.sign == this.createSign(params, signType, signKey);
+  }
+
+  /**
+   * 
+   * @param {string} sessionKey 
+   * @param {string} encryptedData 
+   * @param {string} ivStr 
+   * @returns {string}
+   */
+  decrypt(sessionKey, encryptedData, ivStr) {
+    try {
+      const key = Buffer.from(sessionKey, 'base64').toString();
+      const data = Buffer.from(encryptedData, 'base64').toString();
+      const iv = Buffer.from(ivStr, 'base64').toString();
+      const decipher = crypto.createDecipheriv('aes-256-cbc', key, iv);
+      let decrypted = decipher.update(data);
+      decrypted += decipher.final();
+      return decrypted;
+    } catch (e) {
+      throw new Error('AES解密失败！', { cause: e });
+    }
   }
 
   /**
