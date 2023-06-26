@@ -45,7 +45,11 @@ function buildXml(obj) {
 }
 
 // https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_7
-async function payNotify(data, notifyUrl) {
+async function payNotify(data, query) {
+  /** @type {WeixinService} */
+  const weixinService = think.service('weixin');
+  const signKey = think.config('weixin.mchKey');
+
   const now = new Date();
   const year = now.getFullYear().toString();
   const month = (1 + now.getMonth()).toString().padStart(2, '0');
@@ -53,33 +57,38 @@ async function payNotify(data, notifyUrl) {
   const hours = now.getHours().toString().padStart(2, '0');
   const minutes = now.getMinutes().toString().padStart(2, '0');
   const seconds = now.getSeconds().toString().padStart(2, '0');
+
+  const result = {
+    appid: data.appid ?? query.appid,
+    attach: '支付测试',
+    bank_type: 'CFT',
+    fee_type: 'CNY',
+    is_subscribe: 'Y',
+    mch_id: data.mch_id ?? query.mch_id,
+    nonce_str: randomNonceStr(),
+    openid: 'oUpF8uMEb4qRXf22hE3X68TekukE',
+    out_trade_no: data.out_trade_no ?? query.out_trade_no ?? randomNumString(10),
+    result_code: 'SUCCESS',
+    return_code: 'SUCCESS',
+    time_end: `${year}${month}${day}${hours}${minutes}${seconds}`,
+    total_fee: 1,
+    coupon_fee: 10,
+    coupon_count: 1,
+    coupon_type: 'CASH',
+    coupon_id: 10000,
+    trade_type: 'JSAPI',
+    transaction_id: randomNumString(28),
+  };
+
+  Object.assign(result, {
+    sign: weixinService.createSign(result, query.sign_type, signKey),
+  });
+
   return await axios({
     method: 'post',
-    url: notifyUrl,
+    url: query.notify_url,
     data: {
-      xml: buildXml({
-        xml: {
-          appid: data.appid,
-          attach: '支付测试',
-          bank_type: 'CFT',
-          fee_type: 'CNY',
-          is_subscribe: 'Y',
-          mch_id: data.mch_id,
-          nonce_str: randomNonceStr(),
-          openid: 'oUpF8uMEb4qRXf22hE3X68TekukE',
-          out_trade_no: '1409811653',
-          result_code: 'SUCCESS',
-          return_code: 'SUCCESS',
-          time_end: `${year}${month}${day}${hours}${minutes}${seconds}`,
-          total_fee: 1,
-          coupon_fee: 10,
-          coupon_count: 1,
-          coupon_type: 'CASH',
-          coupon_id: 10000,
-          trade_type: 'JSAPI',
-          transaction_id: '1004400740201409030005092168',
-        },
-      }),
+      xml: buildXml({ xml: result }),
     },
   });
 }
@@ -113,7 +122,7 @@ exports.handlers = [
 
     const body = buildXml({ xml: result });
 
-    await payNotify(result, query.notify_url);
+    await payNotify(result, query);
 
     return res(
       ctx.status(200),
@@ -151,7 +160,7 @@ exports.handlers = [
 
     const body = buildXml({ xml: result });
 
-    await payNotify(result, query.notify_url);
+    await payNotify(result, query);
 
     return res(
       ctx.status(200),
