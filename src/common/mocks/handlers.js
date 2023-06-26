@@ -1,6 +1,7 @@
 /** @see https://mswjs.io/docs/getting-started/mocks/rest-api */
 
 const { rest } = require('msw');
+const axios = require('axios');
 const { XMLBuilder, XMLParser } = require('fast-xml-parser');
 const crypto = require('node:crypto');
 
@@ -32,7 +33,9 @@ function randomNonceStr() {
 }
 
 function parseXml(text) {
-  const parser = new XMLParser();
+  const parser = new XMLParser({
+    parseTagValue: false,
+  });
   return parser.parse(text);
 }
 
@@ -41,7 +44,50 @@ function buildXml(obj) {
   return builder.build(obj);
 }
 
+// https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_7
+async function payNotify(data, notifyUrl) {
+  const now = new Date();
+  const year = now.getFullYear().toString();
+  const month = (1 + now.getMonth()).toString().padStart(2, '0');
+  const day = now.getDate().toString().padStart(2, '0');
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const seconds = now.getSeconds().toString().padStart(2, '0');
+  return await axios({
+    method: 'post',
+    url: notifyUrl,
+    data: {
+      xml: buildXml({
+        xml: {
+          appid: data.appid,
+          attach: '支付测试',
+          bank_type: 'CFT',
+          fee_type: 'CNY',
+          is_subscribe: 'Y',
+          mch_id: data.mch_id,
+          nonce_str: randomNonceStr(),
+          openid: 'oUpF8uMEb4qRXf22hE3X68TekukE',
+          out_trade_no: '1409811653',
+          result_code: 'SUCCESS',
+          return_code: 'SUCCESS',
+          time_end: `${year}${month}${day}${hours}${minutes}${seconds}`,
+          total_fee: 1,
+          coupon_fee: 10,
+          coupon_count: 1,
+          coupon_type: 'CASH',
+          coupon_id: 10000,
+          trade_type: 'JSAPI',
+          transaction_id: '1004400740201409030005092168',
+        },
+      }),
+    },
+  });
+}
+
 exports.handlers = [
+  rest.post('http://127.0.0.1:8360/*', async (req, res, ctx) => {
+    return req.passthrough();
+  }),
   // https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_1
   rest.post('https://api.mch.weixin.qq.com/pay/unifiedorder', async (req, res, ctx) => {
     /** @type {WeixinService} */
@@ -66,6 +112,8 @@ exports.handlers = [
     });
 
     const body = buildXml({ xml: result });
+
+    await payNotify(result, query.notify_url);
 
     return res(
       ctx.status(200),
@@ -102,6 +150,8 @@ exports.handlers = [
     });
 
     const body = buildXml({ xml: result });
+
+    await payNotify(result, query.notify_url);
 
     return res(
       ctx.status(200),
