@@ -326,6 +326,7 @@ module.exports = class WeixinService extends Base {
 
   /**
    * 
+   * @see https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_7
    * @param {string} xml 
    * @param {string?} signType 
    * @returns {object}
