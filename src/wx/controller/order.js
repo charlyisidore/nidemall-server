@@ -598,7 +598,6 @@ module.exports = class WxOrderController extends Base {
 
       let result = null;
       try {
-        // TODO: parseOrderNotifyResult()
         result = weixinService.parseOrderNotifyResult(xml);
 
         if ('SUCCESS' != result.resultCode) {

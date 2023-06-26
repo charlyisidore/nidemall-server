@@ -326,6 +326,49 @@ module.exports = class WeixinService extends Base {
 
   /**
    * 
+   * @param {string} xml 
+   * @param {string?} signType 
+   * @returns {object}
+   */
+  parseOrderNotifyResult(xml, signType = null) {
+    try {
+      think.logger.debug(`微信支付异步通知请求参数：${xml}`);
+
+      const result = this.parseXml(xml)?.xml;
+
+      if (think.isNullOrUndefined(signType)) {
+        if (!think.isNullOrUndefined(result.sign_type)) {
+          signType = result.sign_type;
+        } else {
+          // Default
+          signType = 'MD5';
+        }
+      }
+
+      think.logger.debug(`微信支付异步通知请求解析后的对象：${JSON.stringify(result)}`);
+
+      if ('SUCCESS' != result.returnCode && think.isNullOrUndefined(result.sign)) {
+        throw new WxPayError('伪造的通知！');
+      }
+
+      if (!think.isNullOrUndefined(result.sign) && !this.checkSign(result, signType, false)) {
+        think.logger.debug(`校验结果签名失败，参数：${JSON.stringify(result)}`);
+        throw new WxPayError('weixin parseOrderNotifyResult 参数格式校验错误！');
+      }
+
+      return result;
+    } catch (e) {
+      switch (true) {
+        case e instanceof WxPayError:
+          throw e;
+        default:
+          throw new WxPayError(`发生异常！`, { cause: e });
+      }
+    }
+  }
+
+  /**
+   * 
    * @param {string} sessionKey 
    * @param {string} encryptedData 
    * @param {string} iv 
@@ -396,7 +439,7 @@ module.exports = class WeixinService extends Base {
    * 
    * @param {object} params 
    * @param {string} signType 
-   * @param {string} signKey 
+   * @param {string|false} signKey 
    * @returns {boolean}
    */
   checkSign(params, signType, signKey) {
