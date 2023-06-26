@@ -348,7 +348,7 @@ module.exports = class WeixinService extends Base {
 
       think.logger.debug(`微信支付异步通知请求解析后的对象：${JSON.stringify(result)}`);
 
-      if ('SUCCESS' != result.returnCode && think.isNullOrUndefined(result.sign)) {
+      if ('SUCCESS' != result.return_code && think.isNullOrUndefined(result.sign)) {
         throw new WxPayError('伪造的通知！');
       }
 
@@ -357,7 +357,10 @@ module.exports = class WeixinService extends Base {
         throw new WxPayError('weixin parseOrderNotifyResult 参数格式校验错误！');
       }
 
-      return result;
+      return Object.fromEntries(
+        Object.entries(result)
+          .map(([k, v]) => [think.camelCase(k), v])
+      );
     } catch (e) {
       switch (true) {
         case e instanceof WxPayError:
@@ -451,7 +454,7 @@ module.exports = class WeixinService extends Base {
   }
 
   /**
-   * @see // https://github.com/Wechat-Group/WxJava/blob/cb34973efe26574da9027a8a39672fe8c38aea86/weixin-java-pay/src/main/java/com/github/binarywang/wxpay/bean/result/BaseWxPayResult.java#L126
+   * @see https://github.com/Wechat-Group/WxJava/blob/cb34973efe26574da9027a8a39672fe8c38aea86/weixin-java-pay/src/main/java/com/github/binarywang/wxpay/bean/result/BaseWxPayResult.java#L126
    */
   fenToYuan(fen) {
     return (fen / 100.).toFixed(2);
@@ -463,7 +466,9 @@ module.exports = class WeixinService extends Base {
   }
 
   parseXml(xml) {
-    const parser = new XMLParser();
+    const parser = new XMLParser({
+      parseTagValue: false,
+    });
     return parser.parse(xml);
   }
 
