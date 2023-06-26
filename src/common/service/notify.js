@@ -30,6 +30,7 @@ module.exports = class NotifyService extends Base {
    * @param {string} message 
    */
   async notifySms(phoneNumber, message) {
+    // TODO
     console.log(`notifySms(${JSON.stringify({ phoneNumber, message })})`);
     think.logger.info(`notifySms(${JSON.stringify({ phoneNumber, message })})`);
   }
@@ -41,6 +42,7 @@ module.exports = class NotifyService extends Base {
    * @param {string[]} params 
    */
   async notifySmsTemplate(phoneNumber, notifyType, params) {
+    // TODO
     console.log(`notifySmsTemplate(${JSON.stringify({ phoneNumber, notifyType, params })})`);
     think.logger.info(`notifySmsTemplate(${JSON.stringify({ phoneNumber, notifyType, params })})`);
   }
@@ -52,6 +54,7 @@ module.exports = class NotifyService extends Base {
    * @param {string[]} params 
    */
   async notifySmsTemplateSync(phoneNumber, notifyType, params) {
+    // TODO
     console.log(`notifySmsTemplateSync(${JSON.stringify({ phoneNumber, notifyType, params })})`);
     think.logger.info(`notifySmsTemplateSync(${JSON.stringify({ phoneNumber, notifyType, params })})`);
   }
@@ -62,6 +65,7 @@ module.exports = class NotifyService extends Base {
    * @param {string} content 
    */
   async notifyMail(subject, content) {
+    // TODO
     console.log(`notifyMail(${JSON.stringify({ subject, content })})`);
     think.logger.info(`notifyMail(${JSON.stringify({ subject, content })})`);
   }
