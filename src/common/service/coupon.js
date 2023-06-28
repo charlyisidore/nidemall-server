@@ -55,9 +55,8 @@ module.exports = class CouponService extends Base {
     const model = this.model('coupon');
 
     const used = await this.model('coupon_user')
-      .where({
-        userId,
-      });
+      .where({ userId })
+      .select();
 
     const where = {
       type: TYPE.COMMON,
