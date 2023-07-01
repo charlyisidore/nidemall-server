@@ -107,9 +107,9 @@ module.exports = class WxGrouponController extends Base {
 
     const joiners = [creator];
 
-    const linkGrouponId = groupon.grouponId ?
-      groupon.grouponId :
-      groupon.id;
+    const linkGrouponId = groupon.grouponId
+      ? groupon.grouponId
+      : groupon.id;
 
     const groupons = await grouponService.queryJoinRecord(linkGrouponId);
 
@@ -181,15 +181,13 @@ module.exports = class WxGrouponController extends Base {
     /** @type {UserService} */
     const userService = this.service('user');
 
-    const ORDER = orderService.getConstants();
-
     if (think.isNullOrUndefined(userId)) {
       return this.unlogin();
     }
 
-    const myGroupons = (0 == showType) ?
-      await grouponService.queryMyGroupon(userId) :
-      await grouponService.queryMyJoinGroupon(userId);
+    const myGroupons = (0 == showType)
+      ? await grouponService.queryMyGroupon(userId)
+      : await grouponService.queryMyJoinGroupon(userId);
 
     const grouponVoList = await Promise.all(
       myGroupons.map(async (groupon) => {

@@ -210,7 +210,7 @@ module.exports = class WxAuthController extends Base {
 
     if (!think.isTrueEmpty(wxCode)) {
       try {
-        const response = await weixinService.login(code, userInfo);
+        const response = await weixinService.login(code);
         openid = response.openid;
       } catch (e) {
         console.error(e);
@@ -224,7 +224,7 @@ module.exports = class WxAuthController extends Base {
         return this.serious();
       }
 
-      if (userList.length == 1) {
+      if (1 == userList.length) {
         const [checkUser] = userList;
 
         if (checkUser.username != openid || checkUser.password != openid) {

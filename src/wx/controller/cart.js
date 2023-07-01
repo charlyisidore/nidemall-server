@@ -36,7 +36,7 @@ module.exports = class WxCartController extends Base {
     const goods = await goodsService.findById(goodsId);
 
     if (think.isEmpty(goods) || !goods.isOnSale) {
-      return this.fail(GOODS.RESPONSE.UNSHELVE, '商品已下架')
+      return this.fail(GOODS.RESPONSE.UNSHELVE, '商品已下架');
     }
 
     const product = await goodsProductService.findById(productId);
@@ -105,7 +105,7 @@ module.exports = class WxCartController extends Base {
     const goods = await goodsService.findById(goodsId);
 
     if (think.isEmpty(goods) || !goods.isOnSale) {
-      return this.fail(GOODS.RESPONSE.UNSHELVE, '商品已下架')
+      return this.fail(GOODS.RESPONSE.UNSHELVE, '商品已下架');
     }
 
     const product = await goodsProductService.findById(productId);
@@ -141,9 +141,9 @@ module.exports = class WxCartController extends Base {
     }
 
     return this.success(
-      think.isEmpty(existCart) ?
-        cart.id :
-        existCart.id
+      think.isEmpty(existCart)
+        ? cart.id
+        : existCart.id
     );
   }
 
@@ -298,7 +298,7 @@ module.exports = class WxCartController extends Base {
       addressId = checkedAddress.id;
     }
 
-    let grouponPrice = 0.;
+    let grouponPrice = 0.0;
     const grouponRules = await grouponRulesService.findById(grouponRulesId);
 
     if (!think.isEmpty(grouponRules)) {
@@ -316,7 +316,7 @@ module.exports = class WxCartController extends Base {
       checkedGoodsList = [cart];
     }
 
-    let checkedGoodsPrice = 0.;
+    let checkedGoodsPrice = 0.0;
     for (const cart of checkedGoodsList) {
       if (!think.isEmpty(grouponRules) && grouponRules.goodsId == cart.goodsId) {
         checkedGoodsPrice += (cart.price - grouponPrice) * cart.number;
@@ -325,7 +325,7 @@ module.exports = class WxCartController extends Base {
       }
     }
 
-    let tmpCouponPrice = 0.;
+    let tmpCouponPrice = 0.0;
     let tmpCouponId = 0;
     let tmpUserCouponId = 0;
     let tmpCouponLength = 0;
@@ -353,8 +353,8 @@ module.exports = class WxCartController extends Base {
       }
     }
 
-    let availableCouponLength = tmpCouponLength;
-    let couponPrice = 0.;
+    const availableCouponLength = tmpCouponLength;
+    let couponPrice = 0.0;
 
     if (think.isNullOrUndefined(couponId) || -1 === couponId) {
       couponId = -1;
@@ -381,13 +381,13 @@ module.exports = class WxCartController extends Base {
       }
     }
 
-    let freightPrice = 0.;
+    let freightPrice = 0.0;
     if (checkedGoodsPrice < freightLimit) {
       freightPrice = freight;
     }
 
-    const integralPrice = 0.;
-    const orderTotalPrice = Math.max(0., checkedGoodsPrice + freightPrice - couponPrice);
+    const integralPrice = 0.0;
+    const orderTotalPrice = Math.max(0.0, checkedGoodsPrice + freightPrice - couponPrice);
     const actualPrice = orderTotalPrice - integralPrice;
 
     return this.success({
@@ -409,8 +409,8 @@ module.exports = class WxCartController extends Base {
   }
 
   /**
-   * 
-   * @param {number?} userId 
+   * .
+   * @param {number?} userId .
    */
   async index(userId) {
     /** @type {CartService} */
@@ -436,9 +436,9 @@ module.exports = class WxCartController extends Base {
     }
 
     let goodsCount = 0;
-    let goodsAmount = 0.;
+    let goodsAmount = 0.0;
     let checkedGoodsCount = 0;
-    let checkedGoodsAmount = 0.;
+    let checkedGoodsAmount = 0.0;
 
     for (const cart of cartList) {
       const count = cart.number;
@@ -465,8 +465,8 @@ module.exports = class WxCartController extends Base {
   }
 
   /**
-   * 
-   * @param {number?} userId 
+   * .
+   * @param {number?} userId .
    */
   async goodsCount(userId) {
     /** @type {CartService} */

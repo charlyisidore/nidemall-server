@@ -12,9 +12,9 @@ module.exports = class WxSearchController extends Base {
     const defaultKeyword = await keywordService.queryDefault();
     const hotKeywordList = await keywordService.queryHots();
 
-    const historyKeywordList = think.isNullOrUndefined(userId) ?
-      [] :
-      await searchHistoryService.queryByUid(userId);
+    const historyKeywordList = think.isNullOrUndefined(userId)
+      ? []
+      : await searchHistoryService.queryByUid(userId);
 
     return this.success({
       defaultKeyword,

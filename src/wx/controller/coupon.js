@@ -74,7 +74,7 @@ module.exports = class WxCouponController extends Base {
       return this.unlogin();
     }
 
-    let grouponPrice = 0.;
+    let grouponPrice = 0.0;
 
     const grouponRules = await grouponRulesService.findById(grouponRulesId);
 
@@ -93,7 +93,7 @@ module.exports = class WxCouponController extends Base {
       checkedGoodsList = [cart];
     }
 
-    let checkedGoodsPrice = 0.;
+    let checkedGoodsPrice = 0.0;
 
     for (const cart of checkedGoodsList) {
       if (!think.isEmpty(grouponRules) && grouponRules.goodsId == cart.goodsId) {
@@ -262,7 +262,7 @@ module.exports = class WxCouponController extends Base {
     /** @type {CouponService} */
     const couponService = this.service('coupon');
 
-    return await Promise.all(
+    return Promise.all(
       couponList.map(async (couponUser) => {
         const coupon = await couponService.findById(couponUser.couponId);
         return {

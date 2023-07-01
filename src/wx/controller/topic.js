@@ -45,9 +45,9 @@ module.exports = class WxTopicController extends Base {
       }
     }
 
-    const userHasCollect = think.isNullOrUndefined(userId) ?
-      0 :
-      (await collectService.count(userId, 1, id));
+    const userHasCollect = think.isNullOrUndefined(userId)
+      ? 0
+      : (await collectService.count(userId, 1, id));
 
     return this.success({
       topic,

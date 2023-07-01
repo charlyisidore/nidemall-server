@@ -149,7 +149,7 @@ module.exports = class WxOrderController extends Base {
       /** @type {number?} */
       const grouponRulesId = this.get('grouponRulesId');
       /** @type {number?} */
-      const grouponLinkId = this.get('grouponLinkId');
+      let grouponLinkId = this.get('grouponLinkId');
 
       /** @type {AddressService} */
       const addressService = this.service('address');
@@ -231,7 +231,7 @@ module.exports = class WxOrderController extends Base {
         return this.badArgument();
       }
 
-      let grouponPrice = 0.;
+      let grouponPrice = 0.0;
       const grouponRules = await grouponRulesService.findById(grouponRulesId);
 
       if (!think.isEmpty(grouponRules)) {
@@ -247,11 +247,11 @@ module.exports = class WxOrderController extends Base {
         checkedGoodsList = [cart];
       }
 
-      if (checkedGoodsList.length == 0) {
+      if (0 == checkedGoodsList.length) {
         return this.badArgumentValue();
       }
 
-      let checkedGoodsPrice = 0.;
+      let checkedGoodsPrice = 0.0;
       for (const checkGoods of checkedGoodsList) {
         if (!think.isEmpty(grouponRules) && grouponRules.goodsId == checkGoods.goodsId) {
           checkedGoodsPrice += (checkGoods.price - grouponPrice) * checkGoods.number;
@@ -260,7 +260,7 @@ module.exports = class WxOrderController extends Base {
         }
       }
 
-      let couponPrice = 0.;
+      let couponPrice = 0.0;
       if (couponId && couponId != -1) {
         const coupon = await couponService.checkCoupon(
           userId,
@@ -277,13 +277,13 @@ module.exports = class WxOrderController extends Base {
         couponPrice = coupon.discount;
       }
 
-      let freightPrice = 0.;
+      let freightPrice = 0.0;
       if (checkedGoodsPrice < freightLimit) {
         freightPrice = freight;
       }
 
-      const integralPrice = 0.;
-      const orderTotalPrice = Math.max(0., checkedGoodsPrice + freightPrice - couponPrice);
+      const integralPrice = 0.0;
+      const orderTotalPrice = Math.max(0.0, checkedGoodsPrice + freightPrice - couponPrice);
       const actualPrice = orderTotalPrice - integralPrice;
 
       /** @type {Order} */
@@ -301,7 +301,7 @@ module.exports = class WxOrderController extends Base {
         integralPrice,
         orderPrice: orderTotalPrice,
         actualPrice,
-        grouponPrice: think.isEmpty(grouponRules) ? 0. : grouponPrice,
+        grouponPrice: think.isEmpty(grouponRules) ? 0.0 : grouponPrice,
       };
 
       order.id = await orderService.add(order);
@@ -403,7 +403,7 @@ module.exports = class WxOrderController extends Base {
         if (!think.isEmpty(groupon)) {
           const grouponRules = await grouponRulesService.findById(groupon.rulesId);
 
-          if (groupon.grouponId == 0) {
+          if (0 == groupon.grouponId) {
             Object.assign(groupon, {
               shareUrl: await qrCodeService.createGrouponShareImage(grouponRules.goodsName, grouponRules.picUrl, groupon),
             });
@@ -555,7 +555,7 @@ module.exports = class WxOrderController extends Base {
           outTradeNo: order.orderSn,
           openid: user.weixinOpenid,
           body: `订单：${order.orderSn}`,
-          totalFee: Math.floor(order.actualPrice * 100.),
+          totalFee: Math.floor(order.actualPrice * 100.0),
           spbillCreateIp: this.ip,
         });
       } catch (e) {

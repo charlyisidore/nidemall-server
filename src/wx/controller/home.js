@@ -28,9 +28,9 @@ module.exports = class WxHomeController extends Base {
 
     const promises = {
       newGoodsList: goodsService.queryByNew(0, newLimit),
-      couponList: (think.isNullOrUndefined(userId) ?
-        couponService.queryList(0, 3) :
-        couponService.queryAvailableList(userId, 0, 3)),
+      couponList: (think.isNullOrUndefined(userId)
+        ? couponService.queryList(0, 3)
+        : couponService.queryAvailableList(userId, 0, 3)),
       channel: categoryService.queryChannel(),
       grouponList: grouponRulesService.wxQueryList(0, 5),
       banner: adService.queryIndex(),
@@ -72,9 +72,6 @@ module.exports = class WxHomeController extends Base {
     });
   }
 
-  /**
-   * 
-   */
   async getCategoryList() {
     /** @type {CategoryService} */
     const categoryService = this.service('category');
@@ -97,9 +94,9 @@ module.exports = class WxHomeController extends Base {
         l2List.push(catL2.id);
       }
 
-      const categoryGoods = think.isEmpty(l2List) ?
-        [] :
-        (await goodsService.queryByCategory(l2List, 0, catlogMoreLimit)).data;
+      const categoryGoods = think.isEmpty(l2List)
+        ? []
+        : (await goodsService.queryByCategory(l2List, 0, catlogMoreLimit)).data;
 
       categoryList.push({
         id: catL1.id,

@@ -153,9 +153,9 @@ module.exports = class WxGoodsController extends Base {
 
     const goodsCatIds = await goodsService.getCatIds(brandId, keyword, isHot, isNew);
 
-    const categoryList = think.isEmpty(goodsCatIds) ?
-      [] :
-      (await categoryService.queryL2ByIds(goodsCatIds));
+    const categoryList = think.isEmpty(goodsCatIds)
+      ? []
+      : (await categoryService.queryL2ByIds(goodsCatIds));
 
     return this.success({
       total: goodsList.count,
@@ -191,8 +191,8 @@ module.exports = class WxGoodsController extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    */
   async getComments(id) {
     /** @type {CommentService} */
@@ -221,6 +221,6 @@ module.exports = class WxGoodsController extends Base {
     return {
       data: commentList,
       count: comments.count,
-    }
+    };
   }
 };

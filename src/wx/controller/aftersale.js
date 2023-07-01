@@ -39,7 +39,7 @@ module.exports = class WxAftersaleController extends Base {
         return {
           aftersale,
           goodsList,
-        }
+        };
       })
     );
 
