@@ -5,13 +5,9 @@ const { XMLBuilder, XMLParser } = require('fast-xml-parser');
 const crypto = require('node:crypto');
 
 module.exports = class WeixinService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {string} msg 
+   * .
+   * @param {string} msg .
    * @returns {string}
    */
   success(msg) {
@@ -24,8 +20,8 @@ module.exports = class WeixinService extends Base {
   }
 
   /**
-   * 
-   * @param {string} msg 
+   * .
+   * @param {string} msg .
    * @returns {string}
    */
   fail(msg) {
@@ -78,8 +74,8 @@ module.exports = class WeixinService extends Base {
   /**
    * 获取不限制的小程序码
    * @see https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/qrcode-link/qr-code/getUnlimitedQRCode.html
-   * @param {string} scene 
-   * @param {string} page 
+   * @param {string} scene .
+   * @param {string} page .
    * @returns {Promise<{}>}
    */
   async getUnlimitedQrCode(scene, page) {
@@ -101,7 +97,7 @@ module.exports = class WeixinService extends Base {
   /**
    * 小程序登录
    * @see https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/user-login/code2Session.html
-   * @param {string} code 
+   * @param {string} code .
    * @returns {Promise<object>}
    */
   async login(code) {
@@ -122,9 +118,9 @@ module.exports = class WeixinService extends Base {
   }
 
   /**
-   * 
+   * .
    * @see https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_1
-   * @param {object} order 
+   * @param {object} order .
    * @returns {Promise<{appId: string, timeStamp: string, nonceStr: string, package: string, signType: string, paySign: string}>}
    */
   async createOrder(order) {
@@ -178,7 +174,7 @@ module.exports = class WeixinService extends Base {
     }
 
     if (think.isTrueEmpty(result.prepay_id)) {
-      think.logger.error(`weixin createOrder 无法获取prepay id，错误代码： '${result.err_code}'，信息：${result.err_code_des}。`)
+      think.logger.error(`weixin createOrder 无法获取prepay id，错误代码： '${result.err_code}'，信息：${result.err_code_des}。`);
       throw new WxPayError(`weixin createOrder 无法获取prepay id，错误代码： '${result.err_code}'，信息：${result.err_code_des}。`);
     }
 
@@ -198,8 +194,8 @@ module.exports = class WeixinService extends Base {
   }
 
   /**
-   * 
-   * @param {object} order 
+   * .
+   * @param {object} order .
    * @returns {Promise<{}>}
    */
   async createOrderV3(order) {
@@ -325,10 +321,10 @@ module.exports = class WeixinService extends Base {
   }
 
   /**
-   * 
+   * .
    * @see https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_7
-   * @param {string} xml 
-   * @param {string?} signType 
+   * @param {string} xml .
+   * @param {string?} signType .
    * @returns {object}
    */
   parseOrderNotifyResult(xml, signType = null) {
@@ -372,33 +368,33 @@ module.exports = class WeixinService extends Base {
   }
 
   /**
-   * 
-   * @param {string} sessionKey 
-   * @param {string} encryptedData 
-   * @param {string} iv 
+   * .
+   * @param {string} sessionKey .
+   * @param {string} encryptedData .
+   * @param {string} iv .
    * @returns {object}
    */
   getPhoneNoInfo(sessionKey, encryptedData, iv) {
     const decrypted = this.decrypt(sessionKey, encryptedData, iv);
     return JSON.parse(decrypted);
     // TODO
-    return {
-      phoneNumber: '',
-      purePhoneNumber: '',
-      countryCode: '',
-      watermark: {
-        appid: '',
-        timestamp: '',
-      },
-    };
+    // return {
+    //   phoneNumber: '',
+    //   purePhoneNumber: '',
+    //   countryCode: '',
+    //   watermark: {
+    //     appid: '',
+    //     timestamp: '',
+    //   },
+    // };
   }
 
   /**
-   * 
-   * @param {object} params 
+   * .
+   * @param {object} params .
    * @param {string} signType 'HMAC-SHA256' or 'MD5'
-   * @param {string} signKey 
-   * @param {string[]} ignoredParams 
+   * @param {string} signKey .
+   * @param {string[]} ignoredParams .
    * @returns {string}
    */
   createSign(params, signType, signKey, ignoredParams = []) {
@@ -442,10 +438,10 @@ module.exports = class WeixinService extends Base {
   }
 
   /**
-   * 
-   * @param {object} params 
-   * @param {string} signType 
-   * @param {string|false} signKey 
+   * .
+   * @param {object} params .
+   * @param {string} signType .
+   * @param {string|false} signKey .
    * @returns {boolean}
    */
   checkSign(params, signType, signKey) {
@@ -456,10 +452,10 @@ module.exports = class WeixinService extends Base {
   }
 
   /**
-   * 
-   * @param {string} sessionKey 
-   * @param {string} encryptedData 
-   * @param {string} ivStr 
+   * .
+   * @param {string} sessionKey .
+   * @param {string} encryptedData .
+   * @param {string} ivStr .
    * @returns {string}
    */
   decrypt(sessionKey, encryptedData, ivStr) {
@@ -480,7 +476,7 @@ module.exports = class WeixinService extends Base {
    * @see https://github.com/Wechat-Group/WxJava/blob/cb34973efe26574da9027a8a39672fe8c38aea86/weixin-java-pay/src/main/java/com/github/binarywang/wxpay/bean/result/BaseWxPayResult.java#L126
    */
   fenToYuan(fen) {
-    return (fen / 100.).toFixed(2);
+    return (fen / 100.0).toFixed(2);
   }
 
   buildXml(obj) {
@@ -510,4 +506,4 @@ module.exports = class WeixinService extends Base {
 
     return response.data;
   }
-}
+};
