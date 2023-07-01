@@ -1,14 +1,10 @@
 const Base = require('./base.js');
 
 module.exports = class GoodsSpecificationService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} goodsId 
-   * @returns {Promise<GoodsSpecification[]>} 
+   * .
+   * @param {number} goodsId .
+   * @returns {Promise<GoodsSpecification[]>} .
    */
   async queryByGid(goodsId) {
     return this.model('goods_specification')
@@ -20,8 +16,8 @@ module.exports = class GoodsSpecificationService extends Base {
   }
 
   /**
-   * 
-   * @param {number} goodsId 
+   * .
+   * @param {number} goodsId .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteByGid(goodsId) {
@@ -35,8 +31,8 @@ module.exports = class GoodsSpecificationService extends Base {
   }
 
   /**
-   * 
-   * @param {GoodsSpecification} goodsSpecification 
+   * .
+   * @param {GoodsSpecification} goodsSpecification .
    * @returns {Promise<number>} The ID inserted
    */
   async add(goodsSpecification) {
@@ -49,8 +45,8 @@ module.exports = class GoodsSpecificationService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<{ name: string, valueList: GoodsSpecification[] }[]>}
    */
   async getSpecificationVoList(id) {
@@ -77,8 +73,8 @@ module.exports = class GoodsSpecificationService extends Base {
   }
 
   /**
-   * 
-   * @param {GoodsSpecification} goodsSpecification 
+   * .
+   * @param {GoodsSpecification} goodsSpecification .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(goodsSpecification) {
@@ -91,4 +87,4 @@ module.exports = class GoodsSpecificationService extends Base {
         updateTime: now,
       }));
   }
-}
+};

@@ -1,14 +1,10 @@
 const Base = require('./base.js');
 
 module.exports = class GoodsAttributeService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} goodsId 
-   * @returns {Promise<GoodsAttribute[]>} 
+   * .
+   * @param {number} goodsId .
+   * @returns {Promise<GoodsAttribute[]>} .
    */
   async queryByGid(goodsId) {
     return this.model('goods_attribute')
@@ -20,8 +16,8 @@ module.exports = class GoodsAttributeService extends Base {
   }
 
   /**
-   * 
-   * @param {GoodsAttribute} goodsAttribute 
+   * .
+   * @param {GoodsAttribute} goodsAttribute .
    * @returns {Promise<number>} The ID inserted
    */
   async add(goodsAttribute) {
@@ -34,8 +30,8 @@ module.exports = class GoodsAttributeService extends Base {
   }
 
   /**
-   * 
-   * @param {number} goodsId 
+   * .
+   * @param {number} goodsId .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteByGid(goodsId) {
@@ -49,8 +45,8 @@ module.exports = class GoodsAttributeService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -62,8 +58,8 @@ module.exports = class GoodsAttributeService extends Base {
   }
 
   /**
-   * 
-   * @param {GoodsAttribute} goodsAttribute 
+   * .
+   * @param {GoodsAttribute} goodsAttribute .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(goodsAttribute) {
@@ -76,4 +72,4 @@ module.exports = class GoodsAttributeService extends Base {
         updateTime: now,
       }));
   }
-}
+};

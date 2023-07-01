@@ -1,14 +1,10 @@
 const Base = require('./base.js');
 
 module.exports = class GoodsProductService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} goodsId 
-   * @returns {Promise<GoodsProduct[]>} 
+   * .
+   * @param {number} goodsId .
+   * @returns {Promise<GoodsProduct[]>} .
    */
   async queryByGid(goodsId) {
     return this.model('goods_product')
@@ -20,9 +16,9 @@ module.exports = class GoodsProductService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @returns {Promise<GoodsProduct|Record<string, never>>} 
+   * .
+   * @param {number} id .
+   * @returns {Promise<GoodsProduct|Record<string, never>>} .
    */
   async findById(id) {
     return this.model('goods_product')
@@ -31,8 +27,8 @@ module.exports = class GoodsProductService extends Base {
   }
 
   /**
-   * 
-   * @param {GoodsProduct} goodsProduct 
+   * .
+   * @param {GoodsProduct} goodsProduct .
    * @returns {Promise<number>} The ID inserted
    */
   async add(goodsProduct) {
@@ -45,7 +41,7 @@ module.exports = class GoodsProductService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<number>} The total number
    */
   async count() {
@@ -57,8 +53,8 @@ module.exports = class GoodsProductService extends Base {
   }
 
   /**
-   * 
-   * @param {number} goodsId 
+   * .
+   * @param {number} goodsId .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteByGid(goodsId) {
@@ -72,9 +68,9 @@ module.exports = class GoodsProductService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @param {number} num 
+   * .
+   * @param {number} id .
+   * @param {number} num .
    * @returns {Promise<number>}
    */
   async addStock(id, num) {
@@ -97,9 +93,9 @@ module.exports = class GoodsProductService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @param {number} num 
+   * .
+   * @param {number} id .
+   * @param {number} num .
    * @returns {Promise<number>} The number of rows affected
    */
   async reduceStock(id, num) {
@@ -122,8 +118,8 @@ module.exports = class GoodsProductService extends Base {
   }
 
   /**
-   * 
-   * @param {GoodsProduct} goodsProduct 
+   * .
+   * @param {GoodsProduct} goodsProduct .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(goodsProduct) {
@@ -136,4 +132,4 @@ module.exports = class GoodsProductService extends Base {
         updateTime: now,
       }));
   }
-}
+};

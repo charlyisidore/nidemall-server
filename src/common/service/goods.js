@@ -12,15 +12,11 @@ module.exports = class GoodsService extends Base {
     'retailPrice',
   ].join(',');
 
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} page 
-   * @param {number} limit 
-   * @returns {Promise<Goods[]>} 
+   * .
+   * @param {number} page .
+   * @param {number} limit .
+   * @returns {Promise<Goods[]>} .
    */
   async queryByHot(page, limit) {
     return this.model('goods')
@@ -36,10 +32,10 @@ module.exports = class GoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {number} page 
-   * @param {number} limit 
-   * @returns {Promise<Goods[]>} 
+   * .
+   * @param {number} page .
+   * @param {number} limit .
+   * @returns {Promise<Goods[]>} .
    */
   async queryByNew(page, limit) {
     return this.model('goods')
@@ -55,19 +51,19 @@ module.exports = class GoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {number|number[]} catIdOrList 
-   * @param {number} page 
-   * @param {number} limit 
+   * .
+   * @param {number|number[]} catIdOrList .
+   * @param {number} page .
+   * @param {number} limit .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Goods[]}>}
    */
   async queryByCategory(catIdOrList, page, limit) {
     return this.model('goods')
       .field(this.constructor.FIELDS)
       .where({
-        categoryId: Array.isArray(catIdOrList) ?
-          ['IN', catIdOrList] :
-          catIdOrList,
+        categoryId: Array.isArray(catIdOrList)
+          ? ['IN', catIdOrList]
+          : catIdOrList,
         isOnSale: true,
         deleted: false,
       })
@@ -77,16 +73,16 @@ module.exports = class GoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} categoryId 
-   * @param {number?} brandId 
-   * @param {string?} keywords 
-   * @param {boolean?} isHot 
-   * @param {boolean?} isNew 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {number?} categoryId .
+   * @param {number?} brandId .
+   * @param {string?} keywords .
+   * @param {boolean?} isHot .
+   * @param {boolean?} isNew .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Goods[]}>}
    */
   async querySelectiveCategory(categoryId, brandId, keywords, isHot, isNew, page, limit, sort, order) {
@@ -137,14 +133,14 @@ module.exports = class GoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} id 
-   * @param {string?} goodsSn 
-   * @param {string?} name 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {number?} id .
+   * @param {string?} goodsSn .
+   * @param {string?} name .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Goods[]}>}
    */
   async querySelectiveGoods(id, goodsSn, name, page, limit, sort, order) {
@@ -180,9 +176,9 @@ module.exports = class GoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @returns {Promise<Goods|Record<string, never>>} 
+   * .
+   * @param {number} id .
+   * @returns {Promise<Goods|Record<string, never>>} .
    */
   async findById(id) {
     return this.model('goods')
@@ -194,9 +190,9 @@ module.exports = class GoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @returns {Promise<Goods|Record<string, never>>} 
+   * .
+   * @param {number} id .
+   * @returns {Promise<Goods|Record<string, never>>} .
    */
   async findByIdVo(id) {
     return this.model('goods')
@@ -210,7 +206,7 @@ module.exports = class GoodsService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<number>} The total number
    */
   async queryOnSale() {
@@ -223,8 +219,8 @@ module.exports = class GoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {Goods} goods 
+   * .
+   * @param {Goods} goods .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(goods) {
@@ -239,8 +235,8 @@ module.exports = class GoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -252,8 +248,8 @@ module.exports = class GoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {Goods} goods 
+   * .
+   * @param {Goods} goods .
    * @returns {Promise<number>} The ID inserted
    */
   async add(goods) {
@@ -266,7 +262,7 @@ module.exports = class GoodsService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<number>} The total number
    */
   async count() {
@@ -278,11 +274,11 @@ module.exports = class GoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} brandId 
-   * @param {string?} keywords 
-   * @param {boolean?} isHot 
-   * @param {boolean?} isNew 
+   * .
+   * @param {number?} brandId .
+   * @param {string?} keywords .
+   * @param {boolean?} isHot .
+   * @param {boolean?} isNew .
    * @returns {Promise<number[]>}
    */
   async getCatIds(brandId, keywords, isHot, isNew) {
@@ -323,8 +319,8 @@ module.exports = class GoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {string} name 
+   * .
+   * @param {string} name .
    * @returns {Promise<boolean>}
    */
   async checkExistByName(name) {
@@ -338,8 +334,8 @@ module.exports = class GoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {number[]} ids 
+   * .
+   * @param {number[]} ids .
    * @returns {Promise<Goods[]>}
    */
   async queryByIds(ids) {
@@ -365,4 +361,4 @@ module.exports = class GoodsService extends Base {
       },
     };
   }
-}
+};
