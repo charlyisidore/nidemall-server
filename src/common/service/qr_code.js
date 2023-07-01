@@ -1,15 +1,11 @@
 const Base = require('./base.js');
 
 module.exports = class QrCodeService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {string} goodsName 
-   * @param {string} goodsPicUrl 
-   * @param {Groupon} groupon 
+   * .
+   * @param {string} goodsName .
+   * @param {string} goodsPicUrl .
+   * @param {Groupon} groupon .
    * @returns {Promise<string>}
    */
   async createGrouponShareImage(goodsName, goodsPicUrl, groupon) {
@@ -39,10 +35,10 @@ module.exports = class QrCodeService extends Base {
   }
 
   /**
-   * 
-   * @param {number} goodsId 
-   * @param {string} goodsPicUrl 
-   * @param {string} goodsName 
+   * .
+   * @param {number} goodsId .
+   * @param {string} goodsPicUrl .
+   * @param {string} goodsName .
    * @returns {Promise<string>}
    */
   async createGoodsShareImage(goodsId, goodsPicUrl, goodsName) {
@@ -70,4 +66,4 @@ module.exports = class QrCodeService extends Base {
       return '';
     }
   }
-}
+};

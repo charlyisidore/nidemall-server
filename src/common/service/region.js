@@ -1,12 +1,8 @@
 const Base = require('./base.js');
 
 module.exports = class RegionService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
+   * .
    * @returns {Promise<Region[]>}
    */
   async getAll() {
@@ -18,8 +14,8 @@ module.exports = class RegionService extends Base {
   }
 
   /**
-   * 
-   * @param {number} pid 
+   * .
+   * @param {number} pid .
    * @returns {Promise<Region[]>}
    */
   async queryByPid(pid) {
@@ -29,4 +25,4 @@ module.exports = class RegionService extends Base {
       })
       .select();
   }
-}
+};

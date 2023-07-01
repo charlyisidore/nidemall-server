@@ -1,13 +1,9 @@
 const Base = require('./base.js');
 
 module.exports = class PermissionService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number[]} roleIds 
+   * .
+   * @param {number[]} roleIds .
    * @returns {Promise<string[]>}
    */
   async queryByRoleIds(roleIds) {
@@ -24,8 +20,8 @@ module.exports = class PermissionService extends Base {
   }
 
   /**
-   * 
-   * @param {number|number[]|null} roleId 
+   * .
+   * @param {number|number[]|null} roleId .
    * @returns {Promise<string[]>}
    */
   async queryByRoleId(roleId) {
@@ -56,8 +52,8 @@ module.exports = class PermissionService extends Base {
   }
 
   /**
-   * 
-   * @param {number|number[]} roleId 
+   * .
+   * @param {number|number[]} roleId .
    * @returns {Promise<boolean>}
    */
   async checkSuperPermission(roleId) {
@@ -88,8 +84,8 @@ module.exports = class PermissionService extends Base {
   }
 
   /**
-   * 
-   * @param {number} roleId 
+   * .
+   * @param {number} roleId .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteByRoleId(roleId) {
@@ -104,8 +100,8 @@ module.exports = class PermissionService extends Base {
   }
 
   /**
-   * 
-   * @param {Permission} permission 
+   * .
+   * @param {Permission} permission .
    * @returns {Promise<number>} The ID inserted
    */
   async add(permission) {
@@ -119,15 +115,15 @@ module.exports = class PermissionService extends Base {
 
   /**
    * Check if given role IDs have a permission.
-   * @param {number[]} roleIds 
-   * @param {string} requiresPermissions 
+   * @param {number[]} roleIds .
+   * @param {string} requiresPermissions .
    * @returns {Promise<boolean>}
    */
   async hasPermission(roleIds, requiresPermissions) {
     return (await this.queryByRoleIds(roleIds))
       .some((permission) => {
         const pattern = permission
-          .replace(/[.+?^${}()|[\]\\]/g, "\\$&")
+          .replace(/[.+?^${}()|[\]\\]/g, '\\$&')
           .replace('*', '.*');
         const regex = new RegExp(`^${pattern}$`);
         return regex.test(requiresPermissions);
@@ -1886,4 +1882,4 @@ module.exports = class PermissionService extends Base {
       },
     ];
   }
-}
+};

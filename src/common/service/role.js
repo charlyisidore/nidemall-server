@@ -1,13 +1,9 @@
 const Base = require('./base.js');
 
 module.exports = class RoleService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number[]} roleIds 
+   * .
+   * @param {number[]} roleIds .
    * @returns {Promise<string[]>}
    */
   async queryByIds(roleIds) {
@@ -26,12 +22,12 @@ module.exports = class RoleService extends Base {
   }
 
   /**
-   * 
-   * @param {string?} name 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {string?} name .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Role[]}>}
    */
   async querySelective(name, page, limit, sort, order) {
@@ -57,8 +53,8 @@ module.exports = class RoleService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<Role|Record<string, never>>}
    */
   async findById(id) {
@@ -68,8 +64,8 @@ module.exports = class RoleService extends Base {
   }
 
   /**
-   * 
-   * @param {Role} role 
+   * .
+   * @param {Role} role .
    * @returns {Promise<number>} The ID inserted
    */
   async add(role) {
@@ -82,8 +78,8 @@ module.exports = class RoleService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -95,8 +91,8 @@ module.exports = class RoleService extends Base {
   }
 
   /**
-   * 
-   * @param {Role} role 
+   * .
+   * @param {Role} role .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(role) {
@@ -111,8 +107,8 @@ module.exports = class RoleService extends Base {
   }
 
   /**
-   * 
-   * @param {string} name 
+   * .
+   * @param {string} name .
    * @returns {Promise<boolean>}
    */
   async checkExist(name) {
@@ -125,7 +121,7 @@ module.exports = class RoleService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<Role[]>}
    */
   async queryAll() {
@@ -145,4 +141,4 @@ module.exports = class RoleService extends Base {
       },
     };
   }
-}
+};
