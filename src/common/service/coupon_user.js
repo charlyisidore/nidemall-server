@@ -1,13 +1,9 @@
 const Base = require('./base.js');
 
 module.exports = class CouponUserService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} couponId 
+   * .
+   * @param {number} couponId .
    * @returns {Promise<number>}
    */
   async countCoupon(couponId) {
@@ -20,9 +16,9 @@ module.exports = class CouponUserService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
-   * @param {number} couponId 
+   * .
+   * @param {number} userId .
+   * @param {number} couponId .
    * @returns {Promise<number>} The total number
    */
   async countUserAndCoupon(userId, couponId) {
@@ -36,8 +32,8 @@ module.exports = class CouponUserService extends Base {
   }
 
   /**
-   * 
-   * @param {CouponUser} couponUser 
+   * .
+   * @param {CouponUser} couponUser .
    * @returns {Promise<number>} The ID inserted
    */
   async add(couponUser) {
@@ -50,14 +46,14 @@ module.exports = class CouponUserService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} userId 
-   * @param {number?} couponId 
-   * @param {number?} status 
-   * @param {number?} page 
-   * @param {number?} limit 
-   * @param {string?} sort 
-   * @param {string?} order 
+   * .
+   * @param {number?} userId .
+   * @param {number?} couponId .
+   * @param {number?} status .
+   * @param {number?} page .
+   * @param {number?} limit .
+   * @param {string?} sort .
+   * @param {string?} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: CouponUser[]}>}
    */
   async queryList(userId, couponId, status, page, limit, sort, order) {
@@ -92,9 +88,9 @@ module.exports = class CouponUserService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
-   * @param {number?} couponId 
+   * .
+   * @param {number} userId .
+   * @param {number?} couponId .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: CouponUser[]}>}
    */
   async queryAll(userId, couponId) {
@@ -111,9 +107,9 @@ module.exports = class CouponUserService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
-   * @param {number} couponId 
+   * .
+   * @param {number} userId .
+   * @param {number} couponId .
    * @returns {Promise<CouponUser|null>}
    */
   async queryOne(userId, couponId) {
@@ -131,8 +127,8 @@ module.exports = class CouponUserService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<CouponUser|Record<string, never>>}
    */
   async findById(id) {
@@ -142,8 +138,8 @@ module.exports = class CouponUserService extends Base {
   }
 
   /**
-   * 
-   * @param {CouponUser} couponUser 
+   * .
+   * @param {CouponUser} couponUser .
    * @returns {Promise<number>} The number of rows affected
    */
   async update(couponUser) {
@@ -170,8 +166,8 @@ module.exports = class CouponUserService extends Base {
   }
 
   /**
-   * 
-   * @param {number} orderId 
+   * .
+   * @param {number} orderId .
    * @returns {Promise<CouponUser[]>}
    */
   async findByOid(orderId) {
@@ -193,4 +189,4 @@ module.exports = class CouponUserService extends Base {
       },
     };
   }
-}
+};

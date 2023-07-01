@@ -13,16 +13,12 @@ module.exports = class CouponService extends Base {
     'min',
   ].join(',');
 
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string?} sort 
-   * @param {string?} order 
+   * .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string?} sort .
+   * @param {string?} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Coupon[]}>}
    */
   async queryList(page, limit, sort, order) {
@@ -37,17 +33,17 @@ module.exports = class CouponService extends Base {
       .page(page, limit);
 
     if (!think.isNullOrUndefined(sort) && !think.isNullOrUndefined(order)) {
-      model.order({ [sort]: order })
+      model.order({ [sort]: order });
     }
 
     return model.countSelect();
   }
 
   /**
-   * 
-   * @param {number} userId 
-   * @param {number} page 
-   * @param {number} limit 
+   * .
+   * @param {number} userId .
+   * @param {number} page .
+   * @param {number} limit .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Coupon[]}>}
    */
   async queryAvailableList(userId, page, limit) {
@@ -79,9 +75,9 @@ module.exports = class CouponService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @returns {Promise<Coupon|Record<string, never>>} 
+   * .
+   * @param {number} id .
+   * @returns {Promise<Coupon|Record<string, never>>} .
    */
   async findById(id) {
     return this.model('coupon')
@@ -90,8 +86,8 @@ module.exports = class CouponService extends Base {
   }
 
   /**
-   * 
-   * @param {string} code 
+   * .
+   * @param {string} code .
    * @returns {Promise<Coupon|null>}
    */
   async findByCode(code) {
@@ -113,8 +109,8 @@ module.exports = class CouponService extends Base {
   }
 
   /**
-   * 
-   * @returns {Promise<Coupon[]>} 
+   * .
+   * @returns {Promise<Coupon[]>} .
    */
   async queryRegister() {
     const { TYPE, STATUS } = this.getConstants();
@@ -128,14 +124,14 @@ module.exports = class CouponService extends Base {
   }
 
   /**
-   * 
-   * @param {string?} name 
-   * @param {number?} type 
-   * @param {number?} status 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {string?} name .
+   * @param {number?} type .
+   * @param {number?} status .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Coupon[]}>}
    */
   async querySelective(name, type, status, page, limit, sort, order) {
@@ -169,8 +165,8 @@ module.exports = class CouponService extends Base {
   }
 
   /**
-   * 
-   * @param {Coupon} coupon 
+   * .
+   * @param {Coupon} coupon .
    * @returns {Promise<number>} The ID inserted
    */
   async add(coupon) {
@@ -183,8 +179,8 @@ module.exports = class CouponService extends Base {
   }
 
   /**
-   * 
-   * @param {Coupon} coupon 
+   * .
+   * @param {Coupon} coupon .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(coupon) {
@@ -199,8 +195,8 @@ module.exports = class CouponService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -219,7 +215,7 @@ module.exports = class CouponService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {string}
    */
   generateCode() {
@@ -227,7 +223,7 @@ module.exports = class CouponService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<Coupon[]>}
    */
   async queryExpired() {
@@ -244,8 +240,8 @@ module.exports = class CouponService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
+   * .
+   * @param {number} userId .
    */
   async assignForRegister(userId) {
     /** @type {CouponUserService} */
@@ -263,7 +259,7 @@ module.exports = class CouponService extends Base {
 
       for (let limit = coupon.limit; limit > 0; --limit) {
         const couponUser = {
-          couponId,
+          couponId: coupon.id,
           userId,
         };
 
@@ -288,12 +284,12 @@ module.exports = class CouponService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
-   * @param {number} couponId 
-   * @param {number} userCouponId 
-   * @param {number} checkedGoodsPrice 
-   * @param {object[]} cartList 
+   * .
+   * @param {number} userId .
+   * @param {number} couponId .
+   * @param {number} userCouponId .
+   * @param {number} checkedGoodsPrice .
+   * @param {object[]} cartList .
    */
   async checkCoupon(userId, couponId, userCouponId, checkedGoodsPrice, cartList) {
     /** @type {CouponUserService} */
@@ -344,9 +340,9 @@ module.exports = class CouponService extends Base {
 
     if ([GOODS_TYPE.CATEGORY, GOODS_TYPE.ARRAY].includes(goodsType)) {
       for (const cart of cartList) {
-        const key = (GOODS_TYPE.ARRAY == goodsType) ?
-          cart.goodsId :
-          (await goodsService.findById(cart.goodsId)).categoryId;
+        const key = (GOODS_TYPE.ARRAY == goodsType)
+          ? cart.goodsId
+          : (await goodsService.findById(cart.goodsId)).categoryId;
 
         const carts = (key in cartMap) ? cartMap[key] : [];
         carts.push(cart);
@@ -356,7 +352,7 @@ module.exports = class CouponService extends Base {
       goodsValueList = goodsValueList
         .filter((id) => Object.keys(cartMap).includes(id));
 
-      let total = 0.;
+      let total = 0.0;
 
       for (const goodsId of goodsValueList) {
         const carts = cartMap[goodsId];
@@ -444,4 +440,4 @@ module.exports = class CouponService extends Base {
       },
     };
   }
-}
+};
