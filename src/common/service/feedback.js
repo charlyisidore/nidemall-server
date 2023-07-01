@@ -1,13 +1,9 @@
 const Base = require('./base.js');
 
 module.exports = class FeedbackService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {Feedback} feedback 
+   * .
+   * @param {Feedback} feedback .
    * @returns {Promise<number>} The ID inserted
    */
   async add(feedback) {
@@ -20,13 +16,13 @@ module.exports = class FeedbackService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} userId 
-   * @param {string?} username 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {number?} userId .
+   * @param {string?} username .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Feedback[]}>}
    */
   async querySelective(userId, username, page, limit, sort, order) {
@@ -54,4 +50,4 @@ module.exports = class FeedbackService extends Base {
       .page(page, limit)
       .countSelect();
   }
-}
+};

@@ -1,15 +1,11 @@
 const Base = require('./base.js');
 
 module.exports = class FootprintService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} userId 
-   * @param {number} page 
-   * @param {number} limit 
+   * .
+   * @param {number} userId .
+   * @param {number} page .
+   * @param {number} limit .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Footprint[]}>}
    */
   async queryByAddTime(userId, page, limit) {
@@ -26,9 +22,9 @@ module.exports = class FootprintService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @param {number?} userId 
+   * .
+   * @param {number} id .
+   * @param {number?} userId .
    * @returns {Promise<Footprint>}
    */
   async findById(id, userId) {
@@ -47,8 +43,8 @@ module.exports = class FootprintService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -60,8 +56,8 @@ module.exports = class FootprintService extends Base {
   }
 
   /**
-   * 
-   * @param {Footprint} footprint 
+   * .
+   * @param {Footprint} footprint .
    * @returns {Promise<number>} The ID inserted
    */
   async add(footprint) {
@@ -74,13 +70,13 @@ module.exports = class FootprintService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} userId 
-   * @param {number?} goodsId 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {number?} userId .
+   * @param {number?} goodsId .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Footprint[]}>}
    */
   async querySelective(userId, goodsId, page, limit, sort, order) {
@@ -106,4 +102,4 @@ module.exports = class FootprintService extends Base {
       .page(page, limit)
       .countSelect();
   }
-}
+};

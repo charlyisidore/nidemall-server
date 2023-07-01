@@ -16,12 +16,8 @@ const axios = require('axios');
  */
 
 module.exports = class ExpressService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
+   * .
    * @returns {object[]}
    */
   getVendors() {
@@ -29,8 +25,8 @@ module.exports = class ExpressService extends Base {
   }
 
   /**
-   * 
-   * @param {string} vendorCode 
+   * .
+   * @param {string} vendorCode .
    * @returns {string?}
    */
   getVendorName(vendorCode) {
@@ -50,10 +46,10 @@ module.exports = class ExpressService extends Base {
   }
 
   /**
-   * 
-   * @param {string} shipperCode 
-   * @param {string} logisticCode 
-   * @param {string} orderCode 
+   * .
+   * @param {string} shipperCode .
+   * @param {string} logisticCode .
+   * @param {string} orderCode .
    * @returns {Promise<ExpressInfo?>}
    */
   async getExpressInfo(shipperCode, logisticCode, orderCode = '') {
@@ -78,10 +74,10 @@ module.exports = class ExpressService extends Base {
   }
 
   /**
-   * 
-   * @param {string} shipperCode 
-   * @param {string} logisticCode 
-   * @param {string} orderCode 
+   * .
+   * @param {string} shipperCode .
+   * @param {string} logisticCode .
+   * @param {string} orderCode .
    * @returns {Promise<ExpressInfo>}
    */
   getOrderTracesByJson(shipperCode, logisticCode, orderCode = '') {
@@ -112,15 +108,15 @@ module.exports = class ExpressService extends Base {
   }
 
   /**
-   * 
-   * @param {string} content 
-   * @param {string} keyValue 
+   * .
+   * @param {string} content .
+   * @param {string} keyValue .
    */
   encrypt(content, keyValue) {
     if (!think.isTrueEmpty(keyValue)) {
       content = `${content}${keyValue}`;
     }
 
-    return Buffer.from(think.md5(content)).toString('base64')
+    return Buffer.from(think.md5(content)).toString('base64');
   }
-}
+};
