@@ -9,7 +9,7 @@ module.exports = class NotifyService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {boolean}
    */
   isMailEnable() {
@@ -17,7 +17,7 @@ module.exports = class NotifyService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {boolean}
    */
   isSmsEnable() {
@@ -25,9 +25,9 @@ module.exports = class NotifyService extends Base {
   }
 
   /**
-   * 
-   * @param {string} phoneNumber 
-   * @param {string} message 
+   * .
+   * @param {string} phoneNumber .
+   * @param {string} message .
    */
   async notifySms(phoneNumber, message) {
     // TODO
@@ -36,10 +36,10 @@ module.exports = class NotifyService extends Base {
   }
 
   /**
-   * 
-   * @param {string} phoneNumber 
-   * @param {string} notifyType 
-   * @param {string[]} params 
+   * .
+   * @param {string} phoneNumber .
+   * @param {string} notifyType .
+   * @param {string[]} params .
    */
   async notifySmsTemplate(phoneNumber, notifyType, params) {
     // TODO
@@ -48,10 +48,10 @@ module.exports = class NotifyService extends Base {
   }
 
   /**
-   * 
-   * @param {string} phoneNumber 
-   * @param {string} notifyType 
-   * @param {string[]} params 
+   * .
+   * @param {string} phoneNumber .
+   * @param {string} notifyType .
+   * @param {string[]} params .
    */
   async notifySmsTemplateSync(phoneNumber, notifyType, params) {
     // TODO
@@ -60,9 +60,9 @@ module.exports = class NotifyService extends Base {
   }
 
   /**
-   * 
-   * @param {string} subject 
-   * @param {string} content 
+   * .
+   * @param {string} subject .
+   * @param {string} content .
    */
   async notifyMail(subject, content) {
     // TODO
@@ -80,4 +80,4 @@ module.exports = class NotifyService extends Base {
       },
     };
   }
-}
+};

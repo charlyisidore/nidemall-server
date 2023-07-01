@@ -3,14 +3,10 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 module.exports = class LocalStorageService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {string|Buffer|File} file 
-   * @param {string} key 
+   * .
+   * @param {string|Buffer|File} file .
+   * @param {string} key .
    * @returns {Promise<string>} The file URL
    */
   async store(file, key) {
@@ -43,8 +39,8 @@ module.exports = class LocalStorageService extends Base {
   }
 
   /**
-   * 
-   * @param {string} key 
+   * .
+   * @param {string} key .
    * @returns {Promise<void>}
    */
   async delete(key) {
@@ -59,12 +55,12 @@ module.exports = class LocalStorageService extends Base {
           }
           resolve();
         }
-      )
+      );
     });
   }
 
   /**
-   * 
+   * .
    * @returns {string}
    */
   getRootPath() {
@@ -76,4 +72,4 @@ module.exports = class LocalStorageService extends Base {
     }
     return rootPath;
   }
-}
+};

@@ -1,17 +1,13 @@
 const Base = require('./base.js');
 
 module.exports = class LogService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {string?} name 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string?} sort 
-   * @param {string?} order 
+   * .
+   * @param {string?} name .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string?} sort .
+   * @param {string?} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Log[]}>}
    */
   async querySelective(name, page, limit, sort, order) {
@@ -37,9 +33,9 @@ module.exports = class LogService extends Base {
   }
 
   /**
-   * 
-   * @param {string} action 
-   * @param {string} result 
+   * .
+   * @param {string} action .
+   * @param {string} result .
    */
   async logGeneralSucceed(action, result = '', ctx) {
     const { TYPE } = this.getConstants();
@@ -47,9 +43,9 @@ module.exports = class LogService extends Base {
   }
 
   /**
-   * 
-   * @param {string} action 
-   * @param {string} error 
+   * .
+   * @param {string} action .
+   * @param {string} error .
    */
   async logGeneralFail(action, error = '', ctx) {
     const { TYPE } = this.getConstants();
@@ -57,9 +53,9 @@ module.exports = class LogService extends Base {
   }
 
   /**
-   * 
-   * @param {string} action 
-   * @param {string} result 
+   * .
+   * @param {string} action .
+   * @param {string} result .
    */
   async logAuthSucceed(action, result = '', ctx) {
     const { TYPE } = this.getConstants();
@@ -67,9 +63,9 @@ module.exports = class LogService extends Base {
   }
 
   /**
-   * 
-   * @param {string} action 
-   * @param {string} error 
+   * .
+   * @param {string} action .
+   * @param {string} error .
    */
   async logAuthFail(action, error = '', ctx) {
     const { TYPE } = this.getConstants();
@@ -77,9 +73,9 @@ module.exports = class LogService extends Base {
   }
 
   /**
-   * 
-   * @param {string} action 
-   * @param {string} result 
+   * .
+   * @param {string} action .
+   * @param {string} result .
    */
   async logOrderSucceed(action, result = '', ctx) {
     const { TYPE } = this.getConstants();
@@ -87,9 +83,9 @@ module.exports = class LogService extends Base {
   }
 
   /**
-   * 
-   * @param {string} action 
-   * @param {string} error 
+   * .
+   * @param {string} action .
+   * @param {string} error .
    */
   async logOrderFail(action, error = '', ctx) {
     const { TYPE } = this.getConstants();
@@ -97,9 +93,9 @@ module.exports = class LogService extends Base {
   }
 
   /**
-   * 
-   * @param {string} action 
-   * @param {string} result 
+   * .
+   * @param {string} action .
+   * @param {string} result .
    */
   async logOtherSucceed(action, result = '', ctx) {
     const { TYPE } = this.getConstants();
@@ -107,9 +103,9 @@ module.exports = class LogService extends Base {
   }
 
   /**
-   * 
-   * @param {string} action 
-   * @param {string} error 
+   * .
+   * @param {string} action .
+   * @param {string} error .
    */
   async logOtherFail(action, error = '', ctx) {
     const { TYPE } = this.getConstants();
@@ -117,13 +113,13 @@ module.exports = class LogService extends Base {
   }
 
   /**
-   * 
-   * @param {number} type 
-   * @param {string} action 
-   * @param {boolean} succeed 
-   * @param {string} result 
-   * @param {string} comment 
-   * @param {any} ctx 
+   * .
+   * @param {number} type .
+   * @param {string} action .
+   * @param {boolean} succeed .
+   * @param {string} result .
+   * @param {string} comment .
+   * @param {any} ctx .
    * @returns {Promise<number>} The ID inserted
    */
   async logAdmin(type, action, succeed, result, comment, ctx) {
@@ -155,4 +151,4 @@ module.exports = class LogService extends Base {
       },
     };
   }
-}
+};

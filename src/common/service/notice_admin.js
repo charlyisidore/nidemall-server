@@ -1,19 +1,15 @@
 const Base = require('./base.js');
 
 module.exports = class NoticeAdminService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {string?} title 
-   * @param {string?} type 
-   * @param {integer} adminId 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {string?} title .
+   * @param {string?} type .
+   * @param {integer} adminId .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: NoticeAdmin[]}>}
    */
   async querySelective(title, type, adminId, page, limit, sort, order) {
@@ -52,9 +48,9 @@ module.exports = class NoticeAdminService extends Base {
   }
 
   /**
-   * 
-   * @param {number} noticeId 
-   * @param {number} adminId 
+   * .
+   * @param {number} noticeId .
+   * @param {number} adminId .
    * @returns {Promise<NoticeAdmin|Record<string, never>>}
    */
   async find(noticeId, adminId) {
@@ -68,8 +64,8 @@ module.exports = class NoticeAdminService extends Base {
   }
 
   /**
-   * 
-   * @param {NoticeAdmin} noticeAdmin 
+   * .
+   * @param {NoticeAdmin} noticeAdmin .
    * @returns {Promise<number>} The ID inserted
    */
   async add(noticeAdmin) {
@@ -82,8 +78,8 @@ module.exports = class NoticeAdminService extends Base {
   }
 
   /**
-   * 
-   * @param {NoticeAdmin} noticeAdmin 
+   * .
+   * @param {NoticeAdmin} noticeAdmin .
    * @returns {Promise<number>} The number of rows affected
    */
   async update(noticeAdmin) {
@@ -98,9 +94,9 @@ module.exports = class NoticeAdminService extends Base {
   }
 
   /**
-   * 
-   * @param {number[]} ids 
-   * @param {number} adminId 
+   * .
+   * @param {number[]} ids .
+   * @param {number} adminId .
    * @returns {Promise<number>} The number of rows affected
    */
   async markReadByIds(ids, adminId) {
@@ -118,9 +114,9 @@ module.exports = class NoticeAdminService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @param {number} adminId 
+   * .
+   * @param {number} id .
+   * @param {number} adminId .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id, adminId) {
@@ -138,9 +134,9 @@ module.exports = class NoticeAdminService extends Base {
   }
 
   /**
-   * 
-   * @param {number[]} ids 
-   * @param {number} adminId 
+   * .
+   * @param {number[]} ids .
+   * @param {number} adminId .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteByIds(ids, adminId) {
@@ -158,8 +154,8 @@ module.exports = class NoticeAdminService extends Base {
   }
 
   /**
-   * 
-   * @param {number} adminId 
+   * .
+   * @param {number} adminId .
    * @returns {Promise<number>}
    */
   async countUnread(adminId) {
@@ -173,8 +169,8 @@ module.exports = class NoticeAdminService extends Base {
   }
 
   /**
-   * 
-   * @param {number} noticeId 
+   * .
+   * @param {number} noticeId .
    * @returns {Promise<NoticeAdmin[]>}
    */
   async queryByNoticeId(noticeId) {
@@ -187,8 +183,8 @@ module.exports = class NoticeAdminService extends Base {
   }
 
   /**
-   * 
-   * @param {number} noticeId 
+   * .
+   * @param {number} noticeId .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteByNoticeId(noticeId) {
@@ -205,8 +201,8 @@ module.exports = class NoticeAdminService extends Base {
   }
 
   /**
-   * 
-   * @param {number[]} ids 
+   * .
+   * @param {number[]} ids .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteByNoticeIds(ids) {
@@ -223,8 +219,8 @@ module.exports = class NoticeAdminService extends Base {
   }
 
   /**
-   * 
-   * @param {number} noticeId 
+   * .
+   * @param {number} noticeId .
    * @returns {Promise<number>}
    */
   async countReadByNoticeId(noticeId) {
@@ -238,9 +234,9 @@ module.exports = class NoticeAdminService extends Base {
   }
 
   /**
-   * 
-   * @param {NoticeAdmin} noticeAdmin 
-   * @param {number} noticeId 
+   * .
+   * @param {NoticeAdmin} noticeAdmin .
+   * @param {number} noticeId .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateByNoticeId(noticeAdmin, noticeId) {
@@ -254,4 +250,4 @@ module.exports = class NoticeAdminService extends Base {
         updateTime: now,
       }));
   }
-}
+};

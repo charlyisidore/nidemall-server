@@ -1,18 +1,14 @@
 const Base = require('./base.js');
 
 module.exports = class NoticeService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {string?} title 
-   * @param {string?} content 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string?} sort 
-   * @param {string?} order 
+   * .
+   * @param {string?} title .
+   * @param {string?} content .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string?} sort .
+   * @param {string?} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Notice[]}>}
    */
   async querySelective(title, content, page, limit, sort, order) {
@@ -44,8 +40,8 @@ module.exports = class NoticeService extends Base {
   }
 
   /**
-   * 
-   * @param {Notice} notice 
+   * .
+   * @param {Notice} notice .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(notice) {
@@ -60,8 +56,8 @@ module.exports = class NoticeService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -73,8 +69,8 @@ module.exports = class NoticeService extends Base {
   }
 
   /**
-   * 
-   * @param {Notice} notice 
+   * .
+   * @param {Notice} notice .
    * @returns {Promise<number>} The ID inserted
    */
   async add(notice) {
@@ -87,8 +83,8 @@ module.exports = class NoticeService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<Notice|Record<string, never>>}
    */
   async findById(id) {
@@ -98,8 +94,8 @@ module.exports = class NoticeService extends Base {
   }
 
   /**
-   * 
-   * @param {number[]} ids 
+   * .
+   * @param {number[]} ids .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteByIds(ids) {
@@ -122,4 +118,4 @@ module.exports = class NoticeService extends Base {
       },
     };
   }
-}
+};
