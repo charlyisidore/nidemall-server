@@ -3,14 +3,10 @@ const Base = require('./base.js');
 module.exports = class TaskService extends Base {
   _tasks = {};
 
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {() => any} callback 
-   * @param {Date|string|number} dueTime 
+   * .
+   * @param {() => any} callback .
+   * @param {Date|string|number} dueTime .
    * @param {string?} key
    * @returns {number}
    */
@@ -41,8 +37,8 @@ module.exports = class TaskService extends Base {
   }
 
   /**
-   * 
-   * @param {number|string} idOrKey 
+   * .
+   * @param {number|string} idOrKey .
    */
   removeTask(idOrKey) {
     let id = idOrKey;

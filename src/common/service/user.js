@@ -2,14 +2,10 @@ const Base = require('./base.js');
 const assert = require('node:assert');
 
 module.exports = class UserService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} id 
-   * @returns {Promise<User|Record<string, never>>} 
+   * .
+   * @param {number} id .
+   * @returns {Promise<User|Record<string, never>>} .
    */
   async findById(id) {
     return this.model('user')
@@ -18,9 +14,9 @@ module.exports = class UserService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @returns {Promise<User|Record<string, never>>} 
+   * .
+   * @param {number} id .
+   * @returns {Promise<User|Record<string, never>>} .
    */
   async findUserVoById(id) {
     const user = await this.findById(id);
@@ -36,9 +32,9 @@ module.exports = class UserService extends Base {
   }
 
   /**
-   * 
-   * @param {string} openid 
-   * @returns {Promise<User|Record<string, never>>} 
+   * .
+   * @param {string} openid .
+   * @returns {Promise<User|Record<string, never>>} .
    */
   async queryByOid(openid) {
     return this.model('user')
@@ -50,8 +46,8 @@ module.exports = class UserService extends Base {
   }
 
   /**
-   * 
-   * @param {User} user 
+   * .
+   * @param {User} user .
    * @returns {Promise<number>} The ID inserted
    */
   async add(user) {
@@ -64,8 +60,8 @@ module.exports = class UserService extends Base {
   }
 
   /**
-   * 
-   * @param {User} user 
+   * .
+   * @param {User} user .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(user) {
@@ -78,13 +74,13 @@ module.exports = class UserService extends Base {
   }
 
   /**
-   * 
-   * @param {string?} username 
-   * @param {string?} mobile 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {string?} username .
+   * @param {string?} mobile .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: User[]}>}
    */
   async querySelective(username, mobile, page, limit, sort, order) {
@@ -116,7 +112,7 @@ module.exports = class UserService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<number>} The total number
    */
   async count() {
@@ -128,9 +124,9 @@ module.exports = class UserService extends Base {
   }
 
   /**
-   * 
-   * @param {string} username 
-   * @returns {Promise<User[]>} 
+   * .
+   * @param {string} username .
+   * @returns {Promise<User[]>} .
    */
   async queryByUsername(username) {
     return this.model('user')
@@ -142,9 +138,9 @@ module.exports = class UserService extends Base {
   }
 
   /**
-   * 
-   * @param {string} mobile 
-   * @returns {Promise<User[]>} 
+   * .
+   * @param {string} mobile .
+   * @returns {Promise<User[]>} .
    */
   async queryByMobile(mobile) {
     return this.model('user')
@@ -156,9 +152,9 @@ module.exports = class UserService extends Base {
   }
 
   /**
-   * 
-   * @param {string} openid 
-   * @returns {Promise<User[]>} 
+   * .
+   * @param {string} openid .
+   * @returns {Promise<User[]>} .
    */
   async queryByOpenid(openid) {
     return this.model('user')
@@ -170,8 +166,8 @@ module.exports = class UserService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
+   * .
+   * @param {number} userId .
    */
   async getInfo(userId) {
     const user = await this.findById(userId);
@@ -183,4 +179,4 @@ module.exports = class UserService extends Base {
       avatarUrl: user.avatar,
     };
   }
-}
+};

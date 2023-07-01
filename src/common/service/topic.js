@@ -10,16 +10,12 @@ module.exports = class TopicService extends Base {
     'readCount',
   ].join(',');
 
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string?} sort 
-   * @param {string?} order 
+   * .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string?} sort .
+   * @param {string?} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Topic[]}>}
    */
   async queryList(page, limit, sort = 'addTime', order = 'DESC') {
@@ -36,9 +32,9 @@ module.exports = class TopicService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @returns {Promise<Topic|Record<string, never>>} 
+   * .
+   * @param {number} id .
+   * @returns {Promise<Topic|Record<string, never>>} .
    */
   async findById(id) {
     return this.model('topic')
@@ -50,10 +46,10 @@ module.exports = class TopicService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @param {number} page 
-   * @param {number} limit 
+   * .
+   * @param {number} id .
+   * @param {number} page .
+   * @param {number} limit .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Topic[]}>}
    */
   async queryRelatedList(id, page, limit) {
@@ -86,13 +82,13 @@ module.exports = class TopicService extends Base {
   }
 
   /**
-   * 
-   * @param {string?} title 
-   * @param {string?} subtitle 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {string?} title .
+   * @param {string?} subtitle .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Topic[]}>}
    */
   async querySelective(title, subtitle, page, limit, sort, order) {
@@ -124,8 +120,8 @@ module.exports = class TopicService extends Base {
   }
 
   /**
-   * 
-   * @param {Topic} topic 
+   * .
+   * @param {Topic} topic .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(topic) {
@@ -140,8 +136,8 @@ module.exports = class TopicService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -153,8 +149,8 @@ module.exports = class TopicService extends Base {
   }
 
   /**
-   * 
-   * @param {Topic} topic 
+   * .
+   * @param {Topic} topic .
    * @returns {Promise<number>} The ID inserted
    */
   async add(topic) {
@@ -167,8 +163,8 @@ module.exports = class TopicService extends Base {
   }
 
   /**
-   * 
-   * @param {number[]} ids 
+   * .
+   * @param {number[]} ids .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteByIds(ids) {
@@ -183,4 +179,4 @@ module.exports = class TopicService extends Base {
         deleted: true,
       });
   }
-}
+};

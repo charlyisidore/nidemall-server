@@ -2,8 +2,6 @@ const Base = require('./base.js');
 
 module.exports = class SystemService extends Base {
   prefix = '';
-  config = null;
-
   config = {
     wx_index_new: '6',
     wx_index_hot: '6',
@@ -31,7 +29,7 @@ module.exports = class SystemService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<Record<string, string>>}
    */
   async listMall() {
@@ -39,7 +37,7 @@ module.exports = class SystemService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<Record<string, string>>}
    */
   async listWx() {
@@ -47,7 +45,7 @@ module.exports = class SystemService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<Record<string, string>>}
    */
   async listOrder() {
@@ -55,7 +53,7 @@ module.exports = class SystemService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<Record<string, string>>}
    */
   async listExpress() {
@@ -63,8 +61,8 @@ module.exports = class SystemService extends Base {
   }
 
   /**
-   * 
-   * @param {Record<string, string>} data 
+   * .
+   * @param {Record<string, string>} data .
    * @returns {Promise<number[]>}
    */
   async updateConfig(data) {
@@ -80,7 +78,7 @@ module.exports = class SystemService extends Base {
             .update({
               keyValue,
               updateTime: now,
-            })
+            });
         })
     );
   }
@@ -101,8 +99,8 @@ module.exports = class SystemService extends Base {
   }
 
   /**
-   * 
-   * @param {string?} key 
+   * .
+   * @param {string?} key .
    * @returns {Promise<object|string>}
    */
   async getConfig(key) {
@@ -119,14 +117,14 @@ module.exports = class SystemService extends Base {
           );
         });
     }
-    return think.isNullOrUndefined(key) ?
-      this.config :
-      this.config[key];
+    return think.isNullOrUndefined(key)
+      ? this.config
+      : this.config[key];
   }
 
   /**
-   * 
-   * @param {string?} key 
+   * .
+   * @param {string?} key .
    * @returns {Promise<number>}
    */
   async getConfigInt(key) {
@@ -134,8 +132,8 @@ module.exports = class SystemService extends Base {
   }
 
   /**
-   * 
-   * @param {string?} key 
+   * .
+   * @param {string?} key .
    * @returns {Promise<boolean?>}
    */
   async getConfigBoolean(key) {
@@ -152,8 +150,8 @@ module.exports = class SystemService extends Base {
   }
 
   /**
-   * 
-   * @param {string?} key 
+   * .
+   * @param {string?} key .
    * @returns {Promise<number>}
    */
   async getConfigFloat(key) {
@@ -168,132 +166,134 @@ module.exports = class SystemService extends Base {
   async updateConfigs(data) {
     await this.config;
     Object.entries(data)
-      .forEach(([key, value]) => this.config[key] = value);
+      .forEach(([key, value]) => {
+        this.config[key] = value;
+      });
   }
 
   /**
-   * 
+   * .
    */
   async getNewLimit() {
     return this.getConfigInt('wx_index_new');
   }
 
   /**
-   * 
+   * .
    */
   async getHotLimit() {
     return this.getConfigInt('wx_index_hot');
   }
 
   /**
-   * 
+   * .
    */
   async getBrandLimit() {
     return this.getConfigInt('wx_index_brand');
   }
 
   /**
-   * 
+   * .
    */
   async getTopicLimit() {
     return this.getConfigInt('wx_index_topic');
   }
 
   /**
-   * 
+   * .
    */
   async getCatlogListLimit() {
     return this.getConfigInt('wx_catlog_list');
   }
 
   /**
-   * 
+   * .
    */
   async getCatlogMoreLimit() {
     return this.getConfigInt('wx_catlog_goods');
   }
 
   /**
-   * 
+   * .
    */
   async isAutoCreateShareImage() {
     return this.getConfigBoolean('wx_share');
   }
 
   /**
-   * 
+   * .
    */
   async getFreight() {
     return this.getConfigFloat('express_freight_value');
   }
 
   /**
-   * 
+   * .
    */
   async getFreightLimit() {
     return this.getConfigFloat('express_freight_min');
   }
 
   /**
-   * 
+   * .
    */
   async getOrderUnpaid() {
     return this.getConfigInt('order_unpaid');
   }
 
   /**
-   * 
+   * .
    */
   async getOrderUnconfirm() {
     return this.getConfigInt('order_unconfirm');
   }
 
   /**
-   * 
+   * .
    */
   async getOrderComment() {
     return this.getConfigInt('order_comment');
   }
 
   /**
-   * 
+   * .
    */
   async getMallName() {
     return this.getConfig('mall_name');
   }
 
   /**
-   * 
+   * .
    */
   async getMallAddress() {
     return this.getConfig('mall_address');
   }
 
   /**
-   * 
+   * .
    */
   async getMallPhone() {
     return this.getConfig('mall_phone');
   }
 
   /**
-   * 
+   * .
    */
   async getMallQq() {
     return this.getConfig('mall_qq');
   }
 
   /**
-   * 
+   * .
    */
   async getMallLongitude() {
     return this.getConfig('mall_longitude');
   }
 
   /**
-   * 
+   * .
    */
   async getMallLatitude() {
     return this.getConfig('mall_latitude');
   }
-}
+};
