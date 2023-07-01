@@ -1,13 +1,9 @@
 const Base = require('./base.js');
 
 module.exports = class OrderService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {Order} order 
+   * .
+   * @param {Order} order .
    * @returns {Promise<number>} The ID inserted
    */
   async add(order) {
@@ -20,9 +16,9 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @param {number?} userId 
+   * .
+   * @param {number} id .
+   * @param {number?} userId .
    * @returns {Promise<Order|Record<string, never>>}
    */
   async findById(id, userId) {
@@ -32,7 +28,7 @@ module.exports = class OrderService extends Base {
       Object.assign(where, {
         userId,
         deleted: false,
-      })
+      });
     }
 
     return this.model('order')
@@ -41,9 +37,9 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {string} orderSn 
-   * @param {number} userId 
+   * .
+   * @param {string} orderSn .
+   * @param {number} userId .
    * @returns {Promise<number>}
    */
   async countByOrderSn(orderSn, userId) {
@@ -57,8 +53,8 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
+   * .
+   * @param {number} userId .
    * @returns {Promise<string>} A random orderSn
    */
   async generateOrderSn(userId) {
@@ -77,13 +73,13 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
-   * @param {number[]?} orderStatus 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {number} userId .
+   * @param {number[]?} orderStatus .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Order[]}>}
    */
   async queryByOrderStatus(userId, orderStatus, page, limit, sort, order) {
@@ -116,8 +112,8 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {Order} order 
+   * .
+   * @param {Order} order .
    * @returns {Promise<number>}
    */
   async updateWithOptimisticLocker(order) {
@@ -134,8 +130,8 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {Order} order 
+   * .
+   * @param {Order} order .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateSelective(order) {
@@ -147,8 +143,8 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -160,7 +156,7 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<number>} The total number
    */
   async count() {
@@ -172,8 +168,8 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {number} days 
+   * .
+   * @param {number} days .
    * @returns {Promise<Order[]>}
    */
   async queryUnconfirm(days) {
@@ -190,8 +186,8 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {string} orderSn 
+   * .
+   * @param {string} orderSn .
    * @returns {Promise<Order|Record<string, never>>}
    */
   async findBySn(orderSn) {
@@ -204,8 +200,8 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
+   * .
+   * @param {number} userId .
    * @returns {Promise<{unpaid: number, unship: number, unrecv: number, uncomment: number}>}
    */
   async orderInfo(userId) {
@@ -251,8 +247,8 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {number} days 
+   * .
+   * @param {number} days .
    * @returns {Promise<Order[]>}
    */
   async queryComment(days) {
@@ -268,9 +264,9 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @param {number} aftersaleStatus 
+   * .
+   * @param {number} id .
+   * @param {number} aftersaleStatus .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateAftersaleStatus(id, aftersaleStatus) {
@@ -284,17 +280,17 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {string?} nickname 
-   * @param {string?} consignee 
-   * @param {string?} orderSn 
-   * @param {Date?} start 
-   * @param {Date?} end 
-   * @param {number[]?} orderStatusArray 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string?} sort 
-   * @param {string?} order 
+   * .
+   * @param {string?} nickname .
+   * @param {string?} consignee .
+   * @param {string?} orderSn .
+   * @param {Date?} start .
+   * @param {Date?} end .
+   * @param {number[]?} orderStatusArray .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string?} sort .
+   * @param {string?} order .
    * @returns {Promise<{list: Order[], total: number, page: number, limit: number, pages: number}>}
    */
   async queryVoSelective(nickname, consignee, orderSn, start, end, orderStatusArray, page, limit, sort, order) {
@@ -494,8 +490,8 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {number} orderId 
+   * .
+   * @param {number} orderId .
    */
   async releaseCoupon(orderId) {
     /** @type {CouponUserService} */
@@ -520,7 +516,7 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
+   * .
    */
   async checkOrderUnconfirm() {
     think.logger.info('系统开启定时任务检查订单是否已经超期自动确认收货');
@@ -554,7 +550,7 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
+   * .
    */
   async checkOrderComment() {
     think.logger.info('系统开启任务检查订单是否已经超期未评价');
@@ -594,8 +590,8 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {number} orderId 
+   * .
+   * @param {number} orderId .
    */
   async orderUnpaidTask(orderId) {
     think.logger.info(`系统开始处理延时任务---订单超时未付款---${orderId}`);
@@ -644,8 +640,8 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {Order} order 
+   * .
+   * @param {Order} order .
    * @returns {string}
    */
   orderToString(order) {
@@ -653,8 +649,8 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {Order} order 
+   * .
+   * @param {Order} order .
    * @returns {string}
    */
   orderToStringJava(order) {
@@ -743,8 +739,8 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {number} showType 
+   * .
+   * @param {number} showType .
    * @returns {number[]?}
    */
   orderStatus(showType) {
@@ -770,8 +766,8 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {{ orderStatus: number }} order 
+   * .
+   * @param {{ orderStatus: number }} order .
    * @returns {string}
    */
   orderStatusText(order) {
@@ -812,8 +808,8 @@ module.exports = class OrderService extends Base {
   }
 
   /**
-   * 
-   * @param {{ orderStatus: number }} order 
+   * .
+   * @param {{ orderStatus: number }} order .
    * @returns {{ cancel: boolean?, pay: boolean?, delete: boolean?, refund: boolean?, confirm: boolean?, comment: boolean?, rebuy: boolean?, aftersale: boolean? }}
    */
   build(order) {
@@ -908,4 +904,4 @@ module.exports = class OrderService extends Base {
       },
     };
   }
-}
+};

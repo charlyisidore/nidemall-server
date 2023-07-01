@@ -1,13 +1,9 @@
 const Base = require('./base.js');
 
 module.exports = class OrderGoodsService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {OrderGoods} orderGoods 
+   * .
+   * @param {OrderGoods} orderGoods .
    * @returns {Promise<number>} The ID inserted
    */
   async add(orderGoods) {
@@ -20,8 +16,8 @@ module.exports = class OrderGoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {number} orderId 
+   * .
+   * @param {number} orderId .
    * @returns {Promise<OrderGoods[]>}
    */
   async queryByOid(orderId) {
@@ -34,8 +30,8 @@ module.exports = class OrderGoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<OrderGoods>}
    */
   async findById(id) {
@@ -45,15 +41,15 @@ module.exports = class OrderGoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {OrderGoods} orderGoods 
+   * .
+   * @param {OrderGoods} orderGoods .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(orderGoods) {
     const now = new Date();
     return this.model('order_goods')
       .where({
-        id: order.id,
+        id: orderGoods.id,
       })
       .update(Object.assign(orderGoods, {
         updateTime: now,
@@ -61,8 +57,8 @@ module.exports = class OrderGoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {number} orderId 
+   * .
+   * @param {number} orderId .
    * @returns {Promise<number>}
    */
   async getComments(orderId) {
@@ -75,8 +71,8 @@ module.exports = class OrderGoodsService extends Base {
   }
 
   /**
-   * 
-   * @param {number} orderId 
+   * .
+   * @param {number} orderId .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteByOrderId(orderId) {
@@ -89,4 +85,4 @@ module.exports = class OrderGoodsService extends Base {
         deleted: true,
       });
   }
-}
+};
