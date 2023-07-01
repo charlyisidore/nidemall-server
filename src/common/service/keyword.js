@@ -1,12 +1,8 @@
 const Base = require('./base.js');
 
 module.exports = class KeywordService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
+   * .
    * @returns {Promise<Keyword|Record<string, never>>}
    */
   async queryDefault() {
@@ -19,7 +15,7 @@ module.exports = class KeywordService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<Keyword[]>}
    */
   async queryHots() {
@@ -32,10 +28,10 @@ module.exports = class KeywordService extends Base {
   }
 
   /**
-   * 
-   * @param {string} keyword 
-   * @param {number} page 
-   * @param {number} limit 
+   * .
+   * @param {string} keyword .
+   * @param {number} page .
+   * @param {number} limit .
    * @returns {Promise<Keyword[]>}
    */
   async queryByKeyword(keyword, page, limit) {
@@ -51,13 +47,13 @@ module.exports = class KeywordService extends Base {
   }
 
   /**
-   * 
-   * @param {string?} keyword 
-   * @param {string?} url 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string?} sort 
-   * @param {string?} order 
+   * .
+   * @param {string?} keyword .
+   * @param {string?} url .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string?} sort .
+   * @param {string?} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Keyword[]}>}
    */
   async querySelective(keyword, url, page, limit, sort, order) {
@@ -89,8 +85,8 @@ module.exports = class KeywordService extends Base {
   }
 
   /**
-   * 
-   * @param {Keyword} keyword 
+   * .
+   * @param {Keyword} keyword .
    * @returns {Promise<number>} The ID inserted
    */
   async add(keyword) {
@@ -103,8 +99,8 @@ module.exports = class KeywordService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<Keyword|Record<string, never>>}
    */
   async findById(id) {
@@ -114,8 +110,8 @@ module.exports = class KeywordService extends Base {
   }
 
   /**
-   * 
-   * @param {Keyword} keyword 
+   * .
+   * @param {Keyword} keyword .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(keyword) {
@@ -130,8 +126,8 @@ module.exports = class KeywordService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -141,4 +137,4 @@ module.exports = class KeywordService extends Base {
         deleted: true,
       });
   }
-}
+};

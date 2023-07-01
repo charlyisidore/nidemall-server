@@ -1,13 +1,9 @@
 const Base = require('./base.js');
 
 module.exports = class GrouponRulesService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {GrouponRules} grouponRules 
+   * .
+   * @param {GrouponRules} grouponRules .
    * @returns {Promise<number>} The ID inserted
    */
   async createRules(grouponRules) {
@@ -20,9 +16,9 @@ module.exports = class GrouponRulesService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @returns {Promise<GrouponRules|Record<string, never>>} 
+   * .
+   * @param {number} id .
+   * @returns {Promise<GrouponRules|Record<string, never>>} .
    */
   async findById(id) {
     return this.model('groupon_rules')
@@ -31,9 +27,9 @@ module.exports = class GrouponRulesService extends Base {
   }
 
   /**
-   * 
-   * @param {number} goodsId 
-   * @returns {Promise<GrouponRules[]>} 
+   * .
+   * @param {number} goodsId .
+   * @returns {Promise<GrouponRules[]>} .
    */
   async queryByGoodsId(goodsId) {
     const { RULE_STATUS } = this.getConstants();
@@ -47,8 +43,8 @@ module.exports = class GrouponRulesService extends Base {
   }
 
   /**
-   * 
-   * @param {number} goodsId 
+   * .
+   * @param {number} goodsId .
    * @returns {Promise<number>}
    */
   async countByGoodsId(goodsId) {
@@ -63,8 +59,8 @@ module.exports = class GrouponRulesService extends Base {
   }
 
   /**
-   * 
-   * @param {number} status 
+   * .
+   * @param {number} status .
    * @returns {Promise<GrouponRules[]>}
    */
   async queryByStatus(status) {
@@ -77,11 +73,11 @@ module.exports = class GrouponRulesService extends Base {
   }
 
   /**
-   * 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string?} sort 
-   * @param {string?} order 
+   * .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string?} sort .
+   * @param {string?} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: GrouponRules[]}>}
    */
   async queryList(page, limit, sort = 'addTime', order = 'DESC') {
@@ -99,12 +95,12 @@ module.exports = class GrouponRulesService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} goodsId 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {number?} goodsId .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: GrouponRules[]}>}
    */
   async querySelective(goodsId, page, limit, sort, order) {
@@ -128,8 +124,8 @@ module.exports = class GrouponRulesService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async delete(id) {
@@ -141,8 +137,8 @@ module.exports = class GrouponRulesService extends Base {
   }
 
   /**
-   * 
-   * @param {GrouponRules} grouponRules 
+   * .
+   * @param {GrouponRules} grouponRules .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(grouponRules) {
@@ -157,11 +153,11 @@ module.exports = class GrouponRulesService extends Base {
   }
 
   /**
-   * 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string?} sort 
-   * @param {string?} order 
+   * .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string?} sort .
+   * @param {string?} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: object[]}>}
    */
   async wxQueryList(page, limit, sort, order) {
@@ -226,7 +222,7 @@ module.exports = class GrouponRulesService extends Base {
 
   /**
    * Delete an expired groupon rules.
-   * @param {number} grouponRulesId 
+   * @param {number} grouponRulesId .
    */
   async expiredTask(grouponRulesId) {
     think.logger.info(`系统开始处理延时任务---团购规则过期---${grouponRulesId}`);
@@ -293,4 +289,4 @@ module.exports = class GrouponRulesService extends Base {
       },
     };
   }
-}
+};

@@ -1,13 +1,9 @@
 const Base = require('./base.js');
 
 module.exports = class IssueService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -19,8 +15,8 @@ module.exports = class IssueService extends Base {
   }
 
   /**
-   * 
-   * @param {Issue} issue 
+   * .
+   * @param {Issue} issue .
    * @returns {Promise<number>} The ID inserted
    */
   async add(issue) {
@@ -33,12 +29,12 @@ module.exports = class IssueService extends Base {
   }
 
   /**
-   * 
-   * @param {string?} question 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string?} sort 
-   * @param {string?} order 
+   * .
+   * @param {string?} question .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string?} sort .
+   * @param {string?} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Issue[]}>}
    */
   async querySelective(question, page, limit, sort, order) {
@@ -64,8 +60,8 @@ module.exports = class IssueService extends Base {
   }
 
   /**
-   * 
-   * @param {Issue} issue 
+   * .
+   * @param {Issue} issue .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(issue) {
@@ -80,8 +76,8 @@ module.exports = class IssueService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<Issue|Record<string, never>>}
    */
   async findById(id) {
@@ -89,4 +85,4 @@ module.exports = class IssueService extends Base {
       .where({ id })
       .find();
   }
-}
+};

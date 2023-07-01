@@ -1,13 +1,9 @@
 const Base = require('./base.js');
 
 module.exports = class GrouponService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} userId 
+   * .
+   * @param {number} userId .
    * @returns {Promise<Groupon[]>}
    */
   async queryMyGroupon(userId) {
@@ -27,8 +23,8 @@ module.exports = class GrouponService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
+   * .
+   * @param {number} userId .
    * @returns {Promise<Groupon[]>}
    */
   async queryMyJoinGroupon(userId) {
@@ -47,8 +43,8 @@ module.exports = class GrouponService extends Base {
   }
 
   /**
-   * 
-   * @param {number} orderId 
+   * .
+   * @param {number} orderId .
    * @returns {Promise<Order|Record<string, never>>}
    */
   async queryByOrderId(orderId) {
@@ -61,8 +57,8 @@ module.exports = class GrouponService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<Groupon[]>}
    */
   async queryJoinRecord(id) {
@@ -80,9 +76,9 @@ module.exports = class GrouponService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @param {number?} userId 
+   * .
+   * @param {number} id .
+   * @param {number?} userId .
    * @returns {Promise<Groupon|Record<string, never>>}
    */
   async queryById(id, userId) {
@@ -103,8 +99,8 @@ module.exports = class GrouponService extends Base {
   }
 
   /**
-   * 
-   * @param {number} grouponId 
+   * .
+   * @param {number} grouponId .
    * @returns {Promise<number>} The total number
    */
   async countGroupon(grouponId) {
@@ -119,9 +115,9 @@ module.exports = class GrouponService extends Base {
   }
 
   /**
-   * 
-   * @param {number} grouponId 
-   * @param {number} userId 
+   * .
+   * @param {number} grouponId .
+   * @param {number} userId .
    * @returns {Promise<boolean>}
    */
   async hasJoin(grouponId, userId) {
@@ -137,8 +133,8 @@ module.exports = class GrouponService extends Base {
   }
 
   /**
-   * 
-   * @param {Groupon} groupon 
+   * .
+   * @param {Groupon} groupon .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(groupon) {
@@ -153,8 +149,8 @@ module.exports = class GrouponService extends Base {
   }
 
   /**
-   * 
-   * @param {Groupon} groupon 
+   * .
+   * @param {Groupon} groupon .
    * @returns {Promise<number>} The ID inserted
    */
   async createGroupon(groupon) {
@@ -167,12 +163,12 @@ module.exports = class GrouponService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} rulesId 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {number?} rulesId .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Groupon[]}>}
    */
   async querySelective(rulesId, page, limit, sort, order) {
@@ -200,8 +196,8 @@ module.exports = class GrouponService extends Base {
   }
 
   /**
-   * 
-   * @param {number} grouponRulesId 
+   * .
+   * @param {number} grouponRulesId .
    * @returns {Promise<Groupon[]>}
    */
   async queryByRulesId(grouponRulesId) {
@@ -234,4 +230,4 @@ module.exports = class GrouponService extends Base {
       },
     };
   }
-}
+};
