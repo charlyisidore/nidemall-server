@@ -1,13 +1,9 @@
 const Base = require('./base.js');
 
 module.exports = class SearchHistoryService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {SearchHistory} searchHistory 
+   * .
+   * @param {SearchHistory} searchHistory .
    * @returns {Promise<number>} The ID inserted
    */
   async save(searchHistory) {
@@ -20,8 +16,8 @@ module.exports = class SearchHistoryService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
+   * .
+   * @param {number} userId .
    * @returns {Promise<SearchHistory[]>}
    */
   async queryByUid(userId) {
@@ -35,8 +31,8 @@ module.exports = class SearchHistoryService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
+   * .
+   * @param {number} userId .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteByUid(userId) {
@@ -50,13 +46,13 @@ module.exports = class SearchHistoryService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} userId 
-   * @param {string?} keyword 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {number?} userId .
+   * @param {string?} keyword .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: SearchHistory[]}>}
    */
   async querySelective(userId, keyword, page, limit, sort, order) {
@@ -84,4 +80,4 @@ module.exports = class SearchHistoryService extends Base {
       .page(page, limit)
       .countSelect();
   }
-}
+};

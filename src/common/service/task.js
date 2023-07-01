@@ -7,7 +7,7 @@ module.exports = class TaskService extends Base {
    * .
    * @param {() => any} callback .
    * @param {Date|string|number} dueTime .
-   * @param {string?} key
+   * @param {string?} key .
    * @returns {number}
    */
   addTask(callback, dueTime, key) {
@@ -26,9 +26,9 @@ module.exports = class TaskService extends Base {
     const delay = time - now.getTime();
 
     // https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#maximum_delay_value
-    const id = (delay > MAX_TIMEOUT) ?
-      setTimeout(() => this.addTask(callback, dueTime), MAX_TIMEOUT) :
-      setTimeout(callback, Math.max(0, delay));
+    const id = (delay > MAX_TIMEOUT)
+      ? setTimeout(() => this.addTask(callback, dueTime), MAX_TIMEOUT)
+      : setTimeout(callback, Math.max(0, delay));
 
     if (!think.isNullOrUndefined(key)) {
       this._tasks[key] = id;
@@ -51,4 +51,4 @@ module.exports = class TaskService extends Base {
     }
     return clearTimeout(id);
   }
-}
+};

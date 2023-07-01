@@ -2,13 +2,9 @@ const Base = require('./base.js');
 const path = require('node:path');
 
 module.exports = class StorageService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {string} key 
+   * .
+   * @param {string} key .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteByKey(key) {
@@ -20,9 +16,9 @@ module.exports = class StorageService extends Base {
   }
 
   /**
-   * 
-   * @param {Storage} storage 
-   * @returns 
+   * .
+   * @param {Storage} storage .
+   * @returns .
    */
   async add(storage) {
     const now = new Date();
@@ -34,8 +30,8 @@ module.exports = class StorageService extends Base {
   }
 
   /**
-   * 
-   * @param {string} key 
+   * .
+   * @param {string} key .
    * @returns {Promise<Storage|Record<string, never>}
    */
   async findByKey(key) {
@@ -48,8 +44,8 @@ module.exports = class StorageService extends Base {
   }
 
   /**
-   * 
-   * @param {Storage} storage 
+   * .
+   * @param {Storage} storage .
    * @returns {Promise<number>} The number of rows affected
    */
   async update(storage) {
@@ -64,8 +60,8 @@ module.exports = class StorageService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<Storage|Record<string, never>>}
    */
   async findById(id) {
@@ -75,13 +71,13 @@ module.exports = class StorageService extends Base {
   }
 
   /**
-   * 
-   * @param {string?} key 
-   * @param {string?} name 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string?} sort 
-   * @param {string?} order 
+   * .
+   * @param {string?} key .
+   * @param {string?} name .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string?} sort .
+   * @param {string?} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Storage[]}>}
    */
   async querySelective(key, name, page, limit, sort, order) {
@@ -111,10 +107,10 @@ module.exports = class StorageService extends Base {
   }
 
   /**
-   * 
-   * @param {string|Buffer|File} file 
-   * @param {string?} fileType 
-   * @param {string?} fileName 
+   * .
+   * @param {string|Buffer|File} file .
+   * @param {string?} fileType .
+   * @param {string?} fileName .
    * @returns {Promise<Storage>}
    */
   async store(file, fileType, fileName) {
@@ -124,9 +120,9 @@ module.exports = class StorageService extends Base {
     fileName ??= file.name;
     fileType ??= file.type;
 
-    const size = (think.isString(file) || file instanceof Buffer) ?
-      file.length :
-      file.size;
+    const size = (think.isString(file) || file instanceof Buffer)
+      ? file.length
+      : file.size;
 
     const key = await this.generateKey(fileName);
     const url = await localStorageService.store(file, key);
@@ -145,8 +141,8 @@ module.exports = class StorageService extends Base {
   }
 
   /**
-   * 
-   * @param {string} key 
+   * .
+   * @param {string} key .
    */
   async delete(key) {
     /** @type {LocalStorageService} */
@@ -175,4 +171,4 @@ module.exports = class StorageService extends Base {
       () => Math.floor(Math.random() * 36).toString(36)
     ).join('');
   }
-}
+};

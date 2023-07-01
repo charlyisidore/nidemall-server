@@ -1,12 +1,8 @@
 const Base = require('./base.js');
 
 module.exports = class StatService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
+   * .
    * @returns {Promise<{day: string, users: number}[]>}
    */
   async statUser() {
@@ -27,7 +23,7 @@ module.exports = class StatService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<{day: string, orders: number, customers: number, amount: number, pcr: number}[]>}
    */
   async statOrder() {
@@ -58,7 +54,7 @@ module.exports = class StatService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<{day: string, orders: number, products: number, amount: number}[]>}
    */
   async statGoods() {
@@ -81,4 +77,4 @@ module.exports = class StatService extends Base {
       .group('substr(add_time, 1, 10)')
       .select();
   }
-}
+};
