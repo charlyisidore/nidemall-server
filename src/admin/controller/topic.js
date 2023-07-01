@@ -60,9 +60,9 @@ module.exports = class AdminTopicController extends Base {
 
     const topic = await topicService.findById(id);
 
-    const goodsList = think.isEmpty(topic.goods) ?
-      [] :
-      await goodsService.queryByIds(topic.goods);
+    const goodsList = think.isEmpty(topic.goods)
+      ? []
+      : await goodsService.queryByIds(topic.goods);
 
     return this.success({
       topic,

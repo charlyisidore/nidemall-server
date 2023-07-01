@@ -24,7 +24,7 @@ module.exports = class AdminProfileController extends Base {
     }
 
     Object.assign(admin, {
-      password: await adminService.hashPassword(password),
+      password: await adminService.hashPassword(newPassword),
     });
 
     await adminService.updateById(admin);
@@ -90,6 +90,8 @@ module.exports = class AdminProfileController extends Base {
     if (think.isEmpty(noticeAdmin)) {
       return this.badArgumentValue();
     }
+
+    const now = new Date();
 
     Object.assign(noticeAdmin, {
       readTime: now,

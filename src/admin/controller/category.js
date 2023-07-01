@@ -28,7 +28,7 @@ module.exports = class AdminCategoryController extends Base {
             level: subCategory.level,
             pid: subCategory.pid,
           })),
-        }
+        };
       })
     );
 

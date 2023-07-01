@@ -116,7 +116,7 @@ module.exports = class AdminOrderController extends Base {
 
       let wxPayRefundResult;
       try {
-        const totalFee = Math.floor(order.actualPrice * 100.);
+        const totalFee = Math.floor(order.actualPrice * 100.0);
         wxPayRefundResult = await weixinService.refund({
           outTradeNo: order.orderSn,
           outRefundNo: `refund_${order.orderSn}`,
@@ -269,7 +269,7 @@ module.exports = class AdminOrderController extends Base {
     });
 
     if (!await orderService.updateWithOptimisticLocker(order)) {
-      return weixinService.fail("更新数据已失效");
+      return weixinService.fail('更新数据已失效');
     }
 
     return this.success();

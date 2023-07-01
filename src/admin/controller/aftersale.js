@@ -214,8 +214,8 @@ module.exports = class AdminAftersaleController extends Base {
       wxPayRefundResult = await weixinService.refund({
         outTradeNo: order.orderSn,
         outRefundNo: `refund_${order.orderSn}`,
-        totalFee: Math.floor(order.actualPrice * 100.),
-        refundFee: Math.floor(aftersale.amount * 100.),
+        totalFee: Math.floor(order.actualPrice * 100.0),
+        refundFee: Math.floor(aftersale.amount * 100.0),
       });
     } catch (e) {
       switch (true) {

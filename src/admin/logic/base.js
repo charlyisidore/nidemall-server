@@ -51,11 +51,11 @@ module.exports = class extends think.Logic {
         return this.unlogin();
       }
     }
-    return await super.__after();
+    return super.__after();
   }
 
   /**
-   * 
+   * .
    * @returns {number|null}
    */
   getAdminId() {

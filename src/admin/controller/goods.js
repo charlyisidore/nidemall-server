@@ -262,9 +262,9 @@ module.exports = class AdminGoodsController extends Base {
     const attributes = await goodsAttributeService.queryByGid(id);
 
     const category = await categoryService.findById(goods.categoryId);
-    const categoryIds = think.isEmpty(category) ?
-      [] :
-      [category.pid, category.id];
+    const categoryIds = think.isEmpty(category)
+      ? []
+      : [category.pid, category.id];
 
     return this.success({
       goods,
