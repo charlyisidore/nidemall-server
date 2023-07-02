@@ -28,7 +28,7 @@ module.exports = class BaseService extends think.Service {
    * @returns {think.Model}
    */
   model(name, config, module) {
-    let model = super.model(name, config, module);
+    const model = super.model(name, config, module);
     this._eventEmitter.emit('model', model);
     return model;
   }

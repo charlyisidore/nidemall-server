@@ -22,7 +22,7 @@ module.exports = class AuthService extends Base {
 
       jwt.sign({ userId }, config.secret, options, (err, token) => {
         if (err) {
-          console.error(e);
+          console.error(err);
           return resolve(null);
         }
         resolve(token);
@@ -44,7 +44,7 @@ module.exports = class AuthService extends Base {
 
       jwt.verify(token, config.secret, (err, decoded) => {
         if (err) {
-          console.error(e);
+          console.error(err);
           return resolve(null);
         }
         resolve(decoded);
@@ -77,7 +77,7 @@ module.exports = class AuthService extends Base {
    * @returns {Promise<boolean>}
    */
   async addCaptchaToCache(phoneNumber, code) {
-    let cache = await think.cache('captcha') || {};
+    const cache = await think.cache('captcha') || {};
     const now = (new Date()).getTime();
 
     if (phoneNumber in cache && cache[phoneNumber].expireTime > now) {
@@ -99,7 +99,7 @@ module.exports = class AuthService extends Base {
    * @returns {Promise<string|null>}
    */
   async getCachedCaptcha(phoneNumber) {
-    let cache = await think.cache('captcha') || {};
+    const cache = await think.cache('captcha') || {};
 
     if (!(phoneNumber in cache)) {
       return null;
