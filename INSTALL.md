@@ -100,7 +100,7 @@ docker exec -it postgres14 psql -U nidemall -d nidemall -f /nidemall_data.sql
 Install SQLite:
 
 ```bash
-sudo apt install sqlite3
+sudo apt install -y sqlite3
 ```
 
 Execute the SQL files:
@@ -226,13 +226,53 @@ yarn run start
 
 ## Deployment
 
-Install `pm2`:
+Install [PM2](https://pm2.keymetrics.io/docs/usage/quick-start/):
 
 ```bash
 sudo npm install -g pm2
 ```
 
-Start:
+Install [NGINX](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/):
+
+```bash
+sudo apt install -y curl gnupg2 ca-certificates lsb-release ubuntu-keyring
+curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
+    | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
+    | sudo tee /etc/apt/sources.list.d/nginx.list
+echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" \
+    | sudo tee /etc/apt/preferences.d/99nginx
+sudo apt update
+sudo apt install -y nginx
+```
+
+Edit `nginx.conf`:
+
+```
+server {
+    listen 80;
+    server_name example.com www.example.com;
+    root /home/ubuntu/nidemall-server;
+    set $node_port 8360;
+
+    # ...
+}
+```
+
+Copy NGINX configuration:
+
+```bash
+sudo cp nginx.conf /etc/nginx/conf.d/nidemall-server.conf
+```
+
+Start NGINX:
+
+```bash
+sudo nginx
+```
+
+Start PM2:
 
 ```bash
 pm2 start pm2.json
@@ -254,3 +294,4 @@ Documentation:
 
 - [ThinkJS - Production Deployment](https://thinkjs.org/en/doc/3.0/deploy.html)
 - [PM2 - Quick Start](https://pm2.keymetrics.io/docs/usage/quick-start/)
+- [NGINX - Documentation](https://docs.nginx.com/)
