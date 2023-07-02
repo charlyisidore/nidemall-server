@@ -9,16 +9,12 @@ module.exports = class BrandService extends Base {
     'floorPrice',
   ].join(',');
 
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string?} sort 
-   * @param {string?} order 
+   * .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string?} sort .
+   * @param {string?} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Brand[]}>}
    */
   async query(page, limit, sort, order) {
@@ -37,9 +33,9 @@ module.exports = class BrandService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @returns {Promise<Brand|Record<string, never>>} 
+   * .
+   * @param {number} id .
+   * @returns {Promise<Brand|Record<string, never>>} .
    */
   async findById(id) {
     return this.model('brand')
@@ -48,13 +44,13 @@ module.exports = class BrandService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} id 
-   * @param {string?} name 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {number?} id .
+   * @param {string?} name .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Brand[]}>}
    */
   async querySelective(id, name, page, limit, sort, order) {
@@ -84,8 +80,8 @@ module.exports = class BrandService extends Base {
   }
 
   /**
-   * 
-   * @param {Brand} brand 
+   * .
+   * @param {Brand} brand .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(brand) {
@@ -100,8 +96,8 @@ module.exports = class BrandService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -113,8 +109,8 @@ module.exports = class BrandService extends Base {
   }
 
   /**
-   * 
-   * @param {Brand} brand 
+   * .
+   * @param {Brand} brand .
    * @returns {Promise<number>} The ID inserted
    */
   async add(brand) {
@@ -127,7 +123,7 @@ module.exports = class BrandService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<Brand[]>}
    */
   async all() {
@@ -137,4 +133,4 @@ module.exports = class BrandService extends Base {
       })
       .select();
   }
-}
+};

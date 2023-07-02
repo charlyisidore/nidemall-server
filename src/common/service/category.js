@@ -7,15 +7,11 @@ module.exports = class CategoryService extends Base {
     'iconUrl',
   ].join(',');
 
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} page 
-   * @param {number} limit 
-   * @returns {Promise<Category[]>} 
+   * .
+   * @param {number} page .
+   * @param {number} limit .
+   * @returns {Promise<Category[]>} .
    */
   async queryL1WithoutRecommend(page, limit) {
     return this.model('category')
@@ -29,10 +25,10 @@ module.exports = class CategoryService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} page 
-   * @param {number?} limit 
-   * @returns {Promise<Category[]>} 
+   * .
+   * @param {number?} page .
+   * @param {number?} limit .
+   * @returns {Promise<Category[]>} .
    */
   async queryL1(page, limit) {
     const model = this.model('category')
@@ -47,9 +43,9 @@ module.exports = class CategoryService extends Base {
   }
 
   /**
-   * 
-   * @param {number} pid 
-   * @returns {Promise<Category[]>} 
+   * .
+   * @param {number} pid .
+   * @returns {Promise<Category[]>} .
    */
   async queryByPid(pid) {
     return this.model('category')
@@ -61,9 +57,9 @@ module.exports = class CategoryService extends Base {
   }
 
   /**
-   * 
-   * @param {number[]} ids 
-   * @returns {Promise<Category[]>} 
+   * .
+   * @param {number[]} ids .
+   * @returns {Promise<Category[]>} .
    */
   async queryL2ByIds(ids) {
     return this.model('category')
@@ -76,9 +72,9 @@ module.exports = class CategoryService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @returns {Promise<Category|Record<string, never>>} 
+   * .
+   * @param {number} id .
+   * @returns {Promise<Category|Record<string, never>>} .
    */
   async findById(id) {
     return this.model('category')
@@ -90,8 +86,8 @@ module.exports = class CategoryService extends Base {
   }
 
   /**
-   * 
-   * @param {Category} category 
+   * .
+   * @param {Category} category .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(category) {
@@ -106,8 +102,8 @@ module.exports = class CategoryService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -119,8 +115,8 @@ module.exports = class CategoryService extends Base {
   }
 
   /**
-   * 
-   * @param {Category} category 
+   * .
+   * @param {Category} category .
    * @returns {Promise<number>} The ID inserted
    */
   async add(category) {
@@ -133,8 +129,8 @@ module.exports = class CategoryService extends Base {
   }
 
   /**
-   * 
-   * @returns {Promise<Category[]>} 
+   * .
+   * @returns {Promise<Category[]>} .
    */
   async queryChannel() {
     return this.model('category')
@@ -145,4 +141,4 @@ module.exports = class CategoryService extends Base {
       })
       .select();
   }
-}
+};

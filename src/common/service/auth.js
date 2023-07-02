@@ -3,13 +3,9 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 module.exports = class AuthService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} userId 
+   * .
+   * @param {number} userId .
    * @returns {Promise<string>}
    */
   createToken(userId) {
@@ -35,8 +31,8 @@ module.exports = class AuthService extends Base {
   }
 
   /**
-   * 
-   * @param {string} token 
+   * .
+   * @param {string} token .
    */
   verifyToken(token) {
     return new Promise((resolve) => {
@@ -57,17 +53,17 @@ module.exports = class AuthService extends Base {
   }
 
   /**
-   * 
-   * @param {string} password 
-   * @param {string} hash 
+   * .
+   * @param {string} password .
+   * @param {string} hash .
    */
   async comparePassword(password, hash) {
     return bcrypt.compare(password, hash);
   }
 
   /**
-   * 
-   * @param {string} password 
+   * .
+   * @param {string} password .
    */
   async hashPassword(password) {
     const salt = await bcrypt.genSalt();
@@ -75,9 +71,9 @@ module.exports = class AuthService extends Base {
   }
 
   /**
-   * 
-   * @param {string} phoneNumber 
-   * @param {string} code 
+   * .
+   * @param {string} phoneNumber .
+   * @param {string} code .
    * @returns {Promise<boolean>}
    */
   async addCaptchaToCache(phoneNumber, code) {
@@ -98,8 +94,8 @@ module.exports = class AuthService extends Base {
   }
 
   /**
-   * 
-   * @param {string} phoneNumber 
+   * .
+   * @param {string} phoneNumber .
    * @returns {Promise<string|null>}
    */
   async getCachedCaptcha(phoneNumber) {
@@ -119,7 +115,7 @@ module.exports = class AuthService extends Base {
   }
 
   /**
-   * 
+   * .
    */
   async cleanCaptchaCache() {
     let cache = await think.cache('captcha') || {};
@@ -149,4 +145,4 @@ module.exports = class AuthService extends Base {
       },
     };
   }
-}
+};

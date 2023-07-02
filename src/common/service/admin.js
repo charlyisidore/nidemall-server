@@ -12,14 +12,10 @@ module.exports = class AdminService extends Base {
     'roleIds',
   ].join(',');
 
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} id 
-   * @returns {Promise<Admin|Record<string, never>>} 
+   * .
+   * @param {number} id .
+   * @returns {Promise<Admin|Record<string, never>>} .
    */
   async findAdminById(id) {
     return this.model('admin')
@@ -28,9 +24,9 @@ module.exports = class AdminService extends Base {
   }
 
   /**
-   * 
-   * @param {string} username 
-   * @returns {Promise<Admin[]>} 
+   * .
+   * @param {string} username .
+   * @returns {Promise<Admin[]>} .
    */
   async findAdminByUsername(username) {
     return this.model('admin')
@@ -42,12 +38,12 @@ module.exports = class AdminService extends Base {
   }
 
   /**
-   * 
-   * @param {string?} username 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {string?} username .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Admin[]}>}
    */
   async querySelective(username, page, limit, sort, order) {
@@ -73,8 +69,8 @@ module.exports = class AdminService extends Base {
   }
 
   /**
-   * 
-   * @param {Admin} admin 
+   * .
+   * @param {Admin} admin .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(admin) {
@@ -89,8 +85,8 @@ module.exports = class AdminService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -102,8 +98,8 @@ module.exports = class AdminService extends Base {
   }
 
   /**
-   * 
-   * @param {Admin} admin 
+   * .
+   * @param {Admin} admin .
    * @returns {Promise<number>} The ID inserted
    */
   async add(admin) {
@@ -116,8 +112,8 @@ module.exports = class AdminService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<Admin|Record<string, never>>}
    */
   async findById(id) {
@@ -128,7 +124,7 @@ module.exports = class AdminService extends Base {
   }
 
   /**
-   * 
+   * .
    * @returns {Promise<Admin[]>}
    */
   async all() {
@@ -140,9 +136,9 @@ module.exports = class AdminService extends Base {
   }
 
   /**
-   * 
-   * @param {string} username 
-   * @param {string} password 
+   * .
+   * @param {string} username .
+   * @param {string} password .
    * @param {any} ctx
    * @returns {Promise<Admin>}
    */
@@ -175,8 +171,8 @@ module.exports = class AdminService extends Base {
   }
 
   /**
-   * 
-   * @param {any} ctx 
+   * .
+   * @param {any} ctx .
    */
   async logout(ctx) {
     await ctx.session('adminId', null);
@@ -184,17 +180,17 @@ module.exports = class AdminService extends Base {
   }
 
   /**
-   * 
-   * @param {string} password 
-   * @param {string} hash 
+   * .
+   * @param {string} password .
+   * @param {string} hash .
    */
   async comparePassword(password, hash) {
     return bcrypt.compare(password, hash);
   }
 
   /**
-   * 
-   * @param {string} password 
+   * .
+   * @param {string} password .
    */
   async hashPassword(password) {
     const salt = await bcrypt.genSalt();
@@ -215,4 +211,4 @@ module.exports = class AdminService extends Base {
       },
     };
   }
-}
+};

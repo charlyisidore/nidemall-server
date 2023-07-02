@@ -11,8 +11,8 @@ module.exports = class BaseService extends think.Service {
 
   /**
    * Add an event listener.
-   * @param {string} eventName 
-   * @param {(...args: any[]) => void} listener 
+   * @param {string} eventName .
+   * @param {(...args: any[]) => void} listener .
    * @returns {this}
    */
   on(eventName, listener) {
@@ -22,9 +22,9 @@ module.exports = class BaseService extends think.Service {
 
   /**
    * Create a model and emit a `model` event.
-   * @param {string} name 
-   * @param {any?} config 
-   * @param {string?} module 
+   * @param {string} name .
+   * @param {any?} config .
+   * @param {string?} module .
    * @returns {think.Model}
    */
   model(name, config, module) {
@@ -32,4 +32,4 @@ module.exports = class BaseService extends think.Service {
     this._eventEmitter.emit('model', model);
     return model;
   }
-}
+};

@@ -1,16 +1,12 @@
 const Base = require('./base.js');
 
 module.exports = class CartService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} goodsId 
-   * @param {number} productId 
-   * @param {number} userId 
-   * @returns {Promise<Cart|Record<string, never>>} 
+   * .
+   * @param {number} goodsId .
+   * @param {number} productId .
+   * @param {number} userId .
+   * @returns {Promise<Cart|Record<string, never>>} .
    */
   async queryExist(goodsId, productId, userId) {
     return this.model('cart')
@@ -24,8 +20,8 @@ module.exports = class CartService extends Base {
   }
 
   /**
-   * 
-   * @param {Cart} cart 
+   * .
+   * @param {Cart} cart .
    * @returns {Promise<number>} The ID inserted
    */
   async add(cart) {
@@ -38,8 +34,8 @@ module.exports = class CartService extends Base {
   }
 
   /**
-   * 
-   * @param {Cart} cart 
+   * .
+   * @param {Cart} cart .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(cart) {
@@ -52,9 +48,9 @@ module.exports = class CartService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
-   * @returns {Promise<Cart[]>} 
+   * .
+   * @param {number} userId .
+   * @returns {Promise<Cart[]>} .
    */
   async queryByUid(userId) {
     return this.model('cart')
@@ -66,9 +62,9 @@ module.exports = class CartService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
-   * @returns {Promise<Cart[]>} 
+   * .
+   * @param {number} userId .
+   * @returns {Promise<Cart[]>} .
    */
   async queryByUidAndChecked(userId) {
     return this.model('cart')
@@ -81,9 +77,9 @@ module.exports = class CartService extends Base {
   }
 
   /**
-   * 
-   * @param {number[]} productIdList 
-   * @param {number} userId 
+   * .
+   * @param {number[]} productIdList .
+   * @param {number} userId .
    * @returns {Promise<number>} The number of rows affected
    */
   async delete(productIdList, userId) {
@@ -98,10 +94,10 @@ module.exports = class CartService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @param {number?} userId 
-   * @returns {Promise<Cart|Record<string, never>>} 
+   * .
+   * @param {number} id .
+   * @param {number?} userId .
+   * @returns {Promise<Cart|Record<string, never>>} .
    */
   async findById(id, userId) {
     const where = { id };
@@ -118,10 +114,10 @@ module.exports = class CartService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
-   * @param {number[]} idsList 
-   * @param {boolean} checked 
+   * .
+   * @param {number} userId .
+   * @param {number[]} idsList .
+   * @param {boolean} checked .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateCheck(userId, idsList, checked) {
@@ -139,8 +135,8 @@ module.exports = class CartService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
+   * .
+   * @param {number} userId .
    * @returns {Promise<number>} The number of rows affected
    */
   async clearGoods(userId) {
@@ -155,8 +151,8 @@ module.exports = class CartService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -170,12 +166,12 @@ module.exports = class CartService extends Base {
   }
 
   /**
-   * 
-   * @param {number} productId 
-   * @param {string} goodsSn 
-   * @param {string} goodsName 
-   * @param {number} price 
-   * @param {string} picUrl 
+   * .
+   * @param {number} productId .
+   * @param {string} goodsSn .
+   * @param {string} goodsName .
+   * @param {number} price .
+   * @param {string} picUrl .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateProduct(productId, goodsSn, goodsName, price, picUrl) {
@@ -190,4 +186,4 @@ module.exports = class CartService extends Base {
         goodsName,
       });
   }
-}
+};

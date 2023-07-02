@@ -1,13 +1,9 @@
 const Base = require('./base.js');
 
 module.exports = class AftersaleService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<Aftersale|Record<string, never>>}
    */
   async findById(id) {
@@ -17,13 +13,13 @@ module.exports = class AftersaleService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
-   * @param {number?} status 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string?} sort 
-   * @param {string?} order 
+   * .
+   * @param {number} userId .
+   * @param {number?} status .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string?} sort .
+   * @param {string?} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Aftersale[]}>}
    */
   async queryList(userId, status, page, limit, sort, order) {
@@ -54,14 +50,14 @@ module.exports = class AftersaleService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} orderId 
-   * @param {string?} aftersaleSn 
-   * @param {number?} status 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {number?} orderId .
+   * @param {string?} aftersaleSn .
+   * @param {number?} status .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Aftersale[]}>}
    */
   async querySelective(orderId, aftersaleSn, status, page, limit, sort, order) {
@@ -99,9 +95,9 @@ module.exports = class AftersaleService extends Base {
   }
 
   /**
-   * 
-   * @param {string} aftersaleSn 
-   * @param {number} userId 
+   * .
+   * @param {string} aftersaleSn .
+   * @param {number} userId .
    * @returns {Promise<number>}
    */
   async countByAftersaleSn(aftersaleSn, userId) {
@@ -115,8 +111,8 @@ module.exports = class AftersaleService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
+   * .
+   * @param {number} userId .
    * @returns {Promise<string>} A random aftersaleSn
    */
   async generateAftersaleSn(userId) {
@@ -135,8 +131,8 @@ module.exports = class AftersaleService extends Base {
   }
 
   /**
-   * 
-   * @param {Aftersale} aftersale 
+   * .
+   * @param {Aftersale} aftersale .
    * @returns {Promise<number>} The ID inserted
    */
   async add(aftersale) {
@@ -149,9 +145,9 @@ module.exports = class AftersaleService extends Base {
   }
 
   /**
-   * 
-   * @param {number} orderId 
-   * @param {number} userId 
+   * .
+   * @param {number} orderId .
+   * @param {number} userId .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteByOrderId(orderId, userId) {
@@ -169,8 +165,8 @@ module.exports = class AftersaleService extends Base {
   }
 
   /**
-   * 
-   * @param {Aftersale} aftersale 
+   * .
+   * @param {Aftersale} aftersale .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(aftersale) {
@@ -185,9 +181,9 @@ module.exports = class AftersaleService extends Base {
   }
 
   /**
-   * 
-   * @param {number} orderId 
-   * @param {number} userId 
+   * .
+   * @param {number} orderId .
+   * @param {number} userId .
    * @returns {Promise<Aftersale|Record<string, never>>}
    */
   async findByOrderId(orderId, userId) {
@@ -231,4 +227,4 @@ module.exports = class AftersaleService extends Base {
       },
     };
   }
-}
+};

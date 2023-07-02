@@ -1,15 +1,11 @@
 const Base = require('./base.js');
 
 module.exports = class CollectService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} userId 
-   * @param {number} type 
-   * @param {number} gid 
+   * .
+   * @param {number} userId .
+   * @param {number} type .
+   * @param {number} gid .
    * @returns {Promise<number>} The total number
    */
   async count(userId, type, gid) {
@@ -24,13 +20,13 @@ module.exports = class CollectService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
-   * @param {number?} type 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string?} sort 
-   * @param {string?} order 
+   * .
+   * @param {number} userId .
+   * @param {number?} type .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string?} sort .
+   * @param {string?} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Collect[]}>}
    */
   async queryByType(userId, type, page, limit, sort, order) {
@@ -58,10 +54,10 @@ module.exports = class CollectService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
-   * @param {number} type 
-   * @param {number} valueId 
+   * .
+   * @param {number} userId .
+   * @param {number} type .
+   * @param {number} valueId .
    * @returns {Promise<Collect>}
    */
   async queryByTypeAndValue(userId, type, valueId) {
@@ -76,8 +72,8 @@ module.exports = class CollectService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -89,8 +85,8 @@ module.exports = class CollectService extends Base {
   }
 
   /**
-   * 
-   * @param {Collect} collect 
+   * .
+   * @param {Collect} collect .
    * @returns {Promise<number>} The ID inserted
    */
   async add(collect) {
@@ -103,13 +99,13 @@ module.exports = class CollectService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} userId 
-   * @param {number?} valueId 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {number?} userId .
+   * @param {number?} valueId .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Collect[]}>}
    */
   async querySelective(userId, valueId, page, limit, sort, order) {
@@ -135,4 +131,4 @@ module.exports = class CollectService extends Base {
       .page(page, limit)
       .countSelect();
   }
-}
+};

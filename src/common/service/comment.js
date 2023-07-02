@@ -1,15 +1,11 @@
 const Base = require('./base.js');
 
 module.exports = class CommentService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} id 
-   * @param {number} page 
-   * @param {number} limit 
+   * .
+   * @param {number} id .
+   * @param {number} page .
+   * @param {number} limit .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Comment[]}>}
    */
   async queryGoodsByGid(id, page, limit) {
@@ -25,12 +21,12 @@ module.exports = class CommentService extends Base {
   }
 
   /**
-   * 
-   * @param {number} type 
-   * @param {number} valueId 
-   * @param {number} showType 
-   * @param {number} page 
-   * @param {number} limit 
+   * .
+   * @param {number} type .
+   * @param {number} valueId .
+   * @param {number} showType .
+   * @param {number} page .
+   * @param {number} limit .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Comment[]}>}
    */
   async query(type, valueId, showType, page, limit) {
@@ -61,10 +57,10 @@ module.exports = class CommentService extends Base {
   }
 
   /**
-   * 
-   * @param {number} type 
-   * @param {number} valueId 
-   * @param {number} showType 
+   * .
+   * @param {number} type .
+   * @param {number} valueId .
+   * @param {number} showType .
    * @returns {Promise<number>} The total number
    */
   async count(type, valueId, showType) {
@@ -90,8 +86,8 @@ module.exports = class CommentService extends Base {
   }
 
   /**
-   * 
-   * @param {Comment} comment 
+   * .
+   * @param {Comment} comment .
    * @returns {Promise<number>} The ID inserted
    */
   async save(comment) {
@@ -104,13 +100,13 @@ module.exports = class CommentService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} userId 
-   * @param {number?} valueId 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {number?} userId .
+   * @param {number?} valueId .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Comment[]}>}
    */
   async querySelective(userId, valueId, page, limit, sort, order) {
@@ -142,8 +138,8 @@ module.exports = class CommentService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -155,8 +151,8 @@ module.exports = class CommentService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<Comment|Record<string, never>>}
    */
   async findById(id) {
@@ -166,8 +162,8 @@ module.exports = class CommentService extends Base {
   }
 
   /**
-   * 
-   * @param {Comment} comment 
+   * .
+   * @param {Comment} comment .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(comment) {
@@ -177,4 +173,4 @@ module.exports = class CommentService extends Base {
       })
       .update(comment);
   }
-}
+};

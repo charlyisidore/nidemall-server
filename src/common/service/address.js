@@ -1,14 +1,10 @@
 const Base = require('./base.js');
 
 module.exports = class AddressService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @param {number} userId 
-   * @returns {Promise<Address[]>} 
+   * .
+   * @param {number} userId .
+   * @returns {Promise<Address[]>} .
    */
   async queryByUid(userId) {
     return this.model('address')
@@ -20,10 +16,10 @@ module.exports = class AddressService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} id 
-   * @param {number} userId 
-   * @returns {Promise<Address|Record<string, never>>} 
+   * .
+   * @param {number?} id .
+   * @param {number} userId .
+   * @returns {Promise<Address|Record<string, never>>} .
    */
   async query(id, userId) {
     const where = {
@@ -43,8 +39,8 @@ module.exports = class AddressService extends Base {
   }
 
   /**
-   * 
-   * @param {Address} address 
+   * .
+   * @param {Address} address .
    * @returns {Promise<number>} The ID inserted
    */
   async add(address) {
@@ -57,8 +53,8 @@ module.exports = class AddressService extends Base {
   }
 
   /**
-   * 
-   * @param {Address} address 
+   * .
+   * @param {Address} address .
    * @returns {Promise<number>} The number of rows affected
    */
   async update(address) {
@@ -71,8 +67,8 @@ module.exports = class AddressService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async delete(id) {
@@ -84,9 +80,9 @@ module.exports = class AddressService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
-   * @returns {Promise<Address|Record<string, never>>} 
+   * .
+   * @param {number} userId .
+   * @returns {Promise<Address|Record<string, never>>} .
    */
   async findDefault(userId) {
     return this.model('address')
@@ -99,8 +95,8 @@ module.exports = class AddressService extends Base {
   }
 
   /**
-   * 
-   * @param {number} userId 
+   * .
+   * @param {number} userId .
    * @returns {Promise<number>} The number of rows affected
    */
   async resetDefault(userId) {
@@ -117,13 +113,13 @@ module.exports = class AddressService extends Base {
   }
 
   /**
-   * 
-   * @param {number?} userId 
-   * @param {string?} name 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {number?} userId .
+   * @param {string?} name .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Address[]}>}
    */
   async querySelective(userId, name, page, limit, sort, order) {
@@ -151,4 +147,4 @@ module.exports = class AddressService extends Base {
       .page(page, limit)
       .countSelect();
   }
-}
+};

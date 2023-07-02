@@ -1,13 +1,9 @@
 const Base = require('./base.js');
 
 module.exports = class AdService extends Base {
-  constructor() {
-    super();
-  }
-
   /**
-   * 
-   * @returns {Promise<Ad[]>} 
+   * .
+   * @returns {Promise<Ad[]>} .
    */
   async queryIndex() {
     return this.model('ad')
@@ -20,13 +16,13 @@ module.exports = class AdService extends Base {
   }
 
   /**
-   * 
-   * @param {string?} name 
-   * @param {string?} content 
-   * @param {number} page 
-   * @param {number} limit 
-   * @param {string} sort 
-   * @param {string} order 
+   * .
+   * @param {string?} name .
+   * @param {string?} content .
+   * @param {number} page .
+   * @param {number} limit .
+   * @param {string} sort .
+   * @param {string} order .
    * @returns {Promise<{pageSize: number, currentPage: number, count: number, totalPages: number, data: Ad[]}>}
    */
   async querySelective(name, content, page, limit, sort, order) {
@@ -58,8 +54,8 @@ module.exports = class AdService extends Base {
   }
 
   /**
-   * 
-   * @param {Ad} ad 
+   * .
+   * @param {Ad} ad .
    * @returns {Promise<number>} The number of rows affected
    */
   async updateById(ad) {
@@ -74,8 +70,8 @@ module.exports = class AdService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<number>} The number of rows affected
    */
   async deleteById(id) {
@@ -87,8 +83,8 @@ module.exports = class AdService extends Base {
   }
 
   /**
-   * 
-   * @param {Ad} ad 
+   * .
+   * @param {Ad} ad .
    * @returns {Promise<number>} The ID inserted
    */
   async add(ad) {
@@ -101,8 +97,8 @@ module.exports = class AdService extends Base {
   }
 
   /**
-   * 
-   * @param {number} id 
+   * .
+   * @param {number} id .
    * @returns {Promise<Ad|Record<string, never>>}
    */
   async findById(id) {
@@ -110,4 +106,4 @@ module.exports = class AdService extends Base {
       .where({ id })
       .find();
   }
-}
+};
