@@ -18,6 +18,6 @@ module.exports = class extends Base {
       code: {
         type: 'int(11)',
       },
-    }
+    };
   }
 };

@@ -104,6 +104,6 @@ module.exports = class extends Base {
         type: 'tinyint(1)',
         dataType: 'boolean',
       },
-    }
+    };
   }
 };

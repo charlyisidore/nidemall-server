@@ -43,7 +43,7 @@ module.exports = class extends think.Model {
       Object.entries(data)
         .map(([k, v]) => [
           think.snakeCase(k),
-          this._beforeValue(v, think.snakeCase(k))
+          this._beforeValue(v, think.snakeCase(k)),
         ])
         .filter(([k, v]) => !think.isUndefined(v))
     );
@@ -54,7 +54,7 @@ module.exports = class extends think.Model {
       Object.entries(data)
         .map(([k, v]) => [
           think.camelCase(k),
-          this._afterValue(v, k)
+          this._afterValue(v, k),
         ])
         .filter(([k, v]) => !think.isNullOrUndefined(v))
     );
@@ -89,11 +89,11 @@ module.exports = class extends think.Model {
   }
 
   _beforeField(field) {
-    const m = field.match(/^([\w_][\w_\.]*) AS ([\w_]+)$/i);
+    const m = field.match(/^([\w_][\w_.]*) AS ([\w_]+)$/i);
     if (!think.isEmpty(m)) {
       return `${this._beforeFieldName(m[1])} AS ${m[2]}`;
     }
-    if (/^[\w_][\w_\.]*$/.test(field)) {
+    if (/^[\w_][\w_.]*$/.test(field)) {
       return this._beforeFieldName(field);
     }
     return field;
@@ -107,14 +107,14 @@ module.exports = class extends think.Model {
   }
 
   _beforeClause(data) {
-    return think.isObject(data) ?
-      Object.fromEntries(
+    return think.isObject(data)
+      ? Object.fromEntries(
         Object.entries(data)
           .map(([k, v]) => [
             think.snakeCase(k),
-            think.isUndefined(v) ? null : v
+            think.isUndefined(v) ? null : v,
           ])
-      ) :
-      data;
+      )
+      : data;
   }
 };

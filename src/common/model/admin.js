@@ -38,6 +38,6 @@ module.exports = class extends Base {
         type: 'varchar(127)',
         dataType: 'json',
       },
-    }
+    };
   }
 };
