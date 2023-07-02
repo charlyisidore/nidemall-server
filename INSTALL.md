@@ -193,23 +193,6 @@ module.exports = {
 };
 ```
 
-In `src/common/config/middleware.js`:
-
-```js
-module.exports = [
-  // ...
-  {
-    handle: 'resource',
-    enable: isDev, // See https://thinkjs.org/en/doc/3.0/deploy.html
-    options: {
-      root: path.join(think.ROOT_PATH, 'www'),
-      publicPath: /^\/(static|favicon\.ico)/,
-    },
-  },
-  // ...
-];
-```
-
 ## Server
 
 Install packages:
