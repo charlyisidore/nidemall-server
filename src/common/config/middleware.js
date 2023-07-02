@@ -22,6 +22,7 @@ module.exports = [
     enable: !think.isCli,
     options: {
       debug: isDev,
+      error: () => isDev,
     },
   },
   {
