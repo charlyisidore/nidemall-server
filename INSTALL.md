@@ -9,6 +9,23 @@
   - [PostgreSQL](https://www.postgresql.org/)
   - [SQLite](https://sqlite.org/)
 
+## Preparation
+
+### Ubuntu
+
+Install [NodeJS](https://github.com/nodesource/distributions):
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&\
+sudo apt-get install -y nodejs
+```
+
+Install [Yarn](https://yarnpkg.com/getting-started/install):
+
+```bash
+sudo corepack enable
+```
+
 ## Database
 
 ### MySQL with Docker
@@ -80,6 +97,14 @@ docker exec -it postgres14 psql -U nidemall -d nidemall -f /nidemall_data.sql
 
 ### SQLite
 
+Install SQLite:
+
+```bash
+sudo apt install sqlite3
+```
+
+Execute the SQL files:
+
 ```bash
 mkdir -p runtime/sqlite
 sqlite3 runtime/sqlite/nidemall.sqlite '.read db/sqlite/nidemall_table.sql'
@@ -96,7 +121,7 @@ exports.model = {
   common: {
     logConnect: isDev,
     logSql: isDev,
-    logger: msg => think.logger.info(msg)
+    logger: msg => think.logger.info(msg),
   },
   mysql: {
     handle: mysql,
@@ -132,7 +157,7 @@ In `src/common/config/config.js`:
 ```js
 module.exports = {
   auth: {
-    header: 'X-Nidemall-Token',
+    header: 'X-Litemall-Token',
     secret: '$ecretf0rt3st',
     algorithm: 'HS256',
     expiresIn: '2h',
@@ -140,12 +165,22 @@ module.exports = {
     issuer: 'nidemall',
     subject: 'nidemall auth token',
   },
+  storage: {
+    type: 'local',
+    local: {
+      path: 'www/static/upload',
+      baseUrl: 'http://127.0.0.1:8360/static/upload/',
+    },
+  },
   system: {
     prefix: 'litemall_',
   },
   weixin: {
-    appid: '',
-    secret: '',
+    appid: 'wx8888888888888888',
+    secret: '$ecretf0rt3st',
+    mchId: '1900000109',
+    mchKey: '$ecretf0rt3st',
+    notifyUrl: 'http://127.0.0.1:8360/wx/order/pay-notify',
   },
   express: {
     enable: true,
@@ -154,7 +189,25 @@ module.exports = {
     url: 'http://api.kdniao.com/Ebusiness/EbusinessOrderHandle.aspx',
     vendors: [],
   },
+  mocks: false,
 };
+```
+
+In `src/common/config/middleware.js`:
+
+```js
+module.exports = [
+  // ...
+  {
+    handle: 'resource',
+    enable: isDev, // See https://thinkjs.org/en/doc/3.0/deploy.html
+    options: {
+      root: path.join(think.ROOT_PATH, 'www'),
+      publicPath: /^\/(static|favicon\.ico)/,
+    },
+  },
+  // ...
+];
 ```
 
 ## Server
@@ -168,13 +221,36 @@ yarn install
 Start server:
 
 ```bash
-yarn start
+yarn run start
 ```
 
-## Deploy with pm2
+## Deployment
 
-Use pm2 to deploy app on production enviroment.
+Install `pm2`:
 
 ```bash
-pm2 startOrReload pm2.json
+npm install -g pm2
 ```
+
+Start:
+
+```bash
+pm2 start pm2.json
+```
+
+Restart with interruption:
+
+```bash
+pm2 restart pm2.json
+```
+
+Restart without interruption:
+
+```bash
+pm2 sendSignal SIGUSR2 pm2.json
+```
+
+Documentation:
+
+- [ThinkJS - Production Deployment](https://thinkjs.org/en/doc/3.0/deploy.html)
+- [PM2 - Quick Start](https://pm2.keymetrics.io/docs/usage/quick-start/)
