@@ -84,7 +84,7 @@ async function payNotify(data, query) {
     sign: weixinService.createSign(result, query.sign_type, signKey),
   });
 
-  return await axios({
+  return axios({
     method: 'post',
     url: query.notify_url,
     data: {

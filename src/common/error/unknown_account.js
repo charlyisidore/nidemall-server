@@ -1,3 +1,3 @@
 const AccountError = require('./account.js');
 
-module.exports = class UnknownAccountError extends AccountError {}
+module.exports = class UnknownAccountError extends AccountError {};

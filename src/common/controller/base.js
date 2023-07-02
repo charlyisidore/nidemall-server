@@ -64,15 +64,15 @@ module.exports = class BaseController extends think.Controller {
    * @param {string?} message `errmsg` property
    */
   success(data, message = '成功') {
-    return think.isUndefined(data) ?
-      this.json({ errno: 0, errmsg: message }) :
-      super.success(data, message);
+    return think.isUndefined(data)
+      ? this.json({ errno: 0, errmsg: message })
+      : super.success(data, message);
   }
 
   /**
    * Convert lists obtained with `Model.countSelect()` to success responses
-   * @param {{ pageSize: number, currentPage: number, count: number, totalPages: number, data: any[] }|any[]} list 
-   * @param {{ pageSize: number, currentPage: number, count: number, totalPages: number, data: any[] }|any[]|undefined} pagedList 
+   * @param {{ pageSize: number, currentPage: number, count: number, totalPages: number, data: any[] }|any[]} list .
+   * @param {{ pageSize: number, currentPage: number, count: number, totalPages: number, data: any[] }|any[]|undefined} pagedList .
    * @returns {{ total: number, pages: number, limit: number, page: number, list: any[] }}
    */
   successList(list, pagedList) {
@@ -107,9 +107,9 @@ module.exports = class BaseController extends think.Controller {
 
   /**
    * Create a service and listen to its `model()` method calls.
-   * @param {string} name 
-   * @param {string?} module 
-   * @param  {...any} args 
+   * @param {string} name .
+   * @param {string?} module .
+   * @param  {...any} args .
    * @returns {think.Service}
    */
   service(name, module, ...args) {
@@ -120,8 +120,8 @@ module.exports = class BaseController extends think.Controller {
 
   /**
    * Make a database transaction.
-   * @param {() => any} callback 
-   * @returns 
+   * @param {() => any} callback .
+   * @returns .
    */
   async transaction(callback) {
     try {
@@ -139,7 +139,7 @@ module.exports = class BaseController extends think.Controller {
 
   /**
    * Helper function to wait for all promises to finish before throwing an error.
-   * @param {Promise<any>[]} promises 
+   * @param {Promise<any>[]} promises .
    */
   async promiseAllFinished(promises) {
     return (await Promise.allSettled(promises))
@@ -154,7 +154,7 @@ module.exports = class BaseController extends think.Controller {
   /**
    * Triggered when a service calls its `model()` method.
    * Use a shared database connection if a transaction exists.
-   * @param {think.Model} model 
+   * @param {think.Model} model .
    */
   _onServiceModel(model) {
     if (think.isEmpty(this._transactions)) {

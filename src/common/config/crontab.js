@@ -46,4 +46,4 @@ module.exports = [
       await authService.cleanCaptchaCache();
     },
   },
-]
+];

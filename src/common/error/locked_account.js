@@ -1,3 +1,3 @@
 const AccountError = require('./account.js');
 
-module.exports = class LockedAccountError extends AccountError {}
+module.exports = class LockedAccountError extends AccountError {};

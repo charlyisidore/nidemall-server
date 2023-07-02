@@ -1,1 +1,1 @@
-module.exports = class WxPayError extends Error {}
+module.exports = class WxPayError extends Error {};
