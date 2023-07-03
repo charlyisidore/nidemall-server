@@ -241,7 +241,7 @@ Edit `nginx.conf`:
 ```
 server {
     listen 80;
-    server_name example.com www.example.com;
+    server_name example.com;
     root /home/ubuntu/nidemall-server;
     set $node_port 8360;
 
@@ -266,6 +266,20 @@ Get Let's Encrypt certificate:
 
 ```bash
 sudo certbot --nginx -d example.com -d www.example.com
+```
+
+New NGINX configuration in `/etc/nginx/conf.d/nidemall-server.conf` should look like this:
+
+```
+server {
+    # ...
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
 ```
 
 Start NGINX:
