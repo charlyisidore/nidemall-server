@@ -243,6 +243,13 @@ server {
 }
 ```
 
+Edit `/etc/nginx/nginx.conf`:
+
+```
+user ubuntu
+# ...
+```
+
 Copy NGINX configuration:
 
 ```bash
