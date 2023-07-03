@@ -282,6 +282,18 @@ server {
 }
 ```
 
+Open `crontab` to automatically renew Let's Encrypt certificates:
+
+```bash
+crontab -e
+```
+
+Add and save:
+
+```
+0 12 * * * /usr/bin/certbot renew --quiet
+```
+
 Start NGINX:
 
 ```bash
