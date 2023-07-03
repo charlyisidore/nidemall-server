@@ -262,19 +262,25 @@ Start NGINX:
 sudo nginx
 ```
 
+Reload NGINX configuration:
+
+```bash
+sudo nginx -t && sudo nginx -s reload
+```
+
 Start PM2:
 
 ```bash
 pm2 start pm2.json
 ```
 
-Restart with interruption:
+Restart PM2 with interruption:
 
 ```bash
 pm2 restart pm2.json
 ```
 
-Restart without interruption:
+Restart PM2 without interruption:
 
 ```bash
 pm2 sendSignal SIGUSR2 pm2.json
