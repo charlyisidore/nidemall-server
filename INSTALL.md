@@ -230,16 +230,22 @@ sudo apt update
 sudo apt install -y nginx
 ```
 
+Install Let's Encrypt client:
+
+```bash
+sudo apt install -y certbot python3-certbot-nginx
+```
+
 Edit `nginx.conf`:
 
 ```
 server {
-  listen 80;
-  server_name example.com www.example.com;
-  root /home/ubuntu/nidemall-server;
-  set $node_port 8360;
+    listen 80;
+    server_name example.com www.example.com;
+    root /home/ubuntu/nidemall-server;
+    set $node_port 8360;
 
-  # ...
+    # ...
 }
 ```
 
@@ -254,6 +260,12 @@ Copy NGINX configuration:
 
 ```bash
 sudo cp nginx.conf /etc/nginx/conf.d/nidemall-server.conf
+```
+
+Get Let's Encrypt certificate:
+
+```bash
+sudo certbot --nginx -d example.com -d www.example.com
 ```
 
 Start NGINX:
