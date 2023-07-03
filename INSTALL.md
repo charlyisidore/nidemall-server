@@ -234,12 +234,12 @@ Edit `nginx.conf`:
 
 ```
 server {
-    listen 80;
-    server_name example.com www.example.com;
-    root /home/ubuntu/nidemall-server;
-    set $node_port 8360;
+  listen 80;
+  server_name example.com www.example.com;
+  root /home/ubuntu/nidemall-server;
+  set $node_port 8360;
 
-    # ...
+  # ...
 }
 ```
 
