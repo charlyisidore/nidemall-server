@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/) >= 8.0
+- [Node.js](https://nodejs.org/) >= 16.0
 - [Yarn](https://yarnpkg.com/)
 - One of:
   - [MySQL](https://www.mysql.com/)
@@ -16,7 +16,7 @@
 Install [NodeJS](https://github.com/nodesource/distributions):
 
 ```bash
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&\
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - &&\
 sudo apt-get install -y nodejs
 ```
 
