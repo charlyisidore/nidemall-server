@@ -3,6 +3,20 @@ const Base = require('./base.js');
 module.exports = class LogService extends Base {
   /**
    * .
+   * @param {Log} log .
+   * @returns {Promise<number>} The ID inserted
+   */
+  add(log) {
+    const now = new Date();
+    return this.model('log')
+      .add(Object.assign(log, {
+        addTime: now,
+        updateTime: now,
+      }));
+  }
+
+  /**
+   * .
    * @param {string?} name .
    * @param {number} page .
    * @param {number} limit .
@@ -126,7 +140,7 @@ module.exports = class LogService extends Base {
     const log = {
       type,
       action,
-      succeed,
+      status: succeed,
       result,
       comment,
       admin: ctx?.state?.admin?.username ?? '匿名用户',
@@ -138,7 +152,7 @@ module.exports = class LogService extends Base {
       });
     }
 
-    return this.model('log').add(log);
+    return this.add(log);
   }
 
   getConstants() {
