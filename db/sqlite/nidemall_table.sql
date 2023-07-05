@@ -72,7 +72,7 @@ CREATE TABLE `nidemall_aftersale` (
   `user_id` int(11) NOT NULL, -- 用户ID
   `type` smallint(6) DEFAULT 0, -- 售后类型，0是未收货退款，1是已收货（无需退货）退款，2用户退货退款
   `reason` varchar(31) DEFAULT '', -- 退款原因
-  `amount` decimal(10,2) DEFAULT '0.00', -- 退款金额
+  `amount` decimal(10,2) DEFAULT 0.00, -- 退款金额
   `pictures` varchar(1023) DEFAULT '[]', -- 退款凭证图片链接数组
   `comment` varchar(511) DEFAULT '', -- 退款说明
   `status` smallint(6) DEFAULT 0, -- 售后状态，0是可申请，1是用户已申请，2是管理员审核通过，3是管理员退款成功，4是管理员审核拒绝，5是用户已取消
@@ -93,7 +93,7 @@ CREATE TABLE `nidemall_brand` (
   `desc` varchar(255) NOT NULL DEFAULT '', -- 品牌商简介
   `pic_url` varchar(255) NOT NULL DEFAULT '', -- 品牌商页的品牌商图片
   `sort_order` tinyint(3) DEFAULT 50,
-  `floor_price` decimal(10,2) DEFAULT '0.00', -- 品牌商的商品低价，仅用于页面展示
+  `floor_price` decimal(10,2) DEFAULT 0.00, -- 品牌商的商品低价，仅用于页面展示
   `add_time` datetime DEFAULT NULL, -- 创建时间
   `update_time` datetime DEFAULT NULL, -- 更新时间
   `deleted` tinyint(1) DEFAULT 0 -- 逻辑删除
@@ -111,7 +111,7 @@ CREATE TABLE `nidemall_cart` (
   `goods_sn` varchar(63) DEFAULT NULL, -- 商品编号
   `goods_name` varchar(127) DEFAULT NULL, -- 商品名称
   `product_id` int(11) DEFAULT NULL, -- 商品货品表的货品ID
-  `price` decimal(10,2) DEFAULT '0.00', -- 商品货品的价格
+  `price` decimal(10,2) DEFAULT 0.00, -- 商品货品的价格
   `number` smallint(5) DEFAULT 0, -- 商品货品的数量
   `specifications` varchar(1023) DEFAULT NULL, -- 商品规格值列表，采用JSON数组格式
   `checked` tinyint(1) DEFAULT 1, -- 购物车中商品是否选择状态
@@ -191,8 +191,8 @@ CREATE TABLE `nidemall_coupon` (
   `desc` varchar(127) DEFAULT '', -- 优惠券介绍，通常是显示优惠券使用限制文字
   `tag` varchar(63) DEFAULT '', -- 优惠券标签，例如新人专用
   `total` int(11) NOT NULL DEFAULT 0, -- 优惠券数量，如果是0，则是无限量
-  `discount` decimal(10,2) DEFAULT '0.00', -- 优惠金额，
-  `min` decimal(10,2) DEFAULT '0.00', -- 最少消费金额才能使用优惠券。
+  `discount` decimal(10,2) DEFAULT 0.00, -- 优惠金额，
+  `min` decimal(10,2) DEFAULT 0.00, -- 最少消费金额才能使用优惠券。
   `limit` smallint(6) DEFAULT 1, -- 用户领券限制数量，如果是0，则是不限制；默认是1，限领一张.
   `type` smallint(6) DEFAULT 0, -- 优惠券赠送类型，如果是0则通用券，用户领取；如果是1，则是注册赠券；如果是2，则是优惠券码兑换；
   `status` smallint(6) DEFAULT 0, -- 优惠券状态，如果是0则是正常可用；如果是1则是过期; 如果是2则是下架。
@@ -284,8 +284,8 @@ CREATE TABLE `nidemall_goods` (
   `is_new` tinyint(1) DEFAULT 0, -- 是否新品首发，如果设置则可以在新品首发页面展示
   `is_hot` tinyint(1) DEFAULT 0, -- 是否人气推荐，如果设置则可以在人气推荐页面展示
   `unit` varchar(31) DEFAULT '’件‘', -- 商品单位，例如件、盒
-  `counter_price` decimal(10,2) DEFAULT '0.00', -- 专柜价格
-  `retail_price` decimal(10,2) DEFAULT '100000.00', -- 零售价格
+  `counter_price` decimal(10,2) DEFAULT 0.00, -- 专柜价格
+  `retail_price` decimal(10,2) DEFAULT 100000.00, -- 零售价格
   `detail` text, -- 商品详细介绍，是富文本格式
   `add_time` datetime DEFAULT NULL, -- 创建时间
   `update_time` datetime DEFAULT NULL, -- 更新时间
@@ -321,7 +321,7 @@ CREATE TABLE `nidemall_goods_product` (
   `id` integer NOT NULL PRIMARY KEY AUTOINCREMENT,
   `goods_id` int(11) NOT NULL DEFAULT 0, -- 商品表的商品ID
   `specifications` varchar(1023) NOT NULL, -- 商品规格值列表，采用JSON数组格式
-  `price` decimal(10,2) NOT NULL DEFAULT '0.00', -- 商品货品价格
+  `price` decimal(10,2) NOT NULL DEFAULT 0.00, -- 商品货品价格
   `number` int(11) NOT NULL DEFAULT 0, -- 商品货品数量
   `url` varchar(125) DEFAULT NULL, -- 商品货品图片
   `add_time` datetime DEFAULT NULL, -- 创建时间
@@ -520,7 +520,7 @@ CREATE TABLE `nidemall_order_goods` (
   `goods_sn` varchar(63) NOT NULL DEFAULT '', -- 商品编号
   `product_id` int(11) NOT NULL DEFAULT 0, -- 商品货品表的货品ID
   `number` smallint(5) NOT NULL DEFAULT 0, -- 商品货品的购买数量
-  `price` decimal(10,2) NOT NULL DEFAULT '0.00', -- 商品货品的售价
+  `price` decimal(10,2) NOT NULL DEFAULT 0.00, -- 商品货品的售价
   `specifications` varchar(1023) NOT NULL, -- 商品货品的规格列表
   `pic_url` varchar(255) NOT NULL DEFAULT '', -- 商品货品图片或者商品图片
   `comment` int(11) DEFAULT 0, -- 订单商品评论，如果是-1，则超期不能评价；如果是0，则可以评价；如果其他值，则是comment表里面的评论ID。
@@ -634,7 +634,7 @@ CREATE TABLE `nidemall_topic` (
   `title` varchar(255) NOT NULL DEFAULT '''', -- 专题标题
   `subtitle` varchar(255) DEFAULT '''', -- 专题子标题
   `content` text, -- 专题内容，富文本格式
-  `price` decimal(10,2) DEFAULT '0.00', -- 专题相关商品最低价
+  `price` decimal(10,2) DEFAULT 0.00, -- 专题相关商品最低价
   `read_count` varchar(255) DEFAULT '1k', -- 专题阅读量
   `pic_url` varchar(255) DEFAULT '', -- 专题图片
   `sort_order` int(11) DEFAULT 100, -- 排序
