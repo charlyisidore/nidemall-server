@@ -265,7 +265,7 @@ sudo cp nginx.conf /etc/nginx/conf.d/nidemall-server.conf
 Get Let's Encrypt certificate:
 
 ```bash
-sudo certbot --nginx -d example.com -d www.example.com
+sudo certbot --nginx -d example.com
 ```
 
 New NGINX configuration in `/etc/nginx/conf.d/nidemall-server.conf` should look like this:
@@ -279,6 +279,12 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+   listen 80;
+   server_name example.com;
+   return 301 https://$server_name$request_uri;
 }
 ```
 
