@@ -280,7 +280,11 @@ server {
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 }
+```
 
+Optional: Add the following to `/etc/nginx/conf.d/nidemall-server.conf` to redirect HTTP to HTTPS:
+
+```
 server {
    listen 80;
    server_name example.com;
@@ -298,6 +302,28 @@ Add and save:
 
 ```
 0 12 * * * /usr/bin/certbot renew --quiet
+```
+
+Optional: Configure CORS in `/etc/nginx/conf.d/nidemall-server.conf`:
+
+```
+server {
+    # ...
+
+    location / {
+        add_header 'Access-Control-Allow-Origin' 'https://admin.example.com' always;
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
+        add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,X-Litemall-Admin-Token' always;
+        add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range' always;
+        add_header 'Access-Control-Allow-Credentials' 'true' always;
+
+        if ($request_method = 'OPTIONS') {
+            return 204;
+        }
+
+        # ...
+    }
+}
 ```
 
 Start NGINX:
