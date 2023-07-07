@@ -16,8 +16,7 @@
 Install [NodeJS](https://github.com/nodesource/distributions):
 
 ```bash
-curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - &&\
-sudo apt-get install -y nodejs
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && sudo apt-get install -y nodejs
 ```
 
 Install [Yarn](https://yarnpkg.com/getting-started/install):
@@ -106,9 +105,10 @@ sudo apt install -y sqlite3
 Execute the SQL files:
 
 ```bash
-mkdir -p runtime/sqlite
-sqlite3 runtime/sqlite/nidemall.sqlite '.read db/sqlite/nidemall_table.sql'
-sqlite3 runtime/sqlite/nidemall.sqlite '.read db/sqlite/nidemall_data.sql'
+mkdir -p runtime
+rm -f runtime/nidemall.sqlite
+sqlite3 runtime/nidemall.sqlite '.read db/sqlite/nidemall_table.sql'
+sqlite3 runtime/nidemall.sqlite '.read db/sqlite/nidemall_data.sql'
 ```
 
 ## Configuration
@@ -145,7 +145,7 @@ exports.model = {
   },
   sqlite: {
     handle: sqlite,
-    path: path.join(think.ROOT_PATH, 'runtime/sqlite'),
+    path: path.join(think.ROOT_PATH, 'runtime'),
     database: 'nidemall',
     prefix: 'nidemall_',
   },
@@ -219,13 +219,9 @@ Install [NGINX](https://docs.nginx.com/nginx/admin-guide/installing-nginx/instal
 
 ```bash
 sudo apt install -y curl gnupg2 ca-certificates lsb-release ubuntu-keyring
-curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
-    | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
-echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
-    | sudo tee /etc/apt/sources.list.d/nginx.list
-echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" \
-    | sudo tee /etc/apt/preferences.d/99nginx
+curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
+echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" | sudo tee /etc/apt/preferences.d/99nginx
 sudo apt update
 sudo apt install -y nginx
 ```
@@ -354,6 +350,30 @@ Restart PM2 without interruption:
 
 ```bash
 pm2 sendSignal SIGUSR2 pm2.json
+```
+
+Optional: Configure the firewall.
+
+Setup UFW rules:
+
+```bash
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw allow 9527
+sudo ufw deny 8360
+```
+
+Check UFW status:
+
+```bash
+sudo ufw status
+```
+
+If inactive, run:
+
+```bash
+sudo ufw enable
 ```
 
 Documentation:
