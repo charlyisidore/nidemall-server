@@ -282,9 +282,9 @@ Optional: Add the following to `/etc/nginx/conf.d/nidemall-server.conf` to redir
 
 ```
 server {
-   listen 80;
-   server_name example.com;
-   return 301 https://$server_name$request_uri;
+    listen 80;
+    server_name example.com;
+    return 301 https://$server_name$request_uri;
 }
 ```
 
