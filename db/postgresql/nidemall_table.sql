@@ -12,10 +12,10 @@ CREATE TABLE "nidemall_ad" (
   "content" varchar(255) DEFAULT '', -- 活动内容
   "start_time" timestamp DEFAULT NULL, -- 广告开始时间
   "end_time" timestamp DEFAULT NULL, -- 广告结束时间
-  "enabled" smallint DEFAULT '0', -- 是否启动
+  "enabled" boolean DEFAULT '0', -- 是否启动
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 广告表
 CREATE INDEX "nidemall_ad_enabled" ON "nidemall_ad" ("enabled");
@@ -36,10 +36,10 @@ CREATE TABLE "nidemall_address" (
   "area_code" char(6) DEFAULT NULL, -- 地区编码
   "postal_code" char(6) DEFAULT NULL, -- 邮政编码
   "tel" varchar(20) NOT NULL DEFAULT '', -- 手机号码
-  "is_default" smallint NOT NULL DEFAULT '0', -- 是否默认地址
+  "is_default" boolean NOT NULL DEFAULT '0', -- 是否默认地址
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 收货地址表
 CREATE INDEX "nidemall_address_user_id" ON "nidemall_address" ("user_id");
@@ -58,7 +58,7 @@ CREATE TABLE "nidemall_admin" (
   "avatar" varchar(255) DEFAULT '''', -- 头像图片
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   "role_ids" varchar(127) DEFAULT '[]', -- 角色列表
   PRIMARY KEY (id)
 ); -- 管理员表
@@ -82,7 +82,7 @@ CREATE TABLE "nidemall_aftersale" (
   "handle_time" timestamp DEFAULT NULL, -- 管理员操作时间
   "add_time" timestamp DEFAULT NULL, -- 添加时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 售后表
 
@@ -100,7 +100,7 @@ CREATE TABLE "nidemall_brand" (
   "floor_price" decimal(10,2) DEFAULT '0.00', -- 品牌商的商品低价，仅用于页面展示
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 品牌商表
 
@@ -119,11 +119,11 @@ CREATE TABLE "nidemall_cart" (
   "price" decimal(10,2) DEFAULT '0.00', -- 商品货品的价格
   "number" smallint DEFAULT '0', -- 商品货品的数量
   "specifications" varchar(1023) DEFAULT NULL, -- 商品规格值列表，采用JSON数组格式
-  "checked" smallint DEFAULT '1', -- 购物车中商品是否选择状态
+  "checked" boolean DEFAULT '1', -- 购物车中商品是否选择状态
   "pic_url" varchar(255) DEFAULT NULL, -- 商品图片或者商品货品图片
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 购物车商品表
 
@@ -144,7 +144,7 @@ CREATE TABLE "nidemall_category" (
   "sort_order" smallint DEFAULT '50', -- 排序
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 类目表
 CREATE INDEX "nidemall_category_parent_id" ON "nidemall_category" ("pid");
@@ -161,7 +161,7 @@ CREATE TABLE "nidemall_collect" (
   "type" smallint NOT NULL DEFAULT '0', -- 收藏类型，如果type=0，则是商品ID；如果type=1，则是专题ID
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 收藏表
 CREATE INDEX "nidemall_collect_user_id" ON "nidemall_collect" ("user_id");
@@ -179,12 +179,12 @@ CREATE TABLE "nidemall_comment" (
   "content" varchar(1023) DEFAULT '', -- 评论内容
   "admin_content" varchar(511) DEFAULT '', -- 管理员回复内容
   "user_id" int NOT NULL DEFAULT '0', -- 用户表的用户ID
-  "has_picture" smallint DEFAULT '0', -- 是否含有图片
+  "has_picture" boolean DEFAULT '0', -- 是否含有图片
   "pic_urls" varchar(1023) DEFAULT NULL, -- 图片地址列表，采用JSON数组格式
   "star" smallint DEFAULT '1', -- 评分， 1-5
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 评论表
 CREATE INDEX "nidemall_comment_id_value" ON "nidemall_comment" ("value_id");
@@ -214,7 +214,7 @@ CREATE TABLE "nidemall_coupon" (
   "end_time" timestamp DEFAULT NULL, -- 使用券截至时间
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 优惠券信息及规则表
 CREATE INDEX "nidemall_coupon_code" ON "nidemall_coupon" ("code");
@@ -235,7 +235,7 @@ CREATE TABLE "nidemall_coupon_user" (
   "order_id" int DEFAULT NULL, -- 订单ID
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 优惠券用户使用表
 
@@ -252,11 +252,11 @@ CREATE TABLE "nidemall_feedback" (
   "feed_type" varchar(63) NOT NULL DEFAULT '', -- 反馈类型
   "content" varchar(1023) NOT NULL, -- 反馈内容
   "status" int NOT NULL DEFAULT '0', -- 状态
-  "has_picture" smallint DEFAULT '0', -- 是否含有图片
+  "has_picture" boolean DEFAULT '0', -- 是否含有图片
   "pic_urls" varchar(1023) DEFAULT NULL, -- 图片地址列表，采用JSON数组格式
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 意见反馈表
 CREATE INDEX "nidemall_feedback_id_value" ON "nidemall_feedback" ("status");
@@ -272,7 +272,7 @@ CREATE TABLE "nidemall_footprint" (
   "goods_id" int NOT NULL DEFAULT '0', -- 浏览商品ID
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 用户浏览足迹表
 
@@ -290,19 +290,19 @@ CREATE TABLE "nidemall_goods" (
   "gallery" varchar(1023) DEFAULT NULL, -- 商品宣传图片列表，采用JSON数组格式
   "keywords" varchar(255) DEFAULT '', -- 商品关键字，采用逗号间隔
   "brief" varchar(255) DEFAULT '', -- 商品简介
-  "is_on_sale" smallint DEFAULT '1', -- 是否上架
+  "is_on_sale" boolean DEFAULT '1', -- 是否上架
   "sort_order" smallint DEFAULT '100',
   "pic_url" varchar(255) DEFAULT NULL, -- 商品页面商品图片
   "share_url" varchar(255) DEFAULT NULL, -- 商品分享海报
-  "is_new" smallint DEFAULT '0', -- 是否新品首发，如果设置则可以在新品首发页面展示
-  "is_hot" smallint DEFAULT '0', -- 是否人气推荐，如果设置则可以在人气推荐页面展示
+  "is_new" boolean DEFAULT '0', -- 是否新品首发，如果设置则可以在新品首发页面展示
+  "is_hot" boolean DEFAULT '0', -- 是否人气推荐，如果设置则可以在人气推荐页面展示
   "unit" varchar(31) DEFAULT '’件‘', -- 商品单位，例如件、盒
   "counter_price" decimal(10,2) DEFAULT '0.00', -- 专柜价格
   "retail_price" decimal(10,2) DEFAULT '100000.00', -- 零售价格
   "detail" text, -- 商品详细介绍，是富文本格式
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 商品基本信息表
 CREATE INDEX "nidemall_goods_goods_sn" ON "nidemall_goods" ("goods_sn");
@@ -322,7 +322,7 @@ CREATE TABLE "nidemall_goods_attribute" (
   "value" varchar(255) NOT NULL, -- 商品参数值
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 商品参数表
 CREATE INDEX "nidemall_goods_attribute_goods_id" ON "nidemall_goods_attribute" ("goods_id");
@@ -341,7 +341,7 @@ CREATE TABLE "nidemall_goods_product" (
   "url" varchar(125) DEFAULT NULL, -- 商品货品图片
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 商品货品表
 CREATE INDEX "nidemall_goods_product_goods_id" ON "nidemall_goods_product" ("goods_id");
@@ -359,7 +359,7 @@ CREATE TABLE "nidemall_goods_specification" (
   "pic_url" varchar(255) NOT NULL DEFAULT '', -- 商品规格图片
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 商品规格表
 CREATE INDEX "nidemall_goods_specification_goods_id" ON "nidemall_goods_specification" ("goods_id");
@@ -381,7 +381,7 @@ CREATE TABLE "nidemall_groupon" (
   "status" smallint DEFAULT '0', -- 团购活动状态，开团未支付则0，开团中则1，开团失败则2
   "add_time" timestamp NOT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 团购活动表
 
@@ -401,7 +401,7 @@ CREATE TABLE "nidemall_groupon_rules" (
   "status" smallint DEFAULT '0', -- 团购规则状态，正常上线则0，到期自动下线则1，管理手动下线则2
   "add_time" timestamp NOT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 团购规则表
 CREATE INDEX "nidemall_groupon_rules_goods_id" ON "nidemall_groupon_rules" ("goods_id");
@@ -417,7 +417,7 @@ CREATE TABLE "nidemall_issue" (
   "answer" varchar(255) DEFAULT NULL, -- 问题答案
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 常见问题表
 
@@ -430,12 +430,12 @@ CREATE TABLE "nidemall_keyword" (
   "id" SERIAL,
   "keyword" varchar(127) NOT NULL DEFAULT '', -- 关键字
   "url" varchar(255) NOT NULL DEFAULT '', -- 关键字的跳转链接
-  "is_hot" smallint NOT NULL DEFAULT '0', -- 是否是热门关键字
-  "is_default" smallint NOT NULL DEFAULT '0', -- 是否是默认关键字
+  "is_hot" boolean NOT NULL DEFAULT '0', -- 是否是热门关键字
+  "is_default" boolean NOT NULL DEFAULT '0', -- 是否是默认关键字
   "sort_order" int NOT NULL DEFAULT '100', -- 排序
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 关键字表
 
@@ -450,12 +450,12 @@ CREATE TABLE "nidemall_log" (
   "ip" varchar(45) DEFAULT NULL, -- 管理员地址
   "type" int DEFAULT NULL, -- 操作分类
   "action" varchar(45) DEFAULT NULL, -- 操作动作
-  "status" smallint DEFAULT NULL, -- 操作状态
+  "status" boolean DEFAULT NULL, -- 操作状态
   "result" varchar(127) DEFAULT NULL, -- 操作结果，或者成功消息，或者失败消息
   "comment" varchar(255) DEFAULT NULL, -- 补充信息
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 操作日志表
 
@@ -471,7 +471,7 @@ CREATE TABLE "nidemall_notice" (
   "admin_id" int DEFAULT '0', -- 创建通知的管理员ID，如果是系统内置通知则是0.
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 通知表
 
@@ -488,7 +488,7 @@ CREATE TABLE "nidemall_notice_admin" (
   "read_time" timestamp DEFAULT NULL, -- 阅读时间，如果是NULL则是未读状态
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 通知管理员表
 
@@ -528,7 +528,7 @@ CREATE TABLE "nidemall_order" (
   "end_time" timestamp DEFAULT NULL, -- 订单关闭时间
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 订单表
 
@@ -551,7 +551,7 @@ CREATE TABLE "nidemall_order_goods" (
   "comment" int DEFAULT '0', -- 订单商品评论，如果是-1，则超期不能评价；如果是0，则可以评价；如果其他值，则是comment表里面的评论ID。
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 订单商品表
 CREATE INDEX "nidemall_order_goods_order_id" ON "nidemall_order_goods" ("order_id");
@@ -568,7 +568,7 @@ CREATE TABLE "nidemall_permission" (
   "permission" varchar(63) DEFAULT NULL, -- 权限
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 权限表
 
@@ -598,10 +598,10 @@ CREATE TABLE "nidemall_role" (
   "id" SERIAL,
   "name" varchar(63) NOT NULL, -- 角色名称
   "desc" varchar(1023) DEFAULT NULL, -- 角色描述
-  "enabled" smallint DEFAULT '1', -- 是否启用
+  "enabled" boolean DEFAULT '1', -- 是否启用
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 角色表
 CREATE UNIQUE INDEX "nidemall_role_name" ON "nidemall_role" ("name");
@@ -618,7 +618,7 @@ CREATE TABLE "nidemall_search_history" (
   "from" varchar(63) NOT NULL DEFAULT '', -- 搜索来源，如pc、wx、app
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 搜索历史表
 
@@ -636,7 +636,7 @@ CREATE TABLE "nidemall_storage" (
   "url" varchar(255) DEFAULT NULL, -- 文件访问链接
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 文件存储表
 CREATE INDEX "nidemall_storage_key" ON "nidemall_storage" ("key");
@@ -652,7 +652,7 @@ CREATE TABLE "nidemall_system" (
   "key_value" varchar(255) NOT NULL, -- 系统配置值
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 系统配置表
 
@@ -673,7 +673,7 @@ CREATE TABLE "nidemall_topic" (
   "goods" varchar(1023) DEFAULT '', -- 专题相关商品，采用JSON数组格式
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 专题表
 CREATE INDEX "nidemall_topic_topic_id" ON "nidemall_topic" ("id");
@@ -700,7 +700,7 @@ CREATE TABLE "nidemall_user" (
   "status" smallint NOT NULL DEFAULT '0', -- 0 可用, 1 禁用, 2 注销
   "add_time" timestamp DEFAULT NULL, -- 创建时间
   "update_time" timestamp DEFAULT NULL, -- 更新时间
-  "deleted" smallint DEFAULT '0', -- 逻辑删除
+  "deleted" boolean DEFAULT '0', -- 逻辑删除
   PRIMARY KEY (id)
 ); -- 用户表
 CREATE UNIQUE INDEX "nidemall_user_user_name" ON "nidemall_user" ("username");
