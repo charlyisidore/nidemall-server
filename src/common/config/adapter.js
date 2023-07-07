@@ -57,7 +57,7 @@ exports.model = {
   },
   sqlite: {
     handle: sqlite,
-    path: path.join(think.ROOT_PATH, 'runtime/sqlite'),
+    path: path.join(think.ROOT_PATH, 'runtime'),
     database: 'nidemall',
     prefix: 'nidemall_',
   },
