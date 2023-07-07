@@ -64,6 +64,43 @@ source /nidemall_data.sql
 \quit
 ```
 
+### MariaDB with Docker
+
+Pull [Docker image](https://hub.docker.com/_/mariadb):
+
+```bash
+docker pull mariadb:10.11
+```
+
+Start container `mariadb10`:
+
+```bash
+docker run --name=mariadb10 -p 3306:3306 -e MYSQL_ROOT_PASSWORD='88888888' -e MYSQL_USER='nidemall' -e MYSQL_PASSWORD='88888888' -d docker.io/library/mariadb:10.11
+```
+
+Copy SQL files to the container:
+
+```bash
+docker cp db/mariadb/nidemall_schema.sql mariadb10:/nidemall_schema.sql
+docker cp db/mysql/nidemall_table.sql mariadb10:/nidemall_table.sql
+docker cp db/mysql/nidemall_data.sql mariadb10:/nidemall_data.sql
+```
+
+Run `mariadb` from the container:
+
+```bash
+docker exec -it mariadb10 mariadb -u root -p
+```
+
+Execute the SQL files and quit:
+
+```sql
+source /nidemall_schema.sql
+source /nidemall_table.sql
+source /nidemall_data.sql
+\quit
+```
+
 ### PostgresSQL with Docker
 
 Pull [Docker image](https://hub.docker.com/_/postgres):
