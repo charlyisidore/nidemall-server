@@ -4,8 +4,10 @@ module.exports = class extends think.Logic {
   }
 
   async __after() {
+    const rules = think.extend({}, this.rules);
+
     // Convert data before validation
-    Object.entries(this.rules)
+    Object.entries(rules)
       .forEach(([argName, rule]) => {
         const method = this._getCtxMethod(rule.method);
         const value = this.ctx[method](argName);
