@@ -94,17 +94,6 @@ module.exports = class extends Base {
     };
   }
 
-  ['prepay-v3Action']() {
-    this.allowMethods = 'POST';
-
-    this.rules = {
-      orderId: {
-        int: true,
-        required: true,
-      },
-    };
-  }
-
   ['pay-notifyAction']() {
     this.allowMethods = 'POST';
 
