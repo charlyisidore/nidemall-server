@@ -572,6 +572,69 @@ module.exports = class WxOrderController extends Base {
     });
   }
 
+  async ['prepay-v3Action']() {
+    return this.transaction(async () => {
+      const userId = this.getUserId();
+      /** @type {number} */
+      const orderId = this.post('orderId');
+
+      /** @type {AuthService} */
+      const authService = this.service('auth');
+      /** @type {OrderService} */
+      const orderService = this.service('order');
+      /** @type {UserService} */
+      const userService = this.service('user');
+      /** @type {WeixinService} */
+      const weixinService = this.service('weixin');
+
+      const AUTH = authService.getConstants();
+      const ORDER = orderService.getConstants();
+
+      if (think.isNullOrUndefined(userId)) {
+        return this.unlogin();
+      }
+
+      const order = await orderService.findById(orderId, userId);
+
+      if (think.isEmpty(order) || order.userId != userId) {
+        return this.badArgumentValue();
+      }
+
+      const handleOption = orderService.build(order);
+
+      if (!handleOption.pay) {
+        return this.fail(ORDER.RESPONSE.INVALID_OPERATION, '订单不能支付');
+      }
+
+      const user = await userService.findById(userId);
+
+      if (think.isNullOrUndefined(user.weixinOpenid)) {
+        return this.fail(AUTH.RESPONSE.OPENID_UNACCESS, '订单不能支付');
+      }
+
+      let result = null;
+      try {
+        result = await weixinService.createOrderV3({
+          outTradeNo: order.orderSn,
+          openid: user.weixinOpenid,
+          body: `订单：${order.orderSn}`,
+          totalFee: Math.floor(order.actualPrice * 100.0),
+          spbillCreateIp: this.ip,
+        });
+      } catch (e) {
+        console.error(e);
+        think.logger.error(e.toString());
+        return this.fail(ORDER.RESPONSE.PAY_FAIL, '订单不能支付');
+      }
+
+      if (!await orderService.updateWithOptimisticLocker(order)) {
+        return this.updatedDateExpired();
+      }
+
+      return this.success(result);
+    });
+  }
+
   async ['pay-notifyAction']() {
     return this.transaction(async () => {
       /** @type {string} */
