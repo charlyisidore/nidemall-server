@@ -195,39 +195,42 @@ module.exports = class WeixinService extends Base {
 
   /**
    * .
+   * @see https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_1.shtml
    * @param {object} order .
-   * @returns {Promise<{}>}
+   * @returns {Promise<{prepayId: string}>}
    */
   async createOrderV3(order) {
     const config = think.config('weixin');
 
     const response = await this.request({
       method: 'post',
-      url: '?',
+      url: 'https://api.mch.weixin.qq.com/v3/pay/transactions/jsapi',
       data: {
         appid: config.appid,
-        mch_id: config.mchId,
-        description: '',
+        mchid: config.mchId,
+        description: order.body,
         out_trade_no: order.outTradeNo,
-        time_expire: null,
-        attach: null,
+        // time_expire: null,
+        // attach: null,
         notify_url: config.notifyUrl,
         amount: {
-          total: 0,
+          total: order.totalFee,
           currency: 'CNY',
-          payer_total: null,
-          payer_currency: null,
+          // payer_total: null,
+          // payer_currency: null,
         },
         payer: {
-          openid: '???',
+          openid: order.openid,
         },
-        detail: null,
-        scene_info: null,
-        settle_info: null,
+        // detail: null,
+        // scene_info: null,
+        // settle_info: null,
       },
     });
 
-    return response;
+    return {
+      prepayId: response.prepay_id,
+    };
   }
 
   /**
