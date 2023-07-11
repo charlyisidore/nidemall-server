@@ -391,6 +391,7 @@ module.exports = class WeixinService extends Base {
 
   /**
    * .
+   * @see https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=4_3
    * @param {object} params .
    * @param {string} signType 'HMAC-SHA256' or 'MD5'
    * @param {string} signKey .
@@ -407,6 +408,7 @@ module.exports = class WeixinService extends Base {
     ]);
 
     const toSign = Object.entries(params)
+      .sort(([k1, v1], [k2, v2]) => (k1 < k2) ? -1 : ((k1 > k2) ? 1 : 0))
       .reduce(
         (toSign, [key, value]) => {
           const valueStr = value.toString();
@@ -495,12 +497,12 @@ module.exports = class WeixinService extends Base {
     const response = await axios(request);
 
     if (200 != response.status) {
-      console.error(response);
+      console.error(response.status);
       throw new Error(`weixin status: ${response.status}`);
     }
 
     if (!think.isEmpty(response.data.errcode)) {
-      console.error(response);
+      console.error(response.data);
       throw new Error(`weixin error ${response.data.errcode}: ${response.data.errmsg}`);
     }
 
