@@ -1,4 +1,6 @@
-module.exports = class extends think.Logic {
+const Base = require('../../common/logic/base.js');
+
+module.exports = class extends Base {
   /**
    * Check permissions.
    */
@@ -30,6 +32,7 @@ module.exports = class extends think.Logic {
         return this.unauthz();
       }
     }
+    return super.__before();
   }
 
   /**

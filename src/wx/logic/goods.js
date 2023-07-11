@@ -1,4 +1,6 @@
-module.exports = class extends think.Logic {
+const Base = require('./base.js');
+
+module.exports = class extends Base {
   detailAction() {
     this.allowMethods = 'GET';
 
