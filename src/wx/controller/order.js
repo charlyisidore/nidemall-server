@@ -514,6 +514,8 @@ module.exports = class WxOrderController extends Base {
       const userId = this.getUserId();
       /** @type {number} */
       const orderId = this.post('orderId');
+      /** @type {number} */
+      const apiVersion = this.post('apiVersion');
 
       /** @type {AuthService} */
       const authService = this.service('auth');
@@ -551,13 +553,26 @@ module.exports = class WxOrderController extends Base {
 
       let result = null;
       try {
-        result = await weixinService.createOrder({
-          outTradeNo: order.orderSn,
-          openid: user.weixinOpenid,
-          body: `订单：${order.orderSn}`,
-          totalFee: Math.floor(order.actualPrice * 100.0),
-          spbillCreateIp: this.ip,
-        });
+        switch (apiVersion) {
+          case 3:
+            result = await weixinService.createOrderV3({
+              outTradeNo: order.orderSn,
+              openid: user.weixinOpenid,
+              body: `订单：${order.orderSn}`,
+              totalFee: Math.floor(order.actualPrice * 100.0),
+              spbillCreateIp: this.ip,
+            });
+            break;
+          default:
+            result = await weixinService.createOrder({
+              outTradeNo: order.orderSn,
+              openid: user.weixinOpenid,
+              body: `订单：${order.orderSn}`,
+              totalFee: Math.floor(order.actualPrice * 100.0),
+              spbillCreateIp: this.ip,
+            });
+            break;
+        }
       } catch (e) {
         console.error(e);
         think.logger.error(e.toString());

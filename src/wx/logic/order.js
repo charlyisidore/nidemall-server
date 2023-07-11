@@ -91,6 +91,10 @@ module.exports = class extends Base {
         int: true,
         required: true,
       },
+      apiVersion: {
+        int: true,
+        default: 1,
+      },
     };
   }
 
