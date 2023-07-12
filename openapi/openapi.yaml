@@ -241,8 +241,8 @@ paths:
     $ref: paths/wx/order/goods.yaml
   /wx/order/list:
     $ref: paths/wx/order/list.yaml
-  /wx/order/paynotify:
-    $ref: paths/wx/order/paynotify.yaml
+  /wx/order/pay-notify:
+    $ref: paths/wx/order/pay-notify.yaml
   /wx/order/prepay:
     $ref: paths/wx/order/prepay.yaml
   /wx/order/submit:

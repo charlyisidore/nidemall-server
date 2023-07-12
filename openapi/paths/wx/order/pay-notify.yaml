@@ -1,9 +1,9 @@
 post:
   tags:
     - order
-  summary: Order paynotify
-  description: Order paynotify
-  operationId: wxOrderPaynotify
+  summary: Order pay notify
+  description: Order pay notify
+  operationId: wxOrderPayNotify
   security:
     - apiKeyAuth: []
   requestBody:
