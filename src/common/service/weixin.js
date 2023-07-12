@@ -178,11 +178,9 @@ module.exports = class WeixinService extends Base {
       throw new WxPayError(`weixin createOrder 无法获取prepay id，错误代码： '${result.err_code}'，信息：${result.err_code_des}。`);
     }
 
-    const now = new Date();
-
     const data = {
       appId: result.appid,
-      timeStamp: Math.floor(now.getTime() / 1000).toString(),
+      timeStamp: Math.floor((new Date()).getTime() / 1000.0).toString(),
       nonceStr: result.nonce_str,
       package: `prepay_id=${result.prepay_id}`,
       signType,
@@ -205,6 +203,12 @@ module.exports = class WeixinService extends Base {
     const response = await this.request({
       method: 'post',
       url: 'https://api.mch.weixin.qq.com/v3/pay/transactions/jsapi',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        // 'Accept-Language': 'en',
+        // 'User-Agent': '?',
+      },
       data: {
         appid: config.appid,
         mchid: config.mchId,
@@ -411,18 +415,11 @@ module.exports = class WeixinService extends Base {
     ]);
 
     const toSign = Object.entries(params)
+      .filter(([key, value]) => (!think.isNullOrUndefined(value) && '' !== value && !ignoredParams.includes(key)))
       .sort(([k1, v1], [k2, v2]) => (k1 < k2) ? -1 : ((k1 > k2) ? 1 : 0))
-      .reduce(
-        (toSign, [key, value]) => {
-          const valueStr = value.toString();
-          if ('' === valueStr || ignoredParams.includes(key)) {
-            return toSign;
-          }
-          return toSign.concat(`${key}=${valueStr}&`);
-        },
-        ''
-      )
-      .concat(`key=${signKey}`);
+      .concat([['key', signKey]])
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
 
     switch (signType) {
       case 'HMAC-SHA256':
