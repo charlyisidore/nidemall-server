@@ -71,8 +71,30 @@ module.exports = class WeixinService extends Base {
     return response.access_token;
   }
 
+  /**
+   * .
+   * @see https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=23_1
+   * @returns {Promise<string>}
+   */
   async getSandboxSignKey() {
-    return null;
+    const config = think.config('weixin');
+
+    const query = {
+      mch_id: config.mchId,
+      nonce_str: this.createNonceStr(),
+    };
+
+    const result = await this.requestXml({
+      url: 'https://api.mch.weixin.qq.com/xdc/apiv2getsignkey/sign/getsignkey',
+      data: query,
+    });
+
+    if ('SUCCESS' != result.return_code) {
+      think.logger.error(`weixin getSandboxSignKey fail: ${JSON.stringify(result)}`);
+      throw new WxPayError(`weixin getSandboxSignKey fail`);
+    }
+
+    return result.sandbox_signkey;
   }
 
   /**
