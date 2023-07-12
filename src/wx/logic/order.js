@@ -101,12 +101,13 @@ module.exports = class extends Base {
   ['pay-notifyAction']() {
     this.allowMethods = 'POST';
 
-    this.rules = {
-      xml: {
-        string: true,
-        required: true,
-      },
-    };
+    // TODO
+    // this.rules = {
+    //   xml: {
+    //     object: true,
+    //     required: true,
+    //   },
+    // };
   }
 
   refundAction() {

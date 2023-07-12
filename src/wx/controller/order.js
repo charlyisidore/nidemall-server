@@ -589,8 +589,15 @@ module.exports = class WxOrderController extends Base {
 
   async ['pay-notifyAction']() {
     return this.transaction(async () => {
-      /** @type {string} */
-      const xml = this.post('xml');
+      // TODO
+      think.logger.info(`[pay-notifyAction]`);
+      think.logger.info(`this.ctx.headers = ${JSON.stringify(this.ctx.headers)}`);
+      think.logger.info(`this.post() = ${JSON.stringify(this.post())}`);
+      think.logger.info(`this.ctx.request.body = ${JSON.stringify(this.ctx.request.body)}`);
+      think.logger.info(`this.ctx.request.rawBody = ${JSON.stringify(this.ctx.request.rawBody)}`);
+
+      /** @type {object|string} */
+      let xml = this.post('xml') ?? this.ctx.request.body ?? this.ctx.request.rawBody;
 
       /** @type {GrouponService} */
       const grouponService = this.service('groupon');
@@ -610,6 +617,13 @@ module.exports = class WxOrderController extends Base {
       const GROUPON = grouponService.getConstants();
       const NOTIFY = notifyService.getConstants();
       const ORDER = orderService.getConstants();
+
+      if (think.isObject(xml)) {
+        xml = Object.fromEntries(
+          Object.entries(xml)
+            .map(([key, [value]]) => [key, value])
+        );
+      }
 
       let result = null;
       try {

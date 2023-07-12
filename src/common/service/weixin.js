@@ -320,7 +320,7 @@ module.exports = class WeixinService extends Base {
   /**
    * .
    * @see https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_7
-   * @param {string} xml .
+   * @param {object|string} xml .
    * @param {string?} signType .
    * @returns {object}
    */
@@ -328,7 +328,9 @@ module.exports = class WeixinService extends Base {
     try {
       think.logger.debug(`微信支付异步通知请求参数：${xml}`);
 
-      const result = this.parseXml(xml)?.xml;
+      const result = think.isString(xml)
+        ? this.parseXml(xml)?.xml
+        : xml;
 
       if (think.isNullOrUndefined(signType)) {
         if (!think.isNullOrUndefined(result.sign_type)) {
