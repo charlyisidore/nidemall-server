@@ -731,7 +731,7 @@ module.exports = class WxOrderController extends Base {
       await notifyService.notifySmsTemplate(
         order.mobile,
         NOTIFY.TYPE.PAY_SUCCEED,
-        order.orderSn.substring(8, 14)
+        [order.orderSn.substring(8, 14)]
       );
 
       taskService.removeTask(`OrderUnpaidTask:${order.id}`);

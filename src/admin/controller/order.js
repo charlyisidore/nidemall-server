@@ -233,7 +233,11 @@ module.exports = class AdminOrderController extends Base {
       return this.updatedDateExpired();
     }
 
-    await notifyService.notifySmsTemplate(order.mobile, NOTIFY.TYPE.SHIP, [shipChannel, shipSn]);
+    await notifyService.notifySmsTemplate(
+      order.mobile,
+      NOTIFY.TYPE.SHIP,
+      [shipChannel, shipSn]
+    );
 
     await logService.logOrderSucceed('发货', `订单编号 ${order.orderSn}`, this.ctx);
 

@@ -256,7 +256,11 @@ module.exports = class AdminAftersaleController extends Base {
       );
     }
 
-    await notifyService.notifySmsTemplate(order.mobile, NOTIFY.TYPE.REFUND, order.orderSn.substring(8, 14));
+    await notifyService.notifySmsTemplate(
+      order.mobile,
+      NOTIFY.TYPE.REFUND,
+      [order.orderSn.substring(8, 14)]
+    );
 
     await logService.logOrderSucceed('退款', `订单编号 ${order.orderSn} 售后编号 ${aftersale.aftersaleSn}`, this.ctx);
 
