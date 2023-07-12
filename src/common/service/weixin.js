@@ -71,6 +71,10 @@ module.exports = class WeixinService extends Base {
     return response.access_token;
   }
 
+  async getSandboxSignKey() {
+    return null;
+  }
+
   /**
    * 获取不限制的小程序码
    * @see https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/qrcode-link/qr-code/getUnlimitedQRCode.html
@@ -399,6 +403,7 @@ module.exports = class WeixinService extends Base {
   /**
    * .
    * @see https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=4_3
+   * @see https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=20_1
    * @param {object} params .
    * @param {string} signType 'HMAC-SHA256' or 'MD5'
    * @param {string} signKey .
