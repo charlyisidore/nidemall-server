@@ -352,9 +352,26 @@ module.exports = class WeixinService extends Base {
         throw new WxPayError('weixin parseOrderNotifyResult 参数格式校验错误！');
       }
 
+      const integerKeys = [
+        'total_fee',
+        'settlement_total_fee',
+        'cash_fee',
+        'coupon_fee',
+        'coupon_count',
+      ];
+
+      const integerKeysRegExp = [
+        /^coupon_fee_[0-9]+$/,
+      ];
+
       return Object.fromEntries(
         Object.entries(result)
-          .map(([k, v]) => [think.camelCase(k), v])
+          .map(([key, value]) => {
+            if (integerKeys.includes(key) || integerKeysRegExp.some((re) => re.test(key))) {
+              value = parseInt(value);
+            }
+            return [think.camelCase(key), value];
+          })
       );
     } catch (e) {
       switch (true) {
