@@ -134,7 +134,6 @@ module.exports = class WeixinService extends Base {
     const signType = 'MD5';
     /** @type {string} */
     const signKey = config.mchKey;
-    const nonceStr = (new Date()).getTime().toString();
 
     const query = {
       appid: config.appid,
@@ -143,7 +142,7 @@ module.exports = class WeixinService extends Base {
       //
       trade_type: tradeType,
       sign_type: signType,
-      nonce_str: nonceStr,
+      nonce_str: this.createNonceStr(),
       //
       out_trade_no: order.outTradeNo,
       body: order.body,
@@ -151,26 +150,10 @@ module.exports = class WeixinService extends Base {
       spbill_create_ip: order.spbillCreateIp,
     };
 
-    Object.assign(query, {
-      sign: this.createSign(query, signType, signKey),
-    });
-
-    const response = await this.request({
-      method: 'post',
+    const result = await this.requestXml({
       url: 'https://api.mch.weixin.qq.com/pay/unifiedorder',
-      data: this.buildXml({ xml: query }),
+      data: query,
     });
-
-    const result = this.parseXml(response)?.xml;
-
-    if (!think.isObject(result)) {
-      throw new WxPayError(`weixin createOrder XML parse error`);
-    }
-
-    if (!this.checkSign(result, signType, signKey)) {
-      think.logger.debug(`weixin createOrder checkSign 校验结果签名失败，参数：${JSON.stringify(result)}`);
-      throw new WxPayError('weixin createOrder checkSign 参数格式校验错误！');
-    }
 
     if ('SUCCESS' != result.return_code) {
       think.logger.error(`weixin createOrder fail 结果业务代码异常，返回结果：${JSON.stringify(result)}`);
@@ -252,9 +235,6 @@ module.exports = class WeixinService extends Base {
 
     const tradeType = 'JSAPI';
     const signType = 'MD5';
-    /** @type {string} */
-    const signKey = config.mchKey;
-    const nonceStr = (new Date()).getTime().toString();
 
     const query = {
       appid: config.appid,
@@ -263,7 +243,7 @@ module.exports = class WeixinService extends Base {
       //
       trade_type: tradeType,
       sign_type: signType,
-      nonce_str: nonceStr,
+      nonce_str: this.createNonceStr(),
       //
       out_trade_no: refund.outRefundNo,
       out_refund_no: refund.outRefundNo,
@@ -271,26 +251,10 @@ module.exports = class WeixinService extends Base {
       refund_fee: refund.refundFee,
     };
 
-    Object.assign(query, {
-      sign: this.createSign(query, signType, signKey),
-    });
-
-    const response = await this.request({
-      method: 'post',
+    const result = await this.requestXml({
       url: 'https://api.mch.weixin.qq.com/secapi/pay/refund',
-      data: this.buildXml({ xml: query }),
+      data: query,
     });
-
-    const result = this.parseXml(response)?.xml;
-
-    if (!think.isObject(result)) {
-      throw new WxPayError(`weixin refund XML parse error`);
-    }
-
-    if (!this.checkSign(result, signType, signKey)) {
-      think.logger.debug(`weixin refund checkSign 校验结果签名失败，参数：${JSON.stringify(result)}`);
-      throw new WxPayError('weixin refund checkSign 参数格式校验错误！');
-    }
 
     if ('SUCCESS' != result.return_code) {
       think.logger.error(`weixin refund fail 结果业务代码异常，返回结果：${JSON.stringify(result)}`);
@@ -486,6 +450,10 @@ module.exports = class WeixinService extends Base {
     return (fen / 100.0).toFixed(2);
   }
 
+  createNonceStr() {
+    return (new Date()).getTime().toString();
+  }
+
   buildXml(obj) {
     const builder = new XMLBuilder();
     return builder.build(obj);
@@ -496,6 +464,38 @@ module.exports = class WeixinService extends Base {
       parseTagValue: false,
     });
     return parser.parse(xml);
+  }
+
+  async requestXml(request) {
+    const config = think.config('weixin');
+    const signType = 'MD5';
+    /** @type {string} */
+    const signKey = config.mchKey;
+    /** @type {object} */
+    const query = request.data;
+
+    Object.assign(query, {
+      sign: this.createSign(query, signType, signKey),
+    });
+
+    const response = await this.request({
+      method: 'post',
+      url: request.url,
+      data: this.buildXml({ xml: query }),
+    });
+
+    const result = this.parseXml(response)?.xml;
+
+    if (!think.isObject(result)) {
+      throw new WxPayError(`weixin XML parse error`);
+    }
+
+    if (!this.checkSign(result, signType, signKey)) {
+      think.logger.debug(`校验结果签名失败，参数：${JSON.stringify(result)}`);
+      throw new WxPayError('参数格式校验错误！');
+    }
+
+    return result;
   }
 
   async request(request) {
