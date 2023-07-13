@@ -7,7 +7,6 @@ test('success', async (t) => {
     Array.from(
       { length: 11 },
       () => createCategory({
-        pid: category.id,
         level: 'L1',
       })
     )
