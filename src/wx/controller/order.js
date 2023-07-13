@@ -597,7 +597,7 @@ module.exports = class WxOrderController extends Base {
       think.logger.info(`this.ctx.request.rawBody = ${JSON.stringify(this.ctx.request.rawBody)}`);
 
       /** @type {object|string} */
-      let xml = this.post('xml') ?? this.ctx.request.body ?? this.ctx.request.rawBody;
+      let xml = this.post('xml') ?? this.ctx.request.rawBody;
 
       /** @type {GrouponService} */
       const grouponService = this.service('groupon');
