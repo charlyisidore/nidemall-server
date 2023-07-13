@@ -30,9 +30,9 @@ module.exports = [
     options: {
       keepExtensions: true,
       limit: '5mb',
-      // extendTypes: {
-      //   xml: ['application/xml'],
-      // },
+      extendTypes: {
+        xml: ['application/xml'],
+      },
     },
   },
   {
