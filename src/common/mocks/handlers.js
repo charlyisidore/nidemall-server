@@ -87,6 +87,9 @@ async function payNotify(data, query) {
   return axios({
     method: 'post',
     url: query.notify_url,
+    headers: {
+      'Content-Type': 'application/xml',
+    },
     data: {
       xml: buildXml({ xml: result }),
     },
@@ -122,7 +125,7 @@ exports.handlers = [
 
     const body = buildXml({ xml: result });
 
-    await payNotify(result, query);
+    setTimeout(() => payNotify(result, query), 1000);
 
     return res(
       ctx.status(200),
