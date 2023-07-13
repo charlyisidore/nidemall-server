@@ -19,7 +19,7 @@
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "fast-xml-parser": "^4.2.5",
-    "jsonwebtoken": "^9.0.0",
+    "jsonwebtoken": "^9.0.1",
     "think-cache": "^1.1.2",
     "think-cache-file": "^1.1.2",
     "think-logger3": "^1.4.0",
