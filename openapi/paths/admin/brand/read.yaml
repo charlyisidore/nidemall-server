@@ -26,6 +26,6 @@ get:
               - data
             properties:
               data:
-                $ref: ../../../components/schemas/BrandDetail.yaml
+                $ref: ../../../components/schemas/Brand.yaml
     '4XX':
       description: Unexpected error

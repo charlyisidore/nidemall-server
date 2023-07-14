@@ -38,6 +38,6 @@ post:
               - data
             properties:
               data:
-                $ref: ../../../components/schemas/BrandCreate.yaml
+                $ref: ../../../components/schemas/Brand.yaml
     '4XX':
       description: Unexpected error

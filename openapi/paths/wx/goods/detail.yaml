@@ -87,7 +87,7 @@ get:
                       $ref: ../../../components/schemas/GoodsAttribute.yaml
                   brand:
                     oneOf:
-                      - $ref: ../../../components/schemas/BrandDetail.yaml
+                      - $ref: ../../../components/schemas/Brand.yaml
                       - type: object
                         additionalProperties: false
                   productList:

@@ -43,6 +43,6 @@ get:
                   list:
                     type: array
                     items:
-                      $ref: ../../../components/schemas/BrandDetail.yaml
+                      $ref: ../../../components/schemas/Brand.yaml
     '4XX':
       description: Unexpected error

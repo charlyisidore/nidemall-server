@@ -4,7 +4,6 @@ required:
   - id
   - name
   - desc
-  - picUrl
   - floorPrice
 properties:
   id:
@@ -15,5 +14,13 @@ properties:
     type: string
   picUrl:
     type: string
+  sortOrder:
+    type: integer
   floorPrice:
     type: number
+  addTime:
+    $ref: ./DateTime.yaml
+  updateTime:
+    $ref: ./DateTime.yaml
+  deleted:
+    type: boolean
