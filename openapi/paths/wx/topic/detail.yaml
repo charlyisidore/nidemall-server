@@ -32,7 +32,7 @@ get:
                   - userHasCollect
                 properties:
                   topic:
-                    $ref: ../../../components/schemas/TopicDetail.yaml
+                    $ref: ../../../components/schemas/Topic.yaml
                   goods:
                     type: array
                     items:

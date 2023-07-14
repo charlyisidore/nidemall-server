@@ -20,3 +20,17 @@ properties:
     type: string
   picUrl:
     type: string
+  sortOrder:
+    type: integer
+  goods:
+    type: array
+    items:
+      $ref: ./Goods.yaml
+  addTime:
+    $ref: ./DateTime.yaml
+  updateTime:
+    $ref: ./DateTime.yaml
+  deleted:
+    type: boolean
+  content:
+    type: string
