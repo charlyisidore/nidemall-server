@@ -41,7 +41,7 @@ get:
                   channel:
                     type: array
                     items:
-                      $ref: ../../../components/schemas/CategoryChannel.yaml
+                      $ref: ../../../components/schemas/Category.yaml
                   grouponList:
                     type: array
                     items:
