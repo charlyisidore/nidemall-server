@@ -95,6 +95,6 @@ get:
                     items:
                       $ref: ../../../components/schemas/GoodsProduct.yaml
                   info:
-                    $ref: ../../../components/schemas/GoodsDetail.yaml
+                    $ref: ../../../components/schemas/Goods.yaml
     '4XX':
       description: Unexpected error

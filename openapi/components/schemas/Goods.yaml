@@ -12,17 +12,45 @@ required:
 properties:
   id:
     type: integer
+  goodsSn:
+    type: string
   name:
+    type: string
+  categoryId:
+    type: integer
+  brandId:
+    type: integer
+  gallery:
+    type: array
+    items:
+      type: string
+  keywords:
     type: string
   brief:
     type: string
+  isOnSale:
+    type: boolean
+  sortOrder:
+    type: integer
   picUrl:
+    type: string
+  shareUrl:
     type: string
   isNew:
     type: boolean
   isHot:
     type: boolean
+  unit:
+    type: string
   counterPrice:
     type: number
   retailPrice:
     type: number
+  addTime:
+    $ref: ./DateTime.yaml
+  updateTime:
+    $ref: ./DateTime.yaml
+  deleted:
+    type: boolean
+  detail:
+    type: string
