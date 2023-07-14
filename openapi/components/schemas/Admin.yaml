@@ -3,15 +3,19 @@ additionalProperties: false
 required:
   - id
   - username
-  - avatar
-  - roleIds
 properties:
   id:
     type: integer
   username:
     type: string
+  password:
+    type: string
   avatar:
     type: integer
+  addTime:
+    $ref: ./DateTime.yaml
+  updateTime:
+    $ref: ./DateTime.yaml
   roleIds:
     type: array
     items:

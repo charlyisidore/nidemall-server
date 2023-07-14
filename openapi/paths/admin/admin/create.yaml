@@ -39,6 +39,6 @@ post:
               - data
             properties:
               data:
-                $ref: ../../../components/schemas/AdminCreate.yaml
+                $ref: ../../../components/schemas/Admin.yaml
     '4XX':
       description: Unexpected error
