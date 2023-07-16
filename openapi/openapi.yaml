@@ -15,49 +15,103 @@ servers:
   - url: http://localhost:3000
   - url: http://localhost:8080
 tags:
-  - name: ad
+  - name: admin-ad
     description: Ad controller
-  - name: address
-    description: Address controller
-  - name: admin
+  - name: admin-admin
     description: Admin controller
-  - name: aftersale
+  - name: admin-address
+    description: Address controller
+  - name: admin-aftersale
     description: Aftersale controller
-  - name: auth
+  - name: admin-auth
     description: Auth controller
-  - name: brand
+  - name: admin-brand
     description: Brand controller
-  - name: cart
-    description: Cart controller
-  - name: catalog
-    description: Catalog controller
-  - name: collect
+  - name: admin-category
+    description: Category controller
+  - name: admin-collect
     description: Collect controller
-  - name: comment
+  - name: admin-comment
     description: Comment controller
-  - name: coupon
+  - name: admin-config
+    description: Config controller
+  - name: admin-coupon
     description: Coupon controller
-  - name: feedback
+  - name: admin-dashboard
+    description: Dashboard controller
+  - name: admin-feedback
     description: Feedback controller
-  - name: footprint
+  - name: admin-footprint
     description: Footprint controller
-  - name: goods
+  - name: admin-goods
     description: Goods controller
-  - name: groupon
+  - name: admin-groupon
     description: Groupon controller
-  - name: home
-    description: Home controller
-  - name: issue
+  - name: admin-history
+    description: History controller
+  - name: admin-issue
     description: Issue controller
-  - name: order
+  - name: admin-keyword
+    description: Keyword controller
+  - name: admin-log
+    description: Log controller
+  - name: admin-notice
+    description: Notice controller
+  - name: admin-order
     description: Order controller
-  - name: search
-    description: Search controller
-  - name: storage
+  - name: admin-profile
+    description: Profile controller
+  - name: admin-region
+    description: Region controller
+  - name: admin-role
+    description: Role controller
+  - name: admin-stat
+    description: Stat controller
+  - name: admin-storage
     description: Storage controller
-  - name: topic
+  - name: admin-topic
     description: Topic controller
-  - name: user
+  - name: admin-user
+    description: User controller
+  - name: wx-address
+    description: Address controller
+  - name: wx-aftersale
+    description: Aftersale controller
+  - name: wx-auth
+    description: Auth controller
+  - name: wx-brand
+    description: Brand controller
+  - name: wx-cart
+    description: Cart controller
+  - name: wx-catalog
+    description: Catalog controller
+  - name: wx-collect
+    description: Collect controller
+  - name: wx-comment
+    description: Comment controller
+  - name: wx-coupon
+    description: Coupon controller
+  - name: wx-feedback
+    description: Feedback controller
+  - name: wx-footprint
+    description: Footprint controller
+  - name: wx-goods
+    description: Goods controller
+  - name: wx-groupon
+    description: Groupon controller
+  - name: wx-home
+    description: Home controller
+  - name: wx-issue
+    description: Issue controller
+  - name: wx-order
+    description: Order controller
+  - name: wx-search
+    description: Search controller
+  - name: wx-storage
+    description: Storage controller
+  - name: wx-topic
+    description: Topic controller
+  - name: wx-user
     description: User controller
 paths:
   /admin/ad/create:
