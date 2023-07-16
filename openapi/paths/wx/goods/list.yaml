@@ -28,13 +28,13 @@ get:
       description: Only new goods
       required: false
       schema:
-        type: boolean
+        $ref: ../../../components/schemas/Boolean.yaml
     - name: isHot
       in: query
       description: Only hot goods
       required: false
       schema:
-        type: boolean
+        $ref: ../../../components/schemas/Boolean.yaml
     - $ref: ../../../components/parameters/page.yaml
     - $ref: ../../../components/parameters/limit.yaml
     - name: sort

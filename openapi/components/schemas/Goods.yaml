@@ -29,7 +29,7 @@ properties:
   brief:
     type: string
   isOnSale:
-    type: boolean
+    $ref: ./Boolean.yaml
   sortOrder:
     type: integer
   picUrl:
@@ -37,9 +37,9 @@ properties:
   shareUrl:
     type: string
   isNew:
-    type: boolean
+    $ref: ./Boolean.yaml
   isHot:
-    type: boolean
+    $ref: ./Boolean.yaml
   unit:
     type: string
   counterPrice:
@@ -51,6 +51,6 @@ properties:
   updateTime:
     $ref: ./DateTime.yaml
   deleted:
-    type: boolean
+    $ref: ./Boolean.yaml
   detail:
     type: string

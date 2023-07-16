@@ -20,10 +20,10 @@ properties:
   content:
     type: string
   enabled:
-    type: boolean
+    $ref: ./Boolean.yaml
   addTime:
     $ref: ./DateTime.yaml
   updateTime:
     $ref: ./DateTime.yaml
   deleted:
-    type: boolean
+    $ref: ./Boolean.yaml

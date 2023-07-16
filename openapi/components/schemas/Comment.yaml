@@ -23,7 +23,7 @@ properties:
   userId:
     type: integer
   hasPicture:
-    type: boolean
+    $ref: ./Boolean.yaml
   picUrls:
     type: array
     items:

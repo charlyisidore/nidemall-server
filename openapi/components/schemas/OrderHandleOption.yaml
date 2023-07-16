@@ -2,18 +2,18 @@ type: object
 additionalProperties: false
 properties:
   cancel:
-    type: boolean
+    $ref: ./Boolean.yaml
   pay:
-    type: boolean
+    $ref: ./Boolean.yaml
   delete:
-    type: boolean
+    $ref: ./Boolean.yaml
   refund:
-    type: boolean
+    $ref: ./Boolean.yaml
   confirm:
-    type: boolean
+    $ref: ./Boolean.yaml
   comment:
-    type: boolean
+    $ref: ./Boolean.yaml
   rebuy:
-    type: boolean
+    $ref: ./Boolean.yaml
   aftersale:
-    type: boolean
+    $ref: ./Boolean.yaml

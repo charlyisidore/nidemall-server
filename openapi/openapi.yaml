@@ -1,7 +1,7 @@
 openapi: '3.1.0'
 info:
-  title: NideMall wx
-  description: NideMall server API specification for WeChat Mini Programs.
+  title: NideMall
+  description: NideMall server API specification.
   version: '1.0'
   license:
     name: MIT
@@ -11,8 +11,9 @@ externalDocs:
   description: GitHub repository
   url: https://github.com/charlyisidore/nidemall-server
 servers:
-  - url: http://localhost:8080/wx
-  - url: http://localhost:8360/wx
+  - url: http://localhost:8360
+  - url: http://localhost:3000
+  - url: http://localhost:8080
 tags:
   - name: ad
     description: Ad controller

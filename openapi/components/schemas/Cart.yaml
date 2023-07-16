@@ -37,7 +37,7 @@ properties:
     items:
       type: string
   checked:
-    type: boolean
+    $ref: ./Boolean.yaml
   picUrl:
     type: string
   addTime:
@@ -45,4 +45,4 @@ properties:
   updateTime:
     $ref: ./DateTime.yaml
   deleted:
-    type: boolean
+    $ref: ./Boolean.yaml

@@ -23,7 +23,7 @@ properties:
   aftersaleStatus:
     type: integer
   isGroupin:
-    type: boolean
+    $ref: ./Boolean.yaml
   goodsList:
     type: array
     items:

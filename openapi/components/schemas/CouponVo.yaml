@@ -31,4 +31,4 @@ properties:
   endTime:
     $ref: ./DateTime.yaml
   available:
-    type: boolean
+    $ref: ./Boolean.yaml

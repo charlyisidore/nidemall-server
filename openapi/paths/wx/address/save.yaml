@@ -30,7 +30,7 @@ post:
             addressDetail:
               type: string
             isDefault:
-              type: boolean
+              $ref: ../../../components/schemas/Boolean.yaml
           required:
             - name
             - tel

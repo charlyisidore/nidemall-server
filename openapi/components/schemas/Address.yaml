@@ -34,10 +34,10 @@ properties:
   tel:
     type: string
   isDefault:
-    type: boolean
+    $ref: ./Boolean.yaml
   addTime:
     $ref: ./DateTime.yaml
   updateTime:
     $ref: ./DateTime.yaml
   deleted:
-    type: boolean
+    $ref: ./Boolean.yaml

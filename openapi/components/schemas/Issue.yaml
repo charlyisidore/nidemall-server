@@ -19,4 +19,4 @@ properties:
   updateTime:
     $ref: ./DateTime.yaml
   deleted:
-    type: boolean
+    $ref: ./Boolean.yaml

@@ -18,9 +18,9 @@ properties:
   url:
     type: string
   isHot:
-    type: boolean
+    $ref: ./Boolean.yaml
   isDefault:
-    type: boolean
+    $ref: ./Boolean.yaml
   sortOrder:
     type: integer
   addTime:
@@ -28,4 +28,4 @@ properties:
   updateTime:
     $ref: ./DateTime.yaml
   deleted:
-    type: boolean
+    $ref: ./Boolean.yaml

@@ -20,7 +20,7 @@ post:
             mobile:
               type: string
             hasPicture:
-              type: boolean
+              $ref: ../../../components/schemas/Boolean.yaml
             picUrls:
               type: array
               items:

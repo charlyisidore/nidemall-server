@@ -54,7 +54,7 @@ post:
                   orderId:
                     type: integer
                   payed:
-                    type: boolean
+                    $ref: ../../../components/schemas/Boolean.yaml
                   grouponLinkId:
                     type: integer
     '4XX':

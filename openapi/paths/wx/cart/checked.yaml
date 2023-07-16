@@ -18,7 +18,7 @@ post:
               items:
                 type: integer
             isChecked:
-              type: boolean
+              $ref: ../../../components/schemas/Boolean.yaml
           required:
             - productIds
             - isChecked

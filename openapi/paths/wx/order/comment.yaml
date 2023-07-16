@@ -20,7 +20,7 @@ post:
             star:
               type: integer
             hasPicture:
-              type: boolean
+              $ref: ../../../components/schemas/Boolean.yaml
             picUrls:
               type: array
               items:

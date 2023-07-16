@@ -24,7 +24,7 @@ post:
             link:
               type: string
             enabled:
-              type: boolean
+              $ref: ../../../components/schemas/Boolean.yaml
           required:
             - name
             - content

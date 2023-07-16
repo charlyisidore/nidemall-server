@@ -22,7 +22,7 @@ properties:
   creator:
     type: string
   isCreator:
-    type: boolean
+    $ref: ./Boolean.yaml
   joinerCount:
     type: integer
   orderId:

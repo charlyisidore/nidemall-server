@@ -9,7 +9,7 @@ properties:
   LogisticCode:
     type: string
   Success:
-    type: boolean
+    $ref: ./Boolean.yaml
   Reason:
     type: string
   State:

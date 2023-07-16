@@ -80,7 +80,7 @@ get:
                       count:
                         type: integer
                   share:
-                    type: boolean
+                    $ref: ../../../components/schemas/Boolean.yaml
                   attribute:
                     type: array
                     items:
