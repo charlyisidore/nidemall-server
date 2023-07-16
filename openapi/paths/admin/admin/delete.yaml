@@ -1,6 +1,6 @@
 post:
   tags:
-    - admin
+    - admin-admin
   summary: Admin delete
   description: Admin delete
   operationId: adminAdminDelete

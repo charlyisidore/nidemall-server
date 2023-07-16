@@ -1,6 +1,6 @@
 get:
   tags:
-    - footprint
+    - wx-footprint
   summary: Footprint list
   description: Footprint list
   operationId: wxFootprintList

@@ -1,6 +1,6 @@
 get:
   tags:
-    - search
+    - wx-search
   summary: Search index
   description: Search index
   operationId: wxSearchIndex

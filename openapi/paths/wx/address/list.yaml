@@ -1,6 +1,6 @@
 get:
   tags:
-    - address
+    - wx-address
   summary: Address list
   description: Address list
   operationId: wxAddressList

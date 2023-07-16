@@ -1,6 +1,6 @@
 post:
   tags:
-    - auth
+    - wx-auth
   summary: Auth login_by_weixin
   description: Auth login_by_weixin
   operationId: wxAuthLogin_by_weixin

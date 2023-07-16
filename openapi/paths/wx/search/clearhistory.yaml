@@ -1,6 +1,6 @@
 post:
   tags:
-    - search
+    - wx-search
   summary: Search clearhistory
   description: Search clearhistory
   operationId: wxSearchClearhistory

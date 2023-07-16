@@ -1,6 +1,6 @@
 get:
   tags:
-    - issue
+    - wx-issue
   summary: Issue list
   description: Issue list
   operationId: wxIssueList

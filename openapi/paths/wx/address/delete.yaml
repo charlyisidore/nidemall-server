@@ -1,6 +1,6 @@
 post:
   tags:
-    - address
+    - wx-address
   summary: Address delete
   description: Address delete
   operationId: wxAddressDelete

@@ -1,6 +1,6 @@
 post:
   tags:
-    - aftersale
+    - admin-aftersale
   summary: Aftersale refund
   description: Aftersale refund
   operationId: adminAftersaleRefund

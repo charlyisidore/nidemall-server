@@ -1,6 +1,6 @@
 post:
   tags:
-    - brand
+    - admin-brand
   summary: Brand update
   description: Brand update
   operationId: adminBrandUpdate

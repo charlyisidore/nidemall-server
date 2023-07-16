@@ -1,6 +1,6 @@
 get:
   tags:
-    - catalog
+    - wx-catalog
   summary: Catalog current
   description: Catalog current
   operationId: wxCatalogCurrent

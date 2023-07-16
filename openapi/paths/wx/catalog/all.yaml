@@ -1,6 +1,6 @@
 get:
   tags:
-    - catalog
+    - wx-catalog
   summary: Catalog all
   description: Catalog all
   operationId: wxCatalogAll

@@ -1,6 +1,6 @@
 get:
   tags:
-    - topic
+    - wx-topic
   summary: Topic detail
   description: Topic detail
   operationId: wxTopicDetail

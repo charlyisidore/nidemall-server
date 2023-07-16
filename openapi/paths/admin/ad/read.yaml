@@ -1,6 +1,6 @@
 get:
   tags:
-    - ad
+    - admin-ad
   summary: Ad read
   description: Ad read
   operationId: adminAdRead

@@ -1,6 +1,6 @@
 post:
   tags:
-    - footprint
+    - wx-footprint
   summary: Footprint delete
   description: Footprint delete
   operationId: wxFootprintDelete

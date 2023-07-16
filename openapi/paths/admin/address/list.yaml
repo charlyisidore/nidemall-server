@@ -1,6 +1,6 @@
 get:
   tags:
-    - address
+    - admin-address
   summary: Address list
   description: Address list
   operationId: adminAddressList

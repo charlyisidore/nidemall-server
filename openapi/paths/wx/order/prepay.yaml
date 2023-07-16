@@ -1,6 +1,6 @@
 post:
   tags:
-    - order
+    - wx-order
   summary: Order prepay
   description: Order prepay
   operationId: wxOrderPrepay

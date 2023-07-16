@@ -1,6 +1,6 @@
 get:
   tags:
-    - catalog
+    - wx-catalog
   summary: Catalog index
   description: Catalog index
   operationId: wxCatalogIndex

@@ -1,6 +1,6 @@
 post:
   tags:
-    - comment
+    - wx-comment
   summary: Comment post
   description: Comment post
   operationId: wxCommentPost

@@ -1,6 +1,6 @@
 get:
   tags:
-    - search
+    - wx-search
   summary: Search helper
   description: Search helper
   operationId: wxSearchHelper

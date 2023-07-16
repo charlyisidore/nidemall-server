@@ -1,6 +1,6 @@
 post:
   tags:
-    - brand
+    - admin-brand
   summary: Brand delete
   description: Brand delete
   operationId: adminBrandDelete

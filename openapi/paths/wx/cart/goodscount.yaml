@@ -1,6 +1,6 @@
 get:
   tags:
-    - cart
+    - wx-cart
   summary: Cart goodscount
   description: Cart goodscount
   operationId: wxCartGoodscount

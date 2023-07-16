@@ -1,6 +1,6 @@
 post:
   tags:
-    - ad
+    - admin-ad
   summary: Ad delete
   description: Ad delete
   operationId: adminAdDelete

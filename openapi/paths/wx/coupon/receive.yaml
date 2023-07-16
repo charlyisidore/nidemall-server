@@ -1,6 +1,6 @@
 post:
   tags:
-    - coupon
+    - wx-coupon
   summary: Coupon receive
   description: Coupon receive
   operationId: wxCouponReceive

@@ -1,6 +1,6 @@
 post:
   tags:
-    - order
+    - wx-order
   summary: Order confirm
   description: Order confirm
   operationId: wxOrderConfirm

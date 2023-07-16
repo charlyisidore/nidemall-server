@@ -1,6 +1,6 @@
 post:
   tags:
-    - address
+    - wx-address
   summary: Address save
   description: Address save
   operationId: wxAddressSave

@@ -1,6 +1,6 @@
 post:
   tags:
-    - ad
+    - admin-ad
   summary: Ad create
   description: Ad create
   operationId: adminAdCreate

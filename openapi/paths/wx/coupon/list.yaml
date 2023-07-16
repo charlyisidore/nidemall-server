@@ -1,6 +1,6 @@
 get:
   tags:
-    - coupon
+    - wx-coupon
   summary: Coupon list
   description: Coupon list
   operationId: wxCouponList

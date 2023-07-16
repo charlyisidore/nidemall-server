@@ -1,6 +1,6 @@
 post:
   tags:
-    - storage
+    - wx-storage
   summary: Storage upload
   description: Storage upload
   operationId: wxStorageUpload

@@ -1,6 +1,6 @@
 get:
   tags:
-    - goods
+    - wx-goods
   summary: Goods category
   description: Goods category
   operationId: wxGoodsCategory

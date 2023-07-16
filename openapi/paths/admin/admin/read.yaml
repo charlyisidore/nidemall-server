@@ -1,6 +1,6 @@
 get:
   tags:
-    - admin
+    - admin-admin
   summary: Admin read
   description: Admin read
   operationId: adminAdminRead

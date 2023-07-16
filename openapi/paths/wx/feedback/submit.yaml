@@ -1,6 +1,6 @@
 post:
   tags:
-    - feedback
+    - wx-feedback
   summary: Feedback submit
   description: Feedback submit
   operationId: wxFeedbackSubmit

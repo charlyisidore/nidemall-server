@@ -1,6 +1,6 @@
 get:
   tags:
-    - aftersale
+    - wx-aftersale
   summary: Aftersale detail
   description: Aftersale detail
   operationId: wxAftersaleDetail

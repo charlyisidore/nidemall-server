@@ -1,6 +1,6 @@
 post:
   tags:
-    - cart
+    - wx-cart
   summary: Cart update
   description: Cart update
   operationId: wxCartUpdate

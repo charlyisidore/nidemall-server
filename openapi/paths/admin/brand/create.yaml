@@ -1,6 +1,6 @@
 post:
   tags:
-    - brand
+    - admin-brand
   summary: Brand create
   description: Brand create
   operationId: adminBrandCreate

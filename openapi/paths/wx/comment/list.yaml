@@ -1,6 +1,6 @@
 get:
   tags:
-    - comment
+    - wx-comment
   summary: Comment list
   description: Comment list
   operationId: wxCommentList

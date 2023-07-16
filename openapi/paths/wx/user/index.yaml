@@ -1,6 +1,6 @@
 get:
   tags:
-    - user
+    - wx-user
   summary: User index
   description: User index
   operationId: wxUserIndex

@@ -1,6 +1,6 @@
 get:
   tags:
-    - goods
+    - wx-goods
   summary: Goods related
   description: Goods related
   operationId: wxGoodsRelated

@@ -1,6 +1,6 @@
 post:
   tags:
-    - collect
+    - wx-collect
   summary: Collect addordelete
   description: Collect addordelete
   operationId: wxCollectAddordelete

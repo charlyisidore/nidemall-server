@@ -1,6 +1,6 @@
 get:
   tags:
-    - groupon
+    - wx-groupon
   summary: Groupon detail
   description: Groupon detail
   operationId: wxGrouponDetail

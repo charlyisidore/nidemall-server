@@ -1,6 +1,6 @@
 post:
   tags:
-    - admin
+    - admin-admin
   summary: Admin create
   description: Admin create
   operationId: adminAdminCreate

@@ -1,6 +1,6 @@
 get:
   tags:
-    - order
+    - wx-order
   summary: Order list
   description: Order list
   operationId: wxOrderList

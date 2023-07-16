@@ -1,6 +1,6 @@
 post:
   tags:
-    - auth
+    - wx-auth
   summary: Auth login
   description: Auth login
   operationId: wxAuthLogin

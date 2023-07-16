@@ -1,6 +1,6 @@
 get:
   tags:
-    - order
+    - wx-order
   summary: Order detail
   description: Order detail
   operationId: wxOrderDetail

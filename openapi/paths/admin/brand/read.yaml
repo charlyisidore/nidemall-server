@@ -1,6 +1,6 @@
 get:
   tags:
-    - brand
+    - admin-brand
   summary: Brand read
   description: Brand read
   operationId: adminBrandRead

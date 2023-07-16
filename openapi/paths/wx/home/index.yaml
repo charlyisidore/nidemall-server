@@ -1,6 +1,6 @@
 get:
   tags:
-    - home
+    - wx-home
   summary: Homepage index
   description: Homepage index
   operationId: wxHomeIndex

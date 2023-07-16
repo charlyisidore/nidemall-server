@@ -1,6 +1,6 @@
 get:
   tags:
-    - home
+    - wx-home
   summary: Homepage about
   description: Homepage about
   operationId: wxHomeAbout

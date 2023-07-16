@@ -1,6 +1,6 @@
 get:
   tags:
-    - cart
+    - wx-cart
   summary: Cart index
   description: Cart index
   operationId: wxCartIndex

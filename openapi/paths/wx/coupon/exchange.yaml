@@ -1,6 +1,6 @@
 post:
   tags:
-    - coupon
+    - wx-coupon
   summary: Coupon exchange
   description: Coupon exchange
   operationId: wxCouponExchange

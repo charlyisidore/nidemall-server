@@ -1,6 +1,6 @@
 get:
   tags:
-    - ad
+    - admin-ad
   summary: Ad list
   description: Ad list
   operationId: adminAdList

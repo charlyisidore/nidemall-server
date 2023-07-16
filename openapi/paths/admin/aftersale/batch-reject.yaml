@@ -1,6 +1,6 @@
 post:
   tags:
-    - aftersale
+    - admin-aftersale
   summary: Aftersale batch-reject
   description: Aftersale batch-reject
   operationId: adminAftersaleBatchReject

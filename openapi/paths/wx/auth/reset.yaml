@@ -1,7 +1,7 @@
 # TODO
 post:
   tags:
-    - auth
+    - wx-auth
   summary: Auth reset TODO
   description: Auth reset TODO
   operationId: wxAuthReset

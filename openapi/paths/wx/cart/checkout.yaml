@@ -1,6 +1,6 @@
 get:
   tags:
-    - cart
+    - wx-cart
   summary: Cart checkout
   description: Cart checkout
   operationId: wxCartCheckout

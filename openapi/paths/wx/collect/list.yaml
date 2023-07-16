@@ -1,6 +1,6 @@
 get:
   tags:
-    - collect
+    - wx-collect
   summary: Collect list
   description: Collect list
   operationId: wxCollectList

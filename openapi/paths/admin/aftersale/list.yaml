@@ -1,6 +1,6 @@
 get:
   tags:
-    - aftersale
+    - admin-aftersale
   summary: Aftersale list
   description: Aftersale list
   operationId: adminAftersaleList

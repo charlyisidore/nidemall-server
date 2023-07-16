@@ -1,6 +1,6 @@
 post:
   tags:
-    - aftersale
+    - wx-aftersale
   summary: Aftersale submit
   description: Aftersale submit
   operationId: wxAftersaleSubmit

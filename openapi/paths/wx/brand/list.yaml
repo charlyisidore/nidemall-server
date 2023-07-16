@@ -1,6 +1,6 @@
 get:
   tags:
-    - brand
+    - wx-brand
   summary: Brand list
   description: Brand list
   operationId: wxBrandList
