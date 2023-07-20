@@ -16,7 +16,7 @@
 Install [NodeJS](https://github.com/nodesource/distributions):
 
 ```bash
-curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && sudo apt-get install -y nodejs
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && sudo apt install -y nodejs
 ```
 
 Install [Yarn](https://yarnpkg.com/getting-started/install):
