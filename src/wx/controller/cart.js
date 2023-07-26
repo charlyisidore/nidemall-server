@@ -284,6 +284,8 @@ module.exports = class WxCartController extends Base {
       return this.unlogin();
     }
 
+    // 收货地址
+    // Shipping address
     let checkedAddress = null;
 
     if (addressId) {
@@ -292,12 +294,18 @@ module.exports = class WxCartController extends Base {
 
     if (think.isEmpty(checkedAddress)) {
       checkedAddress = await addressService.findDefault(userId);
+      // 如果仍然没有地址，则是没有收货地址
+      // 返回一个空的地址id=0，这样前端则会提醒添加地址
+      // If there is still no address, then there is no shipping address.
+      // Returns an empty address id=0 so that the front-end is alerted to add the address.
       if (think.isEmpty(checkedAddress)) {
         checkedAddress = { id: 0 };
       }
       addressId = checkedAddress.id;
     }
 
+    // 团购优惠
+    // Group Purchase Offer
     let grouponPrice = 0.0;
     const grouponRules = await grouponRulesService.findById(grouponRulesId);
 
@@ -305,6 +313,8 @@ module.exports = class WxCartController extends Base {
       grouponPrice = grouponRules.discount;
     }
 
+    // 商品价格
+    // Commodity prices
     let checkedGoodsList = null;
     if (!cartId) {
       checkedGoodsList = await cartService.queryByUidAndChecked(userId);
@@ -318,6 +328,8 @@ module.exports = class WxCartController extends Base {
 
     let checkedGoodsPrice = 0.0;
     for (const cart of checkedGoodsList) {
+      // 只有当团购规格商品ID符合才进行团购优惠
+      // Group buy discounts are only available if the group buy specification product ID matches
       if (!think.isEmpty(grouponRules) && grouponRules.goodsId == cart.goodsId) {
         checkedGoodsPrice += (cart.price - grouponPrice) * cart.number;
       } else {
@@ -325,6 +337,8 @@ module.exports = class WxCartController extends Base {
       }
     }
 
+    // 计算优惠券可用情况
+    // Calculating Coupon Availability
     let tmpCouponPrice = 0.0;
     let tmpCouponId = 0;
     let tmpUserCouponId = 0;
@@ -353,9 +367,19 @@ module.exports = class WxCartController extends Base {
       }
     }
 
+    // 获取优惠券减免金额，优惠券可用数量
+    // Get Coupon Reduction Amount, Coupon Available Quantity
     const availableCouponLength = tmpCouponLength;
     let couponPrice = 0.0;
 
+    // 这里存在三种情况
+    // 1. 用户不想使用优惠券，则不处理
+    // 2. 用户想自动使用优惠券，则选择合适优惠券
+    // 3. 用户已选择优惠券，则测试优惠券是否合适
+    // There are three scenarios here
+    // 1. the user does not want to use the coupon, so it is not processed
+    // 2. the user wants to use the coupon automatically, then selects the right coupon
+    // 3. the user has already selected a coupon, so the coupon is tested for appropriateness
     if (think.isNullOrUndefined(couponId) || -1 === couponId) {
       couponId = -1;
       userCouponId = -1;
@@ -372,6 +396,9 @@ module.exports = class WxCartController extends Base {
         checkedGoodsList
       );
 
+      // 用户选择的优惠券有问题，则选择合适优惠券，否则使用用户选择的优惠券
+      // If there is a problem with the coupon selected by the user, then select
+      // the appropriate coupon, otherwise use the coupon selected by the user
       if (think.isEmpty(coupon)) {
         couponPrice = tmpCouponPrice;
         couponId = tmpCouponId;
@@ -381,11 +408,16 @@ module.exports = class WxCartController extends Base {
       }
     }
 
+    // 根据订单商品总价计算运费，满88则免运费，否则8元；
+    // Shipping is calculated based on the total price of the items in the order,
+    // e.g. over 88 then shipping is free, otherwise $8;
     let freightPrice = 0.0;
     if (checkedGoodsPrice < freightLimit) {
       freightPrice = freight;
     }
 
+    // 可以使用的其他钱，例如用户积分
+    // Other money that can be used, such as user points
     const integralPrice = 0.0;
     const orderTotalPrice = Math.max(0.0, checkedGoodsPrice + freightPrice - couponPrice);
     const actualPrice = orderTotalPrice - integralPrice;
