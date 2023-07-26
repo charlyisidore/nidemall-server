@@ -1,3 +1,5 @@
+const isDev = ('development' === think.env);
+
 module.exports = class extends think.Model {
   field(field) {
     if (think.isString(field)) {
@@ -39,6 +41,7 @@ module.exports = class extends think.Model {
   }
 
   _before(data) {
+    this._beforeCheck(data);
     return Object.fromEntries(
       Object.entries(data)
         .map(([k, v]) => [
@@ -116,5 +119,21 @@ module.exports = class extends think.Model {
           ])
       )
       : data;
+  }
+
+  _beforeCheck(data) {
+    if (!isDev || !this.schema) {
+      return;
+    }
+
+    // Check if all given fields exist in the database
+    const unknownFields = Object.keys(data)
+      .map((field) => think.snakeCase(field))
+      .filter((field) => !(field in this.schema));
+
+    if (unknownFields.length > 0) {
+      think.logger.error(`Unknown fields ${unknownFields.join(', ')} in table ${this.tableName}`);
+      throw new Error(`Unknown fields ${unknownFields.join(', ')} in table ${this.tableName}`);
+    }
   }
 };
