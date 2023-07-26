@@ -1,6 +1,7 @@
 const test = require('ava');
 const { request } = require('../../helpers/app.js');
 const { createBrand, destroyBrand } = require('../helpers/brand.js');
+const { validateResponse } = require('../../helpers/openapi.js');
 
 const REQUEST = {
   method: 'get',
@@ -23,6 +24,8 @@ test('success', async (t) => {
 
   t.is(response.errno, 0);
   t.deepEqual(response.data, t.context.brand);
+
+  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
 });
 
 test('not found', async (t) => {

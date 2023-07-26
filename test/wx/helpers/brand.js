@@ -7,7 +7,13 @@ const DATA = {
 };
 
 async function createBrand(data = {}) {
-  const entity = { ...DATA, ...data };
+  const now = new Date();
+  const entity = {
+    addTime: think.datetime(now),
+    updateTime: think.datetime(now),
+    ...DATA,
+    ...data,
+  };
   const id = await think.model('brand').add(entity);
 
   return think.model('brand')

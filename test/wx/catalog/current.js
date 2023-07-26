@@ -2,6 +2,12 @@ const test = require('ava');
 const { request } = require('../../helpers/app.js');
 const { createCategory, destroyCategory } = require('../helpers/category.js');
 const { createGoods, destroyGoods } = require('../helpers/goods.js');
+const { validateResponse } = require('../../helpers/openapi.js');
+
+const REQUEST = {
+  method: 'get',
+  path: '/wx/catalog/current',
+};
 
 test('success', async (t) => {
   const category = await createCategory();
@@ -20,11 +26,12 @@ test('success', async (t) => {
   });
 
   const response = await request(t, {
-    path: '/wx/catalog/current',
+    ...REQUEST,
     data: {
       id: category.id,
     },
   });
 
   t.is(response.errno, 0);
+  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
 });
