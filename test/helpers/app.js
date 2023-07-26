@@ -101,18 +101,26 @@ async function loginUser(t, options = {}) {
   };
 }
 
-async function createUser() {
+async function createUser(data = {}) {
   const authService = think.service('auth');
 
+  const now = think.datetime(new Date());
   const username = randomString(24);
   const password = randomString(24);
+  const hash = await authService.hashPassword(password);
 
   const id = await think.model('user')
-    .add({ username, password });
+    .add({
+      username,
+      password: hash,
+      addTime: now,
+      updateTime: now,
+      ...data,
+    });
 
   const token = await authService.createToken(id);
 
-  return { id, username, password, token };
+  return { id, username, password, hash, token };
 }
 
 function destroyUser(id) {

@@ -1,5 +1,5 @@
 const test = require('ava');
-const { request } = require('../../helpers/app.js');
+const { request, createUser, destroyUser } = require('../../helpers/app.js');
 const { validateResponse } = require('../../helpers/openapi.js');
 
 const REQUEST = {
@@ -8,11 +8,16 @@ const REQUEST = {
 };
 
 test('success', async (t) => {
+  const { id, username, password } = await createUser();
+  t.teardown(async () => {
+    await destroyUser(id);
+  });
+
   const response = await request(t, {
     ...REQUEST,
     data: {
-      username: 'user123',
-      password: 'user123',
+      username,
+      password,
     },
   });
 
