@@ -46,7 +46,7 @@ async function validateResponse(request, response) {
   }
 
   if (!validate(response)) {
-    console.error(`Validate response error:\n${JSON.stringify(response, 2, null)}`);
+    console.error(`Validate response error:\n${JSON.stringify(response, null, 2)}`);
     throw new ValidateResponseError(validate.errors);
   }
 };
