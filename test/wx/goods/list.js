@@ -24,7 +24,6 @@ test('success', async (t) => {
   await t.notThrowsAsync(() => validateResponse(REQUEST, response));
 });
 
-
 test('with category id', async (t) => {
   const category = await createCategory();
   const goodsList = await Promise.all(
