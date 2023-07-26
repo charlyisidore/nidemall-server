@@ -1,6 +1,7 @@
 const test = require('ava');
 const { request, createUser, destroyUser } = require('../../helpers/app.js');
 const { createAddress, destroyAddress, DATA } = require('../helpers/address.js');
+const { validateResponse } = require('../../helpers/openapi.js');
 
 const REQUEST = {
   method: 'post',
@@ -49,6 +50,8 @@ test.serial('add', async (t) => {
 
   const address = await getAddress(data.id);
   t.like(address, data);
+
+  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
 });
 
 
@@ -81,6 +84,8 @@ test.serial('update', async (t) => {
 
   const address = await getAddress(data.id);
   t.like(address, newData);
+
+  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
 });
 
 test.serial('not found', async (t) => {
@@ -139,4 +144,6 @@ test.serial('update default', async (t) => {
   t.is(address1.isDefault, true);
   const address2 = await getAddress(data2.id);
   t.is(address2.isDefault, false);
+
+  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
 });

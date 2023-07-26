@@ -10,7 +10,13 @@ const DATA = {
 };
 
 async function createAddress(data = {}) {
-  const entity = { ...DATA, ...data };
+  const now = new Date();
+  const entity = {
+    addTime: think.datetime(now),
+    updateTime: think.datetime(now),
+    ...DATA,
+    ...data,
+  };
   const id = await think.model('address').add(entity);
 
   return think.model('address')

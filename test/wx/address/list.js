@@ -1,6 +1,7 @@
 const test = require('ava');
 const { request, createUser, destroyUser } = require('../../helpers/app.js');
 const { createAddress, destroyAddress } = require('../helpers/address.js');
+const { validateResponse } = require('../../helpers/openapi.js');
 
 const REQUEST = {
   method: 'get',
@@ -53,6 +54,8 @@ test.serial('success', async (t) => {
     page: 1,
     list,
   });
+
+  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
 });
 
 test('not logged in', async (t) => {

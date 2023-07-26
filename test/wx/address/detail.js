@@ -1,6 +1,7 @@
 const test = require('ava');
 const { request, createUser, destroyUser } = require('../../helpers/app.js');
 const { createAddress, destroyAddress } = require('../helpers/address.js');
+const { validateResponse } = require('../../helpers/openapi.js');
 
 const REQUEST = {
   method: 'get',
@@ -40,6 +41,8 @@ test('success', async (t) => {
 
   t.is(response.errno, 0);
   t.deepEqual(response.data, t.context.address);
+
+  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
 });
 
 test('not logged in', async (t) => {
