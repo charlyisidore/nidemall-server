@@ -4,8 +4,8 @@ const { createCart, destroyCart } = require('../helpers/cart.js');
 const { validateResponse } = require('../../helpers/openapi.js');
 
 const REQUEST = {
-  method: 'post',
-  path: '/wx/cart/delete',
+  method: 'get',
+  path: '/wx/cart/checkout',
 };
 
 test.beforeEach(async (t) => {
@@ -25,24 +25,34 @@ test.afterEach(async (t) => {
 });
 
 test('success', async (t) => {
-  const toDelete = t.context.carts
-    .map((cart) => cart.productId)
-    .filter((v, i) => (0 == (i % 2)));
-
   const response = await request(t, {
     ...REQUEST,
     token: t.context.token,
     data: {
-      productIds: toDelete,
+      cartId: 0,
+      addressId: 0,
+      couponId: 0,
+      userCouponId: 0,
+      grouponRulesId: 0,
     },
   });
 
   t.is(response.errno, 0);
 
-  const responseProductIds = response.data.cartList.map((cart) => cart.productId);
+  const {
+    goodsTotalPrice,
+    freightPrice,
+    couponPrice,
+    orderTotalPrice,
+    actualPrice,
+    checkedGoodsList,
+  } = response.data;
 
-  t.assert(responseProductIds.every((id) => !toDelete.includes(id)));
-  t.assert(toDelete.every((id) => !responseProductIds.includes(id)));
+  t.assert(checkedGoodsList.every((cart) => cart.checked));
+
+  t.is(goodsTotalPrice, checkedGoodsList.map((cart) => cart.price).reduce((w, v) => w + v, 0));
+  t.is(orderTotalPrice, Math.max(0.0, goodsTotalPrice + freightPrice - couponPrice));
+  t.is(actualPrice, orderTotalPrice);
 
   await validateResponse(REQUEST, response, t);
 });
@@ -51,7 +61,11 @@ test('not logged in', async (t) => {
   const response = await request(t, {
     ...REQUEST,
     data: {
-      productIds: t.context.carts.map((cart) => cart.productId),
+      cartId: 0,
+      addressId: 0,
+      couponId: 0,
+      userCouponId: 0,
+      grouponRulesId: 0,
     },
   });
 
