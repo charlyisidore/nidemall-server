@@ -18,6 +18,9 @@ post:
           required:
             - username
             - password
+          example:
+            username: 'user123'
+            password: 'user123'
   responses:
     '200':
       description: Successful operation

@@ -40,6 +40,16 @@ post:
             - areaCode
             - addressDetail
             - isDefault
+          example:
+            id: 0
+            name: 'ABC'
+            tel: '13911111111'
+            province: '上海市'
+            city: '市辖区'
+            county: '黄浦区'
+            areaCode: '310101'
+            addressDetail: 'Somewhere'
+            isDefault: 0
   responses:
     '200':
       description: Successful operation
