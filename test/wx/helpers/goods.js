@@ -8,7 +8,7 @@ const DATA = {
   brief: '',
   isOnSale: true,
   sortOrder: 1,
-  picUrl: 'http://example/image.jpg',
+  picUrl: 'https://picsum.photos/100',
   shareUrl: '',
   isNew: false,
   isHot: false,
