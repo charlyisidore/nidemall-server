@@ -42,7 +42,7 @@ test('success', async (t) => {
   t.is(response.errno, 0);
   t.deepEqual(response.data, t.context.address);
 
-  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
+  await validateResponse(REQUEST, response, t);
 });
 
 test('not logged in', async (t) => {

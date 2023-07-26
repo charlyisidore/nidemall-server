@@ -55,7 +55,7 @@ test.serial('success', async (t) => {
     list,
   });
 
-  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
+  await validateResponse(REQUEST, response, t);
 });
 
 test('not logged in', async (t) => {

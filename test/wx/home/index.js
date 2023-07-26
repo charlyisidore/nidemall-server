@@ -11,5 +11,5 @@ test('success', async (t) => {
   const response = await request(t, REQUEST);
 
   t.is(response.errno, 0);
-  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
+  await validateResponse(REQUEST, response, t);
 });

@@ -23,32 +23,36 @@ async function validateApi() {
   return SwaggerParser.validate(api);
 };
 
-async function validateResponse(request, response) {
-  const key = `${request.method.toLowerCase()}:${request.path}`;
-  let validate;
+async function validateResponse(request, response, t) {
+  const validateFn = async () => {
+    const key = `${request.method.toLowerCase()}:${request.path}`;
+    let validate;
 
-  if (key in cache) {
-    validate = cache[key];
-  } else {
-    const schema = (await api)?.paths
-      ?.[request.path]
-      ?.[request.method.toLowerCase()]
-      ?.responses?.['200']
-      ?.content?.['application/json']
-      ?.schema;
+    if (key in cache) {
+      validate = cache[key];
+    } else {
+      const schema = (await api)?.paths
+        ?.[request.path]
+        ?.[request.method.toLowerCase()]
+        ?.responses?.['200']
+        ?.content?.['application/json']
+        ?.schema;
 
-    if (!schema) {
-      throw new ValidateResponseError(`Schema for "${key}" does not exist`);
+      if (!schema) {
+        throw new ValidateResponseError(`Schema for "${key}" does not exist`);
+      }
+
+      validate = ajv.compile(schema);
+      cache[key] = validate;
     }
 
-    validate = ajv.compile(schema);
-    cache[key] = validate;
-  }
+    if (!validate(response)) {
+      console.error(`Validate response error:\n${JSON.stringify(response, null, 2)}`);
+      throw new ValidateResponseError(validate.errors);
+    }
+  };
 
-  if (!validate(response)) {
-    console.error(`Validate response error:\n${JSON.stringify(response, null, 2)}`);
-    throw new ValidateResponseError(validate.errors);
-  }
+  await t.notThrowsAsync(validateFn);
 };
 
 module.exports = {

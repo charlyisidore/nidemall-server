@@ -59,7 +59,7 @@ test('success', async (t) => {
   t.assert(softDeleted(t.context.address.id));
   t.assert(notDeleted(t.context.other.id));
 
-  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
+  await validateResponse(REQUEST, response, t);
 });
 
 test('not logged in', async (t) => {

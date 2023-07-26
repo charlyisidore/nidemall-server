@@ -36,7 +36,7 @@ test('success', async (t) => {
   t.assert(Array.isArray(response.data.goods));
 
   t.deepEqual(response.data.topic, topic);
-  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
+  await validateResponse(REQUEST, response, t);
 });
 
 test('no goods on sale', async (t) => {
@@ -68,7 +68,7 @@ test('no goods on sale', async (t) => {
   t.assert(Array.isArray(response.data.goods));
 
   t.deepEqual(response.data.topic, topic);
-  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
+  await validateResponse(REQUEST, response, t);
 });
 
 test('user has collect', async (t) => {
@@ -91,7 +91,7 @@ test('user has collect', async (t) => {
   t.assert(Array.isArray(response.data.goods));
 
   t.deepEqual(response.data.topic, topic);
-  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
+  await validateResponse(REQUEST, response, t);
 });
 
 test('not found', async (t) => {

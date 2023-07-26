@@ -51,7 +51,7 @@ test.serial('add', async (t) => {
   const address = await getAddress(data.id);
   t.like(address, data);
 
-  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
+  await validateResponse(REQUEST, response, t);
 });
 
 
@@ -85,7 +85,7 @@ test.serial('update', async (t) => {
   const address = await getAddress(data.id);
   t.like(address, newData);
 
-  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
+  await validateResponse(REQUEST, response, t);
 });
 
 test.serial('not found', async (t) => {
@@ -145,5 +145,5 @@ test.serial('update default', async (t) => {
   const address2 = await getAddress(data2.id);
   t.is(address2.isDefault, false);
 
-  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
+  await validateResponse(REQUEST, response, t);
 });
