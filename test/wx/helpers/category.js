@@ -10,7 +10,13 @@ const DATA = {
 };
 
 async function createCategory(data = {}) {
-  const entity = { ...DATA, ...data };
+  const now = think.datetime(new Date());
+  const entity = {
+    addTime: now,
+    updateTime: now,
+    ...DATA,
+    ...data,
+  };
   const id = await think.model('category').add(entity);
 
   return think.model('category')

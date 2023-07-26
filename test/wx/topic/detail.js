@@ -2,6 +2,7 @@ const test = require('ava');
 const { request, createUser, destroyUser } = require('../../helpers/app.js');
 const { createTopic, destroyTopic } = require('../helpers/topic.js');
 const { createGoods, destroyGoods } = require('../helpers/goods.js');
+const { validateResponse } = require('../../helpers/openapi.js');
 
 const REQUEST = {
   method: 'get',
@@ -35,6 +36,7 @@ test('success', async (t) => {
   t.assert(Array.isArray(response.data.goods));
 
   t.deepEqual(response.data.topic, topic);
+  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
 });
 
 test('no goods on sale', async (t) => {
@@ -66,6 +68,7 @@ test('no goods on sale', async (t) => {
   t.assert(Array.isArray(response.data.goods));
 
   t.deepEqual(response.data.topic, topic);
+  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
 });
 
 test('user has collect', async (t) => {
@@ -88,6 +91,7 @@ test('user has collect', async (t) => {
   t.assert(Array.isArray(response.data.goods));
 
   t.deepEqual(response.data.topic, topic);
+  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
 });
 
 test('not found', async (t) => {

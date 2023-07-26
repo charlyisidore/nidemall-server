@@ -19,7 +19,13 @@ const DATA = {
 };
 
 async function createGoods(data = {}) {
-  const entity = { ...DATA, ...data };
+  const now = think.datetime(new Date());
+  const entity = {
+    addTime: now,
+    updateTime: now,
+    ...DATA,
+    ...data,
+  };
   const id = await think.model('goods').add(entity);
 
   return think.model('goods')

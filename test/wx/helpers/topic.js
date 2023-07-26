@@ -10,7 +10,13 @@ const DATA = {
 };
 
 async function createTopic(data = {}) {
-  const entity = { ...DATA, ...data };
+  const now = think.datetime(new Date());
+  const entity = {
+    addTime: now,
+    updateTime: now,
+    ...DATA,
+    ...data,
+  };
   const id = await think.model('topic').add(entity);
 
   return think.model('topic')

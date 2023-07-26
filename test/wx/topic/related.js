@@ -1,6 +1,7 @@
 const test = require('ava');
 const { request } = require('../../helpers/app.js');
 const { createTopic, destroyTopic } = require('../helpers/topic.js');
+const { validateResponse } = require('../../helpers/openapi.js');
 
 const REQUEST = {
   method: 'get',
@@ -22,11 +23,7 @@ test('success', async (t) => {
   });
 
   t.is(response.errno, 0);
-  t.assert(Number.isInteger(response.data.total));
-  t.assert(Number.isInteger(response.data.pages));
-  t.assert(Number.isInteger(response.data.limit));
-  t.assert(Number.isInteger(response.data.page));
-  t.assert(Array.isArray(response.data.list));
+  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
 });
 
 test('not found', async (t) => {
@@ -36,9 +33,5 @@ test('not found', async (t) => {
   });
 
   t.is(response.errno, 0);
-  t.assert(Number.isInteger(response.data.total));
-  t.assert(Number.isInteger(response.data.pages));
-  t.assert(Number.isInteger(response.data.limit));
-  t.assert(Number.isInteger(response.data.page));
-  t.assert(Array.isArray(response.data.list));
+  await t.notThrowsAsync(() => validateResponse(REQUEST, response));
 });

@@ -7,10 +7,10 @@ const DATA = {
 };
 
 async function createBrand(data = {}) {
-  const now = new Date();
+  const now = think.datetime(new Date());
   const entity = {
-    addTime: think.datetime(now),
-    updateTime: think.datetime(now),
+    addTime: now,
+    updateTime: now,
     ...DATA,
     ...data,
   };
