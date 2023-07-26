@@ -5,7 +5,7 @@ const { validateResponse } = require('../../helpers/openapi.js');
 
 const REQUEST = {
   method: 'get',
-  path: '/wx/goods/detail',
+  path: '/wx/goods/related',
 };
 
 test('success', async (t) => {
