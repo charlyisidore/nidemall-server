@@ -11,6 +11,7 @@ module.exports = class WeixinService extends Base {
    * @returns {string}
    */
   success(msg) {
+    think.logger.debug(`weixin.success('${msg}')`);
     return this.buildXml({
       xml: {
         return_code: 'SUCCESS',
@@ -25,6 +26,7 @@ module.exports = class WeixinService extends Base {
    * @returns {string}
    */
   fail(msg) {
+    think.logger.debug(`weixin.fail('${msg}')`);
     return this.buildXml({
       xml: {
         return_code: 'FAIL',
