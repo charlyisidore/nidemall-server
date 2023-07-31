@@ -345,16 +345,6 @@ module.exports = class OrderService extends Base {
     }
 
     /*
-      select o.id, o.add_time
-      from nidemall_order o
-      left join nidemall_user u
-        on o.user_id = u.id
-      left join nidemall_order_goods og
-        on o.id = og.order_id
-      [where ...]
-      group by o.id
-      [order by ...]
-
       <select id="getOrderIds" resultType="hashmap">
           select o.id, o.add_time
           from litemall_order o
@@ -372,36 +362,16 @@ module.exports = class OrderService extends Base {
               order by ${orderByClause}
           </if>
       </select>
-      <resultMap type="org.linlinjava.litemall.db.domain.OrderVo" id="orderList">
-          <id column="id" property="id"/>
-          <result column="order_sn" property="orderSn"/>
-          <result column="order_status" property="orderStatus"/>
-          <result column="actual_price" property="actualPrice"/>
-          <result column="freight_price" property="freightPrice"/>
-          <result column="integral_price" property="integralPrice"/>
-          <result column="order_price" property="orderPrice"/>
-          <result column="pay_time" property="payTime"/>
-          <result column="add_time" property="addTime"/>
-          <result column="ship_channel" property="shipChannel"/>
-          <result column="ship_sn" property="shipSn"/>
-          <result column="consignee" property="consignee"/>
-          <result column="address" property="address"/>
-          <result column="mobile" property="mobile"/>
-          <result column="message" property="message"/>
-          <result column="user_id" property="userId"/>
-          <result column="user_name" property="userName"/>
-          <result column="user_avatar" property="userAvatar"/>
-          <collection property="goodsVoList" ofType="org.linlinjava.litemall.db.domain.OrderGoodsVo">
-              <id column="ogid" property="id"/>
-              <result column="goods_id" property="goodsId"/>
-              <result column="product_id" property="productId"/>
-              <result column="goods_name" property="goodsName"/>
-              <result column="goods_picture" property="picUrl"/>
-              <result column="goods_specifications" property="specifications" typeHandler="org.linlinjava.litemall.db.mybatis.JsonStringArrayTypeHandler"/>
-              <result column="goods_number" property="number"/>
-              <result column="goods_price" property="price"/>
-          </collection>
-      </resultMap>
+
+      select o.id, o.add_time
+      from nidemall_order o
+      left join nidemall_user u
+        on o.user_id = u.id
+      left join nidemall_order_goods og
+        on o.id = og.order_id
+      [where ...]
+      group by o.id
+      [order by ...]
     */
 
     /** @type {{pageSize: number, currentPage: number, count: number, totalPages: number, data: Order[]}} */
@@ -436,6 +406,29 @@ module.exports = class OrderService extends Base {
 
     if (!think.isEmpty(ids)) {
       /*
+        <select id="getOrderList" resultMap="orderList">
+            select o.id, o.order_sn, o.order_status, o.actual_price, o.freight_price, o.add_time, o.message,
+            o.consignee, o.address, o.mobile, o.pay_time, o.order_price, o.ship_channel, o.ship_sn,
+            u.id user_id, u.nickname user_name, u.avatar user_avatar, o.integral_price,
+            og.id ogid, og.goods_id, og.product_id, og.goods_name, og.pic_url goods_picture,
+            og.specifications goods_specifications, og.number goods_number, og.price goods_price
+            from litemall_order o
+            left join litemall_user u
+            on o.user_id = u.id
+            left join litemall_order_goods og
+            on o.id = og.order_id
+            left join litemall_goods g
+            on og.goods_id = g.id
+            <where>
+                <if test="query != null">
+                    ${query}
+                </if>
+            </where>
+            <if test="orderByClause != null">
+                order by ${orderByClause}
+            </if>
+        </select>
+
         select
           o.id,
           o.order_sn,
@@ -472,113 +465,62 @@ module.exports = class OrderService extends Base {
           on og.goods_id = g.id
         [where ...]
         [order by ...]
-
-        <select id="getOrderList" resultMap="orderList">
-            select o.id, o.order_sn, o.order_status, o.actual_price, o.freight_price, o.add_time, o.message,
-            o.consignee, o.address, o.mobile, o.pay_time, o.order_price, o.ship_channel, o.ship_sn,
-            u.id user_id, u.nickname user_name, u.avatar user_avatar, o.integral_price,
-            og.id ogid, og.goods_id, og.product_id, og.goods_name, og.pic_url goods_picture,
-            og.specifications goods_specifications, og.number goods_number, og.price goods_price
-            from litemall_order o
-            left join litemall_user u
-            on o.user_id = u.id
-            left join litemall_order_goods og
-            on o.id = og.order_id
-            left join litemall_goods g
-            on og.goods_id = g.id
-            <where>
-                <if test="query != null">
-                    ${query}
-                </if>
-            </where>
-            <if test="orderByClause != null">
-                order by ${orderByClause}
-            </if>
-        </select>
-        <resultMap type="org.linlinjava.litemall.db.domain.OrderVo" id="orderList">
-            <id column="id" property="id"/>
-            <result column="order_sn" property="orderSn"/>
-            <result column="order_status" property="orderStatus"/>
-            <result column="actual_price" property="actualPrice"/>
-            <result column="freight_price" property="freightPrice"/>
-            <result column="integral_price" property="integralPrice"/>
-            <result column="order_price" property="orderPrice"/>
-            <result column="pay_time" property="payTime"/>
-            <result column="add_time" property="addTime"/>
-            <result column="ship_channel" property="shipChannel"/>
-            <result column="ship_sn" property="shipSn"/>
-            <result column="consignee" property="consignee"/>
-            <result column="address" property="address"/>
-            <result column="mobile" property="mobile"/>
-            <result column="message" property="message"/>
-            <result column="user_id" property="userId"/>
-            <result column="user_name" property="userName"/>
-            <result column="user_avatar" property="userAvatar"/>
-            <collection property="goodsVoList" ofType="org.linlinjava.litemall.db.domain.OrderGoodsVo">
-                <id column="ogid" property="id"/>
-                <result column="goods_id" property="goodsId"/>
-                <result column="product_id" property="productId"/>
-                <result column="goods_name" property="goodsName"/>
-                <result column="goods_picture" property="picUrl"/>
-                <result column="goods_specifications" property="specifications" typeHandler="org.linlinjava.litemall.db.mybatis.JsonStringArrayTypeHandler"/>
-                <result column="goods_number" property="number"/>
-                <result column="goods_price" property="price"/>
-            </collection>
-        </resultMap>
       */
 
-      list2 = await this.model('order')
-        .field([
-          'o.id',
-          'o.orderSn',
-          'o.orderStatus',
-          'o.actualPrice',
-          'o.freightPrice',
-          'o.addTime',
-          'o.message',
-          'o.consignee',
-          'o.address',
-          'o.mobile',
-          'o.payTime',
-          'o.orderPrice',
-          'o.shipChannel',
-          'o.shipSn',
-          'u.id AS userId',
-          'u.nickname AS userName',
-          'u.avatar AS userAvatar',
-          'o.integralPrice',
-          'og.id AS ogid',
-          'og.goodsId',
-          'og.productId',
-          'og.goodsName',
-          'og.picUrl AS goodsPicture',
-          'og.specifications AS goodsSpecifications',
-          'og.number AS goodsNumber',
-          'og.price AS goodsPrice',
-        ].join(','))
-        .alias('o')
-        .join({
-          user: {
-            join: 'left',
-            as: 'u',
-            on: ['user_id', 'id'],
-          },
-          order_goods: {
-            join: 'left',
-            as: 'og',
-            on: ['id', 'order_id'],
-          },
-          goods: {
-            join: 'left',
-            as: 'g',
-            on: ['og.goods_id', 'id'],
-          },
-        })
-        .where(Object.assign(where, {
-          'o.id': ['IN', ids],
-        }))
-        .order(orderBy)
-        .select();
+      list2 = this.orderListResultMap(
+        await this.model('order')
+          .field([
+            'o.id',
+            'o.orderSn',
+            'o.orderStatus',
+            'o.actualPrice',
+            'o.freightPrice',
+            'o.addTime',
+            'o.message',
+            'o.consignee',
+            'o.address',
+            'o.mobile',
+            'o.payTime',
+            'o.orderPrice',
+            'o.shipChannel',
+            'o.shipSn',
+            'u.id AS userId',
+            'u.nickname AS userName',
+            'u.avatar AS userAvatar',
+            'o.integralPrice',
+            'og.id AS ogid',
+            'og.goodsId',
+            'og.productId',
+            'og.goodsName',
+            'og.picUrl AS goodsPicture',
+            'og.specifications AS goodsSpecifications',
+            'og.number AS goodsNumber',
+            'og.price AS goodsPrice',
+          ].join(','))
+          .alias('o')
+          .join({
+            user: {
+              join: 'left',
+              as: 'u',
+              on: ['user_id', 'id'],
+            },
+            order_goods: {
+              join: 'left',
+              as: 'og',
+              on: ['id', 'order_id'],
+            },
+            goods: {
+              join: 'left',
+              as: 'g',
+              on: ['og.goods_id', 'id'],
+            },
+          })
+          .where(Object.assign(where, {
+            'o.id': ['IN', ids],
+          }))
+          .order(orderBy)
+          .select()
+      );
     }
 
     return {
@@ -738,6 +680,95 @@ module.exports = class OrderService extends Base {
     await this.releaseCoupon(order.id);
 
     think.logger.info(`系统结束处理延时任务---订单超时未付款---${orderId}`);
+  }
+
+  /**
+   * .
+   * @param {object[]} list .
+   * @returns {object[]}
+   */
+  orderListResultMap(list) {
+    /*
+      <resultMap type="org.linlinjava.litemall.db.domain.OrderVo" id="orderList">
+          <id column="id" property="id"/>
+          <result column="order_sn" property="orderSn"/>
+          <result column="order_status" property="orderStatus"/>
+          <result column="actual_price" property="actualPrice"/>
+          <result column="freight_price" property="freightPrice"/>
+          <result column="integral_price" property="integralPrice"/>
+          <result column="order_price" property="orderPrice"/>
+          <result column="pay_time" property="payTime"/>
+          <result column="add_time" property="addTime"/>
+          <result column="ship_channel" property="shipChannel"/>
+          <result column="ship_sn" property="shipSn"/>
+          <result column="consignee" property="consignee"/>
+          <result column="address" property="address"/>
+          <result column="mobile" property="mobile"/>
+          <result column="message" property="message"/>
+          <result column="user_id" property="userId"/>
+          <result column="user_name" property="userName"/>
+          <result column="user_avatar" property="userAvatar"/>
+          <collection property="goodsVoList" ofType="org.linlinjava.litemall.db.domain.OrderGoodsVo">
+              <id column="ogid" property="id"/>
+              <result column="goods_id" property="goodsId"/>
+              <result column="product_id" property="productId"/>
+              <result column="goods_name" property="goodsName"/>
+              <result column="goods_picture" property="picUrl"/>
+              <result column="goods_specifications" property="specifications" typeHandler="org.linlinjava.litemall.db.mybatis.JsonStringArrayTypeHandler"/>
+              <result column="goods_number" property="number"/>
+              <result column="goods_price" property="price"/>
+          </collection>
+      </resultMap>
+    */
+    return list.reduce((carry, item) => {
+      let order = carry.find((v) => v.id === item.id);
+
+      if (undefined === order) {
+        order = Object.fromEntries(
+          Object.entries({
+            id: item.id,
+            orderSn: item.orderSn,
+            orderStatus: item.orderStatus,
+            actualPrice: item.actualPrice,
+            freightPrice: item.freightPrice,
+            integralPrice: item.integralPrice,
+            orderPrice: item.orderPrice,
+            payTime: item.payTime,
+            addTime: item.addTime,
+            shipChannel: item.shipChannel,
+            shipSn: item.shipSn,
+            consignee: item.consignee,
+            address: item.address,
+            mobile: item.mobile,
+            message: item.message,
+            userId: item.userId,
+            userName: item.userName,
+            userAvatar: item.userAvatar,
+            goodsVoList: [],
+          })
+            .filter(([k, v]) => undefined !== v)
+        );
+        carry.push(order);
+      }
+
+      order.goodsVoList.push(
+        Object.fromEntries(
+          Object.entries({
+            id: item.ogid,
+            goodsId: item.goodsId,
+            productId: item.productId,
+            goodsName: item.goodsName,
+            picUrl: item.goodsPicture,
+            specifications: JSON.parse(item.goodsSpecifications),
+            number: item.goodsNumber,
+            price: item.goodsPrice,
+          })
+            .filter(([k, v]) => undefined !== v)
+        )
+      );
+
+      return carry;
+    }, []);
   }
 
   /**
