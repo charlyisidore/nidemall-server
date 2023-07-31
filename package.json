@@ -18,7 +18,7 @@
   "dependencies": {
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
-    "fast-xml-parser": "^4.2.5",
+    "fast-xml-parser": "^4.2.7",
     "jsonwebtoken": "^9.0.1",
     "think-cache": "^1.1.2",
     "think-cache-file": "^1.1.2",
@@ -35,9 +35,9 @@
     "@apidevtools/swagger-parser": "^10.1.0",
     "ajv": "^8.12.0",
     "ava": "^5.3.1",
-    "eslint": "^8.44.0",
+    "eslint": "^8.46.0",
     "eslint-config-think": "^1.0.3",
-    "msw": "^1.2.2",
+    "msw": "^1.2.3",
     "nyc": "^15.1.0",
     "think-watcher": "^3.0.4"
   },
