@@ -2,7 +2,6 @@
 
 const { rest } = require('msw');
 const axios = require('axios');
-const { XMLBuilder, XMLParser } = require('fast-xml-parser');
 const crypto = require('node:crypto');
 
 function randomHex(n) {
@@ -32,23 +31,11 @@ function randomNonceStr() {
   return (new Date()).getTime().toString();
 }
 
-function parseXml(text) {
-  const parser = new XMLParser({
-    parseTagValue: false,
-  });
-  return parser.parse(text);
-}
-
-function buildXml(obj) {
-  const builder = new XMLBuilder();
-  return builder.build(obj);
-}
-
 // https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_7
 async function payNotify(data, query) {
   /** @type {WeixinService} */
   const weixinService = think.service('weixin');
-  const signKey = think.config('weixin.mchKey');
+  const signKey = false; // think.config('weixin.mchKey');
 
   const now = new Date();
   const year = now.getFullYear().toString();
@@ -66,17 +53,17 @@ async function payNotify(data, query) {
     is_subscribe: 'Y',
     mch_id: data.mch_id ?? query.mch_id,
     nonce_str: randomNonceStr(),
-    openid: 'oUpF8uMEb4qRXf22hE3X68TekukE',
+    // openid: 'oUpF8uMEb4qRXf22hE3X68TekukE',
     out_trade_no: data.out_trade_no ?? query.out_trade_no ?? randomNumString(10),
     result_code: 'SUCCESS',
     return_code: 'SUCCESS',
     time_end: `${year}${month}${day}${hours}${minutes}${seconds}`,
-    total_fee: 1,
-    coupon_fee: 10,
-    coupon_count: 1,
-    coupon_type: 'CASH',
-    coupon_id: 10000,
-    trade_type: 'JSAPI',
+    total_fee: query.total_fee,
+    // coupon_fee: 0,
+    // coupon_count: 0,
+    // coupon_type: 'CASH',
+    // coupon_id: 10000,
+    trade_type: data.trade_type ?? query.trade_type ?? 'JSAPI',
     transaction_id: randomNumString(28),
   };
 
@@ -90,9 +77,7 @@ async function payNotify(data, query) {
     headers: {
       'Content-Type': 'application/xml',
     },
-    data: {
-      xml: buildXml({ xml: result }),
-    },
+    data: weixinService.buildXml({ xml: result }),
   });
 }
 
@@ -106,7 +91,7 @@ exports.handlers = [
     const weixinService = think.service('weixin');
     const signKey = think.config('weixin.mchKey');
 
-    const query = parseXml(await req.text())?.xml ?? {};
+    const query = weixinService.parseXml(await req.text())?.xml ?? {};
 
     const result = {
       return_code: 'SUCCESS',
@@ -123,9 +108,9 @@ exports.handlers = [
       sign: weixinService.createSign(result, query.sign_type, signKey),
     });
 
-    const body = buildXml({ xml: result });
+    const body = weixinService.buildXml({ xml: result });
 
-    setTimeout(() => payNotify(result, query), 1000);
+    setTimeout(() => payNotify(result, query), 100);
 
     return res(
       ctx.status(200),
@@ -139,7 +124,7 @@ exports.handlers = [
     const weixinService = think.service('weixin');
     const signKey = think.config('weixin.mchKey');
 
-    const query = parseXml(await req.text())?.xml ?? {};
+    const query = weixinService.parseXml(await req.text())?.xml ?? {};
 
     const result = {
       appid: query.appid,
@@ -161,7 +146,7 @@ exports.handlers = [
       sign: weixinService.createSign(result, query.sign_type, signKey),
     });
 
-    const body = buildXml({ xml: result });
+    const body = weixinService.buildXml({ xml: result });
 
     await payNotify(result, query);
 
