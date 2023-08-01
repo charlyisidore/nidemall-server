@@ -17,6 +17,25 @@ module.exports = {
       path: 'www/static/upload',
       baseUrl: 'http://127.0.0.1:8360/static/upload/',
     },
+    // TODO
+    aliyun: {
+      endpoint: '...',
+      accessKeyId: '111111',
+      accessKeySecret: 'xxxxxx',
+      bucketName: 'nidemall',
+    },
+    tencent: {
+      secretId: '111111',
+      secretKey: 'xxxxxx',
+      region: '...',
+      bucketName: 'nidemall',
+    },
+    qiniu: {
+      endpoint: 'http://...',
+      accessKey: '111111',
+      secretKey: 'xxxxxx',
+      bucketName: 'nidemall',
+    }
   },
   system: {
     prefix: 'litemall_',
@@ -48,6 +67,38 @@ module.exports = {
       { code: 'FEDEX', name: 'FEDEX联邦(国内件)' },
       { code: 'FEDEX_GJ', name: 'FEDEX联邦(国际件)' },
     ],
+  },
+  // TODO
+  notify: {
+    mail: {
+      enable: false,
+      host: 'smtp.example.com',
+      username: 'example@example.com',
+      password: '88888888',
+      sendFrom: 'example@example.com',
+      sendTo: 'example@qq.com',
+      port: 465,
+    },
+    sms: {
+      enable: false,
+      active: 'tencent',
+      sign: 'nidemall',
+      template: [
+        { name: 'paySucceed', templateId: 156349 },
+        { name: 'captcha', templateId: 156433 },
+        { name: 'ship', templateId: 158002 },
+        { name: 'refund', templateId: 159447 },
+      ],
+      tencent: {
+        appId: '111111111',
+        apiKey: 'xxxxxxxxxxxxxx',
+      },
+      aliyun: {
+        regionId: 'xxx',
+        accessKeyId: 'xxx',
+        accessKeySecret: 'xxx',
+      },
+    },
   },
   mocks: false,
 };
