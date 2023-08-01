@@ -95,6 +95,8 @@ module.exports = class WxAftersaleController extends Base {
 
     /** @type {AftersaleService} */
     const aftersaleService = this.service('aftersale');
+    /** @type {MathService} */
+    const mathService = this.service('math');
     /** @type {OrderService} */
     const orderService = this.service('order');
 
@@ -116,7 +118,7 @@ module.exports = class WxAftersaleController extends Base {
 
     const orderAmount = order.actualPrice - order.freightPrice;
 
-    if (amount > orderAmount) {
+    if (mathService.isFloatGreaterThan(amount, orderAmount)) {
       return this.fail(AFTERSALE.RESPONSE.INVALID_AMOUNT, '退款金额不正确');
     }
 
