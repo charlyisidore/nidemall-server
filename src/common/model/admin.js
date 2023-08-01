@@ -8,12 +8,15 @@ module.exports = class extends Base {
       },
       username: {
         type: 'varchar(63)',
+        default: '',
       },
       password: {
         type: 'varchar(63)',
+        default: '',
       },
       last_login_ip: {
         type: 'varchar(63)',
+        default: '',
       },
       last_login_time: {
         type: 'datetime',
@@ -21,6 +24,7 @@ module.exports = class extends Base {
       },
       avatar: {
         type: 'varchar(255)',
+        default: '\'\'',
       },
       add_time: {
         type: 'datetime',
@@ -37,6 +41,7 @@ module.exports = class extends Base {
       role_ids: {
         type: 'varchar(127)',
         dataType: 'json',
+        default: '[]',
       },
     };
   }

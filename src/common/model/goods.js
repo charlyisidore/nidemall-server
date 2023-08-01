@@ -8,9 +8,11 @@ module.exports = class extends Base {
       },
       goods_sn: {
         type: 'varchar(63)',
+        default: '',
       },
       name: {
         type: 'varchar(127)',
+        default: '',
       },
       category_id: {
         type: 'int(11)',
@@ -24,9 +26,11 @@ module.exports = class extends Base {
       },
       keywords: {
         type: 'varchar(255)',
+        default: '',
       },
       brief: {
         type: 'varchar(255)',
+        default: '',
       },
       is_on_sale: {
         type: 'tinyint(1)',

@@ -8,9 +8,11 @@ module.exports = class extends Base {
       },
       title: {
         type: 'varchar(255)',
+        default: '\'\'',
       },
       subtitle: {
         type: 'varchar(255)',
+        default: '\'\'',
       },
       content: {
         type: 'text',
@@ -20,9 +22,11 @@ module.exports = class extends Base {
       },
       read_count: {
         type: 'varchar(255)',
+        default: '1k',
       },
       pic_url: {
         type: 'varchar(255)',
+        default: '',
       },
       sort_order: {
         type: 'int(11)',
@@ -30,6 +34,7 @@ module.exports = class extends Base {
       goods: {
         type: 'varchar(1023)',
         dataType: 'json',
+        default: '',
       },
       add_time: {
         type: 'datetime',

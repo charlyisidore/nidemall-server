@@ -11,6 +11,7 @@ module.exports = class extends Base {
       },
       name: {
         type: 'varchar(120)',
+        default: '',
       },
       type: {
         type: 'tinyint(3)',

@@ -14,9 +14,11 @@ module.exports = class extends Base {
       },
       content: {
         type: 'varchar(1023)',
+        default: '',
       },
       admin_content: {
         type: 'varchar(511)',
+        default: '',
       },
       user_id: {
         type: 'int(11)',

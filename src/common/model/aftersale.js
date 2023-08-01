@@ -20,6 +20,7 @@ module.exports = class extends Base {
       },
       reason: {
         type: 'varchar(31)',
+        default: '',
       },
       amount: {
         type: 'decimal(10,2)',
@@ -27,9 +28,11 @@ module.exports = class extends Base {
       pictures: {
         type: 'varchar(1023)',
         dataType: 'json',
+        default: '[]',
       },
       comment: {
         type: 'varchar(511)',
+        default: '',
       },
       status: {
         type: 'smallint(6)',

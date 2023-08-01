@@ -11,6 +11,7 @@ module.exports = class extends Base {
       },
       password: {
         type: 'varchar(63)',
+        default: '',
       },
       gender: {
         type: 'tinyint(3)',
@@ -24,24 +25,30 @@ module.exports = class extends Base {
       },
       last_login_ip: {
         type: 'varchar(63)',
+        default: '',
       },
       user_level: {
         type: 'tinyint(3)',
       },
       nickname: {
         type: 'varchar(63)',
+        default: '',
       },
       mobile: {
         type: 'varchar(20)',
+        default: '',
       },
       avatar: {
         type: 'varchar(255)',
+        default: '',
       },
       weixin_openid: {
         type: 'varchar(63)',
+        default: '',
       },
       session_key: {
         type: 'varchar(100)',
+        default: '',
       },
       status: {
         type: 'tinyint(3)',

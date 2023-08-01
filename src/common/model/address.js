@@ -8,6 +8,7 @@ module.exports = class extends Base {
       },
       name: {
         type: 'varchar(63)',
+        default: '',
       },
       user_id: {
         type: 'int(11)',
@@ -23,6 +24,7 @@ module.exports = class extends Base {
       },
       address_detail: {
         type: 'varchar(127)',
+        default: '',
       },
       area_code: {
         type: 'char(6)',
@@ -32,6 +34,7 @@ module.exports = class extends Base {
       },
       tel: {
         type: 'varchar(20)',
+        default: '',
       },
       is_default: {
         type: 'tinyint(1)',

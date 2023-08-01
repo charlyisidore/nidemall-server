@@ -11,12 +11,15 @@ module.exports = class extends Base {
       },
       username: {
         type: 'varchar(63)',
+        default: '',
       },
       mobile: {
         type: 'varchar(20)',
+        default: '',
       },
       feed_type: {
         type: 'varchar(63)',
+        default: '',
       },
       content: {
         type: 'varchar(1023)',

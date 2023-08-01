@@ -8,24 +8,30 @@ module.exports = class extends Base {
       },
       name: {
         type: 'varchar(63)',
+        default: '',
       },
       keywords: {
         type: 'varchar(1023)',
+        default: '',
       },
       desc: {
         type: 'varchar(255)',
+        default: '',
       },
       pid: {
         type: 'int(11)',
       },
       icon_url: {
         type: 'varchar(255)',
+        default: '',
       },
       pic_url: {
         type: 'varchar(255)',
+        default: '',
       },
       level: {
         type: 'varchar(255)',
+        default: 'L1',
       },
       sort_order: {
         type: 'tinyint(3)',

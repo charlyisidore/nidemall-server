@@ -11,12 +11,15 @@ module.exports = class extends Base {
       },
       specification: {
         type: 'varchar(255)',
+        default: '',
       },
       value: {
         type: 'varchar(255)',
+        default: '',
       },
       pic_url: {
         type: 'varchar(255)',
+        default: '',
       },
       add_time: {
         type: 'datetime',

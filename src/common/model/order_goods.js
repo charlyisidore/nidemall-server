@@ -14,9 +14,11 @@ module.exports = class extends Base {
       },
       goods_name: {
         type: 'varchar(127)',
+        default: '',
       },
       goods_sn: {
         type: 'varchar(63)',
+        default: '',
       },
       product_id: {
         type: 'int(11)',
@@ -33,6 +35,7 @@ module.exports = class extends Base {
       },
       pic_url: {
         type: 'varchar(255)',
+        default: '',
       },
       comment: {
         type: 'int(11)',

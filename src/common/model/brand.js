@@ -8,12 +8,15 @@ module.exports = class extends Base {
       },
       name: {
         type: 'varchar(255)',
+        default: '',
       },
       desc: {
         type: 'varchar(255)',
+        default: '',
       },
       pic_url: {
         type: 'varchar(255)',
+        default: '',
       },
       sort_order: {
         type: 'tinyint(3)',

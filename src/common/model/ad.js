@@ -8,9 +8,11 @@ module.exports = class extends Base {
       },
       name: {
         type: 'varchar(63)',
+        default: '',
       },
       link: {
         type: 'varchar(255)',
+        default: '',
       },
       url: {
         type: 'varchar(255)',
@@ -20,6 +22,7 @@ module.exports = class extends Base {
       },
       content: {
         type: 'varchar(255)',
+        default: '',
       },
       start_time: {
         type: 'datetime',

@@ -14,6 +14,7 @@ module.exports = class extends Base {
       },
       from: {
         type: 'varchar(63)',
+        default: '',
       },
       add_time: {
         type: 'datetime',

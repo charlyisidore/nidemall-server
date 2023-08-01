@@ -8,9 +8,11 @@ module.exports = class extends Base {
       },
       keyword: {
         type: 'varchar(127)',
+        default: '',
       },
       url: {
         type: 'varchar(255)',
+        default: '',
       },
       is_hot: {
         type: 'tinyint(1)',

@@ -11,9 +11,11 @@ module.exports = class extends Base {
       },
       desc: {
         type: 'varchar(127)',
+        default: '',
       },
       tag: {
         type: 'varchar(63)',
+        default: '',
       },
       total: {
         type: 'int(11)',
@@ -39,6 +41,7 @@ module.exports = class extends Base {
       goods_value: {
         type: 'varchar(1023)',
         dataType: 'json',
+        default: '[]',
       },
       code: {
         type: 'varchar(63)',
