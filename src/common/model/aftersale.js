@@ -28,7 +28,7 @@ module.exports = class extends Base {
       pictures: {
         type: 'varchar(1023)',
         dataType: 'json',
-        default: '[]',
+        default: '',
       },
       comment: {
         type: 'varchar(511)',

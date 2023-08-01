@@ -8,11 +8,11 @@ module.exports = class extends Base {
       },
       title: {
         type: 'varchar(255)',
-        default: '\'\'',
+        default: '',
       },
       subtitle: {
         type: 'varchar(255)',
-        default: '\'\'',
+        default: '',
       },
       content: {
         type: 'text',
@@ -22,7 +22,7 @@ module.exports = class extends Base {
       },
       read_count: {
         type: 'varchar(255)',
-        default: '1k',
+        default: '',
       },
       pic_url: {
         type: 'varchar(255)',

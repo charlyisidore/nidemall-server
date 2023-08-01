@@ -31,7 +31,7 @@ module.exports = class extends Base {
       },
       level: {
         type: 'varchar(255)',
-        default: 'L1',
+        default: '',
       },
       sort_order: {
         type: 'tinyint(3)',
