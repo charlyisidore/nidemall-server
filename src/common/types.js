@@ -24,6 +24,7 @@
  * @typedef {import('./service/keyword.js')} KeywordService
  * @typedef {import('./service/local_storage.js')} LocalStorageService
  * @typedef {import('./service/log.js')} LogService
+ * @typedef {import('./service/math.js')} MathService
  * @typedef {import('./service/notice.js')} NoticeService
  * @typedef {import('./service/notice_admin.js')} NoticeAdminService
  * @typedef {import('./service/notify.js')} NotifyService
