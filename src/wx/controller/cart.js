@@ -274,6 +274,8 @@ module.exports = class WxCartController extends Base {
     const couponUserService = this.service('coupon_user');
     /** @type {GrouponRulesService} */
     const grouponRulesService = this.service('groupon_rules');
+    /** @type {MathService} */
+    const mathService = this.service('math');
     /** @type {SystemService} */
     const systemService = this.service('system');
 
@@ -360,7 +362,7 @@ module.exports = class WxCartController extends Base {
 
       tmpCouponLength++;
 
-      if (tmpCouponPrice < coupon.discount) {
+      if (mathService.isFloatLessThan(tmpCouponPrice, coupon.discount)) {
         tmpCouponPrice = coupon.discount;
         tmpCouponId = coupon.id;
         tmpUserCouponId = couponUser.id;
@@ -412,7 +414,7 @@ module.exports = class WxCartController extends Base {
     // Shipping is calculated based on the total price of the items in the order,
     // e.g. over 88 then shipping is free, otherwise $8;
     let freightPrice = 0.0;
-    if (checkedGoodsPrice < freightLimit) {
+    if (mathService.isFloatLessThan(checkedGoodsPrice, freightLimit)) {
       freightPrice = freight;
     }
 
