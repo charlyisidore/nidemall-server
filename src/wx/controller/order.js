@@ -280,7 +280,7 @@ module.exports = class WxOrderController extends Base {
       }
 
       let freightPrice = 0.0;
-      if (checkedGoodsPrice < freightLimit) {
+      if (mathService.isFloatLessThan(checkedGoodsPrice, freightLimit)) {
         freightPrice = freight;
       }
 
