@@ -29,6 +29,7 @@ module.exports = class extends Base {
       },
       message: {
         type: 'varchar(512)',
+        default: '',
       },
       goods_price: {
         type: 'decimal(10,2)',
