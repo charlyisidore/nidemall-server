@@ -2,7 +2,6 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   listAction() {
-    // this.requiresPermissions = 'admin:coupon:list';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -37,7 +36,6 @@ module.exports = class extends Base {
   }
 
   listuserAction() {
-    // this.requiresPermissions = 'admin:coupon:listuser';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -72,7 +70,6 @@ module.exports = class extends Base {
   }
 
   createAction() {
-    // this.requiresPermissions = 'admin:coupon:create';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -126,7 +123,6 @@ module.exports = class extends Base {
   }
 
   readAction() {
-    // this.requiresPermissions = 'admin:coupon:read';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -138,7 +134,6 @@ module.exports = class extends Base {
   }
 
   updateAction() {
-    // this.requiresPermissions = 'admin:coupon:update';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -196,7 +191,6 @@ module.exports = class extends Base {
   }
 
   deleteAction() {
-    // this.requiresPermissions = 'admin:coupon:delete';
     this.allowMethods = 'POST';
 
     this.rules = {

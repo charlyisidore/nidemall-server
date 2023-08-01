@@ -2,7 +2,6 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   listRecordAction() {
-    // this.requiresPermissions = 'admin:groupon:read';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -31,7 +30,6 @@ module.exports = class extends Base {
   }
 
   listAction() {
-    // this.requiresPermissions = 'admin:groupon:list';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -60,7 +58,6 @@ module.exports = class extends Base {
   }
 
   updateAction() {
-    // this.requiresPermissions = 'admin:groupon:update';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -88,7 +85,6 @@ module.exports = class extends Base {
   }
 
   createAction() {
-    // this.requiresPermissions = 'admin:groupon:create';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -112,7 +108,6 @@ module.exports = class extends Base {
   }
 
   deleteAction() {
-    // this.requiresPermissions = 'admin:groupon:delete';
     this.allowMethods = 'POST';
 
     this.rules = {
