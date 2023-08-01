@@ -603,6 +603,8 @@ module.exports = class WxOrderController extends Base {
       const grouponService = this.service('groupon');
       /** @type {GrouponRulesService} */
       const grouponRulesService = this.service('groupon_rules');
+      /** @type {MathService} */
+      const mathService = this.service('math');
       /** @type {NotifyService} */
       const notifyService = this.service('notify');
       /** @type {OrderService} */
@@ -668,7 +670,7 @@ module.exports = class WxOrderController extends Base {
         return weixinService.success('订单已经处理成功!');
       }
 
-      if (totalFee != order.actualPrice) {
+      if (!mathService.isFloatEqual(order.actualPrice, totalFee)) {
         return weixinService.fail(`${order.orderSn} : 支付金额不符合 totalFee=${totalFee}`);
       }
 
