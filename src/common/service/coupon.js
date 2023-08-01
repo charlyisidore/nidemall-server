@@ -296,6 +296,8 @@ module.exports = class CouponService extends Base {
     const couponUserService = think.service('coupon_user');
     /** @type {GoodsService} */
     const goodsService = think.service('goods');
+    /** @type {MathService} */
+    const mathService = think.service('math');
 
     const { GOODS_TYPE, TIME_TYPE, STATUS } = this.getConstants();
 
@@ -315,6 +317,7 @@ module.exports = class CouponService extends Base {
       return null;
     }
 
+    // 检查是否超期
     const timeType = coupon.timeType;
     const days = coupon.days;
     const now = new Date();
@@ -334,7 +337,10 @@ module.exports = class CouponService extends Base {
       return null;
     }
 
+    // 检测商品是否符合
     const cartMap = {};
+
+    // 可使用优惠券的商品或分类
     let goodsValueList = [...coupon.goodsValue];
     const goodsType = coupon.goodsType;
 
@@ -349,9 +355,11 @@ module.exports = class CouponService extends Base {
         cartMap[key] = carts;
       }
 
+      // 购物车中可以使用优惠券的商品或分类
       goodsValueList = goodsValueList
         .filter((id) => Object.keys(cartMap).includes(id));
 
+      // 可使用优惠券的商品的总价格
       let total = 0.0;
 
       for (const goodsId of goodsValueList) {
@@ -362,16 +370,19 @@ module.exports = class CouponService extends Base {
         }
       }
 
-      if (total < coupon.min) {
+      // 是否达到优惠券满减金额
+      if (mathService.isFloatLessThan(total, coupon.min)) {
         return null;
       }
     }
 
+    // 检测订单状态
     if (STATUS.NORMAL != coupon.status) {
       return null;
     }
 
-    if (checkedGoodsPrice < coupon.min) {
+    // 检测是否满足最低消费
+    if (mathService.isFloatLessThan(checkedGoodsPrice, coupon.min)) {
       return null;
     }
 
