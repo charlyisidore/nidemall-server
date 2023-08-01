@@ -80,7 +80,7 @@ module.exports = class ExpressService extends Base {
    * @param {string} orderCode .
    * @returns {Promise<ExpressInfo>}
    */
-  getOrderTracesByJson(shipperCode, logisticCode, orderCode = '') {
+  async getOrderTracesByJson(shipperCode, logisticCode, orderCode = '') {
     const config = this.config('express');
 
     const requestData = JSON.stringify({
