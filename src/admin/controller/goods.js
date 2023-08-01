@@ -89,7 +89,9 @@ module.exports = class AdminGoodsController extends Base {
       }
 
       Object.assign(goods, {
+        // 将生成的分享图片地址写入数据库
         shareUrl: await qrCodeService.createGoodsShareImage(goods.id, goods.picUrl, goods.name),
+        // 商品表里面有一个字段retailPrice记录当前商品的最低价
         retailPrice: Math.min(...products.map((product) => product.price)),
       });
 
@@ -100,6 +102,7 @@ module.exports = class AdminGoodsController extends Base {
       await this.promiseAllFinished([
         ...specifications
           .map(async (specification) => {
+            // 目前只支持更新规格表的图片字段
             if (think.isNullOrUndefined(specification.updateTime)) {
               Object.assign(specification, {
                 specification: null,
@@ -198,11 +201,13 @@ module.exports = class AdminGoodsController extends Base {
       }
 
       Object.assign(goods, {
+        // 商品表里面有一个字段retailPrice记录当前商品的最低价
         retailPrice: Math.min(...products.map((product) => product.price)),
       });
 
       goods.id = await goodsService.add(goods);
 
+      // 将生成的分享图片地址写入数据库
       const shareUrl = await qrCodeService.createGoodsShareImage(goods.id, goods.picUrl, goods.name);
       if (!think.isTrueEmpty(shareUrl)) {
         Object.assign(goods, {
