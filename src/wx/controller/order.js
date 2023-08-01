@@ -195,30 +195,40 @@ module.exports = class WxOrderController extends Base {
         return this.unlogin();
       }
 
+      // 如果是团购项目,验证活动是否有效
       if (grouponRulesId) {
         const rules = await grouponRulesService.findById(grouponRulesId);
 
+        // 找不到记录
         if (think.isEmpty(rules)) {
           return this.badArgument();
         }
 
+        // 团购规则已经过期
         if (GROUPON_RULES.RULE_STATUS.DOWN_EXPIRE == rules.status) {
           return this.fail(GROUPON.RESPONSE.EXPIRED, '团购已过期!');
         }
 
+        // 团购规则已经下线
         if (GROUPON_RULES.RULE_STATUS.DOWN_ADMIN == rules.status) {
           return this.fail(GROUPON.RESPONSE.OFFLINE, '团购已下线!');
         }
 
         if (grouponLinkId) {
+          // 团购人数已满
           if ((await grouponService.countGroupon(grouponLinkId)) > (rules.discountMember - 1)) {
             return this.fail(GROUPON.RESPONSE.FULL, '团购活动人数已满!');
           }
 
+          // NOTE
+          // 这里业务方面允许用户多次开团，以及多次参团，
+          // 但是会限制以下两点：
+          // （1）不允许参加已经加入的团购
           if (await grouponService.hasJoin(grouponLinkId, userId)) {
             return this.fail(GROUPON.RESPONSE.JOIN, '团购活动已经参加!');
           }
 
+          // （2）不允许参加自己开团的团购
           const groupon = await grouponService.queryById(grouponLinkId, userId);
 
           if (!think.isEmpty(groupon) && groupon.creatorUserId == userId) {
@@ -227,12 +237,14 @@ module.exports = class WxOrderController extends Base {
         }
       }
 
+      // 收货地址
       const checkedAddres = await addressService.query(addressId, userId);
 
       if (think.isEmpty(checkedAddres)) {
         return this.badArgument();
       }
 
+      // 团购优惠
       let grouponPrice = 0.0;
       const grouponRules = await grouponRulesService.findById(grouponRulesId);
 
@@ -240,6 +252,7 @@ module.exports = class WxOrderController extends Base {
         grouponPrice = grouponRules.discount;
       }
 
+      // 货品价格
       let checkedGoodsList = null;
 
       if (!cartId) {
@@ -255,6 +268,7 @@ module.exports = class WxOrderController extends Base {
 
       let checkedGoodsPrice = 0.0;
       for (const checkGoods of checkedGoodsList) {
+        // 只有当团购规格商品ID符合才进行团购优惠
         if (!think.isEmpty(grouponRules) && grouponRules.goodsId == checkGoods.goodsId) {
           checkedGoodsPrice += (checkGoods.price - grouponPrice) * checkGoods.number;
         } else {
@@ -262,6 +276,8 @@ module.exports = class WxOrderController extends Base {
         }
       }
 
+      // 获取可用的优惠券信息
+      // 使用优惠券减免的金额
       let couponPrice = 0.0;
       if (couponId && couponId != -1) {
         const coupon = await couponService.checkCoupon(
@@ -279,13 +295,19 @@ module.exports = class WxOrderController extends Base {
         couponPrice = coupon.discount;
       }
 
+      // 根据订单商品总价计算运费，满足条件（例如88元）则免运费，否则需要支付运费（例如8元）；
       let freightPrice = 0.0;
       if (mathService.isFloatLessThan(checkedGoodsPrice, freightLimit)) {
         freightPrice = freight;
       }
 
+      // 可以使用的其他钱，例如用户积分
       const integralPrice = 0.0;
+
+      // 订单费用
       const orderTotalPrice = Math.max(0.0, checkedGoodsPrice + freightPrice - couponPrice);
+
+      // 最终支付费用
       const actualPrice = orderTotalPrice - integralPrice;
 
       /** @type {Order} */
@@ -303,13 +325,17 @@ module.exports = class WxOrderController extends Base {
         integralPrice,
         orderPrice: orderTotalPrice,
         actualPrice,
+        // 有团购
         grouponPrice: think.isEmpty(grouponRules) ? 0.0 : grouponPrice,
       };
 
+      // 添加订单表项
       order.id = await orderService.add(order);
       const orderId = order.id;
 
+      // 添加订单商品表项
       for (const cartGoods of checkedGoodsList) {
+        // 订单商品
         const orderGoods = {
           orderId: order.id,
           goodsId: cartGoods.goodsId,
@@ -326,12 +352,14 @@ module.exports = class WxOrderController extends Base {
         await orderGoodsService.add(orderGoods);
       }
 
+      // 删除购物车里面的商品信息
       if (cartId) {
         await cartService.deleteById(cartId);
       } else {
         await cartService.clearGoods(userId);
       }
 
+      // 商品货品数量减少
       for (const checkGoods of checkedGoodsList) {
         const productId = checkGoods.productId;
         const product = await goodsProductService.findById(productId);
@@ -347,6 +375,7 @@ module.exports = class WxOrderController extends Base {
         }
       }
 
+      // 如果使用了优惠券，设置优惠券使用状态
       if (couponId && couponId != -1) {
         const couponUser = await couponUserService.findById(userCouponId);
 
@@ -359,6 +388,7 @@ module.exports = class WxOrderController extends Base {
         await couponUserService.update(couponUser);
       }
 
+      // 如果是团购项目，添加团购信息
       if (grouponRulesId) {
         const groupon = {
           orderId,
@@ -367,7 +397,9 @@ module.exports = class WxOrderController extends Base {
           rulesId: grouponRulesId,
         };
 
+        // 参与者
         if (grouponLinkId) {
+          // 参与的团购记录
           const baseGroupon = await grouponService.queryById(grouponLinkId);
 
           Object.assign(groupon, {
@@ -389,6 +421,8 @@ module.exports = class WxOrderController extends Base {
         }
       }
 
+      // NOTE: 建议开发者从业务场景核实下面代码，防止用户利用业务BUG使订单跳过支付环节。
+      // 如果订单实际支付费用是0，则直接跳过支付变成待发货状态
       let payed = false;
 
       // Avoid using `==` because of precision loss in float numbers
@@ -400,6 +434,7 @@ module.exports = class WxOrderController extends Base {
           orderStatus: ORDER.STATUS.PAY,
         });
 
+        // 支付成功，有团购信息，更新团购信息
         const groupon = await grouponService.queryByOrderId(order.id);
 
         if (!think.isEmpty(groupon)) {
@@ -431,7 +466,10 @@ module.exports = class WxOrderController extends Base {
           }
         }
 
+        // 订单支付成功以后，会发送短信给用户，以及发送邮件给管理员
         await notifyService.notifyMail('新订单通知', orderService.orderToString(order));
+
+        // 这里微信的短信平台对参数长度有限制，所以将订单号只截取后6位
         await notifyService.notifySmsTemplateSync(
           order.mobile,
           NOTIFY.TYPE.PAY_SUCCEED,
@@ -480,12 +518,14 @@ module.exports = class WxOrderController extends Base {
         return this.badArgumentValue();
       }
 
+      // 检测是否能够取消
       const handleOption = orderService.build(order);
 
       if (!handleOption.cancel) {
         return this.fail(ORDER.RESPONSE.INVALID_OPERATION, '订单不能取消');
       }
 
+      // 设置订单已取消状态
       Object.assign(order, {
         orderStatus: ORDER.STATUS.CANCEL,
         endTime: now,
@@ -496,6 +536,7 @@ module.exports = class WxOrderController extends Base {
         throw new Error('更新数据已失效');
       }
 
+      // 商品货品数量增加
       const orderGoodsList = await orderGoodsService.queryByOid(orderId);
 
       for (const orderGoods of orderGoodsList) {
@@ -505,6 +546,7 @@ module.exports = class WxOrderController extends Base {
         }
       }
 
+      // 返还优惠券
       await orderService.releaseCoupon(orderId);
 
       return this.success();
@@ -541,6 +583,7 @@ module.exports = class WxOrderController extends Base {
         return this.badArgumentValue();
       }
 
+      // 检测是否能够取消
       const handleOption = orderService.build(order);
 
       if (!handleOption.pay) {
@@ -565,11 +608,12 @@ module.exports = class WxOrderController extends Base {
               spbillCreateIp: this.ip,
             });
             break;
-          default:
+          default: // 1
             result = await weixinService.createOrder({
               outTradeNo: order.orderSn,
               openid: user.weixinOpenid,
               body: `订单：${order.orderSn}`,
+              // 元转成分
               totalFee: Math.floor(order.actualPrice * 100.0),
               spbillCreateIp: this.ip,
             });
@@ -660,6 +704,7 @@ module.exports = class WxOrderController extends Base {
       const orderSn = result.outTradeNo;
       const payId = result.transationId;
 
+      // 分转化成元
       const totalFee = weixinService.fenToYuan(result.totalFee);
 
       const order = await orderService.findBySn(orderSn);
@@ -668,10 +713,12 @@ module.exports = class WxOrderController extends Base {
         return weixinService.fail(`订单不存在 sn=${orderSn}`);
       }
 
+      // 检查这个订单是否已经处理过
       if (orderService.hasPayed(order)) {
         return weixinService.success('订单已经处理成功!');
       }
 
+      // 检查支付订单金额
       if (!mathService.isFloatEqual(order.actualPrice, totalFee)) {
         return weixinService.fail(`${order.orderSn} : 支付金额不符合 totalFee=${totalFee}`);
       }
@@ -688,11 +735,13 @@ module.exports = class WxOrderController extends Base {
         return weixinService.fail('更新数据已失效');
       }
 
+      // 支付成功，有团购信息，更新团购信息
       const groupon = await grouponService.queryByOrderId(order.id);
 
       if (!think.isEmpty(groupon)) {
         const grouponRules = await grouponRulesService.findById(groupon.rulesId);
 
+        // 仅当发起者才创建分享图片
         if (think.isEmpty(groupon.grouponId)) {
           Object.assign(groupon, {
             shareUrl: await qrCodeService.createGrouponShareImage(
@@ -731,13 +780,17 @@ module.exports = class WxOrderController extends Base {
         }
       }
 
+      // 订单支付成功以后，会发送短信给用户，以及发送邮件给管理员
       await notifyService.notifyMail('新订单通知', orderService.orderToString(order));
+
+      // 这里微信的短信平台对参数长度有限制，所以将订单号只截取后6位
       await notifyService.notifySmsTemplate(
         order.mobile,
         NOTIFY.TYPE.PAY_SUCCEED,
         [order.orderSn.substring(8, 14)]
       );
 
+      // 取消订单超时未支付任务
       taskService.removeTask(`OrderUnpaidTask:${order.id}`);
 
       return weixinService.success('处理成功!');
@@ -776,6 +829,7 @@ module.exports = class WxOrderController extends Base {
       return this.fail(ORDER.RESPONSE.INVALID_OPERATION, '订单不能取消');
     }
 
+    // 设置订单申请退款状态
     Object.assign(order, {
       orderStatus: ORDER.STATUS.REFUND,
     });
@@ -870,7 +924,11 @@ module.exports = class WxOrderController extends Base {
       return this.fail(ORDER.RESPONSE.INVALID_OPERATION, '订单不能删除');
     }
 
+    // 订单order_status没有字段用于标识删除
+    // 而是存在专门的delete字段表示是否删除
     await orderService.deleteById(orderId);
+
+    // 售后也同时删除
     await aftersaleService.deleteByOrderId(orderId, userId);
 
     return this.success();
