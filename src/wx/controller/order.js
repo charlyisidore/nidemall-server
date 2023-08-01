@@ -165,6 +165,8 @@ module.exports = class WxOrderController extends Base {
       const grouponService = this.service('groupon');
       /** @type {GrouponRulesService} */
       const grouponRulesService = this.service('groupon_rules');
+      /** @type {MathService} */
+      const mathService = this.service('math');
       /** @type {NotifyService} */
       const notifyService = this.service('notify');
       /** @type {OrderService} */
@@ -389,8 +391,8 @@ module.exports = class WxOrderController extends Base {
 
       let payed = false;
 
-      // Deal with float precision
-      if (Math.abs(order.actualPrice) < 0.001) {
+      // Avoid using `==` because of precision loss in float numbers
+      if (mathService.isFloatEqual(0.0, order.actualPrice)) {
         payed = true;
 
         await orderService.updateSelective({
