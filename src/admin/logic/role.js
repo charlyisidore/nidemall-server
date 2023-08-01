@@ -2,7 +2,6 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   listAction() {
-    // this.requiresPermissions = 'admin:role:list';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -35,7 +34,6 @@ module.exports = class extends Base {
   }
 
   readAction() {
-    // this.requiresPermissions = 'admin:role:read';
     this.allowMethods = 'GET';
 
     this.rules = {
@@ -47,7 +45,6 @@ module.exports = class extends Base {
   }
 
   createAction() {
-    // this.requiresPermissions = 'admin:role:create';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -62,7 +59,6 @@ module.exports = class extends Base {
   }
 
   updateAction() {
-    // this.requiresPermissions = 'admin:role:update';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -81,7 +77,6 @@ module.exports = class extends Base {
   }
 
   deleteAction() {
-    // this.requiresPermissions = 'admin:role:delete';
     this.allowMethods = 'POST';
 
     this.rules = {
@@ -93,15 +88,6 @@ module.exports = class extends Base {
   }
 
   permissionsAction() {
-    switch (true) {
-      case this.isGet:
-        // this.requiresPermissions = 'admin:role:permission:get';
-        break;
-      case this.isPost:
-        // this.requiresPermissions = 'admin:role:permission:update';
-        break;
-    }
-
     this.allowMethods = 'GET,POST';
 
     this.rules = {
