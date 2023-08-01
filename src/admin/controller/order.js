@@ -87,6 +87,8 @@ module.exports = class AdminOrderController extends Base {
       const goodsProductService = this.service('goods_product');
       /** @type {LogService} */
       const logService = this.service('log');
+      /** @type {MathService} */
+      const mathService = this.service('math');
       /** @type {NotifyService} */
       const notifyService = this.service('notify');
       /** @type {OrderService} */
@@ -106,10 +108,12 @@ module.exports = class AdminOrderController extends Base {
         return this.badArgument();
       }
 
-      if (order.actualPrice != refundMoney) {
+      // Avoid using `==` because of precision loss in float numbers
+      if (!mathService.isFloatEqual(order.actualPrice, refundMoney)) {
         return this.badArgumentValue();
       }
 
+      // 如果订单不是退款状态，则不能退款
       if (ORDER.STATUS.REFUND != order.orderStatus) {
         return this.fail(ORDER.ADMIN_RESPONSE.CONFIRM_NOT_ALLOWED, '订单不能确认收货');
       }
@@ -145,8 +149,10 @@ module.exports = class AdminOrderController extends Base {
       const now = new Date();
 
       Object.assign(order, {
+        // 设置订单取消状态
         orderStatus: ORDER.STATUS.REFUND_CONFIRM,
         endTime: now,
+        // 记录订单退款相关信息
         refundAmount: order.actualPrice,
         refundType: '微信退款接口',
         refundContent: wxPayRefundResult.refundId,
@@ -157,6 +163,7 @@ module.exports = class AdminOrderController extends Base {
         throw new Error('更新数据已失效');
       }
 
+      // 商品货品数量增加
       const orderGoodsList = await orderGoodsService.queryByOid(orderId);
 
       await this.promiseAllFinished(
@@ -167,10 +174,12 @@ module.exports = class AdminOrderController extends Base {
         })
       );
 
+      // 返还优惠券
       const couponUsers = await couponUserService.queryByOid(orderId);
 
       await this.promiseAllFinished(
         couponUsers.map(async (couponUser) => {
+          // 优惠券状态设置为可使用
           Object.assign(couponUser, {
             status: COUPON_USER.STATUS.USABLE,
             updateTime: now,
